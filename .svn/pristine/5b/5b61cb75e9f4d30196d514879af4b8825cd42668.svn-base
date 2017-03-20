@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.member.mapper.CommonAgentsMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.member.model.CommonAgents" >
+    <id column="sitemid" property="sitemid" jdbcType="VARCHAR" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="login_phone" property="loginPhone" jdbcType="CHAR" />
+    <result column="login_passwd" property="loginPasswd" jdbcType="CHAR" />
+    <result column="login_salt" property="loginSalt" jdbcType="CHAR" />
+    <result column="login_bindtime" property="loginBindtime" jdbcType="INTEGER" />
+    <result column="login_isbind" property="loginIsbind" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sitemid, info, login_phone, login_passwd, login_salt, login_bindtime, login_isbind
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_agents
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from common_agents
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.member.model.CommonAgents" >
+    insert into common_agents (sitemid, info, login_phone, 
+      login_passwd, login_salt, login_bindtime, 
+      login_isbind)
+    values (#{sitemid,jdbcType=VARCHAR}, #{info,jdbcType=VARCHAR}, #{loginPhone,jdbcType=CHAR}, 
+      #{loginPasswd,jdbcType=CHAR}, #{loginSalt,jdbcType=CHAR}, #{loginBindtime,jdbcType=INTEGER}, 
+      #{loginIsbind,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.member.model.CommonAgents" >
+    insert into common_agents
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sitemid != null" >
+        sitemid,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+      <if test="loginPhone != null" >
+        login_phone,
+      </if>
+      <if test="loginPasswd != null" >
+        login_passwd,
+      </if>
+      <if test="loginSalt != null" >
+        login_salt,
+      </if>
+      <if test="loginBindtime != null" >
+        login_bindtime,
+      </if>
+      <if test="loginIsbind != null" >
+        login_isbind,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sitemid != null" >
+        #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPhone != null" >
+        #{loginPhone,jdbcType=CHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        #{loginPasswd,jdbcType=CHAR},
+      </if>
+      <if test="loginSalt != null" >
+        #{loginSalt,jdbcType=CHAR},
+      </if>
+      <if test="loginBindtime != null" >
+        #{loginBindtime,jdbcType=INTEGER},
+      </if>
+      <if test="loginIsbind != null" >
+        #{loginIsbind,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.member.model.CommonAgents" >
+    update common_agents
+    <set >
+      <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPhone != null" >
+        login_phone = #{loginPhone,jdbcType=CHAR},
+      </if>
+      <if test="loginPasswd != null" >
+        login_passwd = #{loginPasswd,jdbcType=CHAR},
+      </if>
+      <if test="loginSalt != null" >
+        login_salt = #{loginSalt,jdbcType=CHAR},
+      </if>
+      <if test="loginBindtime != null" >
+        login_bindtime = #{loginBindtime,jdbcType=INTEGER},
+      </if>
+      <if test="loginIsbind != null" >
+        login_isbind = #{loginIsbind,jdbcType=TINYINT},
+      </if>
+    </set>
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.member.model.CommonAgents" >
+    update common_agents
+    set info = #{info,jdbcType=VARCHAR},
+      login_phone = #{loginPhone,jdbcType=CHAR},
+      login_passwd = #{loginPasswd,jdbcType=CHAR},
+      login_salt = #{loginSalt,jdbcType=CHAR},
+      login_bindtime = #{loginBindtime,jdbcType=INTEGER},
+      login_isbind = #{loginIsbind,jdbcType=TINYINT}
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </update>
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from common_agents order by sitemid
+  </select>
+
+  <select id="queryOneBeanMapByPage" parameterType="map" resultType="java.util.Map">
+    SELECT a.*
+    FROM
+      common_agents AS a
+      LEFT JOIN
+      members AS b ON b.sitemid=a.sitemid
+    WHERE b.mid=50004
+    LIMIT 0,1
+  </select>
+
+</mapper>

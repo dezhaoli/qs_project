@@ -1,0 +1,13 @@
+package com.qs.common.constant;
+
+public class AppConstants {
+	public static String VALICODE_TYPE_REGITER = "1";// 验证码类型（注册）
+	public static String DEFAULT_PWD="123456"; //默认初始密码
+	
+	
+	public static class KeyPrefix{
+		public static final String SESSKEY = "SESSKEY";
+	
+	}
+	
+}

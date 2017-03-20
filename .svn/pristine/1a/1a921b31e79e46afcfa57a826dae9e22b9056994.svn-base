@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.member.mapper.MemberFidesMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.member.model.MemberFides" >
+    <id column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="btd" property="btd" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="invite" property="invite" jdbcType="INTEGER" />
+    <result column="gp" property="gp" jdbcType="TINYINT" />
+    <result column="sta" property="sta" jdbcType="INTEGER" />
+    <result column="mtime" property="mtime" jdbcType="BIGINT" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="bindtime" property="bindtime" jdbcType="INTEGER" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="yellowvip" property="yellowvip" jdbcType="TINYINT" />
+    <result column="isyearvip" property="isyearvip" jdbcType="TINYINT" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="lgtm" property="lgtm" jdbcType="INTEGER" />
+    <result column="lxlg" property="lxlg" jdbcType="INTEGER" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="regip" property="regip" jdbcType="BIGINT" />
+    <result column="active_assets" property="activeAssets" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mid, name, sex, btd, city, icon, invite, gp, sta, mtime, email, bindtime, tel, realname, 
+    identity, yellowvip, isyearvip, passwd, salt, lgtm, lxlg, qq, address, regip, active_assets
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberfides0
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByMemberMid" resultType="com.qs.webside.member.model.MemberFides"
+          parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from memberfides0
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memberfides0
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.member.model.MemberFides" >
+    insert into memberfides0 (mid, name, sex, 
+      btd, city, icon, invite, 
+      gp, sta, mtime, email, 
+      bindtime, tel, realname, 
+      identity, yellowvip, isyearvip, 
+      passwd, salt, lgtm, lxlg, 
+      qq, address, regip, 
+      active_assets)
+    values (#{mid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT}, 
+      #{btd,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{icon,jdbcType=VARCHAR}, #{invite,jdbcType=INTEGER}, 
+      #{gp,jdbcType=TINYINT}, #{sta,jdbcType=INTEGER}, #{mtime,jdbcType=BIGINT}, #{email,jdbcType=VARCHAR}, 
+      #{bindtime,jdbcType=INTEGER}, #{tel,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, 
+      #{identity,jdbcType=VARCHAR}, #{yellowvip,jdbcType=TINYINT}, #{isyearvip,jdbcType=TINYINT}, 
+      #{passwd,jdbcType=VARCHAR}, #{salt,jdbcType=CHAR}, #{lgtm,jdbcType=INTEGER}, #{lxlg,jdbcType=INTEGER}, 
+      #{qq,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{regip,jdbcType=BIGINT}, 
+      #{activeAssets,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.member.model.MemberFides" >
+    insert into memberfides0
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="btd != null" >
+        btd,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="invite != null" >
+        invite,
+      </if>
+      <if test="gp != null" >
+        gp,
+      </if>
+      <if test="sta != null" >
+        sta,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="bindtime != null" >
+        bindtime,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="identity != null" >
+        identity,
+      </if>
+      <if test="yellowvip != null" >
+        yellowvip,
+      </if>
+      <if test="isyearvip != null" >
+        isyearvip,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="lgtm != null" >
+        lgtm,
+      </if>
+      <if test="lxlg != null" >
+        lxlg,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="regip != null" >
+        regip,
+      </if>
+      <if test="activeAssets != null" >
+        active_assets,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="btd != null" >
+        #{btd,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="invite != null" >
+        #{invite,jdbcType=INTEGER},
+      </if>
+      <if test="gp != null" >
+        #{gp,jdbcType=TINYINT},
+      </if>
+      <if test="sta != null" >
+        #{sta,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=BIGINT},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="bindtime != null" >
+        #{bindtime,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="yellowvip != null" >
+        #{yellowvip,jdbcType=TINYINT},
+      </if>
+      <if test="isyearvip != null" >
+        #{isyearvip,jdbcType=TINYINT},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=CHAR},
+      </if>
+      <if test="lgtm != null" >
+        #{lgtm,jdbcType=INTEGER},
+      </if>
+      <if test="lxlg != null" >
+        #{lxlg,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="regip != null" >
+        #{regip,jdbcType=BIGINT},
+      </if>
+      <if test="activeAssets != null" >
+        #{activeAssets,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.member.model.MemberFides" >
+    update memberfides0
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=TINYINT},
+      </if>
+      <if test="btd != null" >
+        btd = #{btd,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="invite != null" >
+        invite = #{invite,jdbcType=INTEGER},
+      </if>
+      <if test="gp != null" >
+        gp = #{gp,jdbcType=TINYINT},
+      </if>
+      <if test="sta != null" >
+        sta = #{sta,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        mtime = #{mtime,jdbcType=BIGINT},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="bindtime != null" >
+        bindtime = #{bindtime,jdbcType=INTEGER},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null" >
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="yellowvip != null" >
+        yellowvip = #{yellowvip,jdbcType=TINYINT},
+      </if>
+      <if test="isyearvip != null" >
+        isyearvip = #{isyearvip,jdbcType=TINYINT},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="lgtm != null" >
+        lgtm = #{lgtm,jdbcType=INTEGER},
+      </if>
+      <if test="lxlg != null" >
+        lxlg = #{lxlg,jdbcType=INTEGER},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="regip != null" >
+        regip = #{regip,jdbcType=BIGINT},
+      </if>
+      <if test="activeAssets != null" >
+        active_assets = #{activeAssets,jdbcType=TINYINT},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.member.model.MemberFides" >
+    update memberfides0
+    set name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=TINYINT},
+      btd = #{btd,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=VARCHAR},
+      invite = #{invite,jdbcType=INTEGER},
+      gp = #{gp,jdbcType=TINYINT},
+      sta = #{sta,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=BIGINT},
+      email = #{email,jdbcType=VARCHAR},
+      bindtime = #{bindtime,jdbcType=INTEGER},
+      tel = #{tel,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      yellowvip = #{yellowvip,jdbcType=TINYINT},
+      isyearvip = #{isyearvip,jdbcType=TINYINT},
+      passwd = #{passwd,jdbcType=VARCHAR},
+      salt = #{salt,jdbcType=CHAR},
+      lgtm = #{lgtm,jdbcType=INTEGER},
+      lxlg = #{lxlg,jdbcType=INTEGER},
+      qq = #{qq,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      regip = #{regip,jdbcType=BIGINT},
+      active_assets = #{activeAssets,jdbcType=TINYINT}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from memberfides0 order by mid
+  </select>
+</mapper>

@@ -1,0 +1,152 @@
+package com.qs.webside.business.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.PageUtil;
+import com.qs.pub.game.model.MemberBusiness;
+import com.qs.pub.game.service.IBusinessService;
+import com.qs.webside.shiro.ShiroAuthenticationManager;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ *
+ * Created by zun.wei on 2017/3/16.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/agentQuery/")
+public class AgentsQueryController extends BaseController {
+
+    @Resource
+    private IBusinessService businessService;
+
+
+    /**
+     * 代理商查询页面
+     */
+    @RequestMapping(value = "queryAgentsUi.html",method = RequestMethod.GET)
+    public String queryAgentsUi(Model model, HttpServletRequest request){
+        MemberBusiness memberBusiness = ShiroAuthenticationManager.getBusiness();
+        Integer nowUserId = null;
+        if (memberBusiness != null) {
+            nowUserId = memberBusiness.getId();
+        }
+        PageUtil page = super.getPage(request);
+        model.addAttribute("page", page);
+        Map<String, Object> totalMap = businessService.queryFirstAgentCountByBelongId(nowUserId);
+        Integer total = Integer.parseInt(totalMap.get("total") + "");
+        model.addAttribute("totalAgent", total);
+        model.addAttribute("belongid", nowUserId);
+        return "/WEB-INF/view/web/business/agent_query_list";
+    }
+
+
+    /**
+     * 查询代理商
+     * @param gridPager
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "queryAgentList.html", method = RequestMethod.POST)
+    public Object queryAgents(String gridPager) {
+        Map<String,Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            parameters.put("belongid", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(),pager.getPageSize());
+        List<Map<String, Object>> agentList = businessService.queryFirstAgentByBelongIdPage(parameters);
+        return getReturnPage(pager, page, agentList);
+    }
+
+    /**
+     * 直属代理商详情页面
+     * @param model
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "showAgentDetailPageUi.html",method = RequestMethod.GET)
+    public String showAgentDetailPageUI(Model model, HttpServletRequest request, Integer id) {
+        try {
+            Map<String, Object> record = businessService.getAgentDetailInfoByMid(id);
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("record", record);
+            return "/WEB-INF/view/web/business/agent_detail_show";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 子级代理商查询入口
+     * @param model
+     * @param request
+     * @param id
+     * @return
+     */
+    @RequestMapping(value = "queryChildrenAgentUi.html",method = RequestMethod.GET)
+    public String queryChildrenAgentUI(Model model, HttpServletRequest request, Integer id) {
+        MemberBusiness memberBusiness = ShiroAuthenticationManager.getBusiness();
+        Integer nowUserId = null;
+        if (memberBusiness != null) {
+            nowUserId = memberBusiness.getId();
+        }
+        PageUtil page = super.getPage(request);
+        model.addAttribute("page", page);
+        Map<String, Object> condition = new HashMap<String, Object>();
+        condition.put("firstmid", id);
+        condition.put("belongid", nowUserId);
+        Integer count = businessService.getChildrenAgentsCount(condition);
+        model.addAttribute("totalCount", count);
+        model.addAttribute("firstmid", id);
+        model.addAttribute("belongid", nowUserId);
+        return "/WEB-INF/view/web/business/agent_childs_list";
+    }
+
+    /**
+     *  子级代理商查询
+     * @param gridPager
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "queryChildrenAgent.html", method = RequestMethod.POST)
+    public Object queryChildrenAgent(String gridPager) {
+        Map<String,Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            parameters.put("belongid", null);
+            parameters.put("firstmid", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(),pager.getPageSize());
+        List<Map<String, Object>> agentList = businessService.queryChildrenAgent(parameters);
+        return getReturnPage(pager, page, agentList);
+    }
+
+}

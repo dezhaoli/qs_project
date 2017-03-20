@@ -1,0 +1,6 @@
+#set upload file path
+#path=/usr/java/apache-tomcat-7.0.69/webapps/img
+#imgServer = http://112.74.190.11:8080/img/
+path=E:/idea_java_project/commons-upload/src/main/webapp/imgtest
+imgServer = http://127.0.0.1:8080/imgtest/
+appUrl=http://112.74.190.11:8080/tesco-app/

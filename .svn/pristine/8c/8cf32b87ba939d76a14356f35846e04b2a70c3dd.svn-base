@@ -1,0 +1,59 @@
+package com.qs.webside.sys.service.game.service.impl;
+
+import com.qs.webside.game.mapper.MobileVersionMapper;
+import com.qs.webside.game.model.MobileVersion;
+import com.qs.webside.sys.service.game.service.IMobileVersionService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 游戏版本实现类
+ * Created by zun.wei on 2017/2/24.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Service
+public class MobileVersionServiceImpl implements IMobileVersionService {
+
+    @Resource
+    private MobileVersionMapper mobileVersionMapper;
+
+    @Override
+    public int deleteById(Integer id) {
+        return mobileVersionMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int add(MobileVersion record) {
+        return mobileVersionMapper.insert(record);
+    }
+
+    @Override
+    public int addSelective(MobileVersion record) {
+        return mobileVersionMapper.insertSelective(record);
+    }
+
+    @Override
+    public MobileVersion selectById(Integer id) {
+        return mobileVersionMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByIdSelective(MobileVersion record) {
+        return mobileVersionMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateById(MobileVersion record) {
+        return mobileVersionMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<MobileVersion> queryListByPage(Map<String, Object> parameters) {
+        return mobileVersionMapper.queryListByPage(parameters);
+    }
+
+}

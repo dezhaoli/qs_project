@@ -1,0 +1,13 @@
+package com.qs.webside.member.model;
+
+public class Game extends GameKey {
+    private Long jifen;
+
+    public Long getJifen() {
+        return jifen;
+    }
+
+    public void setJifen(Long jifen) {
+        this.jifen = jifen;
+    }
+}

@@ -1,0 +1,19 @@
+package com.qs.webside.member.mapper;
+
+import com.qs.common.base.basemapper.IBaseMapper;
+import com.qs.webside.member.model.Game;
+import com.qs.webside.member.model.GameKey;
+
+public interface GameMapper extends IBaseMapper {
+    int deleteByPrimaryKey(GameKey key);
+
+    int insert(Game record);
+
+    int insertSelective(Game record);
+
+    Game selectByPrimaryKey(GameKey key);
+
+    int updateByPrimaryKeySelective(Game record);
+
+    int updateByPrimaryKey(Game record);
+}

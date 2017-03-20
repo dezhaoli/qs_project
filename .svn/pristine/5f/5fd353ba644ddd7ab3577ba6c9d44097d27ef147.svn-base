@@ -1,0 +1,62 @@
+package com.qs.webside.sys.service.agent.service.impl;
+
+import com.qs.webside.sys.service.agent.service.IOpenOAuthService;
+import com.riversoft.weixin.common.oauth2.AccessToken;
+import com.riversoft.weixin.common.oauth2.OpenUser;
+import com.riversoft.weixin.open.base.AppSetting;
+import com.riversoft.weixin.open.oauth2.OpenOAuth2s;
+import org.springframework.stereotype.Service;
+
+/**
+ * Created by zun.wei on 2017/3/12.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Service
+public class OpenOAuthServiceImpl implements IOpenOAuthService {
+
+
+    //public static final String APP_ID = "wxdac78f942674b126";
+    //public static final String APP_SECRET = "b83ae895d39defe54a797f288c4ce2d1";
+
+    private static String appId = "wx8b092a8f6e3cc1b1";
+
+    private static String secret = "8ad08b3ae4684959d45fb15fddb1fe7a";
+
+    private static final AppSetting appSetting = new AppSetting
+            ("wxdac78f942674b126", "b83ae895d39defe54a797f288c4ce2d1");
+
+    //AppSetting appSetting = new AppSetting("appId", "secret");
+
+    //生成授权链接,默认scope: snsapi_base
+    //OpenOAuth2s.with(appSetting).authenticationUrl("url");
+
+    //生成授权链接,指定scope: snsapi_base or snsapi_userinfo
+    //OpenOAuth2s.with(appSetting).authenticationUrl("url", "scope");
+
+    //生成授权链接,指定scope，指定state
+    //OpenOAuth2s.with(appSetting).authenticationUrl("url", "scope", "state");
+
+    //获取AccessToken
+    //AccessToken accessToken = OpenOAuth2s.with(appSetting).getAccessToken("code");
+
+    //获取用户信息
+    //OpenUser user = OpenOAuth2s.with(appSetting).userInfo(accessToken, "openId");
+
+    @Override
+    public String getAuthenticationUrl() {
+        String url = OpenOAuth2s.with(appSetting).authenticationUrl
+                ("http://161818x71d.iask.in/openOAuth/test/go/success",
+                        "snsapi_userinfo", "state");//snsapi_base  snsapi_userinfo
+        return url;
+    }
+
+    @Override
+    public OpenUser getOpenUserInfoByCode(String code) {
+        AccessToken accessToken = OpenOAuth2s.with(appSetting).getAccessToken(code);
+        OpenUser user = OpenOAuth2s.with(appSetting).userInfo
+                (accessToken.getAccessToken(), accessToken.getOpenId());
+        return user;
+    }
+
+}

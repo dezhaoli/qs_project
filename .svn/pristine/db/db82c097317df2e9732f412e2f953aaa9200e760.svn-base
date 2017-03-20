@@ -1,0 +1,52 @@
+package com.qs.common.constant;
+
+/**
+ * 常量
+ * @author moyousheng
+ *
+ */
+public interface CommonContants{
+	
+	
+	String  SUCCESS = "success";
+	String  DATA = "data";
+	String  MESSAGE = "message";
+	String  PAGE = "page";
+	
+	String  ADDSUCCESS = "添加成功";
+	String  ADDFAILURE = "添加失败";
+	
+	String  EDITSUCCESS = "编辑成功";
+	String  EDITFAILURE = "编辑失败";
+	
+	
+	String  DELETESUCCESS = "删除成功";
+	String  DELETFAILURE = "删除失败";
+	
+	String  OPERATESUCCESS = "操作成功";
+	String  OPERATEFAILURE = "操作失败";
+
+	/**
+	 * 返回标记
+	 */
+	String RESULT = "result";
+
+	/**
+	 * 错误描述
+	 */
+	String ERRORMSG = "errorMsg";
+	
+	/**
+	 * 错误代码
+	 */
+	String ERRORCODE = "errorCode";
+	
+	/**
+	 * http 错误代码.
+	 */
+	String HTTP_CODE = "httpErrorCode";
+	
+
+	
+	
+}

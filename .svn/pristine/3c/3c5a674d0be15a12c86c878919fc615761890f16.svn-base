@@ -1,0 +1,6 @@
+package com.qs.webside.util;
+
+public class AccessToken {
+	
+
+}

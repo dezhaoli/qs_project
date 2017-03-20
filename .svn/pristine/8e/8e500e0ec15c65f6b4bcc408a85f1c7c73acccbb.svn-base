@@ -1,0 +1,15 @@
+package com.qs.webside.game.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.qs.webside.member.model.Memberfides;
+import com.qs.webside.member.model.Memberpayment;
+import com.qs.webside.member.model.Members;
+import com.qs.webside.member.model.Commongame;
+import com.qs.webside.member.model.Game;
+
+public interface GameService {
+   
+ 
+}

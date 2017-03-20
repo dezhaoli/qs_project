@@ -1,0 +1,36 @@
+package com.qs.webside.sys.service.member.service;
+
+import com.qs.webside.member.model.MemberFides;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/2/27.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+public interface IMemberFidesService {
+
+    int deleteByPrimaryKey(Integer mid);
+
+    int insert(MemberFides record);
+
+    int insertSelective(MemberFides record);
+
+    MemberFides selectByPrimaryKey(Integer mid);
+
+    int updateByPrimaryKeySelective(MemberFides record);
+
+    int updateByPrimaryKey(MemberFides record);
+
+    /**
+     *
+     * @param mid 白名单的mid
+     * @return 成员列表
+     */
+    MemberFides selectByMemberMid(Integer mid);
+
+    List<MemberFides> queryListByPage(Map<String, Object> parameters);
+
+}

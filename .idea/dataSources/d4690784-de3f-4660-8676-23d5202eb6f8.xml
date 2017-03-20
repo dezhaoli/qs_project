@@ -1,0 +1,749 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="@localhost_psyllidae_cfg">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="psyllidae_cfg">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="class_db"/>
+    <schema id="4" parent="1" name="document"/>
+    <schema id="5" parent="1" name="firstdatabase"/>
+    <schema id="6" parent="1" name="hj_test01"/>
+    <schema id="7" parent="1" name="hj_test02"/>
+    <schema id="8" parent="1" name="information_schema"/>
+    <schema id="9" parent="1" name="itat_emp"/>
+    <schema id="10" parent="1" name="itat_hibernate"/>
+    <schema id="11" parent="1" name="itat_maven_test"/>
+    <schema id="12" parent="1" name="itat_msg"/>
+    <schema id="13" parent="1" name="itat_shop"/>
+    <schema id="14" parent="1" name="itat_shop02"/>
+    <schema id="15" parent="1" name="itat_test"/>
+    <schema id="16" parent="1" name="mysql"/>
+    <schema id="17" parent="1" name="performance_schema"/>
+    <schema id="18" parent="1" name="psyllidae"/>
+    <schema id="19" parent="1" name="second_database"/>
+    <schema id="20" parent="1" name="springmvc_ssh"/>
+    <schema id="21" parent="1" name="spring_test"/>
+    <schema id="22" parent="1" name="sys"/>
+    <schema id="23" parent="1" name="testwebserice"/>
+    <table id="24" parent="2" name="acti_systemactivity">
+      <Comment>玩牌送积分配置表</Comment>
+    </table>
+    <table id="25" parent="2" name="acti_systembypaiju_detailcfg">
+      <Comment>玩牌送积分详细</Comment>
+    </table>
+    <table id="26" parent="2" name="acti_systemchenghaocfg">
+      <Comment>活动称号配置表</Comment>
+    </table>
+    <table id="27" parent="2" name="acti_systemmiaoshacfg">
+      <Comment>秒杀夺宝配置表</Comment>
+    </table>
+    <table id="28" parent="2" name="acti_systemnumericalcfg">
+      <Comment>系统数值表</Comment>
+    </table>
+    <table id="29" parent="2" name="acti_systempaijulotterycfg">
+      <Comment>根据玩牌局数抽奖配置表</Comment>
+    </table>
+    <table id="30" parent="2" name="acti_systemstorecfg">
+      <Comment>商城表</Comment>
+    </table>
+    <table id="31" parent="2" name="sys_systemdemomatch">
+      <Comment>比赛演示表</Comment>
+    </table>
+    <table id="32" parent="2" name="sys_systemdemomatchattr">
+      <Comment>比赛属性演示表</Comment>
+    </table>
+    <table id="33" parent="2" name="sys_systemfastmsgcfg">
+      <Comment>常用语配置表</Comment>
+    </table>
+    <table id="34" parent="2" name="sys_systemprops">
+      <Comment>道具配置表</Comment>
+    </table>
+    <table id="35" parent="2" name="sys_systemroomcfg"/>
+    <table id="36" parent="2" name="sys_systemwxpaycfg"/>
+    <column id="37" parent="24" name="id">
+      <Position>1</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="38" parent="24" name="title">
+      <Position>2</Position>
+      <Comment>标题</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="39" parent="24" name="des">
+      <Position>3</Position>
+      <DataType>varchar(300)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="24" name="icon">
+      <Position>4</Position>
+      <Comment>图片</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="24" name="file">
+      <Position>5</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="24" name="stime">
+      <Position>6</Position>
+      <Comment>开始时间</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="43" parent="24" name="etime">
+      <Position>7</Position>
+      <Comment>结束时间</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="24" name="ctime">
+      <Position>8</Position>
+      <Comment>关闭时间</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="24" name="time">
+      <Position>9</Position>
+      <Comment>时间段</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="46" parent="24" name="paiju">
+      <Position>10</Position>
+      <Comment>牌局数</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="24" name="reduce">
+      <Position>11</Position>
+      <Comment>每天减少</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="48" parent="24" name="max">
+      <Position>12</Position>
+      <Comment>每天最高经验值</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="49" parent="24" name="site">
+      <Position>13</Position>
+      <Comment>平台（0PC，1移动）</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="50" parent="24" name="award">
+      <Position>14</Position>
+      <Comment>奖励</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="51" parent="24" name="status">
+      <Position>15</Position>
+      <Comment>是否打开</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="52" parent="24" name="order_by">
+      <Position>16</Position>
+      <Comment>排序</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="53" parent="24" name="config">
+      <Position>17</Position>
+      <Comment>扩展</Comment>
+      <DataType>varchar(1000)|0</DataType>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <key id="54" parent="24" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="55" parent="25" name="did">
+      <Position>1</Position>
+      <Comment>自增ID</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="56" parent="25" name="id">
+      <Position>2</Position>
+      <Comment>外键</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="57" parent="25" name="roomid">
+      <Position>3</Position>
+      <Comment>房间ID</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="58" parent="25" name="jifen">
+      <Position>4</Position>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="59" parent="25" name="PRIMARY">
+      <ColNames>did</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="60" parent="26" name="cid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="61" parent="26" name="name">
+      <Position>2</Position>
+      <Comment>称号名称</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="62" parent="26" name="need">
+      <Position>3</Position>
+      <Comment>需求经验值</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="63" parent="26" name="award">
+      <Position>4</Position>
+      <Comment>每日可领取金币</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="64" parent="26" name="icon">
+      <Position>5</Position>
+      <Comment>图片名</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="65" parent="26" name="type">
+      <Position>6</Position>
+      <Comment>1称号2积分</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="66" parent="26" name="isneedcheck">
+      <Position>7</Position>
+      <Comment>是否需要审核</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="67" parent="26" name="islimit">
+      <Position>8</Position>
+      <Comment>是否限制兑换次数</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="68" parent="26" name="PRIMARY">
+      <ColNames>cid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="69" parent="27" name="cid">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="70" parent="27" name="name">
+      <Position>2</Position>
+      <Comment>称号名称</Comment>
+      <DataType>varchar(20)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="71" parent="27" name="icon">
+      <Position>3</Position>
+      <Comment>图片名</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="72" parent="27" name="need">
+      <Position>4</Position>
+      <Comment>总需次数</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="27" name="award">
+      <Position>5</Position>
+      <Comment>奖励</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="74" parent="27" name="isneedcheck">
+      <Position>6</Position>
+      <Comment>是否需要审核</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="75" parent="27" name="userlimit">
+      <Position>7</Position>
+      <Comment>限制每人兑换次数</Comment>
+      <DataType>smallint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="76" parent="27" name="PRIMARY">
+      <ColNames>cid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="77" parent="28" name="id">
+      <Position>1</Position>
+      <Comment>类型1登录基数，2登录连续天数，3，分享基数，4分享连续天数，5邀请基数码相机</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="78" parent="28" name="num">
+      <Position>2</Position>
+      <Comment>数值</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="79" parent="28" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="80" parent="29" name="id">
+      <Position>1</Position>
+      <Comment>自增ID</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="81" parent="29" name="type">
+      <Position>2</Position>
+      <Comment>类型1金币，2道具,3VIP，4实物</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="82" parent="29" name="param1">
+      <Position>3</Position>
+      <Comment>参数1</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="83" parent="29" name="param2">
+      <Position>4</Position>
+      <Comment>参数2</Comment>
+      <DataType>varchar(10)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="84" parent="29" name="icon">
+      <Position>5</Position>
+      <Comment>图片</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="85" parent="29" name="name">
+      <Position>6</Position>
+      <Comment>名字</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="86" parent="29" name="probability">
+      <Position>7</Position>
+      <Comment>概率</Comment>
+      <DataType>float|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="87" parent="29" name="status">
+      <Position>8</Position>
+      <Comment>状态</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="88" parent="29" name="rule">
+      <Position>9</Position>
+      <Comment>第几套规则</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <key id="89" parent="29" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="90" parent="30" name="id">
+      <Position>1</Position>
+      <Comment>ID</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="91" parent="30" name="money">
+      <Position>2</Position>
+      <Comment>人民币</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="92" parent="30" name="gold">
+      <Position>3</Position>
+      <Comment>金币</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="93" parent="30" name="song">
+      <Position>4</Position>
+      <Comment>活动赠送金币</Comment>
+      <DataType>varchar(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="94" parent="30" name="img">
+      <Position>5</Position>
+      <Comment>图片路径</Comment>
+      <DataType>varchar(60)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="95" parent="30" name="starttime">
+      <Position>6</Position>
+      <Comment>活动开始时间</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="96" parent="30" name="endtime">
+      <Position>7</Position>
+      <Comment>活动结束时间</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="97" parent="30" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="98" parent="31" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="99" parent="31" name="name">
+      <Position>2</Position>
+      <Comment>比赛名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="100" parent="31" name="icon">
+      <Position>3</Position>
+      <Comment>比赛图标路径</Comment>
+      <DataType>varchar(60)|0</DataType>
+    </column>
+    <column id="101" parent="31" name="attr_id">
+      <Position>4</Position>
+      <Comment>包含属性ID</Comment>
+      <DataType>char(60)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="102" parent="31" name="config">
+      <Position>5</Position>
+      <Comment>参数配置</Comment>
+      <DataType>text|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="103" parent="31" name="msgpushtime">
+      <Position>6</Position>
+      <Comment>推送消息时间，距离比赛开始时间，单位分钟</Comment>
+      <DataType>tinyint(3)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;5&apos;</DefaultExpression>
+    </column>
+    <column id="104" parent="31" name="msgpush">
+      <Position>7</Position>
+      <Comment>比赛开始前消息推送</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="105" parent="31" name="desc">
+      <Position>8</Position>
+      <Comment>比赛描述</Comment>
+      <DataType>text|0</DataType>
+    </column>
+    <column id="106" parent="31" name="status">
+      <Position>9</Position>
+      <Comment>状态 1：开启；0：关闭</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="107" parent="31" name="sort">
+      <Position>10</Position>
+      <Comment>排序</Comment>
+      <DataType>smallint(5)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;10&apos;</DefaultExpression>
+    </column>
+    <index id="108" parent="31" name="sort">
+      <ColNames>sort</ColNames>
+    </index>
+    <key id="109" parent="31" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="110" parent="32" name="id">
+      <Position>1</Position>
+      <DataType>mediumint(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="111" parent="32" name="name">
+      <Position>2</Position>
+      <Comment>属性名称</Comment>
+      <DataType>varchar(30)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;&apos;</DefaultExpression>
+    </column>
+    <column id="112" parent="32" name="parent_id">
+      <Position>3</Position>
+      <Comment>属性父类ID，0为一级属性</Comment>
+      <DataType>mediumint(8)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <index id="113" parent="32" name="parent_id">
+      <ColNames>parent_id</ColNames>
+    </index>
+    <key id="114" parent="32" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="115" parent="33" name="id">
+      <Position>1</Position>
+      <Comment>自增ID</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="116" parent="33" name="msg">
+      <Position>2</Position>
+      <Comment>话语</Comment>
+      <DataType>varchar(250)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="117" parent="33" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="118" parent="34" name="pcate">
+      <Position>1</Position>
+      <Comment>道具分类</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="119" parent="34" name="pframe">
+      <Position>2</Position>
+      <Comment>道具帧号</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="120" parent="34" name="name">
+      <Position>3</Position>
+      <Comment>道具名</Comment>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="121" parent="34" name="bind">
+      <Position>4</Position>
+      <Comment>是否绑定</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="122" parent="34" name="validity">
+      <Position>5</Position>
+      <Comment>有效期0 为永久有效（单位：天）</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="123" parent="34" name="url">
+      <Position>6</Position>
+      <DataType>varchar(100)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="124" parent="34" name="price">
+      <Position>7</Position>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="125" parent="34" name="description">
+      <Position>8</Position>
+      <Comment> 描述</Comment>
+      <DataType>varchar(150)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="126" parent="34" name="store">
+      <Position>9</Position>
+      <Comment>是否可从商城购买</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="127" parent="34" name="isbag">
+      <Position>10</Position>
+      <Comment>是否在背包显示(1:是，2：否)</Comment>
+      <DataType>tinyint(3) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <column id="128" parent="34" name="authority">
+      <Position>11</Position>
+      <Comment>使用方式</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="129" parent="34" name="PRIMARY">
+      <ColNames>pcate
+pframe</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="130" parent="35" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="131" parent="35" name="ju">
+      <Position>2</Position>
+      <Comment>局数</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="132" parent="35" name="cost">
+      <Position>3</Position>
+      <Comment>花费金币</Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="133" parent="35" name="begin">
+      <Position>4</Position>
+      <Comment>启始房间号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="134" parent="35" name="end">
+      <Position>5</Position>
+      <Comment>结束房间号</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="135" parent="35" name="type">
+      <Position>6</Position>
+      <Comment>类型</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="136" parent="35" name="name">
+      <Position>7</Position>
+      <Comment>房间名字</Comment>
+      <DataType>varchar(32)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="137" parent="35" name="serverid">
+      <Position>8</Position>
+      <Comment>服务器ID </Comment>
+      <DataType>int(10) unsigned|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="138" parent="35" name="taxation">
+      <Position>9</Position>
+      <Comment>抽水, 单位 1/1000</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="139" parent="35" name="bettime">
+      <Position>10</Position>
+      <Comment>出牌时间</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;20&apos;</DefaultExpression>
+    </column>
+    <column id="140" parent="35" name="taxes_mode">
+      <Position>11</Position>
+      <Comment>抽水模式</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="141" parent="35" name="sb">
+      <Position>12</Position>
+      <Comment>底注</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="142" parent="35" name="min">
+      <Position>13</Position>
+      <Comment>最小携带</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="143" parent="35" name="max">
+      <Position>14</Position>
+      <Comment>最大携带</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
+    </column>
+    <column id="144" parent="35" name="status">
+      <Position>15</Position>
+      <Comment>开关</Comment>
+      <DataType>tinyint(4)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <key id="145" parent="35" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="146" parent="36" name="id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="147" parent="36" name="name">
+      <Position>2</Position>
+      <Comment>名称</Comment>
+      <DataType>varchar(50)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="148" parent="36" name="money">
+      <Position>3</Position>
+      <Comment>人民币</Comment>
+      <DataType>int(5)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="149" parent="36" name="glod">
+      <Position>4</Position>
+      <Comment>金币或者房卡</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="150" parent="36" name="createtime">
+      <Position>5</Position>
+      <Comment>创建时间</Comment>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="151" parent="36" name="type">
+      <Position>6</Position>
+      <Comment>1：跑得快 2：麻将 3：斗牛</Comment>
+      <DataType>tinyint(2)|0</DataType>
+      <NotNull>1</NotNull>
+      <DefaultExpression>&apos;1&apos;</DefaultExpression>
+    </column>
+    <key id="152" parent="36" name="PRIMARY">
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+  </database-model>
+</dataSource>

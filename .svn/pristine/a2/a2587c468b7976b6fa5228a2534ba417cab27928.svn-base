@@ -1,0 +1,14 @@
+package com.qs.webside.game.service;
+
+import com.qs.webside.game.model.MobileVersion;
+
+public interface GameService {
+   
+	/**
+	 * 最新的app更新版本
+	 * @return
+	 */
+	public MobileVersion findLatestMobileVersion();
+
+ 
+}

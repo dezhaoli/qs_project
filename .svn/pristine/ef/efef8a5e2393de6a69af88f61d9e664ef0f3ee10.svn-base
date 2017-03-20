@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.game.mapper.ApkSynchroMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.game.model.ApkSynchro" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="logo" property="logo" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="REAL" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="download" property="download" jdbcType="INTEGER" />
+    <result column="shortdesc" property="shortdesc" jdbcType="VARCHAR" />
+    <result column="chinaid" property="chinaid" jdbcType="VARCHAR" />
+    <result column="dbtable" property="dbtable" jdbcType="VARCHAR" />
+    <result column="applestoreurl" property="applestoreurl" jdbcType="VARCHAR" />
+    <result column="dbname" property="dbname" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qs.webside.game.model.ApkSynchroWithBLOBs" extends="BaseResultMap" >
+    <result column="banner" property="banner" jdbcType="LONGVARCHAR" />
+    <result column="desc0" property="desc0" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, name, logo, score, status, download, shortdesc, chinaid, dbtable, applestoreurl, 
+    dbname
+  </sql>
+  <sql id="Blob_Column_List" >
+    banner, desc0
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apksynchro
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from apksynchro
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.game.model.ApkSynchroWithBLOBs" >
+    insert into apksynchro (id, title, name, 
+      logo, score, status, download, 
+      shortdesc, chinaid, dbtable, 
+      applestoreurl, dbname, banner, 
+      desc0)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{logo,jdbcType=VARCHAR}, #{score,jdbcType=REAL}, #{status,jdbcType=TINYINT}, #{download,jdbcType=INTEGER}, 
+      #{shortdesc,jdbcType=VARCHAR}, #{chinaid,jdbcType=VARCHAR}, #{dbtable,jdbcType=VARCHAR}, 
+      #{applestoreurl,jdbcType=VARCHAR}, #{dbname,jdbcType=VARCHAR}, #{banner,jdbcType=LONGVARCHAR}, 
+      #{desc0,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.game.model.ApkSynchroWithBLOBs" >
+    insert into apksynchro
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="download != null" >
+        download,
+      </if>
+      <if test="shortdesc != null" >
+        shortdesc,
+      </if>
+      <if test="chinaid != null" >
+        chinaid,
+      </if>
+      <if test="dbtable != null" >
+        dbtable,
+      </if>
+      <if test="applestoreurl != null" >
+        applestoreurl,
+      </if>
+      <if test="dbname != null" >
+        dbname,
+      </if>
+      <if test="banner != null" >
+        banner,
+      </if>
+      <if test="desc0 != null" >
+        desc0,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="download != null" >
+        #{download,jdbcType=INTEGER},
+      </if>
+      <if test="shortdesc != null" >
+        #{shortdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="chinaid != null" >
+        #{chinaid,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtable != null" >
+        #{dbtable,jdbcType=VARCHAR},
+      </if>
+      <if test="applestoreurl != null" >
+        #{applestoreurl,jdbcType=VARCHAR},
+      </if>
+      <if test="dbname != null" >
+        #{dbname,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null" >
+        #{banner,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="desc0 != null" >
+        #{desc0,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.game.model.ApkSynchroWithBLOBs" >
+    update apksynchro
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=REAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="download != null" >
+        download = #{download,jdbcType=INTEGER},
+      </if>
+      <if test="shortdesc != null" >
+        shortdesc = #{shortdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="chinaid != null" >
+        chinaid = #{chinaid,jdbcType=VARCHAR},
+      </if>
+      <if test="dbtable != null" >
+        dbtable = #{dbtable,jdbcType=VARCHAR},
+      </if>
+      <if test="applestoreurl != null" >
+        applestoreurl = #{applestoreurl,jdbcType=VARCHAR},
+      </if>
+      <if test="dbname != null" >
+        dbname = #{dbname,jdbcType=VARCHAR},
+      </if>
+      <if test="banner != null" >
+        banner = #{banner,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="desc0 != null" >
+        desc0 = #{desc0,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qs.webside.game.model.ApkSynchroWithBLOBs" >
+    update apksynchro
+    set title = #{title,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      score = #{score,jdbcType=REAL},
+      status = #{status,jdbcType=TINYINT},
+      download = #{download,jdbcType=INTEGER},
+      shortdesc = #{shortdesc,jdbcType=VARCHAR},
+      chinaid = #{chinaid,jdbcType=VARCHAR},
+      dbtable = #{dbtable,jdbcType=VARCHAR},
+      applestoreurl = #{applestoreurl,jdbcType=VARCHAR},
+      dbname = #{dbname,jdbcType=VARCHAR},
+      banner = #{banner,jdbcType=LONGVARCHAR},
+      desc0 = #{desc0,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.game.model.ApkSynchro" >
+    update apksynchro
+    set title = #{title,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      logo = #{logo,jdbcType=VARCHAR},
+      score = #{score,jdbcType=REAL},
+      status = #{status,jdbcType=TINYINT},
+      download = #{download,jdbcType=INTEGER},
+      shortdesc = #{shortdesc,jdbcType=VARCHAR},
+      chinaid = #{chinaid,jdbcType=VARCHAR},
+      dbtable = #{dbtable,jdbcType=VARCHAR},
+      applestoreurl = #{applestoreurl,jdbcType=VARCHAR},
+      dbname = #{dbname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="queryListByPage" parameterType="map" resultMap="ResultMapWithBLOBs">
+    SELECT
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from apksynchro order by id
+  </select>
+</mapper>

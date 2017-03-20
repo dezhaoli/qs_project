@@ -1,0 +1,229 @@
+package com.qs.webside.member.service.impl;
+
+import java.math.BigDecimal;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.util.CommonUtils;
+import com.qs.common.util.DateUtil;
+import com.qs.log.game.model.TaxesInvite;
+import com.qs.log.game.service.GameRecordService;
+import com.qs.webside.game.service.GameService;
+import com.qs.webside.member.mapper.MemberpaymentMapper;
+import com.qs.webside.member.model.Memberagents;
+import com.qs.webside.member.model.Memberfides;
+import com.qs.webside.member.model.Memberpayment;
+import com.qs.webside.member.service.MemberService;
+import com.qs.webside.member.service.PaymentService;
+
+
+@Service("paymentService")
+public class PaymentServiceImpl implements PaymentService {
+	
+    Logger log = Logger.getLogger(PaymentServiceImpl.class);  
+	@Autowired
+	private MemberpaymentMapper memberpaymentMapper;
+	@Autowired
+	private MemberService memberService;
+	@Autowired
+	private GameService gameService;
+	
+	@Autowired
+	private GameRecordService gameRecordService;
+	
+
+    @Value("${wepay.appid}")
+    private String appId;
+
+    @Value("${wepay.appSecret}")
+    private String secret;
+    
+	
+    @Value("${game.gametype}")
+    private byte gameType;
+
+	
+	/**
+	 * 完成支付
+	 * @param record
+	 * @return
+	 */
+	@Override
+	public int updateFinishMemberpayment(int pid,byte pstatus,String ptransno) {
+		Memberpayment orderPayment=memberpaymentMapper.selectByPrimaryKey(pid);
+        int paymentStatus=CommonUtils.checkIntegerNull(orderPayment.getPstatus());
+		if(null==orderPayment.getFmid()||paymentStatus!=0){
+			return 0;
+		}
+		//更新支付模式
+		Memberpayment updatePayment=new Memberpayment();
+		updatePayment.setPid(pid);
+		short businessId=0;
+		Memberfides userRecord=memberService.findMemberfidesById(orderPayment.getTmid());
+		if(CommonUtils.checkIntegerNull(userRecord.getInvite())>0){
+			Memberagents agentsRecord=memberService.findMemberagentsByMid(orderPayment.getTmid());
+			Memberagents parentAgent=null;
+			byte isAgent=0;
+			if(null!=agentsRecord){
+				isAgent=1;
+			}
+			if(isAgent==0){ //非代理商，找出上级的所属商务
+				 parentAgent=memberService.findMemberagentsByMid(userRecord.getInvite());
+                 businessId=parentAgent.getBelongid();
+			}else{
+				businessId=agentsRecord.getBelongid();
+			}
+			 updatePayment.setParentid(userRecord.getInvite());
+			 updatePayment.setIsagent(isAgent);
+			 updatePayment.setBizid(businessId);
+			 orderPayment.setParentid(userRecord.getInvite());
+		}else{ //一级
+			Memberagents agentsRecord=memberService.findMemberagentsByMid(orderPayment.getTmid());
+		
+			if(null!=agentsRecord){
+				 businessId=agentsRecord.getBelongid();
+			}else{
+				businessId=0;
+			}
+			updatePayment.setBizid(businessId);
+		}
+		
+		updatePayment.setPstatus(pstatus);
+		//更新交易号
+		updatePayment.setPtransno(ptransno);
+		int c=memberpaymentMapper.updateByPrimaryKeySelective(updatePayment);
+		log.debug("updateFinishMemberpayment.memberpaymentMapper.update===:"+c);
+		
+		if(paymentStatus==0&&c>0){
+			//单用户充值限制
+            //金币日志
+			Map<String, Object> goldMap=gameService.updateGold(orderPayment.getTmid(),orderPayment.getPcoins(),AppConstants.GoldLogSourceType.BUY);
+			boolean resultFlag=(boolean)goldMap.get(CommonContants.RESULT);
+			log.debug("updateFinishMemberpayment.goldMap.resultFlag===:"+resultFlag);
+			//平台限制
+			//首次充值
+			//当日充值d
+			//充值日表
+			 this.addAgentInviteCharge(orderPayment.getTmid(),orderPayment.getPamount());
+			// 开服充值特惠
+			//增加商务收入
+		}
+		
+		return c;
+	}
+   
+	/**
+	 *代理邀请奖励
+	 */
+	public boolean addAgentInviteCharge(int mid,float money) {
+		Memberfides user=memberService.findMemberfidesById(mid);
+		int invite=0;
+		if(null!=user){
+			invite=user.getInvite();
+		}
+		Memberagents agent=memberService.findMemberagentsByMid(mid);
+		BigDecimal bigDecMoney= new BigDecimal(Float.toString(money));
+		
+		if(null!=agent){  
+		    //代理商、自己充值
+			TaxesInvite  taxesInvite=new TaxesInvite();
+	
+			taxesInvite.setMid(mid);
+			taxesInvite.setPaytotal(bigDecMoney);
+			taxesInvite.setSelftotal(bigDecMoney);
+			taxesInvite.setDate(DateUtil.getNowDate());
+			taxesInvite.setParentid(invite);
+			taxesInvite.setOperationType(1);//sql类型
+			gameRecordService.addOrUpdateTaxesInvite(taxesInvite);
+			
+			
+		}else{
+		  //不是代理商
+		   if(invite>0){
+				Memberfides inviteUser=memberService.findMemberfidesById(invite);
+				int parentInvite=inviteUser.getInvite();
+				TaxesInvite  taxesInvite=new TaxesInvite();
+				taxesInvite.setMid(invite);
+				taxesInvite.setPaytotal(bigDecMoney);
+				taxesInvite.setDate(DateUtil.getNowDate());
+				taxesInvite.setParentid(parentInvite);
+				taxesInvite.setOperationType(2);//sql类型
+				gameRecordService.addOrUpdateTaxesInvite(taxesInvite);
+		   }
+			
+		}
+		
+		
+		return true;
+	}
+	
+	/**
+	 *  增加代理邀请成员数
+	 */
+	@Override
+	public boolean addAgentInviteMembers(int mid) {
+
+		Memberfides user=memberService.findMemberfidesById(mid);
+		int invite=0;
+		if(null!=user){
+			invite=user.getInvite();
+		}
+		Memberagents agent=memberService.findMemberagentsByMid(mid);
+		
+		if(null!=agent){  
+		    //代理商、自己充值
+			TaxesInvite  taxesInvite=new TaxesInvite();
+	
+			taxesInvite.setMid(mid);
+			taxesInvite.setDate(DateUtil.getNowDate());
+			taxesInvite.setParentid(invite);
+			taxesInvite.setOperationType(3);//sql类型
+			gameRecordService.addOrUpdateTaxesInvite(taxesInvite);
+			
+			
+		}else{
+		  //不是代理商
+		   if(invite>0){
+				Memberfides inviteUser=memberService.findMemberfidesById(invite);
+				int parentInvite=inviteUser.getInvite();
+				TaxesInvite  taxesInvite=new TaxesInvite();
+				taxesInvite.setMid(invite);
+				taxesInvite.setDate(DateUtil.getNowDate());
+				taxesInvite.setParentid(parentInvite);
+				taxesInvite.setOperationType(4);//sql类型
+				gameRecordService.addOrUpdateTaxesInvite(taxesInvite);
+		   }
+			
+		}
+		
+		
+		return true;
+	
+	}
+    /**
+     * 插入、返回id
+     */
+	@Override
+	public int insertMemberpayment(Memberpayment record) {
+		log.debug("insertMemberpayment===::");
+		return memberpaymentMapper.insertSelective(record);
+	}
+
+	@Override
+	public Memberpayment findMemberpaymentById(Integer id) {
+		return memberpaymentMapper.selectByPrimaryKey(id);
+	}
+
+
+
+
+
+
+
+}

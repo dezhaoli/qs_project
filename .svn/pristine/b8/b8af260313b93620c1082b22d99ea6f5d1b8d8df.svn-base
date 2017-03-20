@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.member.mapper.MemberAgentsMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.member.model.MemberAgents" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="passwd" property="passwd" jdbcType="CHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bankcard" property="bankcard" jdbcType="VARCHAR" />
+    <result column="alipay" property="alipay" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="systempasswd" property="systempasswd" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="mktime" property="mktime" jdbcType="INTEGER" />
+    <result column="lastlogintime" property="lastlogintime" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="alevel" property="alevel" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="belongid" property="belongid" jdbcType="SMALLINT" />
+    <result column="areaid" property="areaid" jdbcType="INTEGER" />
+    <result column="firstmid" property="firstmid" jdbcType="INTEGER" />
+    <result column="glevel" property="glevel" jdbcType="TINYINT" />
+    <result column="company" property="company" jdbcType="TINYINT" />
+    <result column="sitemid" property="sitemid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, passwd, salt, bank, bankcard, alipay, realname, phone, qq, systempasswd, 
+    status, scale,FROM_UNIXTIME(mktime,'%Y-%m-%d %H:%i:%S') as mktime,
+    FROM_UNIXTIME(lastlogintime,'%Y-%m-%d %H:%i:%S') as lastlogintime, parent_id, alevel, remark, belongid, areaid,
+    firstmid, glevel, company, sitemid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberagents
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memberagents
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.member.model.MemberAgents" >
+    insert into memberagents (id, mid, passwd, 
+      salt, bank, bankcard, 
+      alipay, realname, phone, 
+      qq, systempasswd, status, 
+      scale, mktime, lastlogintime, 
+      parent_id, alevel, remark, 
+      belongid, areaid, firstmid, 
+      glevel, company, sitemid
+      )
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{passwd,jdbcType=CHAR}, 
+      #{salt,jdbcType=CHAR}, #{bank,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR}, 
+      #{alipay,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{systempasswd,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{scale,jdbcType=TINYINT}, #{mktime,jdbcType=INTEGER}, #{lastlogintime,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{alevel,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
+      #{belongid,jdbcType=SMALLINT}, #{areaid,jdbcType=INTEGER}, #{firstmid,jdbcType=INTEGER}, 
+      #{glevel,jdbcType=TINYINT}, #{company,jdbcType=TINYINT}, #{sitemid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.member.model.MemberAgents" >
+    insert into memberagents
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankcard != null" >
+        bankcard,
+      </if>
+      <if test="alipay != null" >
+        alipay,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="systempasswd != null" >
+        systempasswd,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+      <if test="mktime != null" >
+        mktime,
+      </if>
+      <if test="lastlogintime != null" >
+        lastlogintime,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="alevel != null" >
+        alevel,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="belongid != null" >
+        belongid,
+      </if>
+      <if test="areaid != null" >
+        areaid,
+      </if>
+      <if test="firstmid != null" >
+        firstmid,
+      </if>
+      <if test="glevel != null" >
+        glevel,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="sitemid != null" >
+        sitemid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=CHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="systempasswd != null" >
+        #{systempasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        #{mktime,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        #{lastlogintime,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="alevel != null" >
+        #{alevel,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        #{belongid,jdbcType=SMALLINT},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="firstmid != null" >
+        #{firstmid,jdbcType=INTEGER},
+      </if>
+      <if test="glevel != null" >
+        #{glevel,jdbcType=TINYINT},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=TINYINT},
+      </if>
+      <if test="sitemid != null" >
+        #{sitemid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.member.model.MemberAgents" >
+    update memberagents
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        alipay = #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="systempasswd != null" >
+        systempasswd = #{systempasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        scale = #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        mktime = #{mktime,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        lastlogintime = #{lastlogintime,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="alevel != null" >
+        alevel = #{alevel,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        belongid = #{belongid,jdbcType=SMALLINT},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="firstmid != null" >
+        firstmid = #{firstmid,jdbcType=INTEGER},
+      </if>
+      <if test="glevel != null" >
+        glevel = #{glevel,jdbcType=TINYINT},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=TINYINT},
+      </if>
+      <if test="sitemid != null" >
+        sitemid = #{sitemid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.member.model.MemberAgents" >
+    update memberagents
+    set mid = #{mid,jdbcType=INTEGER},
+      passwd = #{passwd,jdbcType=CHAR},
+      salt = #{salt,jdbcType=CHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      bankcard = #{bankcard,jdbcType=VARCHAR},
+      alipay = #{alipay,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      systempasswd = #{systempasswd,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      scale = #{scale,jdbcType=TINYINT},
+      mktime = #{mktime,jdbcType=INTEGER},
+      lastlogintime = #{lastlogintime,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      alevel = #{alevel,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      belongid = #{belongid,jdbcType=SMALLINT},
+      areaid = #{areaid,jdbcType=INTEGER},
+      firstmid = #{firstmid,jdbcType=INTEGER},
+      glevel = #{glevel,jdbcType=TINYINT},
+      company = #{company,jdbcType=TINYINT},
+      sitemid = #{sitemid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from
+    memberagents
+    <where>
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER}
+      </if>
+    </where>
+    order by id
+  </select>
+</mapper>

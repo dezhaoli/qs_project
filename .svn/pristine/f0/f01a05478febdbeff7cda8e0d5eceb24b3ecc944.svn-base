@@ -1,0 +1,60 @@
+package com.qs.webside.game.controller;
+
+import com.qs.webside.game.model.BaseParam;
+import com.qs.webside.sys.service.game.service.IBaseParamService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/3/1.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/base/param/")
+public class BaseParamController {
+
+    @Resource
+    private IBaseParamService baseParamService;
+
+    @ResponseBody
+    @RequestMapping(value = "/getInCheckVersion",method = RequestMethod.POST)
+    public Object getInCheckVersion() {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("code", "android_version");
+        List<BaseParam> listAndroid = baseParamService.queryInExampleListByPage(parameters);
+        Map<String, Object> parameters1 = new HashMap<>();
+        parameters1.put("code", "ios_version");
+        List<BaseParam> listIos = baseParamService.queryInExampleListByPage(parameters1);
+        Map<String, Object> data = new HashMap<>();
+        if (listAndroid != null && listAndroid.size() >0) {
+            data.put("android", listAndroid.get(0));
+            data.put("successAndroid", true);
+        }
+        if (listIos != null && listIos.size() >0) {
+            data.put("ios", listIos.get(0));
+            data.put("successIos", true);
+        }
+        return data;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    public Object updateAndroidVersion(String versionValue, String mobileType,Integer id) {
+        Map<String, Object> data = new HashMap<>();
+        int result = baseParamService.updateInExampleVersion(mobileType, versionValue, id);
+        if (result > 0) {
+            return getInCheckVersion();
+        }
+        return data;
+    }
+
+
+}

@@ -1,0 +1,146 @@
+package com.qs.webside.api.controller;
+
+import com.qs.common.base.basecontroller.BaseController;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import weixin.popular.api.PayMchAPI;
+import weixin.popular.api.TicketAPI;
+import weixin.popular.bean.paymch.MchBaseResult;
+import weixin.popular.bean.paymch.MchPayNotify;
+import weixin.popular.bean.paymch.Unifiedorder;
+import weixin.popular.bean.paymch.UnifiedorderResult;
+import weixin.popular.bean.ticket.Ticket;
+import weixin.popular.support.ExpireKey;
+import weixin.popular.support.expirekey.DefaultExpireKey;
+import weixin.popular.util.*;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+@Controller
+@Scope("prototype")
+@RequestMapping("/api/wx/")
+public class WeixinController extends BaseController {
+
+    private String appid;            //appid
+    private String mch_id;        //微信支付商户号
+    private String key;                //API密钥
+
+    //重复通知过滤
+    private static ExpireKey expireKey = new DefaultExpireKey();
+
+    @RequestMapping("add.html")
+    @ResponseBody
+    public Object add() {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        return map;
+    }
+
+
+    //1.统一下单  //商户系统先调用该接口在微信支付服务后台生成预支付交易单，返回正确的预支付交易回话标识后再在APP里面调起支付。
+    @RequestMapping(value = "/unified/order", method = RequestMethod.POST)
+    public void UnifiedOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //payPackage 的商品信息，总价可以通过前端传入
+
+        Unifiedorder unifiedorder = new Unifiedorder();
+        unifiedorder.setAppid(appid);
+        unifiedorder.setMch_id(mch_id);
+        unifiedorder.setNonce_str(UUID.randomUUID().toString().replace("-", ""));
+
+        unifiedorder.setBody("商品信息");
+        unifiedorder.setOut_trade_no("123456");
+        unifiedorder.setTotal_fee("1");//单位分
+        unifiedorder.setSpbill_create_ip(request.getRemoteAddr());//IP
+        unifiedorder.setNotify_url("http://mydomain.com/test/notify");//用于接收微信支付结果通知
+        unifiedorder.setTrade_type("JSAPI");//JSAPI，NATIVE，APP，MWEB
+
+        UnifiedorderResult unifiedorderResult = PayMchAPI.payUnifiedorder(unifiedorder, key);
+
+        //@since 2.8.5  API返回数据签名验证
+        if (unifiedorderResult.getSign_status() != null && unifiedorderResult.getSign_status()) {
+            String json = PayUtil.generateMchPayJsRequestJson(unifiedorderResult.getPrepay_id(), appid, key);
+
+            //将json 传到jsp 页面
+            request.setAttribute("json", json);
+            //示例jsp
+            request.getRequestDispatcher("pay_example.jsp").forward(request, response);
+        }
+        //return "pay_example.jsp";
+
+    }
+
+
+    //2.支付回调通知
+    @RequestMapping(value = "/pay/notify", method = RequestMethod.POST)
+    public void payNotify(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取请求数据
+        String xmlData = StreamUtils.copyToString(request.getInputStream(), Charset.forName("utf-8"));
+        //将XML转为MAP,确保所有字段都参与签名验证
+        Map<String, String> mapData = XMLConverUtil.convertToMap(xmlData);
+        //转换数据对象
+        MchPayNotify payNotify = XMLConverUtil.convertToObject(MchPayNotify.class, xmlData);
+        //已处理 去重
+        if (expireKey.exists(payNotify.getTransaction_id())) {
+            return;
+        }
+        //@since 2.8.5
+        payNotify.buildDynamicField(mapData);
+        //签名验证
+        if (SignatureUtil.validateSign(mapData, key)) {
+            expireKey.add(payNotify.getTransaction_id());
+            MchBaseResult baseResult = new MchBaseResult();
+            baseResult.setReturn_code("SUCCESS");
+            baseResult.setReturn_msg("OK");
+            response.getOutputStream().write(XMLConverUtil.convertToXML(baseResult).getBytes());
+        } else {
+            MchBaseResult baseResult = new MchBaseResult();
+            baseResult.setReturn_code("FAIL");
+            baseResult.setReturn_msg("ERROR");
+            response.getOutputStream().write(XMLConverUtil.convertToXML(baseResult).getBytes());
+        }
+    }
+
+    /**
+     * {
+     * +                    debug: true,//debug: true,
+     * +                    appId: appId,
+     * +                    timestamp: timestamp,
+     * +                    nonceStr: nonceStr,
+     * +                    signature: signature,
+     * +                    jsApiList: [
+     * +                        'checkJsApi',
+     * +                        'chooseImage',
+     * +                        'openLocation',
+     * +                        'getLocation',
+     * +                        'onMenuShareTimeline',
+     * +                        'onMenuShareAppMessage',
+     * +                        'onMenuShareQQ'
+     * +                    ]
+     * +                }
+     *
+     * @return
+     */
+    //3.生成 config接口注入权限验证 JSON
+    @RequestMapping(value = "/get/signture", method = RequestMethod.GET)
+    public String createJsapiSignature(String access_token, Model model) {
+        String url = "";
+        Ticket ticket = TicketAPI.ticketGetticket(access_token, "jsapi");
+        String wxConfig = JsUtil.generateConfigJson(ticket.getTicket(), true, "appid",
+                url, "調用的接口數組");
+        model.addAttribute("config", wxConfig);
+        return "redirect:url";
+    }
+
+
+}

@@ -1,0 +1,111 @@
+package com.qs.webside.api.service.impl;
+
+import com.qs.webside.api.service.IWePayService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import weixin.popular.api.PayMchAPI;
+import weixin.popular.bean.paymch.*;
+import weixin.popular.support.ExpireKey;
+import weixin.popular.support.expirekey.DefaultExpireKey;
+import weixin.popular.util.PayUtil;
+import weixin.popular.util.SignatureUtil;
+import weixin.popular.util.StreamUtils;
+import weixin.popular.util.XMLConverUtil;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Map;
+import java.util.UUID;
+
+/**
+ * 微信支付业务层实现类,基于weixin-popular 包开发
+ * Created by zun.wei on 2017/2/22.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Service
+public class WePayServiceImpl implements IWePayService{
+
+    @Value("${wepay.appid}")
+    private String appid;
+
+    @Value("${wepay.mch_id}")
+    private String mch_id;
+
+    @Value("${wepay.key}")
+    private String key;
+
+    @Value("${wepay.mch_id}")
+    private String partnerid;
+
+    @Value("${wepay.payNotifyUrl}")
+    private String payNotifyUrl;
+
+    //重复通知过滤
+    private static ExpireKey expireKey = new DefaultExpireKey();
+
+    @Override
+    public MchPayApp unifiedOrder(HttpServletRequest request, HttpServletResponse response) {
+        Unifiedorder unifiedorder = new Unifiedorder();
+        unifiedorder.setAppid(appid);
+        unifiedorder.setMch_id(mch_id);
+        unifiedorder.setNonce_str(UUID.randomUUID().toString().replace("-", ""));
+
+        //TODO 这里还需要从前端request中获取商品信息，订单号，商品价格
+        unifiedorder.setBody("商品信息");
+        unifiedorder.setOut_trade_no("123456");
+        unifiedorder.setTotal_fee("1");//单位分
+        unifiedorder.setSpbill_create_ip(request.getRemoteAddr());//IP
+        unifiedorder.setNotify_url(payNotifyUrl);//用于接收微信支付结果通知
+        unifiedorder.setTrade_type("APP");//JSAPI，NATIVE，APP，MWEB
+        //unifiedorder.setTrade_type("JSAPI");//JSAPI，NATIVE，APP，MWEB
+
+        UnifiedorderResult unifiedorderResult = PayMchAPI.payUnifiedorder(unifiedorder, key);
+        MchPayApp mchPayApp = new MchPayApp();
+        //@since 2.8.5  API返回数据签名验证
+        if (unifiedorderResult.getSign_status() != null && unifiedorderResult.getSign_status()) {
+            mchPayApp = PayUtil.generateMchAppData(unifiedorderResult.getPrepay_id(),appid,partnerid,key);
+
+            //String json = PayUtil.generateMchPayJsRequestJson(unifiedorderResult.getPrepay_id(), appid, key);
+
+            //将json 传到jsp 页面
+            //request.setAttribute("json", json);
+            //示例jsp
+            //request.getRequestDispatcher("pay_example.jsp").forward(request, response);
+        }
+        //return "pay_example.jsp";
+        return mchPayApp;
+    }
+
+    @Override
+    public void payNotify(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //获取请求数据
+        String xmlData = StreamUtils.copyToString(request.getInputStream(), Charset.forName("utf-8"));
+        //将XML转为MAP,确保所有字段都参与签名验证
+        Map<String, String> mapData = XMLConverUtil.convertToMap(xmlData);
+        //转换数据对象
+        MchPayNotify payNotify = XMLConverUtil.convertToObject(MchPayNotify.class, xmlData);
+        //已处理 去重
+        if (expireKey.exists(payNotify.getTransaction_id())) {
+            return;
+        }
+        //@since 2.8.5
+        payNotify.buildDynamicField(mapData);
+        //签名验证
+        if (SignatureUtil.validateSign(mapData, key)) {
+            expireKey.add(payNotify.getTransaction_id());
+            MchBaseResult baseResult = new MchBaseResult();
+            baseResult.setReturn_code("SUCCESS");
+            baseResult.setReturn_msg("OK");
+            response.getOutputStream().write(XMLConverUtil.convertToXML(baseResult).getBytes());
+        } else {
+            MchBaseResult baseResult = new MchBaseResult();
+            baseResult.setReturn_code("FAIL");
+            baseResult.setReturn_msg("ERROR");
+            response.getOutputStream().write(XMLConverUtil.convertToXML(baseResult).getBytes());
+        }
+    }
+
+}

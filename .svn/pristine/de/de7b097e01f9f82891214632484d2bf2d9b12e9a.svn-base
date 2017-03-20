@@ -1,0 +1,146 @@
+package com.qs.webside.member.service.impl;
+
+import java.util.concurrent.TimeoutException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import com.qs.webside.member.mapper.MemberfidesMapper;
+import com.qs.webside.member.model.Memberfides;
+import com.qs.webside.member.model.Memberpayment;
+import com.qs.webside.member.model.Members;
+import com.qs.webside.member.service.MemberService;
+
+import net.rubyeye.xmemcached.MemcachedClient;
+import net.rubyeye.xmemcached.exception.MemcachedException;
+
+import com.qs.webside.member.mapper.MembersMapper;
+import com.qs.webside.member.model.Commongame;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.util.crypto.MD5;
+import com.qs.webside.member.mapper.CommongameMapper;
+import com.qs.webside.member.model.Game;
+import com.qs.webside.member.mapper.GameMapper;
+import com.qs.webside.member.mapper.MemberpaymentMapper;
+import com.qs.webside.member.model.Memberpayment;
+
+
+@Service("memberService")
+public class MemberServiceImpl implements MemberService {
+	
+
+
+	@Autowired
+	private MemberfidesMapper memberfidesMapper;
+	
+	@Autowired
+	private MembersMapper membersMapper;
+	
+	@Autowired
+	private CommongameMapper commongameMapper;
+	
+	@Autowired
+	private GameMapper gameMapper;
+	
+	@Autowired
+	private MemcachedClient memcachedClient;
+	
+	@Autowired
+	private MemberpaymentMapper memberpaymentMapper;
+	
+    @Value("${game.gametype}")
+    private byte gameType;
+	
+	/**
+	 * 保存token
+	 * id 登录 rgb注册,type游戏
+	 * @param mid
+	 * @param sid
+	 * @param rgp
+	 * @return
+	 */
+	@Override
+	public String saveToken(Integer mid,Integer gp,Integer rgp){
+		String key=AppConstants.KeyPrefix.SESSKEY+mid;
+		String istestuser="0";
+		long motime=System.currentTimeMillis();
+		String sign=MD5.encrypt(mid+"#"+motime+"#"+AppConstants.SAFECODE);
+		String mokey=mid+"-"+motime+"-"+gp+"-"+sign+"-"+rgp+"-"+gameType;
+		try {
+			memcachedClient.add(key,6*3600, mokey);
+		} catch (TimeoutException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (MemcachedException e) {
+			e.printStackTrace();
+		}
+		return mokey;
+	}
+   
+	@Override
+	public Memberfides insertMemberfides(Memberfides record,String openId) {
+		Members  member=new Members();
+		member.setSitemid(openId);
+		int mid=membersMapper.insert(member);
+		record.setMid(mid);
+		memberfidesMapper.insertSelective(record);
+		
+		Commongame commongame=new Commongame();
+		commongame.setMid(mid);
+		commongame.setGold(0l);
+		commongame.setVip((byte)0);
+		commongame.setBankpasswd("");
+		commongame.setBankassets(0l);
+		commongameMapper.insertSelective(commongame);
+		
+		//从配置文件取数据
+		int gameType=0;
+		Game game=new Game();
+		game.setMid(mid);
+		game.setJifen(0l);
+		game.setType(0);
+		gameMapper.insertSelective(game);
+		
+		return record;
+	}
+
+	@Override
+	public Memberfides findMemberfidesById(Integer id) {
+		return memberfidesMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int updateMemberfides(Memberfides record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteMemberfidesById(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Members findMembersBySitemid(String sitemid) {
+		return membersMapper.findMembersBySitemid(sitemid);
+	}
+
+	@Override
+	public int insertMemberpayment(Memberpayment record) {
+		return memberpaymentMapper.insert(record);
+	}
+
+	@Override
+	public Game findGameById(Integer id) {
+		return gameMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public Commongame findCommongameById(Integer id) {
+		return commongameMapper.selectByPrimaryKey(id);
+	}
+
+}

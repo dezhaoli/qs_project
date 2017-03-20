@@ -1,0 +1,49 @@
+package com.qs.webside.member.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.qs.webside.member.mapper.MemberfidesMapper;
+import com.qs.webside.member.model.Memberfides;
+import com.qs.webside.member.service.MemberService;
+
+
+@Service("memberService")
+public class MemberServiceImpl 
+		implements MemberService {
+
+	@Autowired
+	private MemberfidesMapper memberfidesMapper;
+
+	@Override
+	public int insertMemberfides(Memberfides record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Memberfides findMemberfidesById(Integer id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int updateMemberfides(Memberfides record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteMemberfidesById(Integer id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	
+	
+
+
+	
+
+}

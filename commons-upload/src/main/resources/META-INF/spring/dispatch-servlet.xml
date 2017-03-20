@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bean:beans xmlns:bean="http://www.springframework.org/schema/beans"
+            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:context="http://www.springframework.org/schema/context"
+            xmlns="http://www.springframework.org/schema/mvc"
+            xmlns:mvc="http://www.springframework.org/schema/mvc"
+            xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <context:component-scan base-package="com.qznet.commons.upload.controller"/>
+    <annotation-driven/>
+    <resources location="/bui/" mapping="/bui/**" cache-period="31556926"/>
+    <resources location="/resources/" mapping="/resources/**" cache-period="31556926"/>
+    <context:component-scan base-package="com.qznet.iov.center.web"/>
+    <bean:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <bean:property name="maxUploadSize" value="10000000"></bean:property>
+    </bean:bean>
+    <bean:bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <bean:property name="prefix" value="/WEB-INF/views/"></bean:property>
+        <bean:property name="suffix" value=".jsp"></bean:property>
+        <bean:property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></bean:property>
+    </bean:bean>
+    <view-controller path="/" view-name="upload"/>
+    <view-controller path="/testupload" view-name="testupload"/>
+    <mvc:interceptors>
+        <bean:bean class="com.qznet.commons.upload.filter.CORSInterceptor"/>
+    </mvc:interceptors>
+</bean:beans>

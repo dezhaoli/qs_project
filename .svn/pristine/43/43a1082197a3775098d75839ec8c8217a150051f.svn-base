@@ -1,0 +1,143 @@
+package com.qs.common.base.basecontroller;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.util.IpUtil;
+import com.qs.common.util.PageUtil;
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.github.pagehelper.Page;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.ip2region.DbSearcher;
+
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * 
+ * @ClassName: BaseController
+ * @Description: controller基类,目前功能比较简单
+ * @author gaogang
+ * @date 2016年7月12日 下午3:02:14
+ *
+ */
+public abstract class BaseController {
+	
+	@Autowired
+	private DbSearcher ipSearcher;
+	
+	public Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	public Map<String, Object> getReturnPage(Pager pager ,Page<Object> page,Object list){
+		Map<String, Object> parameters=new HashMap<String, Object>();
+		parameters.put("isSuccess", Boolean.TRUE);
+		parameters.put("nowPage", pager.getNowPage());
+		parameters.put("pageSize", pager.getPageSize());
+		parameters.put("pageCount", page.getPages());
+		parameters.put("recordCount", page.getTotal());
+		parameters.put("startRecord", page.getStartRow());
+		//列表展示数据
+		parameters.put("exhibitDatas", list);
+		return parameters;
+
+	}
+
+
+	protected PageUtil getPage(HttpServletRequest request) {
+		PageUtil page = new PageUtil();
+		if (request.getParameterMap().containsKey("page")) {
+			page.setPageNum(Integer.valueOf(request.getParameter("page")));
+			page.setOrderByColumn(request.getParameter("sidx"));
+			page.setPageSize(Integer.valueOf(request.getParameter("rows")));
+			page.setOrderByType(request.getParameter("sord"));
+		}
+		return page;
+	}
+
+	protected void executeRequestResult(int result,Map<String, Object> map) {
+		executeAddRequestResult(result,map);
+	}
+
+	protected void executeAddRequestResult(int result,Map<String, Object> map) {
+		if (result > 0) {
+			map.put(CommonContants.SUCCESS, Boolean.TRUE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.ADD_SUCCESS);
+		} else {
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.ADD_FAILURE);
+		}
+	}
+
+	protected void executeUpdateRequestResult(int result, Map<String, Object> map) {
+		if (result > 0) {
+			map.put(CommonContants.SUCCESS, Boolean.TRUE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.UPDATE_SUCCESS);
+		} else {
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.UPDATE_FAILURE);
+		}
+	}
+
+	protected void executeDeleteRequestResult(int result, Map<String, Object> map) {
+		if (result > 0) {
+			map.put(CommonContants.SUCCESS, Boolean.TRUE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.DELETE_SUCCESS);
+		} else {
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.DELETE_FAILURE);
+		}
+	}
+	
+	public Map<String, Object> getReturnData(Object data,int resultFlag){
+		Map<String, Object> parameters=new HashMap<String, Object>();
+		parameters.put("svflag",resultFlag);
+		//列表展示数据
+		parameters.put("data", data);
+		return parameters;
+		
+	}
+	
+	public int getCityId(HttpServletRequest request){		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		String ip = IpUtil.getIpAddr(request);
+		int cityId=0;
+		try {
+			cityId = ipSearcher.memorySearch(ip).getCityId();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return cityId;
+
+	}
+	
+	public Object getCity(HttpServletRequest request){
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		String ip = IpUtil.getIpAddr(request);
+		String region="";
+		try {
+			region = ipSearcher.memorySearch(ip).getRegion();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String[] regions = StringUtils.split(region, '|');
+		String city=regions[2]+regions[3]+regions[4];
+		return city;
+	}
+	
+	
+}

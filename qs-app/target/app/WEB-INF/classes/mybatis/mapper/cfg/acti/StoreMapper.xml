@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.cfg.acti.mapper.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.cfg.acti.model.Store" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="gold" property="gold" jdbcType="INTEGER" />
+    <result column="song" property="song" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="starttime" property="starttime" jdbcType="INTEGER" />
+    <result column="endtime" property="endtime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+  id, money, gold, song, img,starttime,endtime  
+  </sql>
+  <select id="getGoldByPayMoney" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from acti_systemstorecfg
+    where money = #{money}
+    limit 1
+  </select>
+  
+  
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+   SELECT <include refid="Base_Column_List" />
+    from acti_systemstorecfg order by id
+  	</select>
+  	
+</mapper>

@@ -1,0 +1,458 @@
+package com.qs.webside.api.controller;
+
+import com.qs.cfg.acti.service.StoreService;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.util.CommonUtils;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.EmojiFilter;
+import com.qs.common.util.IpUtil;
+import com.qs.webside.api.model.*;
+import com.qs.webside.api.service.IAlipayService;
+import com.qs.webside.game.model.BaseParam;
+import com.qs.webside.game.model.MobileVersion;
+import com.qs.webside.game.service.GameService;
+import com.qs.webside.member.model.*;
+import com.qs.webside.member.service.MemberService;
+import com.qs.webside.util.AccessToken;
+import com.qs.webside.util.ContextUtil;
+import me.hao0.alipay.model.pay.AppPayDetail;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import weixin.popular.bean.user.User;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.Map;
+
+@Controller
+@Scope("prototype")
+@RequestMapping("/api/")
+public class ApiController extends BaseController {
+
+    Logger log = Logger.getLogger(ApiController.class);  
+    
+    @Value("${wepay.appid}")
+    private String appId;
+
+    @Value("${wepay.appSecret}")
+    private String secret;
+    
+    @Value("${game.hostport}")
+    private String hostPort;
+    
+    @Value("${game.ver}")
+    private String ver;
+    
+    @Value("${game.activityurl}")
+    private String activityUrl;
+    
+    @Value("${game.configurl}")
+    private String configUrl;
+    
+    @Value("${game.shareurl}")
+    private String shareUrl;
+    
+    @Value("${game.gametype}")
+    private int gameType;
+   
+    @Value("${game.headimgurl}")
+    private String headImgUrl;
+    
+    @Value("${wepay.payNotifyUrl}")
+    private String payNotifyUrl;
+    
+   
+	@Autowired
+	private MemberService memberService;
+	
+    @Resource
+    private IAlipayService alipayService;
+   
+	@Autowired
+	private StoreService storeService;
+	
+	@Autowired
+	private GameService gameService;
+
+	
+	
+	
+	/**
+	 * 数据加载
+	 * @param request
+	 * @param sesskey
+	 * @return
+	 */
+	@RequestMapping("load.do")
+	@ResponseBody
+	public Object load(HttpServletRequest request,LoadRequest loadRequst){
+		log.debug(loadRequst.toString());
+	   Map<String, Object> map = new HashMap<String, Object>();
+	   AccessToken token=ContextUtil.getAccessTokenInfo(loadRequst.getSesskey());
+	   Memberfides user=memberService.findMemberfidesById(token.getMid());
+	   Game game=memberService.findGameById(token.getMid());
+	   Commongame commongame=memberService.findCommongameById(token.getMid());
+	   
+	   Map<String, Object> gameMap = new HashMap<String, Object>();
+	   gameMap=ContextUtil.objectToMap(gameMap,game);
+	   gameMap=ContextUtil.objectToMap(gameMap,commongame);
+	   
+	   Integer isdayfrist=1;
+	   String ip = IpUtil.getIpAddr(request);
+	   
+	   map.put("aUser",user);
+	   map.put("aGame",gameMap);
+	   map.put("isdayfrist",isdayfrist);
+	   map.put("nowtime",String.valueOf(System.currentTimeMillis()));
+	   map.put("mUrl",headImgUrl);
+	   map.put("ip",ip);
+	   map.put("is_show",0);//是否代理商
+	   map.put("share",shareUrl); //分享地址
+	   map.put("istester",0); //是否活动测试者
+	   map.put("isgrant",0); //是否代理
+	   map.put("isroomcard",0);//是否领取房卡
+
+	   return this.getReturnData(map,AppConstants.Result.SUCCESS);
+    }
+	
+	/**
+	 * 登录
+	 * @param code
+	 * @param type
+	 * @param gp
+	 * @param channel
+	 * @param site
+	 * @param deviceid
+	 * @return
+	 */
+	@RequestMapping("login.do")
+	@ResponseBody
+	public Object login(HttpServletRequest request,LoginRequest login)
+	{
+		log.debug("login.do===::"+login.toString());
+		
+		if(login.getGp()==0){
+			return this.getReturnData(AppConstants.ResultMsg.NOT_GP,AppConstants.Result.FAILURE);
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		//游客登录
+		String openId=login.getSitemid();
+		Memberfides wxUser=null;
+		Memberfides resultUser=null;
+		if(login.getGp()==0){
+			return this.getReturnData(map,AppConstants.Result.FAILURE);
+		}
+	    //微信登录
+		if(login.getType()==1){
+	       //根据code取accessToken
+			User user=null;
+			Map<String, Object> userMap=memberService.getInfoByCode(login.getCode());
+			Boolean result=(Boolean)userMap.get(CommonContants.RESULT);
+		    if(result){
+		    	 user=(User)userMap.get("user");
+		    }else{
+		    	//40029,40030为微信登录错误编码
+		    	String errcode=(String)userMap.get("errcode");
+		    	String errmsg=(String)userMap.get("errmsg");
+		    	log.debug("login.do.errcode===:"+errcode);
+		    	if("40029".equals(errcode)&&"40030".equals(errcode)){
+		    		errcode=errcode;
+		    	}else{
+		    		errcode="40030";
+		    	}
+		    	return this.getReturnData(errmsg,Integer.parseInt(errcode));
+		    }
+			
+			wxUser=this.getUserByWxUser(user);		
+			wxUser.setGp((byte)login.getGp());
+			wxUser.setPasswd(login.getDeviceid());
+			wxUser.setCity(this.getCityId(request)+"");
+			
+		    openId=user.getOpenid();
+	   }
+		Members mbers=memberService.findMembersBySitemid(openId);
+		//记录不存在、插入数据库
+		if(null==mbers){
+			resultUser=memberService.insertMemberfides(wxUser,openId);
+		}else{
+			resultUser=memberService.findMemberfidesById(mbers.getMid());
+		    //更新用户信息
+			this.updateUser(wxUser, resultUser);
+		}
+		
+		 String ip = IpUtil.getIpAddr(request);
+		 int userGp=0;
+		 int mid=0;
+		 if(null!=resultUser){
+			 //userGp=resultUser.getGp();
+			 mid=resultUser.getMid();
+		 }
+		 
+        String sesskey=memberService.saveToken(mid,login.getGp(),userGp,ip);
+    	String dataConfigVersion=gameService.getBaseParamValueByCode(AppConstants.BaseParam.CONFIG_VERSION_CODE);
+		map.put("sesskey",sesskey);
+		map.put("server",hostPort);
+		map.put("sitemid",openId);
+		map.put("ver",dataConfigVersion);
+		//房间、商城配置文件路径
+		map.put("dataUrl",configUrl+"config/");
+		//活动图片
+		map.put("mobileUrl",headImgUrl);
+		//移动活动
+		map.put("baseUrl",activityUrl+"api/mobile/");
+
+		return this.getReturnData(map,AppConstants.Result.SUCCESS);
+	}
+    /**
+     * 更新用户信息
+     * @param wxUser
+     * @param resultUser
+     */
+	private void updateUser(Memberfides wxUser, Memberfides resultUser) {
+		if(null!=wxUser&&null!=resultUser){
+			Memberfides updateUser=new Memberfides();
+			updateUser.setMid(resultUser.getMid());
+			boolean isUpdate=false;
+		    if(!StringUtils.isBlank(wxUser.getIcon())){
+		    	if(!wxUser.getIcon().equals(resultUser.getIcon())){
+		    		isUpdate=true;
+		    		updateUser.setIcon(wxUser.getIcon());
+		    	}
+				
+			}
+		   if(null!=wxUser.getSex()){
+				if(!wxUser.getSex().equals(resultUser.getSex())){
+					isUpdate=true;
+					updateUser.setSex(wxUser.getSex());
+				}
+			}
+		   
+		   if(!StringUtils.isBlank(wxUser.getName())){
+		      if(!wxUser.getName().equals(resultUser.getName())){		    		
+		    	  isUpdate=true;
+				  updateUser.setName(resultUser.getName());
+		      }
+			}
+		   if(isUpdate){
+			   memberService.updateMemberfides(updateUser);
+		   }
+			
+		}
+	}
+	/**
+	 * 微信用户转游戏用户
+	 * @param user
+	 * @return
+	 */
+	private Memberfides getUserByWxUser(User user) {
+		Memberfides member=new Memberfides();
+		member.setName(EmojiFilter.filterEmoji(user.getNickname()));
+		member.setSex(CommonUtils.getSex(user.getSex()));
+		member.setCity(user.getCity());
+		member.setIcon(user.getHeadimgurl());
+	    //member.setInvite(invite);
+	    //member.setGp(();
+		member.setMtime(System.currentTimeMillis());
+		member.setLxlg(DateUtil.currentTimeToInt());
+		return member;
+	}
+	
+	/***
+	 * 订单
+	 * @param sesskey
+	 * @param type
+	 * @param money
+	 * @return
+	 */
+	@RequestMapping("getOrder.do")
+	@ResponseBody
+	public Object getOrder(OrderRequest orderRequest){
+		
+		log.debug("getOrder.do==::"+orderRequest.toString());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		String queryString="";
+		String cardid="1";
+		AccessToken token=ContextUtil.getAccessTokenInfo(orderRequest.getSesskey());
+		int money=orderRequest.getMoney();
+		String  type=orderRequest.getType();
+		
+		if(orderRequest.getMoney()>1000||money<1){
+			return this.getReturnData(map,AppConstants.Result.FAILURE);
+		}
+		
+		Memberfides user=memberService.findMemberfidesById(token.getMid());
+		Commongame commongame=memberService.findCommongameById(token.getMid());
+		Integer gold=0;
+		gold=storeService.getGoldByPayMoney(money);
+		if(gold<=0){
+			return this.getReturnData(map,AppConstants.Result.FAILURE_1002);
+		}
+		
+		Memberpayment record=new Memberpayment();
+		record.setFmid(token.getMid());
+		record.setTmid(token.getMid());
+		record.setTsid(user.getGp().intValue());
+		record.setPmoneynow(commongame.getGold().intValue());
+		record.setPcard(token.getGb().shortValue());
+		record.setPamount((float)money);
+		record.setPcoins(0);
+		record.setPtime(DateUtil.currentTimeToInt());
+		record.setPstatus((byte)0);
+		record.setPtransno("");
+		record.setGametype((byte)gameType);
+	
+		if(AppConstants.PayType.ALIPAY.equals(type)){
+			record.setPmode((byte)2);
+			Integer c=memberService.insertMemberpayment(record);
+			Integer orderId =record.getPid();
+	        String orderNameAndBody = gold+ AppConstants.COINNAME;
+	        AppPayDetail appPayDetail = new AppPayDetail(String.valueOf(orderId), orderNameAndBody,String.valueOf(money), orderNameAndBody);
+	        queryString=alipayService.appPay(appPayDetail);
+	        
+		}else if(AppConstants.PayType.WXPAY.equals(type)){
+			record.setPmode((byte)7);
+			Integer orderId=memberService.insertMemberpayment(record);	
+			queryString=payNotifyUrl;
+			cardid=String.valueOf(orderId);
+		}
+		
+		map.put("string",queryString);
+		map.put("cardid",cardid);
+		return this.getReturnData(map,AppConstants.Result.SUCCESS);
+	
+		
+	}
+	
+	
+	/**
+	 * APP强更新和热更新
+	 * @param sesskey
+	 * @param type
+	 * @param money
+	 * @return
+	 */
+	@RequestMapping("getAutoUpdateInfo.do")
+	@ResponseBody
+	public Object getAutoUpdateInfo(MobileVersionRequest mobileVersionRequest){
+		
+		log.debug(mobileVersionRequest.toString());
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		int site=mobileVersionRequest.getSite()==2 ? 2 : 1;//1安卓2苹果
+		BaseParam baseParam=null;
+		String baseParamVersionValue=null;
+		//审核的版本号
+		if(site==2){
+			baseParamVersionValue=gameService.getBaseParamValueByCode(AppConstants.BaseParam.IOS_VERSION_CODE);
+		}else{
+			baseParamVersionValue=gameService.getBaseParamValueByCode(AppConstants.BaseParam.ANDROID_VERSION_CODE);
+		}
+		
+		map.put("checkver",baseParamVersionValue);
+		
+		Map<String, Object> paraMap = new HashMap<String, Object>();
+		paraMap.put("site",mobileVersionRequest.getSite());
+		paraMap.put("channel",mobileVersionRequest.getChannel());
+		paraMap.put("type",AppConstants.AppVersionType.STRONG);
+		
+		
+		//强更新
+		MobileVersion strongVersion= gameService.findLatestMobileVersion(paraMap);
+		
+		if(null!=strongVersion&&!StringUtils.isBlank(strongVersion.getForceurl())){
+		   if(strongVersion.getBigversion()>mobileVersionRequest.getBigversion()){
+				return returnMobileVersionMap(mobileVersionRequest, map, strongVersion);	
+		   }else if(strongVersion.getBigversion()==mobileVersionRequest.getBigversion()&&strongVersion.getVersion()>=mobileVersionRequest.getVersion()){
+			   return returnMobileVersionMap(mobileVersionRequest, map, strongVersion);	
+		   }
+		}
+		
+		//没有强更、就热更新
+		paraMap.put("type",AppConstants.AppVersionType.FORMAL);
+	    MobileVersion formalVersion= gameService.findLatestMobileVersion(paraMap);
+		
+		if(null!=formalVersion&&!StringUtils.isBlank(formalVersion.getUrl())){
+		   if(formalVersion.getBigversion()>mobileVersionRequest.getBigversion()){
+				return returnMobileVersionMap(mobileVersionRequest, map, formalVersion);	
+		   }else if(formalVersion.getBigversion()==mobileVersionRequest.getBigversion()&&formalVersion.getVersion()>=mobileVersionRequest.getVersion()){
+			   return returnMobileVersionMap(mobileVersionRequest, map, formalVersion);	
+		   }
+			
+		}
+	
+		//更新失败
+		return this.getReturnData(map, AppConstants.Result.FAILURE);	
+  }
+
+	private Object returnMobileVersionMap(MobileVersionRequest mobileVersionRequest, Map<String, Object> map,
+			MobileVersion sMobileVersion) {
+	
+		map.put("bigversion",mobileVersionRequest.getBigversion());
+		map.put("version", mobileVersionRequest.getVersion());
+		map.put("isskip", sMobileVersion.getIsskip());
+		map.put("des",sMobileVersion.getDes());
+		map.put("url",sMobileVersion.getUrl());
+		map.put("onlineversion",sMobileVersion.getOnlineversion());
+		map.put("forceurl",sMobileVersion.getForceurl());
+		
+		  return this.getReturnData(map,AppConstants.Result.SUCCESS);
+	}	
+	
+	
+	/**
+	 * 获取包直接地址
+	 * @param baseRequest
+	 * @return
+	 */
+	@RequestMapping("getApkUrl.do")
+	@ResponseBody
+	public Object getApkUrl(BaseRequest baseRequest){
+		
+		log.debug(baseRequest.toString());
+		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Integer status = 1;
+		//判断是否测试服务器
+		//Integer status = 0;
+		String url="";
+		
+		resultMap.put("url",url);
+		resultMap.put("ver","");
+	   return this.getReturnData(resultMap,AppConstants.Result.SUCCESS);
+	}
+	
+	/**
+	 * 获取用户信息
+	 * @param baseRequest
+	 * @return
+	 */
+	@RequestMapping("getMemBasInfo.do")
+	@ResponseBody
+	public Object getMemBasInfo(BaseRequest baseRequest){
+		
+		log.debug(baseRequest.toString());
+		
+		AccessToken token=ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Memberfides mUser=memberService.findMemberfidesById(token.getMid());
+		Map<String, Object> resultMap2 = new HashMap<String, Object>();
+		resultMap.put("city",mUser.getCity());
+		resultMap2.put("arr", resultMap);
+		return this.getReturnData(resultMap2,AppConstants.Result.SUCCESS);
+	}
+	
+
+
+
+}

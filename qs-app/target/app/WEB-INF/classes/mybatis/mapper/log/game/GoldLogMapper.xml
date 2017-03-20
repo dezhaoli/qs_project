@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.GoldLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.GoldLog" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="gold" property="gold" jdbcType="BIGINT" />
+    <result column="nowgold" property="nowgold" jdbcType="BIGINT" />
+    <result column="action" property="action" jdbcType="TINYINT" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+    <result column="formid" property="formid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qs.log.game.model.GoldLog" >
+    insert into gold_log (mid, type, gold, 
+      nowgold, action, date, 
+      remark, gametype, formid
+      )
+    values (#{mid,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{gold,jdbcType=BIGINT}, 
+      #{nowgold,jdbcType=BIGINT}, #{action,jdbcType=TINYINT}, #{date,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR}, #{gametype,jdbcType=TINYINT}, #{formid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.GoldLog" >
+    insert into gold_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="gold != null" >
+        gold,
+      </if>
+      <if test="nowgold != null" >
+        nowgold,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+      <if test="formid != null" >
+        formid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="gold != null" >
+        #{gold,jdbcType=BIGINT},
+      </if>
+      <if test="nowgold != null" >
+        #{nowgold,jdbcType=BIGINT},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=TINYINT},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="formid != null" >
+        #{formid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

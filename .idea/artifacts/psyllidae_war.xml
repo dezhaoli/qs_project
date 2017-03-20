@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="psyllidae:war">
+    <output-path>$PROJECT_DIR$/qs-psyllidae/target</output-path>
+    <root id="archive" name="psyllidae.war">
+      <element id="artifact" artifact-name="psyllidae:war exploded" />
+    </root>
+  </artifact>
+</component>

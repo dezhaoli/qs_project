@@ -1,0 +1,18 @@
+package com.qs.webside.member.mapper;
+
+import com.qs.common.base.basemapper.IBaseMapper;
+import com.qs.webside.member.model.MemberAgents;
+
+public interface MemberAgentsMapper extends IBaseMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(MemberAgents record);
+
+    int insertSelective(MemberAgents record);
+
+    MemberAgents selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(MemberAgents record);
+
+    int updateByPrimaryKey(MemberAgents record);
+}

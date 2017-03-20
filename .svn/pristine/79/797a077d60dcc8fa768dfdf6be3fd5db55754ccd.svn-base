@@ -1,0 +1,310 @@
+package com.qs.webside.api.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import com.qs.cfg.acti.model.Store;
+import com.qs.cfg.acti.service.StoreService;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.IpUtil;
+import com.qs.log.game.model.RoomRecord;
+import com.qs.log.game.service.GameRecordService;
+import com.qs.webside.api.model.BaseRequest;
+import com.qs.webside.api.model.GameRecordShareRequest;
+import com.qs.webside.api.model.LoadRequest;
+import com.qs.webside.api.model.LoginRequest;
+import com.qs.webside.api.model.RoomRecordRequest;
+import com.qs.webside.api.service.IAlipayService;
+import com.qs.webside.game.model.MobileVersion;
+import com.qs.webside.game.service.GameService;
+import com.qs.webside.member.model.Commongame;
+import com.qs.webside.member.model.Game;
+import com.qs.webside.member.model.Memberfides;
+import com.qs.webside.member.model.Memberpayment;
+import com.qs.webside.member.model.Members;
+import com.qs.webside.member.service.MemberService;
+import com.qs.webside.util.AccessToken;
+import com.qs.webside.util.ContextUtil;
+import me.hao0.alipay.model.pay.AppPayDetail;
+import weixin.popular.api.SnsAPI;
+import weixin.popular.bean.sns.SnsToken;
+import weixin.popular.bean.user.User;
+
+@Controller
+@Scope("prototype")
+@RequestMapping("/api/")
+public class ApiController extends BaseController {
+
+	
+    @Value("${wepay.appid}")
+    private String appId;
+
+    @Value("${wepay.appSecret}")
+    private String secret;
+    
+    @Value("${game.hostport}")
+    private String hostPort;
+    
+    @Value("${game.ver}")
+    private String ver;
+    
+    @Value("${game.appurl}")
+    private String appUrl;
+    
+    @Value("${game.gametype}")
+    private int gameType;
+   
+    @Value("${game.headimgurl}")
+    private String headImgUrl;
+    
+    @Value("${wepay.payNotifyUrl}")
+    private String payNotifyUrl;
+    
+   
+	@Autowired
+	private MemberService memberService;
+	
+    @Resource
+    private IAlipayService alipayService;
+   
+	@Autowired
+	private StoreService storeService;
+	
+	@Autowired
+	private GameService gameService;
+
+	
+	
+	
+	/**
+	 * 数据加载
+	 * @param request
+	 * @param sesskey
+	 * @return
+	 */
+	@RequestMapping("load.do")
+	@ResponseBody
+	public Object load(HttpServletRequest request,@RequestBody LoadRequest loadRequst){
+	   Map<String, Object> map = new HashMap<String, Object>();
+	   AccessToken token=ContextUtil.getAccessTokenInfo(loadRequst.getSesskey());
+	   Memberfides user=memberService.findMemberfidesById(token.getMid());
+	   Game game=memberService.findGameById(token.getMid());
+	   Commongame commongame=memberService.findCommongameById(token.getMid());
+	   
+	   Map<String, Object> gameMap = new HashMap<String, Object>();
+	   gameMap=ContextUtil.objectToMap(gameMap,game);
+	   gameMap=ContextUtil.objectToMap(gameMap,commongame);
+	   
+	   Integer isdayfrist=1;
+	   String ip = IpUtil.getIpAddr(request);
+	   
+	   map.put("aUser",user);
+	   map.put("aGame",gameMap);
+	   map.put("isdayfrist",isdayfrist);
+	   map.put("nowtime",String.valueOf(System.currentTimeMillis()));
+	   map.put("mUrl",headImgUrl);
+	   map.put("ip",ip);
+	   map.put("is_show",1);//是否代理商
+	   map.put("share",""); //分享地址
+	   map.put("istester",""); //是否活动测试者
+	   map.put("isgrant",1); 
+	   map.put("isroomcard",1); 
+	   
+	   
+	   
+	   
+	  
+       return map;
+    }
+	
+	/**
+	 * 登录
+	 * @param code
+	 * @param type
+	 * @param gp
+	 * @param channel
+	 * @param site
+	 * @param deviceid
+	 * @return
+	 */
+	@RequestMapping("login.do")
+	@ResponseBody
+	public Object login(@RequestBody LoginRequest login)
+	{
+		Map<String, Object> map = new HashMap<String, Object>();
+		String openId=login.getSitemid();
+		Memberfides mUser=null;
+	    //微信登录
+		if(login.getType()==1){
+	       //根据code取accessToken
+			SnsToken snsToken=SnsAPI.oauth2AccessToken(appId, secret, login.getCode());
+			User user=SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(),"zh_CN");
+			mUser=getMemberfides(user);		
+			mUser.setGp((byte)login.getGp());
+		    openId=user.getOpenid();
+	   }
+		Members mRecord=memberService.findMembersBySitemid(openId);
+		//记录不存在、插入数据库
+		if(null==mRecord){
+			mUser=memberService.insertMemberfides(mUser,openId);
+		}else{
+			mUser=memberService.findMemberfidesById(mRecord.getMid());
+		}
+		
+        String sesskey=memberService.saveToken(mRecord.getMid(),login.getGp(),(int)mUser.getGp());
+        
+		map.put("sesskey",sesskey);
+		map.put("server",hostPort);
+		map.put("sitemid",openId);
+		map.put("ver",ver);
+		//房间、商城配置文件路径
+		map.put("dataUrl",appUrl+"config/");
+		//头像路径
+		map.put("mobileUrl",headImgUrl);
+		//移动活动
+		map.put("baseUrl",appUrl+"api/mobile/");
+
+		return this.getReturnData(map,AppConstants.Result.SUCCESS);
+	}
+	
+	private Memberfides getMemberfides(User user) {
+		Memberfides member=new Memberfides();
+		member.setName(user.getNickname());
+		if(null!=user.getSex()){
+			 member.setSex(user.getSex().byteValue());
+		}
+		member.setCity(user.getCity());
+		member.setIcon(user.getHeadimgurl());
+	    //member.setInvite(invite);
+	    //member.setGp(();
+		member.setMtime(System.currentTimeMillis());
+		member.setLxlg(DateUtil.currentTimeToInt());
+		return member;
+	}
+	
+	/***
+	 * 订单
+	 * @param sesskey
+	 * @param type
+	 * @param money
+	 * @return
+	 */
+	@RequestMapping("getOrder.do")
+	@ResponseBody
+	public Object getOrder(String sesskey,String type,Integer money,Integer storeId){
+		Map<String, Object> map = new HashMap<String, Object>();
+		String queryString="";
+		String cardid="1";
+		AccessToken token=ContextUtil.getAccessTokenInfo(sesskey);
+		
+		Memberfides user=memberService.findMemberfidesById(token.getMid());
+		Commongame commongame=memberService.findCommongameById(token.getMid());
+		Integer gold=0;
+		if(StringUtils.isBlank(String.valueOf(storeId))){
+			storeId=money;
+		}
+		
+		gold=storeService.findGoldByStoreId(storeId);
+		
+		Memberpayment record=new Memberpayment();
+		record.setFmid(token.getMid());
+		record.setTmid(token.getMid());
+		record.setTsid(user.getGp().intValue());
+		record.setPmoneynow(commongame.getGold().intValue());
+		record.setPcard(token.getGb().shortValue());
+		record.setPamount((float)money);
+		record.setPcoins(0);
+		record.setPtime(DateUtil.currentTimeToInt());
+		record.setPstatus((byte)0);
+		record.setPtransno("");
+		record.setGametype((byte)gameType);
+	
+		if(AppConstants.PayType.ALIPAY.equals(type)){
+			record.setPmode((byte)2);
+			Integer orderId=memberService.insertMemberpayment(record);
+	        String orderNameAndBody = gold+ AppConstants.COINNAME;
+	        AppPayDetail appPayDetail = new AppPayDetail(String.valueOf(orderId), orderNameAndBody,String.valueOf(money), orderNameAndBody);
+	        queryString=alipayService.appPay(appPayDetail);
+	        
+		}else if(AppConstants.PayType.WXPAY.equals(type)){
+			record.setPmode((byte)7);
+			Integer orderId=memberService.insertMemberpayment(record);	
+			queryString=payNotifyUrl;
+			cardid=String.valueOf(orderId);
+		}
+		
+		map.put("string",queryString);
+		map.put("cardid",cardid);
+		return this.getReturnData(map,AppConstants.Result.SUCCESS);
+	
+		
+	}
+	
+	
+	/**
+	 * APP更新
+	 * @param sesskey
+	 * @param type
+	 * @param money
+	 * @return
+	 */
+	@RequestMapping("getAutoUpdateInfo.do")
+	@ResponseBody
+	public Object getAutoUpdateInfo(String site,Integer channel,String deviceid,Integer bigversion,Integer version){
+		Map<String, Object> map = new HashMap<String, Object>();
+		MobileVersion mobileVersion= gameService.findLatestMobileVersion();
+		String platformType="";
+		if(AppConstants.Platform.IOS.equals(site)){
+			platformType=AppConstants.Platform.IOS;
+		}else{
+			platformType=AppConstants.Platform.ANDROID;
+		}
+		
+		map.put("checkver","");
+		map.put("bigversion",bigversion);
+		map.put("version", version);
+		map.put("isskip", mobileVersion.getIsskip());
+		map.put("des",mobileVersion.getDes());
+		map.put("url",mobileVersion.getUrl());
+		map.put("onlineversion",mobileVersion.getOnlineversion());
+		map.put("forceurl",mobileVersion.getForceurl());
+		
+        return this.getReturnData(map,AppConstants.Result.SUCCESS);
+  }	
+	
+	
+	/**
+	 * 获取包直接地址
+	 * @param baseRequest
+	 * @return
+	 */
+	@RequestMapping("getApkUrl.do")
+	@ResponseBody
+	public Object getApkUrl(BaseRequest baseRequest){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Integer status = 1;
+		//判断是否测试服务器
+		//Integer status = 0;
+		String url="";
+		
+		resultMap.put("url",url);
+		resultMap.put("ver","");
+	   return this.getReturnData(resultMap,AppConstants.Result.SUCCESS);
+	}
+	
+	
+
+
+}

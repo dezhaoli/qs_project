@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/2017年2月21日213834.iml" filepath="$PROJECT_DIR$/.idea/2017年2月21日213834.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-business/business.iml" filepath="$PROJECT_DIR$/qs-business/business.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-agent/qs-agent.iml" filepath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-app/qs-app.iml" filepath="$PROJECT_DIR$/qs-app/qs-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-common/qs-common.iml" filepath="$PROJECT_DIR$/qs-common/qs-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-mapper/qs-mapper.iml" filepath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-model/qs-model.iml" filepath="$PROJECT_DIR$/qs-model/qs-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-service/qs-service.iml" filepath="$PROJECT_DIR$/qs-service/qs-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-side/qs-side.iml" filepath="$PROJECT_DIR$/qs-side/qs-side.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-web/qs-web.iml" filepath="$PROJECT_DIR$/qs-web/qs-web.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.MailsMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.Mails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="target" property="target" jdbcType="TINYINT" />
+    <result column="mktime" property="mktime" jdbcType="TIMESTAMP" />
+    <result column="expired" property="expired" jdbcType="TIMESTAMP" />
+    <result column="important" property="important" jdbcType="TINYINT" />
+    <result column="fujian" property="fujian" jdbcType="VARCHAR" />
+    <result column="gametype" property="gametype" jdbcType="VARCHAR" />
+    <result column="mids" property="mids" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qs.log.game.model.Mails" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, target, mktime, expired, important, fujian, gametype, mids
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from mails
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mails
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.log.game.model.Mails" >
+    insert into mails (id, title, target, 
+      mktime, expired, important, 
+      fujian, gametype, mids, 
+      content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{target,jdbcType=TINYINT}, 
+      #{mktime,jdbcType=TIMESTAMP}, #{expired,jdbcType=TIMESTAMP}, #{important,jdbcType=TINYINT}, 
+      #{fujian,jdbcType=VARCHAR}, #{gametype,jdbcType=VARCHAR}, #{mids,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.Mails" >
+    insert into mails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="target != null" >
+        target,
+      </if>
+      <if test="mktime != null" >
+        mktime,
+      </if>
+      <if test="expired != null" >
+        expired,
+      </if>
+      <if test="important != null" >
+        important,
+      </if>
+      <if test="fujian != null" >
+        fujian,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+      <if test="mids != null" >
+        mids,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        #{target,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        #{mktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expired != null" >
+        #{expired,jdbcType=TIMESTAMP},
+      </if>
+      <if test="important != null" >
+        #{important,jdbcType=TINYINT},
+      </if>
+      <if test="fujian != null" >
+        #{fujian,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="mids != null" >
+        #{mids,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.game.model.Mails" >
+    update mails
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="target != null" >
+        target = #{target,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        mktime = #{mktime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expired != null" >
+        expired = #{expired,jdbcType=TIMESTAMP},
+      </if>
+      <if test="important != null" >
+        important = #{important,jdbcType=TINYINT},
+      </if>
+      <if test="fujian != null" >
+        fujian = #{fujian,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=VARCHAR},
+      </if>
+      <if test="mids != null" >
+        mids = #{mids,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qs.log.game.model.Mails" >
+    update mails
+    set title = #{title,jdbcType=VARCHAR},
+      target = #{target,jdbcType=TINYINT},
+      mktime = #{mktime,jdbcType=TIMESTAMP},
+      expired = #{expired,jdbcType=TIMESTAMP},
+      important = #{important,jdbcType=TINYINT},
+      fujian = #{fujian,jdbcType=VARCHAR},
+      gametype = #{gametype,jdbcType=VARCHAR},
+      mids = #{mids,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.game.model.Mails" >
+    update mails
+    set title = #{title,jdbcType=VARCHAR},
+      target = #{target,jdbcType=TINYINT},
+      mktime = #{mktime,jdbcType=TIMESTAMP},
+      expired = #{expired,jdbcType=TIMESTAMP},
+      important = #{important,jdbcType=TINYINT},
+      fujian = #{fujian,jdbcType=VARCHAR},
+      gametype = #{gametype,jdbcType=VARCHAR},
+      mids = #{mids,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from mails
+    order by id
+  </select>
+</mapper>

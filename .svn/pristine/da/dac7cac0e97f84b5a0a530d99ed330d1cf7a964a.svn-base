@@ -1,0 +1,17 @@
+webside.datasource.driverClassName=com.mysql.jdbc.Driver
+webside.url=jdbc:mysql://127.0.0.1:3306/sc_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+webside.username=root
+webside.password=456
+
+cfg.datasource.driverClassName=com.mysql.jdbc.Driver
+cfg.url=jdbc:mysql://127.0.0.1:3306/sc_majiang_cfg?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+cfg.username=root
+cfg.password=456
+
+log.datasource.driverClassName=com.mysql.jdbc.Driver
+log.url=jdbc:mysql://127.0.0.1:3306/sc_majiang_log?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+log.username=root
+log.password=456
+
+
+

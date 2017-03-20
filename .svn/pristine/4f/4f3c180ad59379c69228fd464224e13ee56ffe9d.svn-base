@@ -1,0 +1,54 @@
+package com.qs.webside.business.controller;
+
+import com.qs.pub.game.service.IBusinessService;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
+/**
+ * 牵手互动商务后台，代理商授权，商务控制器
+ * Created by zun.wei on 2017/3/13.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/business/")
+public class AgentAuthorizationController {
+
+    @Resource
+    private IBusinessService businessService;
+
+    /**
+     * 代理商授权Ui
+     * @return
+     */
+    @RequestMapping(value = "authorizationUi.html", method = RequestMethod.GET)
+    public String authorizationUi() {
+
+        return "WEB-INF/view/web/business/agent_authorization_form";
+    }
+
+    /**
+     * 代理商授权
+     * @param userId mid
+     * @param gameId gameId
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "authorization.html", method = RequestMethod.POST)
+    public Object authorization(Integer userId, Integer gameId, HttpSession session) {
+        return businessService.saveAuthorization(userId, gameId,session);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "searchUserInfo.html", method = RequestMethod.POST)
+    public Object searchUserInfo(Integer userId, Integer gameId, HttpSession session) {
+        return businessService.queryUserInfo(userId, gameId,session);
+    }
+
+
+}

@@ -1,0 +1,15 @@
+package com.qs.common.constant;
+
+
+public class CacheConstan {
+	//数据字典
+	public static final String DICT_CACHE_STORE_NAME = "dict";
+	public static final String DICT_CACHE_KEY_PREFIX = "findList";
+	//菜单
+	public static final String MENU_CACHE_STORE_NAME = "menu";
+	
+	//参数表base_param
+    public static final String BASEPARAM_CACHE_STORE_NAME = "baseparam";
+    
+
+}

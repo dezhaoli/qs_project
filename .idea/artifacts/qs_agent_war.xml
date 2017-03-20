@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="qs-agent:war">
+    <output-path>$PROJECT_DIR$/qs-agent/target</output-path>
+    <root id="archive" name="qs-agent.war">
+      <element id="artifact" artifact-name="qs-agent:war exploded" />
+    </root>
+  </artifact>
+</component>

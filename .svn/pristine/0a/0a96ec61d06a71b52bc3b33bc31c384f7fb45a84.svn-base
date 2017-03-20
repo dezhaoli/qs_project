@@ -1,0 +1,22 @@
+package com.qs.webside.sys.service.agent.service.impl;
+
+import com.qs.webside.member.mapper.BusinessMapper;
+import com.qs.webside.sys.service.agent.service.BusinessService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+/**
+ * Created by zun.wei on 2017/3/6.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Service
+public class BusinessServiceImpl implements BusinessService {
+
+    @Resource
+    private BusinessMapper businessMapper;
+
+
+
+}

@@ -1,0 +1,242 @@
+package com.qs.webside.member.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.PageUtil;
+import com.qs.log.game.model.GoldLog;
+import com.qs.log.game.model.PlayerRecord;
+import com.qs.log.game.service.IGoldLogService;
+import com.qs.log.game.service.IPlayerRecordService;
+import com.qs.webside.member.model.MemberFides;
+import com.qs.webside.sys.service.member.service.IMemberFidesService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 人员信息控制器，所有关于人员信息的，如金币，积分，平台ID等都在这里。
+ *
+ * Created by zun.wei on 2017/3/9.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/member/")
+public class MembersController extends BaseController{
+
+    @Resource
+    private IMemberFidesService memberFidesService;
+    @Resource
+    private IPlayerRecordService playerRecordService;
+    @Resource
+    private IGoldLogService goldLogService;
+
+
+    /**
+     * 查看用户资料入口
+     * @return
+     */
+    @RequestMapping(value = "userInfoUi.html", method = RequestMethod.GET)
+    public String showUserInfo() {
+        return "WEB-INF/view/web/user/member_userInfo_show";
+    }
+
+    /**
+     * 根据mid或者sitemid获取用户信息
+     * @param model
+     * @param mid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "userInfo.html", method = RequestMethod.POST)
+    public Object showUserInfo(Model model,Integer mid,String sitemid) {
+        Map<String, Object> midOrsitemid = new HashMap<String, Object>();
+        midOrsitemid.put("mid", mid);
+        midOrsitemid.put("sitemid", sitemid);
+        Map<String, Object> map = memberFidesService.queryUserInfoByMidAndSiteMid(midOrsitemid);
+        return map;
+    }
+
+    /**
+     * 根据用户名获取用户信息入口
+     * @param model
+     * @param id
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "userNameUi.html", method = RequestMethod.GET)
+    public String showUserInfoByUserNameUi(Model model, String id, HttpServletRequest request) {
+        try {
+            PageUtil page = super.getPage(request);
+            model.addAttribute("page", page);
+            model.addAttribute("id", id);
+            return "WEB-INF/view/web/user/member_userName_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 根据用户名获取用户信息
+     * @param gridPager
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("userName.html")
+    @ResponseBody
+    public Object showUserInfoByUserName(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            parameters.put("name", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<MemberFides> list = memberFidesService.queryListByUserName(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+    /**
+     * 用户名查询点击进入查看用户信息入口
+     * @param model
+     * @param mid
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "showUserInfoUi.html", method = RequestMethod.GET)
+    public String showUserInfoUiByMid(Model model, Integer mid,HttpServletRequest request) {
+        try {
+            Map<String, Object> map = memberFidesService.queryUserInfoByMid(mid);
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("memberFides", map);
+            model.addAttribute("page", page);
+            model.addAttribute("id", mid);
+            return "WEB-INF/view/web/user/member_userNameSearch_userInfo";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 代理商查看用户信息入口
+     * @param model
+     * @param mid
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "agent/showUserInfoUi.html", method = RequestMethod.GET)
+    public String agentShowUserInfoByMid(Model model, Integer mid,HttpServletRequest request) {
+        try {
+            Map<String, Object> map = memberFidesService.queryUserInfoByMid(mid);
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("memberFides", map);
+            //PageUtil page = super.getPage(request);
+            model.addAttribute("page", page);
+            model.addAttribute("id", mid);
+            return "WEB-INF/view/web/user/agent_userInfo_show";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 牌局记录入口
+     * @param model
+     * @param mid
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "agent/cardRecord/listUi.html", method = RequestMethod.GET)
+    public String agentListUiCardRecordByMid(Model model, Integer mid,HttpServletRequest request) {
+        try {
+            PageUtil page = super.getPage(request);
+            model.addAttribute("page", page);
+            model.addAttribute("id", mid);
+            return "WEB-INF/view/web/user/agent_cardRecord_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 牌局记录列表
+     * @param gridPager
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("agent/cardRecord/list.html")
+    @ResponseBody
+    public Object agentListCardRecordByMid(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            parameters.put("roomId", null);//房间id
+            parameters.put("cardNum", null);//牌局编号
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<PlayerRecord> list = playerRecordService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+    /**
+     * 金币来源入口
+     * @param model
+     * @param mid
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "agent/goldOrigin/listUi.html", method = RequestMethod.GET)
+    public String agentListUiGoldOriginByMid(Model model, Integer mid,HttpServletRequest request) {
+        try {
+            PageUtil page = super.getPage(request);
+            model.addAttribute("page", page);
+            model.addAttribute("id", mid);
+            return "WEB-INF/view/web/user/agent_goldOrigin_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 金币来源
+     * @param gridPager
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("agent/goldOrigin/list.html")
+    @ResponseBody
+    public Object agentListGoldOriginByMid(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            parameters.put("date", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<GoldLog> list = goldLogService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+}

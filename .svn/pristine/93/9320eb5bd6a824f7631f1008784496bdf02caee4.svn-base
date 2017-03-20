@@ -1,0 +1,42 @@
+package com.qs.log.game.service;
+
+import com.qs.log.game.model.RoomRecord;
+import java.util.List;
+import java.util.Map;
+import com.qs.log.game.model.GameRecordShare;
+import com.qs.log.game.model.GameRecord;
+
+public interface GameRecordService {
+   
+	/**
+	 * 获取牌局回放数据
+	 * @return
+	 */
+	public RoomRecord getPaiJuData(RoomRecord roomRecord);
+	/**
+	 * 获取牌局回放数据
+	 * @param sid
+	 * @return
+	 */
+	public Map<String, Object> getShareGameRecord(Integer sid);
+	
+	/**
+	 * 获取详细战绩
+	 * @param mid
+	 * @param uid
+	 * @return
+	 */
+	public List<Object> getHonorDetail(Integer mid,String uid);
+	
+	/**
+	 * 分享牌局
+	 * @param gameRecordShare
+	 * @return
+	 */
+	public int addGameRecordShare(GameRecordShare gameRecordShare);
+	
+	public List<GameRecord> queryGameRecordListByPage(Map<String, Object> parameter);
+	
+	
+ 
+}

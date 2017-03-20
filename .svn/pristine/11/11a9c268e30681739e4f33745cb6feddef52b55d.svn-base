@@ -1,0 +1,30 @@
+package com.qs.log.game.service;
+
+import com.qs.log.game.model.PlayerRecord;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/3/9.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+public interface IPlayerRecordService {
+
+    int deleteByPrimaryKey(Long id);
+
+    int insert(PlayerRecord record);
+
+    int insertSelective(PlayerRecord record);
+
+    PlayerRecord selectByPrimaryKey(Long id);
+
+    int updateByPrimaryKeySelective(PlayerRecord record);
+
+    int updateByPrimaryKey(PlayerRecord record);
+
+    List<PlayerRecord> queryListByPage(Map<String, Object> parameters);
+
+
+}

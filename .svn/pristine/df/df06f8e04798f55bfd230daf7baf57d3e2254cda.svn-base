@@ -1,0 +1,31 @@
+package com.qs.log.game.service;
+
+import com.qs.log.game.model.Mails;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/3/2.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+public interface IMailService {
+
+    int deleteById(Integer id);
+
+    int add(Mails record);
+
+    int addSelective(Mails record);
+
+    Mails loadById(Integer id);
+
+    int updateByIdSelective(Mails record);
+
+    int updateByIdWithBLOBs(Mails record);
+
+    int updateByPrimaryKey(Mails record);
+
+    List<Mails> queryListByPage(Map<String, Object> parameters);
+
+}

@@ -1,0 +1,72 @@
+package com.qs.webside.api.controller;
+
+import com.qs.webside.api.service.IWePayService2;
+import me.hao0.wepay.model.pay.AppPayResponse;
+import me.hao0.wepay.util.Maps;
+import org.junit.internal.Throwables;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.util.Map;
+
+/**
+ * 微信支付控制器，基于wepay-core包开发版本
+ * Created by zun.wei on 2017/2/22.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/api/wx/")
+public class WeixinController2 {
+
+
+    @Resource
+    private IWePayService2 wePayService2;
+
+    private static final Logger logger = LoggerFactory.getLogger(WeixinController2.class);
+
+    /**
+     * 1.统一下单
+     * @param request HttpServletRequest
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/unified/order2", method = RequestMethod.POST)
+    public AppPayResponse appPay(HttpServletRequest request) {
+        return wePayService2.unifiedOrder(request);
+    }
+
+    /**
+     * 支付成功通知
+     * @param request 请求对象
+     * @return 处理结果
+     */
+    @RequestMapping("/pay/notify2")
+    public String paid(HttpServletRequest request){
+        String notifyXml = wePayService2.getPostRequestBody(request);
+        if (notifyXml.isEmpty()){
+            return wePayService2.notifyNotOk("body为空");
+        }
+        Map<String, Object> notifyParams = Maps.toMap(notifyXml);
+        if (wePayService2.verifySign(notifyParams)){
+
+            // TODO business logic
+
+            logger.info("verify sign success: {}", notifyParams);
+            return wePayService2.notifyOk();
+        } else {
+            logger.error("verify sign failed: {}", notifyParams);
+            return wePayService2.notifyNotOk("签名失败");
+        }
+    }
+
+
+
+}

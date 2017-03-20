@@ -1,0 +1,22 @@
+package com.qs.webside.member.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.qs.webside.member.model.Memberfides;
+
+public interface MemberService {
+
+	public int insertMemberfides(Memberfides record,String openId);
+	
+	public Memberfides findMemberfidesById(Integer id);
+
+	public int updateMemberfides(Memberfides record);
+    
+    public int deleteMemberfidesById(Integer id);
+    
+    public String saveToken(Integer mid,Integer sid,Integer rgp);
+
+
+ 
+}

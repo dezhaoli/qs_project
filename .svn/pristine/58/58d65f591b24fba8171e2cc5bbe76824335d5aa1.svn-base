@@ -1,0 +1,73 @@
+package com.qs.common.constant;
+
+public class AppConstants {
+	
+	public static  String VISITORNAME = "游客";//名称
+	public static  String COINNAME = "金币";//名称
+	public static  String SAFECODE = "DKFAJ%^&*()QAM<LDMKFJA)&&*";
+	
+	//
+	public static class Platform{
+		public static final String ANDROID ="1";
+		public static final String IOS ="2";
+	
+	}
+	
+	
+	public static class MemcacheKeyPrefix{
+		public static final String SESSKEY = "SESSKEY";
+		public static final String IP = "IP";
+	
+	}
+	
+	public static class RedisKeyPrefix{
+		public static final String REFRESH_TOKEN = "refreshtoken_";
+	
+	}
+	
+	
+	public static class Result{
+		public static final int SUCCESS =1;
+		public static final int  FAILURE =1001;
+		public static final int  FAILURE_1102=1102;
+		
+	}
+	
+	/**
+	 * 支付类型
+	 * @author moys
+	 *
+	 */
+	public static class PayType{
+		public static final String ALIPAY = "1";
+		public static final String WXPAY = "6";
+	
+	}
+	/**
+	 * app版本
+	 * @author moys
+	 *
+	 */
+	public static class  AppVersionType{
+		public static final String  STRONG = "1";
+		public static final String  FORMAL = "2";
+		public static final String TEST = "3";
+	
+	}
+	
+	/**
+	 * 参数表
+	 * @author moys
+	 *
+	 */
+	public static class  BaseParam{
+		//安卓审核版本号
+		public static final String  ANDROID_VERSION_CODE = "android_version"; 
+		//ios审核版本号
+		public static final String  IOS_VERSION_CODE = "ios_version"; 
+		//配置文件
+		public static final String  CONFIG_VERSION_CODE = "config_version"; 
+	
+	}
+	
+}

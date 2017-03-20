@@ -1,0 +1,231 @@
+/*!
+ * 样式自定义
+ * 修改此文件请通知 bin_li@apusic.com
+ * 深圳市金蝶中间件有限公司
+ */
+body {
+}
+
+.theme-dropdown .dropdown-menu {
+  position: static;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.theme-showcase > p > .btn {
+  margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+  width: auto;
+}
+.dataaction {
+	padding: 10px 0;
+}
+.fr {
+	float: right;
+}
+
+/*自定义*/
+.row {
+	margin: 0px;
+}
+.pagewrap {
+	width: 100%;
+	margin: auto;
+}
+header {
+	background-image: url(../img/header_bg.png);
+	background-repeat: repeat;
+	background-position: left top;
+	height: 60px;
+	position: fixed;
+	top: 0px;
+	width:100%;
+	z-index: 200;
+}
+header h1 {
+	padding: 14px 20px;
+	margin: 0px;
+	font-size:32px;
+	color: #FFF;
+}
+.topnav {
+	position: fixed;
+	top: 60px;
+	width: 100%;
+	z-index: 900;
+}
+footer {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	width: 100%;
+	height: 40px;
+	border-top: 1px solid #CCC;
+	background-color: #EEE;
+}
+footer .copyright {
+	padding: 0 10px;
+	line-height: 40px;
+}
+/*单列结构*/
+.layout-c {
+}
+.layout-c .main {
+	 width: 100%;
+	 margin: 112px 0 40px 0;
+	 right: 0px;
+	 height:auto;
+	 overflow: auto;
+}
+/*左右结构*/
+.layout-l-r {
+}
+.layout-l-r .leftside {
+	 width: 200px;
+	 position: fixed;
+	 height:calc(100% - 152px);
+	 overflow: auto;
+	 background-color: #ECECEC;
+}
+.layout-l-r .main {
+	 width:calc(100% - 200px);
+	 margin: 112px 0 40px 200px;
+	 right: 0px;
+	 height:auto;
+	 overflow: auto;
+}
+/*左中右结构*/
+.layout-l-c-r {
+}
+.layout-l-c-r .leftside {
+}
+.layout-l-c-r .main{
+}
+.layout-l-c-r .rightside{
+}
+
+
+.main-view {
+	padding: 0 20px 20px 20px;
+}
+.btn_action {
+	margin-bottom: 10px;
+}
+.search-option {
+	background-color: #ebebeb;
+	margin-top: 6px;
+}
+.tree-view .panel-body {
+	padding: 0px;
+}
+.panel-title .glyphicon{
+	font-size: 12px;
+}
+.panel-heading .panel-collapse {
+	padding:4px 0 0 0;
+}
+.panel-heading .panel-collapse input {
+	width:100%;
+}
+
+/*导航区右侧用户、信息提示、帮助按钮下拉样式*/
+.dropdown-messages {
+    width: 310px;
+    min-width: 160px;
+}
+.dropdown-login {
+	padding: 20px;
+}
+.dropdown-login form {
+	padding: 0px;
+}
+.dropdown-login form label span {
+	width: 70px;
+	display: inline-block;
+}
+.dropdown-userinfo {
+	padding: 20px;
+}
+.dropdown-userinfo ul {
+	padding: 10px 0px;
+}
+.dropdown-userinfo li {
+	list-style-type: none;
+	text-align: center;
+	line-height: 28px;
+}
+@media screen and (max-width: 767px) {
+.topnav .pull-right {
+	position: fixed;
+	top: 12px;
+	right:12px;
+	z-index: 1000;
+	display: block;
+}
+.topnav ul li {
+	display: ;
+}
+.topnav .pull-right .glyphicon {
+	color: #FFF;
+}
+.topnav .pull-right .dropdown-messages {
+	position:fixed; 
+	top: 60px;
+	left: 0px;
+	right: 0px;
+	background: #FFF;
+	border: solid 1px #CCC;
+}
+.topnav .pull-right .dropdown-messages .pull-right {
+	float: none;
+	display: none;
+}
+
+
+}
+
+
+/*深圳司法自定义*/
+.artlist-block {
+	padding-left: 20px !important;
+	margin: 0px !important;
+}
+.artlist-block li {
+	padding: 0px !important;
+	margin: 0px !important;
+	list-style-type: square;
+	line-height: 26px;
+}
+.artlist-block .artdate {
+	display:inline;
+	float: right;
+}
+.applist-block {
+	margin: 0px;
+	padding: 0px;
+}
+.applist-block li {
+	width: 120px;
+	height: 120px;
+	float: left;
+	list-style: none;
+	margin: 0 2px 12px 0;
+}
+.applist-block li img {
+	display: block;
+	clear: both;
+	float: none;
+	margin: auto;
+}
+.applist-block li span {
+	display: block;
+	clear: both;
+	float: none;
+	text-align: center;
+	margin: 8px; 4px 0 4px;
+}
+.navfun {
+	margin-top: 10px;
+}
