@@ -32,7 +32,7 @@
 		      <label class="control-label col-sm-1 no-padding-right" for="name">配置文件版本号:</label>
 		      <div class="col-sm-9 ">
 		      <div class="clearfix ">
-		           <input type="hidden" id="configVersionId"     value="${baseParam.id}">
+		           <input type="hidden" id="configVersionId"  value="${baseParam.id}">
                    <input class="form-control" name="configVersion" id="configVersion" type="text" 
 		           value="${baseParam.value}" placeholder="配置文件版本号(房间、商城)..."/>
 		           
@@ -64,7 +64,7 @@
         
         $('#configVersionUpdate').on('click',function () {
             var versionValue = $('#configVersion').val() + "";
-            var id = $('#hiddenConfigVersionId').val();
+            var id = $('#configVersionId').val();
             $.ajax({
                 type: "POST",
                 url: "${pageContext.request.contextPath }/base/param/updateBaseParam.html",

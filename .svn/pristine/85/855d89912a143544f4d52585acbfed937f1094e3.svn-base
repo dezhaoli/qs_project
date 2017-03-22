@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.agent.mapper.AgentUpdateLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.agent.model.AgentUpdateLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sitemid" property="sitemid" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bank_before" property="bankBefore" jdbcType="VARCHAR" />
+    <result column="bankcard" property="bankcard" jdbcType="VARCHAR" />
+    <result column="bankcard_before" property="bankcardBefore" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="realname_before" property="realnameBefore" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="phone_before" property="phoneBefore" jdbcType="CHAR" />
+    <result column="areaid" property="areaid" jdbcType="INTEGER" />
+    <result column="undergame" property="undergame" jdbcType="TINYINT" />
+    <result column="modifytime" property="modifytime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sitemid, mid, bank, bank_before, bankcard, bankcard_before, realname, realname_before, 
+    phone, phone_before, areaid, undergame, modifytime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_update_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_update_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.log.agent.model.AgentUpdateLog" >
+    insert into agent_update_log (id, sitemid, mid, 
+      bank, bank_before, bankcard, 
+      bankcard_before, realname, realname_before, 
+      phone, phone_before, areaid, 
+      undergame, modifytime)
+    values (#{id,jdbcType=INTEGER}, #{sitemid,jdbcType=VARCHAR}, #{mid,jdbcType=INTEGER}, 
+      #{bank,jdbcType=VARCHAR}, #{bankBefore,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR}, 
+      #{bankcardBefore,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{realnameBefore,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=CHAR}, #{phoneBefore,jdbcType=CHAR}, #{areaid,jdbcType=INTEGER}, 
+      #{undergame,jdbcType=TINYINT}, #{modifytime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.agent.model.AgentUpdateLog" >
+    insert into agent_update_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sitemid != null" >
+        sitemid,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankBefore != null" >
+        bank_before,
+      </if>
+      <if test="bankcard != null" >
+        bankcard,
+      </if>
+      <if test="bankcardBefore != null" >
+        bankcard_before,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="realnameBefore != null" >
+        realname_before,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="phoneBefore != null" >
+        phone_before,
+      </if>
+      <if test="areaid != null" >
+        areaid,
+      </if>
+      <if test="undergame != null" >
+        undergame,
+      </if>
+      <if test="modifytime != null" >
+        modifytime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sitemid != null" >
+        #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBefore != null" >
+        #{bankBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcardBefore != null" >
+        #{bankcardBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="realnameBefore != null" >
+        #{realnameBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="phoneBefore != null" >
+        #{phoneBefore,jdbcType=CHAR},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="undergame != null" >
+        #{undergame,jdbcType=TINYINT},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.agent.model.AgentUpdateLog" >
+    update agent_update_log
+    <set >
+      <if test="sitemid != null" >
+        sitemid = #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankBefore != null" >
+        bank_before = #{bankBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcardBefore != null" >
+        bankcard_before = #{bankcardBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="realnameBefore != null" >
+        realname_before = #{realnameBefore,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="phoneBefore != null" >
+        phone_before = #{phoneBefore,jdbcType=CHAR},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="undergame != null" >
+        undergame = #{undergame,jdbcType=TINYINT},
+      </if>
+      <if test="modifytime != null" >
+        modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.agent.model.AgentUpdateLog" >
+    update agent_update_log
+    set sitemid = #{sitemid,jdbcType=VARCHAR},
+      mid = #{mid,jdbcType=INTEGER},
+      bank = #{bank,jdbcType=VARCHAR},
+      bank_before = #{bankBefore,jdbcType=VARCHAR},
+      bankcard = #{bankcard,jdbcType=VARCHAR},
+      bankcard_before = #{bankcardBefore,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      realname_before = #{realnameBefore,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      phone_before = #{phoneBefore,jdbcType=CHAR},
+      areaid = #{areaid,jdbcType=INTEGER},
+      undergame = #{undergame,jdbcType=TINYINT},
+      modifytime = #{modifytime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

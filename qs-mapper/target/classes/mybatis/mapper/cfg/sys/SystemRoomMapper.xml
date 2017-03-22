@@ -211,7 +211,7 @@
   	<select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
   	    select 
     <include refid="Base_Column_List" />
-    from sys_systemroomcfg order by id desc
+    from sys_systemroomcfg order by ju
   	</select>
   	
 </mapper>

@@ -389,7 +389,7 @@
 
   </select>
 
-  <select id="queryListByUserName" resultMap="BaseResultMap" parameterType="map">
+  <select id="queryListByNameAndMidAndSiteMid" resultMap="BaseResultMap" parameterType="map">
     SELECT
     mf.mid, name, sex, btd, city, icon, invite, gp, sta, mtime, email, bindtime, tel, realname,
     identity, yellowvip, isyearvip, passwd, salt, lgtm, lxlg, qq, address, regip, active_assets
@@ -418,5 +418,18 @@
     </where>
     order by mf.mid
   </select>
+
+  <select id="queryListByMid" parameterType="map" resultType="com.qs.webside.member.model.MemberFides">
+    SELECT
+      mid, name, sex, btd, city, icon, invite, gp, sta,
+      FROM_UNIXTIME(mtime,'%Y-%m-%d %H:%i:%S') as mtimeString,
+      email, bindtime, tel, realname,identity, yellowvip, isyearvip,
+      passwd, salt, lgtm, lxlg, qq, address, regip, active_assets
+    from memberfides0
+    WHERE
+    mid = #{mid,jdbcType=INTEGER}
+    order by mid
+  </select>
+
 
 </mapper>

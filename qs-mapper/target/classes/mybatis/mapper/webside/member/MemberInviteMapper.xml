@@ -103,4 +103,12 @@
     SELECT count(0) as invitecode  FROM memberinvite WHERE invitecode=#{invitecode,jdbcType=VARCHAR}
   </select>
 
+  <select id="getInviteCode" resultType="string" parameterType="map" >
+    SELECT invitecode
+    FROM memberinvite
+    WHERE mid = #{mid,jdbcType=INTEGER}
+    AND status=0
+    LIMIT 1
+  </select>
+
 </mapper>

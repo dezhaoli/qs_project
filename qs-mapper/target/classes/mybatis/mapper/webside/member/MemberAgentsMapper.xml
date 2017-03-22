@@ -407,5 +407,13 @@
     ORDER BY a.mktime
     DESC
   </select>
+<!--   根据sitemid获取用户信息 -->
+ <select id="getMemberAgentsInfoBySitemid" resultType="com.qs.webside.member.model.MemberAgents"
+	parameterType="java.lang.String">
+	select
+	id,mid,sitemid,realname,areaid,phone,FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime
+	from memberagents
+	where sitemid=#{sitemid,jdbcType=VARCHAR}
+</select>
 
 </mapper>

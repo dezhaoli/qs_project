@@ -24,11 +24,10 @@
 		<constructor-arg index="0" ref="jedisPoolConfig" name="poolConfig"/>
 		<constructor-arg index="1" value="${redis.host}" name="host" type="java.lang.String"/>
 		<constructor-arg index="2" value="${redis.port}" name="port" type="int"/>
-	<!-- 	
 	    <constructor-arg index="3" value="${redis.timeout}" name="timeout" type="int"/>
 		<constructor-arg index="4" value="${redis.password}" name="password" type="java.lang.String"/>
-		<constructor-arg index="5" value="0" name="database" type="int"/>
-		-->
+		<constructor-arg index="5" value="${redis.database}" name="database" type="int"/>
+		
 	</bean>
 	
 	<!-- spring cache add by moys-->

@@ -1,0 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="ctx" value="${pageContext.request.contextPath }"/>
+<%@include file="/common/common.jspf" %>
+<div class="container">
+    <div class="user-box clear">
+        <div class="user-box-content" style="font-size: 14px;">
+            <p style="margin-top: 15px;">一、如何发展下级代理商？</p>
+            <span>
+                （1）当您成为代理商后，代理商后台会显示一个您的专属邀请码，邀请好友来玩并让好友绑定该码，就能实现与好友的绑定关系。邀请绑定15人就可以开通授权下级代理商的权限。<br>
+                （2）邀请绑定的用户不足15人是不能开通授权下级代理商权限的哦。<br>
+                （3）在授权下级代理商的界面，把您想授权的用户的ID填写并授权，这个用户就可以成为您的下级代理商。
+            </span>
+            
+            <p style="margin-top: 15px;">二、如何使用代开房功能？</p>
+            <span>
+                （1）代开房功能主要辅助代理商维护、活跃群用户使用。当您的群用户较多，您无暇管理的时候，您可以委托您的会员去帮您在游戏内开房。<br>
+                （2）点击“直属会员查询”，找到您想委托他去游戏内开房的会员，点击“代开房”就能授权他为您开房的权限。<br>
+                （3）您赋予他这个权限后，他在游戏内开房所花费的金币/房卡会直接在您的账户上扣除。<br>
+                （4）您可以在战绩中，查看委托人的开房记录和战绩情况。
+            </span>
+        </div>
+    </div>
+</div>
