@@ -83,8 +83,8 @@
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" disabled="disabled"
-                                                       name="gameType" value="1" checked>
-                                                牵手四川麻将
+                                                       name="gameType" value="5" checked>
+                                                   麻将                                                                         麻将
                                             </label>
                                             <%--<label>
                                                 <input type="checkbox" name="gameType" value="1">

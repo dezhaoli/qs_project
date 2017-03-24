@@ -19,7 +19,7 @@
                 <div class="clearfix">
                     <select class="form-control" name="gameType"
                             id="gameType" disabled>
-                        <option selected="selected" value="1">四川麻将</option>
+                        <option selected="selected" value="5">麻将</option>
                         <%--<option value="1">android</option>
                         <option value="2">ios</option>--%>
                     </select>

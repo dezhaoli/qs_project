@@ -231,4 +231,18 @@
       extend2 = #{extend2,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+      <update id="updateByName" parameterType="com.qs.pub.game.model.Dict" >
+    update tb_dict
+    set extend1 =#{extend1},extend2 =#{extend2}
+    where name = #{name}
+  </update>
+  
+   <select id="findList" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_dict
+    where parent_id = #{code}
+  </select>
+  
 </mapper>

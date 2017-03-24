@@ -411,9 +411,19 @@
  <select id="getMemberAgentsInfoBySitemid" resultType="com.qs.webside.member.model.MemberAgents"
 	parameterType="java.lang.String">
 	select
-	id,mid,sitemid,realname,areaid,phone,FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime
+	id,mid,parent_id,sitemid,realname,areaid,phone,FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime
 	from memberagents
 	where sitemid=#{sitemid,jdbcType=VARCHAR}
 </select>
+
+<!--   根据ParentId获取用户信息 -->
+ <select id="getMemberAgentsInfoByParentId" resultType="com.qs.webside.member.model.MemberAgents"
+	parameterType="java.lang.String">
+	select
+	id,mid,parent_id,sitemid,realname,areaid,phone,FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime
+	from memberagents
+	where parent_id=#{parent_id,jdbcType=VARCHAR}
+</select>
+
 
 </mapper>

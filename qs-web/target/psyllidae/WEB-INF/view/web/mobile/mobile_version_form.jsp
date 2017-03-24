@@ -134,8 +134,8 @@
                 <div class="col-sm-5">
                     <div class="clearfix">
                         <select class="form-control" id="gameType" name="gameType" style="width: 100%">
-                            <option value="0" <c:if test="${record.gameType eq '0' }">selected="selected"</c:if>>
-                                四川麻将
+                            <option value="5" <c:if test="${record.gameType eq '5' }">selected="selected"</c:if>>
+                                麻将
                             </option>
                             <%--<option value="1" <c:if BufferModel="${record.gameType eq '1' }">selected="selected"</c:if>>
                                 跑得快

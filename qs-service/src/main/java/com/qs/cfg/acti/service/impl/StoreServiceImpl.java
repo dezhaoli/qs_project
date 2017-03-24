@@ -90,7 +90,8 @@ public class StoreServiceImpl
 			 chilJson_item_att.put("song",store.getSong());
 			 chilJson_item_att.put("img",store.getImg());
 			 chilJson_item_att.put("starttime",store.getStarttimeStr());
-			 chilJson_item_att.put("endtime",store.getEndtimeStr());		 
+			 chilJson_item_att.put("endtime",store.getEndtimeStr());	
+			 chilJson_item_att.put("productId",store.getProductId());		 
 			 chilJson_item.put("@attributes",chilJson_item_att);
 			// chilJson.put("item",chilJson_item);  
 			 //chilJson_type.put("type",systemRoom.getType());
@@ -131,6 +132,7 @@ public class StoreServiceImpl
 				itemEle.addAttribute("img",store.getImg());
 				itemEle.addAttribute("starttime",String.valueOf(store.getStarttimeStr()));
 				itemEle.addAttribute("endtime",String.valueOf(store.getEndtimeStr()));
+				itemEle.addAttribute("productId",String.valueOf(store.getProductId()));
 				
 			}
 		}

@@ -9,7 +9,9 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+      <introspection-schemas>*:psyllidae</introspection-schemas>
       <resolve-scope>psyllidae:</resolve-scope>
+      <unqualified-resolve-schemas>psyllidae:</unqualified-resolve-schemas>
     </data-source>
     <data-source name="@localhost_psyllidae_cfg" uuid="d4690784-de3f-4660-8676-23d5202eb6f8">
       <database-info product="MySQL" version="5.7.10" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )">
@@ -19,7 +21,9 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+      <introspection-schemas>*:psyllidae_cfg</introspection-schemas>
       <resolve-scope>psyllidae_cfg:</resolve-scope>
+      <unqualified-resolve-schemas>psyllidae_cfg:</unqualified-resolve-schemas>
     </data-source>
   </component>
 </project>

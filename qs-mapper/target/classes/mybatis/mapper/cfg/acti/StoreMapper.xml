@@ -11,9 +11,15 @@
     <result column="endtime" property="endtime" jdbcType="INTEGER" />
     <result column="starttimeStr" property="starttimeStr" jdbcType="VARCHAR" />
     <result column="endtimeStr" property="endtimeStr" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
-  id, money, gold, song, img,FROM_UNIXTIME(starttime,'%Y-%m-%d %H:%i') as starttimeStr,FROM_UNIXTIME(endtime,'%Y-%m-%d %H:%i') as endtimeStr  
+  id, money, gold, song, img,
+  FROM_UNIXTIME(starttime,'%Y-%m-%d %H:%i') as starttimeStr,
+  FROM_UNIXTIME(endtime,'%Y-%m-%d %H:%i') as endtimeStr,
+  product_id,ext
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -28,10 +34,10 @@
   <insert id="insert" parameterType="com.qs.cfg.acti.model.Store" >
     insert into acti_systemstorecfg (id, money, gold, 
       song, img, starttime, 
-      endtime)
+      endtime,product_id,ext)
     values (#{id,jdbcType=INTEGER}, #{money,jdbcType=INTEGER}, #{gold,jdbcType=INTEGER}, 
       #{song,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, #{starttime,jdbcType=INTEGER}, 
-      #{endtime,jdbcType=INTEGER})
+      #{endtime,jdbcType=INTEGER},#{productId,jdbcType=VARCHAR},#{ext,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qs.cfg.acti.model.Store" >
     insert into acti_systemstorecfg
@@ -57,6 +63,12 @@
       <if test="endtime != null" >
         endtime,
       </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="ext != null" >
+        ext,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -79,6 +91,12 @@
       </if>
       <if test="endtime != null" >
         #{endtime,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        #{ext,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -103,6 +121,12 @@
       <if test="endtime != null" >
         endtime = #{endtime,jdbcType=INTEGER},
       </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="ext != null" >
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -113,7 +137,9 @@
       song = #{song,jdbcType=VARCHAR},
       img = #{img,jdbcType=VARCHAR},
       starttime = #{starttime,jdbcType=INTEGER},
-      endtime = #{endtime,jdbcType=INTEGER}
+      endtime = #{endtime,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=VARCHAR},
+      ext = #{ext,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   

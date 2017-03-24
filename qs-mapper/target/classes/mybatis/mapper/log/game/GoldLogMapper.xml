@@ -109,4 +109,16 @@
     AND mid = #{mid,jdbcType=INTEGER}
     order by mid desc
   </select>
+
+  <select id="getUserGoldOriginPageByMid" parameterType="map" resultType="map">
+    SELECT a.mid,a.type,a.gold,a.nowgold,a.action,
+    a.date,a.remark,a.gametype,a.formid,
+    b.title
+    FROM gold_log as a
+    left JOIN ${apksynchro} as b
+    ON a.gametype = b.id
+    WHERE a.mid = #{mid,jdbcType=INTEGER}
+    ORDER BY a.date DESC
+  </select>
+
 </mapper>
