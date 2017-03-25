@@ -79,6 +79,24 @@
 		      </div>
 		      
 		   </div>
+		   
+		   
+		   <div class="form-group">
+	               <label class="control-label col-sm-1 no-padding-right">苹果产品ID</label>
+		      <div class="col-sm-5">
+		      <div class="clearfix">
+		         <input class="form-control" name="productId" id="productId" type="text" 
+		           value="${record.productId}" placeholder="产品ID..."/>
+		      </div>
+		      </div>
+		      
+		     <label class="control-label col-sm-1 no-padding-right"></label>
+		      <div class="col-sm-4">
+		      <div class="clearfix">
+		      </div>
+		      </div>
+		   </div>
+		      
 
 		   </div>
 		</form>

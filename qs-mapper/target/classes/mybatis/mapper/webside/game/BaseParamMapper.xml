@@ -150,13 +150,6 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="queryInExampleVersion" parameterType="map" resultMap="BaseResultMap">
-    SELECT
-    <include refid="Base_Column_List" />
-    from base_param
-    WHERE code = #{code,jdbcType=VARCHAR}
-    ORDER BY id LIMIT 0,1
-  </select>
   
     <select id="findBaseParamByCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
       SELECT
@@ -165,5 +158,35 @@
     WHERE code = #{code,jdbcType=VARCHAR}
     ORDER BY id LIMIT 0,1
   </select>
+  
+  	<select id="selectAllList" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from base_param
+		order by sort
+	</select>
+	
+	
+    <update id="update" parameterType="com.qs.webside.game.model.BaseParam">
+			update base_param
+			<set>
+				value= #{value,jdbcType=VARCHAR}
+			</set>
+			where id = ${id}
+
+	</update>
+	
+   <update id="updateBatch" parameterType="java.util.List">
+
+		<foreach collection="list" item="item" index="index" open=""
+			close="" separator=";">
+			update base_param
+			<set>
+				value=${item.value}
+			</set>
+			where id = ${item.id}
+		</foreach>
+
+	</update>
   
 </mapper>

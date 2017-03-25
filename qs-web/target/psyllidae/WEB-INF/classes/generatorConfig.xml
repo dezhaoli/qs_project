@@ -15,7 +15,7 @@
         <!-- connectionURL="jdbc:mysql://192.168.1.111:3306/sc_majiang" -->
         <!-- connectionURL="jdbc:mysql://192.168.1.111:3306/sc_majiang_log" -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://192.168.1.111:3306/sc_majiang_log"
+                        connectionURL="jdbc:mysql://192.168.1.111:3306/sc_majiang"
                         userId="zh" password="456">
         </jdbcConnection>
 
@@ -24,27 +24,27 @@
         </javaTypeResolver>
 
         <!-- java 模型对象生成路径 -->
-        <javaModelGenerator targetPackage="com.qs.log.game.model"
-                            targetProject="E:\idea_java_project\second_project\qs-model\src\main\java">
+        <javaModelGenerator targetPackage="com.qs.pub.game.model"
+                            targetProject="D:\java\myHome\qs-model\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- java mapper xml生成路径 -->
         <sqlMapGenerator targetPackage="game"
-                         targetProject="E:\idea_java_project\second_project\qs-mapper\src\main\resources\mybatis\mapper\log">
+                         targetProject="D:\java\myHome\qs-mapper\src\main\resources\mybatis\mapper\pub">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
         <!-- mapper java -->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.qs.log.game.mapper"
-                             targetProject="E:\idea_java_project\second_project\qs-mapper\src\main\java">
+                             targetPackage="com.qs.pub.game.mapper"
+                             targetProject="D:\java\myHome\qs-mapper\src\main\java">
             <property name="enableSubPackages" value="true"/>
             <property name="rootInterface" value="com.qs.common.base.basemapper.IBaseMapper"/>
         </javaClientGenerator>
 
-        <table schema="sc_majiang_log" tableName="gold_log" domainObjectName="GoldLog" enableCountByExample="false"
+        <table schema="sc_majiang" tableName="tb_dict" domainObjectName="Dict" enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"

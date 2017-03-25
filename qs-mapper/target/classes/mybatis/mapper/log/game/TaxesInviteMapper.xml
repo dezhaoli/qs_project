@@ -83,17 +83,44 @@
           ${dbName}
       WHERE parent_id=#{agentParentId,jdbcType=INTEGER}) AS b
         ON a.parentid=b.mid
-    WHERE a.mid>0
+    WHERE a.mid>0 
   </select>
 
 <!-- 获取团队的总充值分1,2,3级代理商 根据充值时间查询-->
  <select id="getPayTempInviteCountByTime" parameterType="map"
 	resultType="map">
- SELECT
-	CASE parentid WHEN 1 THEN (SELECT SUM(paytotal) FROM taxes_invite WHERE mid=#{mid} AND date &gt;=#{sdate} AND date &lt;=#{edate}) ELSE 0 END firpay,
-	CASE parentid WHEN 2 THEN (SELECT SUM(paytotal) FROM taxes_invite WHERE parentid=#{mid} AND date&gt;=#{sdate} AND date&lt;=#{edate} ) ELSE 0 end secpay,
-	CASE parentid WHEN 3 THEN (SELECT SUM(a.paytotal) FROM taxes_invite AS a INNER JOIN  
-	(SELECT mid FROM   ${DBName}  as b  WHERE parent_id=#{mid}) AS b ON a.parentid=b.mid WHERE a.date&gt;=#{sdate} AND a.date&lt;=#{edate} ) ELSE 0 END thdpay
-	From taxes_invite 
+	 select 
+	 CASE parentid WHEN 1 THEN (SELECT SUM(paytotal) FROM taxes_invite WHERE mid=#{mid} AND  date &gt;=#{sdate} AND date &lt;=#{edate}) ELSE 0 END firpay,
+	 CASE parentid WHEN 2 THEN (SELECT SUM(paytotal) FROM taxes_invite WHERE parentid=#{mid} AND date &gt;=#{sdate} AND date &lt;=#{edate} )  ELSE 0 end secpay,
+	 CASE parentid WHEN 3 THEN (SELECT SUM(a.paytotal) FROM taxes_invite AS a INNER JOIN
+	                    (SELECT mid FROM ${DBName} as b WHERE parent_id=#{mid}) AS b ON a.parentid=b.mid WHERE
+	                    a.date&gt;=#{sdate} AND a.date&lt;=#{edate} )  ELSE 0 END thdpay
+	 From taxes_invite
 </select>
+
+  <select id="getAgentTeamPayChangeCountByDate" parameterType="map" resultType="map">
+    SELECT SUM(a.paytotal) AS totalpay,b.*
+    FROM taxes_invite a
+      RIGHT JOIN (SELECT mid,c.realname,alevel
+                  FROM ${memberagents} d
+                    left join ${common_agents_info} as c
+                      ON d.sitemid=c.sitemid
+                  WHERE belongid = #{belongid}) b
+        ON a.mid=b.mid
+    WHERE a.date between #{starDate}
+    AND date_add(#{endDate},interval 1 day)
+    GROUP BY b.mid
+  </select>
+
+  <select id="getAgentUnderBusinessChangeCountByDate" parameterType="map" resultType="double">
+    SELECT SUM(paytotal) AS allpay
+    FROM taxes_invite a
+      RIGHT JOIN
+      (SELECT mid FROM ${memberagents}
+      WHERE belongid = #{belongid}) b
+        ON a.mid=b.mid
+    WHERE a.date between #{starDate}
+    AND date_add(#{endDate},interval 1 day)
+  </select>
+
 </mapper>

@@ -3,93 +3,70 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
 <script type="text/javascript">
-
+$(function() {
+    //webside.form.role.validateRoleForm();
+    
+     $("#btnAdd").click(function(){
+ 		var list=$.map($("input[name=param]"), function(v, i) {  
+			 var $v = $(v);
+			  return {id:$v.attr("idvalue"),value:$v.val()}
+		});   
+ 		$.ajax({  
+		    type: "POST",  
+		    url: "${ctx}/baseparam/updateBatch.html",  
+		    data: JSON.stringify(list),//将对象序列化成JSON字符串  
+		    dataType:"json",  
+		    contentType : 'application/json;charset=utf-8', //设置请求头信息  
+		    success: function(data){  
+		    	layer.msg('保存成功', {
+	    			icon : 5
+	    		}); 
+		    	webside.common.loadPage('/baseparam/baseparam.html');
+		    	
+		    },  
+		    error: function(res){  
+		      
+		    }  
+		});  	
+ 		
+     });
+    
+});
 </script>
-<div class="page-header">
-	<h1>
-		基本参数设置
-	</h1>
-</div>
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">运营参数配置</h3>
+	</div>
+	<div class="panel-body">
 <div class="row" style="margin-top:5px;">
 	<div class="col-xs-12">
 		
 		
-		<form class="form-inline" role="form">
-           <%-- <div class="form-group">
-            <label class="control-label col-sm-1 no-padding-right">配置文件版本号:</label>
-                <div class="col-sm-10">
-		      <div class="clearfix">
-              <input type="hidden" id="configVersionId">
-           <input class="form-control" name="configVersion" id="configVersion" type="text" 
-		           value="${configVersion}" placeholder="配置文件版本号(房间、商城)..."/>
+			<form id="baseparamForm" name="baseparamForm" class="form-horizontal" role="form" method="post">
+		    <c:forEach  var="item" items="${list}">
+			<div class="form-group">
+			      <label class="control-label col-sm-3 no-padding-right" for="name">${item.name}：</label>
+			      <div class="col-sm-5">
+			      <div class="clearfix">
+			         <input class="form-control" name="param" id="param" type="text" idvalue="${item.id}"
+			          value="${item.value}" />
+		      	  </div>
+		      	</div>
+		    </div>  
+		  </c:forEach>  
+		</form>
 
-                    </div>
-		      </div>
-        </div>
-        <button type="button" class="btn btn-success btn-sm" id="configVersionUpdate">配置文件版本号</button> --%>
-       </form>
-		  <div class="form-group">
-		      <label class="control-label col-sm-1 no-padding-right" for="name">配置文件版本号:</label>
-		      <div class="col-sm-9 ">
-		      <div class="clearfix ">
-		           <input type="hidden" id="configVersionId"  value="${baseParam.id}">
-                   <input class="form-control" name="configVersion" id="configVersion" type="text" 
-		           value="${baseParam.value}" placeholder="配置文件版本号(房间、商城)..."/>
-		           
-		      </div>
-		      </div>
-		        <button type="button"  col-sm-1 class="btn btn-success btn-sm" id="configVersionUpdate">更新</button>
-		    
-		   </div> 
-			
-	
 		<div class="hr hr-dotted"></div>
 	</div>
 </div>
+
 <div class="center">
-
+	<button id="btnAdd" type="button"  class="btn btn-success btn-sm">
+		保存
+	</button>
+		<button id="btn" type="button" onclick="webside.common.loadPage('/baseparam/baseparam.html');" class="btn btn-info btn-sm">
+		<i class="fa fa-undo"></i>&nbsp;返回
+	</button>
 </div>
-
-<script>
-    /*$('#searchVersion').on('click',function (e) {
-        $('#seacrhVersionKey').fadeToggle(100);
-    });
-    $('#seacrhVersionKey').on('change',function (e) {
-        var optionValue = $(this).children('option:selected').val();
-        grid.parameters = new Object();
-        grid.parameters['site'] = optionValue;
-        grid.refresh(true);
-    });*/
-    $(document).ready(function () {
-        
-        $('#configVersionUpdate').on('click',function () {
-            var versionValue = $('#configVersion').val() + "";
-            var id = $('#configVersionId').val();
-            $.ajax({
-                type: "POST",
-                url: "${pageContext.request.contextPath }/base/param/updateBaseParam.html",
-                data: {
-                    versionValue:versionValue,
-                    id:id
-                },
-                //contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {//android //configVersion
-                    if (data.success == true) {
-                    	layer.msg(data.message,{icon: 6});
-                    }else{
-                    	
-                    	layer.msg(data.message,{icon: 5});
-                    }
-                    
-                },
-                error: function (msg) {
-                    layer.msg(msg, {icon: 5});
-                }
-            });
-        });
-
-    });
-
-
-</script>
+</div>
+</div>

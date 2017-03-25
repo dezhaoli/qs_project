@@ -35,6 +35,12 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
+    id : 'productId',
+    title : '苹果产品ID',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
     id : 'id',
     title : '操作',
     type : 'string',

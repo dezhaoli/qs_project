@@ -1,7 +1,7 @@
 <component name="ArtifactManager">
   <artifact type="war" name="qs-web:war">
     <output-path>$PROJECT_DIR$/qs-web/target</output-path>
-    <root id="archive" name="psyllidae.war">
+    <root id="archive" name="qs-web.war">
       <element id="artifact" artifact-name="qs-web:war exploded" />
     </root>
   </artifact>

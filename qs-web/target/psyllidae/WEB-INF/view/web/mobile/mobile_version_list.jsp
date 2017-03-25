@@ -137,7 +137,7 @@
         //初始化审核中的版本号
         $.ajax({
             type: "POST",
-            url: "${pageContext.request.contextPath }/base/param/getInCheckVersion",
+            url: "${pageContext.request.contextPath }/baseparam/getInCheckVersion.html",
             data: {
 
             },
@@ -170,7 +170,7 @@
             var id = $('#hiddenAndroidId').val();
             $.ajax({
                 type: "POST",
-                url: "${pageContext.request.contextPath }/base/param/update",
+                url: "${pageContext.request.contextPath }/baseparam/updateInCheckVersion.html",
                 data: {
                     versionValue:versionValue,
                     mobileType:"android_version",
@@ -198,7 +198,7 @@
             var id = $('#hiddenIosId').val();
             $.ajax({
                 type: "POST",
-                url: "${pageContext.request.contextPath }/base/param/update",
+                url: "${pageContext.request.contextPath }/baseparam/updateInCheckVersion.html",
                 data: {
                     versionValue:versionValue,
                     mobileType:"ios_version",
