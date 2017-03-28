@@ -1,0 +1,29 @@
+package com.qs.pub.game.service;
+
+import com.qs.pub.game.model.AppGame;
+
+import java.util.List;
+
+/**
+ *  游戏表
+ * Created by zun.wei on 2017/3/28.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+public interface IAppGameService {
+
+    int deleteByPrimaryKey(Byte gid);
+
+    int insert(AppGame record);
+
+    int insertSelective(AppGame record);
+
+    AppGame selectByPrimaryKey(Byte gid);
+
+    int updateByPrimaryKeySelective(AppGame record);
+
+    int updateByPrimaryKey(AppGame record);
+
+    List<AppGame> queryListAll();
+
+}

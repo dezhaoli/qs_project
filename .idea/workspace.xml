@@ -77,9 +77,10 @@
       <file leaf-file-name="AgentSettlementController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/business/controller/AgentSettlementController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="864">
+            <state relative-caret-position="888">
               <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
               <folding>
+                <element signature="imports" expanded="false" />
                 <marker date="1490625128410" expanded="true" signature="4484:4490" ph="{...}" />
               </folding>
             </state>
@@ -129,10 +130,18 @@
       <file leaf-file-name="TaxesInviteWeekMapperServiceImpl.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/agent/service/impl/TaxesInviteWeekMapperServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2208">
-              <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+            <state relative-caret-position="2136">
+              <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
               <folding>
-                <marker date="1490625127687" expanded="true" signature="6640:6644" ph="{...}" />
+                <element signature="imports" expanded="false" />
+                <marker date="1490714059619" expanded="true" signature="2493:2629" ph="{...}" />
+                <marker date="1490714059619" expanded="true" signature="2759:4091" ph="{...}" />
+                <marker date="1490714059619" expanded="true" signature="4177:6043" ph="{...}" />
+                <marker date="1490714059619" expanded="true" signature="6464:6776" ph="{...}" />
+                <marker date="1490714059619" expanded="true" signature="6772:6776" ph="{...}" />
+                <marker date="1490714059619" expanded="true" signature="6840:7146" ph="{...}" />
+                <marker date="1490714059619" expanded="true" signature="7148:7203" ph="/**...*/" />
+                <marker date="1490714059619" expanded="true" signature="7269:7778" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -141,7 +150,7 @@
       <file leaf-file-name="agent_settlement_list.jsp" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qs-business/src/main/webapp/WEB-INF/view/web/business/agent_settlement_list.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1272">
+            <state relative-caret-position="1296">
               <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
@@ -151,8 +160,8 @@
       <file leaf-file-name="agent_settlement_list.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qs-business/src/main/webapp/resources/js/customer/web/agent_settlement_list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="672">
-              <caret line="63" column="74" lean-forward="true" selection-start-line="63" selection-start-column="74" selection-end-line="63" selection-end-column="74" />
+            <state relative-caret-position="24">
+              <caret line="55" column="35" lean-forward="false" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -183,10 +192,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>showSearch</find>
-      <find>queryUserBtn</find>
       <find>sc_majiang</find>
       <find>Base_Column_List</find>
+      <find>re</find>
+      <find>respron</find>
+      <find>respro</find>
+      <find>respr</find>
+      <find>resp</find>
+      <find>res</find>
+      <find>responseexe</find>
+      <find>responseex</find>
+      <find>responsee</find>
+      <find>response</find>
+      <find>respons</find>
+      <find>exectute</find>
+      <find>exectut</find>
+      <find>exete</find>
+      <find>exetu</find>
+      <find>exet</find>
+      <find>exectue</find>
+      <find>exectu</find>
+      <find>exect</find>
+      <find>e</find>
+      <find>ex</find>
+      <find>exe</find>
+      <find>exec</find>
+      <find>execu</find>
+      <find>execut</find>
+      <find>execute</find>
+      <find>.execute</find>
+      <find>handleInitResponse</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -338,6 +373,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -1867,8 +1904,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1934,39 +1969,47 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\ITaxesInviteWeekMapperService.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\TaxesInviteWeekMapperServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\IMemberAgentService.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\log\game\service\impl\TaxesDirectlyWeekServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\log\agent\mapper\TaxesInviteWeekMapper.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberAgentsMapper.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberFidesMapper.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\log\agent\TaxesInviteWeekMapper.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberFidesMapper.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberAgentsMapper.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\WEB-INF\view\web\business\agent_settlement_list.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\resources\js\customer\web\agent_settlement_list.js</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\resources\js\customer\web\agent_childs_list.js</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\index.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\java\com\qs\webside\business\controller\AgentSettlementController.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\util\CommonUtils.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\util\DateUtil.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\constant\CommonContants.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-common\pom.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\index.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\jdbc.properties</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\generatorConfig.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\index.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_vipWeekDataStat_show.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\util\AgentUtil.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\AgentRoomController.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\webside\member\model\MemberAgents.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-side\pom.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\resources\redis.properties</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\WEB-INF\view\web\agent\agent_list.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\java\com\qs\pub\game\controller\BusinessController.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\spring\spring-shiro.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectly_list.js</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\index.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\login.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\welcome.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_selectVipDirectly_list.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_recharge_detail_list.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_settle_detail_list.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_form.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\IndexController.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\UserDataController.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\AgentRoomController.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\log\agent\model\TaxesInviteWeek.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\webside\member\model\MemberAgents.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\pub\game\model\MemberBusinessDto.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\member\service\IMemberFidesService.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\member\service\impl\MemberFidesServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\IMemberAgentService.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\TaxesInviteWeekMapperServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\AgentMidsServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\IAgentMidsServcie.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\pub\game\service\IBusinessService.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\pub\game\service\impl\BusinessServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberAgentsMapper.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\AgentMidsMapper.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberFidesMapper.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\pub\game\MemberBusinessMapper.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\pub\game\mapper\MemberBusinessMapper.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberFidesMapper.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberAgentsMapper.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\webside\member\mapper\AgentMidsMapper.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\constant\CommonContants.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\util\DateUtil.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\WEB-INF\view\web\business\agent_authorization_form.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\java\com\qs\webside\business\controller\AgentAuthorizationController.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1974,16 +2017,21 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\log\game\service\ITaxesDirectlyDayService.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\log\game\service\impl\TaxesDirectlyDayService.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\log\game\mapper\TaxesDirectlyDayMapper.java</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\log\game\TaxesDirectlyDayMapper.xml</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\WEB-INF\view\web\business\agent_settlement_detail_list.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_vipWeekDataDetail_list.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_selectVipDirectly_list.jsp</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_vipWeekDataDetail_list.js</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectly_list.js</PATH>
-          <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\log\game\model\TaxesDirectlyDay.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\MP_verify_OOhe4YHusYs5n4Wk.txt</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\images\login_wx.png</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectlyInfoUi_list.js</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_empowerAgent_show.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_selectVipDirectlyInfoUi_list.jsp</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\pub\game\model\AppCompany.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\pub\game\model\AppGame.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\pub\game\service\IAppGameService.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\pub\game\service\IAppCompanyService.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\pub\game\service\impl\AppGameServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\pub\game\service\impl\AppCompanyServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\pub\game\AppCompanyMapper.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\pub\game\AppGameMapper.xml</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\pub\game\mapper\AppGameMapper.java</PATH>
+          <PATH vcs="svn" revision="748">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\pub\game\mapper\AppCompanyMapper.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -2041,9 +2089,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED" />
-        <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\resources\jdbc.properties</PATH>
-        <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\resources\jdbc.properties</PATH>
-        <PATH vcs="svn" revision="724">D:\java\qs_project\2017年2月21日213834\qs-business\pom.xml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Not in repository" />
@@ -2758,7 +2803,9 @@
       <workItem from="1490532023088" duration="214000" />
       <workItem from="1490532257104" duration="491000" />
       <workItem from="1490532768096" duration="10109000" />
-      <workItem from="1490625098603" duration="151000" />
+      <workItem from="1490625098603" duration="966000" />
+      <workItem from="1490628142679" duration="278000" />
+      <workItem from="1490714036084" duration="143000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -2869,7 +2916,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="160987000" />
+    <option name="totallyTimeSpent" value="162223000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2881,8 +2928,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
-    <editor active="true" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2898,7 +2944,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23076923" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2361111" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2925,7 +2971,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="SHOW_FILE_HISTORY_DETAILS" value="false" />
     <MESSAGE value="app 版本管理页面功能完成。" />
     <MESSAGE value="修改已知bug" />
     <MESSAGE value="商务明细列表初步完成" />
@@ -2948,21 +2993,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-common/src/main/java/com/qs/common/constant/CacheConstan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="20" column="82" lean-forward="true" selection-start-line="20" selection-start-column="82" selection-end-line="20" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/spring/spring-ehcache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/spring/spring-cas-shiro.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1008">
@@ -3178,28 +3208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="80" column="21" lean-forward="false" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/business/controller/BusinessUserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -3279,15 +3287,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/business/controller/AgentSettlementController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="864">
+        <state relative-caret-position="888">
           <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
           <folding>
+            <element signature="imports" expanded="false" />
             <marker date="1490625128410" expanded="true" signature="4484:4490" ph="{...}" />
           </folding>
         </state>
@@ -3327,16 +3335,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/agent/service/impl/TaxesInviteWeekMapperServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2208">
-          <caret line="103" column="0" lean-forward="false" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-          <folding>
-            <marker date="1490625127687" expanded="true" signature="6640:6644" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/util/BusinessDateUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -3358,26 +3356,79 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/agent/service/impl/TaxesInviteWeekMapperServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2136">
+          <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <marker date="1490714059619" expanded="true" signature="2493:2629" ph="{...}" />
+            <marker date="1490714059619" expanded="true" signature="2759:4091" ph="{...}" />
+            <marker date="1490714059619" expanded="true" signature="4177:6043" ph="{...}" />
+            <marker date="1490714059619" expanded="true" signature="6464:6776" ph="{...}" />
+            <marker date="1490714059619" expanded="true" signature="6772:6776" ph="{...}" />
+            <marker date="1490714059619" expanded="true" signature="6840:7146" ph="{...}" />
+            <marker date="1490714059619" expanded="true" signature="7148:7203" ph="/**...*/" />
+            <marker date="1490714059619" expanded="true" signature="7269:7778" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/webapp/WEB-INF/view/web/business/agent_settlement_list.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1272">
+        <state relative-caret-position="1296">
           <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="17" column="17" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
+        <state relative-caret-position="576">
+          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
           <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-65">
+          <caret line="80" column="21" lean-forward="false" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-agent/src/main/webapp/WEB-INF/view/web/agent/query/teamweeksttlement_list.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="133" column="26" lean-forward="false" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-business/src/main/webapp/resources/js/customer/web/member_userGoldOrigin_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="178" column="2" lean-forward="true" selection-start-line="178" selection-start-column="2" selection-end-line="178" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/webapp/resources/js/customer/web/agent_settlement_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="63" column="74" lean-forward="true" selection-start-line="63" selection-start-column="74" selection-end-line="63" selection-end-column="74" />
+        <state relative-caret-position="24">
+          <caret line="55" column="35" lean-forward="false" selection-start-line="55" selection-start-column="35" selection-end-line="55" selection-end-column="35" />
           <folding />
         </state>
       </provider>
