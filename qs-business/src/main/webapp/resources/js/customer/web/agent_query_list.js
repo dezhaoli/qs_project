@@ -57,7 +57,7 @@ pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
 var dtGridOption = {
     lang : 'zh-cn',
     ajaxLoad : true,
-    check : true,
+    check : false,
     checkWidth :'37px',
     extraWidth : '37px',
     loadURL : sys.rootPath + '/agentQuery/queryAgentList.html',
