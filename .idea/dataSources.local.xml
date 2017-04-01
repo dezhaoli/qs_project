@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="psyllidae@psyllidae" uuid="6dcd6050-2eb5-4781-acc6-15922d6a9d6d">
+    <data-source name="sc_majiang@localhost" uuid="d3d1d377-dae5-45ab-a348-26e21744e1b0">
       <database-info product="MySQL" version="5.7.10" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -9,11 +9,9 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:psyllidae</introspection-schemas>
-      <resolve-scope>psyllidae:</resolve-scope>
-      <unqualified-resolve-schemas>psyllidae:</unqualified-resolve-schemas>
+      <introspection-schemas>*:sc_majiang</introspection-schemas>
     </data-source>
-    <data-source name="@localhost_psyllidae_cfg" uuid="d4690784-de3f-4660-8676-23d5202eb6f8">
+    <data-source name="sc_majiang_cfg@localhost" uuid="066fd341-2e2a-4b32-9de8-a15bd0714bf1">
       <database-info product="MySQL" version="5.7.10" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
@@ -21,9 +19,17 @@
       <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <introspection-schemas>*:psyllidae_cfg</introspection-schemas>
-      <resolve-scope>psyllidae_cfg:</resolve-scope>
-      <unqualified-resolve-schemas>psyllidae_cfg:</unqualified-resolve-schemas>
+      <introspection-schemas>*:sc_majiang_cfg</introspection-schemas>
+    </data-source>
+    <data-source name="sc_majiang_log@localhost" uuid="87fc309e-2504-4db3-b1bf-e39b1e5d3ec4">
+      <database-info product="MySQL" version="5.7.10" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.38 ( Revision: fe541c166cec739c74cc727c5da96c1028b4834a )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-schemas>*:sc_majiang_log</introspection-schemas>
     </data-source>
   </component>
 </project>

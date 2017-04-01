@@ -32,4 +32,9 @@
     delete from agent_mids
     where mid = #{mid,jdbcType=INTEGER}
   </delete>
+  <select id="selectByMid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+   select amid,mid 
+    from agent_mids
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
 </mapper>

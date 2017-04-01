@@ -26,9 +26,10 @@
     <result column="glevel" property="glevel" jdbcType="TINYINT" />
     <result column="company" property="company" jdbcType="TINYINT" />
     <result column="sitemid" property="sitemid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, mid, passwd, salt, bank, bankcard, alipay, realname, phone, qq, systempasswd, 
+    id, mid, passwd, salt, bank, bankcard, alipay, realname, phone, qq, systempasswd, code,
     status, scale,FROM_UNIXTIME(mktime,'%Y-%m-%d %H:%i:%S') as mktime,
     FROM_UNIXTIME(lastlogintime,'%Y-%m-%d %H:%i:%S') as lastlogintime, parent_id, alevel, remark, belongid, areaid,
     firstmid, glevel, company, sitemid
@@ -64,7 +65,7 @@
       scale, mktime, lastlogintime, 
       parent_id, alevel, remark, 
       belongid, areaid, firstmid, 
-      glevel, company, sitemid
+      glevel, company, sitemid,code
       )
     values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{passwd,jdbcType=CHAR}, 
       #{salt,jdbcType=CHAR}, #{bank,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR}, 
@@ -74,6 +75,7 @@
       #{parentId,jdbcType=INTEGER}, #{alevel,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
       #{belongid,jdbcType=SMALLINT}, #{areaid,jdbcType=INTEGER}, #{firstmid,jdbcType=INTEGER}, 
       #{glevel,jdbcType=TINYINT}, #{company,jdbcType=TINYINT}, #{sitemid,jdbcType=VARCHAR}
+      , #{code,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.qs.webside.member.model.MemberAgents" >
@@ -151,6 +153,9 @@
       <if test="sitemid != null" >
         sitemid,
       </if>
+      <if test="code != null" >
+        code,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -224,6 +229,9 @@
       </if>
       <if test="sitemid != null" >
         #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -299,6 +307,12 @@
       <if test="sitemid != null" >
         sitemid = #{sitemid,jdbcType=VARCHAR},
       </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -326,7 +340,9 @@
       firstmid = #{firstmid,jdbcType=INTEGER},
       glevel = #{glevel,jdbcType=TINYINT},
       company = #{company,jdbcType=TINYINT},
+      code = #{code,jdbcType=TINYINT},
       sitemid = #{sitemid,jdbcType=VARCHAR}
+      openid = #{openid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -361,11 +377,10 @@
     ORDER BY a.mktime DESC
   </select>
 
+  <!-- a.*,b.*,a.phone AS mobile,b.realname AS name -->
   <select id="getAgentBusinessInfoByMid" parameterType="java.lang.Integer" resultType="map">
-    SELECT a.*,b.*,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
-      a.phone AS mobile,
-      a.bank AS Bank,
-      a.bankcard AS bankCart
+    SELECT a.*,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+               a.phone AS mobile
     FROM memberagents as a
       left join common_agents_info as b
         ON a.sitemid = b.sitemid
@@ -410,8 +425,9 @@
 <!--   根据sitemid获取用户信息 -->
  <select id="getMemberAgentsInfoBySitemid" resultType="com.qs.webside.member.model.MemberAgents"
 	parameterType="java.lang.String">
-	select
-	id,mid,parent_id,sitemid,realname,areaid,phone,FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime
+	select 
+	id,mid,parent_id,passwd,salt,sitemid,alevel,belongid,realname,firstmid,areaid,phone,company,sitemid,
+	FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime,code 
 	from memberagents
 	where sitemid=#{sitemid,jdbcType=VARCHAR}
 </select>
@@ -425,5 +441,136 @@
 	where parent_id=#{parent_id,jdbcType=VARCHAR}
 </select>
 
+	<!-- 直属会员查询信息列表 1普通会员，2位代理商 -->
+	<select id="selectVipDirectlyInfo" parameterType="map"
+		resultType="com.qs.webside.member.model.MemberAgents">
 
+		<if test="type==1 ">
+			SELECT mid,realname,FROM_UNIXTIME(bindtime, '%Y-%m-%d') bindtime from
+			memberfides0 WHERE invite = ${mid} and mid
+			not
+			in(SELECT mid from memberagents WHERE code like '${code}%' )
+		</if>
+		<if test="type==2 ">
+			select a.mid mid,a.realname realname,FROM_UNIXTIME(a.mktime,
+			'%Y-%m-%d') bindtime,(
+			SELECT count(mid) from memberfides0 where invite=a.mid
+			) count from memberagents a INNER JOIN memberfides0 m on a.mid=m.mid
+			and invite = ${mid}
+			<!-- select a.mid mid,a.realname realname,FROM_UNIXTIME(a.mktime, '%Y-%m-%d') 
+				bindtime,( SELECT count(id) from memberagents where parent_id=#{mid}) count 
+				from memberagents a INNER JOIN memberfides0 m on a.mid=m.mid and invite = 
+				${mid} -->
+		</if>
+	</select>
+
+  <!-- 检查代理商是否绑定了商务专员 -->
+  <select id="findByBelongidAndMid" resultType="com.qs.webside.member.model.MemberAgents" parameterType="map">
+    SELECT * FROM memberagents WHERE mid=#{mid} AND belongid=#{belongid}
+  </select>
+
+  <!-- 获取代理商以及绑定商务信息 -->
+  <select id="getAgentAndBusizInfoByMid" resultType="java.util.Map" parameterType="map">
+    SELECT a.mid,a.realname,a.firstmid,
+    (SELECT b.realname AS realnamebind
+    FROM memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=
+    (
+    SELECT a.firstmid AS firstmid
+    FROM sc_majiang.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=#{mid} LIMIT 0,1
+    )) AS realnamebind
+    FROM memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=#{mid}
+  </select>
+
+    <!--
+  SELECT MAX(code + 1) code
+  FROM memberagents
+  WHERE
+  parent_id =0 OR parent_id=''
+  -->
+  <select id="getFirstAgentCode" resultType="java.lang.String">
+    SELECT CASE WHEN
+      (
+        SELECT
+          (
+            CASE WHEN
+              (
+                SELECT MAX(code) code
+                FROM memberagents
+                WHERE
+                  parent_id =0 OR parent_id=''
+              ) IS NULL
+              THEN
+                '10000'
+            WHEN
+              (
+                SELECT MAX(code) code
+                FROM memberagents
+                WHERE
+                  parent_id =0 OR parent_id=''
+              ) = 0
+              THEN
+                '10000'
+            ELSE
+              (
+                SELECT MAX(code) code
+                FROM memberagents
+                WHERE
+                  parent_id =0 OR parent_id=''
+              )
+            END
+          ) + 1
+            AS CODE
+      ) IS NULL
+      THEN
+        '10001'
+           ELSE
+             (
+               SELECT
+                 (
+                   CASE WHEN
+                     (
+                       SELECT MAX(code) code
+                       FROM memberagents
+                       WHERE
+                         parent_id =0 OR parent_id=''
+                     ) IS NULL
+                     THEN
+                       '10000'
+                   WHEN
+                     (
+                       SELECT MAX(code) code
+                       FROM memberagents
+                       WHERE
+                         parent_id =0 OR parent_id=''
+                     ) = 0
+                     THEN
+                       '10000'
+                   ELSE
+                     (
+                       SELECT MAX(code) code
+                       FROM memberagents
+                       WHERE
+                         parent_id =0 OR parent_id=''
+                     )
+                   END
+                 ) + 1
+                   AS CODE
+             )
+           END
+      AS CODE
+  </select>
+
+	<select id="getMaxAgentsCodeBymMid" resultType="java.lang.String"
+		parameterType="java.lang.Integer">
+		select max(code) code from memberagents where parent_id=#{mid}
+	</select>
 </mapper>

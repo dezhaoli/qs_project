@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="psyllidae@psyllidae" uuid="6dcd6050-2eb5-4781-acc6-15922d6a9d6d">
+    <data-source source="LOCAL" name="sc_majiang@localhost" uuid="d3d1d377-dae5-45ab-a348-26e21744e1b0">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/psyllidae</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/sc_majiang</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
@@ -15,11 +15,25 @@
         <property name="yearIsDateType" value="false" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="@localhost_psyllidae_cfg" uuid="d4690784-de3f-4660-8676-23d5202eb6f8">
+    <data-source source="LOCAL" name="sc_majiang_cfg@localhost" uuid="066fd341-2e2a-4b32-9de8-a15bd0714bf1">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://127.0.0.1:3306/psyllidae_cfg</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/sc_majiang_cfg</jdbc-url>
+      <driver-properties>
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
+      </driver-properties>
+    </data-source>
+    <data-source source="LOCAL" name="sc_majiang_log@localhost" uuid="87fc309e-2504-4db3-b1bf-e39b1e5d3ec4">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/sc_majiang_log</jdbc-url>
       <driver-properties>
         <property name="autoReconnect" value="true" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />

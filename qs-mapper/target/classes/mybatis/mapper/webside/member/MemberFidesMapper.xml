@@ -430,6 +430,8 @@
     mid = #{mid,jdbcType=INTEGER}
     order by mid
   </select>
-
-
+  
+  <select id="selectAengtCountByInvite" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+   select COUNT(invite) sum from memberfides0 where invite=#{mid}
+  </select>
 </mapper>

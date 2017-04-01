@@ -24,6 +24,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/pom.xml" afterPath="$PROJECT_DIR$/qs-web/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
     </list>
     <list id="08238244-5bd2-4c65-bcfd-bb652b521bca" name="Failed commit: Failed commit: Default" comment="修复已知Bug" />
     <ignored path="$PROJECT_DIR$/qs-app/target/" />
@@ -57,23 +58,24 @@
     <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DatabaseStructure$Root" />
-      </PATH_ELEMENT>
-      <PATH_ELEMENT>
-        <option name="myItemId" value="psyllidae@psyllidae" />
-        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="2017年2月21日213834" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="redis.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="72">
+              <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -129,8 +131,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/webside/member/BusinessMapper.xml" />
-        <option value="$PROJECT_DIR$/qs-psyllidae/src/main/java/com/qs/webside/agent/controller/BusinessController.java" />
         <option value="$PROJECT_DIR$/qs-psyllidae/src/main/webapp/resources/js/customer/web/agent_list.js" />
         <option value="$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/webside/member/MemberBusinessMapper.xml" />
         <option value="$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/webside/member/mapper/MemberFidesMapper.java" />
@@ -180,6 +180,8 @@
         <option value="$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/business/controller/AgentSettlementController.java" />
         <option value="$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/agent/service/impl/TaxesInviteWeekMapperServiceImpl.java" />
         <option value="$PROJECT_DIR$/qs-business/src/main/webapp/resources/js/customer/web/agent_settlement_list.js" />
+        <option value="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d3d1d377-dae5-45ab-a348-26e21744e1b0/console.sql" />
       </list>
     </option>
   </component>
@@ -267,7 +269,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -1761,43 +1763,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2017年2月21日213834" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="2017年2月21日213834" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webside" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="aop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1863,50 +1831,48 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\login.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\WEB-INF\view\web\business\agent_settlement_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\WEB-INF\view\web\business\agent_settlement_detail_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\WEB-INF\view\web\business\agent_pay_detail_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\resources\js\customer\web\agent_settlement_list.js</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\java\com\qs\webside\shiro\MyRealm.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\login.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\java\com\qs\webside\shiro\MyRealm.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\index.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\login.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\welcome.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_recharge_count_form.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_recharge_detail_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_settle_detail_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_vipWeekDataStat_show.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_vipWeekDataDetail_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_selectVipDirectlyInfoUi_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_selectVipDirectlyPoxy_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_selectVipDirectly_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_form.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\css\customer\commons.css</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectly_list.js</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\IndexController.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\UserDataController.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\AgentRoomController.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\shiro\MyRealm.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-model\src\main\java\com\qs\webside\member\model\MemberAgents.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\log\game\service\impl\MajiangGameRecordServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\log\game\service\IMajiangGameRecordService.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\IMemberPayMentService.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberPayMentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\pub\game\service\impl\BusinessServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberPayMentMapper.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\pub\game\mapper\AreaMapper.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\pub\game\AreaMapper.xml</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberPayMentMapper.xml</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberAgentsMapper.xml</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\constant\Constants.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\constant\AppConstants.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\util\SpringContextUtil.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_recharge_count_form.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_empowerAgent_show.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_recharge_detail_list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_settle_detail_list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_vipWeekDataStat_show.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_vipWeekDataDetail_list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\selectMyPayRecord_list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\userInfo_show.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_form.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user\member_userCardRecord_list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\common\common.jspf</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\css\customer\commons.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\css\ace\ace.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1\i18n\zh-cn.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1\dlshouwen.grid.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectlyPoxy_list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectly_list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\team_settle_detail_list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\index.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\IndexController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-model\pom.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\IMemberInviteService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberInviteServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\resources\spring\spring-shiro.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\index.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\login.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\WEB-INF\view\web\user\member_userInfo_show.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\WEB-INF\view\web\user\member_userNameSearch_userInfo.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\resources\js\customer\web\member_user_management_list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\java\com\qs\webside\member\controller\MembersController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\java\com\qs\webside\sys\controller\IndexController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberInviteMapper.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberInviteMapper.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\WEB-INF\view\web\business\agent_detail_show.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\resources\css\ace\ace.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\resources\js\customer\web\agent_teamCharSta_list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\resources\js\customer\web\agent_settlement_list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\index.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\webapp\login.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\java\com\qs\webside\sys\controller\IndexController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-business\src\main\resources\spring\spring-shiro.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1914,19 +1880,318 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\selectMyPayRecord_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\userInfo_show.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user\member_userCardRecord_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user\member_userGoldOrigin_list.jsp</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\user</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\user\member_userCardRecord_list.js</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\user\member_userGoldOrigin_list.js</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\js\customer\web\selectMyPayRecord_list.js</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\UserCardRecordController.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\UserGoldOriginController.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\impl\AreaServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-service\src\main\java\com\qs\webside\agent\service\IAreaService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\test</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\test\java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\test\java\com</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\test\java\com\qs</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\test\java\com\qs\pay</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\main</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\main\java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\main\java\com</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\main\java\com\qs</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\src\main\java\com\qs\pay</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-service\pom.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\qs-web\src\main\webapp\WEB-INF\view\web\user\member_editInviteCode_from.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\pom.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\target</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\target\m2e-wtp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\target\m2e-wtp\web-resources</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\test</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\test\java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model\LogInfoEntity.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model\UserEntity.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model\RoleEntity.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model\LoginInfoEntity.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model\UserOnline.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model\ResourceEntity.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\model\UserInfoEntity.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\LogInfoService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\UserService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\impl</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\impl\LogInfoServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\impl\UserServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\impl\RoleServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\impl\LoginInfoServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\impl\ResourceServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\impl\RoleResourceServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\RoleService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\LoginInfoService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\ResourceService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\service\RoleResourceService.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\controller</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\controller\RoleController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\controller\LoginInfoController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\controller\IndexController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\controller\ResourceController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\controller\LogInfoController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\controller\UserController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\mapper</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\mapper\ResourceMapper.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\mapper\LogInfoMapper.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\mapper\UserMapper.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\mapper\RoleMapper.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\sys\mapper\LoginInfoMapper.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\aop</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\aop\LogAspect.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\shiro</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\shiro\MyRealm.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\controller</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\controller\PayController.java</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\db</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\db\mj_cfg.sql</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\db\mj.sql</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\db\mj_log.sql</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\ip2regiondata</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\ip2regiondata\ip2region.db</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\sys</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\sys\sqlmap-mapping-role.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\sys\sqlmap-mapping-logininfo.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\sys\sqlmap-mapping-resource.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\sys\sqlmap-mapping-loginfo.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\sys\sqlmap-mapping-user.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mybatis-config.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\ip2region.properties</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\log4j.properties</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\generatorConfig.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\jdbc.properties</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\ehcache.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\logback.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\quartz.properties</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\redis.properties</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-applicationContext.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-mybatis.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-flyway.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-kaptcha.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-ip2region.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-ehcache.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-shiro.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-mvc.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-quartz.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-redis.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\welcome.html</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\META-INF</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\META-INF\MANIFEST.MF</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\index.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\denied.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\login.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\config</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\tlds</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\tlds\fmt.tld</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\tlds\c.tld</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\tlds\fn.tld</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\error</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\error\error.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\error\error-500.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\error\error-404.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\loginfo</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\loginfo\list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\user</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\user\password.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\user\form.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\user\info.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\user\list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\role</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\role\permission.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\role\list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\role\form.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\logininfo</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\logininfo\list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\resource</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\resource\icon.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\resource\list.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\resource\form.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\web.xml</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\common</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\common\common-login.jsp</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\common\common.jspf</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\logo_no_title.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\loading.gif</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\logo.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\qs.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\website.ico</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\user.jpg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\background</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\background\3.jpg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\background\4.jpg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\background\5.jpg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\background\1.jpg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\images\background\2.jpg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\customer</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\customer\webside.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\customer\webside-icon.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\ace</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\ace\ace-skins.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\ace\ace-part2.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\ace\ace-ie.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\css\ace\ace.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\webside</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\webside\webside.ttf</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\webside\font-webside.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\webside\webside.svg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\webside\font-webside-ie7.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\webside\webside.woff</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\webside\webside.eot</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\opensans</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\opensans\OpenSans-300.woff</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\opensans\OpenSans-400.woff</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\opensans\ace-fonts.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome\fontawesome-webfont.ttf</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome\fontawesome-webfont.svg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome\fontawesome-webfont.woff</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome\fontawesome-webfont.woff2</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome\font-awesome.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome\FontAwesome.otf</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\fontawesome\fontawesome-webfont.eot</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\glyphicons</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\glyphicons\glyphicons-halflings-regular.eot</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\glyphicons\glyphicons-halflings-regular.ttf</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\glyphicons\glyphicons-halflings-regular.svg</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\glyphicons\glyphicons-halflings-regular.woff</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\fonts\glyphicons\glyphicons-halflings-regular.woff2</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace.sidebar.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace.widget-box.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\elements.scroller.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace.settings.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace.settings-skin.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace.sidebar-scroll-1.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace-extra.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ace\ace.sidebar-scroll-2.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\cronGen</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\cronGen\cronGen.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\cronGen\cronGen.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\cronGen\cronGen.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate\jedate.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate\jedate.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate\skin</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate\skin\red.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate\skin\jedate.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate\skin\green.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jedate\skin\gray.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\jstree.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\jstree.checkbox.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\.gitignore</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default-dark</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default-dark\throbber.gif</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default-dark\40px.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default-dark\32px.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default-dark\style.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default\40px.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default\32px.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default\style.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jstree\themes\default\throbber.gif</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ie</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ie\html5shiv.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ie\html5shiv-printshiv.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ie\excanvas.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ie\json2.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\ie\respond.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\nicescroll</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\nicescroll\jquery.nicescroll.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\role</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\role\list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\logininfo</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\logininfo\list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\index</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\index\index.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\index\login.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\index\index.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\index\login.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\resource</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\resource\list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\loginfo</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\loginfo\list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\user</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\user\list.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\select2</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\select2\select2.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\select2\zh-CN.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\select2\select2.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin\layer.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin\default</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin\default\icon.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin\default\loading-0.gif</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin\default\loading-1.gif</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin\default\loading-2.gif</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\skin\default\icon-ext.png</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\layer-v2.3\layer.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery-validation</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery-validation\jquery.validate.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery-validation\localization</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery-validation\localization\messages_zh.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\underscore</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\underscore\underscore-min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\datepicker</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\datepicker\css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\datepicker\css\bootstrap-datepicker3.standalone.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\datepicker\js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\datepicker\js\bootstrap-datepicker.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\datepicker\locales</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\datepicker\locales\bootstrap-datepicker.zh-CN.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap-switch</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap-switch\css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap-switch\css\bootstrap3</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap-switch\css\bootstrap3\bootstrap-switch.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap-switch\js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap-switch\js\bootstrap-switch.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap\bootstrap.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\bootstrap\bootstrap.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jqueryui</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jqueryui\jquery.ui.touch-punch.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jqueryui\jquery-ui.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery\jquery-1.11.3.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery\jquery.mobile.custom.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\jquery\jquery-2.1.4.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1\dlshouwen.grid.min.css</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1\dlshouwen.grid.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1\dlshouwen.grid.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1\i18n</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\dlshouwen.grid.v1.2.1\i18n\zh-cn.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\particleground</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\particleground\jquery.particleground.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\backgroundSlider</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\backgroundSlider\backgroundSlider.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\backgroundSlider\backgroundSlider.min.js</PATH>
+          <PATH vcs="svn" revision="891">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\backgroundSlider\backgroundSlider.css</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1956,7 +2221,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="862">D:\java\qs_project\2017年2月21日213834\qs-app</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -2703,7 +2967,8 @@
       <workItem from="1490628142679" duration="278000" />
       <workItem from="1490714036084" duration="1590000" />
       <workItem from="1490878836745" duration="233000" />
-      <workItem from="1490965371539" duration="192000" />
+      <workItem from="1490965371539" duration="3219000" />
+      <workItem from="1491054014797" duration="1317000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -2814,7 +3079,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="164095000" />
+    <option name="totallyTimeSpent" value="168439000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2842,7 +3107,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24145299" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24412394" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2891,37 +3156,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/spring/spring-cas-shiro.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1008">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/spring/spring-redis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1651">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/ehcache.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1152">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/log/game/mapper/TaxesInviteMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="23" column="14" lean-forward="false" selection-start-line="23" selection-start-column="14" selection-end-line="23" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/log/game/TaxesInviteMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1968">
@@ -3217,17 +3451,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2136">
           <caret line="106" column="0" lean-forward="false" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <marker date="1490878911259" expanded="true" signature="2493:2629" ph="{...}" />
-            <marker date="1490878911259" expanded="true" signature="2759:4091" ph="{...}" />
-            <marker date="1490878911259" expanded="true" signature="4177:6453" ph="{...}" />
-            <marker date="1490878911259" expanded="true" signature="6874:7186" ph="{...}" />
-            <marker date="1490878911259" expanded="true" signature="7182:7186" ph="{...}" />
-            <marker date="1490878911259" expanded="true" signature="7250:7556" ph="{...}" />
-            <marker date="1490878911259" expanded="true" signature="7558:7613" ph="/**...*/" />
-            <marker date="1490878911259" expanded="true" signature="7679:8188" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3309,6 +3532,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-48">
           <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/87fc309e-2504-4db3-b1bf-e39b1e5d3ec4/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/066fd341-2e2a-4b32-9de8-a15bd0714bf1/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d3d1d377-dae5-45ab-a348-26e21744e1b0/console.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="17681" column="29" lean-forward="true" selection-start-line="17681" selection-start-column="29" selection-end-line="17681" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

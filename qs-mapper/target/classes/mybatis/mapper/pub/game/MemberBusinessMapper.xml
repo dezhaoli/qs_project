@@ -246,4 +246,14 @@
     LIMIT 0,1
   </select>
 
+  <select id="loadByEmail" resultType="com.qs.pub.game.model.MemberBusiness" parameterType="java.lang.String">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM
+    memberbusiness
+    WHERE
+    email = #{email,jdbcType=VARCHAR}
+    LIMIT 0,1
+  </select>
+
 </mapper>

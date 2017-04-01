@@ -122,4 +122,29 @@
     from area
     where level = #{level}  and code like CONCAT(#{code}, '%')  
   </select>
+  
+  <select id="selectAreaNameByArea" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from area
+    where aname = #{aname,jdbcType=INTEGER}
+  </select>
+  
+<!--  根据aid查具体详情地址   -->
+  <select id="selectAreaInfo" resultType="map" parameterType="map">
+   <if test="level ==0">
+  	select aname from area where aid=#{aid}
+   </if>
+    <if test="level ==1">
+	select aname,province from area b,(
+	select aname province,parentid from area where aid=#{aid} ) a where
+	a.parentid=b.aid
+   </if>
+    <if test="level ==2">
+	select province,aname,city from area d,(
+	SELECT a.aid,a.aname AS province,b.city ,a.parentid FROM area a,
+	(SELECT aname AS city,parentid FROM area WHERE aid=#{aid}) b
+	WHERE a.aid=b.parentid ) e where e.parentid=d.aid
+   </if>
+  </select>
 </mapper>
