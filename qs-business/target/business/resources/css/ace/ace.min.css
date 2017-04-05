@@ -59,7 +59,7 @@ body {
   background-color: #ffffff;
   position: relative;
   margin: 0;
-  padding: 8px 20px 24px;
+  padding: 5px 5px 24px;/*@Author:zun.wei, @Date:2017/4/1 18:17 */
 }
 .page-header {
   margin: 0 0 12px;

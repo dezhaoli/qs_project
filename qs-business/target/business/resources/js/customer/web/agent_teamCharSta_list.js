@@ -75,7 +75,7 @@ function payDetail(mid,startTime,endTime) {
     layer.open({
         type: 2,
         title:mid + ' - 充值明细',
-        area: ['70%','70%'],
+        area: ['95%','90%'],
         fixed: false, //不固定
         maxmin: true,
         content: sys.rootPath + '/business/user/payDetailUi.html' +

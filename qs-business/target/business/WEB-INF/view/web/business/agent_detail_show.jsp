@@ -40,7 +40,7 @@
                                 <label class="control-label">
                                     <c:if test="${!empty record}">
                                         <c:if test="${!empty record.agentBusinessInfo}">
-                                            ${record.agentBusinessInfo.belongid}
+                                            ${record.agentBusinessInfo.firstmid}
                                         </c:if>
                                     </c:if>
                                 </label>

@@ -135,7 +135,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/resources/** = anon
-				/login.html = authc
+				/login.html = user
 				/logout.html = logout
 				/register.html = anon
 				/captcha.html = anon
@@ -143,7 +143,7 @@
 				/view/error/** = anon
 				/*/withoutAuth/** = anon
 			    /config/** = anon
-				/** = authc
+				/** = user
 			</value>
 		</property>
 		

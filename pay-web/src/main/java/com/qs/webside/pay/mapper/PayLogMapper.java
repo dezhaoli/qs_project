@@ -1,0 +1,23 @@
+package com.qs.webside.pay.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import com.qs.common.base.basemapper.IBaseMapper;
+import com.qs.webside.pay.model.PayLog;
+
+public interface PayLogMapper extends IBaseMapper<Integer,PayLog> {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(PayLog record);
+
+    int insertSelective(PayLog record);
+
+    PayLog selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(PayLog record);
+
+    int updateByPrimaryKey(PayLog record);
+    
+    List<PayLog> selectPayLogAll(Map<String ,Object> payLog);
+}

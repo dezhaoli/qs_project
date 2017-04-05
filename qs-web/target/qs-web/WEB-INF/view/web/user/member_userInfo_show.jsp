@@ -24,6 +24,11 @@
             onclick="goldOrigin(${id})" >
         <i class="fa fa-user-secret"></i>&nbsp;金币来源
     </button>
+    <c:if test="${!empty memberFides.memberAgents}">
+        <button type="button" class="btn btn-primary btn-sm btn-danger" onclick="editUserInviteCode(${id})">
+            <i class="fa fa-user-secret"></i>&nbsp;修改邀请码
+        </button>
+    </c:if>
 </div>
 
 <%--<div class="controls controls-row">
@@ -268,7 +273,7 @@
                 <div class="col-sm-3">
                     <div class="clearfix">
                         <input class="form-control" name="belongid" type="text"
-                               value="${memberFides.belongid}" id="belongid"
+                               value="${memberFides.businessName}" id="belongid"
                                placeholder="所属商务..." readonly/>
                     </div>
                 </div>

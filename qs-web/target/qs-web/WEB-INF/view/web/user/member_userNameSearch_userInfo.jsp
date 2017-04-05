@@ -236,7 +236,7 @@
                     <div class="col-sm-3">
                         <div class="clearfix">
                             <input class="form-control" name="belongid" type="text"
-                                   value="${memberFides.belongid}" id="belongid"
+                                   value="${memberFides.businessName}" id="belongid"
                                    placeholder="所属商务..." readonly/>
                         </div>
                     </div>

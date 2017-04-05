@@ -173,6 +173,20 @@ function goldOrigin(mid) {
     });
 }
 
+function editUserInviteCode(mid) {
+    layer.open({
+        type: 2,
+        title: '修改邀请码',
+        area: ['90%', '90%'],
+        fixed: false, //不固定
+        maxmin: true,
+        content: sys.rootPath +'/member/agent/editUserInviteCode/editUi.html?mid=' + mid,
+        success:function (layero, index) {
+
+        }
+    });
+}
+
 
 $(function () {
 

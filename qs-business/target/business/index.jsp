@@ -433,7 +433,7 @@
         <div class="footer-inner">
             <!-- #section:basics/footer -->
             <div class="footer-content">
-					<span class="bigger-110"> <span class="blue bolder">版权所有&copy; 深圳市乐玩互娱网络科技有限公司</span>
+					<span class="bigger-110"> <span class="blue bolder">版权所有&copy; 深圳市乐玩互娱网络技术有限公司</span>
 					</span> &nbsp; &nbsp; <span class="action-buttons"> 
 					<!-- <a href="#">
 							<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>

@@ -68,7 +68,7 @@ function detail(mid,date) {
     layer.open({
         type: 2,
         title:title,
-        area: ['70%','70%'],
+        area: ['95%','90%'],
         fixed: false, //不固定
         maxmin: true,
         content: sys.rootPath + '/business/settlementDetailUi.html' +

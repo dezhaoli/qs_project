@@ -89,9 +89,9 @@ $(document).ready(function() {
 
 												<div class="clearfix">
 												<input type="hidden" id="rememberMe" name="rememberMe" value="false"/>
-													<!-- <label class="inline"> <input id="rememberMeCheckBox" type="checkbox"
+													<label class="inline"> <input id="rememberMeCheckBox" type="checkbox"
 														class="ace" /> <span class="lbl"> 记住我</span>
-													</label> -->
+													</label> 
 
 													<button onclick="login();" type="button" 
 														class="width-35 pull-right btn btn-sm btn-primary">

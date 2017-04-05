@@ -111,4 +111,22 @@
     LIMIT 1
   </select>
 
+  <select id="getAgentAndInviteInfo" resultType="map" parameterType="integer" >
+    select
+      a.id, a.mid, a.invitecode, a.inviteurl, a.status,b.realname
+    from memberinvite a
+      LEFT JOIN memberagents b
+      ON a.mid=b.mid
+    where a.mid = #{mid}
+    LIMIT 1
+  </select>
+
+  <!-- 根据mid,inviteCode更新邀请代理商邀请码。//@Author:zun.wei, @Date:2017/4/1 14:07  -->
+  <update id="updateInviteCodeUrlByMidCode" parameterType="com.qs.webside.member.model.MemberInvite">
+    UPDATE memberinvite
+    SET invitecode=#{invitecode,jdbcType=VARCHAR},
+      inviteurl=#{inviteurl,jdbcType=VARCHAR}
+    WHERE mid=#{mid,jdbcType=INTEGER} LIMIT 1
+  </update>
+
 </mapper>

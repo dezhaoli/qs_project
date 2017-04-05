@@ -1,0 +1,32 @@
+package com.qs.webside.pay.controller;
+
+import com.qs.webside.util.PayUtil;
+
+import weixin.popular.api.PayMchAPI;
+import weixin.popular.bean.paymch.Transfers;
+
+public class Test {
+
+	public static void main(String[] args) {
+        
+		String key="";
+		Transfers transfers=new Transfers();
+		transfers.setMch_appid("");
+		transfers.setMchid("");
+		transfers.setNonce_str(PayUtil.getNonceStr());
+		//transfers.setSign("");
+		transfers.setPartner_trade_no(PayUtil.getTransferNo());
+		transfers.setOpenid("");
+		transfers.setCheck_name("NO_CHECK");
+		transfers.setRe_user_name("安迪"); //可选
+		//transfers.setAmount("100");
+		transfers.setDesc("转账个人");
+		transfers.setSpbill_create_ip("127.0.0.1");
+		
+		
+		PayMchAPI.mmpaymkttransfersPromotionTransfers(transfers, key);	
+		
+		
+	}
+
+}
