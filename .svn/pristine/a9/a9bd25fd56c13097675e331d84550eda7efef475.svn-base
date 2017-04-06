@@ -41,14 +41,14 @@ import java.util.*;
 
 /**
  * //@Author:zun.wei, @Date:2017/4/5 11:20
- *  麻将控制器
+ *  斗牛控制器
  * Created by zun.wei on 2017/4/5.
  * To change this template use File|Default Setting
  * |Editor|File and Code Templates|Includes|File Header
  */
 @Controller
-@RequestMapping(value = "/majiang/")
-public class MajiangController extends BaseController {
+@RequestMapping(value = "/bull/")
+public class BullController extends BaseController {
 
     @Resource
     private ITaxesDirectlyWeekService taxesDirectlyWeekService;
@@ -96,7 +96,7 @@ public class MajiangController extends BaseController {
             model.addAttribute("jsonDate", json);
             model.addAttribute("lastMonday", BusinessDateUtil.getLastWeekMonday());
             model.addAttribute("lastSunday", BusinessDateUtil.getLastWeekSunday());
-            model.addAttribute("gameType", ConstantUtil.GameTypeConstant.Ma_Jiang);
+            model.addAttribute("gameType", ConstantUtil.GameTypeConstant.Bull);
             return "/WEB-INF/view/web/agent_weekStaInfo_list";
         } catch (Exception e) {
             throw new SystemException(e);
@@ -109,8 +109,8 @@ public class MajiangController extends BaseController {
     @RequestMapping("agentWeekInfoSta.html")
     @ResponseBody
     public Object agentWeekInfoSta(String gridPager, HttpServletResponse response) throws Exception {
-        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Ma_Jiang_Log);
-        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Ma_Jiang_Main);
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Bull_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Bull_Main);
         Map<String, Object> parameters = null;
         // 映射Pager对象
         Pager pager = JSON.parseObject(gridPager, Pager.class);
@@ -124,7 +124,7 @@ public class MajiangController extends BaseController {
         if ("null".equals(date) || StringUtils.isBlank(date)) {
             parameters.put("searchDate", BusinessDateUtil.getLastWeekSunday());
         }
-        parameters.put("dbTable", ConstantUtil.GameTypeConstant.Ma_Jiang + ".memberagents");
+        parameters.put("dbTable", ConstantUtil.GameTypeConstant.Bull + ".memberagents");
         if(pager.getIsExport()){//判断是否是导出操作
             if(pager.getExportAllData()){
                 //3.1、导出全部数据
@@ -155,8 +155,8 @@ public class MajiangController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "confirmPay.html")
     public Object confirmPay(String openid, Date date, Integer mid,HttpServletRequest request) throws WeixinException {
-        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Ma_Jiang_Log);
-        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Ma_Jiang_Main);
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Bull_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Bull_Main);
         TaxesDirectlyWeek tdwRecord=new TaxesDirectlyWeek();
         Map<String, Object> map=new HashMap<String, Object>();
         tdwRecord.setMid(mid);
