@@ -1,18 +1,18 @@
-package com.qs.webside.pay.service;
+package com.qs.webside.pay.service.impl;
 
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.qs.webside.pay.service.IPayLogService;
 import org.springframework.stereotype.Service;
 
-import com.qs.webside.pay.impl.IPayLog;
 import com.qs.webside.pay.mapper.PayLogMapper;
 import com.qs.webside.pay.model.PayLog;
 
 @Service
-public class PayLogServiceImpl implements  IPayLog{
+public class PayLogServiceServiceImpl implements IPayLogService {
  
 	@Resource
 	private PayLogMapper payLogMapper;

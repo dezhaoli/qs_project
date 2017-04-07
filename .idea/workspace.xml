@@ -69,7 +69,7 @@
         <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="456">
-              <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+              <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -269,6 +269,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1763,8 +1765,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -1831,36 +1831,30 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\service\impl\TaxesDirectlyWeekServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\RunfastController.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\MajiangController.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\service\PayLogServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\log\game\TaxesDirectlyWeekMapper.xml</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\pay\PayLogMapper.xml</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\jdbc.properties</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\webside.properties</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\spring\spring-mybatis.xml</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\db\mj.sql</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\pay\pay_log_list.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\web\agent_weekStaInfo_list.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\pay\pay_log_list.js</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\web\agent_weekStaInfo_list.js</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\constant\AppConstants.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-common\src\main\java\com\qs\common\util\DateUtil.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\spring\spring-mvc.xml</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\index.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\login.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\welcome.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\bindPhoneEdit.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_form.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_bindPhone.jsp</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\css\customer\commons.css</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\IndexController.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\UserDataController.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\shiro\MyRealm.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\pom.xml</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\log\game\TaxesDirectlyWeekMapper.xml</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\webside\pay\PayLogMapper.xml</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\pay\pay_log_list.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\web\agent_weekStaInfo_list.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\user\form.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\index\index.js</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\pay\pay_log_list.js</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\index.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\util\ConstantUtil.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\util\MyExportUtils.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\service\ITaxesDirectlyWeekService.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\service\impl\TaxesDirectlyWeekServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\MajiangController.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\BullController.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\RunfastController.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\mapper\TaxesDirectlyWeekMapper.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\controller\PayLogController.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\mapper\PayLogMapper.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\agent\controller\UserDataController.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\index.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\welcome.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_bindPhone.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\css\customer\commons.css</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1868,18 +1862,24 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\BullController.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\util\ConstantUtil.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\util\MyExportUtils.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\util\DataSourceSwitch.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\util\LogDataSources.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\util\MainDataSources.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\doc\06_��Դ�ղ�\��ز�Ʒ\����</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\doc\06_��Դ�ղ�\��ز�Ʒ\����\wg.rar</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\resources\images\phon_login.png</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\sms</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\sms\CallTest.java</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\java\com\qs\webside\sms\UegateSoap.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\resources\mybatis\mapper\log\game\TaxesInviteWeekMapper.xml</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\web\agent_weekStaHistoryInfo_list.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\web\agent_simplePay_list.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\WEB-INF\view\web\agent_weekStaInfoHistoryDetail_list.jsp</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\web\agent_weekStaHistoryInfo_list.js</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\web\agent_simplePay_list.js</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\resources\js\customer\web\agent_weekStaInfoHistoryDetail_list.js</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\model\TaxesInviteWeek.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\service\ITaxesInviteWeekService.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\service\impl\TaxesInviteWeekServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\SimplePayController.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\controller\PayBaseController.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\log\game\mapper\TaxesInviteWeekMapper.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\service\impl</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\service\impl\PayLogServiceServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\service\IPayLogService.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\resources\smsparam.properties</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_updatePwd.jsp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1887,9 +1887,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\pay\majiang</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\pay\bull</PATH>
-          <PATH vcs="svn" revision="981">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\webapp\pay\runfast</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\impl</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\service\PayLogServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="1009">D:\java\qs_project\2017年2月21日213834\pay-web\src\main\java\com\qs\webside\pay\controller\PayController.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -2667,7 +2667,8 @@
       <workItem from="1491301642662" duration="1079000" />
       <workItem from="1491315572044" duration="140000" />
       <workItem from="1491408567072" duration="418000" />
-      <workItem from="1491484506859" duration="155000" />
+      <workItem from="1491484506859" duration="746000" />
+      <workItem from="1491569371987" duration="48000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -2778,7 +2779,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="172231000" />
+    <option name="totallyTimeSpent" value="172870000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2807,7 +2808,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2681624" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27136752" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -3257,7 +3258,7 @@
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
-          <caret line="19" column="17" lean-forward="true" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
+          <caret line="19" column="17" lean-forward="false" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
           <folding />
         </state>
       </provider>

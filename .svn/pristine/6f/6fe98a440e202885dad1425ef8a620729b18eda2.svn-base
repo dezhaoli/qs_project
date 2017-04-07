@@ -1,11 +1,11 @@
-package com.qs.webside.pay.impl;
+package com.qs.webside.pay.service;
 
 import java.util.List;
 import java.util.Map;
 
 import com.qs.webside.pay.model.PayLog;
 
-public interface IPayLog {
+public interface IPayLogService {
 	int deleteByPrimaryKey(Integer id);
 
 	int insert(PayLog record);
