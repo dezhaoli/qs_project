@@ -55,7 +55,7 @@
 
                 <div class="widget-body" style="display: block;">
                     <div class="widget-main padding-6 no-padding-left no-padding-right">
-                        <%--<input id="mid" type="hidden" value="${id}">--%>
+                        <input id="mid" type="hidden" value="${id}">
                         <input id="pageNum" type="hidden" value="${page.pageNum }">
                         <input id="pageSize" type="hidden" value="${page.pageSize }">
                         <input id="orderByColumn" type="hidden" value="${page.orderByColumn }">

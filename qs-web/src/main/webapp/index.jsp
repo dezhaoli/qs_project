@@ -39,7 +39,7 @@
             <!-- #section:basics/navbar.layout.brand -->
             <a href="#" class="navbar-brand">
                 <small>
-                    <%-- <img class="nav-user-photo" src="${ctx }/resources/images/qs.png" height="25px"/> --%>乐玩互娱信息管理系统
+                    <%-- <img class="nav-user-photo" src="${ctx }/resources/images/qs.png" height="25px"/> --%>乐玩游戏管理系统
                 </small>
             </a>
 
@@ -433,7 +433,7 @@
         <div class="footer-inner">
             <!-- #section:basics/footer -->
             <div class="footer-content">
-					<span class="bigger-110"> <span class="blue bolder"> 版权所有&copy; 深圳市乐玩互娱网络技术有限公司</span>
+					<span class="bigger-110"> <span class="blue bolder"> 版权所有&copy; 乐玩游戏网络技术有限公司</span>
 					</span> &nbsp; &nbsp; <span class="action-buttons">
 					</span>
             </div>

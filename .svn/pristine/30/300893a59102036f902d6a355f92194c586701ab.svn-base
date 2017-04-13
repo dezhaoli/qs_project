@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.pay.mapper.PayLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.pay.model.PayLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="add_date" property="addDate" jdbcType="DATE" />
+    <result column="rebatetotal" property="rebatetotal" jdbcType="INTEGER" />
+    <result column="game_type" property="gameType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="extend1" property="extend1" jdbcType="VARCHAR" />
+    <result column="extend2" property="extend2" jdbcType="VARCHAR" />
+    <result column="extend3" property="extend3" jdbcType="VARCHAR" />
+    <result column="c_creator_id" property="cCreatorId" jdbcType="INTEGER" />
+    <result column="c_create_time" property="cCreateTime" jdbcType="TIMESTAMP" />
+    <result column="c_modifier_id" property="cModifierId" jdbcType="INTEGER" />
+    <result column="c_modify_time" property="cModifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, add_date, rebatetotal, game_type, status, ip, extend1, extend2, extend3, 
+    c_creator_id, c_create_time, c_modifier_id, c_modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pay_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert"  useGeneratedKeys="true" keyProperty="id" parameterType="com.qs.webside.pay.model.PayLog" >
+    insert into pay_log (id, mid, add_date, 
+      rebatetotal, game_type, status, 
+      ip, extend1, extend2, 
+      extend3, c_creator_id, c_create_time, 
+      c_modifier_id, c_modify_time)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{addDate,jdbcType=DATE}, 
+      #{rebatetotal,jdbcType=INTEGER}, #{gameType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{ip,jdbcType=VARCHAR}, #{extend1,jdbcType=VARCHAR}, #{extend2,jdbcType=VARCHAR}, 
+      #{extend3,jdbcType=VARCHAR}, #{cCreatorId,jdbcType=INTEGER}, #{cCreateTime,jdbcType=TIMESTAMP}, 
+      #{cModifierId,jdbcType=INTEGER}, #{cModifyTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" useGeneratedKeys="true" keyProperty="id" parameterType="com.qs.webside.pay.model.PayLog" >
+    insert into pay_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="addDate != null" >
+        add_date,
+      </if>
+      <if test="rebatetotal != null" >
+        rebatetotal,
+      </if>
+      <if test="gameType != null" >
+        game_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="extend1 != null" >
+        extend1,
+      </if>
+      <if test="extend2 != null" >
+        extend2,
+      </if>
+      <if test="extend3 != null" >
+        extend3,
+      </if>
+      <if test="cCreatorId != null" >
+        c_creator_id,
+      </if>
+      <if test="cCreateTime != null" >
+        c_create_time,
+      </if>
+      <if test="cModifierId != null" >
+        c_modifier_id,
+      </if>
+      <if test="cModifyTime != null" >
+        c_modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="addDate != null" >
+        #{addDate,jdbcType=DATE},
+      </if>
+      <if test="rebatetotal != null" >
+        #{rebatetotal,jdbcType=INTEGER},
+      </if>
+      <if test="gameType != null" >
+        #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null" >
+        #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null" >
+        #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null" >
+        #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="cCreatorId != null" >
+        #{cCreatorId,jdbcType=INTEGER},
+      </if>
+      <if test="cCreateTime != null" >
+        #{cCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cModifierId != null" >
+        #{cModifierId,jdbcType=INTEGER},
+      </if>
+      <if test="cModifyTime != null" >
+        #{cModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.pay.model.PayLog" >
+    update pay_log
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="addDate != null" >
+        add_date = #{addDate,jdbcType=DATE},
+      </if>
+      <if test="rebatetotal != null" >
+        rebatetotal = #{rebatetotal,jdbcType=INTEGER},
+      </if>
+      <if test="gameType != null" >
+        game_type = #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null" >
+        extend1 = #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null" >
+        extend2 = #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null" >
+        extend3 = #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="cCreatorId != null" >
+        c_creator_id = #{cCreatorId,jdbcType=INTEGER},
+      </if>
+      <if test="cCreateTime != null" >
+        c_create_time = #{cCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cModifierId != null" >
+        c_modifier_id = #{cModifierId,jdbcType=INTEGER},
+      </if>
+      <if test="cModifyTime != null" >
+        c_modify_time = #{cModifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.pay.model.PayLog" >
+    update pay_log
+    set mid = #{mid,jdbcType=INTEGER},
+      add_date = #{addDate,jdbcType=DATE},
+      rebatetotal = #{rebatetotal,jdbcType=INTEGER},
+      game_type = #{gameType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      extend1 = #{extend1,jdbcType=VARCHAR},
+      extend2 = #{extend2,jdbcType=VARCHAR},
+      extend3 = #{extend3,jdbcType=VARCHAR},
+      c_creator_id = #{cCreatorId,jdbcType=INTEGER},
+      c_create_time = #{cCreateTime,jdbcType=TIMESTAMP},
+      c_modifier_id = #{cModifierId,jdbcType=INTEGER},
+      c_modify_time = #{cModifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="findPayLogByCondition" resultMap="BaseResultMap" parameterType="com.qs.webside.pay.model.PayLog" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_log
+    where 
+      mid = #{mid,jdbcType=INTEGER} and 
+      add_date = #{addDate,jdbcType=DATE} and
+      game_type = #{gameType,jdbcType=INTEGER} and
+      status =1 and c_modifier_id=2
+      limit 0,1
+  </select>
+  
+  <select id="selectPayLogAll" resultMap="BaseResultMap" parameterType="map" >
+	select
+	<include refid="Base_Column_List" />
+	from pay_log 
+	<where>
+	<if test="id != ''  and id != null ">
+		and id = #{id,jdbcType=INTEGER}
+	</if>
+	<if test="mid != '' and mid != null">
+		and mid = #{mid,jdbcType=INTEGER}
+	</if>
+	<if test="startTime != '' and startTime != null">
+		and add_date &gt;= #{startTime,jdbcType=DATE}
+	</if>
+	<if test="endTime != '' and endTime != null">
+		and add_date &lt;= #{endTime,jdbcType=DATE}
+	</if>
+	<if test="rebatetotal != ''  and rebatetotal != null">
+		and rebatetotal = #{rebatetotal,jdbcType=INTEGER}
+	</if>
+	<if test="gameType != '' and gameType != null ">
+		and game_type = #{gameType,jdbcType=INTEGER}
+	</if>
+	<if test="status != '' and status !=null ">
+		and status = #{status,jdbcType=INTEGER}
+	</if>
+	</where>
+	order by id desc
+</select>
+</mapper>

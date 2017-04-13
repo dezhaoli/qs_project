@@ -114,6 +114,10 @@ $(function() {
         grid.sortParameter.sortType = $("#orderByType").val();
     }
 
+    grid.parameters = new Object();
+    grid.parameters['mid'] = $("#mid").val();
+    $('#midSearch').val($("#mid").val());
+
     grid.load();
     $("#btnSearch").click(customSearch);
 

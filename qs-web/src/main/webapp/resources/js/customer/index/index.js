@@ -309,7 +309,7 @@ var webside = {
                     rules : {
                         accountName : {
                             required : true,
-                            email : true,
+                           // email : true,
                             remote : {//更新时不验证
                                 param : {
                                     url : sys.rootPath + '/user/withoutAuth/validateAccountName.html',
@@ -339,7 +339,7 @@ var webside = {
                     messages : {
                         accountName : {
                             required : "请填写邮箱",
-                            email : "请填写正确的邮箱",
+                            //email : "请填写正确的邮箱",
                             remote : "该邮箱已注册,请使用其他邮箱"
                         },
                         password : {

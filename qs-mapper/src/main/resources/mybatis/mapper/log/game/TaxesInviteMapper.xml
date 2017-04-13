@@ -165,4 +165,9 @@
 			GROUP BY a.date
 		</if>
 	</select>
+	<!-- 根据商务id统计个人充值总数与团队人数 -->
+	<select id="getBusinessCountPayAndTotal" parameterType="map" resultType="map">
+    SELECT SUM(a.paytotal) AS totalpay,SUM(a.invitetotal) AS totalinvite FROM taxes_invite a,
+					  (SELECT mid FROM  ${dbName} WHERE belongid=#{id}) b WHERE a.mid=b.mid
+  </select>
 </mapper>

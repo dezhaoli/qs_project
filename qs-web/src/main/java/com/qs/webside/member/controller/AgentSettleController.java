@@ -1,0 +1,297 @@
+package com.qs.webside.member.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.foxinmy.weixin4j.exception.WeixinException;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.StringUtil;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.DateUtils;
+import com.qs.common.util.MyExportUtils;
+import com.qs.common.util.PageUtil;
+import com.qs.webside.agent.service.IMemberAgentService;
+import com.qs.webside.agent.service.ITaxesInviteWeekMapperService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.*;
+
+/**
+ * //@Author:zun.wei, @Date:2017/4/5 11:20
+ *  代理商返利审核
+ * Created by zun.wei on 2017/4/5.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/settle/")
+public class AgentSettleController extends BaseController {
+
+	Logger log = Logger.getLogger(AgentSettleController.class);
+
+
+    @Resource
+    private IMemberAgentService memberAgentService;
+
+    @Resource
+    private ITaxesInviteWeekMapperService taxesInviteWeekMapperService;
+
+    @Value("${game.gameCode}")
+    private String gameType;
+    
+
+   
+    /**
+     * 代理商周信息统计入口
+     */
+    @RequestMapping(value = "agentWeekInfoStaUi.html", method = RequestMethod.GET)
+    public String agentWeekInfoStaUi(Model model, HttpServletRequest request) {
+        try {
+            Map<String, List<String>> date = DateUtils.getAgentInfoDateTime();
+            String json = JSON.toJSONString(date);
+            List<String> keys = new ArrayList<String>();
+            Set<String> keySet = date.keySet();
+            Iterator<String> ki = keySet.iterator();
+            while (ki.hasNext()) {
+                String key = ki.next();
+                keys.add(key.substring(1));
+            }
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("years", keys);
+            model.addAttribute("jsonDate", json);
+            model.addAttribute("lastMonday", DateUtils.getLastWeekMonday());
+            model.addAttribute("lastSunday", DateUtils.getLastWeekSunday());
+            model.addAttribute("sumRebateTotal",
+                    taxesInviteWeekMapperService.getSumRebateTotalByDate(DateUtils.getLastWeekSunday()));
+            //model.addAttribute("gameType", ConstantUtil.GameTypeConstant.Run_Fast);
+            return "/WEB-INF/view/web/member/agent_weekStaInfo_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 代理商周信息统计
+     */
+    @RequestMapping("agentWeekInfoSta.html")
+    @ResponseBody
+    public Object agentWeekInfoSta(String gridPager, HttpServletResponse response) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            //parameters.put("mid", null);
+            return null;//如果没有mid传过来则不执行查询。
+        }
+        String date = parameters.get("searchDate") + "";
+        if ("null".equals(date) || StringUtils.isBlank(date)) {
+            parameters.put("searchDate", DateUtils.getLastWeekSunday());
+        }
+        parameters.put("dbTable", gameType + ".memberagents");
+        if(pager.getIsExport()){//判断是否是导出操作
+            if(pager.getExportAllData()){
+                //3.1、导出全部数据
+                List<Map<String,Object>> list = taxesInviteWeekMapperService.getWeekPayCheckInfoByDate(parameters);
+                MyExportUtils.exportAll(response, pager, list);
+                return null;
+            }else{
+                //3.2、导出当前页数据
+                MyExportUtils.export(response, pager);
+                return null;
+            }
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<Map<String,Object>> list = taxesInviteWeekMapperService.getWeekPayCheckInfoByDate(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+    /**
+     * 一键审核
+     * @param searchDate
+     * @param mid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "oneKeyCheck.html")
+    public Object oneKeyCheck(String searchDate,Integer mid){
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("searchDate", searchDate);
+        parameters.put("mid", mid);
+        Map<String, Object> map = new HashMap<>();
+        int result = taxesInviteWeekMapperService.updateWeekPayCheckInfoByDate(parameters);
+        if (result > 0) {
+            map.put(CommonContants.SUCCESS, Boolean.TRUE);
+            map.put(CommonContants.MESSAGE, "一键审核成功!");
+            return map;
+        }
+        map.put(CommonContants.SUCCESS, Boolean.FALSE);
+        map.put(CommonContants.MESSAGE, "没有待审核用户，一键审核失败!");
+        return map;
+    }
+
+
+    /**
+     * 用户单独支付审核
+     * @param openid
+     * @param date
+     * @param mid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "confirmCheck.html")
+    public Object confirmCheck(String openid, String date, Integer mid){
+        Map<String, Object> map = new HashMap<>();
+        if (StringUtils.isBlank(openid) || "undefined".equals(openid)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.MESSAGE, "openid为空，审核失败!");
+            return map;
+        }
+        if (StringUtils.isBlank(date) || "undefined".equals(date)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.MESSAGE, "审核日期为空，审核失败!");
+            return map;
+        }
+        if (StringUtils.isBlank(mid + "") || "undefined".equals(mid + "")) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.MESSAGE, "mid为空，审核失败!");
+            return map;
+        }
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("searchDate", date);
+        parameters.put("mid", mid);
+        int updateResult = taxesInviteWeekMapperService.updateWeekPayCheckInfoByMidDate(parameters);
+        if (updateResult > 0) {
+            map.put(CommonContants.SUCCESS, Boolean.TRUE);
+            map.put(CommonContants.MESSAGE, "审核成功!");
+            return map;
+        }
+        map.put(CommonContants.SUCCESS, Boolean.FALSE);
+        map.put(CommonContants.MESSAGE, "没有待审核的用户，审核失败!");
+        return map;
+    }
+
+    /**
+     *  代理商历史结算审核列表入口
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "agentWeekInfoStaHistoryUi.html", method = RequestMethod.GET)
+    public String agentWeekInfoStaHistoryUi(Model model, HttpServletRequest request) {
+        try {
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            return "/WEB-INF/view/web/member/agent_weekStaHistoryInfo_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     *  代理商历史结算审核列表
+     * @param gridPager
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("agentWeekInfoStaHistory.html")
+    @ResponseBody
+    public Object agentWeekInfoStaHistory(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            //parameters.put("mid", null);
+            return null;//如果没有mid传过来则不执行查询。
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        //List<Map<String,Object>> list = taxesInviteWeekService.getHistoryAgentsRebateList(parameters);
+        List<Map<String,Object>> list = null;
+        return getReturnPage(pager, page, list);
+    }
+
+
+    /**
+     *  代理商结算审核明细入口
+     * @param model
+     * @param date
+     * @param stadate
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "agentWeekInfoStaHistoryDetailUi.html", method = RequestMethod.GET)
+    public String agentWeekInfoStaHistoryDetailUi(Model model,String date,String stadate, HttpServletRequest request) {
+        try {
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("date", date);
+            model.addAttribute("stadate", stadate);
+            return "/WEB-INF/view/web/member/agent_weekStaInfoHistoryDetail_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     *  代理商结算审核明细
+     * @param gridPager
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("agentWeekInfoStaHistoryDetail.html")
+    @ResponseBody
+    public Object agentWeekInfoStaHistoryDetail(String gridPager,HttpServletResponse response) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            //parameters.put("mid", null);
+            return null;//如果没有mid传过来则不执行查询。
+        }
+        String date = parameters.get("searchDate") + "";
+        if ("null".equals(date) || StringUtils.isBlank(date)) {
+            parameters.put("searchDate", DateUtils.getLastWeekSunday());
+        }
+        parameters.put("dbTable", gameType + ".memberagents");
+        if(pager.getIsExport()){//判断是否是导出操作
+            if(pager.getExportAllData()){
+                //3.1、导出全部数据
+                //List<Map<String,Object>> list = taxesDirectlyWeekService.getWeekPayHistoryDetailInfoByDate(parameters);
+                List<Map<String,Object>> list = null;
+                MyExportUtils.exportAll(response, pager, list);
+                return null;
+            }else{
+                //3.2、导出当前页数据
+                MyExportUtils.export(response, pager);
+                return null;
+            }
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        //List<Map<String,Object>> list = taxesDirectlyWeekService.getWeekPayHistoryDetailInfoByDate(parameters);
+        List<Map<String,Object>> list = null;
+        return getReturnPage(pager, page, list);
+    }
+
+}

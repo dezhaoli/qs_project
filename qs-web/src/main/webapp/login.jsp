@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>乐玩互娱信息管理系统-登录</title>
+<title>乐玩游戏管理系统-登录</title>
 <%@include file="common/common-login.jsp" %>
 <link rel="stylesheet" href="${ctx }/resources/js/backgroundSlider/backgroundSlider.css" />
 <script type="text/javascript" src="${ctx }/resources/js/backgroundSlider/backgroundSlider.min.js"></script>

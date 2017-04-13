@@ -147,4 +147,9 @@
 	WHERE a.aid=b.parentid ) e where e.parentid=d.aid
    </if>
   </select>
+	<!--   通过商务查询下面代理商的地势 -->
+    <select id="selectBusGetAgentArea" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	SELECT b.aid,b.aname FROM memberagents a,(SELECT aid,aname FROM area) b
+	WHERE a.belongid=#{id} and a.areaid=b.aid GROUP BY a.areaid
+  </select>
 </mapper>

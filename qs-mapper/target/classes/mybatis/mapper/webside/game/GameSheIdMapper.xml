@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.game.mapper.GameSheIdMapper">
+	<resultMap type="com.qs.webside.game.model.GameShield" id="BaseResultMap">
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="gameshield" property="gameShieId" jdbcType="VARCHAR"/>
+		<result column="game_type" property="gameType" jdbcType="VARCHAR"/>
+		<result column="name" property="name" jdbcType="VARCHAR"/>
+		<result column="type" property="type" jdbcType="VARCHAR"/>
+		<result column="extend1" property="extend1" jdbcType="VARCHAR"/>
+	</resultMap>
+<sql id="Base_Column_List">
+	id, gameshield, game_type, name, type, extend1
+</sql>
+
+<sql id="Example_Where_Clause">
+<where>
+	<if test="id != null  ">
+		 and id=#{id}
+	</if>
+	<if test="gameshield != null  and gameshield != '' ">
+		 and gameshield=#{gameshield}
+	</if>
+	<if test="gameType != null  ">
+		 and game_type=#{gameType}
+	</if>
+	<if test="name != null  and name != '' ">
+		 and name=#{name}
+	</if>
+	<if test="type != null  and type != '' ">
+		 and ype=#{type}
+	</if>
+	<if test="extend1 != null  and extend1 != '' ">
+		 and extend1=#{extend1}
+	</if>
+
+</where>
+</sql>
+
+<select id="queryListByPage" resultMap="BaseResultMap">
+	select <include refid="Base_Column_List"/> from gameshield <include refid="Example_Where_Clause"/>
+	order by id desc
+</select>
+
+<insert id="insertSelective" parameterType="com.qs.webside.game.model.GameShield">
+	insert into gameshield
+	<trim prefix="(" suffix=")" suffixOverrides=","> 
+		<if test="id != null">
+			id,
+		</if>
+		<if test="gameShieId != null ">
+			gameshield,
+		</if>
+		<if test="gameType != null">
+			game_type,
+		</if>
+		<if test="name != null">
+			name,
+		</if>
+		<if test="type != null">
+			type
+		</if>
+	</trim>
+	<trim prefix="values (" suffix=")" suffixOverrides=",">
+		<if test="id != null">
+			#{id , jdbcType=INTEGER},
+		</if>
+		<if test="gameShieId != null ">
+			#{gameShieId , jdbcType= VARCHAR},
+		</if>
+		<if test="gameType != null">
+			#{gameType , jdbcType= VARCHAR},
+		</if>
+		<if test="name != null">
+			#{name,jdbcType=VARCHAR},
+		</if>
+		<if test="type != null">
+			#{type,jdbcType=VARCHAR}
+		</if>
+	</trim>
+</insert>
+
+<update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.game.model.GameShield">
+	update gameshield
+	<set>
+		<if test="gameShieId != null  and gameShieId != '' ">
+			gameshield=#{gameShieId},
+		</if>
+		<if test="gameType != null  ">
+			game_type=#{gameType},
+		</if>
+		<if test="name != null  and name != '' ">
+			name=#{name},
+		</if>
+		<if test="type != null  and type != '' ">
+			type=#{type},
+		</if>
+	</set>
+	where id = #{id}
+</update>
+
+<delete id="deleteByPrimaryKey" parameterType="Integer">
+	delete 	 from gameshield where id = #{id}
+</delete>
+
+<select id="selectByPrimaryKey" resultMap="BaseResultMap">
+	select <include refid="Base_Column_List"/> from gameshield where id =#{id}
+</select>
+</mapper>

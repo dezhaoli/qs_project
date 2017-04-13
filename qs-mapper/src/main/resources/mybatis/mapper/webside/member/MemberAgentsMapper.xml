@@ -573,4 +573,19 @@
 		parameterType="java.lang.Integer">
 		select max(code) code from memberagents where parent_id=#{mid}
 	</select>
+<!-- 	通过商务查询代理商下的充值与团队人数，根据实际与mid -->
+	<select id="getBusTOAgentCountInfo"  resultType="java.util.Map" parameterType="map">
+	SELECT SUM(x.paytotal) AS totalpay,SUM(x.invitetotal) AS
+	totalinvite,x.aname FROM
+	(SELECT c.paytotal,c.invitetotal,d.areaid,d.aname FROM
+	sc_majiang_log.taxes_invite c,
+	(SELECT a.mid,a.areaid,b.aname FROM memberagents a,area b WHERE a.areaid=b.aid
+	AND FIND_IN_SET(a.mid, getChildrenAgentsByBid(1))
+	<if test="city !=null and city != '' ">
+		AND aid=#{city}
+	</if>
+	) d
+	WHERE c.mid IN(d.mid) AND date&gt;=#{sDate} AND date&lt;=#{eDate})
+	x GROUP BY x.areaid
+	</select>
 </mapper>

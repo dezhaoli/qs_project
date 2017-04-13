@@ -128,5 +128,10 @@
     WHERE b.mid=50004
     LIMIT 0,1
   </select>-->
-
+ <select id="selectByPhoneInfo" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_agents
+    where login_phone = #{phone,jdbcType=VARCHAR} LIMIT 0,1
+  </select>
 </mapper>

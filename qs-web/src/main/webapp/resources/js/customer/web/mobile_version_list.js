@@ -54,7 +54,14 @@ var dtGridColumns = [
     title: '最新的下载地址',
     type: 'string',
     columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header'
+    headerClass: 'dlshouwen-grid-header',
+    //width: '10%',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return '<p style="white-space:nowrap; width: 200px; ' +
+            'text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;"' +
+            ' onmouseenter="urlShow(this,\''+value+'\')" onmouseout="urlHide(this,\''+value+'\')">' +
+            value +'</p>'
+    }
 },{
     id: 'onlineversion',
     title: '上线版本',
@@ -66,13 +73,25 @@ var dtGridColumns = [
     title: '测试设备号列表',
     type: 'string',
     columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header'
+    headerClass: 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return '<p style="white-space:nowrap; width: 200px; ' +
+            'text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;"' +
+            ' onmouseenter="urlShow(this,\''+value+'\')" onmouseout="urlHide(this,\''+value+'\')">' +
+            value +'</p>'
+    }
 }, {
     id: 'urlTest',
     title: '测试url',
     type: 'string',
     columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header'
+    headerClass: 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return '<p style="white-space:nowrap; width: 200px; ' +
+            'text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;"' +
+            ' onmouseenter="urlShow(this,\''+value+'\')" onmouseout="urlHide(this,\''+value+'\')">' +
+            value +'</p>'
+    }
 },{
     id: 'lasttime',
     title: '上次更新时间',
@@ -88,7 +107,13 @@ var dtGridColumns = [
     title: '强更url',
     type: 'string',
     columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header'
+    headerClass: 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return '<p style="white-space:nowrap; width: 200px; ' +
+            'text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;"' +
+            ' onmouseenter="urlShow(this,\''+value+'\')" onmouseout="urlHide(this,\''+value+'\')">' +
+            value +'</p>'
+    }
 },{
     id: 'gameType',
     title: '游戏类型',
@@ -117,6 +142,16 @@ var dtGridColumns = [
         return '<a href="#" style="cursor: pointer;" onclick="edit(\'' + record.id + '\')">编辑</a>';
     }
 }];
+
+function urlShow(biaoqian,value) {
+    //$(biaoqian).width('100%');
+    //alert(value);
+}
+
+function urlHide(biaoqian,value) {
+    //$(biaoqian).width('200px');
+    //alert(value);
+}
 
 function edit(id) {
     webside.common.loadPage('/game/version/editUI.html?id=' + id)

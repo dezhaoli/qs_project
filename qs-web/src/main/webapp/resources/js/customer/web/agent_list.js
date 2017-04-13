@@ -23,13 +23,13 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
-    id : 'cname',
+    id : 'totalinvite',
     title : '招募人数',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
-    id : 'cname',
+    id : 'totalpay',
     title : '充值总额',
     type : 'string',
     columnClass : 'text-center',
@@ -39,7 +39,11 @@ var dtGridColumns = [{
     title : '代理商覆盖区域',
     type : 'string',
     columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header'
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+        return "";
+        /*'<button class="btn btn-primary" onclick="showAreaDetail(\'' + record.id + '\')">查看详情</button>&nbsp;';*/
+    }
 },{
     id : 'id',
     title : '操作',
@@ -146,4 +150,14 @@ function customSearch() {
     grid.refresh(true);
 }
 
-
+//详情信息
+function showAreaDetail(id){
+	 layer.open({
+	        type: 2,
+	        title:'代理商覆盖区域业绩',
+	        area: ['80%','80%'],
+	        fixed: false, //不固定
+	        maxmin: true,
+	        content: sys.rootPath + '/agent/business/detailInfo.html?id='+id
+	    });
+}
