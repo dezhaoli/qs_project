@@ -1,4 +1,0 @@
-webside.datasource.driverClassName=com.mysql.jdbc.Driver
-webside.url=jdbc:mysql://192.168.1.111:3306/sc_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
-webside.username=dev
-webside.password=dev

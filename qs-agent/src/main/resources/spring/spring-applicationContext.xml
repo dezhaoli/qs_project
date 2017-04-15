@@ -67,6 +67,5 @@
 <!-- 	<import resource="spring-flyway.xml" /> -->
 	<!-- <import resource="spring-quartz.xml" /> -->
 	<import resource="spring-ip2region.xml"/>
-	<import resource="spring-job.xml"/>
 	
 </beans>    

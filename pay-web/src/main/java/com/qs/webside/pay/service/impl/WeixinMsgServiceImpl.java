@@ -1,0 +1,83 @@
+package com.qs.webside.pay.service.impl;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+import org.apache.shiro.cache.CacheException;
+import org.apache.shiro.util.CollectionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisOperations;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Service;
+import com.qs.webside.pay.model.WeixinMsg;
+import com.qs.webside.pay.service.IWeinxinMsgService;
+
+
+
+
+/** 
+ * @ClassName: UserServiceImpl 
+ * @描述: 微信错误信息
+ * @author moys
+ * @date 2015年7月1日 下午14:11:56
+ */
+@Service
+public class WeixinMsgServiceImpl implements IWeinxinMsgService
+{
+ 
+	@Autowired
+	private RedisTemplate<String,WeixinMsg> redisTemplate;
+	
+	@Override
+	public void save(WeixinMsg record) {
+		String id="weixinPay:"+record.getGameType()+"_"+record.getMid();
+		record.setCreateTime(new Date());
+		record.setId(id);
+		ValueOperations<String, WeixinMsg> valueOper=redisTemplate.opsForValue();
+		valueOper.set(record.getId(), record);		
+		
+	}
+
+	@Override
+	public WeixinMsg findById(String id) {
+		ValueOperations<String, WeixinMsg> valueOper = redisTemplate.opsForValue();
+		return valueOper.get(id);
+	}
+
+	@Override
+	public void delete(String id) {
+		ValueOperations<String, WeixinMsg> valueOper =redisTemplate.opsForValue();
+		RedisOperations<String,WeixinMsg>  redisOperations  = valueOper.getOperations();
+		redisOperations.delete(id);
+		
+	}   
+	@Override
+    public List<WeixinMsg> getCacheList(String key){
+		ValueOperations<String, WeixinMsg> valueOper =redisTemplate.opsForValue();
+        List<WeixinMsg> resultList = new ArrayList<WeixinMsg>();
+    	try {
+            Set<String> userkeys = redisTemplate.keys(key);
+           
+            if (CollectionUtils.isEmpty(userkeys)) {
+            	return null;
+            }else{
+            	for(String uKey:userkeys){
+            		WeixinMsg register=(WeixinMsg)valueOper.get(uKey);
+            		resultList.add(register);
+            	}
+            
+            }
+        } catch (Throwable t) {
+            throw new CacheException(t);
+        }
+    	//Collections.sort(resultList, new MySort("Date", "createTime"));
+    	
+        return resultList;
+    }
+	
+
+
+	
+}
