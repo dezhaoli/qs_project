@@ -55,7 +55,7 @@ var dtGridOption = {
     tools : 'refresh',
     exportFileName : '房间配置列表',
     pageSize : pageSize,
-    pageSizeLimit : [10, 20, 30]
+    pageSizeLimit : [100, 150, 200]
 };
 
 var grid = $.fn.dlshouwen.grid.init(dtGridOption);

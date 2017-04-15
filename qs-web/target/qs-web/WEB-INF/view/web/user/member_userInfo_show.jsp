@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
@@ -24,11 +25,14 @@
             onclick="goldOrigin(${id})" >
         <i class="fa fa-user-secret"></i>&nbsp;金币来源
     </button>
+	<!--     代理商修改邀请码 -->
+    <shiro:hasPermission name="agent:inviteCode"> 
     <c:if test="${!empty memberFides.memberAgents}">
         <button type="button" class="btn btn-primary btn-sm btn-danger" onclick="editUserInviteCode(${id})">
             <i class="fa fa-user-secret"></i>&nbsp;修改邀请码
         </button>
     </c:if>
+    </shiro:hasPermission>
 </div>
 
 <%--<div class="controls controls-row">

@@ -12,7 +12,7 @@
         <div class="col-sm-4">
             <div class="well" style="padding: 5px;">
                 <h4 class="blue smaller lighter" style="font-size:18px;margin-bottom: 2px;">
-                    上周结算: ${lastMonday} ~ ${lastSunday}
+                    上周结算: ${lastMonday} ~ ${lastSunday}&nbsp;&nbsp;&nbsp;&nbsp;本周返现总额:&nbsp;${sumRebateTotal}
                 </h4>
             </div>
         </div>
@@ -72,7 +72,7 @@
         <div class="col-sm-1">
             <span class="input-group-btn">
                 <button id="oneKeyPay" class="btn btn-danger btn-sm" type="button">
-                    <i class="fa fa-anchor"></i>一键支付
+                    <i class="fa fa-anchor"></i>一键审核
                 </button>
             </span>
         </div>

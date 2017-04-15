@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="business" />
         <module name="qs-agent" />
-        <module name="qs-app" />
         <module name="qs-common" />
         <module name="qs-mapper" />
         <module name="qs-model" />

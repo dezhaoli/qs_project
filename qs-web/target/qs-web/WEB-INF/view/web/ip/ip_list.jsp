@@ -1,19 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-	<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/customer/web/ip_list.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/js/customer/web/ip_list.js"></script>
+
 <div class="page-header">
 	  <button id="btnAdd" type="button" onclick="webside.common.addModel('/game/ip/addUI.html')" class="btn btn-primary btn-sm">
 	  	<i class="fa fa-user-plus"></i>&nbsp;添加
 	 </button>
-
+	<button id="showHistory" type="button" onclick="showHistory()" class="btn btn-success btn-sm">
+	<i class="fa fa-user-md"></i>&nbsp;查看日志
+	</button>
+	<button id="showHistoryFixRecord" type="button" onclick="showHistoryFixRecord()" class="btn btn-danger btn-sm">
+		<i class="fa fa-user-md"></i>&nbsp;查看历史修改记录
+	</button>
 </div>
+
 <div class="input-group">
      <input id="searchKey" type="text" class="input form-control" placeholder="ip列表...">
      <span class="input-group-btn">
          <button id="btnSearch" class="btn btn-primary btn-sm" type="button"> <i class="fa fa-search"></i> 搜索</button>
      </span>
 </div>
+
 <div class="row" style="margin-top:5px;">
 	<div class="col-xs-12 widget-container-col ui-sortable"
 		style="min-height: 127px;">
@@ -46,4 +56,28 @@
 	</div>
 </div>
 
+<script>
 
+    function showHistory() {
+        layer.open({
+            type: 2,
+            title:"查看日志",
+            area: ['95%','90%'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: sys.rootPath + '/ipAddressUserLog/listUi.html'
+        });
+    }
+
+    function showHistoryFixRecord() {
+        layer.open({
+            type: 2,
+            title:"查看历史修改记录",
+            area: ['95%','90%'],
+            fixed: false, //不固定
+            maxmin: true,
+            content: sys.rootPath + '/ipAddressLog/listUi.html'
+        });
+    }
+
+</script>

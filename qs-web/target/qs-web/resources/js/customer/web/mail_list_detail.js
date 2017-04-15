@@ -51,7 +51,7 @@ var dtGridColumns = [{
     columnClass: 'text-center',
     headerClass: 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
-        if (value != null) {
+        if (value != null && value != '') {
             var golds = JSON.parse(value);
             var arr = golds.gold;
             var result = "";
@@ -60,6 +60,7 @@ var dtGridColumns = [{
             }
             return result.substring(0,result.length - 1);
         }
+        return '无';
     }
 }];
 

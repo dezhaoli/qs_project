@@ -4,13 +4,14 @@
   <resultMap id="BaseResultMap" type="com.qs.webside.game.model.IpaddressUseLog" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="mid" property="mid" jdbcType="INTEGER" />
-    <result column="gametype" property="gametype" jdbcType="TINYINT" />
-    <result column="belonglevel" property="belonglevel" jdbcType="VARCHAR" />
     <result column="ipstring" property="ipstring" jdbcType="VARCHAR" />
-    <result column="usetime" property="usetime" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="login_ip" property="loginIp" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="usetime" property="usetime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, mid, gametype, belonglevel, ipstring, usetime
+    id, mid, ipstring, name, login_ip, type, usetime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -23,12 +24,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.qs.webside.game.model.IpaddressUseLog" >
-    insert into ipaddress_use_log (id, mid, gametype, 
-      belonglevel, ipstring, usetime
-      )
-    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{gametype,jdbcType=TINYINT}, 
-      #{belonglevel,jdbcType=VARCHAR}, #{ipstring,jdbcType=VARCHAR}, #{usetime,jdbcType=INTEGER}
-      )
+    insert into ipaddress_use_log (id, mid, ipstring, 
+      name, login_ip, type, 
+      usetime)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{ipstring,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{loginIp,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{usetime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.qs.webside.game.model.IpaddressUseLog" >
     insert into ipaddress_use_log
@@ -39,14 +40,17 @@
       <if test="mid != null" >
         mid,
       </if>
-      <if test="gametype != null" >
-        gametype,
-      </if>
-      <if test="belonglevel != null" >
-        belonglevel,
-      </if>
       <if test="ipstring != null" >
         ipstring,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="loginIp != null" >
+        login_ip,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="usetime != null" >
         usetime,
@@ -59,17 +63,20 @@
       <if test="mid != null" >
         #{mid,jdbcType=INTEGER},
       </if>
-      <if test="gametype != null" >
-        #{gametype,jdbcType=TINYINT},
-      </if>
-      <if test="belonglevel != null" >
-        #{belonglevel,jdbcType=VARCHAR},
-      </if>
       <if test="ipstring != null" >
         #{ipstring,jdbcType=VARCHAR},
       </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
       <if test="usetime != null" >
-        #{usetime,jdbcType=INTEGER},
+        #{usetime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -79,17 +86,20 @@
       <if test="mid != null" >
         mid = #{mid,jdbcType=INTEGER},
       </if>
-      <if test="gametype != null" >
-        gametype = #{gametype,jdbcType=TINYINT},
-      </if>
-      <if test="belonglevel != null" >
-        belonglevel = #{belonglevel,jdbcType=VARCHAR},
-      </if>
       <if test="ipstring != null" >
         ipstring = #{ipstring,jdbcType=VARCHAR},
       </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="loginIp != null" >
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
       <if test="usetime != null" >
-        usetime = #{usetime,jdbcType=INTEGER},
+        usetime = #{usetime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -97,10 +107,27 @@
   <update id="updateByPrimaryKey" parameterType="com.qs.webside.game.model.IpaddressUseLog" >
     update ipaddress_use_log
     set mid = #{mid,jdbcType=INTEGER},
-      gametype = #{gametype,jdbcType=TINYINT},
-      belonglevel = #{belonglevel,jdbcType=VARCHAR},
       ipstring = #{ipstring,jdbcType=VARCHAR},
-      usetime = #{usetime,jdbcType=INTEGER}
+      name = #{name,jdbcType=VARCHAR},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      usetime = #{usetime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from ipaddress_use_log
+    <where>
+      <if test="mid != null and mid != ''">
+        mid = #{mid}
+      </if>
+      <if test="beginTime != null and beginTime != ''">
+        and usetime &gt; #{beginTime}
+      </if>
+      <if test="endTime != null and endTime != ''">
+        and usetime &lt; #{endTime}
+      </if>
+    </where>
+    order by id desc
+  </select>
 </mapper>

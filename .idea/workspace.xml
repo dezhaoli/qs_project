@@ -7,7 +7,16 @@
   </component>
   <component name="ChangeListManager">
     <list readonly="true" id="655e2668-4e01-49ef-a490-e3b00fae49fc" name="Default" comment="" />
-    <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug" />
+    <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/pom.xml" afterPath="$PROJECT_DIR$/qs-web/pom.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
+    </list>
     <list id="08238244-5bd2-4c65-bcfd-bb652b521bca" name="Failed commit: Failed commit: Default" comment="修复已知Bug" />
     <ignored path="$PROJECT_DIR$/qs-app/target/" />
     <ignored path="$PROJECT_DIR$/qs-common/target/" />
@@ -50,7 +59,41 @@
     <favorites_list name="2017年2月21日213834" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="336">
+              <caret line="86" column="43" lean-forward="true" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="redis.properties" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="5" column="9" lean-forward="false" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -63,26 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sc_majiang</find>
-      <find>Base_Column_List</find>
-      <find>re</find>
-      <find>respron</find>
-      <find>respro</find>
-      <find>respr</find>
-      <find>resp</find>
-      <find>res</find>
-      <find>responseexe</find>
-      <find>responseex</find>
-      <find>responsee</find>
-      <find>response</find>
-      <find>respons</find>
-      <find>exectute</find>
-      <find>exectut</find>
-      <find>exete</find>
-      <find>exetu</find>
-      <find>exet</find>
-      <find>exectue</find>
-      <find>exectu</find>
       <find>exect</find>
       <find>e</find>
       <find>ex</find>
@@ -93,6 +116,26 @@
       <find>execute</find>
       <find>.execute</find>
       <find>handleInitResponse</find>
+      <find>&lt;</find>
+      <find>&lt;s</find>
+      <find>&lt;serv</find>
+      <find>&lt;servl</find>
+      <find>&lt;servlect</find>
+      <find>&lt;servlec</find>
+      <find>&lt;servlet</find>
+      <find>&lt;servle</find>
+      <find>s</find>
+      <find>se</find>
+      <find>sev</find>
+      <find>ser</find>
+      <find>serv</find>
+      <find>servle</find>
+      <find>servlet</find>
+      <find>servlet-</find>
+      <find>servlet-a</find>
+      <find>servlet-ap</find>
+      <find>javax.servlet</find>
+      <find>servlet-api</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -106,7 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/qs-psyllidae/src/main/webapp/resources/js/customer/web/agent_list.js" />
         <option value="$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/webside/member/MemberBusinessMapper.xml" />
         <option value="$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/webside/member/mapper/MemberFidesMapper.java" />
         <option value="$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/sys/service/member/service/IMemberFidesService.java" />
@@ -145,7 +187,6 @@
         <option value="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/qs-business/src/main/webapp/index.jsp" />
         <option value="$PROJECT_DIR$/qs-business/pom.xml" />
-        <option value="$PROJECT_DIR$/qs-web/pom.xml" />
         <option value="$PROJECT_DIR$/qs-business/src/main/webapp/WEB-INF/view/web/business/agent_settlement_list.jsp" />
         <option value="$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/business/controller/AgentTeamCharStaController.java" />
         <option value="$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/log/agent/mapper/TaxesInviteWeekMapper.java" />
@@ -157,6 +198,8 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/d3d1d377-dae5-45ab-a348-26e21744e1b0/console.sql" />
         <option value="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
         <option value="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
+        <option value="$PROJECT_DIR$/qs-web/pom.xml" />
+        <option value="$PROJECT_DIR$/qs-web/src/main/java/com/qs/log/game/controller/MailController.java" />
       </list>
     </option>
   </component>
@@ -195,7 +238,7 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="psyllidae" />
+          <option name="myItemId" value="qs-web Maven Webapp" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
@@ -209,15 +252,44 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="psyllidae" />
+          <option name="myItemId" value="qs-web Maven Webapp" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com.qs:qs-side:0.0.1-SNAPSHOT" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com.qs:qs-model:0.0.1-SNAPSHOT" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="com.qs:qs-common:0.0.1-SNAPSHOT" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependencyNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="qs-web Maven Webapp" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
         </PATH_ELEMENT>
       </PATH>
     </treeState>
   </component>
   <component name="MavenRunner">
-    <option name="jreName" value="1.7" />
+    <option name="jreName" value="1.8" />
     <option name="vmOptions" value="-DarchetypeCatalog=local" />
+  </component>
+  <component name="PhpServers">
+    <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
@@ -244,8 +316,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -258,17 +330,161 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="com.zeroturnaround.javarebel.idea.plugin.settings.JRebelSettingsComponent" />
-    <property name="project.structure.last.edited" value="Global Libraries" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/qs-web/src/main/webapp" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -311,192 +527,6 @@
       <recent name="D:\java\qs_project\2017年2月21日213834\qs-psyllidae\src\main\webapp\WEB-INF\view\web\oauth" />
       <recent name="D:\java\qs_project\2017年2月21日213834\qs-psyllidae\src\main\webapp\resources\js\customer\web" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\resources\pay</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\webapp\config</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\java\com\qs\webside\member</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\java\com\qs\webside\member\controller</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\java\com\qs\webside\game</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\java\com\qs\webside\game\controller</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\java\com\qs\webside\agent</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\java\com\qs\webside\agent\controller</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\commons-upload\src\main\webapp\resources</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\commons-upload\src\main\webapp\apk</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\commons-upload\src\main\webapp\img</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\commons-upload\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\commons-upload\src\test\resources</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\commons-upload\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\config</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\config</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-dataconfig\src\main\resources</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-dataconfig\src\main\webapp\config</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\db</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\config</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\img</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\test\java\com</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\test\java\com\qs</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\test\java\com</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\test\java\com\qs</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\business</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\business\service</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\business</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\business\service</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\pay-web\target</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\pay-web\target\m2e-wtp</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\pay</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\webside\util</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\01_�������</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\03_���Թ���</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\05_��Ʒ����</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\05_��Ʒ����\02_��Ƥ��</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\05_��Ʒ����\04_��װ��</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\05_��Ʒ����\03_��ѵ����</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\05_��Ʒ����\01_�û��ֲ�</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\07-��Ŀ����</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\doc\00_��Ŀ����</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\test\java\com</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\test\java\com\qs</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\pub\log</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\pub\log\mapper</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\pub\log</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-side\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-side\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-side\src\main\java\com\qs\webside\shiro\listenter</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\data-source\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\data-source\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\data-source\src\test\resources</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\data-source\src\main\webapp\WEB-INF\lib</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\data-source\src\main\java\com\spring\zyy\util</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\test</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\test\java</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\test\java\com</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\test\java\com\qs</PATH>
-          <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\test\java\com\qs\common</PATH>
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="UNDEFINED">D:\java\qs_project\2017年4月15日\qs_project\qs-app</PATH>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -903,16 +933,38 @@
     <configuration default="true" type="osgi.bnd.run" factoryName="Test Launcher (JUnit)">
       <method />
     </configuration>
+    <configuration default="false" name="smartTomcat8" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
+      <option name="DOC_BASE" value="D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp" />
+      <option name="CONTEXT_PATH" value="/we" />
+      <option name="TOMCAT_PORT" value="8080" />
+      <method />
+    </configuration>
+    <configuration default="false" name="EndecryptUtils" type="Application" factoryName="Application" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="com.qs.webside.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="com.qs.webside.util.EndecryptUtils" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="business" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="false" name="tomcat8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.36" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER" value="false" />
+      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/we/" />
       <option name="UPDATE_ON_FRAME_DEACTIVATION" value="true" />
       <option name="UPDATE_CLASSES_ON_FRAME_DEACTIVATION" value="true" />
       <deployment>
-        <artifact name="business:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/bs" />
-          </settings>
-        </artifact>
         <artifact name="qs-web:war exploded">
           <settings>
             <option name="CONTEXT_PATH" value="/we" />
@@ -1011,34 +1063,13 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="business:war exploded" />
           <artifact name="qs-web:war exploded" />
         </option>
       </method>
     </configuration>
-    <configuration default="false" name="EndecryptUtils" type="Application" factoryName="Application" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="com.qs.webside.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="com.qs.webside.util.EndecryptUtils" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="business" />
-      <envs />
-      <method />
-    </configuration>
     <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Tomcat Server.tomcat8" />
-      <item index="1" class="java.lang.String" itemvalue="Application.EndecryptUtils" />
+      <item index="0" class="java.lang.String" itemvalue="Application.EndecryptUtils" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.tomcat8" />
       <item index="2" class="java.lang.String" itemvalue="Application.TaxesInviteServiceImpl" />
     </list>
     <recent_temporary>
@@ -1064,10 +1095,6 @@
         <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-agent" />
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-agent" />
-        </SvnCopyRootSimple>
-        <SvnCopyRootSimple>
-          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-app" />
-          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-app" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-business" />
@@ -1203,7 +1230,9 @@
       <workItem from="1492003929457" duration="2257000" />
       <workItem from="1492089882761" duration="72000" />
       <workItem from="1492090000927" duration="394000" />
-      <workItem from="1492279756202" duration="720000" />
+      <workItem from="1492279756202" duration="3661000" />
+      <workItem from="1492283446787" duration="622000" />
+      <workItem from="1492284089283" duration="301000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1314,7 +1343,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="181670000" />
+    <option name="totallyTimeSpent" value="185534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1326,33 +1355,34 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32745314" sideWeight="0.5144231" order="16" side_tool="true" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34178612" sideWeight="0.4871795" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.49198717" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34178612" sideWeight="0.5154914" order="16" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32745314" sideWeight="0.48557693" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29754272" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30502138" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5065789" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34178612" sideWeight="0.48450854" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1391,57 +1421,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/log/game/TaxesInviteMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1968">
-          <caret line="82" column="19" lean-forward="false" selection-start-line="82" selection-start-column="19" selection-end-line="82" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/shiro/LimitRetryHashedMatcher.java" />
-    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/cfg/acti/service/impl/StoreServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="26" column="0" lean-forward="true" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/log/game/mapper/GoldLogMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="24">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/log/game/GoldLogMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1040">
-          <caret line="10" column="36" lean-forward="true" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/log/game/MajiangGameRecordMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-187">
-          <caret line="32" column="28" lean-forward="false" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/log/game/mapper/MajiangGameRecordMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="6" column="21" lean-forward="true" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/log/game/service/impl/MajiangGameRecordServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/shiro/ChainDefinitionSectionMetaSource.java" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="528">
@@ -1468,6 +1447,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="110">
           <caret line="11" column="56" lean-forward="true" selection-start-line="11" selection-start-column="56" selection-end-line="11" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1475,6 +1455,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="92" column="23" lean-forward="true" selection-start-line="92" selection-start-column="23" selection-end-line="92" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1489,6 +1470,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="132" column="14" lean-forward="false" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1625,24 +1607,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="86" column="24" lean-forward="true" selection-start-line="86" selection-start-column="24" selection-end-line="86" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-65">
           <caret line="80" column="21" lean-forward="false" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/src/main/webapp/WEB-INF/view/web/agent/query/teamweeksttlement_list.jsp">
@@ -1729,6 +1701,236 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/qs-agent/qs-agent.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/webside.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/log/game/service/impl/MailServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/log/game/service/IMailService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="293">
+          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-model/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="354">
+          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="436" column="24" lean-forward="false" selection-start-line="436" selection-start-column="24" selection-end-line="436" selection-end-column="24" />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="uml://MAVEN/com.qs:qs-web:0.0.1-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>com.qs:qs-web:0.0.1-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="" y="">com.qs:qs-web:0.0.1-SNAPSHOT</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/com.qs:qs-mapper:jar:0.0.1-SNAPSHOT</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/cn.com.riversoft:weixin-common:jar:0.9.4</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/org.apache.httpcomponents:httpclient:jar:4.5</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/org.apache.httpcomponents:httpclient:jar:4.5/org.apache.httpcomponents:httpcore:jar:4.4.1</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/org.apache.httpcomponents:httpclient:jar:4.5/commons-codec:commons-codec:jar:1.9</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/commons-logging:commons-logging:jar:1.2</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:httpmime:jar:4.5</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.google.guava:guava:jar:18.0</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-databind:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-databind:jar:2.8.6/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-databind:jar:2.8.6/com.fasterxml.jackson.core:jackson-core:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.8.6/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/org.codehaus.woodstox:stax2-api:jar:3.1.4</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.woodstox:woodstox-core:jar:5.0.3</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/commons-io:commons-io:jar:2.4</node>
+            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.slf4j:slf4j-api:jar:1.7.12</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.slf4j:slf4j-api:jar:1.7.21</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.slf4j:jul-to-slf4j:jar:1.7.21</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.slf4j:jul-to-slf4j:jar:1.7.21/org.slf4j:slf4j-api:jar:1.7.12</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/ch.qos.logback:logback-core:jar:1.1.7</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/ch.qos.logback:logback-classic:jar:1.1.7</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.logback-extensions:logback-ext-spring:jar:0.1.4</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.logback-extensions:logback-ext-spring:jar:0.1.4/ch.qos.logback:logback-classic:jar:1.1.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.commons:commons-lang3:jar:3.4</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.commons:commons-pool2:jar:2.4.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-core:jar:1.3.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-core:jar:1.3.2/org.slf4j:slf4j-api:jar:1.6.4</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-ehcache:jar:1.3.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-ehcache:jar:1.3.2/net.sf.ehcache:ehcache-core:jar:2.5.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-web:jar:1.3.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-spring:jar:1.3.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-quartz:jar:1.3.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-cas:jar:1.3.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-cas:jar:1.3.2/org.jasig.cas.client:cas-client-core:jar:3.2.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/redis.clients:jedis:jar:2.8.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/redis.clients:jedis:jar:2.8.0/org.apache.commons:commons-pool2:jar:2.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.quartz-scheduler:quartz:jar:2.2.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.quartz-scheduler:quartz:jar:2.2.3/org.slf4j:slf4j-api:jar:1.7.7</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.quartz-scheduler:quartz-jobs:jar:2.2.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-web:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-aop:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-beans:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-core:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-tx:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-expression:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-context:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-context-support:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-test:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-orm:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-orm:jar:4.3.0.RELEASE/org.springframework:spring-jdbc:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-aspects:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-aspects:jar:4.3.0.RELEASE/org.aspectj:aspectjweaver:jar:1.8.9</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-webmvc:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-jms:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-jms:jar:4.3.0.RELEASE/org.springframework:spring-messaging:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-oxm:jar:4.3.0.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.aspectj:aspectjweaver:jar:1.8.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.aspectj:aspectjrt:jar:1.8.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/asm:asm:jar:3.3.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/aopalliance:aopalliance:jar:1.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis:mybatis-spring:jar:1.3.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis:mybatis:jar:3.4.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis.caches:mybatis-ehcache:jar:1.0.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis.caches:mybatis-ehcache:jar:1.0.3/net.sf.ehcache:ehcache-core:jar:2.6.8</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.pagehelper:pagehelper:jar:4.1.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.pagehelper:pagehelper:jar:4.1.0/com.github.jsqlparser:jsqlparser:jar:0.9.4</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sf.ehcache:ehcache-core:jar:2.6.11</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sf.ehcache:ehcache-core:jar:2.6.11/org.slf4j:slf4j-api:jar:1.6.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/mysql:mysql-connector-java:jar:5.1.39</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:druid:jar:1.0.15</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:druid:jar:1.0.15/com.alibaba:jconsole:jar:1.8.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:druid:jar:1.0.15/com.alibaba:tools:jar:1.8.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:fastjson:jar:1.2.24</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/jstl:jstl:jar:1.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/taglibs:standard:jar:1.1.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-beanutils:commons-beanutils:jar:1.8.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-fileupload:commons-fileupload:jar:1.3.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-fileupload:commons-fileupload:jar:1.3.1/commons-io:commons-io:jar:2.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-collections:commons-collections:jar:3.2.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/org.jodd:jodd-core:jar:3.8.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/javax.mail:javax.mail-api:jar:1.5.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/com.sun.mail:javax.mail:jar:1.5.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/com.sun.mail:javax.mail:jar:1.5.6/javax.activation:activation:jar:1.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.axet:kaptcha:jar:0.0.9</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.axet:kaptcha:jar:0.0.9/com.jhlabs:filters:jar:2.0.235</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-core:jar:0.2-incubating</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.sirona:sirona-plugins-api:jar:0.2-incubating</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.commons:commons-lang3:jar:3.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.velocity:velocity:jar:1.7</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.velocity:velocity:jar:1.7/commons-collections:commons-collections:jar:3.2.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.velocity:velocity:jar:1.7/commons-lang:commons-lang:jar:2.4</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-web:jar:0.2-incubating</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-web:jar:0.2-incubating/org.apache.sirona:sirona-aop:jar:0.2-incubating</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-web:jar:0.2-incubating/org.apache.sirona:sirona-aop:jar:0.2-incubating/org.apache.commons:commons-proxy:jar:1.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/io.reactivex:rxjava:jar:1.1.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sourceforge.jexcelapi:jxl:jar:2.6.12</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sourceforge.jexcelapi:jxl:jar:2.6.12/log4j:log4j:jar:1.2.14</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.itextpdf:itextpdf:jar:5.5.10</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.itextpdf:itext-asian:jar:5.2.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.flywaydb:flyway-core:jar:4.0.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/joda-time:joda-time:jar:2.9.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/javax.inject:javax.inject:jar:1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-context:jar:4.1.7.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-context-support:jar:4.1.7.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-aop:jar:4.1.7.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-tx:jar:4.1.7.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-core:jar:4.1.7.RELEASE</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/dom4j:dom4j:jar:1.6.1</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/dom4j:dom4j:jar:1.6.1/xml-apis:xml-apis:jar:1.0.b2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.alibaba:fastjson:jar:1.2.7</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/org.apache.httpcomponents:httpclient:jar:4.3.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/org.apache.httpcomponents:httpmime:jar:4.3.6</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.sun.xml.bind:jaxb-impl:jar:2.1.12</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/org.slf4j:slf4j-api:jar:1.7.19</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.vdurmont:emoji-java:jar:3.1.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.vdurmont:emoji-java:jar:3.1.3/org.json:json:jar:20140107</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.foxinmy:weixin4j-base:jar:1.7.4</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.foxinmy:weixin4j-base:jar:1.7.4/com.alibaba:fastjson:jar:1.2.3</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:alipay-api:jar:1.3.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9/com.github.kevinsawicki:http-request:jar:6.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9/com.fasterxml.jackson.core:jackson-databind:jar:2.4.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9/joda-time:joda-time:jar:2.8.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:wepay-core:jar:1.2.4</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:wepay-core:jar:1.2.4/me.hao0:common:jar:1.1.2</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.googlecode.xmemcached:xmemcached:jar:2.2.0</node>
+            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.googlecode.xmemcached:xmemcached:jar:2.2.0/org.slf4j:slf4j-api:jar:1.7.5</node>
+            <node x="" y="">junit:junit:jar:4.12</node>
+            <node x="" y="">junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3</node>
+            <node x="" y="">javax.servlet:servlet-api:jar:2.5</node>
+            <node x="" y="">javax.servlet.jsp:jsp-api:jar:2.1</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.9" x="1472.0" y="4381.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/java/com/qs/log/game/controller/MailController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="98" column="7" lean-forward="true" selection-start-line="98" selection-start-column="7" selection-end-line="98" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1737,10 +1939,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="86" column="43" lean-forward="true" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+        <state relative-caret-position="432">
+          <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -1800,11 +2013,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Spring|business</last-edited>
+          <last-edited>qs-common</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

@@ -10,7 +10,6 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/qs-app/pom.xml" />
         <option value="$PROJECT_DIR$/qs-common/pom.xml" />
         <option value="$PROJECT_DIR$/qs-mapper/pom.xml" />
         <option value="$PROJECT_DIR$/qs-model/pom.xml" />

@@ -53,6 +53,21 @@
                             <option value="L8" <c:if test="${record.type eq 'L8' }">selected="selected"</c:if>>
                                 L8
                             </option>
+                            <option value="L9" <c:if test="${record.type eq 'L9' }">selected="selected"</c:if>>
+                               L9
+                            </option>
+                            <option value="L10" <c:if test="${record.type eq 'L10' }">selected="selected"</c:if>>
+                               L10
+                            </option>
+                            
+                             <option value="L11" <c:if test="${record.type eq 'L11' }">selected="selected"</c:if>>
+                               L11
+                            </option>
+                            
+                              <option value="L12" <c:if test="${record.type eq 'L12' }">selected="selected"</c:if>>
+                               L12
+                            </option>
+                        
                         </select>
                     </div>
                 </div>

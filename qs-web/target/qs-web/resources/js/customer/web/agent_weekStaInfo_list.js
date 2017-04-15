@@ -95,9 +95,10 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {//rebatetotal
-        if (1 == value) {
+        if (0 == value) {
             return "<button class='btn btn-success' style='border-radius: 5px;'" +
-                'onclick="confrimCheck(\''+record.openid+'\',\''+record.date+'\',\''+record.mid+'\',\''+record.rebatetotal+'\')">审核</button>';
+                'onclick="confrimCheck(\''+record.openid+'\',\''+record.date+'\'' +
+                ',\''+record.mid+'\',\''+record.rebatetotal+'\')">审核</button>';
         }
         return '';
     }
@@ -106,9 +107,11 @@ var dtGridColumns = [{
 var count = 0;
 function confrimCheck(openid, date, mid,rebatetotal) {
     if (count != 0) {
+        layer.msg('正在审核，请稍后！！',{time:800});
         return;
     }
-    count++;
+    count = 1;
+
     if (openid == null || openid == undefined || openid == '') {
         count = 0;
         layer.msg('openid为空，无法审核！',{time:800});
@@ -127,7 +130,7 @@ function confrimCheck(openid, date, mid,rebatetotal) {
 
     $.ajax({
         type : "POST",
-        url : sys.rootPath + "/confirmPay.html",
+        url : sys.rootPath + "/settle/confirmCheck.html",
         data : {
             openid:openid,
             date:date,
@@ -148,7 +151,7 @@ function confrimCheck(openid, date, mid,rebatetotal) {
             count = 0;
         },
         error : function(data, errorMsg) {
-            layer.msg("系统繁忙，支付失败！", {icon: 5});
+            layer.msg("系统繁忙，审核失败！", {icon: 5});
             refreshDataGrid();
             count = 0;
         }
@@ -172,11 +175,16 @@ document.write("<br />明天："+GetDateStr(1));
 document.write("<br />后天："+GetDateStr(2));
 document.write("<br />大后天："+GetDateStr(3));*/
 
+var oneKeyCount = 0;
 $('#oneKeyPay').on('click',function () {
-    if (count != 0) {
+    if (oneKeyCount == 2) {
+        layer.msg("正在审核，请稍后！", {icon: 5});
         return;
     }
-    count++;
+    if (oneKeyCount != 0) {
+        return;
+    }
+    oneKeyCount = 1;
 
     var searchYear =  $('#searchYear').val();
     var searchDate =  $('#searchDate').val();
@@ -189,39 +197,68 @@ $('#oneKeyPay').on('click',function () {
 
     var  first = GetDateStr(requirtDate,-6);
     var last = requirtDate;
-    layer.confirm('确认要一键审核'+first + '--' + last+'吗？', {
-        btn: ['确定','取消'] //按钮
-    }, function(){
-        $.ajax({
-            type : "POST",
-            url : sys.rootPath + "/settle/oneKeyCheck.html",
-            data : {
-                searchDate:requirtDate
-            },
-            dataType : "json",
-            beforeSend : function() {
-                searchDate : requirtDate
-            },
-            success : function(resultdata) {
-                if (resultdata.success == true) {
-                    layer.msg(resultdata.message, {icon: 6});
-                    refreshDataGrid();
-                }else {
-                    layer.msg(resultdata.message, {icon: 5});
-                    refreshDataGrid();
-                }
-                count = 0;
-            },
-            error : function(data, errorMsg) {
-                layer.msg("系统繁忙，审核失败！", {icon: 5});
-                refreshDataGrid();
-                count = 0;
+
+    layer.open({
+        content: '确认要一键审核'+first + '--' + last+'吗？'
+        ,btn: ['确定', '取消']
+        ,yes: function(index, layero){
+            if (oneKeyCount != 1) {
+                layer.msg("正在审核，请稍后！", {icon: 5});
+                return;
             }
-        });
-    }, function(){
-        count = 0;
+            oneKeyCount = 2;
+
+            $("#oneKeyPay").prop('disabled', true).html('正在审核中...');
+
+            $.ajax({
+                type : "POST",
+                url : sys.rootPath + "/settle/oneKeyCheck.html",
+                data : {
+                    searchDate:requirtDate
+                },
+                dataType : "json",
+                beforeSend : function() {
+
+                },
+                success : function(resultdata) {
+                    if (resultdata.success == true) {
+                        layer.msg(resultdata.message, {icon: 6});
+                        refreshDataGrid();
+                    }else {
+                        layer.msg(resultdata.message, {icon: 5});
+                        refreshDataGrid();
+                    }
+                    $("#oneKeyPay").prop('disabled', false).html('一键审核');
+                    oneKeyCount = 0;
+                },
+                error : function(data, errorMsg) {
+                    layer.msg("系统繁忙，审核失败！", {icon: 5});
+                    refreshDataGrid();
+                    $("#oneKeyPay").prop('disabled', false).html('一键审核');
+                    oneKeyCount = 0;
+                }
+            });
+        }
+        ,btn2: function(index, layero){
+            if (oneKeyCount == 2) {
+                return;
+            }
+            $("#oneKeyPay").prop('disabled', false).html('一键审核');
+            oneKeyCount = 0;
+        }
+        ,cancel: function(){
+            //右上角关闭回调
+            if (oneKeyCount == 2) {
+                return;
+            }
+            $("#oneKeyPay").prop('disabled', false).html('一键审核');
+            oneKeyCount = 0;
+        }
     });
 });
+
+// $("#yzmTime").prop('disabled', true).val('获取('+count+'s)');
+
 
 //动态设置jqGrid的rowNum
 var pageSize = $("#pageSize").val();
