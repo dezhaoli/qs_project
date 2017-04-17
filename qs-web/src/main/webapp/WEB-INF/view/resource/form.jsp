@@ -168,6 +168,19 @@ $(document).ready(function() {
 				</div>
 				</div>
 			</div>
+			
+				<div class="form-group">
+				<label class="control-label col-sm-1 no-padding-right"
+					for="description">排序值</label>
+				<div class="col-sm-10">
+				<div class="clearfix">
+					<input class="form-control" name="seq" id="seq"
+						type="number" value="${resourceEntity.seq }"
+						placeholder="排序值..." />
+				</div>
+				</div>
+			</div>
+			
 		</form>
 		<div class="hr hr-dotted"></div>
 	</div>

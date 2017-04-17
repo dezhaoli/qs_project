@@ -86,10 +86,26 @@ public class ResourceEntity extends BaseEntity{
 	 * 是否被选中
 	 */
 	private boolean selected;
+	
+	/*
+	 * 排序值
+	 */
+	private Integer seq;
 	/*
 	 * 叶子节点集合
 	 */
 	private List<ResourceEntity> children = new ArrayList<ResourceEntity>();
+	
+	
+	
+
+	public Integer getSeq() {
+		return seq;
+	}
+
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
 	public Integer getParentId() {
 		return parentId;

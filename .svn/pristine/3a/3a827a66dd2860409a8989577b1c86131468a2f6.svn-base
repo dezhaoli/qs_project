@@ -1,0 +1,214 @@
+var dtGridColumns = [{
+    id : 'mid',
+    title : 'MID',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+
+        return value;
+    }
+},{
+    id : 'gametype',
+    title : '所属游戏',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNo, columnNo) {
+    	switch (value)
+    	{
+    	case 0:
+    		value="";
+    		break;
+    	case 1:
+    		value="牵手跑得快";
+    		break;
+    	case 2:
+    		value="牵手跑胡子";
+    		break;
+    	case 3:
+    		value="疯狂斗牛OL";
+    		break;
+    	case 4:
+    		value="牵手湖南麻将";
+    		break;
+    	case 9:
+    		value="牵手木虱";	
+    		break;
+    	case 5:
+    		value="金溪麻将";	
+    		break;
+    	}
+        return value ;
+    }
+},{
+    id : 'firstLessscale',
+    title : '直属3500以下',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return value;
+    }
+},{
+    id : 'firstMiddlescale',
+    title : '直属3500-7000 ',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return value;
+    }
+},{
+    id : 'firstMorescale',
+    title : '直属7000以上 ',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return value;
+    }
+},{
+    id : 'secondScale',
+    title : '二级团队 ',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return value;
+    }
+},{
+    id : 'thirdScale',
+    title : '三级团队 ',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return value;
+    }
+},{
+    id : 'mktime',
+    title : '创建时间',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+},{
+    id : 'mid',
+    title : '操作 ',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return  "<button class='btn-success btn-sm' style='border-radius: 5px;'" +
+        'onclick="updateInfo('+record.id+');">修改</button> '+"<button class='btn-primary btn-sm' style='border-radius: 5px;'" +
+        'onclick="deleteInfo('+record.id+');">删除</button> ';
+    }
+}];
+
+
+//动态设置jqGrid的rowNum
+var pageSize = $("#pageSize").val();
+pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
+
+var dtGridOption = {
+    lang : 'zh-cn',
+    ajaxLoad : true,
+    check : false,
+    checkWidth :'37px',
+    extraWidth : '37px',
+    loadURL : sys.rootPath + '/agentRebate/rebateList.html',
+    columns : dtGridColumns,
+    gridContainer : 'dtGridContainer',
+    toolbarContainer : 'dtGridToolBarContainer',
+    tools : 'refresh',
+    exportFileName : '代理商覆盖区域业绩',
+    pageSize : pageSize,
+    pageSizeLimit : [10, 20, 30]
+};
+
+var grid = $.fn.dlshouwen.grid.init(dtGridOption);
+$(function() {
+    if(null != $("#orderByColumn").val() && '' != $("#orderByColumn").val()) {
+        grid.sortParameter.columnId = $("#orderByColumn").val();
+        grid.sortParameter.sortType = $("#orderByType").val();
+    }
+
+    grid.parameters = new Object();
+    grid.parameters['mid'] = $('#searchMid').val();
+
+    grid.load();
+    $("#btnSearch").click(customSearch);
+
+    //注册回车键事件
+    document.onkeypress = function(e){
+    var ev = document.all ? window.event : e;
+        if(ev.keyCode==13) {
+            customSearch();
+        }
+    };
+
+});
+
+
+/**
+ * 自定义查询
+ * 这里不传入分页信息，防止删除记录后重新计算的页码比当前页码小而导致计算异常
+ */
+function customSearch() {
+    grid.parameters = new Object();
+    grid.parameters['mid'] = $('#searchMid').val();
+    grid.refresh(true);
+}
+
+function updateInfo(id){
+	debugger;
+	$("#updateLi").show(); 
+	$("#updateLi a").click()
+	$("#myTab li").removeClass("active");
+	$("#updateLi").addClass("active");
+	$.ajax({
+        type : "POST",
+        url : sys.rootPath + "/agentRebate/selectByid.html",
+        data : {
+            "id":id
+        },
+        dataType : "json",
+        success : function(resultdata) {
+            if (resultdata.success == true) {
+            	$("#agentMidT").val(resultdata.data.mid);
+                $("#agentfirst_lessT").val(resultdata.data.firstLessscale)
+                $("#agentfirst_middleT").val(resultdata.data.firstMiddlescale);
+                $("#agentfirst_moreT").val(resultdata.data.firstMorescale);
+                $("#secondT").val(resultdata.data.secondScale);
+                $("#thirdT").val(resultdata.data.thirdScale);
+                $("#idT").val(resultdata.data.id);
+                $("#gameTypeT option[value='"+resultdata.data.gametype+"']").attr("selected","selected");  
+               // $("#gameTypeT").val(resultdata.data.firstLessscale);
+            }else {
+                layer.msg(resultdata.message, {icon: 5});
+            }
+            count = 0;
+        }
+    });
+}
+
+function deleteInfo(id){
+	$.ajax({
+        type : "POST",
+        url : sys.rootPath + "/agentRebate/deleteToId.html",
+        data : {
+            "id":id
+        },
+        dataType : "json",
+        success : function(resultdata) {
+            if (resultdata.success == true) {
+                layer.msg(resultdata.message, {icon: 6});
+                customSearch();
+            }else {
+                layer.msg(resultdata.message, {icon: 5});
+                customSearch();
+            }
+            count = 0;
+        }
+    });
+}

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.agent.mapper.AgentRebatescaleMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.agent.model.AgentRebatescale" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="first_lessscale" property="firstLessscale" jdbcType="INTEGER" />
+    <result column="first_middlescale" property="firstMiddlescale" jdbcType="INTEGER" />
+    <result column="first_morescale" property="firstMorescale" jdbcType="INTEGER" />
+    <result column="second_scale" property="secondScale" jdbcType="INTEGER" />
+    <result column="third_scale" property="thirdScale" jdbcType="INTEGER" />
+    <result column="gametype" property="gametype" jdbcType="INTEGER" />
+    <result column="mktime" property="mktime" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id,mid,first_lessscale, first_middlescale, first_morescale, second_scale,third_scale,gametype, FROM_UNIXTIME(mktime,'%Y-%m-%d %H:%i:%S') as mktime
+  </sql>
+  <insert id="insert" parameterType="com.qs.webside.agent.model.AgentRebatescale" >
+    insert into agent_rebatescale (id, mid, first_lessscale, 
+      first_middlescale, first_morescale, second_scale, 
+      third_scale, gametype, mktime
+      )
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{firstLessscale,jdbcType=TINYINT}, 
+      #{firstMiddlescale,jdbcType=TINYINT}, #{firstMorescale,jdbcType=TINYINT}, #{secondScale,jdbcType=TINYINT}, 
+      #{thirdScale,jdbcType=TINYINT}, #{gametype,jdbcType=TINYINT}, #{mktime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.agent.model.AgentRebatescale" >
+    insert into agent_rebatescale
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="firstLessscale != null" >
+        first_lessscale,
+      </if>
+      <if test="firstMiddlescale != null" >
+        first_middlescale,
+      </if>
+      <if test="firstMorescale != null" >
+        first_morescale,
+      </if>
+      <if test="secondScale != null" >
+        second_scale,
+      </if>
+      <if test="thirdScale != null" >
+        third_scale,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+      <if test="PMktime != null" >
+        mktime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="firstLessscale != null" >
+        #{firstLessscale,jdbcType=INTEGER},
+      </if>
+      <if test="firstMiddlescale != null" >
+        #{firstMiddlescale,jdbcType=INTEGER},
+      </if>
+      <if test="firstMorescale != null" >
+        #{firstMorescale,jdbcType=INTEGER},
+      </if>
+      <if test="secondScale != null" >
+        #{secondScale,jdbcType=INTEGER},
+      </if>
+      <if test="thirdScale != null" >
+        #{thirdScale,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=INTEGER},
+      </if>
+      <if test="PMktime != null" >
+        #{PMktime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="getRebateByMidAllList" resultMap="BaseResultMap" parameterType="map">
+    SELECT  
+    <include refid="Base_Column_List" />
+	FROM agent_rebatescale 
+	<where>
+	   <if test="mid !=null">
+	     and mid=#{mid} 
+	   </if>
+	</where>
+	  ORDER BY mktime DESC
+  </select>
+  
+  <delete id="deleteById" parameterType="java.lang.Integer" >
+     delete from agent_rebatescale
+     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="getRebateById"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT  
+    <include refid="Base_Column_List" />
+	FROM agent_rebatescale where id=#{id,jdbcType=INTEGER} 
+  </select>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.agent.model.AgentRebatescale" >
+   update agent_rebatescale
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="firstLessscale != null" >
+        first_lessscale = #{firstLessscale,jdbcType=INTEGER},
+      </if>
+      <if test="firstMiddlescale != null" >
+        first_middlescale = #{firstMiddlescale,jdbcType=INTEGER},
+      </if>
+      <if test="firstMorescale != null" >
+        first_morescale = #{firstMorescale,jdbcType=INTEGER},
+      </if>
+      <if test="secondScale != null" >
+        second_scale = #{secondScale,jdbcType=INTEGER},
+      </if>
+      <if test="thirdScale != null" >
+        third_scale = #{thirdScale,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=INTEGER},
+      </if>
+      <if test="PMktime != null" >
+        mktime = #{PMktime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
