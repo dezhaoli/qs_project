@@ -1,0 +1,360 @@
+package com.qs.log.game.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.foxinmy.weixin4j.exception.WeixinException;
+import com.foxinmy.weixin4j.model.WeixinPayAccount;
+import com.foxinmy.weixin4j.payment.WeixinPayProxy;
+import com.qs.agent.game.model.MemberAgents;
+import com.qs.agent.game.service.IMemberAgentService;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.PageUtil;
+import com.qs.log.game.model.TaxesInviteWeek;
+import com.qs.log.game.service.ITaxesInviteWeekService;
+import com.qs.log.game.util.BusinessDateUtil;
+import com.qs.log.game.util.ConstantUtil;
+import com.qs.log.game.util.DataSourceSwitch;
+import com.qs.webside.pay.service.IPayLogService;
+import com.qs.webside.pay.service.IWeinxinMsgService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.math.BigDecimal;
+import java.util.*;
+
+/**
+ * //@Author:zun.wei, @Date:2017/4/5 11:20
+ *  开心跑胡子控制器
+ * Created by zun.wei on 2017/4/5.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/beardkx/")
+public class BeardKxController extends PayBaseController {
+
+	private Logger log = Logger.getLogger(BeardKxController.class);
+
+    @Resource
+    private ITaxesInviteWeekService taxesInviteWeekService;
+
+    @Resource
+    private IMemberAgentService memberAgentService;
+
+    @Autowired
+    private IPayLogService payLog;
+    
+	@Autowired
+	private IWeinxinMsgService weinxinMsgService;
+
+    @Value("${beardkx.appid}")
+    private  String appid;
+
+    @Value("${beardkx.mchid}")
+    private  String mchid;
+
+    @Value("${beardkx.key}")
+    private  String apikey;
+
+    @Value("${beardkx.certfile}")
+    private  String certfile;
+
+
+
+    /**
+     * 代理商周信息统计入口
+     */
+    @RequestMapping(value = "agentWeekInfoStaUi.html", method = RequestMethod.GET)
+    public String agentWeekInfoStaUi(Model model, HttpServletRequest request) {
+        try {
+            Map<String, List<String>> date = BusinessDateUtil.getAgentInfoDateTime();
+            String json = JSON.toJSONString(date);
+            List<String> keys = new ArrayList<String>();
+            Set<String> keySet = date.keySet();
+            Iterator<String> ki = keySet.iterator();
+            while (ki.hasNext()) {
+                String key = ki.next();
+                keys.add(key.substring(1));
+            }
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("years", keys);
+            model.addAttribute("jsonDate", json);
+            model.addAttribute("lastMonday", BusinessDateUtil.getLastWeekMonday());
+            model.addAttribute("lastSunday", BusinessDateUtil.getLastWeekSunday());
+            model.addAttribute("gameType", ConstantUtil.GameTypeConstant.Beard_Kx);
+            return "/WEB-INF/view/web/agent_weekStaInfo_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     * 代理商周信息统计
+     */
+    @RequestMapping("agentWeekInfoSta.html")
+    @ResponseBody
+    public Object agentWeekInfoSta(String gridPager, HttpServletResponse response) throws Exception {
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+        return super.getAgentWeekInfoSta(gridPager, response,
+                ConstantUtil.GameTypeConstant.Beard_Kx, taxesInviteWeekService);
+    }
+
+    /**
+     * 确认支付
+     * @param openid
+     * @param date
+     * @param mid
+     * @param request
+     * @return
+     * @throws WeixinException
+     */
+    @ResponseBody
+    @RequestMapping(value = "confirmPay.html")
+    public Object confirmPay(String openid, Date date, Integer mid,HttpServletRequest request){
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+        Map<String, Object> map = new HashMap<String, Object>();
+        WeixinPayProxy PAY = null;
+        WeixinPayAccount ACCOUNT = null;
+        ACCOUNT = new WeixinPayAccount(appid, apikey, mchid, "", certfile);
+        PAY = new WeixinPayProxy(ACCOUNT);
+        try {
+        	map=super.weixinPay(request,mid, date,PAY,taxesInviteWeekService, memberAgentService, payLog,ConstantUtil.GameType.Beard_Kx);
+		} catch (WeixinException e) {
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.MESSAGE, e.getMessage());
+			this.saveWeinMsg(mid,weinxinMsgService,ConstantUtil.GameType.Beard_Kx, e);
+			e.printStackTrace();
+		}catch (Exception e) {   
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.MESSAGE, "支付失败");
+			e.printStackTrace();
+        }
+        return map;
+    }
+
+
+
+    /**
+     * 代理商历史结算发放列表
+     * //@Author:zun.wei, @Date:2017/4/7 13:56
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "agentWeekInfoStaHistoryUi.html", method = RequestMethod.GET)
+    public String agentWeekInfoStaHistoryUi(Model model, HttpServletRequest request) {
+        try {
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("gameType", ConstantUtil.GameTypeConstant.Beard_Kx);
+            return "/WEB-INF/view/web/agent_weekStaHistoryInfo_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+
+    /**
+     * 代理商历史结算发放列表
+     * //@Author:zun.wei, @Date:2017/4/7 13:56
+     * @param gridPager
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("agentWeekInfoStaHistory.html")
+    @ResponseBody
+    public Object agentWeekInfoStaHistory(String gridPager) throws Exception {
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+        return super.getAgentWeekInfoStaHistory(gridPager,taxesInviteWeekService);
+    }
+
+    /**
+     *  代理商结算发放明细入口
+     *  //@Author:zun.wei, @Date:2017/4/7 15:02
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "agentWeekInfoStaHistoryDetailUi.html", method = RequestMethod.GET)
+    public String agentWeekInfoStaHistoryDetailUi(Model model,String date,String stadate, HttpServletRequest request) {
+        try {
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("date", date);
+            model.addAttribute("stadate", stadate);
+            model.addAttribute("gameType", ConstantUtil.GameTypeConstant.Beard_Kx);
+            return "/WEB-INF/view/web/agent_weekStaInfoHistoryDetail_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    /**
+     *  代理商结算发放明细
+     *  //@Author:zun.wei, @Date:2017/4/7 15:02
+     * @param gridPager
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("agentWeekInfoStaHistoryDetail.html")
+    @ResponseBody
+    public Object agentWeekInfoStaHistoryDetail(String gridPager,HttpServletResponse response) throws Exception {
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+        return super.getWeekPayHistoryDetailInfoByDate(gridPager, response,
+                ConstantUtil.GameTypeConstant.Beard_Kx, taxesInviteWeekService);
+    }
+
+    /**
+     *  代理商自定义支付
+     */
+    @RequestMapping("getAgentByMid.html")
+    @ResponseBody
+    public Object getAgentByMid(int mid) throws Exception {
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+
+		MemberAgents agent=memberAgentService.findByMid(mid);
+
+		Map<String ,Object > map=new HashMap<String,Object>();
+
+		if(null!=agent){
+			map.put(CommonContants.SUCCESS, Boolean.TRUE);
+			map.put(CommonContants.DATA, agent);
+		}else{
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.MESSAGE, "数据不存在");
+		}
+
+        return map;
+    }
+
+    /**
+     * 完成代理商自定义支付
+     * @param mid
+     * @param request
+     * @return
+     * @throws WeixinException
+     */
+    @ResponseBody
+    @RequestMapping(value = "saveSimplePay.html")
+    public Object saveSimplePay(int mid,BigDecimal money,String msg, HttpServletRequest request) {
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+	    //自定义支付
+        WeixinPayProxy PAY = null;
+        WeixinPayAccount ACCOUNT = null;
+        ACCOUNT = new WeixinPayAccount(appid, apikey, mchid, "", certfile);
+        PAY = new WeixinPayProxy(ACCOUNT);
+        Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			map = super.saveSimplePay(request,mid, money, msg, PAY, taxesInviteWeekService, memberAgentService, payLog,ConstantUtil.GameType.Beard_Kx);
+		} catch (WeixinException e) {
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.MESSAGE, e.getMessage());
+			this.saveWeinMsg(mid,weinxinMsgService,ConstantUtil.GameType.Beard_Kx, e);
+			e.printStackTrace();
+		}catch (Exception e) {   
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.MESSAGE, "支付失败");
+			e.printStackTrace();
+        }
+	    return map;
+    }
+
+
+    /**
+     *  //@Author:zun.wei, @Date:2017/4/7 17:20
+     *  导出详情excel
+     * @param gridPager
+     * @param response
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("exportDetailExcel.html")
+    @ResponseBody
+    public void exportDetailExcel(String gridPager,HttpServletResponse response,String date,String stadate) throws Exception {
+        DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+        DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+        super.DetailExcelExport(stadate, ConstantUtil.GameTypeConstant.Beard_Kx,date, response, taxesInviteWeekService);
+    }
+    
+    
+	/**
+	 * 批量支付(0到50元)
+	 * @param request
+	 * @return
+	 * @throws WeixinException
+	 */
+    @ResponseBody
+    @RequestMapping(value = "batchPay.html")
+    public Object batchPay(HttpServletRequest request,String searchDate) {
+		DataSourceSwitch.setLogDataSourceType(ConstantUtil.LogDataSourceConstantKey.Beard_Kx_Log);
+		DataSourceSwitch.setMainDataSourceType(ConstantUtil.MainDataSourceConstantKey.Beard_Kx_Main);
+		
+
+        Map<String, Object> parameters = new HashMap<String, Object>();
+
+        if (StringUtils.isBlank(searchDate)) {
+            parameters.put("searchDate", BusinessDateUtil.getLastWeekSunday());
+        }else{
+			 parameters.put("searchDate",searchDate);
+		}
+        parameters.put("dbTable", ConstantUtil.GameTypeConstant.Beard_Kx + ".memberagents");
+        
+        
+        WeixinPayProxy PAY = null;
+        WeixinPayAccount ACCOUNT = null;
+        ACCOUNT = new WeixinPayAccount(appid, apikey, mchid, "", certfile);
+        PAY = new WeixinPayProxy(ACCOUNT);
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+        List<TaxesInviteWeek>  listInvite=taxesInviteWeekService.getWeekPayListByCondition(parameters);
+		if(null!=listInvite&&listInvite.size()>0){
+			for(TaxesInviteWeek record:listInvite){
+			    int mid=record.getMid();
+			    Date date=record.getDate();
+			 
+		        if(record.getRebatetotal().intValue()>300){
+		        	continue;
+		        }
+		   
+			    try {
+					Map<String,Object> paymap = super.weixinPay(request,mid, date, PAY, taxesInviteWeekService,
+					        memberAgentService, payLog,ConstantUtil.GameType.Beard_Kx);
+				} catch (WeixinException e) {
+					map.put(CommonContants.SUCCESS, Boolean.FALSE);
+					map.put(CommonContants.MESSAGE, e.getMessage());
+					this.saveWeinMsg(mid,weinxinMsgService,ConstantUtil.GameType.Beard_Kx, e);
+					log.error("mid==========::"+mid);
+					e.printStackTrace();
+				}catch (Exception e) {   
+					map.put(CommonContants.SUCCESS, Boolean.FALSE);
+					map.put(CommonContants.MESSAGE, "支付失败");
+					e.printStackTrace();
+		        }
+			}
+		}
+
+		map.put(CommonContants.SUCCESS, Boolean.TRUE);
+		map.put(CommonContants.MESSAGE, "支付成功");
+	    return map;
+    }
+
+
+}
