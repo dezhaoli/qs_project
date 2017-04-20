@@ -1,0 +1,103 @@
+#webside.datasource.driverClassName=com.mysql.jdbc.Driver
+#webside.url=jdbc:mysql://192.168.1.111:3306/sc_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+#webside.username=dev
+#webside.password=dev
+
+#cfg.datasource.driverClassName=com.mysql.jdbc.Driver
+#cfg.url=jdbc:mysql://192.168.1.111:3306/sc_majiang_cfg?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+#cfg.username=dev
+#cfg.password=dev
+
+#log.datasource.driverClassName=com.mysql.jdbc.Driver
+#log.url=jdbc:mysql://192.168.1.111:3306/sc_majiang_log?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+#log.username=dev
+#log.password=dev
+
+
+##############################################公共数据库start##################################################
+# 公共数据库
+pub.datasource.driverClassName=com.mysql.jdbc.Driver
+pub.url=jdbc:mysql://192.168.1.111:3306/sc_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+pub.username=dev
+pub.password=dev
+##############################################公共数据库end##################################################
+
+
+
+##########################################广东麻将start######################################################
+# 广东麻将主库（写）
+gdMajiangMainWrite.datasource.driverClassName=com.mysql.jdbc.Driver
+gdMajiangMainWrite.url=jdbc:mysql://192.168.1.111:3306/gd_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+gdMajiangMainWrite.username=dev
+gdMajiangMainWrite.password=dev
+# 广东麻将主库（读）
+gdMajiangMainRead.datasource.driverClassName=com.mysql.jdbc.Driver
+gdMajiangMainRead.url=jdbc:mysql://192.168.1.111:3306/gd_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+gdMajiangMainRead.username=dev
+gdMajiangMainRead.password=dev
+
+
+# 广东麻将配置库（写）
+#gdMajiangCfgWrite.datasource.driverClassName=com.mysql.jdbc.Driver
+#gdMajiangCfgWrite.url=jdbc:mysql://192.168.1.111:3306/gd_majiang_cfg?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+#gdMajiangCfgWrite.username=dev
+#gdMajiangCfgWrite.password=dev
+# 广东麻将配置库（读）
+#gdMajiangCfgRead.datasource.driverClassName=com.mysql.jdbc.Driver
+#gdMajiangCfgRead.url=jdbc:mysql://192.168.1.111:3306/gd_majiang_cfg?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+#gdMajiangCfgRead.username=dev
+#gdMajiangCfgRead.password=dev
+
+
+# 广东麻将日志库（写）
+gdMajiangLogWrite.datasource.driverClassName=com.mysql.jdbc.Driver
+gdMajiangLogWrite.url=jdbc:mysql://192.168.1.111:3306/gd_majiang_log?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+gdMajiangLogWrite.username=dev
+gdMajiangLogWrite.password=dev
+# 广东麻将日志库（读）
+gdMajiangLogRead.datasource.driverClassName=com.mysql.jdbc.Driver
+gdMajiangLogRead.url=jdbc:mysql://192.168.1.111:3306/gd_majiang_log?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+gdMajiangLogRead.username=dev
+gdMajiangLogRead.password=dev
+##########################################广东麻将end######################################################
+
+
+
+
+#############################################四川麻将start###########################################
+
+# 四川麻将主库（写）
+scMajiangMainWrite.datasource.driverClassName=com.mysql.jdbc.Driver
+scMajiangMainWrite.url=jdbc:mysql://192.168.1.111:3306/sc_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+scMajiangMainWrite.username=dev
+scMajiangMainWrite.password=dev
+# 四川麻将主库（读）
+scMajiangMainRead.datasource.driverClassName=com.mysql.jdbc.Driver
+scMajiangMainRead.url=jdbc:mysql://192.168.1.111:3306/sc_majiang?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+scMajiangMainRead.username=dev
+scMajiangMainRead.password=dev
+
+
+# 四川麻将配置库（写）
+#scMajiangCfgWrite.datasource.driverClassName=com.mysql.jdbc.Driver
+#scMajiangCfgWrite.url=jdbc:mysql://192.168.1.111:3306/sc_majiang_cfg?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+#scMajiangCfgWrite.username=dev
+#scMajiangCfgWrite.password=dev
+# 四川麻将配置库（读）
+#scMajiangCfgRead.datasource.driverClassName=com.mysql.jdbc.Driver
+#scMajiangCfgRead.url=jdbc:mysql://192.168.1.111:3306/sc_majiang_cfg?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+#scMajiangCfgRead.username=dev
+#scMajiangCfgRead.password=dev
+
+
+# 四川麻将日志库（写）
+scMajiangLogWrite.datasource.driverClassName=com.mysql.jdbc.Driver
+scMajiangLogWrite.url=jdbc:mysql://192.168.1.111:3306/sc_majiang_log?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+scMajiangLogWrite.username=dev
+scMajiangLogWrite.password=dev
+# 四川麻将日志库（读）
+scMajiangLogRead.datasource.driverClassName=com.mysql.jdbc.Driver
+scMajiangLogRead.url=jdbc:mysql://192.168.1.111:3306/sc_majiang_log?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+scMajiangLogRead.username=dev
+scMajiangLogRead.password=dev
+#############################################四川麻将end###########################################

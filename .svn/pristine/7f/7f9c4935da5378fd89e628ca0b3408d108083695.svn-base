@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<content>
+  <store>
+    <item money="18" gold="9" song="0" img="shop_huodongzhong.png" starttime="2017-02-11 00:00" endtime="2017-05-13 00:00" productId="com.scmajiang.tm1"/>
+    <item money="30" gold="15" song="0" img="shop_huodongzhong.png" starttime="2017-02-11 00:00" endtime="2017-05-13 00:00" productId="com.scmajiang.tm2"/>
+    <item money="50" gold="25" song="0" img="shop_huodongzhong.png" starttime="2017-02-11 00:00" endtime="2017-05-13 00:00" productId="com.scmajiang.tm3"/>
+    <item money="98" gold="49" song="0" img="shop_huodongzhong.png" starttime="2017-04-01 00:00" endtime="2017-04-29 00:00" productId="com.scmajiang.tm4"/>
+  </store>
+</content>

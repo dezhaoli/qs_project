@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<system date="">
+  <memcachecfg/>
+  <match/>
+  <systemroomcfg>
+    <item id="20" ju="4" cost="1" begin="100001" end="300000" type="2" name="血战到底" serverid="2000" bettime="20" status="1"/>
+    <item id="22" ju="4" cost="1" begin="400001" end="500000" type="1" name="血流成河" serverid="2000" bettime="20" status="1"/>
+    <item id="21" ju="8" cost="2" begin="300001" end="400000" type="2" name="血战到底" serverid="2000" bettime="20" status="1"/>
+    <item id="23" ju="8" cost="2" begin="500001" end="600000" type="1" name="血流成河" serverid="2000" bettime="20" status="1"/>
+  </systemroomcfg>
+</system>

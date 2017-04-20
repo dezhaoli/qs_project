@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.member.mapper.MemberInviteMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.member.model.MemberInvite" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="invitecode" property="invitecode" jdbcType="VARCHAR" />
+    <result column="inviteurl" property="inviteurl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, invitecode, inviteurl, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberinvite
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByMid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from memberinvite
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memberinvite
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.member.model.MemberInvite" >
+    insert into memberinvite (id, mid, invitecode, 
+      inviteurl, status)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{invitecode,jdbcType=VARCHAR}, 
+      #{inviteurl,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.member.model.MemberInvite" >
+    insert into memberinvite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="invitecode != null" >
+        invitecode,
+      </if>
+      <if test="inviteurl != null" >
+        inviteurl,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="invitecode != null" >
+        #{invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteurl != null" >
+        #{inviteurl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.member.model.MemberInvite" >
+    update memberinvite
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="invitecode != null" >
+        invitecode = #{invitecode,jdbcType=VARCHAR},
+      </if>
+      <if test="inviteurl != null" >
+        inviteurl = #{inviteurl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.member.model.MemberInvite" >
+    update memberinvite
+    set mid = #{mid,jdbcType=INTEGER},
+      invitecode = #{invitecode,jdbcType=VARCHAR},
+      inviteurl = #{inviteurl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryCountByInviteCode" resultType="int" parameterType="java.lang.String" >
+    SELECT count(0) as invitecode  FROM memberinvite WHERE invitecode=#{invitecode,jdbcType=VARCHAR}
+  </select>
+
+  <select id="getInviteCode" resultType="string" parameterType="map" >
+    SELECT invitecode
+    FROM memberinvite
+    WHERE mid = #{mid,jdbcType=INTEGER}
+    AND status=0
+    LIMIT 1
+  </select>
+
+  <select id="getAgentAndInviteInfo" resultType="map" parameterType="integer" >
+    select
+      a.id, a.mid, a.invitecode, a.inviteurl, a.status,b.realname
+    from memberinvite a
+      LEFT JOIN memberagents b
+      ON a.mid=b.mid
+    where a.mid = #{mid}
+    LIMIT 1
+  </select>
+
+  <!-- 根据mid,inviteCode更新邀请代理商邀请码。//@Author:zun.wei, @Date:2017/4/1 14:07  -->
+  <update id="updateInviteCodeUrlByMidCode" parameterType="com.qs.webside.member.model.MemberInvite">
+    UPDATE memberinvite
+    SET invitecode=#{invitecode,jdbcType=VARCHAR},
+      inviteurl=#{inviteurl,jdbcType=VARCHAR}
+    WHERE mid=#{mid,jdbcType=INTEGER} LIMIT 1
+  </update>
+
+</mapper>

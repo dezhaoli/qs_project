@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- ==========================================配置动态数据源================================================ -->
+    <!-- Log库 -->
+    <bean id="logDynamicDataSource" class="com.qs.datasource.game.util.LogDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <!-- 广东麻将日志 -->
+                <entry value-ref="gdMajiangLogReadDataSource" key="gdMajiangLogReadDataSource"/>
+                <entry value-ref="gdMajiangLogWriteDataSource" key="gdMajiangLogWriteDataSource"/>
+                <!-- 四川麻将日志 -->
+                <entry value-ref="scMajiangLogReadDataSource" key="scMajiangLogReadDataSource"/>
+                <entry value-ref="scMajiangLogWriteDataSource" key="scMajiangLogWriteDataSource"/>
+            </map>
+        </property>
+        <!-- 默认数据源 -->
+        <property name="defaultTargetDataSource" ref="scMajiangLogReadDataSource"/>
+    </bean>
+
+    <!-- cfg库 -->
+    <!--<bean id="cfgDynamicDataSource" class="com.qs.datasource.game.util.CfgDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                &lt;!&ndash; 广东麻将配置 &ndash;&gt;
+                <entry value-ref="gdMajiangCfgReadDataSource" key="gdMajiangCfgReadDataSource"/>
+                <entry value-ref="gdMajiangCfgWriteDataSource" key="gdMajiangCfgWriteDataSource"/>
+                &lt;!&ndash; 四川麻将配置 &ndash;&gt;
+                <entry value-ref="scMajiangCfgReadDataSource" key="scMajiangCfgReadDataSource"/>
+                <entry value-ref="scMajiangCfgWriteDataSource" key="scMajiangCfgWriteDataSource"/>
+
+            </map>
+        </property>
+        &lt;!&ndash; 默认数据源 &ndash;&gt;
+        <property name="defaultTargetDataSource" ref="scMajiangCfgReadDataSource"/>
+    </bean>-->
+
+    <!-- 主库 -->
+    <bean id="mainDynamicDataSource" class="com.qs.datasource.game.util.MainDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <!-- 广东麻将主库 -->
+                <entry value-ref="gdMajiangMainReadDataSource" key="gdMajiangMainReadDataSource"/>
+                <entry value-ref="gdMajiangMainWriteDataSource" key="gdMajiangMainWriteDataSource"/>
+                <!-- 四川麻将主库 -->
+                <entry value-ref="scMajiangMainReadDataSource" key="scMajiangMainReadDataSource"/>
+                <entry value-ref="scMajiangMainWriteDataSource" key="scMajiangMainWriteDataSource"/>
+            </map>
+        </property>
+        <!-- 默认数据源 -->
+        <property name="defaultTargetDataSource" ref="scMajiangMainReadDataSource"/>
+    </bean>
+    <!-- ==========================================配置动态数据源================================================= -->
+
+</beans>

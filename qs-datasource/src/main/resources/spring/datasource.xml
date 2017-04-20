@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- ==========================================配置动态数据源================================================ -->
+    <import resource="classpath:spring/dynamic-datasource.xml"/>
+    <!-- ==========================================配置动态数据源================================================= -->
+
+    <!-- ==================================公共数据库start========================================== -->
+    <!-- 广东麻将公共数据库（写） -->
+    <import resource="classpath:spring/public/gdMajiang-public-dataSource.xml"/>
+    <!-- ==================================公共数据库end========================================== -->
+
+
+    <!-- ==================================广东麻将start========================================== -->
+    <!-- 广东麻将主数据库（写） -->
+    <import resource="classpath:spring/gdmajiang/write/gdMajiang-main-W-dataSource.xml"/>
+    <!-- 广东麻将主数据库（读） -->
+    <import resource="classpath:spring/gdmajiang/read/gdMajiang-main-R-dataSource.xml"/>
+
+
+    <!-- 广东麻将配置数据库（写） -->
+    <!--<import resource="classpath:spring/gdmajiang/write/gdMajiang-cfg-W-dataSource.xml"/>-->
+    <!-- 广东麻将配置数据库（读） -->
+    <!--<import resource="classpath:spring/gdmajiang/read/gdMajiang-cfg-R-dataSource.xml"/>-->
+
+
+    <!-- 广东麻将日志数据库（写） -->
+    <import resource="classpath:spring/gdmajiang/write/gdMajiang-log-W-dataSource.xml"/>
+    <!-- 广东麻将日志数据库（读） -->
+    <import resource="classpath:spring/gdmajiang/read/gdMajiang-log-R-dataSource.xml"/>
+    <!-- ==================================广东麻将end========================================== -->
+
+
+    <!-- ==================================四川麻将start========================================== -->
+    <!-- 四川麻将主数据库（写） -->
+    <import resource="classpath:spring/scmajiang/write/scMajiang-main-W-dataSource.xml"/>
+    <!-- 四川麻将主数据库（读） -->
+    <import resource="classpath:spring/scmajiang/read/scMajiang-main-R-dataSource.xml"/>
+
+
+    <!-- 四川麻将配置数据库（写） -->
+    <!--<import resource="classpath:spring/scmajiang/write/scMajiang-cfg-W-dataSource.xml"/>-->
+    <!-- 四川麻将配置数据库（读） -->
+    <!--<import resource="classpath:spring/scmajiang/read/scMajiang-cfg-R-dataSource.xml"/>-->
+
+
+    <!-- 四川麻将日志数据库（写） -->
+    <import resource="classpath:spring/scmajiang/write/scMajiang-log-W-dataSource.xml"/>
+    <!-- 四川麻将日志数据库（读） -->
+    <import resource="classpath:spring/scmajiang/read/scMajiang-log-R-dataSource.xml"/>
+    <!-- ===================================四川麻将end========================================= -->
+
+</beans>

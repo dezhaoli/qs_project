@@ -9,7 +9,10 @@
         <module name="business" />
         <module name="pay-web" />
         <module name="qs-agent" />
+        <module name="qs-app" />
         <module name="qs-common" />
+        <module name="qs-config" />
+        <module name="qs-datasource" />
         <module name="qs-mapper" />
         <module name="qs-model" />
         <module name="qs-service" />
@@ -24,6 +27,8 @@
       <module name="qs-agent" target="1.8" />
       <module name="qs-app" target="1.8" />
       <module name="qs-common" target="1.8" />
+      <module name="qs-config" target="1.8" />
+      <module name="qs-datasource" target="1.8" />
       <module name="qs-mapper" target="1.8" />
       <module name="qs-model" target="1.8" />
       <module name="qs-service" target="1.8" />
