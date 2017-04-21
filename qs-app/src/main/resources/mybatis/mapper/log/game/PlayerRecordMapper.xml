@@ -114,4 +114,11 @@
       type = #{type,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  
+    <select id="getPlayCount" resultType="int">
+    select 
+    COUNT(id)
+    from player_record
+   where mid=#{mid,jdbcType=INTEGER} AND type=#{gameType,jdbcType=TINYINT}
+  </select>
 </mapper>

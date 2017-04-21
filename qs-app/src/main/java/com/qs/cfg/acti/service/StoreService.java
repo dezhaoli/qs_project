@@ -13,7 +13,12 @@ public interface StoreService {
 	 */
 	public Integer getGoldByPayMoney(Integer money);
 
-  
+	  /**
+     * 创建商城Json
+     * @return
+     */
+	public String createStoreJson();
 
+  
  
 }

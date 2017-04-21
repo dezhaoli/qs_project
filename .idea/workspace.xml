@@ -8,428 +8,9 @@
   <component name="ChangeListManager">
     <list readonly="true" id="655e2668-4e01-49ef-a490-e3b00fae49fc" name="Default" comment="" />
     <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/pay-web.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-config/qs-config.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-datasource/qs-datasource.iml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/pom.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/mapper/StoreMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/model/Store.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/service/StoreService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/service/impl/StoreServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/mapper/SystemRoomMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/model/SystemRoom.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/service/SystemRoomService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/service/impl/SystemRoomServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/GameRecordMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/GameRecordShareMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/GameRecordSubMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/GoldLogMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/MailsMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/MailsUserMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/NoticeMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/PlayerRecordMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/RoomRecordMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper/TaxesInviteMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/GameRecord.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/GameRecordShare.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/GameRecordSub.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/GoldLog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/Mails.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/MailsUser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/Notice.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/PlayerRecord.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/RoomRecord.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model/TaxesInvite.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/service/GameRecordService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/service/NoticeService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/service/impl/GameRecordServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/service/impl/NoticeServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/aop/LogAspect.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller/ConfigController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller/GameController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller/MemberController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller/NoticeController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller/PayNotifyController.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/BaseRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/GameRecordRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/GameRecordShareRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/HonorDetailRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/LoadRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/LoginRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/MailRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/MemberInviteRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/MobileVersionRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/OrderRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model/RoomRecordRequest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/service/IAlipayService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/service/IWePayService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/service/impl/AlipayServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/service/impl/WePayServcieImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/filter/AccessTokenFilter.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper/ApkrecordMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper/BaseParamMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper/DictMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper/IpaddressMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper/IpaddressUseLogMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper/MemberinviteMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper/MobileVersionMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model/Apkrecord.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model/BaseParam.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model/Dict.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model/Ipaddress.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model/IpaddressUseLog.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model/Memberinvite.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model/MobileVersion.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/service/GameService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/service/impl/GameServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/interceptor/RequestUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/interceptor/SignInterceptor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/interceptor/TokenInterceptor.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper/CommongameMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper/GameMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper/MemberagentsMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper/MemberbusinessMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper/MemberfidesMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper/MemberpaymentMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper/MembersMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/Commongame.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/Game.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/GameKey.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/Memberagents.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/Memberbusiness.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/Memberfides.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/Memberpayment.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model/Members.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/service/MemberService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/service/PaymentService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/service/impl/MemberServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/service/impl/PaymentServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/shiro/MyRealm.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/mapper/LogInfoMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/mapper/LoginInfoMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/mapper/ResourceMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/mapper/RoleMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/mapper/UserMapper.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model/LogInfoEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model/LoginInfoEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model/ResourceEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model/RoleEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model/UserEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model/UserInfoEntity.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model/UserOnline.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/LogInfoService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/LoginInfoService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/ResourceService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/RoleResourceService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/RoleService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/UserService.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/impl/LogInfoServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/impl/LoginInfoServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/impl/ResourceServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/impl/RoleResourceServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/impl/RoleServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/impl/UserServiceImpl.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/util/AccessToken.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/util/ContextUtil.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/generatorConfig.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/ip2region.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/jdbc.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/logback.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/cfg/acti/StoreMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/cfg/sys/SystemRoomMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/GameRecordMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/GameRecordShareMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/GameRecordSubMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/GoldLogMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/MailsMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/MailsUserMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/NoticeMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/PlayerRecordMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/RoomRecordMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game/TaxesInviteMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game/ApkrecordMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game/BaseParamMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game/DictMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game/IpaddressMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game/IpaddressUseLogMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game/MemberinviteMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game/MobileVersionMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member/CommongameMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member/GameMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member/MemberagentsMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member/MemberbusinessMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member/MemberfidesMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member/MemberpaymentMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member/MembersMapper.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys/sqlmap-mapping-loginfo.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys/sqlmap-mapping-logininfo.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys/sqlmap-mapping-resource.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys/sqlmap-mapping-role.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys/sqlmap-mapping-user.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mybatis-config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/pay.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/quartz.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/redis.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-applicationContext.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-ehcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-flyway.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-ip2region.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-kaptcha.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-memcache.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-mvc.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-mybatis.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-quartz.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-redis.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring/spring-shiro.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/webside.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/tlds/c.tld" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/tlds/fmt.tld" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/tlds/fn.tld" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/view/error/error-404.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/view/error/error-500.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/view/error/error.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/common/common-login.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/common/common.jspf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/config/c_config.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/config/common.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/denied.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/login.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/login.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/ace/ace-ie.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/ace/ace-part2.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/ace/ace-skins.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/ace/ace.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/customer/webside-icon.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/customer/webside.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome/font-awesome.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome/fontawesome-webfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/glyphicons/glyphicons-halflings-regular.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/opensans/ace-fonts.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/webside/font-webside-ie7.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/webside/font-webside.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/webside/webside.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace-extra.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace.settings-skin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace.settings.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace.sidebar-scroll-1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace.sidebar-scroll-2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace.sidebar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/ace.widget-box.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace/elements.scroller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/backgroundSlider/backgroundSlider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/backgroundSlider/backgroundSlider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/backgroundSlider/backgroundSlider.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap-switch/js/bootstrap-switch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/cronGen/cronGen.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/cronGen/cronGen.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/cronGen/cronGen.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/customer/index/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/customer/index/index.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/customer/index/login.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/customer/index/login.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/datepicker/css/bootstrap-datepicker3.standalone.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/datepicker/js/bootstrap-datepicker.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/datepicker/locales/bootstrap-datepicker.zh-CN.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/dlshouwen.grid.v1.2.1/dlshouwen.grid.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/dlshouwen.grid.v1.2.1/dlshouwen.grid.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/dlshouwen.grid.v1.2.1/dlshouwen.grid.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/dlshouwen.grid.v1.2.1/i18n/zh-cn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ie/excanvas.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ie/html5shiv-printshiv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ie/html5shiv.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ie/json2.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ie/respond.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery-validation/jquery.validate.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery-validation/localization/messages_zh.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery/jquery-1.11.3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery/jquery-2.1.4.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery/jquery.mobile.custom.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jqueryui/jquery-ui.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jqueryui/jquery.ui.touch-punch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/jstree.checkbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/jstree.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default-dark/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/layer.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin/layer.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/nicescroll/jquery.nicescroll.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/particleground/jquery.particleground.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/select2/select2.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/select2/select2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/select2/zh-CN.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/underscore/underscore-min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/mapper" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/model" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/service" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/acti/service/impl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/mapper" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/model" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/service" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/cfg/sys/service/impl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/mapper" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/model" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/service" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/log/game/service/impl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/aop" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/model" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/service" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/service/impl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/filter" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/mapper" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/model" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/service" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/game/service/impl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/interceptor" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/mapper" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/model" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/service" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/member/service/impl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/shiro" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/mapper" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/model" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/sys/service/impl" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/util" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/ip2regiondata" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/ip2regiondata/ip2region.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/cfg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/cfg/acti" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/cfg/sys" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/log/game" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/game" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/member" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/resources/spring" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/META-INF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/tlds" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/view" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/WEB-INF/view/error" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/common" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/config" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/config/common.data" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/config/room.data" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/img" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/ace" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/css/customer" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome/FontAwesome.otf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome/fontawesome-webfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome/fontawesome-webfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome/fontawesome-webfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/fontawesome/fontawesome-webfont.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/glyphicons" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/glyphicons/glyphicons-halflings-regular.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/glyphicons/glyphicons-halflings-regular.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/glyphicons/glyphicons-halflings-regular.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/glyphicons/glyphicons-halflings-regular.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/opensans" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/opensans/OpenSans-300.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/opensans/OpenSans-400.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/webside" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/webside/webside.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/webside/webside.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/fonts/webside/webside.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background/1.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background/2.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background/3.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background/4.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background/5.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/logo.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/logo_no_title.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/user.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/webside.ico" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ace" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/backgroundSlider" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap-switch" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap-switch/css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap-switch/css/bootstrap3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap-switch/js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/bootstrap" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/cronGen" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/customer" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/customer/index" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/datepicker" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/datepicker/css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/datepicker/js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/datepicker/locales" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/dlshouwen.grid.v1.2.1" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/dlshouwen.grid.v1.2.1/i18n" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/ie" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery-validation" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery-validation/localization" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jquery" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jqueryui" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default-dark" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default-dark/32px.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default-dark/40px.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default-dark/throbber.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default/32px.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default/40px.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/jstree/themes/default/throbber.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin/default" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin/default/icon-ext.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin/default/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin/default/loading-0.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin/default/loading-1.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/layer-v2.3/skin/default/loading-2.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/nicescroll" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/particleground" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/select2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/main/webapp/resources/js/underscore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/test" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/qs-app/src/test/java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/jdbc.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
@@ -485,11 +66,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
+      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+            <state relative-caret-position="456">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -498,18 +79,18 @@
       <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+            <state relative-caret-position="72">
+              <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="redis.properties" pinned="false" current-in-tab="true">
+      <file leaf-file-name="redis.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+            <state relative-caret-position="48">
+              <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -577,7 +158,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/sys/service/member/service/IMemberFidesService.java" />
         <option value="$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/sys/service/member/service/impl/MemberFidesServiceImpl.java" />
         <option value="$PROJECT_DIR$/qs-psyllidae/src/main/webapp/resources/js/customer/web/member_authorization_list.js" />
         <option value="$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/webside/member/MemberFidesMapper.xml" />
@@ -628,6 +208,7 @@
         <option value="$PROJECT_DIR$/qs-agent/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
         <option value="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
+        <option value="$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys/sqlmap-mapping-user.xml" />
       </list>
     </option>
   </component>
@@ -744,7 +325,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -996,92 +576,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1148,40 +645,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-common\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\resources\spring\spring-mybatis.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\resources\jdbc.properties</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-business\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectlyPoxy_list.js</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\css\customer\commons.css</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-model\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\pub\game\model\Dict.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\game\service\impl\BaseParamServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\game\service\IBaseParamService.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\impl\DictServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\impl\BusinessServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\dict\dict_look.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\dict\dict_edit.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\dict\dict_add.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\dict\dict.js</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\pub\game\controller\DictController.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\cfg\sys\controller\ConfigFileController.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\game\controller\BaseParamController.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\WEB-INF\view\pay\pay_log_list.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\resources\js\customer\pay\pay_log_list.js</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\MajiangjxController.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\BullController.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\RunfastController.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\MajiangController.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\util\ConstantUtil.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\webside\interceptor\TokenInterceptor.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\game\BaseParamMapper.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\game\mapper\BaseParamMapper.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-side\pom.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1189,107 +652,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\test</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\test\java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\test\java\com</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\test\java\com\qs</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\game</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\game\util</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\game\util\CfgDataSources.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\game\util\LogDataSources.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\game\util\MainDataSources.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\game\util\ConstantUtil.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\game\util\DataSourceSwitch.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\datasource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\dynamic-datasource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\write</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\write\scMajiang-cfg-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\write\scMajiang-log-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\write\scMajiang-main-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\read</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\read\scMajiang-cfg-R-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\read\scMajiang-log-R-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\scmajiang\read\scMajiang-main-R-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\public</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\public\gdMajiang-public-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\write</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\write\gdMajiang-cfg-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\write\gdMajiang-log-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\write\gdMajiang-main-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\read</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\read\gdMajiang-cfg-R-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\read\gdMajiang-log-R-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\gdmajiang\read\gdMajiang-main-R-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\images\top_header_bg.png</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\datebase_list.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game\datasource</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game\datasource\util</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game\datasource\util\DataSourceSwitch.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game\datasource\util\CfgDataSources.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game\datasource\util\LogDataSources.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game\datasource\util\MainDataSources.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\game\datasource\util\ConstantUtil.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\pub\game\model\CommonAgentsRelation.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\impl\CommonAgentsRelationServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\ICommonAgentsRelationService.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\test</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\test\java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\test\java\com</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\test\java\com\qs</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg\sys</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg\sys\SystemRoomMapper.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg\acti</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg\acti\StoreMapper.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\model</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\model\SystemRoom.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\service</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\service\impl</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\service\impl\SystemRoomServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\service\SystemRoomService.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\mapper</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\sys\mapper\SystemRoomMapper.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\model</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\model\Store.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\service</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\service\StoreService.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\service\impl</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\service\impl\StoreServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\mapper</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\mapper\StoreMapper.java</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-config\pom.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\mobile\baseparam_two_add.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\mobile\baseparam_two_view.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\mobile\baseparam_two_edit.jsp</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\param</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\param\param.js</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\pub\game\CommonAgentsRelationMapper.xml</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\pub\game\mapper\CommonAgentsRelationMapper.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1297,11 +659,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\data-source</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\cfg</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\cfg</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\cfg</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\cfg</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1309,8 +666,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="RESTORED" />
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\target</PATH>
-          <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\pay-web\target\m2e-wtp</PATH>
         </FILE-GROUP>
       </FILE-GROUP>
       <FILE-GROUP>
@@ -1326,6 +681,7 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
+        <PATH vcs="svn" revision="1311">D:\java\qs_project\2017年4月15日\qs_project\qs-app</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1340,7 +696,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-        <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-app</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with property conflicts" />
@@ -1355,7 +710,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED" />
-        <PATH vcs="svn" revision="1279">D:\java\qs_project\2017年4月15日\qs_project\qs-web\pom.xml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Not in repository" />
@@ -1912,12 +1266,24 @@
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-agent" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-app" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-app" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-business" />
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-business" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-common" />
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-common" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-config" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-config" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-datasource" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-datasource" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-mapper" />
@@ -2053,6 +1419,7 @@
       <workItem from="1492520903811" duration="2450000" />
       <workItem from="1492608466024" duration="2312000" />
       <workItem from="1492699305412" duration="1941000" />
+      <workItem from="1492789863304" duration="1365000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -2163,7 +1530,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="195332000" />
+    <option name="totallyTimeSpent" value="196697000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2176,10 +1543,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.49198717" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32745314" sideWeight="0.51655984" order="16" side_tool="true" content_ui="tabs" />
@@ -2192,7 +1559,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20405982" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20619658" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2206,6 +1573,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.49198717" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2240,20 +1608,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/cfg/acti/mapper/StoreMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="16" column="18" lean-forward="false" selection-start-line="16" selection-start-column="18" selection-end-line="16" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-app/src/main/resources/redis.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="21" column="21" lean-forward="true" selection-start-line="21" selection-start-column="21" selection-end-line="21" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/webapp/index.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -2374,13 +1728,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-65">
           <caret line="80" column="21" lean-forward="false" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/src/main/webapp/WEB-INF/view/web/agent/query/teamweeksttlement_list.jsp">
@@ -2489,33 +1843,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-model/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="436" column="24" lean-forward="false" selection-start-line="436" selection-start-column="24" selection-end-line="436" selection-end-column="24" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="uml://MAVEN/com.qs:qs-web:0.0.1-SNAPSHOT">
@@ -2725,21 +2079,20 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="59" column="21" lean-forward="true" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pay-web/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2747,30 +2100,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-app/src/main/resources/mybatis/mapper/webside/sys/sqlmap-mapping-user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
+    <entry file="file://$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background/1.jpg">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="3" column="20" lean-forward="true" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
+        <state relative-caret-position="48">
+          <caret line="2" column="20" lean-forward="true" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="5" column="31" lean-forward="true" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+        <state relative-caret-position="72">
+          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/redis.properties">
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="25" lean-forward="true" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
+        <state relative-caret-position="456">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding />
         </state>
       </provider>

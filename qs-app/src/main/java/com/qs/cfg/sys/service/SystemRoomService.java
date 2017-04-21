@@ -13,13 +13,8 @@ public interface SystemRoomService {
      * @param record
      * @return
      */
-	public int createRoomJson();
+	public String createRoomJson();
 	
-    /**
-     * 创建房间Xml
-     * @param record
-     * @return
-     */
-	public int createRoomXml();
+ 
  
 }

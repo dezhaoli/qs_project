@@ -79,4 +79,12 @@
       type = #{type,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+    <select id="findIpaddressByType" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ipaddress
+    where  type = #{type,jdbcType=VARCHAR}
+    limit 0,1
+  </select>
 </mapper>

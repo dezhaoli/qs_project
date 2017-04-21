@@ -9,18 +9,27 @@
     <result column="img" property="img" jdbcType="VARCHAR" />
     <result column="starttime" property="starttime" jdbcType="INTEGER" />
     <result column="endtime" property="endtime" jdbcType="INTEGER" />
+    <result column="starttimeStr" property="starttimeStr" jdbcType="VARCHAR" />
+    <result column="endtimeStr" property="endtimeStr" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="ext" property="ext" jdbcType="VARCHAR" />
   </resultMap>
+
   <sql id="Base_Column_List" >
-  id, money, gold, song, img,starttime,endtime  
+  id, money, gold, song, img,
+  FROM_UNIXTIME(starttime,'%Y-%m-%d %H:%i') as starttimeStr,
+  FROM_UNIXTIME(endtime,'%Y-%m-%d %H:%i') as endtimeStr,
+  product_id,ext
   </sql>
-  <select id="getGoldByPayMoney" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  
+  
+    <select id="getGoldByPayMoney" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from acti_systemstorecfg
     where money = #{money}
     limit 1
   </select>
-  
   
   <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
    SELECT <include refid="Base_Column_List" />

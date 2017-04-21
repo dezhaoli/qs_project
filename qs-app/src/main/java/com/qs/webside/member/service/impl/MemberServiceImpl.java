@@ -93,13 +93,13 @@ public class MemberServiceImpl implements MemberService {
 	 * @return
 	 */
 	@Override
-	public String saveToken(Integer mid,Integer gp,Integer uerGp,String ip){
+	public String saveToken(Integer mid,Integer gp,Integer userGp,String ip){
 		String key=AppConstants.MemcacheKeyPrefix.SESSKEY+mid;
 		String ipKey=AppConstants.MemcacheKeyPrefix.IP+mid;
 		String istestuser="0";
 		long motime=System.currentTimeMillis();
 		String sign=MD5.encrypt(mid+"#"+motime+"#"+AppConstants.SAFECODE);
-		String mokey=mid+"-"+motime+"-"+gp+"-"+sign+"-"+uerGp+"-"+gameType;
+		String mokey=mid+"-"+motime+"-"+gp+"-"+sign+"-"+userGp+"-"+gameType;
 		log.debug("mokey==========::"+mokey);
 		try {
 			memcachedClient.set(key,6*3600, mokey);

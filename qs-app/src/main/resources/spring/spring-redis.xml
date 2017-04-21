@@ -39,7 +39,7 @@
 	 	<constructor-arg ref="redisTemplate"/>
 	 	<property name="expires">
 			<map>
-				<entry key="org" value="${redis.expire}"/> 
+				<entry key="mobileversion" value="${redis.expire}"/> 
 			</map>
 		</property>
 	</bean>

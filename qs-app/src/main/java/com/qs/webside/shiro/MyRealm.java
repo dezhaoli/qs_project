@@ -1,5 +1,7 @@
 package com.qs.webside.shiro;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,6 +15,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.cache.Cache;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
@@ -110,51 +113,71 @@ public class MyRealm extends AuthorizingRealm {
 
 	}
 	
-	/**
-     * 清除当前用户权限信息
-     */
-	public void clearCachedAuthorizationInfo() {
-		PrincipalCollection principalCollection = SecurityUtils.getSubject().getPrincipals();
-		SimplePrincipalCollection principals = new SimplePrincipalCollection(
-				principalCollection, getName());
-		super.clearCachedAuthorizationInfo(principals);
-	}
-	
-	/**
-     * 清除当前用户认证信息
-     */
-	public void clearCachedAuthenticationInfo() {
-		PrincipalCollection principalCollection = SecurityUtils.getSubject().getPrincipals();
-		SimplePrincipalCollection principals = new SimplePrincipalCollection(
-				principalCollection, getName());
-		super.clearCachedAuthenticationInfo(principals);
-	}
-	
-	/**
-	 * 清除指定 principalCollection 的权限信息
-	 */
-	public void clearCachedAuthorizationInfo(PrincipalCollection principalCollection) {
-		SimplePrincipalCollection principals = new SimplePrincipalCollection(
-				principalCollection, getName());
-		super.clearCachedAuthorizationInfo(principals);
-	}
-	
-	/**
-     * 清除用户认证信息
-     */
-	public void clearCachedAuthenticationInfo(PrincipalCollection principalCollection) {
-		SimplePrincipalCollection principals = new SimplePrincipalCollection(
-				principalCollection, getName());
-		super.clearCachedAuthenticationInfo(principals);
-	}
+	 public <T> void changePrincipals(T runAsUser){
+	    	Collection<T> principals = new HashSet<T>();
+	    	principals.add(runAsUser);
+	    	
+	    	//清除缓存的当前用户的权限信息
+	    	//clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());
+	    	//清除缓存的当前用户的认证信息
+	    	//clearCachedAuthenticationInfo(runAsUser.getAccountId());
+	    	
+	    	SecurityUtils.getSubject().runAs(new SimplePrincipalCollection(principals, getName()));
+	    }
+		
+		/**
+	     * 清除当前用户权限信息
+	     */
+		public void clearCachedAuthorizationInfo() {
+			PrincipalCollection principalCollection = SecurityUtils.getSubject().getPrincipals();
+			SimplePrincipalCollection principals = new SimplePrincipalCollection(
+					principalCollection, getName());
+			super.clearCachedAuthorizationInfo(principals);
+		}
+		
+		/**
+	     * 清除当前用户认证信息
+	     */
+		public void clearCachedAuthenticationInfo() {
+			PrincipalCollection principalCollection = SecurityUtils.getSubject().getPrincipals();
+			SimplePrincipalCollection principals = new SimplePrincipalCollection(
+					principalCollection, getName());
+			super.clearCachedAuthenticationInfo(principals);
+		}
+		
+		public void clearCachedAuthenticationInfo(String userName) {
+			Cache<Object, AuthenticationInfo> cache = super.getAuthenticationCache();
+			if (cache != null) {
+				cache.remove(userName);
+			}
+		}
+
+		/**
+		 * 清除指定 principalCollection 的权限信息
+		 */
+		public void clearCachedAuthorizationInfo(PrincipalCollection principalCollection) {
+			SimplePrincipalCollection principals = new SimplePrincipalCollection(
+					principalCollection, getName());
+			super.clearCachedAuthorizationInfo(principals);
+		}
+		
+		/**
+	     * 清除用户认证信息
+	     */
+		public void clearCachedAuthenticationInfo(PrincipalCollection principalCollection) {
+			SimplePrincipalCollection principals = new SimplePrincipalCollection(
+					principalCollection, getName());
+			super.clearCachedAuthenticationInfo(principals);
+		}
 
 
-	/**
-	 * 清除当前用户的认证和授权缓存信息
-	 */
-	public void clearAllCache() {
-		clearCachedAuthorizationInfo();
-		clearCachedAuthenticationInfo();
-	}
+		/**
+		 * 清除当前用户的认证和授权缓存信息
+		 */
+		public void clearAllCache() {
+			clearCachedAuthorizationInfo();
+			clearCachedAuthenticationInfo();
+		}
+
 
 }

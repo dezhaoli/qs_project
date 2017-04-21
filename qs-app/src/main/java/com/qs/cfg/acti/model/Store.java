@@ -16,9 +16,25 @@ public class Store {
     
     private String starttimeStr;
     private String endtimeStr;
-    
-    
-    
+
+    private String productId;
+    private String ext;
+
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
+    }
+
+    public String getExt() {
+        return ext;
+    }
+
+    public void setExt(String ext) {
+        this.ext = ext;
+    }
 
     public String getStarttimeStr() {
 		return starttimeStr;

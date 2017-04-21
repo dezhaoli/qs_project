@@ -25,6 +25,7 @@ import com.qs.common.util.CommonUtils;
 import com.qs.log.game.mapper.GameRecordMapper;
 import com.qs.log.game.mapper.GoldLogMapper;
 import com.qs.log.game.mapper.TaxesInviteMapper;
+import com.qs.log.game.mapper.PlayerRecordMapper;
 
 
 @Service("gameRecordService")
@@ -42,7 +43,10 @@ public class GameRecordServiceImpl implements GameRecordService {
 	private GoldLogMapper goldLogMapper;
 	@Autowired
 	private TaxesInviteMapper taxesInviteMapper;
-	
+	@Autowired
+	private PlayerRecordMapper playerRecordMapper;
+	@Autowired
+	private GameRecordService gameRecordService;
 	  
     @Value("${game.gametype}")
     private int gameType;
@@ -280,6 +284,12 @@ public class GameRecordServiceImpl implements GameRecordService {
 	public int addOrUpdateTaxesInvite(TaxesInvite record) {
 		
 		return taxesInviteMapper.insertOrUpdateTaxesInvite(record);
+	}
+
+
+	@Override
+	public int getPlayCount(int mid, byte gameType) {
+		return playerRecordMapper.getPlayCount(mid, gameType);
 	}
 
 

@@ -13,9 +13,12 @@ import com.qs.common.util.DateUtil;
 import com.qs.common.util.EmojiFilter;
 import com.qs.common.util.HttpClientUtil;
 import com.qs.common.util.IpUtil;
+import com.qs.log.game.service.GameRecordService;
 import com.qs.webside.api.model.*;
 import com.qs.webside.api.service.IAlipayService;
 import com.qs.webside.game.model.BaseParam;
+import com.qs.webside.game.model.Ipaddress;
+import com.qs.webside.game.model.IpaddressUseLog;
 import com.qs.webside.game.model.MobileVersion;
 import com.qs.webside.game.service.GameService;
 import com.qs.webside.member.model.*;
@@ -39,6 +42,8 @@ import weixin.popular.bean.user.User;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.codec.binary.Base64;
@@ -102,6 +107,8 @@ public class MemberController extends BaseController {
 	@Autowired
 	private PaymentService paymentService;
 	
+	@Autowired
+	private GameRecordService gameRecordService;
 	
 	/**
 	 * 数据加载
@@ -171,10 +178,11 @@ public class MemberController extends BaseController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		//游客登录
-		String openId=login.getSitemid();
+		String unionid=login.getSitemid();
 		Memberfides wxUser=null;
 		Memberfides resultUser=null;
-	
+		// String ip = IpUtil.getIpAddr(request);
+		String ip =CommonUtils.getIpAddr(request);
 	    //微信登录
 		if(login.getType()==1){
 	       //根据code取accessToken
@@ -197,20 +205,31 @@ public class MemberController extends BaseController {
 		    }
 			
 			wxUser=this.getUserByWxUser(user);		
-			wxUser.setGp((byte)login.getGp());
-			wxUser.setPasswd(login.getDeviceid());
-			wxUser.setCity(this.getCityId(request)+"");
-			
-		    openId=user.getOpenid();
+			//这里取unionid
+			unionid=user.getUnionid();
 	   }
-		if(StringUtil.isBlank(openId)){
+		
+		if(null==wxUser){ 
+			//游客登录
+			wxUser=new Memberfides();
+			wxUser.setName(AppConstants.VISITORNAME);
+		}
+		
+		wxUser.setAddress(ip);
+		wxUser.setGp((byte)login.getGp());
+		wxUser.setPasswd(login.getDeviceid());
+		wxUser.setMtime((long)DateUtil.currentTimeToInt());
+		wxUser.setLxlg(DateUtil.currentTimeToInt());
+		
+		if(StringUtil.isBlank(unionid)){
 			return this.getReturnData(AppConstants.ResultMsg.NO_OPENID,AppConstants.Result.FAILURE);
 		}
 		
-		Members mbers=memberService.findMembersBySitemid(openId);
+		Members mbers=memberService.findMembersBySitemid(unionid);
 		//记录不存在、插入数据库
 		if(null==mbers){
-			resultUser=memberService.insertMemberfides(wxUser,openId);
+		
+			resultUser=memberService.insertMemberfides(wxUser,unionid);
 		}else{
 			resultUser=memberService.findMemberfidesById(mbers.getMid());
 		    //更新用户信息
@@ -220,8 +239,7 @@ public class MemberController extends BaseController {
 			   }
 		}
 		
-		// String ip = IpUtil.getIpAddr(request);
-		  String ip =CommonUtils.getIpAddr(request);
+		
 		  
 		 int userGp=0;
 		 int mid=0;
@@ -232,10 +250,24 @@ public class MemberController extends BaseController {
 		 
         String sesskey=memberService.saveToken(mid,login.getGp(),userGp,ip);
     	String dataConfigVersion=gameService.getBaseParamValueByCode(AppConstants.BaseParam.CONFIG_VERSION_CODE);
+    	
+    	String socketIp=hostPort;
+    
+    	
+    	int playCount=gameRecordService.getPlayCount(mid, (byte)gameType);
+    	
+    	socketIp = this.getServiceIp(socketIp, playCount,ip,mid,gameType);
+    	
+    	if(StringUtils.isBlank(socketIp)){
+    		socketIp=hostPort;
+    	}
+    	
+    	log.debug("playCount====  ===::"+playCount);
+    	
 		map.put("sesskey",sesskey);
-		String hostServer = new String(Base64.encodeBase64(hostPort.getBytes()));
+		String hostServer = new String(Base64.encodeBase64(socketIp.getBytes()));
 		map.put("server",hostServer);
-		map.put("sitemid",openId);
+		map.put("sitemid",unionid);
 	    //map.put("ver",dataConfigVersion);
 		map.put("ver",ver);
 		//房间、商城配置文件路径
@@ -246,6 +278,108 @@ public class MemberController extends BaseController {
 		map.put("baseUrl",activityUrl+"api/mobile/");
 
 		return this.getReturnData(map,AppConstants.Result.SUCCESS);
+	}
+    /**
+     * 服务器入口
+     * @param socketIp
+     * @param playCount
+     * @return
+     */
+	private String getServiceIp(String socketIp, int playCount,String ip,int mid,int gameType) {
+		Ipaddress ipaddress=null;
+		
+		String city= this.getCity(ip);
+		
+		String  province="广东";
+		if(gameType==5){
+			province="四川";
+		}
+		
+		 //非广东/或者四川
+		if(!StringUtils.isBlank(city)&&!city.startsWith(province)){
+			 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L1);
+	        	if(null!=ipaddress){
+	        		   socketIp=ipaddress.getIpstring();
+	        		
+	        	}
+		}else if(playCount<9){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L2);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount<27){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L3);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount<49){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L4);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount<199){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L5);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount<599){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L6);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount<999){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L7);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount<1499){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L8);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount<2499){
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L9);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}else if(playCount>=2499){
+   		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L10);
+     	 if(null!=ipaddress){
+     		   socketIp=ipaddress.getIpstring();
+     		
+     	}
+ 	   }else{
+    		 ipaddress=gameService.findIpaddressByType(AppConstants.IpType.L2);
+        	if(null!=ipaddress){
+        		   socketIp=ipaddress.getIpstring();
+        		
+        	}
+    	}
+		
+		if(null==ipaddress){
+			 ipaddress=new Ipaddress();
+		}
+		
+		
+		//保存日志
+		IpaddressUseLog record=new IpaddressUseLog();
+		record.setMid(mid);
+		record.setIpstring(ipaddress.getIpstring());
+		record.setName(ipaddress.getName());
+		record.setType(ipaddress.getType());
+		record.setUsetime(new Date());
+		record.setLoginIp(ip);
+		gameService.saveIpaddressUseLog(record);
+		
+		return socketIp;
 	}
     /**
      * 更新用户信息
@@ -275,12 +409,19 @@ public class MemberController extends BaseController {
 		   if(!StringUtils.isBlank(wxUser.getName())){
 		      if(!wxUser.getName().equals(resultUser.getName())){		    		
 		    	  isUpdate=true;
-				  updateUser.setName(resultUser.getName());
+				  updateUser.setName(wxUser.getName());
 		      }
 			}
 		   
+		   if(!StringUtils.isBlank(wxUser.getIdentity())){
+			   if(StringUtils.isBlank(resultUser.getIdentity())){	    		
+			    	  isUpdate=true;
+					  updateUser.setIdentity(wxUser.getIdentity());
+			      }
+				}
+		   
 		   if(!StringUtils.isBlank(login.getDeviceid())){
-			      if(!login.getDeviceid().equals(resultUser.getName())){		    		
+			      if(!login.getDeviceid().equals(resultUser.getPasswd())){		    		
 			    	  isUpdate=true;
 					  updateUser.setPasswd(login.getDeviceid());
 			      }
@@ -304,12 +445,10 @@ public class MemberController extends BaseController {
 		Memberfides member=new Memberfides();
 		member.setName(EmojiFilter.filterEmoji(user.getNickname()));
 		member.setSex(CommonUtils.getSex(user.getSex()));
-		member.setCity(user.getCity());
+		member.setCity(user.getProvince()+user.getCity());
 		member.setIcon(user.getHeadimgurl());
-	    //member.setInvite(invite);
-	    //member.setGp(();
-		member.setMtime(System.currentTimeMillis());
-		member.setLxlg(DateUtil.currentTimeToInt());
+		//设置游戏openid
+		member.setIdentity(user.getOpenid());
 		return member;
 	}
 	
@@ -329,9 +468,17 @@ public class MemberController extends BaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		String queryString="";
 		String cardid="1";
+	
 		AccessToken token=ContextUtil.getAccessTokenInfo(orderRequest.getSesskey());
 		int money=orderRequest.getMoney();
 		String  type=orderRequest.getType();
+		
+		if(AppConstants.PayType.APPLEPAY.equals(type)&&!StringUtils.isBlank(orderRequest.getIosstring())){
+			 log.debug("orderRequest.getIosstring()=======================::"+orderRequest.getIosstring());
+			//苹果支付回调验证
+		    return applePayVerify(orderRequest,queryString, cardid);
+		}
+		
 		if(StringUtils.isBlank(type)){
 			type=AppConstants.PayType.WXPAY;
 		}
@@ -388,77 +535,8 @@ public class MemberController extends BaseController {
 				Integer orderId=paymentService.insertMemberpayment(record);	
 				queryString=record.getPid()+"";
 			}else{  
-			  //发货(不带cardid)
-			  int orderId=orderRequest.getOrderid();
-			  if(orderId<=0){
-				  return this.getReturnData(map,AppConstants.Result.FAILURE_1002);
-			  }
-			  if(StringUtils.isBlank(iostoken)){
-				  return this.getReturnData(map,AppConstants.Result.FAILURE_1002);
-			  }
-			  String payUrl=applePayUrl;
-			  if(StringUtils.isBlank(payUrl)){
-				  payUrl=AppConstants.ApplePay.SANDBOX;
-			  }
-			  		
-			 String checkVer=gameService.getBaseParamValueByCode(AppConstants.BaseParam.IOS_VERSION_CODE);
-			 if(!StringUtils.isBlank(checkVer)&&checkVer.equals(orderRequest.getVer())){
-				 payUrl=AppConstants.ApplePay.SANDBOX;
-			 }
-			 
-			 JSONObject payJson=new JSONObject();
-			 payJson.put("receipt-data",iostoken);
-			 String jsonString= payJson.toJSONString();
-			 String verifyResult=HttpClientUtil.sendPost(payUrl, jsonString);
-			 log.debug("verifyResult=======================::"+verifyResult);
-			 if(StringUtils.isBlank(verifyResult)){
-				//充值失败
-				 return this.getReturnData(map,AppConstants.Result.FAILURE_1004);
-			 }else{
-				 
-				 //跟苹果验证有返回结果------------------  
-	                JSONObject payJsonAll = JSONObject.parseObject(verifyResult);
-	                String status=payJsonAll.getString("status");  
-	                //沙箱充值失败,21007再试一次
-	                if("21007".equals(status)){
-	                	payUrl=AppConstants.ApplePay.SANDBOX;
-	                	String verifyResult2=HttpClientUtil.sendPost(payUrl, jsonString);
-	                	log.debug("verifyResult2=======================::"+verifyResult2);
-	                }
-	                
-	                if(!"0".equals(status)){
-	                	//充值失败
-	   				   return this.getReturnData(map,AppConstants.Result.FAILURE_1004);
-	                }
-	                
-	                String receipt=payJsonAll.getString("receipt");  
-                    JSONObject returnJson = JSONObject.parseObject(receipt);
-                    
-                    Memberpayment orderPay=paymentService.findMemberpaymentById(orderId);
-                    if(null==orderPay){
-                    	return this.getReturnData(map,AppConstants.Result.FAILURE_1009);
-                    }
-                   if(orderPay.getPstatus()==2){
-                  	 //重复发货
-                	   logger.error("getOrder.do==重复发货"); 
-                		return this.getReturnData(map,AppConstants.Result.FAILURE_1007);
-                  }
-                   
-                   //产品ID  
-                   String product_id=returnJson.getString("product_id");  
-                   String ptransno=returnJson.getString("transaction_id");  
-                   String bid=returnJson.getString("bid"); 
-                   
-                   byte pstatus=2;
-                   int c=paymentService.updateFinishMemberpayment(orderId, pstatus,ptransno);
-                   if(c>0){
-                	   log.debug("apple success=======================::"+c);
-                   }else{
-                   	   logger.error("wxNotify.do===支付失败::"+c);
-                   }
-                
-				  
-			  }
+				//苹果支付回调验证
+			    return applePayVerify(orderRequest,queryString, cardid);
 	
 		 }
 				
@@ -471,6 +549,93 @@ public class MemberController extends BaseController {
 		return this.getReturnData(map,AppConstants.Result.SUCCESS);
 	
 		
+	}
+    /**
+     * 苹果支付回调验证
+     * @param orderRequest
+     * @param queryString
+     * @param cardid
+     * @return
+     */
+	private Object applePayVerify(OrderRequest orderRequest,String queryString, String cardid) {
+	  	 
+		  Map<String, Object> map = new HashMap<String, Object>();
+	  	  String iostoken =orderRequest.getIosstring();
+		   //发货(不带cardid)
+		  int orderId=orderRequest.getOrderid();
+		  if(orderId<=0){
+			  return this.getReturnData(map,AppConstants.Result.FAILURE_1002);
+		  }
+		  if(StringUtils.isBlank(iostoken)){
+			  return this.getReturnData(map,AppConstants.Result.FAILURE_1002);
+		  }
+		  String payUrl=applePayUrl;
+		  if(StringUtils.isBlank(payUrl)){
+			  payUrl=AppConstants.ApplePay.SANDBOX;
+		  }
+		  		
+		 String checkVer=gameService.getBaseParamValueByCode(AppConstants.BaseParam.IOS_VERSION_CODE);
+		 if(!StringUtils.isBlank(checkVer)&&checkVer.equals(orderRequest.getVer())){
+			 payUrl=AppConstants.ApplePay.SANDBOX;
+		 }
+		 
+		 JSONObject payJson=new JSONObject();
+		 payJson.put("receipt-data",iostoken);
+		 String jsonString= payJson.toJSONString();
+		 String verifyResult=HttpClientUtil.sendPost(payUrl, jsonString);
+		 log.debug("verifyResult=======================::"+verifyResult);
+		 if(StringUtils.isBlank(verifyResult)){
+			//充值失败
+			 return this.getReturnData(map,AppConstants.Result.FAILURE_1004);
+		 }else{
+			 
+			 //跟苹果验证有返回结果------------------  
+		        JSONObject payJsonAll = JSONObject.parseObject(verifyResult);
+		        String status=payJsonAll.getString("status");  
+		        //沙箱充值失败,21007再试一次
+		        if("21007".equals(status)){
+		        	payUrl=AppConstants.ApplePay.SANDBOX;
+		        	String verifyResult2=HttpClientUtil.sendPost(payUrl, jsonString);
+		        	log.debug("verifyResult2=======================::"+verifyResult2);
+		        }
+		        
+		        if(!"0".equals(status)){
+		        	//充值失败
+				   return this.getReturnData(map,AppConstants.Result.FAILURE_1004);
+		        }
+		        
+		        String receipt=payJsonAll.getString("receipt");  
+		        JSONObject returnJson = JSONObject.parseObject(receipt);
+		        
+		        Memberpayment orderPay=paymentService.findMemberpaymentById(orderId);
+		        if(null==orderPay){
+		        	return this.getReturnData(map,AppConstants.Result.FAILURE_1009);
+		        }
+		       if(orderPay.getPstatus()==2){
+		      	 //重复发货
+		    	   logger.error("getOrder.do==重复发货"); 
+		    		return this.getReturnData(map,AppConstants.Result.FAILURE_1007);
+		      }
+		       
+		       //产品ID  
+		       String product_id=returnJson.getString("product_id");  
+		       String ptransno=returnJson.getString("transaction_id");  
+		       String bid=returnJson.getString("bid"); 
+		       
+		       byte pstatus=2;
+		       int c=paymentService.updateFinishMemberpayment(orderId, pstatus,ptransno);
+		       if(c>0){
+		    	   log.debug("apple success=======================::"+c);
+		       }else{
+		       	   logger.error("wxNotify.do===支付失败::"+c);
+		       }
+		    
+			  
+		  }
+		 
+			map.put("string",queryString);
+			map.put("cardid",cardid);
+			return this.getReturnData(map,AppConstants.Result.SUCCESS);
 	}
 	
 	
@@ -514,7 +679,7 @@ public class MemberController extends BaseController {
 		paraMap.put("site",mobileVersionRequest.getSite());
 		paraMap.put("channel",mobileVersionRequest.getChannel());
 	    
-		String cacheKey="version:"+mobileVersionRequest.getSite()+"_"+mobileVersionRequest.getChannel()+"_"+AppConstants.AppVersionType.STRONG;
+		String cacheKey=AppConstants.RedisKeyPrefix.APP_VERSION+mobileVersionRequest.getSite()+"_"+mobileVersionRequest.getChannel()+"_"+AppConstants.AppVersionType.STRONG;
 		
 		//强更新
 		paraMap.put("type",AppConstants.AppVersionType.STRONG);
@@ -531,12 +696,13 @@ public class MemberController extends BaseController {
 		
 		//测试
 		paraMap.put("type",AppConstants.AppVersionType.TEST);
-		cacheKey="version:"+mobileVersionRequest.getSite()+"_"+mobileVersionRequest.getChannel()+"_"+AppConstants.AppVersionType.TEST;
+		cacheKey=AppConstants.RedisKeyPrefix.APP_VERSION+mobileVersionRequest.getSite()+"_"+mobileVersionRequest.getChannel()+"_"+AppConstants.AppVersionType.TEST;
 		MobileVersion testVersion= gameService.findLatestMobileVersion(paraMap,cacheKey);
 		if(null!=testVersion&&!StringUtils.isBlank(testVersion.getUrlTest())){
 			if(!StringUtils.isBlank(deviceid)&&!StringUtils.isBlank(testVersion.getDevicelistTest())){
 		    	if(testVersion.getDevicelistTest().contains(deviceid)){
-		    		isTester=1;
+		    		//isTester=1;
+		    		isTester=0;
 			    if(testVersion.getBigversion()>mobileVersionRequest.getBigversion()){
 					return returnMobileVersionMap(mobileVersionRequest, map, testVersion,true,returnJavaUrl,isTester,isIosCheckVersion);	
 			   }else if(testVersion.getBigversion()==mobileVersionRequest.getBigversion()&&testVersion.getVersion()>=mobileVersionRequest.getVersion()){
@@ -549,7 +715,7 @@ public class MemberController extends BaseController {
 		
 		//没有强更、就热更新
 		paraMap.put("type",AppConstants.AppVersionType.FORMAL);
-		cacheKey="version:"+mobileVersionRequest.getSite()+"_"+mobileVersionRequest.getChannel()+"_"+AppConstants.AppVersionType.FORMAL;
+		cacheKey=AppConstants.RedisKeyPrefix.APP_VERSION+mobileVersionRequest.getSite()+"_"+mobileVersionRequest.getChannel()+"_"+AppConstants.AppVersionType.FORMAL;
 	    MobileVersion formalVersion= gameService.findLatestMobileVersion(paraMap,cacheKey);
 		
 		if(null!=formalVersion&&!StringUtils.isBlank(formalVersion.getUrl())){

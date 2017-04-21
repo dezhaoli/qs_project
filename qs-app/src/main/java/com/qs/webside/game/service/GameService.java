@@ -9,6 +9,8 @@ import com.qs.webside.game.model.MobileVersion;
 import com.qs.webside.game.model.Memberinvite;
 import com.qs.common.constant.CacheConstan;
 import com.qs.webside.game.model.BaseParam;
+import com.qs.webside.game.model.Ipaddress;
+import com.qs.webside.game.model.IpaddressUseLog;
 
 public interface GameService {
    
@@ -53,8 +55,18 @@ public interface GameService {
 	 */
 	public Map<String, Object>  updateGold(int mid,int gold,int gmType);
 	
-
-	
+	/**
+	 * 通过type查询ip地址
+	 * @param type
+	 * @return
+	 */
+	public Ipaddress findIpaddressByType(String type);
+	/**
+	 * ip日志使用日志
+	 * @param record
+	 * @return
+	 */
+	public int saveIpaddressUseLog(IpaddressUseLog record);
 
  
 }

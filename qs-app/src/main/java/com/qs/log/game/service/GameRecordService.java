@@ -5,10 +5,22 @@ import com.qs.log.game.model.TaxesInvite;
 
 import java.util.List;
 import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.qs.log.game.model.GameRecordShare;
 import com.qs.log.game.model.GameRecord;
 
 public interface GameRecordService {
+	
+	
+	/**
+	 * 玩家玩的局数
+	 * @param mid
+	 * @param gameType
+	 * @return
+	 */
+	int getPlayCount(int mid,byte gameType);
    
 	/**
 	 * 获取牌局回放数据

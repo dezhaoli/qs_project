@@ -15,4 +15,7 @@ public interface IpaddressMapper extends IBaseMapper {
     int updateByPrimaryKeySelective(Ipaddress record);
 
     int updateByPrimaryKey(Ipaddress record);
+    
+    Ipaddress findIpaddressByType(String type);
+    
 }
