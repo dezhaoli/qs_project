@@ -1,0 +1,126 @@
+package com.qs.webside.agent.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.Constants;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.PageUtil;
+import com.qs.datasource.DataSourceSwitch;
+import com.qs.datasource.util.ConstantUtil;
+import com.qs.datasource.util.DataSourcesUtil;
+import com.qs.log.game.model.MajiangGameRecord;
+import com.qs.log.game.service.IMajiangGameRecordService;
+import com.qs.webside.member.model.MemberAgents;
+import com.qs.webside.member.model.MemberFides;
+import com.qs.webside.member.service.IMemberFidesService;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ *
+ *  代理商后台查看用户牌局记录控制器 //@Author:zun.wei, @Date:2017/3/31 10:44
+ * Created by zun.wei on 2017/3/31.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/agent/user/")
+public class UserCardRecordController extends BaseController {
+
+   //http://127.0.0.1:8080/ag/agent/user/showUserCardRecordUi.html
+
+    @Resource
+    private IMajiangGameRecordService majiangGameRecordService;
+
+    @Resource
+    private IMemberFidesService memberFidesService;
+    
+    @Autowired
+	private DataSourcesUtil dataSourcesUtil;
+    //MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+
+    /**
+     *  代理商后台查看牌局记录入口
+     * @param model
+     * @param request
+     * @return
+     */
+    @RequestMapping(value = "showUserCardRecordUi.html",method = RequestMethod.GET)
+    public String showUserCardRecordUi(Model model, HttpServletRequest request) {
+        try {
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("gameType", "majiang");//后期可以根据不同的游戏类型设置不同的datagird
+            return "/WEB-INF/view/web/agent/user/member_userCardRecord_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    @RequestMapping("showUserCardRecord.html")
+    @ResponseBody
+    public Object showUserCardRecord(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            //parameters.put("mid", null);
+            return null;//如果没有mid传过来则不执行查询。
+        }
+
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        if ("majiang".equals(parameters.get("gameType"))) {
+            if (parameters.get("mid") != null && !"".equals(parameters.get("mid"))) {
+                MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+    			String gameType=dataSourcesUtil.getKey(ConstantUtil.AGENT_GAME_TYPE_SESSION_KEY+memberAgents.getSitemid());
+    			DataSourceSwitch.setMainDataSourceType(
+    					dataSourcesUtil.getDataBaseName(ConstantUtil.ReadWrite.READ, Integer.parseInt(gameType), null));
+    			DataSourceSwitch.setLogDataSourceType(
+    					dataSourcesUtil.getDataBaseName(ConstantUtil.ReadWrite.READ, Integer.parseInt(gameType),
+    							                       ConstantUtil.TypeCode.LOG));
+    			
+                if (memberAgents != null) {
+                    MemberFides memberFides = memberFidesService.selectByPrimaryKey
+                            (Integer.valueOf(parameters.get("mid") + ""));
+                    if (memberFides != null) {
+                        int invite = memberFides.getInvite();
+                        int searchMid = Integer.valueOf(parameters.get("mid") + "");
+                        //invite = 50177;//@Author:zun.wei, @Date:2017/3/31 13:48 开发测试时写死一个。
+                        if (invite != searchMid) {//如果不是直属下级用户不查询
+                            //该用户不是您的直属会员
+                            Map<String, Object> stringObjectMap = new HashMap<String, Object>();
+                            stringObjectMap.put(Constants.AgentMsg.AGENT_ERROR, "该用户不是您的直属会员");
+                            //return getReturnPage(pager, page, new ArrayList<Map<String,Object>>());
+                            List<Map<String, Object>> mapList = new ArrayList<>();
+                            mapList.add(stringObjectMap);
+                            return getReturnPage(pager, page, mapList);
+                        }
+                        List<MajiangGameRecord> list = majiangGameRecordService.queryAgentGameRecordListByPage(parameters);
+                        return getReturnPage(pager, page, list);
+                    }
+                }
+            }
+        }
+        return getReturnPage(pager, page, new ArrayList<Map<String,Object>>());//如果没有参数，返回一个空的list。
+    }
+
+
+}

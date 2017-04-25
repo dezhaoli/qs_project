@@ -138,4 +138,11 @@
       create_time = #{createTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <select id="selectBySitemidKey" resultType="map" parameterType="java.lang.String" >
+    select com.id,com.game_id,com.game_type ,app.gname 
+    from common_agents_relation com,app_game app 
+    where app.game_type=com.game_type 
+    and com.sitemid = #{sitemid,jdbcType=VARCHAR}
+  </select>
 </mapper>

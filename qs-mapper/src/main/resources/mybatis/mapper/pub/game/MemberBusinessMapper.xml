@@ -256,4 +256,10 @@
     LIMIT 0,1
   </select>
 
+  <select id="getBusInfoAndBizInfoByMid" resultType="map" parameterType="java.lang.Integer" >
+    <!-- SELECT a.name AS bizname,a.phone AS bizphone,b.* FROM memberbusiness a INNER JOIN
+      (SELECT * FROM memberagents WHERE mid = #{mid,jdbcType=INTEGER}) b ON a.id=b.belongid -->
+    SELECT a.name AS bizname,a.phone AS bizphone FROM memberbusiness a WHERE id=#{id}
+  </select>
+
 </mapper>

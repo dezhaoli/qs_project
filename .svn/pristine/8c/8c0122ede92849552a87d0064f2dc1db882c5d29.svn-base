@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- ==========================================配置动态数据源================================================ -->
+    <!-- Log库 -->
+    <bean id="logDynamicDataSource" class="com.qs.datasource.LogDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <!-- 广东麻将日志 -->
+                <entry value-ref="logReadDataSource" key="logReadDataSource"/>
+                <entry value-ref="logWriteDataSource" key="logWriteDataSource"/>
+            </map>
+        </property>
+        <!-- 默认数据源 -->
+        <property name="defaultTargetDataSource" ref="logReadDataSource"/>
+    </bean>
+
+    <!-- cfg库 -->
+    <bean id="cfgDynamicDataSource" class="com.qs.datasource.CfgDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry value-ref="cfgReadDataSource" key="cfgReadDataSource"/>
+                <entry value-ref="cfgWriteDataSource" key="cfgWriteDataSource"/>
+
+            </map>
+        </property>
+        <property name="defaultTargetDataSource" ref="scMajiangCfgReadDataSource"/>
+    </bean>
+
+    <!-- 主库 -->
+    <bean id="mainDynamicDataSource" class="com.qs.datasource.MainDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <!-- 广东麻将主库 -->
+                <entry value-ref="mainReadDataSource" key="mainReadDataSource"/>
+                <entry value-ref="mainWriteDataSource" key="mainWriteDataSource"/>
+            </map>
+        </property>
+        <!-- 默认数据源 -->
+        <property name="defaultTargetDataSource" ref="mainReadDataSource"/>
+    </bean>
+    <!-- ==========================================配置动态数据源================================================= -->
+
+</beans>

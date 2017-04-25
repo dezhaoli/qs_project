@@ -1,0 +1,48 @@
+
+0：解压  tar -xzvf  apache-activemq-5.10.2-bin.tar.gz
+
+
+
+1.添加MySql数据源
+       打开Activemq安装目录下的conf/activemq.xml文件，添加MySql数据源。默认情况下Activemq使用KahaDB存储，注解掉KahaDB配置，改为mysql配置如下：
+ 
+<!--
+<persistenceAdapter>
+    <kahaDB directory="${activemq.base}/data/kahadb"/>
+</persistenceAdapter>
+-->
+        <persistenceAdapter>
+            <jdbcPersistenceAdapter dataSource="#mysqlDataSource"/>
+        </persistenceAdapter>   
+ 
+该配置表示，我们将要使用名称为“#mysqlDataSource”的作为mysql数据源。
+2. 配置MySql数据源
+      在</broker>节点后面，增加MySQL数据源配置：
+ 
+<!-- MySQL DataSource -->
+<bean id="MySQL-DS" class="org.apache.commons.dbcp.BasicDataSource" destroy-ethod="close">
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+    <property name="url" value="jdbc:mysql://127.0.0.1:3306/activemq?relaxAutoCommit=true"/>
+    <property name="username" value="用户名"/>
+    <property name="password" value="登录密码"/>
+    <property name="poolPreparedStatements" value="true"/>
+</bean>
+
+
+!-- oracle DataSource 配置-->
+   <bean id="mysqlDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+    <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+    <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:XE"/>
+    <property name="username" value="mq"/>
+    <property name="password" value="mq"/>
+    <property name="maxActive" value="200"/>
+    <property name="poolPreparedStatements" value="true"/>
+    </bean>
+
+  3：lib放入驱动mysql 或者oracle驱动
+ mysql-connector-java-5.1.21-bin.jar
+
+
+4：启动关闭
+./activemq start
+./activemq stop

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.pay.mapper.PayWhiteListMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.sys.model.PayWhiteList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="game_type" property="gameType" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="extend1" property="extend1" jdbcType="VARCHAR" />
+    <result column="extend2" property="extend2" jdbcType="VARCHAR" />
+    <result column="extend3" property="extend3" jdbcType="VARCHAR" />
+    <result column="creator_id" property="creatorId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="modifier_id" property="modifierId" jdbcType="INTEGER" />
+    <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, game_type, money, name, extend1, extend2, extend3, creator_id, create_time, 
+    modifier_id, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_white_list
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pay_white_list
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.pub.sys.model.PayWhiteList" >
+    insert into pay_white_list (id, mid, game_type, 
+      money, name, extend1, 
+      extend2, extend3, creator_id, 
+      create_time, modifier_id, modify_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{gameType,jdbcType=INTEGER}, 
+      #{money,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{extend1,jdbcType=VARCHAR}, 
+      #{extend2,jdbcType=VARCHAR}, #{extend3,jdbcType=VARCHAR}, #{creatorId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=INTEGER}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.pub.sys.model.PayWhiteList" >
+    insert into pay_white_list
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="gameType != null" >
+        game_type,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="extend1 != null" >
+        extend1,
+      </if>
+      <if test="extend2 != null" >
+        extend2,
+      </if>
+      <if test="extend3 != null" >
+        extend3,
+      </if>
+      <if test="creatorId != null" >
+        creator_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="modifierId != null" >
+        modifier_id,
+      </if>
+      <if test="modifyTime != null" >
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="gameType != null" >
+        #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null" >
+        #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null" >
+        #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null" >
+        #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.pub.sys.model.PayWhiteList" >
+    update pay_white_list
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="gameType != null" >
+        game_type = #{gameType,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null" >
+        extend1 = #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null" >
+        extend2 = #{extend2,jdbcType=VARCHAR},
+      </if>
+      <if test="extend3 != null" >
+        extend3 = #{extend3,jdbcType=VARCHAR},
+      </if>
+      <if test="creatorId != null" >
+        creator_id = #{creatorId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifierId != null" >
+        modifier_id = #{modifierId,jdbcType=INTEGER},
+      </if>
+      <if test="modifyTime != null" >
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.pub.sys.model.PayWhiteList" >
+    update pay_white_list
+    set mid = #{mid,jdbcType=INTEGER},
+      game_type = #{gameType,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      extend1 = #{extend1,jdbcType=VARCHAR},
+      extend2 = #{extend2,jdbcType=VARCHAR},
+      extend3 = #{extend3,jdbcType=VARCHAR},
+      creator_id = #{creatorId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modifier_id = #{modifierId,jdbcType=INTEGER},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectPayWhiteListAll" resultMap="BaseResultMap" parameterType="map">
+    select 
+    <include refid="Base_Column_List" />
+    from pay_white_list
+    <where>
+    	  <if test="id != null and id != '' " >
+	        and  id = #{id,jdbcType=INTEGER} 
+	      </if>
+	      <if test="mid != null and mid != '' " >
+	        and mid = #{mid,jdbcType=INTEGER}
+	      </if>
+	      <if test="gameType != null and gameType != '' " >
+	        and game_type = #{gameType,jdbcType=INTEGER}
+	      </if>
+	      <if test="money != null and money != '' " >
+	        and money = #{money,jdbcType=INTEGER}
+	      </if>
+	      <if test="name != null and name != '' " >
+	        and name = #{name,jdbcType=VARCHAR}
+	      </if>
+	      <if test="extend1 != null and extend1 != '' " >
+	        and extend1 = #{extend1,jdbcType=VARCHAR}
+	      </if>
+	      <if test="extend2 != null and extend2 != '' " >
+	        and extend2 = #{extend2,jdbcType=VARCHAR}
+	      </if>
+	      <if test="extend3 != null and extend3 != '' " >
+	        and extend3 = #{extend3,jdbcType=VARCHAR}
+	      </if>
+	      <if test="creatorId != null and creatorId != '' " >
+	        and creator_id = #{creatorId,jdbcType=INTEGER}
+	      </if>
+	      <if test="createTime != null and createTime != '' " >
+	       and  create_time = #{createTime,jdbcType=TIMESTAMP}
+	      </if>
+	      <if test="modifierId != null and modifierId != '' " >
+	        and modifier_id = #{modifierId,jdbcType=INTEGER}
+	      </if>
+	      <if test="modifyTime != null and modifyTime != '' " >
+	       and  modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+	      </if>
+     
+    </where>
+  
+  </select>
+</mapper>

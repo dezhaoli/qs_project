@@ -1,0 +1,75 @@
+package com.qs.pub.sys.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import com.qs.common.base.baseservice.impl.AbstractService;
+import com.qs.common.constant.CacheConstan;
+import com.qs.common.exception.ServiceException;
+import com.qs.pub.sys.mapper.ResourceMapper;
+import com.qs.pub.sys.model.ResourceEntity;
+import com.qs.pub.sys.service.ResourceService;
+
+@Service("resourceService")
+public class ResourceServiceImpl extends AbstractService<ResourceEntity, Long>
+		implements ResourceService {
+
+	@Autowired
+	private ResourceMapper resourceMapper;
+
+	// 这句必须要加上。不然会报空指针异常，因为在实际调用的时候不是BaseMapper调用，而是具体的mapper，这里为resourceMapper
+	@Autowired
+	public void setBaseMapper() {
+		super.setBaseMapper(resourceMapper);
+	}
+
+	@Override
+	public List<ResourceEntity> findResourcesByUserId(int userId) {
+		return resourceMapper.findResourcesByUserId(userId);
+	}
+
+	@Override
+	public List<ResourceEntity> queryResourceList(Map<String, Object> parameter) {
+		return resourceMapper.queryResourceList(parameter);
+	}
+	
+	@Override
+	@CacheEvict(value={CacheConstan.MENU_CACHE_STORE_NAME},allEntries=true)
+	public int update(ResourceEntity resourceEntity){
+		return resourceMapper.update(resourceEntity);
+	}
+
+	@Override
+	@Cacheable(value={CacheConstan.MENU_CACHE_STORE_NAME},key="#root.methodName+':'+#root.args[0]")
+	public List<ResourceEntity> findResourcesMenuByUserId(int userId) {
+		return resourceMapper.findResourcesMenuByUserId(userId);
+	}
+
+	@Override
+	public boolean deleteRoleAndResource(List<Long> resourceIds) {
+		try
+		{
+			resourceIds.forEach(resourceId -> {
+				resourceMapper.deleteRolePerm(resourceId);
+			});
+			resourceMapper.deleteBatchById(resourceIds);
+			return true;
+		}catch(Exception e)
+		{
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	@Cacheable(value={CacheConstan.MENU_CACHE_STORE_NAME},key="#root.methodName+':'+#root.args[0]")
+	public List<ResourceEntity> findResourcesMenuByRoleId(int roleId) {
+		return resourceMapper.findResourcesMenuByRoleId(roleId);
+	}
+
+
+}

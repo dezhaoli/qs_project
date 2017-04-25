@@ -21,4 +21,6 @@
 
 	<import resource="classpath:spring/datasource.xml"/>
 
+	<bean id="businessDataSourceUtil" class="com.qs.webside.util.BusinessDataSourceUtil"/>
+
 </beans>

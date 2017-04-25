@@ -95,6 +95,15 @@
 </div>
 
 <script>
+    $(function (){
+        setTimeout(function (){
+            $('#searchYear option').last().attr("selected",true);
+            $("#searchYear").change();
+            $('#searchDate option').last().attr("selected",true);
+        },0);
+
+    });
+
     var json = '${jsonDate}';
     var obj = JSON.parse(json);
     $(function () {

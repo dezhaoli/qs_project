@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteWeekSendMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteWeekSend" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="rebatetotal" property="rebatetotal" jdbcType="DECIMAL" />
+    <result column="bindpeople" property="bindpeople" jdbcType="SMALLINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="taxrate" property="taxrate" jdbcType="DECIMAL" />
+    <result column="isaward" property="isaward" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+  </resultMap>
+  
+      <sql id="Base_Column_List">
+    mid,date,paytotal,bindpeople,scale,rebatetotal,isaward
+  </sql>
+  
+  <insert id="insert" parameterType="com.qs.log.game.model.TaxesInviteWeekSend" >
+    insert into taxes_invite_week_send (mid, date, paytotal, 
+      rebatetotal, bindpeople, scale, 
+      taxrate, isaward, parentid, 
+      info)
+    values (#{mid,jdbcType=INTEGER}, #{date,jdbcType=DATE}, #{paytotal,jdbcType=DECIMAL}, 
+      #{rebatetotal,jdbcType=DECIMAL}, #{bindpeople,jdbcType=SMALLINT}, #{scale,jdbcType=TINYINT}, 
+      #{taxrate,jdbcType=DECIMAL}, #{isaward,jdbcType=TINYINT}, #{parentid,jdbcType=INTEGER}, 
+      #{info,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.TaxesInviteWeekSend" >
+    insert into taxes_invite_week_send
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="paytotal != null" >
+        paytotal,
+      </if>
+      <if test="rebatetotal != null" >
+        rebatetotal,
+      </if>
+      <if test="bindpeople != null" >
+        bindpeople,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+      <if test="taxrate != null" >
+        taxrate,
+      </if>
+      <if test="isaward != null" >
+        isaward,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="paytotal != null" >
+        #{paytotal,jdbcType=DECIMAL},
+      </if>
+      <if test="rebatetotal != null" >
+        #{rebatetotal,jdbcType=DECIMAL},
+      </if>
+      <if test="bindpeople != null" >
+        #{bindpeople,jdbcType=SMALLINT},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="taxrate != null" >
+        #{taxrate,jdbcType=DECIMAL},
+      </if>
+      <if test="isaward != null" >
+        #{isaward,jdbcType=TINYINT},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  
+  <update id="updateIsawardByCondition" parameterType="com.qs.log.game.model.TaxesInviteWeekSend" >
+    update taxes_invite_week_send
+    set isaward = 2
+    where mid = #{mid,jdbcType=INTEGER} and date = #{date,jdbcType=DATE} and isaward=1
+  </update>
+  
+    <select id="findTaxesDirectlyWeekByCondition" resultMap="BaseResultMap" parameterType="com.qs.log.game.model.TaxesInviteWeekSend" >
+    select 
+    <include refid="Base_Column_List" />
+    from taxes_invite_week_send
+    where  mid=#{mid,jdbcType=INTEGER} and date=#{date,jdbcType=DATE}
+    limit 0,1
+  </select>
+  
+  
+  
+    <!-- b.isaward=1 表示已审核，批量支付查询-->
+  <select id="getWeekPayListByCondition" resultMap="BaseResultMap" parameterType="map">
+     SELECT 
+      b.mid,b.date,b.paytotal,b.bindpeople,b.scale,b.rebatetotal,b.isaward
+     FROM ${dbTable} a,
+      taxes_invite_week_send b
+     WHERE a.mid=b.mid
+     AND b.isaward=1
+     AND  b.date = #{searchDate}
+     AND b.rebatetotal&gt;=1  AND b.rebatetotal&lt;=500 and a.openid &lt;&gt;''
+    order by b.rebatetotal 
+    limit 0,10
+  </select>
+  
+  <!-- b.isaward=1 表示已审核，未支付 -->
+  <select id="getWeekPayInfoByDate" resultType="map" parameterType="map">
+    SELECT FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as mktime,a.mid,a.realname,a.phone,a.openid,
+      b.bindpeople,b.paytotal,b.isaward,b.rebatetotal,b.date
+    FROM ${dbTable} a,
+      taxes_invite_week_send b
+    WHERE a.mid=b.mid
+    <if test="isaward != null and isaward != ''">
+      AND b.isaward=#{isaward}
+    </if>
+    <if test="isaward == null or isaward == ''">
+      AND b.isaward=1
+    </if>
+   
+    <if test="mid != null and mid != ''">
+      and a.mid = #{mid}
+    </if>
+    AND b.rebatetotal&gt;0
+    order by b.rebatetotal desc
+  </select>
+  
+  
+</mapper>

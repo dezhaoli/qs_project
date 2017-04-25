@@ -1,0 +1,44 @@
+package com.qs.webside.util;
+
+import com.qs.datasource.DataSourceSwitch;
+import com.qs.datasource.util.ConstantUtil;
+import com.qs.datasource.util.DataSourcesUtil;
+import com.qs.pub.game.model.MemberBusiness;
+import com.qs.webside.member.model.MemberAgents;
+import com.qs.webside.shiro.ShiroAuthenticationManager;
+
+import javax.annotation.Resource;
+
+import org.apache.shiro.SecurityUtils;
+
+/**
+ *  数据源设置参数
+ * @author zyy
+ *
+ */
+public class AgentDataSourceUtil {
+
+    @Resource
+    private DataSourcesUtil dataSourcesUtil;
+
+    public Integer getGameType() {
+    	MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+		String gameType=dataSourcesUtil.getKey(ConstantUtil.AGENT_GAME_TYPE_SESSION_KEY+memberAgents.getSitemid());
+        return Integer.parseInt(gameType);
+    }
+
+    public void setWriteDataSourceType() {
+        DataSourceSwitch.setMainDataSourceType //主库写
+                (dataSourcesUtil.getDataBaseName(ConstantUtil.ReadWrite.Write, getGameType(), null));
+        DataSourceSwitch.setLogDataSourceType //日志库写
+                (dataSourcesUtil.getDataBaseName(ConstantUtil.ReadWrite.Write, getGameType(), ConstantUtil.TypeCode.LOG));
+    }
+
+    public void setReadDataSourceType() {
+        DataSourceSwitch.setMainDataSourceType //主库读
+                (dataSourcesUtil.getDataBaseName(ConstantUtil.ReadWrite.READ, getGameType(), null));
+        DataSourceSwitch.setLogDataSourceType //日志库读
+                (dataSourcesUtil.getDataBaseName(ConstantUtil.ReadWrite.READ, getGameType(), ConstantUtil.TypeCode.LOG));
+    }
+
+}

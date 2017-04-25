@@ -128,11 +128,10 @@
                                    nav-menu="修改密码,/user/editPasswordUI.html?id=${userEntity.id }&name=${userEntity.name}&phone=${userEntity.phone}&email=${userEntity.email}">
                                 <i class="ace-icon fa fa-cog"></i> 修改密码
                             </a></li>
-                            <%--<li><a href="javascript:void(0)"
-                                   nav-menu="个人资料,/user/infoUI.html?id=${userEntity.id }"> <i
-                                    class="ace-icon fa fa-user"></i> 个人资料
-                            </a></li>--%>
-                           <!--  <li class="divider"></li> -->
+                            <li><a href="${ctx}/checkGameUi.html"> <i class="ace-icon fa fa-arrows-h"></i>
+                                选择游戏
+                            </a></li>
+                           <li class="divider"></li>
                             <li><a href="${ctx}/logout.html"> <i class="ace-icon fa fa-power-off"></i>
                                 退出
                             </a></li>

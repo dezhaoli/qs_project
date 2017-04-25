@@ -37,10 +37,13 @@
                     <div class="col-sm-2">
 
                     </div>
-                    <label class="control-label col-sm-1 no-padding-right">选择游戏</label>
+                    <label class="control-label col-sm-1 no-padding-right">游戏</label>
                     <div class="col-sm-5">
                         <div class="clearfix">
-                            <select class="form-control" id="gameId"
+                            <input class="form-control" name="gameId" id="gameId" type="text"
+                                   value="${appGame.gname}" placeholder="请选择游戏..." readonly/>
+
+                            <%--<select class="form-control" id="gameId"
                                     name="gameId" style="width: 100%">
                                 <c:if test="${!empty appGameList}">
                                     <c:forEach var="app" items="${appGameList}" varStatus="status">
@@ -61,7 +64,7 @@
                                         请选择游戏
                                     </option>
                                 </c:if>
-                            </select>
+                            </select>--%>
                             <%-- <input class="form-control" type="text"
                                     value="四川麻将" readonly/>
                              <input type="hidden" id="gameId" name="gameId" value="6">--%>
@@ -252,19 +255,19 @@
     function searchUserClick() {
         var formObj = $('#storeForm');
         var msgBox = $('<div class="aler alert-danger" style="text-align: center;" id="queryUserTip"></div>');
-        var gameId = $('#gameId').val();
+        //var gameId = $('#gameId').val();
         var userId = $.trim($('#userId').val());
         var regNotInt = /[^\d]+?/;
 
         if(formObj.find('#queryUserTip').length > 0) $('#queryUserTip').remove();
-        if(gameId == -1){
+        /*if(gameId == -1){
             formObj.prepend(msgBox.html('请选择游戏'));
             return false;
         }
         if(userId == ''){
             formObj.prepend(msgBox.html('请输入用户ID'));
             return false;
-        }
+        }*/
         if(regNotInt.test(userId)){
             formObj.prepend(msgBox.html('用户ID有误'));
             return false;
@@ -274,7 +277,7 @@
             type: "POST",
             url: "${ctx}/business/searchUserInfo.html",
             data: {
-                gameId:gameId,
+                //gameId:gameId,
                 userId:userId
             },
             dataType: "json",
@@ -315,19 +318,19 @@
     $('#queryUserBtn').on('click', function(){
         var formObj = $('form[name="storeForm"]');
         var msgBox = $('<div class="aler alert-danger" style="text-align: center;" id="queryUserTip"></div>');
-        var gameId = $('#gameId').val();
+        //var gameId = $('#gameId').val();
         var userId = $.trim($('#userId').val());
         var regNotInt = /[^\d]+?/;
 
         if(formObj.find('#queryUserTip').length > 0) $('#queryUserTip').remove();
-        if(gameId == -1){
+        /*if(gameId == -1){
             formObj.prepend(msgBox.html('请选择游戏'));
             return false;
         }
         if(userId == ''){
             formObj.prepend(msgBox.html('请输入用户ID'));
             return false;
-        }
+        }*/
         if(regNotInt.test(userId)){
             formObj.prepend(msgBox.html('用户ID有误'));
             return false;
@@ -344,7 +347,7 @@
                 type: "POST",
                 url: "${ctx}/business/authorization.html",
                 data: {
-                    gameId:gameId,
+                    //gameId:gameId,
                     userId:userId
                 },
                 dataType: "json",

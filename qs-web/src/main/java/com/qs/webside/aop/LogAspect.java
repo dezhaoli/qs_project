@@ -10,9 +10,9 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.qs.pub.sys.model.LogInfoEntity;
+import com.qs.pub.sys.service.LogInfoService;
 import com.qs.webside.shiro.ShiroAuthenticationManager;
-import com.qs.webside.sys.model.LogInfoEntity;
-import com.qs.webside.sys.service.LogInfoService;
 
 /**
  * 前置通知（@Before）：在某连接点（join point）之前执行的通知，但这个通知不能阻止连接点前的执行（除非它抛出一个异常）

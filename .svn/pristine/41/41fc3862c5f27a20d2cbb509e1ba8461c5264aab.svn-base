@@ -1,0 +1,209 @@
+package com.qs.pub.game.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.AjaxException;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.PageUtil;
+import com.qs.pub.game.model.AppCompany;
+import com.qs.pub.game.model.Area;
+import com.qs.pub.game.model.MemberBusiness;
+import com.qs.pub.game.model.MemberBusinessDto;
+import com.qs.pub.game.service.IAppCompanyService;
+import com.qs.pub.game.service.IBusinessService;
+import com.qs.webside.agent.service.IAreaService;
+import com.qs.webside.agent.service.IMemberAgentService;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 代理商控制器
+ * Created by zun.wei on 2017/3/6.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Controller
+@RequestMapping(value = "/agent/business/")
+public class BusinessController extends BaseController{
+
+    @Resource
+    private IBusinessService businessService;
+    @Resource
+    private IAppCompanyService appCompanyService;
+    @Value("${game.gameCode}")
+    private String dbName;
+    
+    @Autowired
+    private IAreaService areaService;
+
+    @Autowired
+    private IMemberAgentService memberAgentService;
+    
+    @RequestMapping(value = "listUi.html", method = RequestMethod.GET)
+    public String listUi(Model model, String id, HttpServletRequest request) {
+        try {
+            List<AppCompany> appCompanyList = appCompanyService.queryListAll();
+            PageUtil page = super.getPage(request);
+            model.addAttribute("page", page);
+            model.addAttribute("id", id);
+            model.addAttribute("appCompanyList", appCompanyList);
+            return "WEB-INF/view/web/agent/agent_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    @RequestMapping("list.html")
+    @ResponseBody
+    public Object list(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            parameters.put("site", null);
+        }
+        parameters.put("dbName", dbName);
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<Map<String,Object>> list = businessService.queryListMapByPage(parameters,dbName);
+        return getReturnPage(pager, page, list);
+    }
+
+    @RequestMapping("add.html")
+    @ResponseBody
+    public Object add(MemberBusinessDto record) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int result = businessService.add(record);
+            if (result == -100) {
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, "手机号码已经绑定了");
+            } else if (result == -200 || result == -300) {
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, "请填写正确的手机号码/邮箱作为账号！");
+            } else if (result == -400) {
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, "请选择所属分公司！");
+            }else {
+                executeRequestResult(result,map);
+            }
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+    @RequestMapping(value = "updatePhoneNumberUi.html", method = RequestMethod.GET)
+    public String updatePhoneNumber(Model model, Integer id) {
+        MemberBusiness memberBusiness = businessService.selectById(id);
+        model.addAttribute("name", memberBusiness.getName());
+        model.addAttribute("phone", memberBusiness.getPhone());
+        model.addAttribute("agentId", memberBusiness.getId());
+        return "WEB-INF/view/web/agent/agent_phone_form";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "updatePhoneNumber.html", method = RequestMethod.POST)
+    public Object updatePhoneNumber(Integer agentId,String phone) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = businessService.udpatePhoneById(agentId, phone);
+        if (result == -100) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "手机号码已经绑定了,不能修改。");
+        }
+        if (result == -200) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "请填写正确的手机号码！");
+        }
+        executeUpdateRequestResult(result, map);
+        return map;
+    }
+
+
+    @RequestMapping(value = "restPwdUi.html", method = RequestMethod.GET)
+    public String restPwdUi(Model model, Integer id) {
+        MemberBusiness memberBusiness = businessService.selectById(id);
+        model.addAttribute("name", memberBusiness.getName());
+        model.addAttribute("agentId", memberBusiness.getId());
+        return "WEB-INF/view/web/agent/agent_restPwd_form";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "restPwd.html", method = RequestMethod.POST)
+    public Object restPwdUi(Integer agentId,String password,String confirmPwd) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = businessService.updatePassWordById(agentId, password,confirmPwd);
+        executeUpdateRequestResult(result, map);
+        return map;
+    }
+    
+    /**
+     * 代理商覆盖区域详情
+     * @param id
+     * @return
+     * @author:zyy
+     * @time:2017年4月10日
+     */
+    @RequestMapping(value = "detailInfo.html")
+    public String showBusinessInfo(String id,Model model,HttpServletRequest request){
+    	
+      List<Area> areaList=areaService.selectBusGetAgentArea(id);
+      PageUtil page = super.getPage(request);
+      model.addAttribute("page", page);
+      model.addAttribute("areaList", areaList);
+     return "WEB-INF/view/web/agent/agent_detail_list";
+    }
+    
+    @ResponseBody
+    @RequestMapping(value = "detailInfoList.html")
+    public Object showBusinessInfoList(String gridPager){
+    	
+    	 Map<String, Object> parameters = null;
+         // 映射Pager对象
+         Pager pager = JSON.parseObject(gridPager, Pager.class);
+         // 判断是否包含自定义参数
+         parameters = pager.getParameters();
+         
+         if (parameters.containsKey("sDate")) {
+        	 if(StringUtils.isBlank(parameters.get("sDate").toString())) {
+        		 parameters.put("sDate", DateUtil.getNewDate());
+        	 }
+         }
+         
+         if (parameters.containsKey("eDate")) {
+        	 if(StringUtils.isBlank(parameters.get("eDate").toString())) {
+        		 parameters.put("eDate", DateUtil.getNewDate());
+        	 }
+         }
+         parameters.put("dbName", dbName+"_log.taxes_invite");
+         // 设置分页，page里面包含了分页信息
+         Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+         List<Map<String,Object>> list = memberAgentService.getBusTOAgentCountInfo(parameters);
+         return getReturnPage(pager, page, list);
+    }
+}

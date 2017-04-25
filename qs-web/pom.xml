@@ -64,12 +64,17 @@
               <artifactId>qs-config</artifactId>
               <version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!--shiro 工具集-->
+		
+		
 		 <dependency>
 			  <groupId>com.qs</groupId>
               <artifactId>qs-side</artifactId>
               <version>0.0.1-SNAPSHOT</version>
-		</dependency>
+		 </dependency>
+	
+		
+	 
+
 		<!-- junit单元测试 -->
 		<dependency>
 			<groupId>junit</groupId>

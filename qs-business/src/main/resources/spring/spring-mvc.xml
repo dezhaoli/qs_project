@@ -40,6 +40,7 @@
 
 	<!-- 设置只扫描 controller包下的Bean -->
 	<context:component-scan base-package="com.qs.webside.*.controller" />
+		<context:component-scan base-package="com.qs.pub.*.controller" />
 	<context:component-scan base-package="com.qs.cfg.*.controller" />
 	<context:component-scan base-package="com.qs.log.*.controller" />
 

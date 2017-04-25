@@ -101,11 +101,11 @@
 
   <select id="getAgentTeamPayChangeCountByDate" parameterType="map" resultType="map">
     SELECT SUM(a.paytotal) AS totalpay,b.*
-    FROM taxes_invite a
-      RIGHT JOIN (SELECT mid,c.realname,alevel
+    FROM taxes_invite a <!-- log -->
+      RIGHT JOIN (SELECT mid,<!-- c.realname, -->realname,alevel
                   FROM ${memberagents} d
-                    left join ${common_agents_info} as c
-                      ON d.sitemid=c.sitemid
+                 <!--   left join ${common_agents_info} as c
+                      ON d.sitemid=c.sitemid -->
                   WHERE belongid = #{belongid}) b
         ON a.mid=b.mid
     WHERE a.date between #{starDate}

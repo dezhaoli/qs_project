@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+     
+    <!-- ==========================================配置动态数据源================================================ -->
+    <import resource="classpath:spring/dynamic-datasource.xml"/>
+
+    <!-- ==================================start========================================== -->
+    <!-- 主数据库（写） -->
+    <import resource="classpath:spring/datasource/write/main-W-dataSource.xml"/>
+    <!-- 主数据库（读） -->
+    <import resource="classpath:spring/datasource/read/main-R-dataSource.xml"/>
+
+
+    <!-- 配置数据库（写） -->
+    <import resource="classpath:spring/datasource/write/cfg-W-dataSource.xml"/>
+    <!-- 配置数据库（读） -->
+     <import resource="classpath:spring/datasource/read/cfg-R-dataSource.xml"/>
+
+
+    <!-- 日志数据库（写） -->
+    <import resource="classpath:spring/datasource/write/log-W-dataSource.xml"/>
+    <!-- 日志数据库（读） -->
+    <import resource="classpath:spring/datasource/read/log-R-dataSource.xml"/>
+    <!-- ==================================end========================================== -->
+
+</beans>

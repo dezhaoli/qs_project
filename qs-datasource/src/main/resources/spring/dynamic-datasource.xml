@@ -6,7 +6,7 @@
 
     <!-- ==========================================配置动态数据源================================================ -->
     <!-- Log库 -->
-    <bean id="logDynamicDataSource" class="com.qs.datasource.game.util.LogDataSources">
+    <bean id="logDynamicDataSource" class="com.qs.datasource.LogDataSources">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 <!-- 广东麻将日志 -->
@@ -22,7 +22,7 @@
     </bean>
 
     <!-- cfg库 -->
-    <!--<bean id="cfgDynamicDataSource" class="com.qs.datasource.game.util.CfgDataSources">
+    <!--<bean id="cfgDynamicDataSource" class="com.qs.datasource.CfgDataSources">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 &lt;!&ndash; 广东麻将配置 &ndash;&gt;
@@ -39,7 +39,7 @@
     </bean>-->
 
     <!-- 主库 -->
-    <bean id="mainDynamicDataSource" class="com.qs.datasource.game.util.MainDataSources">
+    <bean id="mainDynamicDataSource" class="com.qs.datasource.MainDataSources">
         <property name="targetDataSources">
             <map key-type="java.lang.String">
                 <!-- 广东麻将主库 -->

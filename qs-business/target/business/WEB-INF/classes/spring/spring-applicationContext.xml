@@ -12,6 +12,8 @@
 	<!-- 配置要扫描的包 ,有多个可以用';'号隔开,也可写多个context:component-scan -->
 	<context:component-scan base-package="com.qs.webside.*.dao" />
 	<context:component-scan base-package="com.qs.webside.*.service" />
+		<context:component-scan base-package="com.qs.pub.*.dao" />
+	<context:component-scan base-package="com.qs.pub.*.service" />
     <context:component-scan base-package="com.qs.cfg.*.dao" />
 	<context:component-scan base-package="com.qs.cfg.*.service" />
 	<context:component-scan base-package="com.qs.common.util" />
