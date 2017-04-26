@@ -111,6 +111,15 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.4.2" />
           <element id="library" level="project" name="Maven: me.hao0:wepay-core:1.2.4" />
           <element id="library" level="project" name="Maven: com.googlecode.xmemcached:xmemcached:2.2.0" />
+          <element id="library" level="project" name="Maven: com.baidu.disconf:disconf-client:2.6.36" />
+          <element id="library" level="project" name="Maven: com.baidu.disconf:disconf-core:2.6.36" />
+          <element id="library" level="project" name="Maven: org.apache.zookeeper:zookeeper:3.3.6" />
+          <element id="library" level="project" name="Maven: jline:jline:0.9.94" />
+          <element id="library" level="project" name="Maven: com.google.code.gson:gson:2.2.4" />
+          <element id="library" level="project" name="Maven: org.reflections:reflections:0.9.9-RC1" />
+          <element id="library" level="project" name="Maven: org.javassist:javassist:3.16.1-GA" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:19.0-rc2" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjtools:1.7.4" />
           <element id="archive" name="qs-side-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="qs-side" />
           </element>

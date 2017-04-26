@@ -1,6 +1,7 @@
 package com.qs.webside.game.service.impl;
 
 import com.qs.common.constant.CacheConstan;
+import com.qs.pub.sys.model.UserEntity;
 import com.qs.webside.game.mapper.IpaddressMapper;
 import com.qs.webside.game.model.Ipaddress;
 import com.qs.webside.game.model.IpaddressLog;
@@ -52,8 +53,8 @@ public class IpAddressServiceImpl implements IIpAddressService {
         ipaddressLog.setName(ipaddress.getName());
         ipaddressLog.setUpdatetime(new Date());
         ipaddressLog.setType(ipaddress.getType());
-       // UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
-        ipaddressLog.setModifierId(0);
+        UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
+        ipaddressLog.setModifierId(userEntity.getId().intValue());
         int insertLog = ipAddressLogService.insertSelective(ipaddressLog);
         if (insertLog == 0) return insertLog;
         return ipaddressMapper.insertSelective(ipaddress);
@@ -75,8 +76,8 @@ public class IpAddressServiceImpl implements IIpAddressService {
         ipaddressLog.setName(ipaddress.getName());
         ipaddressLog.setUpdatetime(new Date());
         ipaddressLog.setType(ipaddress.getType());
-       // UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
-        ipaddressLog.setModifierId(0);
+        UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
+        ipaddressLog.setModifierId(userEntity.getId().intValue());
         int insertLog = ipAddressLogService.insertSelective(ipaddressLog);
         if (insertLog == 0) return insertLog;
         return ipaddressMapper.updateByPrimaryKeySelective(ipaddress);
