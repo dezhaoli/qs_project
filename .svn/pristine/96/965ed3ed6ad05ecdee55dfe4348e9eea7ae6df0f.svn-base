@@ -1,18 +1,16 @@
-package com.qs.stat.game.model;
+package com.qs.pub.game.model;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class BizInviteWeek {
+public class PlayerPayDay {
     private Integer id;
 
     private Date date;
 
     private BigDecimal paytotal;
 
-    private BigDecimal rebatetotal;
-
-    private Integer bindpeople;
+    private Integer granttotal;
 
     private Byte gametype;
 
@@ -42,20 +40,12 @@ public class BizInviteWeek {
         this.paytotal = paytotal;
     }
 
-    public BigDecimal getRebatetotal() {
-        return rebatetotal;
+    public Integer getGranttotal() {
+        return granttotal;
     }
 
-    public void setRebatetotal(BigDecimal rebatetotal) {
-        this.rebatetotal = rebatetotal;
-    }
-
-    public Integer getBindpeople() {
-        return bindpeople;
-    }
-
-    public void setBindpeople(Integer bindpeople) {
-        this.bindpeople = bindpeople;
+    public void setGranttotal(Integer granttotal) {
+        this.granttotal = granttotal;
     }
 
     public Byte getGametype() {

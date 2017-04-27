@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.game.mapper.PlayerPayDayMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.game.model.PlayerPayDay" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="granttotal" property="granttotal" jdbcType="INTEGER" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+    <result column="bizid" property="bizid" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date, paytotal, granttotal, gametype, bizid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from player_pay_day
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from player_pay_day
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.pub.game.model.PlayerPayDay" >
+    insert into player_pay_day (id, date, paytotal, 
+      granttotal, gametype, bizid
+      )
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=DATE}, #{paytotal,jdbcType=DECIMAL}, 
+      #{granttotal,jdbcType=INTEGER}, #{gametype,jdbcType=TINYINT}, #{bizid,jdbcType=SMALLINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.pub.game.model.PlayerPayDay" >
+    insert into player_pay_day
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="paytotal != null" >
+        paytotal,
+      </if>
+      <if test="granttotal != null" >
+        granttotal,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+      <if test="bizid != null" >
+        bizid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="paytotal != null" >
+        #{paytotal,jdbcType=DECIMAL},
+      </if>
+      <if test="granttotal != null" >
+        #{granttotal,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="bizid != null" >
+        #{bizid,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.pub.game.model.PlayerPayDay" >
+    update player_pay_day
+    <set >
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="paytotal != null" >
+        paytotal = #{paytotal,jdbcType=DECIMAL},
+      </if>
+      <if test="granttotal != null" >
+        granttotal = #{granttotal,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="bizid != null" >
+        bizid = #{bizid,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.pub.game.model.PlayerPayDay" >
+    update player_pay_day
+    set date = #{date,jdbcType=DATE},
+      paytotal = #{paytotal,jdbcType=DECIMAL},
+      granttotal = #{granttotal,jdbcType=INTEGER},
+      gametype = #{gametype,jdbcType=TINYINT},
+      bizid = #{bizid,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="queryBusiPayByCompany" parameterType="map" resultType="map">
+    SELECT  (@rowNO := @rowNo+1) AS rowno,sum(ppd.paytotal) AS paycount,ppd.date,md.id,md.name
+    FROM player_pay_day ppd,
+    memberbusiness md,
+    app_company ac,
+    (select @rowNO :=0) bb
+    WHERE md.company = ac.cid
+    AND ppd.bizid = md.id
+    AND ppd.gametype = #{gameType}
+    <if test="startDate != null and startDate != ''">
+      AND ppd.date &gt;= #{startDate}
+    </if>
+    <if test="endDate != null and endDate != ''">
+      AND ppd.date &lt;= #{endDate}
+    </if>
+    GROUP BY ppd.date,md.id
+    ORDER BY ppd.date desc
+  </select>
+
+  <!-- 根据游戏获取充值数据 -->
+  <select id="queryChangeDataCountByGame" parameterType="map" resultType="map">
+    SELECT (@rowNO := @rowNo+1) AS rowno,SUM(paytotal) AS totalpay,date
+    FROM player_pay_day,(select @rowNO :=0) bb
+    WHERE bizid = #{businessId}
+          AND gametype = #{gameType}
+          AND date &gt;= #{startDate}
+          AND date &lt;= #{endDate}
+    GROUP BY date
+    order by date desc
+  </select>
+
+</mapper>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.BusiGoldLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.BusiGoldLog" >
+    <result column="bid" property="bid" jdbcType="SMALLINT" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="gold" property="gold" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qs.log.game.model.BusiGoldLog" >
+    insert into busi_gold_log (bid, mid, gold, 
+      time, remark)
+    values (#{bid,jdbcType=SMALLINT}, #{mid,jdbcType=INTEGER}, #{gold,jdbcType=INTEGER}, 
+      #{time,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.BusiGoldLog" >
+    insert into busi_gold_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        bid,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="gold != null" >
+        gold,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bid != null" >
+        #{bid,jdbcType=SMALLINT},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="gold != null" >
+        #{gold,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="getBuisGoldCount" resultType="java.lang.Integer" parameterType="map">
+   SELECT SUM(gold) AS totalgold FROM busi_gold_log WHERE bid=#{id} AND FROM_UNIXTIME(time,'%Y-%m-%d %H:%i:%S')>=#{nowTime}
+  </select>
+  
+  <select id="getGameUserGoldCount" resultType="java.lang.Integer" parameterType="map">
+  SELECT SUM(gold) AS totalgold FROM busi_gold_log WHERE bid=#{id} AND mid=#{mid} AND FROM_UNIXTIME(time,'%Y-%m-%d %H:%i:%S')>=#{nowTime}
+  </select>
+</mapper>

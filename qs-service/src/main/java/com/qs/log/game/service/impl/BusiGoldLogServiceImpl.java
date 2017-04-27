@@ -1,0 +1,181 @@
+package com.qs.log.game.service.impl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.aspectj.lang.annotation.Around;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.constant.Constants;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.SocketPacketUtil;
+import com.qs.log.game.mapper.BusiGoldLogMapper;
+import com.qs.log.game.model.BusiGoldLog;
+import com.qs.log.game.model.GoldLog;
+import com.qs.log.game.service.IBusiGoldLogService;
+import com.qs.log.game.service.IGoldLogService;
+import com.qs.pub.game.model.MemberBusiness;
+import com.qs.webside.member.model.Commongame;
+import com.qs.webside.member.service.IMemberService;
+
+@Service
+public class BusiGoldLogServiceImpl implements IBusiGoldLogService {
+	Logger log = Logger.getLogger(BusiGoldLogServiceImpl.class);
+	@Resource
+	private BusiGoldLogMapper busiGoldLogMapper ;
+	
+	@Autowired 
+	private IGoldLogService goldLogService ;
+	
+	@Autowired
+	private IBusiGoldLogService busiGoldLogService;
+	
+	@Autowired
+	private IMemberService memberService;
+	
+	
+	
+	@Override
+	public int insert(BusiGoldLog record) {
+		return busiGoldLogMapper.insert(record);
+	}
+
+	@Override
+	public int insertSelective(BusiGoldLog record) {
+		return busiGoldLogMapper.insertSelective(record);
+	}
+
+	public Map<String,Object> goldAdd(int mid,int gold,String cause,String goldHost,int goldPort,int gameType){
+		
+		Map<String,Object>  result=new HashMap<String,Object>();
+		Map<String,Object>  parma=new HashMap<String,Object>();
+		Map<String,Object>  parmaGoldLog=new HashMap<String,Object>();
+        MemberBusiness memberBusiness = (MemberBusiness)SecurityUtils.getSubject().getPrincipal();
+
+		parma.put("id", memberBusiness.getId());
+		parma.put("nowTime", DateUtil.getNewDate());
+		
+		Integer todayCount=selectCountNowGold(parma);
+		if (todayCount !=null) {
+			
+			if (todayCount >=10000 ){
+				result.put(CommonContants.SUCCESS, false);
+				result.put(CommonContants.MESSAGE, "您今日添加金币数已达上限!");
+				return result;
+			}
+		}
+	    parma.put("mid", mid);
+		Integer todayUserCount=getGameUserGoldCount(parma);
+	    if (todayUserCount !=null ){
+	    	if (todayUserCount >=1000){
+	    		result.put(CommonContants.SUCCESS, false);
+	    		result.put(CommonContants.MESSAGE, "该玩家添加金币数已达上限!");
+	    		return result;
+	    	}
+	    }
+	    
+	    //向c++服务端推送消息并保存对应信息
+	    updateGold(mid, gold, AppConstants.GoldLogSourceType.BUIN_ADD_GOLD, goldHost, goldPort,gameType);
+	    parmaGoldLog.put("remark", cause);
+	    parmaGoldLog.put("mid", mid);
+	    parmaGoldLog.put("nowTime", DateUtil.getNowDate());
+	    goldLogService.updateGoldFromParam(parmaGoldLog);
+	    
+	    BusiGoldLog busiGoldLog=new BusiGoldLog();
+	    busiGoldLog.setBid(memberBusiness.getId());
+	    busiGoldLog.setMid(mid);
+	    busiGoldLog.setGold(gold);
+	    busiGoldLog.setTime(DateUtil.currentTimeToInt());
+	    busiGoldLog.setRemark(cause);
+	    busiGoldLogService.insertSelective(busiGoldLog);
+	    result.put(CommonContants.SUCCESS, true);
+		result.put(CommonContants.MESSAGE, "添加成功!");
+		return result;
+		
+	}
+
+	@Override
+	public Integer selectCountNowGold(Map<String, Object> param) {
+		return busiGoldLogMapper.getBuisGoldCount(param);
+	}
+
+	@Override
+	public Integer getGameUserGoldCount(Map<String, Object> param) {
+		return busiGoldLogMapper.getGameUserGoldCount(param);
+	}
+
+	public Map<String, Object> updateGold(int mid, int gold, int goldLogType,String goldHost,int goldPort,int gameType) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		int cmd=1001;
+		byte action = 0;
+		if(Math.max(0, mid)==0){
+			map.put(CommonContants.RESULT,Boolean.FALSE);
+			map.put("errcode",AppConstants.Result.FAILURE);
+			log.debug("updateGold.errcode===::"+AppConstants.Result.FAILURE);
+			return  map;
+		}
+		if(Math.abs(gold) > 2000000000){//不能超过21亿
+			map.put(CommonContants.RESULT,Boolean.FALSE);
+			map.put("errcode",AppConstants.Result.FAILURE_1002);
+			log.debug("updateGold.errcode===::"+AppConstants.Result.FAILURE_1002);
+			return  map;
+		}	
+		Commongame goldCommongam=memberService.findCommongameById(mid);
+		//不能减成负
+		if(goldCommongam.getGold()+gold<0){
+			map.put(CommonContants.RESULT,Boolean.FALSE);
+			map.put("errcode",AppConstants.Result.FAILURE_1003);
+			log.debug("updateGold.errcode===::"+AppConstants.Result.FAILURE_1003);
+			return  map;
+		}
+
+		int flag=0;
+		//更新金币
+		Commongame goldCom=new Commongame();
+		goldCom.setMid(mid);
+		Long totalGold=gold+goldCommongam.getGold();
+		goldCom.setGold(totalGold);
+		int r=memberService.updateCommongame(goldCom);
+		//发通知给c++
+		SocketPacketUtil socketUtil=new SocketPacketUtil(goldHost,goldPort);
+		Map<String, Object> jsonMsgMap = new HashMap<String, Object>();
+		jsonMsgMap.put("type", 1);
+		jsonMsgMap.put("msg", totalGold);
+
+		String jsonMsg=JSON.toJSONString(jsonMsgMap);
+		boolean socketFlag=socketUtil.sendData(10008, mid, jsonMsg);
+		log.debug("socketFlag===::"+socketFlag);
+		socketUtil.close();
+
+
+		if(flag==0){
+			 //更新金币日志
+			GoldLog record=new GoldLog();
+			record.setMid(mid);
+			record.setType((byte)goldLogType);
+			record.setGold(Long.valueOf(gold));
+			record.setNowgold(totalGold);
+			record.setAction(action);
+			record.setGametype((byte)gameType);
+			record.setRemark("");
+			record.setFormid(0);
+			goldLogService.insertSelective(record);
+		 }
+
+		map.put(CommonContants.RESULT,Boolean.TRUE);
+		map.put("totalGold",totalGold);
+
+		return map;
+	}
+
+}
