@@ -106,12 +106,38 @@
 		</dependency>-->
 	</dependencies>
 	
-	
-	
+	<profiles>
+	    <!-- 广东麻将 -->
+	    <profile>
+	        <id>gdmajiang</id>
+	        <properties>
+	           <profiles.active>gdmajiang</profiles.active>
+	        </properties>
+	        <!-- 打包时不指定profile id，默认激活本环境 -->
+	        <activation>
+	            <activeByDefault>true</activeByDefault>
+	        </activation>
+	    </profile>
+	     <!-- 四川麻将 -->
+	    <profile>
+	        <id>scmajiang</id>
+	        <properties>
+	           <profiles.active>scmajiang</profiles.active>
+	        </properties>
+	    </profile>
+	</profiles>
 	<build>
 		<finalName>qs-web</finalName>
+	    <resources>
+		    <resource>
+				<directory>src/main/resources</directory>	    
+		    </resource>
+			<resource>
+				<directory>src/main/profile/${profiles.active}</directory>	
+				<filtering>true</filtering>    
+		    </resource>
+	    </resources>
 		<plugins>
-
 			<!-- 代码生成 -->
 			<plugin>
 				<groupId>org.mybatis.generator</groupId>

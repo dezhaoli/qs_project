@@ -71,7 +71,6 @@ jQuery(function($) {
 	}
 	
 	function enableSidebar() {
-		debugger
 		//initiate sidebar function
 		var $sidebar = $('.sidebar');
 		if($.fn.ace_sidebar) $sidebar.ace_sidebar();
