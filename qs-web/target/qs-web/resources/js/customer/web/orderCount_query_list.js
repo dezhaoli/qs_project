@@ -1,30 +1,21 @@
-var dtGridColumns = [{//SELECT a.fmid,SUM(a.pamount) AS ptotal,b.name AS username
-    id : 'rowno',
+var dtGridColumns = [{
+    id : 'no',
     title : '序号',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-        return value;
+        return dataNo+1;
     }
 },{
-    id : 'payman',
+    id : 'paymid',
     title : '充值用户ID',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
-    id : 'paymanName',
-    title : '充值用户姓名',
-    type : 'string',
-    columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header',
-    resolution:function (value, record, column, grid, dataNo, columnNo) {
-        return value;
-    }
-},{
-    id : 'paytime',
-    title : '充值时间',
+    id : 'name',
+    title : '昵称',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -74,7 +65,8 @@ $(function() {
     grid.parameters['endTime'] = $('#endTime').val();
     grid.parameters['mid'] = $('#mid').val();
     grid.parameters['realname'] = $('#realname').val();
-
+    grid.parameters['pstatus'] = $('#pstatus').val();
+    
     grid.load();
     $("#btnSearch").click(customSearch);
 
@@ -98,6 +90,8 @@ function customSearch() {
     grid.parameters['endTime'] = $('#endTime').val();
     grid.parameters['mid'] = $('#mid').val();
     grid.parameters['realname'] = $('#realname').val();
+    grid.parameters['pstatus'] = $('#pstatus').val();
+    
     grid.refresh(true);
 }
 

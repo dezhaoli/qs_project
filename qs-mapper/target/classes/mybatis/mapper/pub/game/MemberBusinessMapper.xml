@@ -262,4 +262,18 @@
     SELECT a.name AS bizname,a.phone AS bizphone FROM memberbusiness a WHERE id=#{id}
   </select>
 
+
+ <select id="getGoldAgentList"  resultType="map" parameterType="map">
+    select a.mid,FROM_UNIXTIME(a.mktime, '%Y-%m-%d %H:%m:%s') AS mtime,a.realname,b.name bname from ${dbName} a,memberbusiness b where  a.belongid=b.id and a.glevel=1 ORDER BY a.mktime DESC
+ </select>
+
+  <!-- 根据商务专员ID获取本公司其它商务 -->
+  <select id="getCompanyBiz" resultType="map" parameterType="map">
+    SELECT mb.id,mb.`name`,mb.phone,from_unixtime(mb.mktime,'%Y-%m-%d %H:%m:%s') AS mktime
+    FROM memberbusiness mb
+    WHERE company = #{companyId}
+    ORDER BY mktime DESC
+  </select>
+
+
 </mapper>

@@ -24,7 +24,7 @@ var dtGridColumns = [{//SELECT a.fmid,SUM(a.pamount) AS ptotal,b.name AS usernam
     }
 },{
     id : 'paymanName',
-    title : '用户名',
+    title : '昵称',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -107,22 +107,22 @@ var dtGridColumns = [{//SELECT a.fmid,SUM(a.pamount) AS ptotal,b.name AS usernam
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
-        if (value == 2) {
+        if (value == 1) {
             return "支付宝";
-        }else if (value == 3) {
+        }else if (value == 2) {
             return "QQ";
-        }else if (value == 4) {
+        }else if (value == 3) {
             return "豌豆夹";
-        }else if (value == 5) {
+        }else if (value == 4) {
             return "苹果";
-        }else if (value == 6) {
+        }else if (value == 5) {
             return "360支付";
-        }else if (value == 7) {
+        }else if (value == 6) {
             return "微信支付";
-        }else if (value == 8) {
+        }else if (value == 7) {
             return "XY支付";
         }else{
-            return "页面";
+            return "未知";
         }
     }
 },{
@@ -222,7 +222,7 @@ $(function() {
     grid.parameters['mid'] = $('#mid').val();
     grid.parameters['realname'] = $('#realname').val();
     grid.parameters['parentid'] = $('#parentid').val();
-
+    grid.parameters['pstatus'] = $('#pstatus').val();
     grid.load();
     $("#btnSearch").click(customSearch);
 
@@ -247,6 +247,7 @@ function customSearch() {
     grid.parameters['mid'] = $('#mid').val();
     grid.parameters['realname'] = $('#realname').val();
     grid.parameters['parentid'] = $('#parentid').val();
+    grid.parameters['pstatus'] = $('#pstatus').val();
     grid.refresh(true);
 }
 

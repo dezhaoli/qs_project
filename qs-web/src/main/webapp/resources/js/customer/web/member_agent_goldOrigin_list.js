@@ -15,7 +15,27 @@ var dtGridColumns = [{
     title : '类型',
     type : 'string',
     columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header'
+    headerClass : 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNe, columnNo) {
+        if (value == '1') {
+            return '充值购买';
+        } else if (value == '4') {
+            return '生成房间消耗';
+        }else if (value == '5') {
+            return '退还房间费用';
+        }else if (value == '6') {
+            return '绑定奖励';
+        }else if (value == '7') {
+            return '后台添加金币';
+        }else if (value == '8') {
+            return '初始赠送';
+        }else if (value == '13') {
+            return '商务金币添加';
+        }else if (value == '16') {
+            return '邮件赠送';
+        }
+        return value;
+    }
 },{
     id : 'gold',
     title : '金币动态',

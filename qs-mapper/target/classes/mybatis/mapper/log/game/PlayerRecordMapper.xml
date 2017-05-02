@@ -136,8 +136,8 @@
   </select>
 
   <select id="queryCardRecordByPage" parameterType="map" resultType="map">
-    SELECT (@rowNO := @rowNo+1) AS rowno, room,seat,uuid,from_unixtime(timestamp,'%Y-%m-%d %H:%m:%s') AS timestamp
-    FROM player_record,(select @rowNO :=0) bb
+    SELECT room,seat,uuid,from_unixtime(timestamp,'%Y-%m-%d %H:%m:%s') AS timestamp
+    FROM player_record
     WHERE room = #{roomid}
     ORDER BY timestamp DESC
   </select>

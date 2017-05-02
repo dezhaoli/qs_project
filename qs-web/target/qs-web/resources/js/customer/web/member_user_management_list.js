@@ -60,7 +60,7 @@ var dtGridColumns = [{
     headerClass : 'dlshouwen-grid-header'
 },{
     id : 'mid',
-    title : '编辑',
+    title : '操作',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -191,6 +191,47 @@ function editUserInviteCode(mid) {
     });
 }
 
+function cancelOrBindInvite(mid) {
+    layer.open({
+        type: 2,
+        title: '取消/绑定邀请人',
+        area: ['90%', '90%'],
+        fixed: false, //不固定
+        maxmin: true,
+        content: sys.rootPath +'/member/agent/cancelOrBindInviterUi/editUi.html?mid=' + mid,
+        success:function (layero, index) {
+
+        }
+    });
+}
+
+function cancelAgent(mid) {
+    layer.open({
+        type: 2,
+        title: '取消代理商',
+        area: ['90%', '90%'],
+        fixed: false, //不固定
+        maxmin: true,
+        content: sys.rootPath +'/member/agent/cancelAgentUi/editUi.html?mid=' + mid,
+        success:function (layero, index) {
+
+        }
+    });
+}
+
+function addGold(mid) {
+    layer.open({
+        type: 2,
+        title: '添加金币',
+        area: ['90%', '90%'],
+        fixed: false, //不固定
+        maxmin: true,
+        content: sys.rootPath +'/member/agent/backgroundAddGoldUi/editUi.html?mid=' + mid,
+        success:function (layero, index) {
+
+        }
+    });
+}
 
 $(function () {
 

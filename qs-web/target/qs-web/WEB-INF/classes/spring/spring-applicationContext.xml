@@ -26,9 +26,10 @@
 	<context:component-scan base-package="com.qs.common.listener" />
 
 	<!-- spring 启用aop -->
-	<aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	<!-- 激活各种对于bean类的注解标注 -->
 	<context:annotation-config />
+	
 
 	<!-- 引入属性文件:方式一 -->
 	<!-- <context:property-placeholder ignore-unresolvable="true" location="classpath:jdbc.properties,classpath:webside.properties"/> -->
@@ -59,6 +60,7 @@
 
 	
 	<!-- 引入模块配置文件 -->
+	<import resource="spring-disconf.xml" />
 	<import resource="spring-mybatis.xml" />
 	<import resource="spring-shiro.xml" />
 	<import resource="spring-kaptcha.xml" />

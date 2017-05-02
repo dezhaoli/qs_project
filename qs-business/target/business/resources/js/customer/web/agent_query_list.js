@@ -5,9 +5,16 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     width:"20%"
-}, {
+}/*, {
     id : 'truename',
     title : '真实姓名',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    width:"20%"
+}*/, {
+    id : 'nickname',
+    title : '微信昵称',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',

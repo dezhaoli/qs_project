@@ -5,38 +5,29 @@
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/member_agent_authorization_list.js"></script>
 
-<!-- 搜索 -->
-<div class="input-group">
-    <input id="searchKey" type="text" class="input form-control"
-           placeholder="mid..." >
-    <span class="input-group-btn">
-         <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
-             <i class="fa fa-search"></i> 搜索</button>
-     </span>
+<!-- 搜索 --><!-- realname, phone -->
+<div class="row" style="margin-top:5px;">
+    <div class="col-sm-12">
+        <div class="col-sm-3">
+            <input id="realname" name="realname" type="text" class="input form-control"
+                   placeholder="真实姓名..." >
+        </div>
+        <div class="col-sm-3">
+            <input id="phone" name="phone" type="number" class="input form-control"
+                   placeholder="手机号码..." >
+        </div>
+        <div class="col-sm-3">
+            <div class="input-group">
+                <input id="searchKey" type="number" class="input form-control"
+                       placeholder="mid..." >
+                <span class="input-group-btn">
+                     <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
+                         <i class="fa fa-search"></i> 搜索</button>
+                </span>
+            </div>
+        </div>
+    </div>
 </div>
-
-<%--<form class="form-inline" role="form">
-           <label class="control-label no-padding-right">用户mid:</label>
-           <div class="form-group">
-               <div class="col-sm-3">
-                   <div class="clearfix">
-                       <input class="form-control" name="" id="addMid"
-                              type="number" placeholder="用户mid..."/>
-                   </div>
-               </div>
-           </div>
-           <label class="control-label no-padding-right">充值金额:</label>
-           <div class="form-group">
-               <div class="col-sm-3">
-                   <div class="clearfix">
-                       <input class="form-control" name="" id="addMoney"
-                              type="number" placeholder="充值金额..."/>
-                   </div>
-               </div>
-           </div>
-           <button id="addPay" class="btn btn-primary btn-sm" type="button">
-               <i class="fa fa-search"></i>充值</button>
-       </form>--%>
 
 <div class="row" style="margin-top:5px;">
     <div class="col-xs-12 widget-container-col ui-sortable"

@@ -1,11 +1,11 @@
 var dtGridColumns = [{
-    id : 'rowno',
+    id : 'no',
     title : '序号',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-        return value;
+        return dataNo+1;
     }
 },{
     id : 'room',

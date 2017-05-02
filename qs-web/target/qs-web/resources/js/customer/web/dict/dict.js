@@ -54,8 +54,8 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
-    id : 'remarks',
-    title : '备注信息',
+    id : 'sort',
+    title : '',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
