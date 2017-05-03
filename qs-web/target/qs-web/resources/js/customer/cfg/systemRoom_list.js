@@ -38,25 +38,14 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
-    id : 'type',
-    title : '类型',
-    type : 'string',
-    columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header',
-    resolution : function(value, record, column, grid, dataNo, columnNo) {
-       	  if(value =='1'){
-                 return '<span class="label label-sm label-info arrowed arrowed-righ">血流成河/推到胡</span>';
-             }else  if(value =='2'){
-                 return '<span class="label label-sm label-info arrowed arrowed-righ">血战到底/做牌推到胡</span>';
-             }else  if(value =='3'){
-                 return '<span class="label label-sm label-info arrowed arrowed-righ">转转麻将</span>';
-             }else  if(value =='4'){
-                 return '<span class="label label-sm label-info arrowed arrowed-righ">潮汕麻将</span>';
-             }
-       }
-},{
     id : 'serverid',
     title : '服务器ID',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'type',
+    title : '类型',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'

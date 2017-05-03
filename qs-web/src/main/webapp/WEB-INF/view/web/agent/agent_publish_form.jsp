@@ -7,7 +7,7 @@
         src="${ctx }/resources/js/customer/web/agent_publish_form.js"></script>
 <div class="page-header">
     <h1>
-        返利比例管理
+        代理商后台公告
     </h1>
 </div>
 <div class="row" style="margin-top:5px;">

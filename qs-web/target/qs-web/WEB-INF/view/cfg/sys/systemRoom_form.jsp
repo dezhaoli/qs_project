@@ -77,14 +77,15 @@
 		      <label class="control-label col-sm-1 no-padding-right">类型</label>
 		      <div class="col-sm-5">
 		      <div class="clearfix">
-		           	<select class="form-control" id="type" name="type" style="width: 100%">
-						<option value="1" <c:if test="${record.type eq '1' }">selected="selected"</c:if>>血流成河/推到胡</option>
-						<option value="2" <c:if test="${record.type eq '2' }">selected="selected"</c:if>>血战到底/做牌推到胡</option>
-						<option value="3" <c:if test="${record.type eq '3' }">selected="selected"</c:if>>转转麻将</option>
-						<option value="4" <c:if test="${record.type eq '4' }">selected="selected"</c:if>>潮汕麻将</option>
-						
-					</select>
-		      </div>
+						 <select class="form-control" name="type" id="type">
+							<c:forEach var="item" items="${roomTypeList}">
+								<option value="${item.code}"
+									<c:if test="${record.type eq item.code}">selected="selected"</c:if>>${item.name}
+								</option>
+							</c:forEach>
+
+						</select>
+					</div>
 		      </div>
 		      
 		            <label class="control-label col-sm-1 no-padding-right">服务器ID</label>

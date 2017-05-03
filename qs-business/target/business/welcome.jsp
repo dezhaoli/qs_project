@@ -11,7 +11,16 @@ pageEncoding="UTF-8" %>
 </head>
 
 <div class="container clear">
-
+    <c:if test="${!empty gameName}">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title" style="text-align: center;">当前游戏: ${gameName}</h4>
+            </div>
+                <%--<div class="panel-body">
+                    这是一个基本的面板
+                </div>--%>
+        </div>
+    </c:if>
     <ul class="nav nav-pills nav-stacked menu">
         <c:forEach var="resource"   items="${list }"  varStatus="s">
             <c:if test="${resource.parentId !=null and resource.parentId !=''}">

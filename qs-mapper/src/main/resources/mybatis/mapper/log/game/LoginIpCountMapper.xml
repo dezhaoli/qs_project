@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.LoginIpCountMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.DayLoginUserIp" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ip, mid, time
+  </sql>
+  <!-- 分页列表 -->
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+	ip,count(mid) as count
+    from day_login_userip
+    GROUP BY ip having count > 2 ORDER BY count DESC
+  </select>
+</mapper>

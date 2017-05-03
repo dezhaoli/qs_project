@@ -60,14 +60,14 @@
      -->
 
 	<!-- 用户登录数控制,超过最大回话数会强制退出 -->
-<!-- 	<bean id="kickoutSessionFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter">
+  	<bean id="kickoutFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter">
 		<property name="cacheManager" ref="shiroCacheManager" />
 		<property name="sessionManager" ref="shiroSessionManager" />
 		<property name="kickoutAfter" value="false" />
 		<property name="maxSession" value="1" />
 		<property name="kickoutUrl" value="/login.html" />
 	</bean>
-	
+	<!--
 	<bean id="rememberMeFilter" class="com.qs.webside.shiro.filter.RememberAuthenticationFilter"/>
 	 -->
 	 
@@ -88,7 +88,7 @@
 	</bean>
 	
 			<!-- 用户会话session控制 -->
-	<bean id="kickoutFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter"/>
+<!-- 	<bean id="kickoutFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter"/> -->
 	<!-- kickout Filter -->
 	<bean id="kickoutAuthFilter" class="com.qs.webside.shiro.filter.KickoutAuthFilter"/>
 	<!-- user Filter -->
@@ -137,13 +137,14 @@
 				/resources/** = anon
 				/login.html = user
 				/logout.html = logout
+				/checkGameUi.html=anon
 				/register.html = anon
 				/captcha.html = anon
 				/denied.jsp = anon
 				/view/error/** = anon
 				/*/withoutAuth/** = anon
 			    /config/** = anon
-				/** = user
+				/** = user,kickout
 			</value>
 		</property>
 		

@@ -5,7 +5,7 @@ var dtGridColumns = [{//SELECT a.fmid,SUM(a.pamount) AS ptotal,b.name AS usernam
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-        return value;
+        return dataNo+1;
     }
 },{
     id : 'roomid',

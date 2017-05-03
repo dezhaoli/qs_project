@@ -86,6 +86,26 @@ function resetPwd(id) {
 }
 
 function showBusinessBackstage(id) {
+	var url = sys.rootPath +"/agent/business/setBusinessLoginUserKey.html";
+    $.ajax({
+		type : "POST",
+		url : url,
+		data : {"id":id},
+		dataType : "json",
+		success : function(msg) {
+			if (msg.success == true) {
+				var burl=msg.businessUrl+"?id="+id+"&sign="+msg.sign+"&currentTime="+msg.currentTime;
+				$('#businessUrl').attr('href',burl); 
+				$("#selectBusinessById").click();
+			} else {
+				layer.msg("请尝试安全登入！", {
+					icon : 5,
+					time : 500
+				});
+			}
+		}
+
+	});
     //webside.common.loadPage('/game/ip/editUI.html?id=' + id);
 }
 

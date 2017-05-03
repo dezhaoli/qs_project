@@ -9,6 +9,16 @@
 
 <div class="page-content">
     <div class="row">
+    
+            <div class="col-sm-1">
+            <select class="form-control" name="pstatus" id="pstatus">
+                <option value="">全部</option>
+                <option selected="selected" value="2">已支付</option>
+                 <option value="0">待支付</option>
+                 <option value="1">取消支付</option>
+            </select>
+        </div>
+        
         <div class="col-sm-1">
             <div class="input-group">
                 <input class="form-control" name="mid" id="mid" type="number"
@@ -18,7 +28,7 @@
         <div class="col-sm-1">
             <div class="input-group">
                 <input class="form-control" name="realname" id="realname" type="text"
-                       value="" placeholder="请输入姓名..."/>
+                       value="" placeholder="请输入昵称..."/>
             </div>
         </div>
             <div class="col-sm-2">

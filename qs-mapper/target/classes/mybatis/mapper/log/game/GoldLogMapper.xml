@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.qs.log.game.mapper.GoldLogMapper" >
   <resultMap id="BaseResultMap" type="com.qs.log.game.model.GoldLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="mid" property="mid" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="TINYINT" />
     <result column="gold" property="gold" jdbcType="BIGINT" />
@@ -12,19 +13,35 @@
     <result column="gametype" property="gametype" jdbcType="TINYINT" />
     <result column="formid" property="formid" jdbcType="INTEGER" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, type, gold, nowgold, action, date, remark, gametype, formid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.qs.log.game.model.GoldLog" >
-    insert into gold_log (mid, type, gold, 
-      nowgold, action, date, 
-      remark, gametype, formid
-      )
-    values (#{mid,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, #{gold,jdbcType=BIGINT}, 
-      #{nowgold,jdbcType=BIGINT}, #{action,jdbcType=TINYINT}, #{date,jdbcType=TIMESTAMP}, 
-      #{remark,jdbcType=VARCHAR}, #{gametype,jdbcType=TINYINT}, #{formid,jdbcType=INTEGER}
-      )
+    insert into gold_log (id, mid, type, 
+      gold, nowgold, action, 
+      date, remark, gametype, 
+      formid)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+      #{gold,jdbcType=BIGINT}, #{nowgold,jdbcType=BIGINT}, #{action,jdbcType=TINYINT}, 
+      #{date,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{gametype,jdbcType=TINYINT}, 
+      #{formid,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.qs.log.game.model.GoldLog" >
     insert into gold_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
       <if test="mid != null" >
         mid,
       </if>
@@ -54,6 +71,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
       <if test="mid != null" >
         #{mid,jdbcType=INTEGER},
       </if>
@@ -83,7 +103,54 @@
       </if>
     </trim>
   </insert>
-
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.game.model.GoldLog" >
+    update gold_log
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="gold != null" >
+        gold = #{gold,jdbcType=BIGINT},
+      </if>
+      <if test="nowgold != null" >
+        nowgold = #{nowgold,jdbcType=BIGINT},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=TINYINT},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="formid != null" >
+        formid = #{formid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.game.model.GoldLog" >
+    update gold_log
+    set mid = #{mid,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      gold = #{gold,jdbcType=BIGINT},
+      nowgold = #{nowgold,jdbcType=BIGINT},
+      action = #{action,jdbcType=TINYINT},
+      date = #{date,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR},
+      gametype = #{gametype,jdbcType=TINYINT},
+      formid = #{formid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
   <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
     SELECT mid,type,gold,nowgold,action,date,remark,gametype,formid
     FROM gold_log
@@ -120,5 +187,9 @@
     WHERE a.mid = #{mid,jdbcType=INTEGER}
     ORDER BY a.date DESC
   </select>
-
+  
+  <update id="updateGoldFromParam" parameterType="map" >
+   UPDATE gold_log SET remark=#{remark} WHERE mid=#{mid} AND type=13 AND date=#{nowTime} LIMIT 1
+  </update>
+  
 </mapper>

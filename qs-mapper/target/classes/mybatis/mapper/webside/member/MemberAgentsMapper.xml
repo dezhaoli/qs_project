@@ -350,8 +350,14 @@
     from
     memberagents
     <where>
-      <if test="mid != null" >
+      <if test="mid != null and mid != ''" > <!-- realname, phone -->
         mid = #{mid,jdbcType=INTEGER}
+      </if>
+      <if test="realname != null and realname != ''" >
+        and realname = #{realname}
+      </if>
+      <if test="phone != null and phone != ''" >
+        and phone = #{phone}
       </if>
     </where>
     order by id
@@ -362,10 +368,11 @@
   </select>
 
   <!-- 获取商务专员绑定的一级代理商充值列表 -->
-  <select id="queryFirstAgentByBelongIdPage" parameterType="map" resultType="map">
+ <!-- <select id="queryFirstAgentByBelongIdPage" parameterType="map" resultType="map">
     SELECT a.mid,b.*,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
     a.sitemid as asitemid,b.sitemid as bsitemid,a.realname AS truename,
-    (SELECT COUNT(0) FROM memberagents e WHERE firstmid = a.mid and e.mid != a.mid) AS childCount
+    (SELECT COUNT(0) FROM memberagents e WHERE firstmid = a.mid and e.mid != a.mid LIMIT 1) AS childCount,
+    (SELECT name FROM memberfides0 ff WHERE ff.mid = a.mid LIMIT 1) AS nickname
     FROM memberagents as a
     left join common_agents_info as b
     ON a.sitemid=b.sitemid
@@ -375,7 +382,7 @@
      and a.mid = #{mid,jdbcType=INTEGER}
     </if>
     ORDER BY a.mktime DESC
-  </select>
+  </select>-->
 
   <!-- a.*,b.*,a.phone AS mobile,b.realname AS name -->
   <select id="getAgentBusinessInfoByMid" parameterType="map" resultType="map">
@@ -593,4 +600,86 @@
 	WHERE c.mid IN(d.mid) AND date&gt;=#{sDate} AND date&lt;=#{eDate})
 	x GROUP BY x.areaid
 	</select>
+	
+	<update id="updateByMid" parameterType="com.qs.webside.member.model.MemberAgents" >
+    update memberagents
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        alipay = #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="systempasswd != null" >
+        systempasswd = #{systempasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        scale = #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        mktime = #{mktime,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        lastlogintime = #{lastlogintime,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="alevel != null" >
+        alevel = #{alevel,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        belongid = #{belongid,jdbcType=SMALLINT},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="firstmid != null" >
+        firstmid = #{firstmid,jdbcType=INTEGER},
+      </if>
+      <if test="glevel != null" >
+        glevel = #{glevel,jdbcType=TINYINT},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=TINYINT},
+      </if>
+      <if test="sitemid != null" >
+        sitemid = #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
 </mapper>

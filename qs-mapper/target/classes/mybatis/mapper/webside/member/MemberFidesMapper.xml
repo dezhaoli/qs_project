@@ -337,6 +337,35 @@
     SELECT <include refid="Base_Column_List" />
     from memberfides0 order by mid
   </select>
+  
+  
+ <select id="queryUserAndGoldListByPage" parameterType="map" resultType="map">
+	SELECT     m.mid, m.name, m.sex, m.btd, m.city, icon, invite, gp, sta,FROM_UNIXTIME(mtime, '%Y-%m-%d %H:%m:%s') AS mtime , email, bindtime, tel, realname, 
+    identity, yellowvip, isyearvip, passwd, salt, lgtm, lxlg, qq, address,g.gold from memberfides0 m
+	INNER JOIN membercommongame0 g
+	on  m.mid=g.mid
+	<where>
+	<if test="gold != null and gold != ''">
+	AND g.gold &gt;= #{gold,jdbcType=INTEGER}
+	</if>
+	<if test="realname != null and realname != ''">
+	m.name = #{realname}
+	</if>
+	<if test="mid != null and mid != ''">
+	AND m.mid = #{mid}
+	</if>
+
+	<if test="startTime != null and startTime != ''">
+	AND from_unixtime(m.mtime,'%Y-%m-%d') &gt;= #{startTime}
+	</if>
+	<if test="endTime != null and endTime != ''">
+	AND from_unixtime(m.mtime,'%Y-%m-%d') &lt;= #{endTime}
+	</if>
+
+	</where>
+	order by m.mid desc
+ 
+ </select>
 
   <select id="queryUserInfoByMid" resultType="map" parameterType="java.lang.Integer" >
     SELECT

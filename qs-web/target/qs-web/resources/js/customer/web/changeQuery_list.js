@@ -66,7 +66,7 @@ var dtGridOption = {
     check : false,
     checkWidth :'37px',
     extraWidth : '37px',
-    loadURL : sys.rootPath + '/query/'+queryType+'/changeAndGold.html',
+    loadURL : sys.rootPath + '/query/change/changeAndGold.html',
     columns : dtGridColumns,
     gridContainer : 'dtGridContainer',
     toolbarContainer : 'dtGridToolBarContainer',

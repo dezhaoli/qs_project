@@ -27,30 +27,30 @@
     </button>
 	<!--     代理商修改邀请码 -->
     <shiro:hasPermission name="agent:inviteCode"> 
-    <c:if test="${!empty memberFides.memberAgents}">
-        <button type="button" class="btn btn-primary btn-sm btn-danger" onclick="editUserInviteCode(${id})">
-            <i class="fa fa-user-secret"></i>&nbsp;修改邀请码
+        <c:if test="${!empty memberFides.memberAgents}">
+            <button type="button" class="btn btn-primary btn-sm btn-danger" onclick="editUserInviteCode(${id})">
+                <i class="fa fa-user-secret"></i>&nbsp;修改邀请码
+            </button>
+        </c:if>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="agent:inviteCode">
+        <button type="button" class="btn btn-primary btn-sm btn-grey" onclick="cancelOrBindInvite(${id})">
+            <i class="fa fa-user-secret"></i>&nbsp;取消/绑定邀请人
         </button>
-    </c:if>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="agent:inviteCode">
+        <c:if test="${!empty memberFides.memberAgents}">
+            <button type="button" class="btn btn-primary btn-sm btn-success" onclick="cancelAgent(${id})">
+                <i class="fa fa-user-secret"></i>&nbsp;取消代理商
+            </button>
+         </c:if>
+    </shiro:hasPermission>
+    <shiro:hasPermission name="agent:inviteCode">
+        <button type="button" class="btn btn-primary btn-sm btn-pink" onclick="addGold(${id})">
+            <i class="fa fa-user-secret"></i>&nbsp;添加金币
+        </button>
     </shiro:hasPermission>
 </div>
-
-<%--<div class="controls controls-row">
-    <div class="col-sm-5">
-        <div class="clearfix">
-            <input class="form-control" name="sitemidSearch" id="sitemidSearch" type="text"
-                   value="" placeholder="输入要查看的用户sitemid..."/>
-        </div>
-    </div>
-    <div class="col-sm-5">
-        <div class="clearfix">
-            <input class="form-control" name="midSearch" id="midSearch" type="number"
-                   value="" placeholder="输入要查看的用户mid..."/>
-        </div>
-    </div>
-    <button id="searchUser" class="btn btn-primary btn-sm" type="button" >
-        <i class="fa fa-search"></i>查看</button>
-</div>--%>
 
 <div class="row" style="margin-top:5px;">
     <div class="col-xs-12">

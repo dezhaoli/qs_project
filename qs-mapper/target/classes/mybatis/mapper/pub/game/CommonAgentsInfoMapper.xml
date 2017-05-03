@@ -142,4 +142,22 @@
     SELECT <include refid="Base_Column_List" />
     from common_agents_info order by sitemid
   </select>
+
+  <!-- 获取商务专员绑定的一级代理商充值列表 -->
+  <select id="queryFirstAgentByBelongIdPage" parameterType="map" resultType="map">
+    SELECT a.mid,b.*,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+    a.sitemid as asitemid,b.sitemid as bsitemid,a.realname AS truename,
+    (SELECT COUNT(0) FROM ${dbName}.memberagents e WHERE firstmid = a.mid and e.mid != a.mid LIMIT 1) AS childCount,
+    (SELECT name FROM ${dbName}.memberfides0 ff WHERE ff.mid = a.mid LIMIT 1) AS nickname
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE a.alevel=1
+    AND a.belongid=#{belongid,jdbcType=INTEGER}
+    <if test="mid != null and mid != ''">
+      and a.mid = #{mid,jdbcType=INTEGER}
+    </if>
+    ORDER BY a.mktime DESC
+  </select>
+
 </mapper>
