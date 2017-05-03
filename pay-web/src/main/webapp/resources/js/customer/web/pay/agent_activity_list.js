@@ -351,7 +351,11 @@ var dtGridOption = {
     check : true,
     checkWidth :'37px',
     extraWidth : '37px',
+<<<<<<< HEAD
     loadURL : sys.rootPath + '/corpPay/agentActivityCorpPayList.html?gameType='+gameType,
+=======
+    loadURL : sys.rootPath + '/corpPay/agentActivityCorpPayList.html?gameType'+gameType,
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
     columns : dtGridColumns,
     gridContainer : 'dtGridContainer',
     toolbarContainer : 'dtGridToolBarContainer',
@@ -372,7 +376,10 @@ $(function() {
     grid.parameters['searchDate'] = $('#lastSunday').val();
     grid.parameters['mid'] = $('#mid').val();
     grid.parameters['isaward'] = $('#isaward').val();
+<<<<<<< HEAD
     grid.parameters['type'] = $('#type').val();
+=======
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
 
     grid.load();
     $("#btnSearch").click(customSearch);
@@ -405,7 +412,10 @@ function customSearch() {
     //grid.parameters['searchDate'] = $('#lastSunday').val();
     grid.parameters['isaward'] = $('#isaward').val();
     grid.parameters['mid'] = $('#mid').val();
+<<<<<<< HEAD
     grid.parameters['type'] = $('#type').val();
+=======
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
     grid.refresh(true);
 }
 
@@ -423,8 +433,11 @@ function refreshDataGrid() {
     //grid.parameters['searchDate'] = $('#lastSunday').val();
     grid.parameters['isaward'] = $('#isaward').val();
     grid.parameters['mid'] = $('#mid').val();
+<<<<<<< HEAD
     grid.parameters['type'] = $('#type').val();
     
+=======
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
     grid.refresh(true);
 }
 

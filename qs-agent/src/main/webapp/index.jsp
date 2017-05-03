@@ -141,7 +141,11 @@
                         </a></li>
                         <li>
                         <a  href="javascript:void(0)"
+<<<<<<< HEAD
                                nav-menu="代理商后台,查看个人资料,/user/updateUserInfoUI.html">
+=======
+                               nav-menu="代理商后台,查看个人资料,/user/updateUserInfoUI.html?level=0&areaid='+${userEntity.areaid}+'&id='+${userEntity.id}'">
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
                               <i  class="fa fa-user-plus" style="font-size: 14px;"></i>&nbsp;&nbsp;个人信息完善 </a>
                       	</li>
                         <li> 

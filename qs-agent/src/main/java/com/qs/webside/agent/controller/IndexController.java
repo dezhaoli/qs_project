@@ -234,7 +234,11 @@ public class IndexController extends BaseController {
 					String region = ipSearcher.memorySearch(ip).getRegion();
 					String[] regions = StringUtils.split(region, '|');
 					String cityName="";
+<<<<<<< HEAD
 					//cityName=user.getCity();
+=======
+					cityName=user.getCity();
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
 					Area area=areaService.selectAreaNameByArea(cityName.trim());
 					if (area !=null) {
 						updateAgent.setAreaid(area.getAid());
@@ -746,6 +750,12 @@ public class IndexController extends BaseController {
 			model.addAttribute("sitemid", memberAgents.getSitemid());
 		}
 
+<<<<<<< HEAD
+=======
+		List<Map<String,Object>> gameList=commonAgentsRelationService.selectBySitemidKey(memberAgents.getSitemid());
+		model.addAttribute("gameList", gameList);
+		model.addAttribute("sitemid", memberAgents.getSitemid());
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
 		return "datebase_list";
 	}
 	

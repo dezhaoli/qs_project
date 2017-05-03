@@ -28,6 +28,7 @@
                 <option value="2">已支付</option>
             </select>
         </div>
+<<<<<<< HEAD
         
               <div class="col-sm-1">
             <select class="form-control" name="type" id="type">
@@ -37,6 +38,8 @@
                  <option value="2">5.1直属会员充值奖励</option>
             </select>
         </div>
+=======
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
 
         <%--<div class="col-sm-2">
             <div class="input-group" style="width: 100%;">
@@ -49,12 +52,17 @@
             </div>
         </div>--%>
 
+<<<<<<< HEAD
         <div class="col-sm-2">
             <input type="number" class="input form-control" name="mid" id="mid" placeholder="请输入MID"/>
     
         </div>
         
                <div class="col-sm-1">
+=======
+        <div class="col-sm-3">
+            <input type="number" class="input form-control" name="mid" id="mid" placeholder="请输入MID"/>
+>>>>>>> 3c893817d77920bf125f754c99aa2fad59a6a979
                    <span class="input-group-btn">
                 <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
                     <i class="fa fa-search"></i>查询
