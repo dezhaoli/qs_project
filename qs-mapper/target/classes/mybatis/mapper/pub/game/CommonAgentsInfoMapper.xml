@@ -160,4 +160,21 @@
     ORDER BY a.mktime DESC
   </select>
 
+  <!-- belongid 商务id，firstmid 一级代理商id -->
+  <select id="getChildrenAgentsList" parameterType="map" resultType="map">
+    SELECT a.mid,b.*,a.realname AS truename ,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+    (SELECT COUNT(0) FROM ${dbName}.memberagents e WHERE e.parent_id = a.mid and e.mid!=a.mid) AS childCount
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE a.firstmid= #{firstmid,jdbcType=INTEGER}
+    AND a.belongid= #{belongid,jdbcType=INTEGER}
+    AND a.alevel>1
+    <if test="mid != null and mid != ''">
+      and a.mid = #{mid,jdbcType=INTEGER}
+    </if>
+    ORDER BY a.mktime
+    DESC
+  </select>
+
 </mapper>

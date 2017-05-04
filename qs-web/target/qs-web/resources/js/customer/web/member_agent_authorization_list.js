@@ -114,7 +114,7 @@ var dtGridColumns = [
             +'<button class="btn btn-success" onclick="resetPwd(\'' + record.id + '\')">' +
             '重置密码' +
             '</button>&nbsp;'
-            +'<button class="btn btn-warning" onclick="showMemberInfo(\'' + record.mid + '\')">' +
+            +'<button class="btn btn-warning" onclick="showMemberInfo(\'' + record.sitemid + '\')">' +
             '查看用户信息' +
             '</button>&nbsp;'
             +'<button class="btn btn-purple" onclick="addPayTest(\'' + record.id + '\')">' +
@@ -138,8 +138,29 @@ function showUserInfo(mid) {
     webside.common.loadPage('/member/agent/showUserInfoUi.html?mid='+mid);
 }
 
-function showMemberInfo(mid) {
-    layer.open({
+function showMemberInfo(sitemid) {
+	
+	var url = sys.rootPath +"/agent/authorization/setAgentLoginUserKey.html";
+    $.ajax({
+		type : "POST",
+		url : url,
+		data : {"sitemid":sitemid},
+		dataType : "json",
+		success : function(msg) {
+			if (msg.success == true) {
+				var burl=msg.businessUrl+"?sitemid="+sitemid+"&sign="+msg.sign+"&currentTime="+msg.currentTime;
+				$('#businessUrl').attr('href',burl); 
+				$("#selectBusinessById").click();
+			} else {
+				layer.msg("请尝试安全登入！", {
+					icon : 5,
+					time : 500
+				});
+			}
+		}
+
+	});
+   /* layer.open({
         type: 2,
         title: '用户信息',
         area: ['90%', '90%'],
@@ -149,7 +170,7 @@ function showMemberInfo(mid) {
         success: function (layero, index) {
 
         }
-    });
+    });*/
 }
 
 function resetPwd(id) {

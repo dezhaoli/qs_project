@@ -4,6 +4,7 @@
 <html lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <%@include file="common/common.jspf" %>
+    <script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
     <script src="${ctx}/resources/js/bootstrap/bootstrap.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {

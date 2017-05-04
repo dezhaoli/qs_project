@@ -176,6 +176,29 @@
     AND mid = #{mid,jdbcType=INTEGER}
     order by mid desc
   </select>
+  
+  <select id="queryLogListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT mid,type,gold,nowgold,action,date,remark,gametype,formid
+    FROM gold_log
+      <where>
+       1=1
+        <choose>
+                <when test="startTime!=null and startTime!='' and endTime!=null and endTime!=''">
+                       and  DATE_FORMAT(date,'%Y-%m-%d') &lt;= #{endTime,jdbcType=VARCHAR} and DATE_FORMAT(date,'%Y-%m-%d') &gt;= #{endTime,jdbcType=VARCHAR}
+                </when>
+                <when test="startTime!=null and startTime!=''">
+                       and  LEFT(date,10) = #{startTime,jdbcType=VARCHAR}
+                </when>
+                <when test="endTime!=null and endTime!=''">
+                       and  LEFT(date,10) = #{endTime,jdbcType=VARCHAR}
+                </when>
+         </choose>
+        <if test="mid != null and mid != '' ">
+           and mid = #{mid,jdbcType=INTEGER}
+        </if>
+      </where>
+    order by mid desc
+  </select>
 
   <select id="getUserGoldOriginPageByMid" parameterType="map" resultType="map">
     SELECT a.mid,a.type,a.gold,a.nowgold,a.action,

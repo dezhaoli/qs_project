@@ -21,6 +21,12 @@
     from common_agents_relation
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <delete id="deleteByMid" parameterType="java.lang.Integer" >
+    delete from common_agents_relation
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from common_agents_relation
     where id = #{id,jdbcType=INTEGER}

@@ -144,7 +144,7 @@
 				/view/error/** = anon
 				/*/withoutAuth/** = anon
 			    /config/** = anon
-				/** = user,kickout
+				/** = user
 			</value>
 		</property>
 		

@@ -5,7 +5,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/agent_agentEmpowerGold_list.js"></script>
-
+<script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
 <div class="page-content">
     <div class="row">
         <div class="col-sm-3">

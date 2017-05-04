@@ -1,7 +1,6 @@
 	drop procedure IF EXISTS updateTaxesInviteWeek;
 	delimiter //
-
-	CREATE PROCEDURE `updateTaxesInviteWeek`()
+	CREATE DEFINER=`root`@`localhost` PROCEDURE `updateTaxesInviteWeek`()
 	BEGIN
 
 
@@ -18,19 +17,19 @@
 	DECLARE nowdate date DEFAULT NOW();
 	DECLARE endtmp date DEFAULT NOW();
 
-	DECLARE total1 int(11) DEFAULT 0;
-	DECLARE invitotal1 int(11) DEFAULT 0;
-	DECLARE total2 int(11) DEFAULT 0;
-	DECLARE invitotal2 int(11) DEFAULT 0;
-	DECLARE total3 int(11) DEFAULT 0;
-	DECLARE invitotal3 int(11) DEFAULT 0;
-	DECLARE ceeds1 int(11) DEFAULT 0;
-	DECLARE ceeds2 int(11) DEFAULT 0;
-	DECLARE ceeds3 int(11) DEFAULT 0;
+	DECLARE total1 double(11,2) DEFAULT 0;
+	DECLARE invitotal1 double(11,2) DEFAULT 0;
+	DECLARE total2 double(11,2) DEFAULT 0;
+	DECLARE invitotal2 double(11,2) DEFAULT 0;
+	DECLARE total3 double(11,2) DEFAULT 0;
+	DECLARE invitotal3 double(11,2) DEFAULT 0;
+	DECLARE ceeds1 double(11,2) DEFAULT 0;
+	DECLARE ceeds2 double(11,2) DEFAULT 0;
+	DECLARE ceeds3 double(11,2) DEFAULT 0;
 
-	DECLARE counttotal int(11) DEFAULT 0;
-	DECLARE countinvitotal int(11) DEFAULT 0;
-	DECLARE countceeds int(11) DEFAULT 0;
+	DECLARE counttotal double(11,2) DEFAULT 0;
+	DECLARE countinvitotal double(11,2) DEFAULT 0;
+	DECLARE countceeds double(11,2) DEFAULT 0;
 	declare allInfo VARCHAR(200) DEFAULT null;
 
 	DECLARE cur CURSOR FOR
@@ -55,7 +54,7 @@
 	,']') info
 	from (
 	SELECT a.paytotal1 paytotal1,a.invitetotal1 invitetotal1,b.paytotal2 paytotal2,b.invitetotal2 invitetotal2,c.paytotal3 paytotal3,c.invitetotal3 invitetotal3,
-	(case  when a.paytotal1<=3500 then a.paytotal1*0.4 when  a.paytotal1>3500 and  a.paytotal1<7000 then a.paytotal1*0.45 when  a.paytotal1>=7000 then a.paytotal1*0.50 end) proceeds1 ,
+	(case  when a.paytotal1<=3500 then a.paytotal1*0.4 when  a.paytotal1>3500 and  a.paytotal1<7000 then a.paytotal1*0.4 when  a.paytotal1>=7000 then a.paytotal1*0.4 end) proceeds1 ,
 	(case  when b.paytotal2>0 then b.paytotal2*0.08 else 0 end) proceeds2 ,
 	(case  when c.paytotal3>0 then c.paytotal3*0.05 else 0 end) proceeds3
 	from (

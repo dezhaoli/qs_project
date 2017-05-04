@@ -32,7 +32,7 @@
             <ul class="nav menu">
                 <c:forEach items="${games}" var="game">
                     <li><!-- gameCode:sc_majiang , gameType:5 -->
-                        <a href="${href}?gameCode=${game.gameCode}&gameType=${game.gameType}">${game.gname}</a>
+                        <a href="${ctx}/checkGameLogin.html?gameCode=${game.gameCode}&gameType=${game.gameType}">${game.gname}</a>
                     </li>
                 </c:forEach>
                 <%--<li>

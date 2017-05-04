@@ -6,6 +6,7 @@
 <%--<%@include file="/common/common.jspf" %>--%>
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/agent_settlement_list.js"></script>
+<script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
 <style>
     .info-tip{
         text-align: center;

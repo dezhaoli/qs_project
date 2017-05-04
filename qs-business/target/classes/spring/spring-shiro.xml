@@ -90,7 +90,7 @@
 			<!-- 用户会话session控制 -->
 <!-- 	<bean id="kickoutFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter"/> -->
 	<!-- kickout Filter -->
-	<bean id="kickoutAuthFilter" class="com.qs.webside.shiro.filter.KickoutAuthFilter"/>
+    <bean id="kickoutAuthFilter" class="com.qs.webside.shiro.filter.KickoutAuthFilter"/>
 	<!-- user Filter -->
 	<bean id="loginFilter" class="com.qs.webside.shiro.filter.LoginFilter"/>
 	<bean id="rememberMeFilter" class="com.qs.webside.shiro.filter.RememberMeFilter"/>
@@ -144,7 +144,7 @@
 				/view/error/** = anon
 				/*/withoutAuth/** = anon
 			    /config/** = anon
-				/** = user,kickout
+				/** = user
 			</value>
 		</property>
 		

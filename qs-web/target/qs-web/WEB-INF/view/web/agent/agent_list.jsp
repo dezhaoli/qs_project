@@ -38,7 +38,7 @@
                                         </a>
                                     </div>
                                 </div>
-                                <a class="btn btn-warning" id="businessUrl" style="visibility: hidden;"  href="http://127.0.0.1:8080/business/checkGameUi.html?id=1"><span  id="selectBusinessById">查看商务后台</span></a>
+                                <a class="btn btn-warning" id="businessUrl" style="visibility: hidden;" target="_blank" href="http://127.0.0.1:8080/business/checkGameUi.html?id=1"><span  id="selectBusinessById">查看商务后台</span></a>
 								<!-- target="view_window" -->
                                 <div class="widget-body" style="display: block;">
                                     <div class="widget-main padding-6 no-padding-left no-padding-right">

@@ -25,6 +25,11 @@
     where mid = #{mid,jdbcType=INTEGER}
   </select>
 
+  <delete id="deleteByMid" parameterType="java.lang.Integer" >
+    delete from memberinvite
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from memberinvite
     where id = #{id,jdbcType=INTEGER}

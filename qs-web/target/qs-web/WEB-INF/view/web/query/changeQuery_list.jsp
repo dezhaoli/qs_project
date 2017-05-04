@@ -4,6 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <%--<%@include file="/common/common.jspf" %>--%>
+
+<script>
+    $(function () {
+        jeDate({
+            dateCell: '#searchDate',
+            isinitVal: new Date(),
+            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+            minDate: '1900-06-01', //最小日期
+            maxDate: '2050-06-01' //最大日期
+        });
+    });
+</script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/changeQuery_list.js"></script>
 
@@ -18,13 +30,23 @@
                 <input class="form-control" name="searchDate" id="searchDate" type="text"
                        value="" placeholder="请选择日期..."/>
                 <span class="input-group-btn">
-        <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
-                <i class="fa fa-search"></i>查询
-            </button>
-     </span>
+                    <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
+                            <i class="fa fa-search"></i>查询
+                    </button>
+                </span>
             </div>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-2">
+
+        </div>
+        <div class="col-sm-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h4 class="panel-title" style="text-align: center;">今日总充值: ${nowDayPay}元</h4>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
 
         </div>
     </div>
@@ -71,15 +93,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    $(function () {
-        jeDate({
-            dateCell: '#searchDate',
-            isinitVal:new Date(),
-            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate: '1900-06-01', //最小日期
-            maxDate: '2050-06-01' //最大日期
-        });
-    });
-</script>

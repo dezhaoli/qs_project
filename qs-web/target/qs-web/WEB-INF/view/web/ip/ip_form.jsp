@@ -29,6 +29,7 @@
                 <div class="col-sm-5">
                     <div class="clearfix">
                         <select class="form-control" id="type" name="type" style="width: 100%">
+                          
                             <option value="L1" <c:if test="${record.type eq 'L1' }">selected="selected"</c:if>>
                                 L1
                             </option>
@@ -66,6 +67,29 @@
                             
                               <option value="L12" <c:if test="${record.type eq 'L12' }">selected="selected"</c:if>>
                                L12
+                            </option>
+                            <option value="L13" <c:if test="${record.type eq 'L13' }">selected="selected"</c:if>>
+                               L13
+                            </option>
+                            
+                            <option value="L14" <c:if test="${record.type eq 'L14' }">selected="selected"</c:if>>
+                               L14
+                            </option>
+                             <option value="L15" <c:if test="${record.type eq 'L15' }">selected="selected"</c:if>>
+                               L15
+                            </option>
+                            
+                             <option value="N1" <c:if test="${record.type eq 'N1' }">selected="selected"</c:if>>
+                                N1
+                            </option>
+                            <option value="N2" <c:if test="${record.type eq 'N2' }">selected="selected"</c:if>>
+                                N2
+                            </option>
+                            <option value="N3" <c:if test="${record.type eq 'N3' }">selected="selected"</c:if>>
+                                N3
+                            </option>
+                             <option value="N4" <c:if test="${record.type eq 'N4' }">selected="selected"</c:if>>
+                                N4
                             </option>
                         
                         </select>

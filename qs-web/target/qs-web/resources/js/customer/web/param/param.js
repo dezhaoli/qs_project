@@ -12,8 +12,14 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
-    id : 'value',
+    id : 'code',
     title : '编码',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'value',
+    title : '值',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'

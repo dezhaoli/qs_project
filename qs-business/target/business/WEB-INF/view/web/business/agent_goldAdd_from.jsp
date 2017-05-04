@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
+<script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
 <div class="container">
     <div class="page-title">
         <h4>添加金币</h4>

@@ -6,7 +6,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/agent_pay_detail_list.js"></script>
-
+<script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
 
 <div class="page-content">
     <div class="row" style="margin-top:5px;">

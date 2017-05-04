@@ -4,6 +4,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <%--<%@include file="/common/common.jspf" %>--%>
+<script>
+    $(function () {
+        jeDate({
+            dateCell: '#startTime',
+            isinitVal:new Date(),
+            //isinitVal:false,
+            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+            minDate: '1900-06-01', //最小日期
+            maxDate: '2050-06-01' //最大日期
+        });
+        jeDate({
+            dateCell: '#endTime',
+            isinitVal:new Date(),
+            //isinitVal:false,
+            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+            minDate: '1900-06-01', //最小日期
+            maxDate: '2050-06-01' //最大日期
+        });
+    });
+</script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/orderDetail_query_list.js"></script>
 
@@ -94,22 +114,3 @@
     </div>
 </div>
 
-<script>
-    $(function () {
-        jeDate({
-            dateCell: '#startTime',
-            //isinitVal:new Date(),
-            isinitVal:false,
-            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate: '1900-06-01', //最小日期
-            maxDate: '2050-06-01' //最大日期
-        });
-        jeDate({
-            dateCell: '#endTime',
-            isinitVal:false,
-            format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate: '1900-06-01', //最小日期
-            maxDate: '2050-06-01' //最大日期
-        });
-    });
-</script>

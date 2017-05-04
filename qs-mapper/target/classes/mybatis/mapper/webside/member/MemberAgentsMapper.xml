@@ -419,7 +419,7 @@
   </select>
 
   <!-- belongid 商务id，firstmid 一级代理商id -->
-  <select id="getChildrenAgentsList" parameterType="map" resultType="map">
+<!--  <select id="getChildrenAgentsList" parameterType="map" resultType="map">
     SELECT a.mid,b.*,a.realname AS truename ,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
     (SELECT COUNT(0) FROM memberagents e WHERE e.parent_id = a.mid and e.mid!=a.mid) AS childCount
     FROM memberagents as a
@@ -433,7 +433,7 @@
     </if>
     ORDER BY a.mktime
     DESC
-  </select>
+  </select>-->
 <!--   根据sitemid获取用户信息 -->
  <select id="getMemberAgentsInfoBySitemid" resultType="com.qs.webside.member.model.MemberAgents"
 	parameterType="java.lang.String">
@@ -682,4 +682,8 @@
     </set>
     where mid = #{mid,jdbcType=INTEGER}
   </update>
+  <select id="getIsAgentEmpower" resultType="java.lang.Integer"
+		parameterType="map">
+		SELECT mid FROM memberagents WHERE mid=${mid} AND parent_id=${pmid} limit 1
+	</select>
 </mapper>

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
-
+<script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
 <script>
     //注册回车键事件
     document.onkeypress = function(e){

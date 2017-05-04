@@ -127,7 +127,8 @@
     select 
     <include refid="Base_Column_List" />
     from area
-    where aname = #{aname,jdbcType=INTEGER}
+    where aname  like CONCAT(#{aname,jdbcType=VARCHAR},'%')    
+    limit 0,1
   </select>
   
 <!--  根据aid查具体详情地址   -->

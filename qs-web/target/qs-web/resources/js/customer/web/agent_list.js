@@ -53,7 +53,7 @@ var dtGridColumns = [{
     hideType : 'xs',
     resolution : function(value, record, column, grid, dataNo, columnNo) {
         //return '<a href="#" style="cursor: pointer;" onclick="edit(\''+record.id+'\')">编辑</a>';
-        return '<button class="btn btn-primary" onclick="fixPhoneNumber(\'' + record.id + '\')">修改手机号码</button>&nbsp;'
+        return '<button class="btn btn-primary" onclick="fixPhoneNumber(\'' + record.id + '\')">编辑</button>&nbsp;'
             +'<button class="btn btn-success" onclick="resetPwd(\'' + record.id + '\')">重置密码</button>&nbsp;'
             +'<button class="btn btn-warning" onclick="showBusinessBackstage(\'' + record.id + '\')">查看商务后台</button>';
     }
@@ -112,7 +112,7 @@ function showBusinessBackstage(id) {
 function fixPhoneNumber(id) {
     layer.open({
         type: 2,
-        title:'修改手机号码',
+        title:'修改商务信息',
         area: ['70%','70%'],
         fixed: false, //不固定
         maxmin: true,

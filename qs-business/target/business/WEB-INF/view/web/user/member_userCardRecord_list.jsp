@@ -8,7 +8,7 @@
     <script type="text/javascript"
             src="${pageContext.request.contextPath }/resources/js/customer/web/member_userCardRecord_list.js"></script>
 </c:if>
-
+<script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
 
 
 <div class="page-content">
