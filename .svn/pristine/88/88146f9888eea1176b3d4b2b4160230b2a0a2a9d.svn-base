@@ -1,0 +1,249 @@
+/*
+ * 文件名：GameNoticeRecordController.java	 
+ * 时     间：下午6:18:39
+ * 作     者：wangzhen      
+ * 版     权：2014-2022  牵手互动, 公司保留所有权利.
+ * 
+ */
+package com.qs.webside.game.controller;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.AjaxException;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.PageUtil;
+import com.qs.webside.game.model.Notice;
+import com.qs.webside.game.service.INoticeService;
+
+/**
+ * @ClassName: GameNoticeRecordController
+ * @描述: 游戏公告控制层
+ * @author wangzhen
+ * @date 2017年5月3日 下午6:18:39
+ */
+@Controller
+@RequestMapping(value = "/game/notice/")
+public class NoticeController extends BaseController
+{
+	@Resource
+	private INoticeService noticeService;
+	@Value("${quartz.job.jobGroup}")
+	private String jobGroup;
+	/**
+	 * 
+	 * @标题: listUi 
+	 * @描述:  跳转到游戏公告主页面
+	 *
+	 * @参数信息
+	 *    @param model
+	 *    @param id
+	 *    @param request
+	 *    @return
+	 *
+	 * @返回类型 String
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping(value = "mainListUi.html", method = RequestMethod.GET)
+	public String listUi(Model model, String id, HttpServletRequest request)
+	{
+		try
+		{
+			PageUtil page = super.getPage(request);
+			model.addAttribute("page", page);
+			model.addAttribute("id", id);
+			return "/WEB-INF/view/web/mobile/game_notice_main";
+		} catch (Exception e)
+		{
+			throw new SystemException(e);
+		}
+	}
+	/**
+	 * 
+	 * @标题: list 
+	 * @描述:  游戏公告主页面数据查询接口
+	 *
+	 * @参数信息
+	 *    @param gridPager
+	 *    @return
+	 *    @throws Exception
+	 *
+	 * @返回类型 Object
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("MainList.html")
+    @ResponseBody
+    public Object list(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        //System.out.println("parameters = " + parameters.get("apkId"));
+        if (parameters.size() < 0) {
+            parameters.put("site", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<Notice> list = noticeService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
+    }
+	
+	/**
+	 * @标题: gameNoticeAddUi 
+	 * @描述: 跳转到 游戏公告添加页面
+	 *
+	 * @参数信息
+	 *    @param model
+	 *    @param id
+	 *    @param request
+	 *    @return
+	 *
+	 * @返回类型 String
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("gameNoticeAddUI.html")
+	public String gameNoticeAddUi(Model model, String id, HttpServletRequest request)
+	{
+		try
+		{
+			PageUtil page = super.getPage(request);
+			model.addAttribute("page", page);
+			model.addAttribute("id", id);
+			model.addAttribute("jobGroup", JSONArray.parseArray(jobGroup).toArray());
+			return "/WEB-INF/view/web/mobile/game_notice_add";
+		} catch (Exception e)
+		{
+			throw new SystemException(e);
+		}
+	}
+	/**
+	 * 
+	 * @标题: add 
+	 * @描述:  游戏公告添加接口
+	 *
+	 * @参数信息
+	 *    @param record
+	 *    @return
+	 *
+	 * @返回类型 Object
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("gameNoticeAdd.html")
+    @ResponseBody
+    public Object gameNoticeAdd(Notice record) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+        	String title = record.getTitle();
+        	record.setTitle(title != null?title.trim():title);
+            int result = noticeService.insert(record);
+            super.executeRequestResult(result,map);
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+	/**
+	 * 
+	 * @标题: gameNoticeUpdateUi 
+	 * @描述:  跳转到游戏公告更新页面
+	 *
+	 * @参数信息
+	 *    @param model
+	 *    @param id
+	 *    @param request
+	 *    @return
+	 *
+	 * @返回类型 String
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("gameNoticeUpdateUI.html")
+	public String gameNoticeUpdateUi(Model model, String id, HttpServletRequest request)
+	{
+		try
+		{
+			PageUtil page = super.getPage(request);
+			Notice notice = noticeService.selectByPrimaryKey(Integer.parseInt(id));
+			/*notice.setStime(DateUtil.convert2String(Long.parseLong(notice.getStime())));
+			notice.setEtime(DateUtil.convert2String(Long.parseLong(notice.getEtime())));*/
+			model.addAttribute("page", page);
+			model.addAttribute("record", notice);
+			return "/WEB-INF/view/web/mobile/game_notice_update";
+		} catch (Exception e)
+		{
+			throw new SystemException(e);
+		}
+	}
+	/**
+	 * 
+	 * @标题: gameNoticeUpdate 
+	 * @描述:  游戏公告更新接口
+	 *
+	 * @参数信息
+	 *    @param record
+	 *    @return
+	 *
+	 * @返回类型 Object
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("gameNoticeUpdate.html")
+    @ResponseBody
+    public Object gameNoticeUpdate(Notice record) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int result = noticeService.updateByPrimaryKey(record);
+            super.executeRequestResult(result,map);
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+	/**
+	 * 
+	 * @标题: gameNoticeUpdate 
+	 * @描述:  校验title是否重复
+	 *
+	 * @参数信息
+	 *    @param record
+	 *    @return
+	 *
+	 * @返回类型 Object
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("gameNoticeByTitle.html")
+	@ResponseBody
+	public Object selectByTitle(String title) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			List<Notice> result = noticeService.selectByTitle(title != null?title.trim():title);
+			super.executeRequestResult(result.size(),map);
+		} catch (Exception e) {
+			throw new AjaxException(e);
+		}
+		return map;
+	}
+}

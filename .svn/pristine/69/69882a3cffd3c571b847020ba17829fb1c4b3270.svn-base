@@ -1,0 +1,800 @@
+package com.qs.webside.agent.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.google.code.kaptcha.Constants;
+import com.google.code.kaptcha.Producer;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.exception.SystemException;
+import com.qs.common.ip2region.DbSearcher;
+import com.qs.common.util.CommonUtils;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.DateUtils;
+import com.qs.common.util.ID;
+import com.qs.common.util.SpringContextUtil;
+import com.qs.datasource.DataSourceSwitch;
+import com.qs.datasource.util.ConstantUtil;
+import com.qs.datasource.util.DataSourcesUtil;
+import com.qs.pub.game.model.AppGame;
+import com.qs.pub.game.model.Area;
+import com.qs.pub.game.model.CommonAgents;
+import com.qs.pub.game.model.CommonAgentsRelation;
+import com.qs.pub.game.service.IAppGameService;
+import com.qs.pub.game.service.ICommonAgentService;
+import com.qs.pub.game.service.ICommonAgentsRelationService;
+import com.qs.pub.sys.model.ResourceEntity;
+import com.qs.pub.sys.model.RoleEntity;
+import com.qs.pub.sys.model.UserEntity;
+import com.qs.pub.sys.service.LoginInfoService;
+import com.qs.pub.sys.service.ResourceService;
+import com.qs.pub.sys.service.RoleService;
+import com.qs.pub.sys.service.UserService;
+import com.qs.webside.agent.model.AdminAgentPublish;
+import com.qs.webside.agent.service.IAdminAgentPublishService;
+import com.qs.webside.agent.service.IAreaService;
+import com.qs.webside.agent.service.impl.MemberAgentServiceImpl;
+import com.qs.webside.member.mapper.MemberInviteMapper;
+import com.qs.webside.member.model.MemberAgents;
+import com.qs.webside.member.model.MemberFides;
+import com.qs.webside.member.model.MemberInvite;
+import com.qs.webside.member.service.IMemberFidesService;
+import com.qs.webside.shiro.MyRealm;
+import com.qs.webside.shiro.ShiroAuthenticationManager;
+import com.qs.webside.sms.UegateSoap;
+import com.qs.webside.util.AgentDataSourceUtil;
+import com.qs.webside.util.AgentUtil;
+import com.qs.webside.util.EndecryptUtils;
+import com.qs.webside.util.TreeUtil;
+
+import me.hao0.common.security.MD5;
+import weixin.popular.api.SnsAPI;
+import weixin.popular.bean.sns.SnsToken;
+import weixin.popular.bean.user.User;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+/**
+ * 
+ * @ClassName: IndexController
+ * @Description: 登录、注册、退出、验证码
+ * @author gaogang
+ * @date 2016年7月12日 下午3:20:47
+ *
+ */
+@Controller
+@Scope("prototype")
+@RequestMapping(value = "/")
+public class IndexController extends BaseController {
+	
+	
+	Logger log = Logger.getLogger(IndexController.class);  
+
+	@Autowired
+	private UserService userService;
+	
+	@Autowired
+	private ResourceService resourceService;
+	
+	@Autowired
+	private LoginInfoService loginInfoService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private Producer captchaProducer;
+	
+	@Autowired
+	private DbSearcher ipSearcher;
+	@Autowired
+	private ICommonAgentService commonAgentService;
+	
+	@Resource
+	private MemberInviteMapper memberInviteMapper;
+	
+	@Autowired
+	private MemberAgentServiceImpl memberAgentService;
+	
+	@Autowired
+	private IAreaService areaService;
+	
+	@Autowired
+	private IMemberFidesService memberFidesService;
+	
+	@Autowired
+	private RedisTemplate redisTemplate;
+	
+	@Autowired
+	private DataSourcesUtil dataSourcesUtil;
+	
+	@Autowired
+	private ICommonAgentsRelationService commonAgentsRelationService;
+	
+	@Autowired
+	private AgentDataSourceUtil agentDataSourceUtil;
+	
+	@Autowired
+	private IAppGameService appGameService;
+	
+	@Autowired
+	private IAdminAgentPublishService adminAgentPublishService;
+	
+	@Value("${weixin.appid}")
+	private String appId;
+
+	@Value("${weixin.appSecret}")
+	private String secret;
+	
+	@Value("${weixin.redirecturi}")
+	private String redirecturi;
+	
+	@Value("${SMS.SPID}")
+	private String spId;
+	
+	@Value("${SMS.PASSWORD}")
+	private String password;
+	
+	@Value("${SMS.ACCESSCODE}")
+	private String accessCode;
+	
+	@Value("${SMS.PHONE_EXPIRE_TIME}")
+	private String phoneExpireTime;
+	
+	@RequestMapping(value = "login.html")
+	public String login(HttpServletRequest request,
+			HttpServletResponse response,Model model) {
+		try{
+			Subject subject = SecurityUtils.getSubject();
+			//String weixinRedirecturi=SnsAPI.connectQrconnect(appId,redirecturi,"state");
+			String url=SnsAPI.connectOauth2Authorize(appId, redirecturi,true, "state");
+			model.addAttribute("url", url);
+			if(subject.isAuthenticated() || subject.isRemembered()){
+				return "redirect:/index.html";
+			}else{
+				return "/login";
+			}
+				
+			
+		}catch(Exception e)
+		{
+			throw new SystemException(e);
+		}
+	}
+	
+	
+	
+	/**
+	 * 用户登录
+	 * 认证过程：
+	 * 1、想要得到Subject对象,访问地址必须在shiro的拦截地址内,不然会报空指针
+	 * 2、用户输入的账号和密码,存到UsernamePasswordToken对象中,然后由shiro内部认证对比
+	 * 3、认证执行者交由ShiroDbRealm中doGetAuthenticationInfo处理
+	 * 4、当以上认证成功后会向下执行,认证失败会抛出异常
+	 * 
+	 * @param accountName	账户名称
+	 * @param password	密码
+	 * @return
+	 */
+	@RequestMapping(value = "wxLoginNotify.html")
+	public String callBackUserLogin(HttpServletRequest request,Model model) {
+
+		UsernamePasswordToken token = null;
+		//防止cc攻击
+		String refererUrl=request.getHeader("Referer");
+		log.debug("refererUrl===::"+refererUrl);
+		boolean isUpdate=false;//用户是有否更新代理商表信息
+		
+		try {
+		
+			
+
+				String code=request.getParameter("code");
+
+				SnsToken snsToken=SnsAPI.oauth2AccessToken(appId, secret,code);
+				User user=SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(),"zh_CN");
+				//String openid="ogl_xwhVIIm51Ojuw8y4tw53UYt4";"ogl_xwv4KKiJuyb0mAdK0OFzlBBQ";
+				//这里取unionid
+				String accountName=user.getUnionid();
+				// 想要得到Subject对象,访问地址必须在shiro的拦截地址内,不然会报空指针
+				Subject subject = SecurityUtils.getSubject();
+				
+				/*MemberAgents userEntity=memberAgentService.getMemberAgentsInfoBySitemid(accountName);
+				MemberAgents  updateAgent=new MemberAgents();
+				updateAgent.setId(userEntity.getId());
+				if (StringUtils.isBlank(userEntity.getOpenid())){
+					//updateAgent.setOpenid(user.getOpenid());
+					//isUpdate=true;
+				}
+				if (userEntity !=null && userEntity.getAreaid() ==0){
+					String ip =CommonUtils.getIpAddr(request);
+					String region = ipSearcher.memorySearch(ip).getRegion();
+					String[] regions = StringUtils.split(region, '|');
+					String cityName="";
+					//cityName=user.getCity();
+					Area area=areaService.selectAreaNameByArea(cityName.trim());
+					if (area !=null) {
+						updateAgent.setAreaid(area.getAid());
+						isUpdate=true;
+					}
+				}
+				if (isUpdate){
+					memberAgentService.updateByPrimaryKeySelective(updateAgent);
+				}*/
+				token = new UsernamePasswordToken(accountName, "qs2017");
+				//记住用户登录状态
+				token.setRememberMe(false);
+				subject.login(token);
+				
+				List<Map<String,Object>>	gameList=commonAgentsRelationService.selectBySitemidKey(accountName);
+					
+				model.addAttribute("gameList", gameList);
+				model.addAttribute("sitemid", accountName);
+				if (subject.isAuthenticated()) {
+
+					request.removeAttribute("error");
+				} else {
+					token.clear();
+					request.setAttribute("error", "用户名或密码不正确！");
+					return "/login";
+				}
+		}catch (UnknownAccountException uae)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "账户不存在！");
+			return "/error";
+		}
+		catch (IncorrectCredentialsException ice)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "密码错误！");
+			return "/login";
+		}catch (LockedAccountException e) {
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "您的账户已被锁定,请与管理员联系或10分钟后重试！");
+			return "/login";
+		} catch (ExcessiveAttemptsException e) {
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "您连续输错5次,帐号将被锁定10分钟!");
+			return "/login";
+		}catch(ExpiredCredentialsException eca)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "账户凭证过期！");
+			return "/login";
+		}catch (AuthenticationException e) {
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "账户验证失败！");
+			return "/login";
+		}catch (Exception e)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "登录异常，请联系管理员！");
+			return "/login";
+		}
+		
+		return "datebase_list";
+		//return "redirect:/index.html";
+	}
+	
+		@RequestMapping("refreshCache.html")
+		public String refreshCache(int gameType,String sitemid){
+			DataSourceSwitch.setMainDataSourceType(
+					dataSourcesUtil.getDataBaseName(ConstantUtil.ReadWrite.READ, gameType, null));
+			dataSourcesUtil.setkey(ConstantUtil.AGENT_GAME_TYPE_SESSION_KEY+sitemid, gameType+"");
+			
+			MemberAgents curUser=memberAgentService.getMemberAgentsInfoBySitemid(sitemid);
+			MyRealm myRealm = SpringContextUtil.getBean("myRealm", MyRealm.class);
+			//更新当前用户session信息
+			myRealm.changePrincipals(curUser);
+			return "redirect:/index.html";
+		}
+	
+	/**
+	 * 登入后数据页面 
+	 * @return
+	 */
+	@RequestMapping(value = "index.html", method = RequestMethod.GET)
+	public String index(Model model,HttpSession session) {
+		try
+		{
+			MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+			agentDataSourceUtil.setReadDataSourceType();
+			// 获取登录的memberAgents
+			List<ResourceEntity> list = resourceService.findResourcesMenuByRoleId(com.qs.common.constant.Constants.Agent.roleId);//根据角色id获取资源
+			List<ResourceEntity> treeList = new TreeUtil().getChildResourceEntitys(list, null);
+			model.addAttribute("list", treeList);
+			model.addAttribute("menu", JSON.toJSONString(treeList));
+			 //登陆的信息回传页面
+			 model.addAttribute("userEntity", memberAgents);
+			//model.addAttribute("memberInvite", memberInvite);
+			 //公告提示是否
+			 AdminAgentPublish adminAgentPublish=adminAgentPublishService.getPublishInfo();
+			 if (adminAgentPublish !=null ) {
+				 int sTime=Integer.valueOf(adminAgentPublish.getStime());
+				 int eTime=Integer.valueOf(adminAgentPublish.getEtime());
+				 if (DateUtil.currentTimeToInt()>sTime && DateUtil.currentTimeToInt()<eTime){
+					 model.addAttribute("publishFlag", true);
+				 }else {
+					 model.addAttribute("publishFlag", false);
+				 }
+			 }else {
+				 model.addAttribute("publishFlag", false);
+			 }
+
+			return "/index";
+		}catch(Exception e)
+		{
+			throw new SystemException(e);
+		}
+
+	}
+	
+	
+	/**
+	 * 用户注册
+	 * 
+	 * @param userEntity
+	 * @return
+	 */
+	@RequestMapping(value = "register.html", method = RequestMethod.POST, produces = "text/html; charset=utf-8")
+	public String register(UserEntity userEntity) {
+		try {
+			String password = userEntity.getPassword();
+			// 加密用户输入的密码，得到密码和加密盐，保存到数据库
+			UserEntity user = EndecryptUtils.md5Password(userEntity.getAccountName(), userEntity.getPassword(), 2);
+			//设置添加用户的密码和加密盐
+			userEntity.setPassword(user.getPassword());
+			userEntity.setCredentialsSalt(user.getCredentialsSalt());
+			//设置创建者姓名
+			userEntity.setCreatorName(userEntity.getUserName());
+			userEntity.setCreateTime(new Date(System.currentTimeMillis()));
+			//设置锁定状态：未锁定；删除状态：未删除
+			userEntity.setLocked(0);
+			userEntity.setDeleteStatus(0);
+			//通过注册页面注册的用户统一设置为普通用户
+			RoleEntity roleEntity = roleService.findByName("普通用户");
+			userEntity.setRole(roleEntity);
+			// 保存用户注册信息
+			userService.insert(userEntity, password);
+			return "login";
+		}catch(Exception e)
+		{
+			throw new SystemException(e);
+		}
+		
+	}
+	
+
+	/**
+	 * 用户退出
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "logout.html", method = RequestMethod.GET)
+	public String logout() {
+		// 注销登录
+		ShiroAuthenticationManager.logout();
+		return "redirect:login.html";
+	}
+	
+	
+	@RequestMapping(value = "captcha.html", method = RequestMethod.GET)
+    public void kaptcha(HttpServletRequest req, HttpServletResponse rsp) {
+		ServletOutputStream out = null;
+		try {
+	        rsp.setDateHeader("Expires", 0);
+	        rsp.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+	        rsp.addHeader("Cache-Control", "post-check=0, pre-check=0");
+	        rsp.setHeader("Pragma", "no-cache");
+	        rsp.setContentType("image/jpeg");
+	
+	        String capText = captchaProducer.createText();
+	        //将验证码存入shiro 登录用户的session
+	        ShiroAuthenticationManager.setSessionAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
+	
+	        BufferedImage image = captchaProducer.createImage(capText);
+	        out = rsp.getOutputStream();
+	        ImageIO.write(image, "jpg", out);
+	        out.flush();
+        }catch(IOException e)
+		{
+			throw new SystemException(e);
+		} finally {
+            try {
+            	if(null != out)
+            	{
+            		out.close();
+            	}
+			} catch (IOException e) {
+				logger.error("关闭输出流异常:"+e.getMessage());
+			}
+        }
+    }
+	
+	/**
+	 * 首页
+	 * @return
+	 */
+	@RequestMapping(value = "home.html", method = RequestMethod.GET)
+	public String home(Model model) {
+		try
+		{
+			MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+			agentDataSourceUtil.setReadDataSourceType();			
+			MemberInvite memberInvite = memberInviteMapper.selectByMid(memberAgents.getMid());
+			MemberFides memberFides=memberFidesService.selectByPrimaryKey(memberAgents.getMid());
+			List<ResourceEntity> list = resourceService.findResourcesMenuByRoleId(com.qs.common.constant.Constants.Agent.roleId);//根据角色id获取资源
+			List<ResourceEntity> treeList = new TreeUtil().getChildResourceEntitys(list, null);
+			AppGame appGame=appGameService.selectByPrimaryKey(agentDataSourceUtil.getGameType());
+			model.addAttribute("memberFides", memberFides);
+			model.addAttribute("userEntity", memberAgents);
+			model.addAttribute("memberInvite", memberInvite);
+			model.addAttribute("gameName", appGame.getGname());
+			model.addAttribute("menu", JSON.toJSONString(treeList));
+			model.addAttribute("list", list);
+			String home="welcome";
+			return home;
+		}catch(Exception e)
+		{
+			throw new SystemException(e);
+		}
+	}
+	
+	/**
+	 * 手机登入方式
+	 * @param accountName
+	 * @param password
+	 * @param captcha
+	 * @param rememberMe
+	 * @param request
+	 * @return
+	 * @author:zyy
+	 * @time:2017年4月6日
+	 */
+	@RequestMapping(value = "loginPhone.html", method = RequestMethod.POST, produces = "text/html; charset=utf-8")
+	public String loginPhone(String accountName, String password,String captcha
+			, Boolean rememberMe, HttpServletRequest request,Model model) {
+
+		UsernamePasswordToken token = null;
+		try {
+
+			if (accountName == null) {
+				request.setAttribute("error", "请输入账号！");
+				return "/login";
+			}
+			if (password == null) {
+				request.setAttribute("error", "请输入密码！");
+				return "/login";
+			}
+
+			if(false){
+				request.setAttribute("error", "验证码错误！");
+				return "/login";
+			}else{
+				// 想要得到Subject对象,访问地址必须在shiro的拦截地址内,不然会报空指针
+				Subject subject = SecurityUtils.getSubject();
+
+				token = new UsernamePasswordToken(accountName, password);
+				//记住用户登录状态
+				token.setRememberMe(rememberMe);
+				subject.login(token);
+				
+				CommonAgents commonAgent=commonAgentService.selectByPhoneInfo(accountName.trim());
+				List<Map<String,Object>> gameList=commonAgentsRelationService.selectBySitemidKey(commonAgent.getSitemid());
+				
+				model.addAttribute("gameList", gameList);
+				model.addAttribute("sitemid", commonAgent.getSitemid());
+				
+				if (subject.isAuthenticated()) {
+
+					request.removeAttribute("error");
+				} else {
+					token.clear();
+					request.setAttribute("error", "用户名或密码不正确！");
+					return "/login";
+				}
+			}
+		}catch (UnknownAccountException uae)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "账户不存在！");
+			return "/error";
+		}
+		catch (IncorrectCredentialsException ice)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "密码错误！");
+			return "/login";
+		}catch (LockedAccountException e) {
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "您的账户已被锁定,请与管理员联系或10分钟后重试！");
+			return "/login";
+		} catch (ExcessiveAttemptsException e) {
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "您连续输错5次,帐号将被锁定10分钟!");
+			return "/login";
+		}catch(ExpiredCredentialsException eca)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "账户凭证过期！");
+			return "/login";
+		}catch (AuthenticationException e) {
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "账户验证失败！");
+			return "/login";
+		}catch (Exception e)
+		{
+			if(null != token)
+			{
+				token.clear();
+			}
+			request.setAttribute("error", "登录异常，请联系管理员！");
+			return "/login";
+		}
+		return "datebase_list";
+	}
+	
+	
+	
+	/**
+	 * 手机号绑定功能
+	 * @return
+	 * @author:zyy
+	 * @time:2017年4月5日
+	 */
+	@RequestMapping("bindPhone.html")
+	public String bindPhone(){
+		
+		return "/WEB-INF/view/web/agent/user_bindPhone";
+	}
+	/**
+	 * 验证该用户是否绑定用户
+	 * @return
+	 * @author:zyy
+	 * @time:2017年4月5日
+	 */
+	@ResponseBody
+	@RequestMapping("bindPhoneUi.html")
+	public Map<String,Object> bindPhoneUi(String phone){
+		
+		agentDataSourceUtil.setReadDataSourceType();
+		Map<String,Object> result=new HashMap<>();
+	   CommonAgents	commonAgent=commonAgentService.selectByPhoneInfo(phone.trim());
+	   if (commonAgent ==null){
+		   result.put(CommonContants.SUCCESS, true);
+	   }else {
+		   result.put(CommonContants.MESSAGE, "账号已绑定");
+		   result.put(CommonContants.SUCCESS, false);
+	   }
+		return result;
+	}
+
+	/**
+	 * 短信发送并存入redis 缓存2分钟
+	 * @param phone
+	 * @return
+	 * @author:zyy
+	 * @time:2017年4月6日
+	 */
+	@ResponseBody
+	@RequestMapping("sendSms.html")
+	public Map<String,Object> sendSms(String phone){
+		Map<String,Object> result=new HashMap<>();
+		StringBuffer contentSB=new StringBuffer();
+		int randomCode=(int)((Math.random()*9+1)*100000);
+		UegateSoap uegateSoap=new UegateSoap();
+		String tokenCode=AppConstants.RedisKeySMS.REFRESH_SMS_TOKEN+phone.trim();
+		
+		String refreshToken=
+				(String)redisTemplate.opsForValue().get(tokenCode);
+		
+		if (!StringUtils.isBlank(refreshToken)){
+			result.put(CommonContants.MESSAGE, "发送频繁请稍等！");
+			result.put(CommonContants.SUCCESS, false);
+			return result;
+		}
+		if (!StringUtils.isBlank(phone)){
+			contentSB.append("【乐玩游戏】短信验证：");
+			contentSB.append(randomCode);
+			contentSB.append("（请勿将验证码提供给他人），请在2分钟能完成验证。");
+		    String resultMs=uegateSoap.Submit(spId,password,accessCode,contentSB.toString(),phone.trim());
+			
+			redisTemplate.opsForValue().set(tokenCode,randomCode+"",2*60,TimeUnit.SECONDS);
+			result.put(CommonContants.MESSAGE, "短信已发送请查收");
+			result.put(CommonContants.SUCCESS, true);
+			log.info("into sendSms redis randomCode ====:"+resultMs);
+		}else {
+			result.put(CommonContants.MESSAGE, "请重新发送");
+			result.put(CommonContants.SUCCESS, false);
+		}
+		return result;
+	}
+	
+	/**
+	 * 手机账号绑定
+	 * @param code
+	 * @param pwd
+	 * @param phone
+	 * @return
+	 * @author:zyy
+	 * @time:2017年4月6日
+	 */
+	@ResponseBody
+	@RequestMapping("submitEdit.html")
+	public Map<String ,Object> submitEdit(String code,String pwd,String phone){
+		
+		MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+		agentDataSourceUtil.setWriteDataSourceType();
+		
+		 Map<String ,Object> result=new HashMap<>();
+		 
+		 String tokenCode=AppConstants.RedisKeySMS.REFRESH_SMS_TOKEN+phone.trim();
+			
+		 String uuId = ID.generateUUID();
+		 String passwordCryto = new Md5Hash(pwd,uuId,2).toBase64();
+		 CommonAgents commonagents=new CommonAgents();
+		 String refreshToken=
+				 (String)redisTemplate.opsForValue().get(tokenCode);
+		 
+		 if (StringUtils.isBlank(refreshToken)){
+			 result.put(CommonContants.MESSAGE, "短信过期，请重新发送！");
+			 result.put(CommonContants.SUCCESS, false);
+			 return result;
+			}
+			
+			commonagents.setLoginPasswd(passwordCryto);
+			commonagents.setLoginSalt(uuId);
+			commonagents.setLoginPhone(phone);
+			commonagents.setLoginIsbind(new Byte("1"));
+			commonagents.setLoginBindtime(DateUtil.convertToInt(DateUtil.getNowDates()));
+			commonagents.setSitemid(memberAgents.getSitemid());
+			
+		   int re= commonAgentService.updateByPrimaryKeySelective(commonagents);
+		   if (re==1){
+			    result.put(CommonContants.MESSAGE, "绑定成功");
+				result.put(CommonContants.SUCCESS, true);
+		   }else {
+			    result.put(CommonContants.MESSAGE, "绑定失败");
+				result.put(CommonContants.SUCCESS, false);
+		   }
+		   return result;
+	}
+	
+	/**
+	 * 获取用户所有游戏平台列表
+	 * @param model
+	 * @param sitemid
+	 * @param currentTime
+	 * @param sign
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月3日
+	 */
+	@RequestMapping("gameList.html")
+	public String gameList(Model model,
+            String sitemid,String currentTime ,String sign){
+
+		if (sitemid !=null ){//用于游戏后台切代理平台登入验证
+			if (checkTime(currentTime,sitemid+"",sign)){
+				
+				UsernamePasswordToken token = new UsernamePasswordToken(sitemid+":qsgamelogin", "qs2017");
+				
+				token.setRememberMe(true);
+				Subject subject = SecurityUtils.getSubject();
+				subject.login(token);
+				List<Map<String,Object>> gameList=commonAgentsRelationService.selectBySitemidKey(sitemid);
+				model.addAttribute("gameList", gameList);
+				model.addAttribute("sitemid", sitemid);
+			}else {
+				ShiroAuthenticationManager.logout();
+				return "redirect:login.html";
+			}
+		}else {
+			MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+			List<Map<String,Object>> gameList=commonAgentsRelationService.selectBySitemidKey(memberAgents.getSitemid());
+			model.addAttribute("gameList", gameList);
+			model.addAttribute("sitemid", memberAgents.getSitemid());
+		}
+
+		return "datebase_list";
+	}
+	
+
+	/**
+	 * 检验后台登入签名认证
+	 * @param timestamp
+	 * @param id
+	 * @param sign
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月3日
+	 */
+	public boolean checkTime(String timestamp,String sitemid,String sign){
+		boolean checkTime=false;
+		StringBuilder signTemp= new StringBuilder();
+		long clientTime=Long.parseLong(timestamp); 
+		long serverTime=System.currentTimeMillis();
+		long onehour = 10000; //10秒数
+		if((Math.abs(serverTime-clientTime)<onehour)){
+			String signStr=signTemp.append(sitemid).append(timestamp).append(com.qs.common.constant.Constants.Agent.AGENT_KEY).toString();
+			String key=MD5.generate(signStr,false).toUpperCase();
+
+			if (key.equals(sign)){
+				return true;
+			}else {
+				return false;
+			}
+		}
+		return checkTime;
+
+	}
+}

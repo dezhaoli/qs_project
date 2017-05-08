@@ -1,0 +1,26 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+/*
+ * 文件名：Test.java	 
+ * 时     间：上午9:16:19
+ * 作     者：wangzhen      
+ * 版     权：2014-2022  牵手互动, 公司保留所有权利.
+ * 
+ */
+/** 
+ * @ClassName: Test 
+ * @描述: (这里用一句话描述这个类的作用) 
+ * @author qs
+ * @date 2017年5月5日 上午9:16:19 
+ */
+public class Test
+{
+public static void main(String[] args)
+{
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+	String str = sdf.format(new Date(1493890980));
+	System.out.println(str);
+	
+}
+}

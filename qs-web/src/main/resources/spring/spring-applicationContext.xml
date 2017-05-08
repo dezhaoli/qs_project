@@ -66,8 +66,8 @@
 	<import resource="spring-kaptcha.xml" />
 	<import resource="spring-ehcache.xml" />
 	<import resource="spring-redis.xml" />
-<!-- 	<import resource="spring-flyway.xml" /> -->
-	<!-- <import resource="spring-quartz.xml" /> -->
+ 	<!-- <import resource="spring-flyway.xml" />  -->
+	<import resource="spring-quartz.xml" />
 	<import resource="spring-ip2region.xml"/>
 	<import resource="spring-job.xml"/>
 </beans>    

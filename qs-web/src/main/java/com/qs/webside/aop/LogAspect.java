@@ -37,31 +37,31 @@ public class LogAspect {
 	/**
 	 * 添加业务逻辑方法切入点 定义在controller包里的以add为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.controller.*.add(..))")
+	@Pointcut("execution(* com.qs.*.*.controller.*.add(..))")
 	public void insertServiceCall() {
 	}
 
 	/**
 	 * 修改业务逻辑方法切入点 定义在controller包里的以update为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.controller.*.update(..)) "
-			+ "|| execution(* com.qs.*.controller.*.resetPassword(..)) "
-			+ "|| execution(* com.qs.*.controller.*.info(..)) "
-			+ "|| execution(* com.qs.*.controller.*.password(..))")
+	@Pointcut("execution(* com.qs.*.*.controller.*.update(..)) "
+			+ "|| execution(* com.qs.*.*.controller.*.resetPassword(..)) "
+			+ "|| execution(* com.qs.*.*.controller.*.info(..)) "
+			+ "|| execution(* com.qs.*.*.controller.*.password(..))")
 	public void updateServiceCall() {
 	}
 
 	/**
 	 * 删除业务逻辑方法切入点 定义在controller包里以delete为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.controller.*.delete*(..))")
+	@Pointcut("execution(* com.qs.*.*.controller.*.delete*(..))")
 	public void deleteServiceCall() {
 	}
 	
 	/**
 	 * 授权业务逻辑方法切入点 定义在controller包里以delete为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.controller.*.permission(..))")
+	@Pointcut("execution(* com.qs.*.*.controller.*.permission(..))")
 	public void permissionServiceCall() {
 	}
 

@@ -1,0 +1,91 @@
+package com.qs.pub.quartz.job;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.quartz.InterruptableJob;
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
+import org.quartz.JobKey;
+import org.quartz.UnableToInterruptJobException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+
+import com.qs.common.util.SocketPacketUtil;
+import com.qs.log.game.mapper.NoticeMapper;
+import com.qs.webside.game.model.Notice;
+
+import jodd.mail.MailException;
+
+
+/**
+ * 
+ * @ClassName: QuartzJobFactory
+ * @Description: 任务具体实现类:无状态、可在正在运行时停止 ;这里实现的是无状态job,即job可以并发
+ *               如果要实现有状态的job，只需给job类加上注解 @DisallowConcurrentExecution @DisallowConcurrentExecution
+ * @author gaogang
+ * @date 2016年7月15日 上午11:04:50
+ *
+ */
+public class NoticeJob implements InterruptableJob {
+
+	private static final Logger logger = LoggerFactory.getLogger(NoticeJob.class);
+
+	@Resource
+	private NoticeMapper gameNoticeRecordMapper;
+	
+	@Value("${game.goldhost}")
+	private String goldhost;
+	
+	@Value("${game.goldport}")
+	private int goldport;
+
+	private boolean interrupted = false;
+
+	private JobKey jobKey = null;
+
+	public NoticeJob() {
+
+	}
+
+	@Override
+	public void execute(JobExecutionContext context) throws JobExecutionException {
+		jobKey = context.getJobDetail().getKey();
+		String title = jobKey.getName();
+		if (context.isRecovering()) {
+			logger.info("job 已恢复");
+		} else {
+			logger.info("job 开始执行");
+			try {
+				if (!interrupted) {
+					List<Notice> record = gameNoticeRecordMapper.selectByTitle(title);
+					System.out.println(record.get(0).getContent());
+					 //发通知给c++
+			        SocketPacketUtil socketUtil = new SocketPacketUtil(goldhost, goldport);
+			        int type = 2;
+			        int cmd = 10005;
+			        boolean socketFlag = socketUtil.sendData(cmd, type, record.get(0).getContent());
+			        logger.debug("socketFlag===::" + socketFlag);
+			        socketUtil.close();
+				} else {
+					logger.info("用户停止了这个任务job: " + jobKey);
+					return;
+				}
+			} catch (MailException e) {
+				logger.error("发送消息异常", e);
+			}
+		}
+
+		System.out.println("任务成功运行");
+
+	}
+
+	@Override
+	public void interrupt() throws UnableToInterruptJobException {
+		interrupted = true;
+		logger.info("用户停止了这个任务job: " + jobKey);
+	}
+
+}
