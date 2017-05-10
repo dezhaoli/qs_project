@@ -1,0 +1,262 @@
+/*
+ * 文件名：GameNoticeServiceImpl.java	 
+ * 时     间：下午6:52:23
+ * 作     者：wangzhen      
+ * 版     权：2014-2022  牵手互动, 公司保留所有权利.
+ * 
+ */
+package com.qs.log.game.service.impl;
+
+import static org.quartz.TriggerBuilder.newTrigger;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
+import org.quartz.CronScheduleBuilder;
+import org.quartz.CronTrigger;
+import org.quartz.JobDetail;
+import org.quartz.Scheduler;
+import org.quartz.SchedulerException;
+import org.quartz.TriggerKey;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.scheduling.quartz.SchedulerFactoryBean;
+import org.springframework.stereotype.Service;
+
+import com.alibaba.druid.util.StringUtils;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.exception.ServiceException;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.SocketPacketUtil;
+import com.qs.log.game.mapper.NoticeMapper;
+import com.qs.log.game.service.INoticeService;
+import com.qs.pub.sys.model.UserEntity;
+import com.qs.webside.game.model.Notice;
+import com.qs.pub.quartz.model.ScheduleJobEntity;
+
+/** 
+ * @ClassName: GameNoticeServiceImpl 
+ * @描述: 日志公告业务层实现
+ * @author wangzhen
+ * @date 2017年5月3日 下午6:52:23 
+ */
+@Service
+public class NoticeServiceImpl implements INoticeService
+{
+	
+	@Resource
+	private NoticeMapper gameNoticeRecordMapper;
+
+	@Autowired
+	private RedisTemplate<String, Map<String, Object>> redisTemplate; 
+	
+	
+	private Logger log = Logger.getLogger(NoticeServiceImpl.class);
+	@Override
+	public int deleteByPrimaryKey(Integer id)
+	{
+		
+		return 0;
+	}
+
+	@Override
+	public int insert(Notice record,SchedulerFactoryBean schedulerFactoryBean,String goldhost,int goldport)
+	{
+		try {
+			String stime = record.getStime();
+			String etime = record.getEtime();
+			int pushType = record.getPushType();
+			
+			
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			record.setPushUserId(userEntity.getId().intValue());
+			record.setPushTime(new Date());
+			record.setPushUserName(userEntity.getUserName());
+			
+			if(stime != null && !stime.trim().equals("")){
+			record.setStime(DateUtil.convertToInt(stime).toString());
+			}
+			if(etime != null && !etime.trim().equals("")){
+			record.setEtime(DateUtil.convertToInt(etime).toString());
+			}
+			
+			int rows = gameNoticeRecordMapper.insert(record);
+			
+			//发布在线公告
+			if(pushType==1){
+				 //发通知给c++
+		        SocketPacketUtil socketUtil = new SocketPacketUtil(goldhost, goldport);
+		        int type = 2;
+		        int cmd = 10005;
+		        boolean socketFlag = socketUtil.sendData(cmd, type, record.getContent());
+		        log.debug("socketFlag===::" + socketFlag);
+		        socketUtil.close();
+			}
+			//发布停服公告
+			if(pushType==2){
+				Map<String,Object> map = new HashMap<String,Object>();
+				map.put("stime", record.getStime());
+				map.put("etime", record.getEtime());
+				map.put("content", record.getContent());
+				ValueOperations<String, Map<String,Object>> valueOper=redisTemplate.opsForValue();
+				valueOper.set(AppConstants.RedisKeyPrefix.GAME_STOP_NOTICE_CACHE, map,2,TimeUnit.HOURS);		
+			}
+			
+			
+			
+			//发布定时公告
+				if(pushType==3){
+					LocalDate stime2 = LocalDate.parse(stime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm"));
+					LocalDate etime2 = LocalDate.parse(etime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm"));
+					ScheduleJobEntity job = new ScheduleJobEntity();
+					job.setJobName(record.getTitle());
+					job.setJobGroup("发布定时任务");
+					job.setJobClassName("com.qs.pub.quartz.job.NoticeJob");
+					job.setJobDesc("定时发送指定消息");
+					job.setCronExpression(record.getCorn());
+					job.setStartDate(stime2.toDate());
+					job.setEndDate(etime2.toDate());
+					job.setTriggerName(record.getTitle());
+					
+					Scheduler scheduler = schedulerFactoryBean.getScheduler();
+					JobDetail jobDetail = job.getJobDetail();
+					if(StringUtils.isEmpty(job.getTriggerGroup()))
+					{
+						//使用默认组名称:DEFAULT
+						job.setTriggerGroup(Scheduler.DEFAULT_GROUP);
+					}
+					// 存储job
+					jobDetail.getJobDataMap().put("scheduleJob", job);
+					if(!StringUtils.isEmpty(job.getTriggerName())){
+						// 表达式调度构建器
+						CronScheduleBuilder scheduleBuilder = CronScheduleBuilder
+							.cronSchedule(job.getCronExpression());
+						// 按新的cronExpression表达式构建一个新的trigger
+						CronTrigger trigger = newTrigger()
+							.withIdentity(job.getTriggerName(),job.getTriggerGroup())
+							.startAt(job.getStartDate()) // job开始日期
+							.endAt(job.getEndDate())// job结束日期
+							.withSchedule(scheduleBuilder).build();
+						// 将job添加到quartz的scheduler容器
+						scheduler.scheduleJob(jobDetail, trigger);
+					}else
+					{
+						scheduler.addJob(jobDetail, true);
+					}
+				
+			}
+				return rows;
+		} catch (SchedulerException e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public int insertSelective(Notice record)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Notice selectByPrimaryKey(Integer id)
+	{
+		// TODO Auto-generated method stub
+		return gameNoticeRecordMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(Notice record)
+	{
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateByPrimaryKey(Notice record,SchedulerFactoryBean schedulerFactoryBean)
+	{
+		try {
+			String stime = record.getStime();
+			String etime = record.getEtime();
+			
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			record.setPushUserId(userEntity.getId().intValue());
+			record.setPushTime(new Date());
+			record.setPushUserName(userEntity.getUserName());
+			if (stime != null && !stime.trim().equals(""))
+			{
+				record.setStime(DateUtil.convertToInt(stime).toString());
+			}
+			if (etime != null && !etime.trim().equals(""))
+			{
+				record.setEtime(DateUtil.convertToInt(etime).toString());
+			}
+			int rows = gameNoticeRecordMapper.updateByPrimaryKey(record);
+			
+			LocalDate stime2 = LocalDate.parse(stime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm"));
+			LocalDate etime2 = LocalDate.parse(etime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm"));
+			ScheduleJobEntity job = new ScheduleJobEntity();
+			job.setJobName(record.getTitle());
+			job.setJobGroup("发布定时任务");
+			job.setJobClassName("com.qs.pub.quartz.job.NoticeJob");
+			job.setJobDesc("定时发送指定消息");
+			job.setCronExpression(record.getCorn());
+			job.setStartDate(stime2.toDate());
+			job.setEndDate(etime2.toDate());
+			job.setTriggerName(record.getTitle());
+			if(StringUtils.isEmpty(job.getTriggerGroup()))
+			{
+				//使用默认组名称:DEFAULT
+				job.setTriggerGroup(Scheduler.DEFAULT_GROUP);
+			}
+			Scheduler scheduler = schedulerFactoryBean.getScheduler();
+			// 获取触发器标识
+			TriggerKey triggerKey = job.getTriggerKey();
+			CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
+
+			// Trigger已存在，更新相应的定时设置
+			// 表达式调度构建器
+			CronScheduleBuilder scheduleBuilder = CronScheduleBuilder
+					.cronSchedule(job.getCronExpression());
+
+			// 按新的cronExpression表达式重新构建trigger
+			trigger = trigger.getTriggerBuilder()
+					.forJob(job.getJobKey())
+					.withIdentity(triggerKey)
+					.startAt(job.getStartDate()) // job开始日期
+					.endAt(job.getEndDate())// job结束日期
+					.withSchedule(scheduleBuilder).build();
+			// 按新的trigger重新设置job执行
+			scheduler.rescheduleJob(triggerKey, trigger);
+			
+			return rows;
+		} catch (Exception e) {
+			throw new ServiceException(e);
+		}
+	}
+
+	@Override
+	public List<Notice> queryListByPage(Map<String, Object> parameter)
+	{
+		return gameNoticeRecordMapper.queryListByPage(parameter);
+		
+	}
+	
+	@Override
+	public List<Notice> selectByTitle(String title)
+	{
+		return gameNoticeRecordMapper.selectByTitle(title);
+		
+	}
+
+}

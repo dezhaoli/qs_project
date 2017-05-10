@@ -4,23 +4,18 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@include file="/common/common.jspf"%>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath }/resources/js/customer/web/game_notice_main.js"></script>
-        
+        src="${pageContext.request.contextPath }/resources/js/customer/web/stop_notice_main.js"></script>
 <!-- 头部 -->
 <div class="page-header">
-	  <button id="btnAdd" type="button" onclick="webside.common.addModel('/game/notice/gameNoticeAddUI.html')" class="btn btn-primary btn-sm">
+	  <button id="btnAdd" type="button" onclick="webside.common.addModel('/game/notice/stopNoticeSaveOrUpdateUi.html')" class="btn btn-primary btn-sm">
 	  	<i class="fa fa-user-plus"></i>&nbsp;添加
 	 </button>
-	 <button id="btnEdit" type="button" onclick="edit();" class="btn btn-info btn-sm">
+	 <button id="btnEdit" type="button" onclick="webside.common.editModel('/game/notice/stopNoticeSaveOrUpdateUi.html')" class="btn btn-info btn-sm">
 		 <i class="fa fa-pencil-square-o"></i>&nbsp;编辑
 	</button>
-	
-	<button id="btnDel" type="button" onclick="executeJob('/scheduleJob/pauseJob.html')" class="btn btn-warning btn-sm">
-			<i class="fa fa-pause"></i>&nbsp;暂停
-		</button>
-		<button id="btnDel" type="button" onclick="executeJob('/scheduleJob/resumeJob.html')" class="btn btn-success btn-sm">
-			<i class="fa fa-play"></i>&nbsp;恢复
-		</button>
+	 <button id="btnDelt" type="button" onclick="del();" class="btn btn-info btn-sm">
+		 <i class="fa fa-pencil-square-o"></i>&nbsp;删除
+	</button>
 	 <!-- <button id="btnEdit" type="button" onclick="webside.common.editModel('/dict/viewUI.html')" class="btn btn-info btn-sm">
 		 <i class="fa fa-pencil-square-o"></i>&nbsp;查看
 	</button> -->
@@ -34,31 +29,6 @@
          <button id="btnSearch" class="btn btn-primary btn-sm" type="button"> <i class="fa fa-search"></i> 搜索</button>
      </span>
 </div> -->
-
-<form class="form-horizontal" >
-				<div class="form-group" >
-		           	<label class="control-label col-sm-1 no-padding-right">标题</label>
-	                <div class="col-sm-2">
-	                    <input class="form-control" name="title" id="title" type="text"
-	                               value="${record.title }" placeholder="标题..."/>
-	                </div>
-	                
-	                <label class="control-label col-sm-1 no-padding-right">请选择发布类型</label>
-	                <div class="col-sm-2">
-	                    <select class="form-control" name="pushType" id="pushType" >
-	                    		<option value="">请选择...</option>
-	                    		<option value="1">发布在线公告</option>
-	                    		<option value="3">发布定时公告</option>
-	                    </select>
-	                </div>
-	                <div class="col-sm-3">
-	                    <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
-	               			 <i class="fa fa-search"></i>查询
-	           			</button>
-	                </div>
-	                
-				</div>
-	</form>
 
 <div class="row" style="margin-top:5px;">
 	<div class="col-xs-12 widget-container-col ui-sortable"
@@ -95,22 +65,32 @@
 </div>
 
 <script type="text/javascript">
-function edit(){
+ function del(){
 	var rows = grid.getCheckedRecords();
 	 if (rows.length != 1) {
 		 layer.msg("你没有选择行或选择了多行数据", {
              icon : 0
          });
 		 return;
+     }else{
+    	 $.ajax({
+             type : "POST",
+             url : sys.rootPath + '/game/notice/deleteStopNotice.html',
+             dataType : "json",
+             success : function(resultdata) {
+            	 layer.msg('删除成功', {
+                     icon : 3
+                 });
+            	 grid.load();
+         },
+         error : function(errorMsg) {
+             layer.msg('服务器未响应,请稍后再试', {
+                 icon : 3
+             });
+         }
+     });
      }
-	var pushType = rows[0].pushType;
-	if(pushType==3){
-		webside.common.editModel('/game/notice/gameNoticeUpdateUI.html');
-	}else{
-		layer.msg("只有【发布定时公告】能够编辑！", {
-            icon : 0
-        });
-	}
+	
 	
 	
 }

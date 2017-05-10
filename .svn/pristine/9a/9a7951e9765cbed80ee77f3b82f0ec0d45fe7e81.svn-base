@@ -1,16 +1,11 @@
-package com.qs.webside.game.model;
+package com.qs.pub.game.model;
 
-import java.io.Serializable;
-
-public class Memberinvite implements Serializable{
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 7107994742109597949L;
-
-	private Integer id;
+public class MemberInvite {
+    private Integer id;
 
     private Integer mid;
+
+    private String sitemid;
 
     private String invitecode;
 
@@ -32,6 +27,14 @@ public class Memberinvite implements Serializable{
 
     public void setMid(Integer mid) {
         this.mid = mid;
+    }
+
+    public String getSitemid() {
+        return sitemid;
+    }
+
+    public void setSitemid(String sitemid) {
+        this.sitemid = sitemid == null ? null : sitemid.trim();
     }
 
     public String getInvitecode() {

@@ -1,17 +1,11 @@
-package com.qs.webside.agent.service;
-
-import com.qs.webside.member.model.MemberInvite;
+package com.qs.pub.game.mapper;
 
 import java.util.Map;
 
-/**
- *  代理商邀请表
- * Created by zun.wei on 2017/3/23.
- * To change this template use File|Default Setting
- * |Editor|File and Code Templates|Includes|File Header
- */
-public interface IMemberInviteService {
+import com.qs.common.base.basemapper.IBaseMapper;
+import com.qs.pub.game.model.MemberInvite;
 
+public interface MemberInviteMapper extends IBaseMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(MemberInvite record);
@@ -20,12 +14,10 @@ public interface IMemberInviteService {
 
     MemberInvite selectByPrimaryKey(Integer id);
 
-    MemberInvite selectByMid(Integer mid);
-
     int updateByPrimaryKeySelective(MemberInvite record);
 
     int updateByPrimaryKey(MemberInvite record);
-
+    
     /**
      *  根据邀请码查询某个邀请码是否已经被使用
      * @param inviteCode 邀请码
@@ -38,15 +30,15 @@ public interface IMemberInviteService {
      * @param parameters
      * @return
      */
-    String getInviteCode(Map<String, Object> parameters);
+    String getInviteCode(String sitemid);
 
     /**
      * //@Author:zun.wei, @Date:2017/4/1 9:51
      * 根据mid获取代理商信息和邀请码信息。
-     * @param mid mid
+     * @param parameters mid
      * @return a.id, a.mid, a.invitecode, a.inviteurl, a.status,b.realname
      */
-    Map<String, Object> getAgentAndInviteInfo(Integer mid);
+    Map<String, Object> getAgentAndInviteInfo(Map<String,Object> parameters);
 
     /**
      * //@Author:zun.wei, @Date:2017/4/1 11:03
@@ -56,12 +48,21 @@ public interface IMemberInviteService {
      */
     int updateInviteCodeUrlByMidCode(MemberInvite memberInvite);
 
+
     /**
      * @Author:zun.wei , @Date:2017/5/3 15:31
      * @Description: 根据mid删除代理商邀请表信息
-     * @param mid
+     * @param sitemid
      * @return
      */
-    int deleteByMid(Integer mid);
+    int deleteBySiteId(String sitemid);
+
+    /**
+     * @Author:zun.wei , @Date:2017/5/5 15:16
+     * @Description:根据siteid查询邀请码对象
+     * @param sitemid
+     * @return
+     */
+    MemberInvite selectBySiteId(String sitemid);
 
 }

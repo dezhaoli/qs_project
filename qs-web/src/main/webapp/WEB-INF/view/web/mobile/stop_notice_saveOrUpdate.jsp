@@ -13,12 +13,13 @@ $("#corn").cronGen({
 </script>
 <div class="row" style="margin-top:5px;">
     <div class="col-xs-12">
-     		<div class="form-group form-horizontal">
+     	<%-- 	<div class="form-group form-horizontal">
 		            <label class="control-label col-sm-1 no-padding-right">请选择发布类型</label>
 	                <div class="col-sm-2">
 	                    	<select class="form-control" name="pushType" id="pushType" onchange="pushTypeChange(this.value);">
 	                    		<option value="">请选择...</option>
 	                    		<option value="1">发布在线公告</option>
+	                    		<option value="2">发布停服公告</option>
 	                    		<option value="3">发布定时公告</option>
 	                    	</select>
 	                </div>
@@ -27,10 +28,10 @@ $("#corn").cronGen({
 			            class="btn btn-info btn-sm">
 			        <i class="fa fa-undo"></i>&nbsp;返回 
 			    </button>
-	         </div>
+	         </div> --%>
 	         
 	         
-	   <div style="display: none" id="div1">  
+	  <%--  <div style="display: none" id="div1">  
         <form id="storeForm1" name="storeForm" class="form-horizontal" role="form" method="post">
                 <input type="hidden" id="pageNum" name="pageNum" value="${page.pageNum }">
                 <input type="hidden" id="pageSize" name="pageSize" value="${page.pageSize }">
@@ -63,24 +64,33 @@ $("#corn").cronGen({
 		    </button>
 		</div>
       </form>
-     </div>
+     </div> --%>
      
      
      
-    <div style="display: none" id="div2">   
+    <div style="display: block" id="div2">   
         <form id="storeForm2" name="storeForm" class="form-horizontal" role="form" method="post">
 	                <input type="hidden" id="pageNum" name="pageNum" value="${page.pageNum }">
 	                <input type="hidden" id="pageSize" name="pageSize" value="${page.pageSize }">
 	                <input type="hidden" id="orderByColumn" name="orderByColumn" value="${page.orderByColumn }">
 	                <input type="hidden" id="orderByType" name="orderByType" value="${page.orderByType }">
 	                <input type="hidden" name="id" id="id" value="${record.id }">
+	                <input type="hidden" name="content22" id="content22" value="${record.content }">
 	                <input type="hidden" name="pushType" id="pushType" value="2">
 	             
-	             	<h1 style="border-bottom: solid 2px #438EB9;margin-top: 70px;margin-bottom: 20px">发布停服公告</h1>
+	             	<h1 style="border-bottom: solid 2px #438EB9;margin-bottom: 20px">发布停服公告</h1>
+	             	<div class="form-group">
+	             	
+	                    	<label class="control-label col-sm-1 no-padding-right">停服时间(小时)</label>
+			                <div class="col-sm-4">
+			                    <input class="form-control"  id="inter" name="inter" type="text"
+			                               value="${record.inter }" placeholder="停服时间(小时)..."/>
+			                </div>
+	                </div>
 	             	<div class="form-group">
 			           		<label class="control-label col-sm-1  no-padding-right">内容</label>
 			                <div class="col-sm-6">
-			                    	<textarea rows="5" cols="230" id="content"  name="content" required="required"></textarea>
+			                    	<textarea rows="5" cols="230" id="content2"  name="content" required="required"></textarea>
 			                </div>
 		            </div>
 	             
@@ -94,7 +104,7 @@ $("#corn").cronGen({
 			            保存
 			        </c:if>
 			    </button>
-			    <button id="btn" type="button" onclick="webside.common.loadPage('/game/notice/mainListUi.html<c:if
+			    <button id="btn" type="button" onclick="webside.common.loadPage('/game/notice/stopNoticeUI.html<c:if
 			            test="${!empty record}">?page=${page.pageNum }&rows=${page.pageSize }&sidx=${page.orderByColumn }&sord=${page.orderByType }</c:if>')"
 			            class="btn btn-info btn-sm">
 			        <i class="fa fa-undo"></i>&nbsp;返回
@@ -119,21 +129,21 @@ $("#corn").cronGen({
 				            <label class="control-label col-sm-1 no-padding-right">标题</label>
 			                <div class="col-sm-5">
 			                    <input class="form-control"  id="title" name="title" type="text" onblur="titleValidate(this.value);"
-			                               value="${record.name }" placeholder="标题..."  required="required"/>
+			                               value="" placeholder="标题..."  required="required"/>
 			                </div>
 			              </div>
 			              <div class="form-group">
 				            <label class="control-label col-sm-1 no-padding-right">开始日期</label>
 			                <div class="col-sm-5">
 			                    <input class="form-control"  id="stime" name="stime" type="text"
-			                               value="${record.name }" placeholder="开始日期..." readonly="readonly"  required="required"/>
+			                               value="" placeholder="开始日期..." readonly="readonly"  required="required"/>
 			                </div>
 			              </div>
 			              <div class="form-group">
 				            <label class="control-label col-sm-1 no-padding-right">截止日期</label>
 			                <div class="col-sm-5">
 			                    <input class="form-control" id="etime" name="etime" type="text"
-			                               value="${record.code }" placeholder="结束日期..." readonly="readonly"  required="required"/>
+			                               value="" placeholder="结束日期..." readonly="readonly"  required="required"/>
 			                </div>
 			              </div>
 						 <div class="form-group">
@@ -249,11 +259,11 @@ $("#corn").cronGen({
                 var id = $("#id").val();
                 var url = "";
                 if (id != undefined) {
-                    url = '/game/notice/gameNoticeAdd.html';
+                    url = '/game/notice/stopNoticeSaveOrUpdate.html';
                 } else {
-                    url = '/game/notice/gameNoticeAdd.html';
+                    url = '/game/notice/stopNoticeSaveOrUpdate.html';
                 }
-                webside.common.commit('storeForm2', url, '/game/notice/mainListUi.html');
+                webside.common.commit('storeForm2', url, '/game/notice/stopNoticeUI.html');
             }
         });
 
@@ -405,4 +415,8 @@ function titleValidate(_val){
 
 </script>
 
+<script>
+
+$("#content2").val($("#content22").val());
+</script>
 

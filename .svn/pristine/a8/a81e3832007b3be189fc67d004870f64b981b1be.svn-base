@@ -5,7 +5,7 @@
  * 版     权：2014-2022  牵手互动, 公司保留所有权利.
  * 
  */
-package com.qs.webside.game.service;
+package com.qs.log.game.service;
 
 import java.util.List;
 import java.util.Map;
