@@ -1,6 +1,6 @@
 var dtGridColumns = [{
     id : 'mid',
-    title : '用户ID',
+    title : 'MID',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -8,8 +8,8 @@ var dtGridColumns = [{
         return value ;
     }
 },{
-    id : 'realname',
-    title : '用户昵称',
+    id : 'name',
+    title : '俱乐部昵称',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -17,8 +17,8 @@ var dtGridColumns = [{
         return value;
     }
 },{
-    id : 'bindtime',
-    title : '绑定时间',
+    id : 'gold',
+    title : '房卡',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -26,19 +26,29 @@ var dtGridColumns = [{
         return value ;
     }
 },{
+    id : 'open_room',
+    title : '代开房',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+    	var but="";
+    	if (value==0){
+    		but='<button class="btn btn-info table-btn agent_but" style="width: 56px;" onclick="openRoom(' + record.id + ',1)">代开房</button> '
+    	}else {
+    		but='<button class="btn btn-danger table-btn agent_but" style="width: 56px;  margin-left: -5px;" onclick="openRoom(' + record.id + ',0)">取消</button>'
+    	}
+    	return but;
+    }
+
+},{
     id : 'id',
     title : '操作',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
-    	var but="";
-    	/*if (record.openRoom==2){
-    		but='<button class="btn btn-info table-btn agent_but" style="width: 56px;" onclick="openRoom(\'' + record.mid + '\',1)">代开房</button> '
-    		but='<button class="btn btn-danger table-btn agent_but" style="width: 56px;  margin-left: -5px;" onclick="openRoom(\'' + record.mid + '\',2)">取消</button>'
-    	}*/
-    	but=but+ '<button class="btn btn-default table-btn agent_but" style=" padding: 2px 0px; width: 56px; margin-left: -5px;" onclick="showSettleDetail(\'' + record.mid + '\')">充值明细</button>';
-    	return but;
+    	return '<button class="btn btn-info table-btn agent_but" style="width: 56px;" onclick="deleteGlubMumber(\'' + record.id + '\',1)">移出</button> '
     }
 }];
 
@@ -52,12 +62,12 @@ var dtGridOption = {
     check : false,
     checkWidth :'37px',
     extraWidth : '37px',
-    loadURL : sys.rootPath + '/agentroom/selectVipDirectlyInfo.html',
+    loadURL : sys.rootPath + '/agentClub/infoAgentClubList.html',
     columns : dtGridColumns,
     gridContainer : 'dtGridContainer',
     toolbarContainer : 'dtGridToolBarContainer',
     tools : 'refresh',
-    exportFileName : '代理商周信息统计',
+    exportFileName : '我的俱乐部',
     pageSize : pageSize,
     pageSizeLimit : [10, 20, 30]
 };
@@ -69,9 +79,8 @@ $(function() {
 		grid.sortParameter.columnId = $("#orderByColumn").val();
 		grid.sortParameter.sortType = $("#orderByType").val();
 	}
-	grid.parameters = new Object();
-    grid.parameters['type'] = "1"; 
-    grid.parameters['querymid'] ="";
+	  grid.parameters = new Object();
+	   grid.parameters['mid'] =$("#mid").val();
     grid.load();
    // $("#type").click(customSearch);
     $("#btnSearch").click(customSearch);
@@ -93,10 +102,8 @@ $(function() {
  */
 function customSearch() {
     grid.parameters = new Object();
-    
-    grid.parameters['type'] ="1";
-    	//$('input:radio:checked').val(); 
-    grid.parameters['querymid'] = $("#midSearch").val();
+    grid.parameters['mid'] = $('#mid').val();
+
     grid.refresh(true);
 }
 
