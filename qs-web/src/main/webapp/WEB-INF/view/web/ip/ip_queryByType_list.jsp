@@ -15,7 +15,7 @@
         });
         jeDate({
             dateCell: '#endTime',
-            isinitVal:new Date(),
+            isinitVal: new Date(),
             format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
             minDate: '1900-06-01', //最小日期
             maxDate: '2050-06-01' //最大日期
@@ -23,17 +23,10 @@
     });
 </script>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath }/resources/js/customer/web/ip_userLog_list.js"></script>
+        src="${pageContext.request.contextPath }/resources/js/customer/web/ip_queryByType_list.js"></script>
 <div class="page-content">
     <div class="controls controls-row">
         <div class="controls controls-row">
-            <div class="col-sm-3">
-                <div class="clearfix">
-                    <input class="form-control" name="mid"
-                           id="mid" type="number"
-                           value="" placeholder="请输入mid..."/>
-                </div>
-            </div>
             <div class="col-sm-3">
                 <div class="clearfix">
                     <input class="form-control" name="beginTime" id="beginTime" type="text"
@@ -59,7 +52,7 @@
             <div class="widget-box transparent ui-sortable-handle"
                  style="opacity: 1; z-index: 0;">
                 <div class="widget-header">
-                    <h4 class="widget-title lighter">服务器入口分配日志</h4>
+                    <h4 class="widget-title lighter">级别统计</h4>
                     <div class="widget-toolbar no-border">
                         <a href="#" data-action="fullscreen" class="orange2">
                             <i class="ace-icon fa fa-arrows-alt"></i>
@@ -85,23 +78,3 @@
     </div>
 </div>
 
-<%--
-<script>
-    $(function () {
-        jeDate({
-            dateCell: '#beginTime',
-            isinitVal: false,
-            format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate: '1900-06-01 00:00:00', //最小日期
-            maxDate: '2050-06-01 23:59:59' //最大日期
-        });
-        jeDate({
-            dateCell: '#endTime',
-            isinitVal: false,
-            format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate: '1900-06-01 00:00:00', //最小日期
-            maxDate: '2050-06-01 23:59:59' //最大日期
-        });
-    })
-</script>
---%>

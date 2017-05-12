@@ -1,19 +1,4 @@
-var dtGridColumns = [{
-    id: 'ipId',
-    title: '服务器ID',
-    type: 'string',
-    columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header'
-}, {
-    id: 'updatetime',
-    title: '更新时间',
-    type: 'string',
-    columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header',
-    resolution:function (value, record, column, grid, dataNo, columnNo) {
-        return value;
-    }
-}, {
+var dtGridColumns = [ {
     id: 'type',
     title: '类型(级别)',
     type: 'string',
@@ -24,30 +9,19 @@ var dtGridColumns = [{
     }
 },{
     id: 'ipstring',
-    title: 'IP地址',
+    title: '分配IP组',
     type: 'string',
     columnClass: 'text-center',
     headerClass: 'dlshouwen-grid-header'
 },{
-    id: 'name',
-    title: '名称',
+    id: 'count',
+    title: '登录次数',
     type: 'string',
     columnClass: 'text-center',
     headerClass: 'dlshouwen-grid-header'
-},{
-    id: 'modifierId',
-    title: '修改人ID',
-    type: 'string',
-    columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header'
-}/*,{
-    id: 'modifierName',
-    title: '修改人',
-    type: 'string',
-    columnClass: 'text-center',
-    headerClass: 'dlshouwen-grid-header'
-}*/];
+}];
 
+/* type,ipstring,COUNT(0) AS count */
 
 //动态设置jqGrid的rowNum
 
@@ -57,10 +31,10 @@ pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
 var dtGridOption = {
     lang: 'zh-cn',
     ajaxLoad: true,
-    check: false,
+    check: true,
     checkWidth: '37px',
     extraWidth: '37px',
-    loadURL: sys.rootPath + '/ipAddressLog/list.html',
+    loadURL: sys.rootPath + '/ipAddressUserLog/listByType.html',
     columns: dtGridColumns,
     gridContainer: 'dtGridContainer',
     toolbarContainer: 'dtGridToolBarContainer',
@@ -79,8 +53,6 @@ $(function () {
     }
 
     grid.parameters = new Object();
-    grid.parameters['type'] = $("#type").find("option:selected").val();
-    grid.parameters['modifierId'] = $("#modifierId").val();
     grid.parameters['beginTime'] = $("#beginTime").val();
     grid.parameters['endTime'] = $("#endTime").val();
 
@@ -103,8 +75,6 @@ $(function () {
  */
 function customSearch() {
     grid.parameters = new Object();
-    grid.parameters['type'] = $("#type").find("option:selected").val();
-    grid.parameters['modifierId'] = $("#modifierId").val();
     grid.parameters['beginTime'] = $("#beginTime").val();
     grid.parameters['endTime'] = $("#endTime").val();
     grid.refresh(true);

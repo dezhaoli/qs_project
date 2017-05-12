@@ -36,8 +36,7 @@ public class LogAspect {
 	/**
 	 * 添加业务逻辑方法切入点 定义在controller包里的以add为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.*.controller.*.add(..)) "
-			+ "|| execution(* com.qs.*.*.controller.*.save(..))")
+	@Pointcut("execution(* com.webside.*.controller.*.add(..))")
 	public void insertServiceCall() {
 	}
 
@@ -45,7 +44,8 @@ public class LogAspect {
 	 * 修改业务逻辑方法切入点 定义在controller包里的以update为前缀的方法的执行
 	 */
 	@Pointcut("execution(* com.webside.*.controller.*.update(..)) "
-			+ "|| execution(* com.webside.*.controller.*.edit(..)) "
+			+ "|| execution(* com.webside.*.controller.*.resetPassword(..)) "
+			+ "|| execution(* com.webside.*.controller.*.info(..)) "
 			+ "|| execution(* com.webside.*.controller.*.password(..))")
 	public void updateServiceCall() {
 	}
