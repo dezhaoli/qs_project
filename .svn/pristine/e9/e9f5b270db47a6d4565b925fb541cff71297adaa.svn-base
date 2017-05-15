@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation=
+		"http://www.springframework.org/schema/beans 
+		classpath:org/springframework/beans/factory/xml/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context 
+		classpath:org/springframework/context/config/spring-context-4.0.xsd">
+   
+	<context:property-placeholder location="classpath:init.properties"/>
+	
+	<!-- 线程池配置start -->
+	<bean id="syncThreadPoolTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<!-- 核心线程数，默认为1 -->
+		<property name="corePoolSize" value="5" />  
+		<!-- 最大线程数，默认为Integer.MAX_VALUE -->  
+		<property name="maxPoolSize" value="10" />  
+		<!-- 队列最大长度，一般需要设置值>=notifyScheduledMainExecutor.maxNum；默认为Integer.MAX_VALUE -->  
+		<property name="queueCapacity" value="1000" />  
+		<!-- 线程池维护线程所允许的空闲时间，默认为60s -->  
+		<property name="keepAliveSeconds" value="300" />  
+		<!-- 线程池对拒绝任务（无线程可用）的处理策略，目前只支持AbortPolicy、CallerRunsPolicy；默认为后者 -->  
+		<property name="rejectedExecutionHandler">  
+			<!-- AbortPolicy:直接抛出java.util.concurrent.RejectedExecutionException异常 -->
+			<!-- CallerRunsPolicy:主线程直接执行该任务，执行完之后尝试添加下一个任务到线程池中，可以有效降低向线程池内添加任务的速度 -->
+			<!-- DiscardOldestPolicy:抛弃旧的任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+			<!-- DiscardPolicy:抛弃当前任务、暂不支持；会导致被丢弃的任务无法再次被执行 -->
+			<bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />
+		</property>
+	</bean>
+
+	<bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+	    <property name="connectionFactory">
+	        <bean class="org.apache.activemq.ActiveMQConnectionFactory">  
+	            <property name="brokerURL" value="failover:(${mq.brokerURL})" />  
+	            <property name="closeTimeout" value="60000" />
+	            <property name="userName" value="${mq.userName}" />
+	            <property name="password" value="${mq.password}" />
+	            <!--<property name="optimizeAcknowledge" value="true" ccplusadmin 10.170.15.149/>-->
+	            <property name="transportListener">     
+			      <bean class="com.apusic.ausp.sync.sender.listener.MQTransportListener" />     
+        	    </property> 
+	            <property name="optimizedAckScheduledAckInterval" value="10000" />
+	        </bean>
+	    </property>
+	</bean>
+  
+	<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+	<bean id="jmsConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory" ref="pooledConnectionFactory" />
+	</bean>
+	
+	<!-- Spring JMS Template -->  
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">  
+		<property name="connectionFactory" ref="jmsConnectionFactory"></property>
+		<property name="explicitQosEnabled" value="true" /> <!-- deliveryMode, priority, timeToLive 的开关，要生效，必须配置为true，默认false-->  
+        <property name="deliveryMode" value="2" /> <!-- 发送模式  DeliveryMode.NON_PERSISTENT=1:非持久 ; DeliveryMode.PERSISTENT=2:持久-->
+         <!--订阅 发布模式 -->
+         <property name="pubSubDomain" value="true" />
+	</bean>
+	
+	<!--这个是sessionAwareTopic目的地 -->
+<!-- 	<bean id="sessionAwareTopic" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg>
+			<value>topicUser,topicOrg</value>
+		</constructor-arg>
+	</bean> -->
+	
+	<!--消息发送pojo-->
+	<bean id="messageSender" class="com.apusic.ausp.sync.sender.mq.JmsSenderSpring" >
+		<property name="taskExecutor" ref="syncThreadPoolTaskExecutor" />
+	</bean>
+	
+	<!--消息发送总门面-->  
+	<bean id="sendDataFacade" class="com.apusic.ausp.sync.sender.SendDataFacade">
+		<property name="jmsSenderSpring" ref="messageSender" />
+	</bean>
+</beans>

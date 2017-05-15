@@ -1,0 +1,7 @@
+#---------------------activemq clientId-------------------#
+mq.clientId=mq132
+mq.brokerURL=tcp\://172.20.129.133\:61616
+mq.userName=admin 
+mq.password=admin
+mq.syncErrorUrl=http://test.ccintegration.wiseyq.com/ccintegration/errorLog/save.json
+#---------------------activemq clientId-------------------#
