@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.user.mapper.UserAddLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.user.model.UserAddLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="app_name" property="appName" jdbcType="VARCHAR" />
+    <result column="app_version" property="appVersion" jdbcType="VARCHAR" />
+    <result column="terminal_type" property="terminalType" jdbcType="VARCHAR" />
+    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+    <result column="if_update" property="ifUpdate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, u_id, app_name, app_version, terminal_type, channel_name, if_update
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dc_user_add_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dc_user_add_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.log.user.model.UserAddLog" >
+    insert into dc_user_add_log (id, u_id, app_name, 
+      app_version, terminal_type, channel_name, 
+      if_update)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{appName,jdbcType=VARCHAR}, 
+      #{appVersion,jdbcType=VARCHAR}, #{terminalType,jdbcType=VARCHAR}, #{channelName,jdbcType=VARCHAR}, 
+      #{ifUpdate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.user.model.UserAddLog" >
+    insert into dc_user_add_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="appName != null" >
+        app_name,
+      </if>
+      <if test="appVersion != null" >
+        app_version,
+      </if>
+      <if test="terminalType != null" >
+        terminal_type,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="ifUpdate != null" >
+        if_update,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null" >
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalType != null" >
+        #{terminalType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="ifUpdate != null" >
+        #{ifUpdate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.user.model.UserAddLog" >
+    update dc_user_add_log
+    <set >
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null" >
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        app_version = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalType != null" >
+        terminal_type = #{terminalType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="ifUpdate != null" >
+        if_update = #{ifUpdate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.user.model.UserAddLog" >
+    update dc_user_add_log
+    set u_id = #{uId,jdbcType=INTEGER},
+      app_name = #{appName,jdbcType=VARCHAR},
+      app_version = #{appVersion,jdbcType=VARCHAR},
+      terminal_type = #{terminalType,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      if_update = #{ifUpdate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
