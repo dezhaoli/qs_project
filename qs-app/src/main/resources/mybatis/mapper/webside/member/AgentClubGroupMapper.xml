@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.member.mapper.AgentClubGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.member.model.AgentClubGroup" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cmid" property="cmid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="pay_yourself" property="payYourself" jdbcType="VARCHAR" />
+    <result column="pay_big" property="payBig" jdbcType="VARCHAR" />
+    <result column="pay_replace" property="payReplace" jdbcType="VARCHAR" />
+    <result column="extend1" property="extend1" jdbcType="VARCHAR" />
+    <result column="extend2" property="extend2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, cmid, name, create_time, pay_yourself, pay_big, pay_replace, extend1, extend2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_club_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_club_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.member.model.AgentClubGroup" >
+    insert into agent_club_group (id, cmid, name, 
+      create_time, pay_yourself, pay_big, 
+      pay_replace, extend1, extend2
+      )
+    values (#{id,jdbcType=INTEGER}, #{cmid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{payYourself,jdbcType=VARCHAR}, #{payBig,jdbcType=VARCHAR}, 
+      #{payReplace,jdbcType=VARCHAR}, #{extend1,jdbcType=VARCHAR}, #{extend2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.member.model.AgentClubGroup" >
+    insert into agent_club_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cmid != null" >
+        cmid,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="payYourself != null" >
+        pay_yourself,
+      </if>
+      <if test="payBig != null" >
+        pay_big,
+      </if>
+      <if test="payReplace != null" >
+        pay_replace,
+      </if>
+      <if test="extend1 != null" >
+        extend1,
+      </if>
+      <if test="extend2 != null" >
+        extend2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cmid != null" >
+        #{cmid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payYourself != null" >
+        #{payYourself,jdbcType=VARCHAR},
+      </if>
+      <if test="payBig != null" >
+        #{payBig,jdbcType=VARCHAR},
+      </if>
+      <if test="payReplace != null" >
+        #{payReplace,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null" >
+        #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null" >
+        #{extend2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.member.model.AgentClubGroup" >
+    update agent_club_group
+    <set >
+      <if test="cmid != null" >
+        cmid = #{cmid,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payYourself != null" >
+        pay_yourself = #{payYourself,jdbcType=VARCHAR},
+      </if>
+      <if test="payBig != null" >
+        pay_big = #{payBig,jdbcType=VARCHAR},
+      </if>
+      <if test="payReplace != null" >
+        pay_replace = #{payReplace,jdbcType=VARCHAR},
+      </if>
+      <if test="extend1 != null" >
+        extend1 = #{extend1,jdbcType=VARCHAR},
+      </if>
+      <if test="extend2 != null" >
+        extend2 = #{extend2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.member.model.AgentClubGroup" >
+    update agent_club_group
+    set cmid = #{cmid,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      pay_yourself = #{payYourself,jdbcType=VARCHAR},
+      pay_big = #{payBig,jdbcType=VARCHAR},
+      pay_replace = #{payReplace,jdbcType=VARCHAR},
+      extend1 = #{extend1,jdbcType=VARCHAR},
+      extend2 = #{extend2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <select id="selectByCmidKeyInfo" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_club_group
+    where cmid = #{cmid,jdbcType=INTEGER}
+  </select>
+</mapper>
