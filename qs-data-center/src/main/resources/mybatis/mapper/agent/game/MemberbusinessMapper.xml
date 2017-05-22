@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.agent.game.mapper.MemberbusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.agent.game.model.Memberbusiness" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="passwd" property="passwd" jdbcType="CHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="bankcard" property="bankcard" jdbcType="VARCHAR" />
+    <result column="alipay" property="alipay" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="email" property="email" jdbcType="CHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="systempasswd" property="systempasswd" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="mktime" property="mktime" jdbcType="INTEGER" />
+    <result column="lastlogintime" property="lastlogintime" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="company" property="company" jdbcType="TINYINT" />
+     <result column="mktimeStr" property="mktimeStr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, passwd, salt, bankcard, alipay, phone, email, qq, systempasswd, status, 
+    mktime, lastlogintime, remark, company,FROM_UNIXTIME(mktime,'%Y-%m-%d %H:%i:%S') mktimeStr
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberbusiness
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from memberbusiness t
+    WHERE
+	1=1
+	<if test="name != null and name != ''">
+	and name like CONCAT('%',#{name},'%')
+	</if>
+	<!-- <choose>
+		<when test="endTime == null or endTime == ''">
+		 
+		</when>
+		<otherwise>
+		 and FROM_UNIXTIME(t.mktime,'%Y-%m-%d %H:%i:%S') &lt; #{endTime,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+	<choose>
+		<when test="startTime == null or startTime == ''">
+		 
+		</when>
+		<otherwise>
+		 and FROM_UNIXTIME(t.mktime,'%Y-%m-%d %H:%i:%S') &gt;= #{startTime,jdbcType=VARCHAR}
+		</otherwise>
+	</choose> -->
+    order by id
+  </select>
+  
+  
+</mapper>

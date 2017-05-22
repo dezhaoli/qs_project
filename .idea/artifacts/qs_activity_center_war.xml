@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="qs-activity-center:war">
+    <output-path>$PROJECT_DIR$/qs-activity-center/target</output-path>
+    <root id="archive" name="qs-activity-center.war">
+      <element id="artifact" artifact-name="qs-activity-center:war exploded" />
+    </root>
+  </artifact>
+</component>

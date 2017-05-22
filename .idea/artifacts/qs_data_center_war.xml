@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="qs-data-center:war">
+    <output-path>$PROJECT_DIR$/qs-data-center/target</output-path>
+    <root id="archive" name="pay-web.war">
+      <element id="artifact" artifact-name="qs-data-center:war exploded" />
+    </root>
+  </artifact>
+</component>

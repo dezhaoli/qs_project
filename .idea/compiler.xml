@@ -8,10 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="business" />
         <module name="pay-web" />
+        <module name="qs-activity-center" />
         <module name="qs-agent" />
         <module name="qs-app" />
         <module name="qs-common" />
         <module name="qs-config" />
+        <module name="qs-data-center" />
         <module name="qs-datasource" />
         <module name="qs-mapper" />
         <module name="qs-model" />
@@ -24,10 +26,12 @@
       <module name="business" target="1.8" />
       <module name="pay-web" target="1.8" />
       <module name="psyllidae" target="1.8" />
+      <module name="qs-activity-center" target="1.8" />
       <module name="qs-agent" target="1.8" />
       <module name="qs-app" target="1.8" />
       <module name="qs-common" target="1.8" />
       <module name="qs-config" target="1.8" />
+      <module name="qs-data-center" target="1.8" />
       <module name="qs-datasource" target="1.8" />
       <module name="qs-mapper" target="1.8" />
       <module name="qs-model" target="1.8" />

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteWeekDownMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteWeekDown" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="rebatetotal" property="rebatetotal" jdbcType="DECIMAL" />
+    <result column="bindpeople" property="bindpeople" jdbcType="SMALLINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="taxrate" property="taxrate" jdbcType="DECIMAL" />
+    <result column="isaward" property="isaward" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="one" property="one" jdbcType="REAL" />
+    <result column="two" property="two" jdbcType="REAL" />
+    <result column="three" property="three" jdbcType="REAL" />
+    <result column="four" property="four" jdbcType="REAL" />
+  </resultMap>
+   <sql id="Base_Column_List" >
+  	  mid, date, paytotal, 
+      rebatetotal, bindpeople, scale, 
+      taxrate, isaward, parentid, 
+      info
+  </sql>
+  
+   <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+	a.mid,
+	max(case when DATE_FORMAT(a.date,'%d') &lt;='07' then a.paytotal else 0 end) one,
+	max(case when DATE_FORMAT(a.date,'%d') &gt; '07' and DATE_FORMAT(a.date,'%d')&lt;='14' then a.paytotal else 0 end) two,
+	max(case when DATE_FORMAT(a.date,'%d') &gt; '14' and DATE_FORMAT(a.date,'%d')&lt;='21' then a.paytotal else 0 end) three,
+	max(case when DATE_FORMAT(a.date,'%d') &gt; '21' and DATE_FORMAT(a.date,'%d')&lt;='32' then a.paytotal else 0 end) four
+	FROM
+		dc_taxes_invite_week_down a
+	WHERE
+	1=1
+		<choose>
+			<when test="date != null and date != ''">
+				and DATE_FORMAT(a.date, '%Y-%m') = SUBSTRING(#{date,jdbcType=VARCHAR},1,7)
+			</when>
+			<otherwise>
+				and DATE_FORMAT(a.date, '%Y-%m') = DATE_FORMAT(now(), '%Y-%m')
+			</otherwise>
+		</choose>
+		<if test="mid != null and mid != ''">
+		and a.mid = #{mid,jdbcType=VARCHAR}
+		</if>
+		 group by a.mid order by a.mid asc
+  </select>
+  
+  <select id="queryListAll" resultMap="BaseResultMap" parameterType="map" >
+   select sum(one) one ,sum(two)two,sum(three)three,sum(four) four from (SELECT
+	max(case when DATE_FORMAT(a.date,'%d') &lt;='07' then a.paytotal else 0 end) one,
+	max(case when DATE_FORMAT(a.date,'%d') &gt; '07' and DATE_FORMAT(a.date,'%d')&lt;='14' then a.paytotal else 0 end) two,
+	max(case when DATE_FORMAT(a.date,'%d') &gt; '14' and DATE_FORMAT(a.date,'%d')&lt;='21' then a.paytotal else 0 end) three,
+	max(case when DATE_FORMAT(a.date,'%d') &gt; '21' and DATE_FORMAT(a.date,'%d')&lt;='32' then a.paytotal else 0 end) four
+	FROM
+		dc_taxes_invite_week_down a
+	WHERE
+	1=1
+		<choose>
+		<when test="date != null and date != ''">
+			and DATE_FORMAT(a.date, '%Y-%m') = SUBSTRING(#{date,jdbcType=VARCHAR},1,7)
+		</when>
+		<otherwise>
+			and DATE_FORMAT(a.date, '%Y-%m') = DATE_FORMAT(now(), '%Y-%m')
+		</otherwise>
+		</choose>
+		
+		<if test="mid != null and mid != ''">
+		and a.mid = #{mid,jdbcType=VARCHAR}
+		</if>
+	    group by a.mid order by a.mid asc) da
+  </select>
+  
+
+  
+</mapper>

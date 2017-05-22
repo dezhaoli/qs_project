@@ -1,0 +1,142 @@
+package com.qs.pub.datacenter.model;
+
+import java.io.Serializable;
+import java.util.Date;
+
+public class UserAddLog implements Serializable{
+    /** 
+	 * @Fields serialVersionUID : 
+	 */ 
+	private static final long serialVersionUID = -2693031234762348273L;
+
+	private Integer id;
+
+    private Integer uId;
+    private String uName;
+
+    private String appId;
+    private String appName;
+
+    private String appVersion;
+
+    private String terminalType;
+
+    private String channelId;
+    private String channelName;
+
+    private String ifUpdate;
+    
+    private Date createTime;
+
+	public Integer getId()
+	{
+		return id;
+	}
+
+	public void setId(Integer id)
+	{
+		this.id = id;
+	}
+
+	public Integer getuId()
+	{
+		return uId;
+	}
+
+	public void setuId(Integer uId)
+	{
+		this.uId = uId;
+	}
+
+	public String getAppId()
+	{
+		return appId;
+	}
+
+	public void setAppId(String appId)
+	{
+		this.appId = appId;
+	}
+
+	public String getAppVersion()
+	{
+		return appVersion;
+	}
+
+	public void setAppVersion(String appVersion)
+	{
+		this.appVersion = appVersion;
+	}
+
+	public String getTerminalType()
+	{
+		return terminalType;
+	}
+
+	public void setTerminalType(String terminalType)
+	{
+		this.terminalType = terminalType;
+	}
+
+	public String getChannelId()
+	{
+		return channelId;
+	}
+
+	public void setChannelId(String channelId)
+	{
+		this.channelId = channelId;
+	}
+
+	public String getIfUpdate()
+	{
+		return ifUpdate;
+	}
+
+	public void setIfUpdate(String ifUpdate)
+	{
+		this.ifUpdate = ifUpdate;
+	}
+
+	public String getAppName()
+	{
+		return appName;
+	}
+
+	public void setAppName(String appName)
+	{
+		this.appName = appName;
+	}
+
+	public String getChannelName()
+	{
+		return channelName;
+	}
+
+	public void setChannelName(String channelName)
+	{
+		this.channelName = channelName;
+	}
+
+	public String getuName()
+	{
+		return uName;
+	}
+
+	public void setuName(String uName)
+	{
+		this.uName = uName;
+	}
+
+	public Date getCreateTime()
+	{
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime)
+	{
+		this.createTime = createTime;
+	}
+
+    
+}

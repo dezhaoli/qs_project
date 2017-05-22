@@ -2,9 +2,11 @@
 <project version="4">
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/pay-web" />
+    <file type="web" url="file://$PROJECT_DIR$/qs-activity-center" />
     <file type="web" url="file://$PROJECT_DIR$/qs-agent" />
     <file type="web" url="file://$PROJECT_DIR$/qs-app" />
     <file type="web" url="file://$PROJECT_DIR$/qs-business" />
+    <file type="web" url="file://$PROJECT_DIR$/qs-data-center" />
     <file type="web" url="file://$PROJECT_DIR$/qs-psyllidae" />
     <file type="web" url="file://$PROJECT_DIR$/qs-web" />
   </component>
@@ -23,6 +25,8 @@
         <option value="$PROJECT_DIR$/qs-config/pom.xml" />
         <option value="$PROJECT_DIR$/qs-datasource/pom.xml" />
         <option value="$PROJECT_DIR$/qs-app/pom.xml" />
+        <option value="$PROJECT_DIR$/qs-activity-center/pom.xml" />
+        <option value="$PROJECT_DIR$/qs-data-center/pom.xml" />
       </list>
     </option>
   </component>
@@ -158,5 +162,12 @@
       </map>
     </option>
     <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+  <component name="ZooKeeperConfig">
+    <option name="host" value="192.168.1.170" />
+    <option name="port" value="2181" />
+    <option name="charset" value="UTF-8" />
+    <option name="whitePaths" value="" />
+    <option name="enabled" value="true" />
   </component>
 </project>

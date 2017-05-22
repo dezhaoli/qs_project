@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.datacenter.mapper.UserLoginLogMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.datacenter.model.UserLoginLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="u_id" property="uId" jdbcType="INTEGER" />
+    <result column="app_name" property="appName" jdbcType="VARCHAR" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="app_version" property="appVersion" jdbcType="VARCHAR" />
+    <result column="terminal_type" property="terminalType" jdbcType="VARCHAR" />
+    <result column="channel_name" property="channelName" jdbcType="VARCHAR" />
+    <result column="channel_id" property="channelId" jdbcType="VARCHAR" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="logout_time" property="logoutTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, u_id, app_id, app_version, terminal_type, channel_id, login_time, logout_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dc_user_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="queryListAll" resultMap="BaseResultMap" parameterType="map" >
+    SELECT
+	DATE_FORMAT(t.login_time,'%m-%d') appName,count(t.login_time) u_id
+	FROM
+	dc_user_login_log t
+	WHERE
+	1=1
+	<choose>
+		<when test="endTime == null or endTime == ''">
+		 and t.login_time &lt; curdate()
+		</when>
+		<otherwise>
+		 and t.login_time &lt; #{endTime,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+	<choose>
+		<when test="startTime == null or startTime == ''">
+		 and t.login_time &gt;= date_sub(curdate(),interval 6 day)
+		</when>
+		<otherwise>
+		 and t.login_time &gt;= #{startTime,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+	  group by DATE_FORMAT(t.login_time,'%m-%d')
+  </select>
+  
+  
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from dc_user_login_log t
+    WHERE
+	1=1
+	<choose>
+		<when test="endTime == null or endTime == ''">
+		 and t.login_time &lt; curdate()
+		</when>
+		<otherwise>
+		 and t.login_time &lt; #{endTime,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+	<choose>
+		<when test="startTime == null or startTime == ''">
+		 and t.login_time &gt;= date_sub(curdate(),interval 6 day)
+		</when>
+		<otherwise>
+		 and t.login_time &gt;= #{startTime,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+    order by id
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dc_user_login_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.pub.datacenter.model.UserLoginLog" >
+    insert into dc_user_login_log (id, u_id, app_id, 
+      app_version, terminal_type, channel_id, 
+      login_time, logout_time)
+    values (#{id,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, 
+      #{appVersion,jdbcType=VARCHAR}, #{terminalType,jdbcType=VARCHAR}, #{channelId,jdbcType=VARCHAR}, 
+      #{loginTime,jdbcType=TIMESTAMP}, #{logoutTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.pub.datacenter.model.UserLoginLog" >
+    insert into dc_user_login_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="appName != null" >
+        app_name,
+      </if>
+      <if test="appVersion != null" >
+        app_version,
+      </if>
+      <if test="terminalType != null" >
+        terminal_type,
+      </if>
+      <if test="channelName != null" >
+        channel_name,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="logoutTime != null" >
+        logout_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="uId != null" >
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null" >
+        #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalType != null" >
+        #{terminalType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutTime != null" >
+        #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.pub.datacenter.model.UserLoginLog" >
+    update dc_user_login_log
+    <set >
+      <if test="uId != null" >
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="appName != null" >
+        app_name = #{appName,jdbcType=VARCHAR},
+      </if>
+      <if test="appVersion != null" >
+        app_version = #{appVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="terminalType != null" >
+        terminal_type = #{terminalType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelName != null" >
+        channel_name = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logoutTime != null" >
+        logout_time = #{logoutTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.pub.datacenter.model.UserLoginLog" >
+    update dc_user_login_log
+    set u_id = #{uId,jdbcType=INTEGER},
+      app_name = #{appName,jdbcType=VARCHAR},
+      app_version = #{appVersion,jdbcType=VARCHAR},
+      terminal_type = #{terminalType,jdbcType=VARCHAR},
+      channel_name = #{channelName,jdbcType=VARCHAR},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      logout_time = #{logoutTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
