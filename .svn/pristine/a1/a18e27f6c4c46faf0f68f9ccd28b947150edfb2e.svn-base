@@ -1,0 +1,18 @@
+package com.qs.pub.datacenter.mapper;
+
+import com.qs.common.base.basemapper.IBaseMapper;
+import com.qs.pub.datacenter.model.Playing;
+
+public interface PlayingMapper extends IBaseMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(Playing record);
+
+    int insertSelective(Playing record);
+
+    Playing selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(Playing record);
+
+    int updateByPrimaryKey(Playing record);
+}

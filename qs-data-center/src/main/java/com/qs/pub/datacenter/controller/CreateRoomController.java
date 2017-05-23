@@ -1,0 +1,83 @@
+/*
+ * 文件名：CreateRoomController.java	 
+ * 时     间：下午7:56:27
+ * 作     者：wangzhen      
+ * 版     权：2014-2022  牵手互动, 公司保留所有权利.
+ * 
+ */
+package com.qs.pub.datacenter.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.pub.datacenter.model.CreateRoom;
+import com.qs.pub.datacenter.service.ICreateRoomService;
+
+/** 
+ * @ClassName: CreateRoomController 
+ * @描述: 房间创建查询接口 
+ * @author qs
+ * @date 2017年5月23日 下午7:56:27 
+ */
+@Controller
+@RequestMapping("/createRoom/")
+public class CreateRoomController extends BaseController
+{
+	@Resource
+	private ICreateRoomService createRoomService;
+	/**
+	 * 
+	 * @标题: toCreateRoom 
+	 * @描述:  跳转到创建房间统计页面
+	 *
+	 * @参数信息
+	 *    @return
+	 *
+	 * @返回类型 String
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("toCreateRoom.html")
+	public String toCreateRoom(){
+		
+		return "";
+	}
+	/**
+	 * 
+	 * @标题: createRoom 
+	 * @描述:  创建房间统计数据接口
+	 *
+	 * @参数信息
+	 *    @param gridPager
+	 *    @return
+	 *
+	 * @返回类型 Object
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("createRoom.html")
+	@ResponseBody
+	public Object createRoom(String gridPager){
+		Map<String, Object> parameters = null;
+		// 映射Pager对象
+		Pager pager = JSON.parseObject(gridPager, Pager.class);
+		// 判断是否包含自定义参数
+		parameters = pager.getParameters();
+		// 设置分页，page里面包含了分页信息
+		Page<Object> page = PageHelper.startPage(pager.getNowPage(),
+				pager.getPageSize());
+		List<CreateRoom> list = createRoomService.queryPageList(parameters);
+		return getReturnPage(pager, page, list);
+	}
+}

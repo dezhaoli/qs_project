@@ -1,0 +1,44 @@
+/*
+ * 文件名：PlayingServiceImpl.java	 
+ * 时     间：下午5:37:37
+ * 作     者：wangzhen      
+ * 版     权：2014-2022  牵手互动, 公司保留所有权利.
+ * 
+ */
+package com.qs.pub.datacenter.service.impl;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.qs.pub.datacenter.mapper.PlayingMapper;
+import com.qs.pub.datacenter.model.Playing;
+import com.qs.pub.datacenter.service.IPlayingService;
+
+/** 
+ * @ClassName: PlayingServiceImpl 
+ * @描述: (这里用一句话描述这个类的作用) 
+ * @author qs
+ * @date 2017年5月23日 下午5:37:37 
+ */
+@Service
+public class PlayingServiceImpl implements IPlayingService
+{
+	@Resource
+	private PlayingMapper playingMapper;
+	@Override
+	public int insert(Playing playing)
+	{
+		return playingMapper.insert(playing);
+	}
+	@Override
+	public List<Playing> queryPageList(Map<String, Object> parameters)
+	{
+		// TODO Auto-generated method stub
+		return playingMapper.queryListByPage(parameters);
+	}
+	
+}

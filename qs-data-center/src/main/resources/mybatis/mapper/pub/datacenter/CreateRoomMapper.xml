@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.datacenter.mapper.CreateRoomMapper">
+  <resultMap id="BaseResultMap" type="com.qs.pub.datacenter.model.CreateRoom">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="play_name" jdbcType="VARCHAR" property="playName" />
+    <result column="play_id" jdbcType="VARCHAR" property="playId" />
+    <result column="create_room_time" jdbcType="TIMESTAMP" property="createRoomTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, app_id, play_name,play_id, create_room_time
+  </sql>
+  <select id="queryListByPage" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from dc_create_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <insert id="insert" parameterType="com.qs.pub.datacenter.model.CreateRoom">
+    insert into dc_create_room (id, mid, app_id, 
+      play_way, create_room_time)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
+      #{playWay,jdbcType=VARCHAR}, #{createRoomTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+ 
+</mapper>
