@@ -1,35 +1,34 @@
 
+var gameType = $('#gameType').val();
 var dtGridColumns = [{
-    id : 'mid',
-    title : '用户ID',
+    id : 'appId',
+    title : '游戏名称',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'playName',
+    title : '玩法名称',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
-    id : 'appName',
-    title : '应用名称',
+    id : 'totals',
+    title : '在玩人数',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
-},{
-    id : 'appVersion',
-    title : '应用版本号',
-    type : 'number',
+}/*,{
+    id : '',
+    title : '操作',
+    type : 'string',
     columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header'
-},{
-    id : 'terminalType',
-    title : '终端类型',
-    type : 'number',
-    columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header'
-},{
-    id : 'createTime',
-    title : '创建时间',
-    type : 'date',
-    columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header'
-}];
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        
+        return "<a href='javascript:lookDetail("+record.id+")'>查看明细</a>";
+    }
+}*/];
 
 //动态设置jqGrid的rowNum
 var pageSize = $("#pageSize").val();
@@ -42,12 +41,13 @@ var dtGridOption = {
 	    check : true,
 	    checkWidth :'37px',
 	    extraWidth : '37px',
-	    loadURL : sys.rootPath + '/userAddLog/userAddLogList.html',
+	    loadURL : sys.rootPath + '/playing/playList.html',
 	    columns : dtGridColumns,
 	    gridContainer : 'dtGridContainer',
 	    toolbarContainer : 'dtGridToolBarContainer',
-	    tools : 'refresh',
+	    //tools : 'refresh|export[excel]',
 	    //exportFileName : '房间配置列表',
+	    tools : 'refresh',
 	    pageSize : pageSize,
 	    pageSizeLimit : [10, 20, 30]
 	};
@@ -80,17 +80,27 @@ $(function() {
  * 这里不传入分页信息，防止删除记录后重新计算的页码比当前页码小而导致计算异常
  */
 function customSearch() {
-	
 	setOption();
     grid.parameters = new Object();
-    grid.parameters['startTime'] = $("#startTime").val();
-    grid.parameters['endTime'] = $("#endTime").val();
+    grid.parameters['appName'] = $("#appName").val();
+    grid.parameters['playName'] = $("#playName").val();
+    var stime =  $("#stime").val();
+    var etime =  $("#etime").val();
+    if(stime != null && stime != ''){
+    	grid.parameters['stime'] = stime+' 23:59:59';
+    }else{
+    	grid.parameters['stime'] = stime;
+    }
+    if(etime != null && etime != ''){
+    	grid.parameters['etime'] = etime+' 23:59:59';
+    }else{
+    	grid.parameters['etime'] = etime;
+    }
+    
     grid.refresh(true);
 }
 
-function edit(id){
-	webside.common.loadPage('/game/shield/editUI.html?id='+id)
-}
+
 function updateStatus(id,status){
 	$.ajax({
         type: "GET",
@@ -104,13 +114,33 @@ function updateStatus(id,status){
 }
 
 
-// 基于准备好的dom，初始化echarts实例
+$(function () {
+    jeDate({
+        dateCell: '#stime',
+        isinitVal:new Date(),
+        //isinitVal:false,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06-01', //最小日期
+        maxDate: '2050-06-01' //最大日期
+    });
+    jeDate({
+        dateCell: '#etime',
+        isinitVal:new Date(),
+        //isinitVal:false,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06-01', //最小日期
+        maxDate: '2050-06-01' //最大日期
+    });
+});
+
+
+//基于准备好的dom，初始化echarts实例
 var myChart = echarts.init(document.getElementById('main'));
 
 //指定图表的配置项和数据
 var option = {
  title: {
-     text: '新增用户人数'
+     text: '在玩人数'
  },
  tooltip: {},
  legend: {
@@ -131,19 +161,31 @@ var option = {
 //使用刚指定的配置项和数据显示图表。
 //myChart.setOption(option);
 var setOption=function (){
-	var startTime = $("#startTime").val();
-	var endTime = $("#endTime").val();
+	    var appName = $("#appName").val();
+	    var playName = $("#playName").val();
+	    var stime =  $("#stime").val();
+	    var etime =  $("#etime").val();
+	    if(stime != null && stime != ''){
+	    	stime = stime+' 23:59:59';
+	    }else{
+	    	stime = stime;
+	    }
+	    if(etime != null && etime != ''){
+	    	etime = etime+' 23:59:59';
+	    }else{
+	    	etime = etime;
+	    }
 	
 	$.ajax({
 		type: "POST",
-		url: sys.rootPath+'/userAddLog/userAddLogQueryCount.html',
-		data:{'startTime':startTime,'endTime':endTime},
+		url: sys.rootPath+'/playing/playCount.html',
+		data:{'stime':stime,'etime':etime,'appName':appName,'playName':playName},
 		dataType: "json",
 		success: function(data){
 			debugger;
 			var array = data.split("@");
-			option.series[0].data=JSON.parse(array[0]);
-			option.xAxis.data= JSON.parse(array[1]);
+			option.series[0].data=JSON.parse(array[1]);
+			option.xAxis.data= JSON.parse(array[0]);
 			// 使用刚指定的配置项和数据显示图表。
 			myChart.setOption(option);
 			console.log(array[1]);
@@ -153,33 +195,8 @@ var setOption=function (){
 }
 setOption();
 
-$(function () {
-	$("#date").change(function(){
-		var _val = $("#date").val();
-		dateFormate(_val);
-	});
-});
 
-var dateFormate = function(_val){
-	var datetimeNow = new Date();
-	var datetimeBefor = new Date();
-	
-	datetimeNow.setDate(datetimeNow.getDate()+1);
-	
-	var year = datetimeNow.getFullYear();
-    var month = datetimeNow.getMonth() + 1 < 10 ? "0" + (datetimeNow.getMonth() + 1) : datetimeNow.getMonth() + 1;
-    var date = datetimeNow.getDate() < 10 ? "0" + datetimeNow.getDate() : datetimeNow.getDate();
-	
-	var now = year+"-"+month+"-"+date;
-	
-	datetimeBefor.setDate(datetimeBefor.getDate() - _val);
-	
-	var year = datetimeBefor.getFullYear();
-    var month = datetimeBefor.getMonth() + 1 < 10 ? "0" + (datetimeBefor.getMonth() + 1) : datetimeBefor.getMonth() + 1;
-    var date = datetimeBefor.getDate() < 10 ? "0" + datetimeBefor.getDate() : datetimeBefor.getDate();
-	
-	
-	var befor = year+"-"+month+"-"+date;
-	$("#startTime").val(befor);
-	$("#endTime").val(now);
+
+var lookDetail = function(_val){
+	webside.common.loadPage('/memberagents/toMemberagentsDetailsUi.html?id='+_val+'&gameType='+gameType)
 }
