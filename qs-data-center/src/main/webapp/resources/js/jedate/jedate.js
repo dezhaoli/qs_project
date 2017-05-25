@@ -4,7 +4,6 @@
  @Date: 2015-12-28
  @QQ群：516754269
  @Site：https://github.com/singod/jeDate
- @download by：www.sucaijiayuan.com
  */
 (function(win) {
     var jeDt = {}, doc = document, Cell = "#jedatebox";
@@ -202,9 +201,9 @@
         isClear:true, //是否显示清空
         festival:false, //是否显示节日
         zIndex:999,  //弹出层的层级高度
-        choosefun:function(val) {},  //选中日期后的回调
-		clearfun:function(val) {},   //清除日期后的回调
-		okfun:function(val) {}       //点击确定后的回调
+        choosefun:function(val) {},
+		clearfun:function(val) {},
+		okfun:function(val) {}
     }, InitDate = function(options) {
         var that = this, newConf = JSON.parse(JSON.stringify(config));
         that.config = jeDt.extend(newConf, options);
@@ -480,8 +479,7 @@
                 });
                 //本月
                 jeDt.on(QD(Cell + " .jedatebot .jedatetodaymonth")[0], "click", function() {
-                    var ymTime = [ newDate.getFullYear(), newDate.getMonth() + 1, newDate.getDate()], 
-					thisYMDate = jeDt.parse([ ymTime[0], ymTime[1], 0 ], [ 0, 0, 0 ], opts.format);
+                    var thisYM = jeDt.attr(QD(Cell + " .jedaym .action")[0], "data-onym").match(/\w+|d+/g), thisYMDate = jeDt.parse([ thisYM[0], thisYM[1], 1 ], [ 0, 0, 0 ], opts.format);
                     jeDt.isValHtml(self) ? jeDt.val(self, thisYMDate) :jeDt.text(self, thisYMDate);
                     jeDt.html(QD(Cell)[0], "");
                     jeDt.shdeCell(true);

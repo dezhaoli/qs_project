@@ -121,6 +121,7 @@
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.16.1-GA" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:19.0-rc2" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjtools:1.7.4" />
+          <element id="library" level="project" name="Maven: com.qs:sync-sender:0.0.1-SNAPSHOT" />
         </element>
       </element>
       <element id="directory" name="META-INF">

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.apusic.ausp.sync.mapper.LogErrorMapper">
+	
+	<resultMap id="logErrorResultMap" type="com.qs.sync.model.LogError">
+		<id property="id" column="c_id" />
+		<result property="source" column="c_source" />
+		<result property="sourceCode" column="c_source_code" />
+		<result property="receive" column="c_receive" />
+		<result property="receiveCode" column="c_receive_code" />
+		<result property="moduleName" column="c_module_name" />
+		<result property="moduleCode" column="c_module_code" />
+		<result property="content" column="c_content" />
+		<result property="type" column="c_type" />
+		<result property="remark" column="c_remark" />
+		<result property="status" column="c_status" />
+		<result property="excepContent" column="c_excep_content" />
+		<result property="excepType" column="c_excep_type" />
+		<result property="sendNum" column="c_send_num" />
+		<result property="handleUrl" column="c_handle_url" />
+		<result property="extend1" column="c_extend1" />
+		<result property="extend2" column="c_extend2" />
+		<result property="extend3" column="c_extend3" />
+		<result property="creatorId" column="c_creator_id" />
+		<result property="createTime" column="c_create_time" />
+		<result property="modifierId" column="c_modifier_id" />
+		<result property="modifyTime" column="c_modify_time" />
+	</resultMap>
+	
+	<select id="find" parameterType="String" resultMap="logErrorResultMap">
+		SELECT * FROM ausp_sync_log_error WHERE c_id=#{id}
+	</select>
+
+	<select id="query" resultMap="logErrorResultMap">
+		SELECT * FROM ausp_sync_log_error
+	
+		<if test="orderBy != null">
+			order by #{orderBy} #{order}
+		</if>
+	</select>
+	
+	<select id="count" resultType="long">
+		SELECT count(*) FROM ausp_sync_log_error
+	</select>
+	
+	
+   <select id="findLogErrorList" resultMap="logErrorResultMap">
+		SELECT e.* FROM ausp_sync_log_error e where e.c_send_num  &lt;  '6' and e.c_status='0'
+		order by c_create_time desc 
+	</select>
+	
+	
+	<insert id="save" parameterType="com.qs.sync.model.LogError"  keyProperty="id" keyColumn="c_id">
+		INSERT INTO ausp_sync_log_error(c_id,
+							c_source,
+							c_source_code,
+							c_receive,
+							c_receive_code,
+							c_module_name,
+							c_module_code,
+							c_content,
+							c_type,
+							c_remark,
+							c_status,
+							c_excep_content,
+							c_excep_type,
+							c_send_num,
+							c_handle_url,
+							c_extend1,
+							c_extend2,
+							c_extend3,
+							c_creator_id, 
+							c_create_time,
+							c_modifier_id,
+							c_modify_time) 
+							VALUES(#{id},
+								#{source},
+								#{sourceCode},
+								#{receive},
+								#{receiveCode},
+								#{moduleName},
+								#{moduleCode},
+								#{content},
+								#{type},
+								#{remark},
+								#{status},
+								#{excepContent},
+								#{excepType},
+								#{sendNum},
+								#{handleUrl},
+								#{extend1},
+								#{extend2},
+								#{extend3},
+								#{creatorId}, 
+								#{createTime},
+								#{modifierId},
+								#{modifyTime})
+	</insert>
+
+	<delete id="remove" parameterType="String">
+		DELETE from ausp_sync_log_error WHERE c_id = #{id}
+	</delete>
+
+	<update id="update" parameterType="com.qs.sync.model.LogError">
+		UPDATE ausp_sync_log_error 
+		<set> 
+			<if test="source!=null">
+				c_source=#{source},
+			 </if>
+			<if test="sourceCode!=null">
+				c_source_code=#{sourceCode},
+			 </if>
+			<if test="receive!=null">
+				c_receive=#{receive},
+			 </if>
+			<if test="receiveCode!=null">
+				c_receive_code=#{receiveCode},
+			 </if>
+			<if test="moduleName!=null">
+				c_module_name=#{moduleName},
+			 </if>
+			<if test="moduleCode!=null">
+				c_module_code=#{moduleCode},
+			 </if>
+			<if test="content!=null">
+				c_content=#{content},
+			 </if>
+			<if test="type!=null">
+				c_type=#{type},
+			 </if>
+			<if test="remark!=null">
+				c_remark=#{remark},
+			 </if>
+			<if test="status!=null">
+				c_status=#{status},
+			 </if>
+			<if test="excepContent!=null">
+				c_excep_content=#{excepContent},
+			 </if>
+			<if test="excepType!=null">
+				c_excep_type=#{excepType},
+			 </if>
+			<if test="sendNum!=null">
+				c_send_num=#{sendNum},
+			 </if>
+			<if test="handleUrl!=null">
+				c_handle_url=#{handleUrl},
+			 </if>
+			<if test="extend1!=null">
+				c_extend1=#{extend1},
+			 </if>
+			<if test="extend2!=null">
+				c_extend2=#{extend2},
+			 </if>
+			<if test="extend3!=null">
+				c_extend3=#{extend3},
+			 </if>
+			 <if test="modifyTime!=null">
+				c_modify_time =#{modifyTime},
+			 </if>
+			 <if test="modifierId!=null">
+			 	c_modifier_id=#{modifierId},
+			 </if>
+		 </set>
+		 WHERE c_id=#{id}
+	</update>
+
+</mapper>

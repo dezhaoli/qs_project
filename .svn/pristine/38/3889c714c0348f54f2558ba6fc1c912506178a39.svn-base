@@ -1,0 +1,21 @@
+#\u6570\u636e\u5e93\u914d\u7f6e
+#\u6570\u636e\u5e93\u9a71\u52a8
+datasource.driverClassName=com.mysql.jdbc.Driver
+db.url=jdbc:mysql://127.0.0.1:3306/appman?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+db.username=root
+db.password=123456
+#---------------------\u6570\u636e\u540c\u6b65-------------------#
+#\u6570\u636e\u540c\u6b65\u7cfb\u7edf\u7f16\u7801,\u4ee5\u9017\u53f7\uff08,\uff09\u9694\u5f00
+sync.syscode=sfj
+#\u6570\u636e\u540c\u6b65\u5bf9\u5e94\u7684\u5404\u4e2a\u7cfb\u7edf\u7528\u6237\u3001\u7ec4\u7ec7url
+sfj.user=http://localhost:8080/cms-sync/cms/user/save.do
+sfj.org=http://localhost:8080/cms-sync/cms/department/save.do
+
+#---------------------\u6570\u636e\u540c\u6b65-------------------#
+
+#---------------------activemq \u63a5\u6536\u914d\u7f6e-------------------#
+mq.clientId=mq-receive2
+mq.brokerURL=tcp\://127.0.0.1\:61616
+mq.userName=admin 
+mq.password=admin
+#---------------------activemq-------------------#

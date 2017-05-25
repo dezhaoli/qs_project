@@ -1,0 +1,44 @@
+#\u6570\u636e\u5e93\u914d\u7f6e
+#\u6570\u636e\u5e93\u9a71\u52a8
+
+datasource.driverClassName=com.mysql.jdbc.Driver
+db.url=jdbc:mysql://localhost:3306/appman?characterEncoding=utf-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+db.dialect=mysql
+db.username=root
+db.password=root
+#datasource.driverClassName=oracle.jdbc.driver.OracleDriver
+#db.url=jdbc:oracle:thin:@127.0.0.1:1521:XE
+#db.dialect=oracle
+#db.username=sfj
+#db.password=123456
+#activemq\u914d\u7f6e
+#mq.isSync=1\u540c\u6b65\u6570\u636e mq.isSync=0\u4e0d\u540c\u6b65\u6570\u636e
+mq.isSync=0
+mq.clientId=mq_send
+mq.brokerURL=tcp\://127.0.0.1\:61616
+mq.userName=admin 
+mq.password=admin
+mq.syncErrorUrl=http://127.0.0.1:8080/ausp-web/sync/error/save.do
+#cas\u914d\u7f6e
+cas.server.url = http://localhost:8080/cas
+app.service.url = http://localhost:8080/ausp-web
+#redis\u5185\u5b58\u6570\u636e\u5e93\u914d\u7f6e172.20.129.133
+redis.host=127.0.0.1
+redis.port=6379
+redis.password=
+redis.expire=3600
+redis.database=1
+redis.pool.minIdle=1
+redis.pool.maxIdle=20
+redis.pool.maxActive=50
+redis.pool.maxWait=6000
+redis.pool.testOnBorrow=true
+#\u4e0a\u4f20\u8def\u5f84
+upload.path=
+#\u7528\u6237\u767b\u5f55\u914d\u7f6e
+user.accountLock=true
+user.ipLock=false
+user.loginDelay=false
+user.verificationCode=false
+user.failureNum=3
+user.loginDelayTime=30

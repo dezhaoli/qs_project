@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteWeekMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteWeek" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="rebatetotal" property="rebatetotal" jdbcType="DECIMAL" />
+    <result column="bindpeople" property="bindpeople" jdbcType="SMALLINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="taxrate" property="taxrate" jdbcType="DECIMAL" />
+    <result column="isaward" property="isaward" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="getWeekCountGrade" resultType="map" parameterType="map">
+    select B.grade ,COUNT(B.grade ) counts from ( 
+	select 
+	( 
+	case  
+	when A.paytotal &lt;=3500  then 1 
+	when A.paytotal &gt;=3501 and  A.paytotal &lt;7000 then 2 
+	when A.paytotal &gt;=7000 and  A.paytotal &lt; 10000 then 3 
+	when A.paytotal &gt;=10000 and  A.paytotal &lt; 20000 then 4 
+	when A.paytotal &gt;=20000  then 5   end 
+	) grade from taxes_invite_week A where A.date=#{eDate} ) B  GROUP BY B.grade  ORDER BY B.grade
+  </select>
+  
+  <select id="getWeekCountGradeList" resultType="map" parameterType="map">
+    select A.mid,DATE_FORMAT(A.date, '%Y-%m-%d') date,A.paytotal, 
+	( 
+	case  
+	when A.paytotal &lt;=3500  then 1 
+	when A.paytotal &gt;=3501 and  A.paytotal &lt;7000 then 2 
+	when A.paytotal &gt;=7000 and  A.paytotal &lt; 10000 then 3 
+	when A.paytotal &gt;=10000 and  A.paytotal &lt; 20000 then 4 
+	when A.paytotal &gt;=20000  then 5   end  
+	) grade from taxes_invite_week A where A.date=#{eDate} 
+  </select>
+</mapper>

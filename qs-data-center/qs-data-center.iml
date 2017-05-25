@@ -182,5 +182,6 @@
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.16.1-GA" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:19.0-rc2" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjtools:1.7.4" level="project" />
+    <orderEntry type="library" name="Maven: com.qs:sync-sender:0.0.1-SNAPSHOT" level="project" />
   </component>
 </module>

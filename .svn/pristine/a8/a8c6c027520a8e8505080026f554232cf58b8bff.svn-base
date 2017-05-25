@@ -1,0 +1,163 @@
+package com.qs.cfg.acti.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.cfg.acti.model.ActiTimeControl;
+import com.qs.cfg.acti.service.IActiTimeControlService;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.AjaxException;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.PageUtil;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/5/25 16:48.
+ * Description:活动预告时间控制表
+ */
+@Controller
+@RequestMapping(value = "/cfg/actiTime/")
+public class ActiTimeControlController extends BaseController {
+
+    @Resource
+    private IActiTimeControlService actiTimeControlService;
+
+    @RequestMapping("listUI.html")
+    public String listUI(Model model, HttpServletRequest request) {
+        try {
+            PageUtil page = new PageUtil();
+            if (request.getParameterMap().containsKey("page")) {
+                page.setPageNum(Integer.valueOf(request.getParameter("page")));
+                page.setPageSize(Integer.valueOf(request.getParameter("rows")));
+                page.setOrderByColumn(request.getParameter("sidx"));
+                page.setOrderByType(request.getParameter("sord"));
+            }
+            model.addAttribute("page", page);
+            return "/WEB-INF/view/cfg/acti/acti_time_list";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+
+    @RequestMapping("list.html")
+    @ResponseBody
+    public Object list(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            parameters.put("name", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<ActiTimeControl> list = actiTimeControlService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+
+    @RequestMapping("addUI.html")
+    public String addUI(Model model, HttpServletRequest request, String id) {
+        try {
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            return "/WEB-INF/view/cfg/acti/acti_time_form";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+
+    @RequestMapping("editUI.html")
+    public String editUI(Model model, HttpServletRequest request, Integer id) {
+        try {
+            ActiTimeControl record = actiTimeControlService.selectByPrimaryKey(id);
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("record", record);
+            return "/WEB-INF/view/cfg/acti/acti_time_form";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+
+    @RequestMapping("add.html")
+    @ResponseBody
+    public Object add(ActiTimeControl record) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int result = actiTimeControlService.insertSelective(record);
+            if (result > 0) {
+                map.put(CommonContants.SUCCESS, Boolean.TRUE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, CommonContants.ADD_SUCCESS);
+            } else {
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, CommonContants.ADD_FAILURE);
+            }
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+
+    @RequestMapping("edit.html")
+    @ResponseBody
+    public Object update(ActiTimeControl record) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int result = actiTimeControlService.updateByPrimaryKeySelective(record);
+            if (result > 0) {
+                map.put(CommonContants.SUCCESS, Boolean.TRUE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, CommonContants.EDIT_SUCCESS);
+            } else {
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, CommonContants.EDIT_FAILURE);
+            }
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+
+    @RequestMapping("deleteById.html")
+    @ResponseBody
+    public Object deleteById(Integer id) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int result = actiTimeControlService.deleteByPrimaryKey(id);
+            if (result > 0) {
+                map.put(CommonContants.SUCCESS, true);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, CommonContants.DELETE_SUCCESS);
+            } else {
+                map.put(CommonContants.SUCCESS, false);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, CommonContants.DELETE_SUCCESS);
+            }
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+}
