@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
   
 <generatorConfiguration>  
-    <classPathEntry location="D:\java\maven\repository\mysql\mysql-connector-java\5.1.26\mysql-connector-java-5.1.26.jar" />
+    <classPathEntry location="D:\java\mysql\mysql-connector-java-5.1.39.jar" />
       <context id="DB2Tables" targetRuntime="MyBatis3">
 		<commentGenerator>
             <property name="suppressDate" value="true" />
@@ -12,7 +12,7 @@
         </commentGenerator>  
   
       <jdbcConnection driverClass="com.mysql.jdbc.Driver"  
-            connectionURL="jdbc:mysql://192.168.1.111:3306/data_center"
+            connectionURL="jdbc:mysql://127.0.0.1:3306/sc_majiang_log"
             userId="dev" password="dev">
         </jdbcConnection>
  
@@ -21,27 +21,27 @@
         </javaTypeResolver>
 		
 		<!-- java 模型对象生成路径 -->
-        <javaModelGenerator targetPackage="com.qs.pub.datacenter.model"  
-            targetProject="D:\java\myHome\qs-data-center\src\main\java">   
+        <javaModelGenerator targetPackage="com.qs.log.game.model"  
+            targetProject="D:\java\myHome\pay-web\src\main\java">   
             <property name="enableSubPackages" value="true" />  
             <property name="trimStrings" value="true" />  
         </javaModelGenerator>  
   		
   		<!-- java mapper xml生成路径 -->
-        <sqlMapGenerator targetPackage="datacenter"  
-            targetProject="D:\java\myHome\qs-data-center\src\main\resources\mybatis\mapper\pub">  
+        <sqlMapGenerator targetPackage="game"  
+            targetProject="D:\java\myHome\pay-web\src\main\resources\mybatis\mapper\log">  
             <property name="enableSubPackages" value="true" />  
         </sqlMapGenerator>  
       
         <!-- mapper java -->
 		<javaClientGenerator type="XMLMAPPER"  
-            targetPackage="com.qs.pub.datacenter.mapper" targetProject="D:\java\myHome\qs-data-center\src\main\java">  
+            targetPackage="com.qs.log.game.mapper" targetProject="D:\java\myHome\pay-web\src\main\java">  
             <property name="enableSubPackages" value="true" /> 
             <property name="rootInterface" value="com.qs.common.base.basemapper.IBaseMapper"/>
 		</javaClientGenerator>
 		
 		
-		<table schema="data_center" tableName="dc_create_room" domainObjectName="CreateRoom" enableCountByExample="false"
+		<table schema="sc_majiang_log" tableName="taxes_invite_week_send" domainObjectName="TaxesInviteWeekSend" enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"
 			enableSelectByExample="false"

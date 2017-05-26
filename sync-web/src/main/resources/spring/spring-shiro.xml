@@ -34,7 +34,7 @@
 		<!-- ehcache中配置的授权缓存名称 -->
 		<property name="authorizationCacheName" value="authorizationCache" />
 	</bean>
-    
+
 	<!-- 凭证匹配器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<!-- Single realm app. If you have multiple realms, use the 'realms' property 
@@ -43,7 +43,6 @@
 		<property name="sessionManager" ref="shiroSessionManager" />
 		<!-- 使用下面配置的缓存管理器 -->
 		 <property name="cacheManager" ref="shiroCacheManager" /> 
-		 <property name="rememberMeManager" ref="rememberMeManager" />
 		<!-- sessionMode参数设置为native时，那么shrio就将用户的基本认证信息保存到缺省名称为shiro-activeSessionCache 
 			的Cache中 -->
 		<!-- By default the servlet container sessions will be used. Uncomment 
@@ -60,7 +59,7 @@
      -->
 
 	<!-- 用户登录数控制,超过最大回话数会强制退出 -->
-		<bean id="kickoutFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter">
+	<bean id="kickoutSessionFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter">
 		<property name="cacheManager" ref="shiroCacheManager" />
 		<property name="sessionManager" ref="shiroSessionManager" />
 		<property name="kickoutAfter" value="false" />
@@ -68,44 +67,7 @@
 		<property name="kickoutUrl" value="/login.html" />
 	</bean>
 	
-   <!-- 	
 	<bean id="rememberMeFilter" class="com.qs.webside.shiro.filter.RememberAuthenticationFilter"/>
-	 -->
-	 
-	 
-
-	 
-	<!-- 记住我Cookie模板 -->
-	<bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
-		<constructor-arg value="WEBSIDE_REM_SID" />
-		<property name="httpOnly" value="true" />
-		<!--cookie的有效时间 -->
-		<property name="maxAge" value="604800" /><!-- 7天时间，记住我一周 -->
-	</bean>
-
-	<!-- rememberMe管理器 -->
-	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
-		<!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位） -->
-		<!-- 实际密码是webside -->
-		<property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('GsHaWo4m1eNbE0kNSMULhg==')}" />
-		<property name="cookie" ref="rememberMeCookie" />
-	</bean>
-	
-			<!-- 用户会话session控制 -->
-	<!-- <bean id="kickoutFilter" class="com.qs.webside.shiro.filter.KickoutSessionFilter"/> -->
-	<!-- kickout Filter -->
-	<bean id="kickoutAuthFilter" class="com.qs.webside.shiro.filter.KickoutAuthFilter"/>
-	<!-- user Filter -->
-	<bean id="loginFilter" class="com.qs.webside.shiro.filter.LoginFilter"/>
-	<bean id="rememberMeFilter" class="com.qs.webside.shiro.filter.RememberMeFilter"/>
-	<bean id="permissionFilter" class="com.qs.webside.shiro.filter.PermissionFilter"/>
-	<bean id="roleFilter" class="com.qs.webside.shiro.filter.RoleFilter"/>
-	<bean id="baseUrl" class="com.qs.webside.shiro.filter.URLFilter"/>
-	
-	<!-- ssl过滤 -->
-	 <bean id="sslFilter" class="org.apache.shiro.web.filter.authz.SslFilter">
-        <property name="port" value="443"/>
-    </bean>
 
 	<!-- 配置shiro的过滤器工厂类，这里bean的id shiroFilter要和我们在web.xml中配置的shior过滤器名称一致<filter-name>shiroFilter</filter-name> -->
 	<!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
@@ -129,42 +91,34 @@
 		<!-- <property name="filterChainDefinitionMap" ref="chainDefinitionSectionMetaSource" /> -->
 		<!-- 动态加载权限 -->
 		<!-- <property name="filterChainDefinitions" value="#{shiroManager.loadFilterChainDefinitions()}"/> -->
-		<property name="filters">
-            <util:map>
-              	<entry key="kickout" value-ref="kickoutFilter" />
-				<entry key="kickoutAuth" value-ref="kickoutAuthFilter"/>
-				<entry key="login" value-ref="loginFilter" />
-		<!-- 		<entry key="remember" value-ref="rememberMeFilter"/> -->
-				<entry key="perm" value-ref="permissionFilter"/>
-				<entry key="roles" value-ref="roleFilter"/>
-				<entry key="baseUrl" value-ref="baseUrl"/>
-				<entry key="ssl" value-ref="sslFilter"></entry>
-            </util:map>
-        </property>
 		<!-- 这里暂时静态加载方式 -->
 		<property name="filterChainDefinitions">
 			<value>
 				/resources/** = anon
-				/login.html =user
+				/login.html = authc
 				/logout.html = logout
 				/register.html = anon
 				/captcha.html = anon
-				/dataCenter/** = anon
 				/denied.jsp = anon
 				/view/error/** = anon
 				/*/withoutAuth/** = anon
+				/api/** = anon
 			    /config/** = anon
-			    /**/confirmPay.html= perms[pay:single]
-			    /**/saveSimplePay.html= perms[pay:single]
-			    /**/batchPay.html= perms[pay:batch]
-				/** =user,kickout
+			    /img/** = anon
+			    /** = authc
 			</value>
 		</property>
-		
+		<!-- 自定义过滤器 -->
+		<property name="filters">
+			<map>
+				<entry key="rememberMeFilter" value-ref="rememberMeFilter"/>
+				<entry key="kickout" value-ref="kickoutSessionFilter" />
+			</map>
+		</property>
 	</bean>
 
 	<!--自定义filterChainDefinitionMap -->
-	<!-- <bean id="chainDefinitionSectionMetaSource" class="com.qs.webside.shiro.ChainDefinitionSectionMetaSource">
+<!-- 	<bean id="chainDefinitionSectionMetaSource" class="com.qs.webside.shiro.ChainDefinitionSectionMetaSource">
 		<property name="filterChainDefinitions">
 			<value>
 				/resources/** = anon
@@ -180,39 +134,10 @@
 	</bean> -->
 
 	<!-- 会话DAO -->
-	<!-- <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
+	<bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
 		<property name="activeSessionsCacheName" value="shiro-activeSessionCache" />
 		<property name="sessionIdGenerator" ref="sessionIdGenerator" />
-	</bean> -->
-	<!--shiro缓存管理器 -->
-	<!-- <bean id="shiroCacheManager" class="com.qs.webside.shiro.ShiroCacheManagerWrapper">
-		<property name="cacheManager" ref="ehCacheManager" />
-	</bean> -->
-	
-	
-		<!-- redis session add by moys-->
-	
-	<!-- shiro redisManager -->
-	<bean id="redisManager" class="com.qs.jedis.RedisManager" init-method="init">
-		<property name="host" value="${redis.host}" />
-		<property name="port" value="${redis.port}" />
-		<property name="expire" value="${redis.expire}" />
-		<property name="password" value="${redis.password}" />
-		<property name="database" value="4" />
-		
 	</bean>
-
-	<!-- redisSessionDAO -->
-	<bean id="sessionDAO" class="com.qs.jedis.RedisSessionDAO">
-		<property name="redisManager" ref="redisManager" />
-	</bean>
-
-	<!-- cacheManager -->
-	<bean id="shiroCacheManager" class="com.qs.jedis.RedisCacheManager">
-		<property name="redisManager" ref="redisManager" />
-	</bean>
-	
-	<!-- redis session end -->
 
 	<!-- 会话验证调度器，升级shiro到1.2.6以上之后，SimpleTrigger变成了接口，
 	解决办法有两种：
@@ -232,7 +157,7 @@
 		<property name="interval" value="${shiro.session.validate.interval}" />
 		<property name="sessionManager" ref="shiroSessionManager" />
 	</bean>
- 
+ 	
  	
 	<!-- 会话Session ID生成器 -->
 	<bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
@@ -266,6 +191,12 @@
 		<!-- 会话Cookie模板 -->
 		<property name="sessionIdCookie" ref="sessionIdCookie"/>
 
+	</bean>
+
+
+	<!--shiro缓存管理器 -->
+	<bean id="shiroCacheManager" class="com.qs.webside.shiro.ShiroCacheManagerWrapper">
+		<property name="cacheManager" ref="ehCacheManager" />
 	</bean>
 
 	<!-- Shiro生命周期处理器-->
