@@ -8,7 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.qs.pub.sync.service.DataCenterSyncService;
+import com.qs.pub.sync.service.SyncService;
 import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncObject;
 import com.qs.sync.model.SyncPlaying;
@@ -20,11 +20,11 @@ import com.qs.sync.model.SyncPlaying;
  * @author Administrator
  * @date 2015年7月6日 上午11:02:52
  */
-public class ReceiveDataCenterImpl implements IReceiveDataCenter {
+public class ReceiveDataImpl implements IReceiveData {
 	
-	private static final Log log = LogFactory.getLog(ReceiveDataCenterImpl.class);
+	private static final Log log = LogFactory.getLog(ReceiveDataImpl.class);
 	@Autowired
-    private DataCenterSyncService dataSyncService;
+    private SyncService dataSyncService;
 	
 	
 	/**
@@ -34,9 +34,7 @@ public class ReceiveDataCenterImpl implements IReceiveDataCenter {
 		Object myMessage = null;
 		try {
 			myMessage = (Object) message.getObject();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+		
 		
 		SyncObject so=(SyncObject)myMessage;
 		log.debug("fromSystemCode===========::"+so.getFromSysCode()+"=========fromSysMethod=======::"+so.getFromSysMethod());
@@ -47,7 +45,9 @@ public class ReceiveDataCenterImpl implements IReceiveDataCenter {
 		}else if(myMessage instanceof SyncCreateRoom){
 			this.syncCreateRoom(myMessage);
 		}
-		
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
 	     
 	}
 	

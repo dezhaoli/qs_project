@@ -8,11 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qs.pub.sync.common.SyncLogTool;
-import com.qs.pub.sync.service.DataCenterSyncService;
-import com.qs.pub.sync.service.ICreateRoomService;
-import com.qs.pub.sync.service.IPlayingService;
 import com.qs.pub.sync.service.LogErrorService;
 import com.qs.pub.sync.service.LogSuccessService;
+import com.qs.pub.sync.service.SyncService;
+import com.qs.pub.sync.service.ICreateRoomService;
+import com.qs.pub.sync.service.IPlayingService;
 import com.qs.sync.model.LogError;
 import com.qs.sync.model.LogSuccess;
 import com.qs.sync.model.SyncCreateRoom;
@@ -23,12 +23,12 @@ import com.qs.sync.model.SyncPlaying;
  * 同步数据服务实现
  */
 @Service
-public class DataCenterSyncServiceImpl implements DataCenterSyncService {
+public class SyncServiceImpl implements SyncService {
 
     /**
      * 日志对象
      */
-    private static final Logger logger = LoggerFactory.getLogger(DataCenterSyncServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(SyncServiceImpl.class);
 
 	@Autowired
 	private LogErrorService logErrorService;
@@ -51,9 +51,29 @@ public class DataCenterSyncServiceImpl implements DataCenterSyncService {
 
 	
 
-	public int syncPlaying(SyncPlaying syncPlaying) {
-		   int result=0;
-		   result = playingService.insert(syncPlaying);
+	public int syncPlaying(SyncPlaying syncPlaying)
+	{
+		int result = 0;
+		try
+		{
+			result = playingService.insert(syncPlaying);
+		} catch (Exception e)
+		{
+			this.saveErrorLog(syncPlaying, SyncPlaying.class.getSimpleName(), "", "","0");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int syncPlayingLog(SyncPlaying syncPlaying)
+	{
+		int result = 0;
+		try
+		{
+			result = playingService.insert(syncPlaying);
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		return result;
 	}
 
@@ -65,11 +85,22 @@ public class DataCenterSyncServiceImpl implements DataCenterSyncService {
 	public int syncCreateRoom(SyncCreateRoom syncCreateRoom) {
 		int result=0;
 		try{
-		   
 		   result = createRoomService.insert(syncCreateRoom);
 		   return result;
 		}catch(Exception e){
-			
+			this.saveErrorLog(syncCreateRoom, SyncCreateRoom.class.getSimpleName(), "", "", "0");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public int syncCreateRoomLog(SyncCreateRoom syncCreateRoom) {
+		int result=0;
+		try{
+		   result = createRoomService.insert(syncCreateRoom);
+		   return result;
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -121,7 +152,7 @@ public class DataCenterSyncServiceImpl implements DataCenterSyncService {
 		return result;
 	}
 	*/
-	   /**
+ /**
   * 操作成功的日志
   * @param record
   * @param modelClassName

@@ -8,11 +8,10 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.qs.pub.sync.constant.SyncContans;
-import com.qs.pub.sync.service.DataSyncService;
+import com.qs.pub.sync.service.SyncService;
+import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncObject;
-import com.qs.sync.model.SyncOrganization;
-import com.qs.sync.model.SyncUser;
+import com.qs.sync.model.SyncPlaying;
 
 /**
  * 
@@ -25,7 +24,8 @@ public class ReceiveDataImpl implements IReceiveData {
 	
 	private static final Log log = LogFactory.getLog(ReceiveDataImpl.class);
 	@Autowired
-    private DataSyncService dataSyncService;
+    private SyncService dataSyncService;
+	
 	
 	/**
 	 * 消息接收处理
@@ -34,42 +34,42 @@ public class ReceiveDataImpl implements IReceiveData {
 		Object myMessage = null;
 		try {
 			myMessage = (Object) message.getObject();
-		} catch (JMSException e) {
-			e.printStackTrace();
-		}
+		
 		
 		SyncObject so=(SyncObject)myMessage;
 		log.debug("fromSystemCode===========::"+so.getFromSysCode()+"=========fromSysMethod=======::"+so.getFromSysMethod());
 		
-		if(myMessage instanceof SyncUser){
-			this.syncUser(myMessage);
+		if(myMessage instanceof SyncPlaying){
+			this.syncPlaying(myMessage);
 			
-		}else if(myMessage instanceof SyncOrganization){
-			this.syncOrg(myMessage);
+		}else if(myMessage instanceof SyncCreateRoom){
+			this.syncCreateRoom(myMessage);
 		}
-		
+		} catch (JMSException e) {
+			e.printStackTrace();
+		}
 	     
 	}
 	
 
 
 	/**
-	 * 同步用户信息
+	 * 同步在玩用户数据
 	 * @param myMessage
 	 */
-	public void syncUser(Object myMessage){
-		SyncUser syncUser=(SyncUser)myMessage;
-		dataSyncService.syncUser(syncUser,SyncContans.SaveLogFlag.YES);
+	public void syncPlaying(Object myMessage){
+		SyncPlaying syncPlaying=(SyncPlaying)myMessage;
+		dataSyncService.syncPlaying(syncPlaying);
 		
 	}
 
 	/**
-	 * 同步组织信息
+	 * 同步创建房间数据
 	 * @param myMessage
 	 */
-	public void syncOrg(Object myMessage){
-		SyncOrganization org=(SyncOrganization)myMessage;
-		dataSyncService.syncOrg(org,SyncContans.SaveLogFlag.YES);
+	public void syncCreateRoom(Object myMessage){
+		SyncCreateRoom syncCreateRoom=(SyncCreateRoom)myMessage;
+		dataSyncService.syncCreateRoom(syncCreateRoom);
 		
 	}
 	
