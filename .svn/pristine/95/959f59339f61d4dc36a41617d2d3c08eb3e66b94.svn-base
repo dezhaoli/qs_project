@@ -1,0 +1,33 @@
+package com.qs.common.constant;
+
+
+public class CacheConstan {
+    //数据字典
+    public static final String DICT_CACHE_STORE_NAME = "dict";
+    public static final String DICT_CACHE_KEY_PREFIX = "findList";
+    //菜单
+    public static final String MENU_CACHE_STORE_NAME = "menu";
+
+    //邮件
+    public static final String EMAIL_CACHE_STORE_NAME = "email";
+    public static final String EMAIL_CACHE_KEY_PREFIX = "getMails:";
+    //版本
+    public static final String MOBLIE_VERSION_CACHE_STORE_NAME = "mobileversion";
+
+    //参数表base_param
+    public static final String BASEPARAM_CACHE_STORE_NAME = "baseparam";
+
+    //服务器入口列表
+    public static final String IP_ADDRESS_CACHE_STORE_NAME = "ipAddress";
+
+    public static final String ROOM_CACHE_STORE_NAME = "configroom";
+
+    public static final String STORE_CACHE_STORE_NAME = "configstore";
+
+    public static final String STORE_CACHE_AGENTSTORE_NAME = "agent_configstore";
+
+    public static final String STORE_CACHE_ACTI_TIME_NAME = "configactitime";
+    
+    public static final String GAMER_ECORD_CACHE_NAME = "gameRecord";
+
+}

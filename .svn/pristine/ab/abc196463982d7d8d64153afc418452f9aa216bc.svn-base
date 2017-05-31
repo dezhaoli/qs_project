@@ -1,0 +1,94 @@
+package com.qs.cfg.acti.service.impl;
+
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.qs.cfg.acti.mapper.AgentStoreMapper;
+import com.qs.cfg.acti.model.AgentStore;
+import com.qs.cfg.acti.model.Store;
+import com.qs.cfg.acti.service.IAgentStoreSerivce;
+import com.qs.common.constant.CacheConstan;
+import com.qs.common.util.DateUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/5/23 16:05.
+ * Description:代理商商城配置
+ */
+@Service
+public class AgentStoreServiceImpl implements IAgentStoreSerivce {
+
+    private Log log = LogFactory.getLog(AgentStoreServiceImpl.class);
+
+    @Resource
+    private AgentStoreMapper agentStoreMapper;
+
+    @Override
+    //@Cacheable(value = {CacheConstan.STORE_CACHE_STORE_NAME}, key = "#root.methodName+':'+#root.args[0]")
+    public Integer getGoldByPayMoney(Integer money) {
+        AgentStore agentStore = agentStoreMapper.getGoldByPayMoney(money);
+        Integer gold = 0;
+        if (null != agentStore) {
+            Integer nowTime = DateUtil.currentTimeToInt();
+            Integer startTime = agentStore.getStarttime();
+            Integer endTime = agentStore.getStarttime();
+            /*if(nowTime>=startTime&&nowTime<=endTime){
+                gold=Integer.parseInt(store.getSong());
+			}else{
+				gold=store.getGold();
+			}*/
+            gold = agentStore.getGold();
+        }
+        return gold;
+    }
+
+    @Override
+    @Cacheable(value = {CacheConstan.STORE_CACHE_STORE_NAME}, key = "#root.methodName")
+    public String createStoreJson() {
+        Map<String, Object> parameter = new HashMap<String, Object>();
+        List<AgentStore> storeList = agentStoreMapper.queryListByPage(parameter);
+
+        JSONObject root = new JSONObject();
+        JSONObject contentJson = new JSONObject();
+        JSONObject itemJson = new JSONObject();
+        JSONArray storeJsonArr = new JSONArray();
+        if (null != storeList) {
+            for (AgentStore store : storeList) {
+                JSONObject chilJson = new JSONObject();
+                JSONObject chilJson_type = new JSONObject();
+                JSONObject chilJson_item = new JSONObject();
+                JSONObject chilJson_item_att = new JSONObject();
+                chilJson_item_att.put("money", store.getMoney());
+                chilJson_item_att.put("gold", store.getGold());
+                chilJson_item_att.put("song", store.getSong());
+                chilJson_item_att.put("img", store.getImg());
+                //chilJson_item_att.put("starttime", store.getStarttimeStr());
+                //chilJson_item_att.put("endtime", store.getEndtimeStr());
+                chilJson_item_att.put("starttime", store.getStarttime());
+                chilJson_item_att.put("endtime", store.getEndtime());
+                chilJson_item_att.put("productId", store.getProductId());
+                chilJson_item.put("@attributes", chilJson_item_att);
+                // chilJson.put("item",chilJson_item);
+                //chilJson_type.put("type",systemRoom.getType());
+                //chilJson.put("@attributes",chilJson_type);
+                storeJsonArr.add(chilJson_item);
+            }
+        }
+        itemJson.put("item", storeJsonArr);
+        contentJson.put("store", itemJson);
+        root.put("content", contentJson);
+        //创建文件room.data
+        //System.out.println(root.toJSONString());
+        log.debug(root.toJSONString());
+        return root.toJSONString();
+    }
+
+
+}

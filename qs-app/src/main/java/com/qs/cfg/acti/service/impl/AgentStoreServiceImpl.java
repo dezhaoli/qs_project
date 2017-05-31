@@ -31,7 +31,7 @@ public class AgentStoreServiceImpl implements IAgentStoreSerivce {
     private AgentStoreMapper agentStoreMapper;
 
     @Override
-    @Cacheable(value = {CacheConstan.STORE_CACHE_STORE_NAME}, key = "#root.methodName+':'+#root.args[0]")
+    //@Cacheable(value = {CacheConstan.STORE_CACHE_STORE_NAME}, key = "#root.methodName+':'+#root.args[0]")
     public Integer getGoldByPayMoney(Integer money) {
         AgentStore agentStore = agentStoreMapper.getGoldByPayMoney(money);
         Integer gold = 0;

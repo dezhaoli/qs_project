@@ -25,7 +25,7 @@
                         <ref bean="submetertask" />
                 </property>
                 <property name="cronExpression">
-                        <value>0 0/2 * * * ?</value>
+                        <value>0 0/10 * * * ?</value>
                 </property>
      </bean>
      <!-- 启动触发器 -->
@@ -38,5 +38,4 @@
            </list>  
        </property>  
    </bean>  
-    
 </beans>

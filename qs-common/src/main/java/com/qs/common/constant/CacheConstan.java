@@ -27,5 +27,7 @@ public class CacheConstan {
     public static final String STORE_CACHE_AGENTSTORE_NAME = "agent_configstore";
 
     public static final String STORE_CACHE_ACTI_TIME_NAME = "configactitime";
+    
+    public static final String GAME_RECORD_CACHE_NAME = "gameRecord";
 
 }

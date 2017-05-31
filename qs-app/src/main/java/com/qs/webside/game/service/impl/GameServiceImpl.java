@@ -201,8 +201,12 @@ public class GameServiceImpl implements GameService {
 		 jsonMsgMap.put("msg", totalGold);
 	   
 	     String jsonMsg=JSON.toJSONString(jsonMsgMap);
-		 boolean socketFlag=socketUtil.sendData(10008, mid, jsonMsg);
-		 log.debug("socketFlag===::"+socketFlag);
+	     if(null!=socketUtil.getSocket()){
+		   boolean socketFlag=socketUtil.sendData(10008, mid, jsonMsg);
+		   log.debug("socketFlag===::"+socketFlag);
+	     }else{
+	    	 log.error("updateGold socket is null===::"+mid);
+	     }
 		 socketUtil.close();
 		 
 		 

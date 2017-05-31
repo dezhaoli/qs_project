@@ -16,6 +16,7 @@
 	<context:component-scan base-package="com.qs.pub.*.service" />
 	<context:component-scan base-package="com.qs.common.util" />
      <context:component-scan base-package="com.qs.webside.aop" />
+     <context:component-scan base-package="com.qs.pub.sync.task" />
 
 
 	<!-- 容器启动监听 -->

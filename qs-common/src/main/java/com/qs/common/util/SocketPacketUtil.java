@@ -20,6 +20,14 @@ public class SocketPacketUtil {
     Logger log = Logger.getLogger(SocketPacketUtil.class);
     
 	private Socket socket = null;
+	
+	
+
+	public Socket getSocket()
+	{
+		return socket;
+	}
+
 
 	public SocketPacketUtil(String ip,int port) {
 		try {

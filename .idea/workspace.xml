@@ -10,19 +10,19 @@
     <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" />
     </list>
     <list id="08238244-5bd2-4c65-bcfd-bb652b521bca" name="Failed commit: Failed commit: Default" comment="修复已知Bug" />
     <ignored path="$PROJECT_DIR$/qs-app/target/" />
@@ -75,8 +75,8 @@
       <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="385">
-              <caret line="73" column="11" lean-forward="false" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
+            <state relative-caret-position="505">
+              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -272,6 +272,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -286,9 +288,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -460,20 +460,16 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\LogErrorMapper.xml</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\LogSuccessMapper.xml</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\log4j.properties</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\generatorConfig.xml</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-applicationContext.xml</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-jms.xml</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\common\SyncLogTool.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\constant\SyncContans.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\listener\ConsumerSessionAwareMessageListener.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\resources\db\updateTaxesInviteWeek.sql</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\init.properties</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\log4j.properties</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\test\java\Test.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\LogError.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\CacheConstan.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SocketPacketUtil.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-applicationContext.xml</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-quartz-sync.xml</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\pom.xml</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\service\impl\AgentStoreServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\service\impl\StoreServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\log\game\service\impl\GameRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\GameServiceImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -481,17 +477,25 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-quartz-sync.xml</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\LogSuccessServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\LogErrorServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\SyncServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\LogSuccessService.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\LogErrorService.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\SyncService.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\ReceiveDataImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\IReceiveData.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\task\ErrorDataHandleTask.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\LogError2.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-vfs-20100924-pentaho.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\log4j-1.2.16.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\kettle-engine-5.1.0.0-752.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\logkit-1.0.1.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-collections-3.2.1.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\kettle-core-5.1.0.0-752.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-logging-1.1.1.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\kettle-db.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-lang-2.6.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\avalon-framework-4.1.5.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-io-2.1.jar</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test\Test.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test\TestKTR.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test\KettleExecu.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\util\KtrPasswordUtil.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\task\SyncKtrTask.java</PATH>
+          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\test</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -499,20 +503,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\DataSyncService.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\DataCenterSyncService.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\DataSyncServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\DataCenterSyncServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\LogSuccessServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\LogErrorServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\LogSuccessService.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\LogErrorService.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\ReceiveDataCenterImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\IReceiveDataCenter.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\ReceiveDataImpl.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\IReceiveData.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\task\MissDataHandleTask.java</PATH>
-          <PATH vcs="svn" revision="2040">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\task\ErrorDataHandleTask.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1331,6 +1321,10 @@
       <workItem from="1495721625638" duration="258000" />
       <workItem from="1495804614339" duration="202000" />
       <workItem from="1495894319162" duration="65000" />
+      <workItem from="1495938374052" duration="250000" />
+      <workItem from="1496022065561" duration="38000" />
+      <workItem from="1496111485971" duration="189000" />
+      <workItem from="1496242638458" duration="148000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1448,7 +1442,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230360000" />
+    <option name="totallyTimeSpent" value="230985000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1476,7 +1470,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22489317" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23557693" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2048,8 +2042,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="385">
-          <caret line="73" column="11" lean-forward="false" selection-start-line="73" selection-start-column="11" selection-end-line="73" selection-end-column="11" />
+        <state relative-caret-position="505">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
           <folding />
         </state>
       </provider>

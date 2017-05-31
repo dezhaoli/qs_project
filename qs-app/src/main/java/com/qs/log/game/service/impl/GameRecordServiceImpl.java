@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import com.qs.log.game.mapper.GameRecordShareMapper;
 import com.qs.log.game.mapper.GameRecordSubMapper;
@@ -21,6 +22,7 @@ import com.qs.webside.member.model.Memberfides;
 import com.qs.webside.member.service.MemberService;
 import com.qs.log.game.model.GameRecord;
 import com.qs.log.game.model.GameRecordShare;
+import com.qs.common.constant.CacheConstan;
 import com.qs.common.util.CommonUtils;
 import com.qs.log.game.mapper.GameRecordMapper;
 import com.qs.log.game.mapper.GoldLogMapper;
@@ -288,6 +290,7 @@ public class GameRecordServiceImpl implements GameRecordService {
 
 
 	@Override
+	@Cacheable(value={CacheConstan.GAME_RECORD_CACHE_NAME},key="#root.methodName+':'+#root.args[0]")
 	public int getPlayCount(int mid, byte gameType) {
 		return playerRecordMapper.getPlayCount(mid, gameType);
 	}

@@ -24,7 +24,7 @@ public class StoreServiceImpl implements StoreService {
 	private StoreMapper storeMapper;
 	
 	@Override
-	@Cacheable(value={CacheConstan.STORE_CACHE_STORE_NAME},key="#root.methodName+':'+#root.args[0]")
+	//@Cacheable(value={CacheConstan.STORE_CACHE_STORE_NAME},key="#root.methodName+':'+#root.args[0]")
 	public Integer getGoldByPayMoney(Integer money) {
 		Store store=storeMapper.getGoldByPayMoney(money);
 		Integer gold=0;
