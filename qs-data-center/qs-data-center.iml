@@ -182,6 +182,9 @@
     <orderEntry type="library" name="Maven: org.javassist:javassist:3.16.1-GA" level="project" />
     <orderEntry type="library" name="Maven: com.google.guava:guava:19.0-rc2" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjtools:1.7.4" level="project" />
-    <orderEntry type="library" name="Maven: com.qs:sync-sender:0.0.1-SNAPSHOT" level="project" />
+    <orderEntry type="module" module-name="sync-sender" />
+    <orderEntry type="library" name="Maven: org.apache.activemq:activemq-all:5.11.1" level="project" />
+    <orderEntry type="module" module-name="sync-model" />
+    <orderEntry type="library" name="Maven: commons-pool:commons-pool:1.6" level="project" />
   </component>
 </module>

@@ -1,0 +1,19 @@
+<div >
+	 <div class="row qs_rowHight qs_conver_body" >
+	    <div class="col-sm-6 col-md-3 qs_divBody" style="background: #151922" >
+	            <img src="img/1.jpg" alt="通用的占位符缩略图"  style="    height: 130px;">
+	           <div style="width: 100%;height: 100%" class="col-sm-6">  
+	                <!--  <span> 加多宝多宝</span><br>
+	                 <span>5000积分</span><br>
+	                 <p class="qs_duih ">兑换</p> -->
+	            </div>
+	    </div>
+	   
+	    
+	    
+	</div>
+</div>
+
+<script>
+// $(".qs_rowHight").height(window.innerHeight-20);
+</script>

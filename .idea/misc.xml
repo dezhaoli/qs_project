@@ -7,8 +7,11 @@
     <file type="web" url="file://$PROJECT_DIR$/qs-app" />
     <file type="web" url="file://$PROJECT_DIR$/qs-business" />
     <file type="web" url="file://$PROJECT_DIR$/qs-data-center" />
+    <file type="web" url="file://$PROJECT_DIR$/qs-dataconfig" />
     <file type="web" url="file://$PROJECT_DIR$/qs-psyllidae" />
     <file type="web" url="file://$PROJECT_DIR$/qs-web" />
+    <file type="web" url="file://$PROJECT_DIR$/sync-receiver" />
+    <file type="web" url="file://$PROJECT_DIR$/sync-web" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
@@ -27,6 +30,13 @@
         <option value="$PROJECT_DIR$/qs-app/pom.xml" />
         <option value="$PROJECT_DIR$/qs-activity-center/pom.xml" />
         <option value="$PROJECT_DIR$/qs-data-center/pom.xml" />
+        <option value="$PROJECT_DIR$/sync-sender/pom.xml" />
+        <option value="$PROJECT_DIR$/sync-model/pom.xml" />
+        <option value="$PROJECT_DIR$/sync-receiver/pom.xml" />
+        <option value="$PROJECT_DIR$/sync-web/pom.xml" />
+        <option value="$PROJECT_DIR$/qs-sys/pom.xml" />
+        <option value="$PROJECT_DIR$/qs-dataconfig/pom.xml" />
+        <option value="$PROJECT_DIR$/qs-shop/pom.xml" />
       </list>
     </option>
   </component>

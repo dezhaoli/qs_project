@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sync-web:war">
+    <output-path>$PROJECT_DIR$/sync-web/target</output-path>
+    <root id="archive" name="sync-web.war">
+      <element id="artifact" artifact-name="sync-web:war exploded" />
+    </root>
+  </artifact>
+</component>

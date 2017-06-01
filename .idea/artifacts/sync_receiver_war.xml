@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="sync-receiver:war">
+    <output-path>$PROJECT_DIR$/sync-receiver/target</output-path>
+    <root id="archive" name="sync-receiver.war">
+      <element id="artifact" artifact-name="sync-receiver:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -11,12 +11,19 @@
       <module fileurl="file://$PROJECT_DIR$/qs-common/qs-common.iml" filepath="$PROJECT_DIR$/qs-common/qs-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-config/qs-config.iml" filepath="$PROJECT_DIR$/qs-config/qs-config.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-data-center/qs-data-center.iml" filepath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" filepath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-datasource/qs-datasource.iml" filepath="$PROJECT_DIR$/qs-datasource/qs-datasource.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-mapper/qs-mapper.iml" filepath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-model/qs-model.iml" filepath="$PROJECT_DIR$/qs-model/qs-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-service/qs-service.iml" filepath="$PROJECT_DIR$/qs-service/qs-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-shop/qs-shop.iml" filepath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-side/qs-side.iml" filepath="$PROJECT_DIR$/qs-side/qs-side.iml" />
+      <module fileurl="file://$PROJECT_DIR$/qs-sys/qs-sys.iml" filepath="$PROJECT_DIR$/qs-sys/qs-sys.iml" />
       <module fileurl="file://$PROJECT_DIR$/qs-web/qs-web.iml" filepath="$PROJECT_DIR$/qs-web/qs-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sync-model/sync-model.iml" filepath="$PROJECT_DIR$/sync-model/sync-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sync-receiver/sync-receiver.iml" filepath="$PROJECT_DIR$/sync-receiver/sync-receiver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sync-sender/sync-sender.iml" filepath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sync-web/sync-web.iml" filepath="$PROJECT_DIR$/sync-web/sync-web.iml" />
     </modules>
   </component>
 </project>

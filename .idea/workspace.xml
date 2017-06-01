@@ -10,6 +10,13 @@
     <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-sys/qs-sys.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-model/sync-model.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver/sync-receiver.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-web/sync-web.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
@@ -40,6 +47,13 @@
     <ignored path="$PROJECT_DIR$/qs-datasource/target/" />
     <ignored path="$PROJECT_DIR$/qs-activity-center/target/" />
     <ignored path="$PROJECT_DIR$/qs-data-center/target/" />
+    <ignored path="$PROJECT_DIR$/sync-sender/target/" />
+    <ignored path="$PROJECT_DIR$/sync-model/target/" />
+    <ignored path="$PROJECT_DIR$/sync-receiver/target/" />
+    <ignored path="$PROJECT_DIR$/sync-web/target/" />
+    <ignored path="$PROJECT_DIR$/qs-sys/target/" />
+    <ignored path="$PROJECT_DIR$/qs-dataconfig/target/" />
+    <ignored path="$PROJECT_DIR$/qs-shop/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -75,8 +89,8 @@
       <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="505">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="69" column="67" lean-forward="true" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -234,6 +248,30 @@
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
+          <option name="myItemId" value="qs-data-center Maven Webapp" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="Dependencies" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$DependenciesNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="qs-data-center Maven Webapp" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
           <option name="myItemId" value="Profiles" />
           <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProfilesNode" />
         </PATH_ELEMENT>
@@ -272,8 +310,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -288,7 +325,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -296,7 +334,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/qs-data-center" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/qs-shop" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -445,144 +483,6 @@
         </RestClientRequest>
       </list>
     </option>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\CacheConstan.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SocketPacketUtil.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\webside.properties</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-applicationContext.xml</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-quartz-sync.xml</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\pom.xml</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\service\impl\AgentStoreServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\service\impl\StoreServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\log\game\service\impl\GameRecordServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\GameServiceImpl.java</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-vfs-20100924-pentaho.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\log4j-1.2.16.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\kettle-engine-5.1.0.0-752.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\logkit-1.0.1.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-collections-3.2.1.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\kettle-core-5.1.0.0-752.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-logging-1.1.1.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\kettle-db.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-lang-2.6.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\avalon-framework-4.1.5.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\lib\commons-io-2.1.jar</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test\Test.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test\TestKTR.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\test\KettleExecu.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\util\KtrPasswordUtil.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\task\SyncKtrTask.java</PATH>
-          <PATH vcs="svn" revision="2051">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\test</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1133,6 +1033,10 @@
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-data-center" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-dataconfig" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-dataconfig" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-datasource" />
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-datasource" />
         </SvnCopyRootSimple>
@@ -1149,12 +1053,36 @@
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-service" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-shop" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-shop" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-side" />
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-side" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-sys" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-sys" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-web" />
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-web" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-model" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-model" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-receiver" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-receiver" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-sender" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-sender" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-web" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\sync-web" />
         </SvnCopyRootSimple>
       </list>
     </option>
@@ -1325,6 +1253,8 @@
       <workItem from="1496022065561" duration="38000" />
       <workItem from="1496111485971" duration="189000" />
       <workItem from="1496242638458" duration="148000" />
+      <workItem from="1496323986949" duration="317000" />
+      <workItem from="1496324334824" duration="180000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1442,7 +1372,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="230985000" />
+    <option name="totallyTimeSpent" value="231482000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1470,7 +1400,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23557693" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2409188" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1671,33 +1601,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-model/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="436" column="24" lean-forward="false" selection-start-line="436" selection-start-column="24" selection-end-line="436" selection-end-column="24" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="uml://MAVEN/com.qs:qs-web:0.0.1-SNAPSHOT">
@@ -1997,23 +1927,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1128">
           <caret line="59" column="35" lean-forward="false" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="103" column="42" lean-forward="true" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/redis.properties">
@@ -2024,13 +1954,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="75" column="5" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -2042,8 +1972,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+        <state relative-caret-position="289">
+          <caret line="69" column="67" lean-forward="true" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
           <folding />
         </state>
       </provider>
@@ -2103,11 +2033,12 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>Spring|qs-activity-center</last-edited>
+          <last-edited>qs-shop</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

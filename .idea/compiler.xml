@@ -14,12 +14,19 @@
         <module name="qs-common" />
         <module name="qs-config" />
         <module name="qs-data-center" />
+        <module name="qs-dataconfig" />
         <module name="qs-datasource" />
         <module name="qs-mapper" />
         <module name="qs-model" />
         <module name="qs-service" />
+        <module name="qs-shop" />
         <module name="qs-side" />
+        <module name="qs-sys" />
         <module name="qs-web" />
+        <module name="sync-model" />
+        <module name="sync-receiver" />
+        <module name="sync-sender" />
+        <module name="sync-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,12 +39,19 @@
       <module name="qs-common" target="1.8" />
       <module name="qs-config" target="1.8" />
       <module name="qs-data-center" target="1.8" />
+      <module name="qs-dataconfig" target="1.8" />
       <module name="qs-datasource" target="1.8" />
       <module name="qs-mapper" target="1.8" />
       <module name="qs-model" target="1.8" />
       <module name="qs-service" target="1.8" />
+      <module name="qs-shop" target="1.8" />
       <module name="qs-side" target="1.8" />
+      <module name="qs-sys" target="1.8" />
       <module name="qs-web" target="1.8" />
+      <module name="sync-model" target="1.8" />
+      <module name="sync-receiver" target="1.8" />
+      <module name="sync-sender" target="1.8" />
+      <module name="sync-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
