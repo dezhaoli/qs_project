@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.agent.game.mapper.MemberpaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.agent.game.model.Memberpayment" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="fmid" property="fmid" jdbcType="INTEGER" />
+    <result column="tmid" property="tmid" jdbcType="INTEGER" />
+    <result column="tsid" property="tsid" jdbcType="INTEGER" />
+    <result column="pmoneynow" property="pmoneynow" jdbcType="INTEGER" />
+    <result column="pmode" property="pmode" jdbcType="TINYINT" />
+    <result column="pcard" property="pcard" jdbcType="SMALLINT" />
+    <result column="pamount" property="pamount" jdbcType="REAL" />
+    <result column="pcoins" property="pcoins" jdbcType="INTEGER" />
+    <result column="ptime" property="ptime" jdbcType="INTEGER" />
+    <result column="pstatus" property="pstatus" jdbcType="TINYINT" />
+    <result column="ptransno" property="ptransno" jdbcType="VARCHAR" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="isagent" property="isagent" jdbcType="TINYINT" />
+    <result column="bizid" property="bizid" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins, ptime, pstatus, 
+    ptransno, gametype, parentid, isagent, bizid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberpayment
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memberpayment
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.agent.game.model.Memberpayment" >
+    insert into memberpayment (pid, fmid, tmid, 
+      tsid, pmoneynow, pmode, 
+      pcard, pamount, pcoins, 
+      ptime, pstatus, ptransno, 
+      gametype, parentid, isagent, 
+      bizid)
+    values (#{pid,jdbcType=INTEGER}, #{fmid,jdbcType=INTEGER}, #{tmid,jdbcType=INTEGER}, 
+      #{tsid,jdbcType=INTEGER}, #{pmoneynow,jdbcType=INTEGER}, #{pmode,jdbcType=TINYINT}, 
+      #{pcard,jdbcType=SMALLINT}, #{pamount,jdbcType=REAL}, #{pcoins,jdbcType=INTEGER}, 
+      #{ptime,jdbcType=INTEGER}, #{pstatus,jdbcType=TINYINT}, #{ptransno,jdbcType=VARCHAR}, 
+      #{gametype,jdbcType=TINYINT}, #{parentid,jdbcType=INTEGER}, #{isagent,jdbcType=TINYINT}, 
+      #{bizid,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.agent.game.model.Memberpayment" >
+    insert into memberpayment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="fmid != null" >
+        fmid,
+      </if>
+      <if test="tmid != null" >
+        tmid,
+      </if>
+      <if test="tsid != null" >
+        tsid,
+      </if>
+      <if test="pmoneynow != null" >
+        pmoneynow,
+      </if>
+      <if test="pmode != null" >
+        pmode,
+      </if>
+      <if test="pcard != null" >
+        pcard,
+      </if>
+      <if test="pamount != null" >
+        pamount,
+      </if>
+      <if test="pcoins != null" >
+        pcoins,
+      </if>
+      <if test="ptime != null" >
+        ptime,
+      </if>
+      <if test="pstatus != null" >
+        pstatus,
+      </if>
+      <if test="ptransno != null" >
+        ptransno,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="isagent != null" >
+        isagent,
+      </if>
+      <if test="bizid != null" >
+        bizid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="fmid != null" >
+        #{fmid,jdbcType=INTEGER},
+      </if>
+      <if test="tmid != null" >
+        #{tmid,jdbcType=INTEGER},
+      </if>
+      <if test="tsid != null" >
+        #{tsid,jdbcType=INTEGER},
+      </if>
+      <if test="pmoneynow != null" >
+        #{pmoneynow,jdbcType=INTEGER},
+      </if>
+      <if test="pmode != null" >
+        #{pmode,jdbcType=TINYINT},
+      </if>
+      <if test="pcard != null" >
+        #{pcard,jdbcType=SMALLINT},
+      </if>
+      <if test="pamount != null" >
+        #{pamount,jdbcType=REAL},
+      </if>
+      <if test="pcoins != null" >
+        #{pcoins,jdbcType=INTEGER},
+      </if>
+      <if test="ptime != null" >
+        #{ptime,jdbcType=INTEGER},
+      </if>
+      <if test="pstatus != null" >
+        #{pstatus,jdbcType=TINYINT},
+      </if>
+      <if test="ptransno != null" >
+        #{ptransno,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isagent != null" >
+        #{isagent,jdbcType=TINYINT},
+      </if>
+      <if test="bizid != null" >
+        #{bizid,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.agent.game.model.Memberpayment" >
+    update memberpayment
+    <set >
+      <if test="fmid != null" >
+        fmid = #{fmid,jdbcType=INTEGER},
+      </if>
+      <if test="tmid != null" >
+        tmid = #{tmid,jdbcType=INTEGER},
+      </if>
+      <if test="tsid != null" >
+        tsid = #{tsid,jdbcType=INTEGER},
+      </if>
+      <if test="pmoneynow != null" >
+        pmoneynow = #{pmoneynow,jdbcType=INTEGER},
+      </if>
+      <if test="pmode != null" >
+        pmode = #{pmode,jdbcType=TINYINT},
+      </if>
+      <if test="pcard != null" >
+        pcard = #{pcard,jdbcType=SMALLINT},
+      </if>
+      <if test="pamount != null" >
+        pamount = #{pamount,jdbcType=REAL},
+      </if>
+      <if test="pcoins != null" >
+        pcoins = #{pcoins,jdbcType=INTEGER},
+      </if>
+      <if test="ptime != null" >
+        ptime = #{ptime,jdbcType=INTEGER},
+      </if>
+      <if test="pstatus != null" >
+        pstatus = #{pstatus,jdbcType=TINYINT},
+      </if>
+      <if test="ptransno != null" >
+        ptransno = #{ptransno,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isagent != null" >
+        isagent = #{isagent,jdbcType=TINYINT},
+      </if>
+      <if test="bizid != null" >
+        bizid = #{bizid,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.agent.game.model.Memberpayment" >
+    update memberpayment
+    set fmid = #{fmid,jdbcType=INTEGER},
+      tmid = #{tmid,jdbcType=INTEGER},
+      tsid = #{tsid,jdbcType=INTEGER},
+      pmoneynow = #{pmoneynow,jdbcType=INTEGER},
+      pmode = #{pmode,jdbcType=TINYINT},
+      pcard = #{pcard,jdbcType=SMALLINT},
+      pamount = #{pamount,jdbcType=REAL},
+      pcoins = #{pcoins,jdbcType=INTEGER},
+      ptime = #{ptime,jdbcType=INTEGER},
+      pstatus = #{pstatus,jdbcType=TINYINT},
+      ptransno = #{ptransno,jdbcType=VARCHAR},
+      gametype = #{gametype,jdbcType=TINYINT},
+      parentid = #{parentid,jdbcType=INTEGER},
+      isagent = #{isagent,jdbcType=TINYINT},
+      bizid = #{bizid,jdbcType=SMALLINT}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+</mapper>

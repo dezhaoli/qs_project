@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="gb2312"/>
+
+<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.css"> -->
+<script src="../lib/jquery/jquery-2.1.4.min.js"></script>
+<!-- <script src="http://code.jquery.com/mobile/1.3.2/jquery.mobile-1.3.2.min.js"></script> -->
+<script>
+ var screenOrientation="";
+function checkOrient() {
+    if (window.orientation == 0 || window.orientation == 180){
+        screenOrientation = 'portrait';
+    }
+    else if (window.orientation == 90 || window.orientation == -90){
+        screenOrientation = 'landscape';
+    }
+    //alert(screenOrientation);
+    return screenOrientation;
+}
+
+function change(){
+	checkOrient();
+    window.onorientationchange = checkOrient;
+    alert(1+$(window).width());
+    if(screenOrientation=="portrait"){
+    	var id=document.getElementById("body");
+    	id.style.transform="rotate(90deg)";
+    }
+}
+
+// 添加事件监听
+addEventListener('load', function(){
+	change();
+});
+var evt = "onorientationchange" in window ? "orientationchange" : "resize";
+
+window.addEventListener(evt, function() {
+	change();
+}, false); 
+
+</script>
+<style> 
+   /*  body{   
+     -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    transform: rotate(90deg);
+} */
+</style>
+</head>
+<body id="body">
+
+<div data-role="page">
+  <div data-role="header">
+    <h1>orientationchange 事件</h1>
+  </div>
+
+  <div data-role="content">
+    <p>请试着旋转您的设备！</p>
+    <p><b>注释：</b>您必须使用移动设备或者移动模拟器来查看该事件的效果。</p>
+  </div>
+
+  <div data-role="footer">
+    <h1>页脚文本</h1>
+  </div>
+</div> 
+
+</body>
+</html>

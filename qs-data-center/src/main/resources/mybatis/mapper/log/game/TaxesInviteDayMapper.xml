@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteDayMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteDay" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="invitetotal" property="invitetotal" jdbcType="INTEGER" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    
+    <result column="bizid" property="bizid" jdbcType="INTEGER" />
+    <result column="gametype" property="gametype" jdbcType="INTEGER" />
+    <result column="granttotal" property="granttotal" jdbcType="INTEGER" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+	  <select id="queryBusinessListByPage" parameterType="map" resultMap="BaseResultMap">
+	     select e.bizid,m.name,e.date,sum(e.paytotal) paytotal ,sum(e.granttotal) granttotal 
+	     from ${stat}.player_pay_day e left join ${gameType}.memberbusiness m on(e.bizid=m.id) 
+	     
+	     where 
+	     1=1
+	     and  e.gametype =#{gameCode,jdbcType=INTEGER}
+				<if test="name != null and name != ''">
+					and m.name like CONCAT('%',#{name},'%')
+				</if>
+				<choose>
+			   		<when test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+			   		  	and e.date &lt;= STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%S') and e.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			   		</when>
+			   		<when test="startDate != null and startDate != ''">
+			   		  	and e.date &lt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%S') and e.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			   		</when>
+			   		<when test="endDate != null and endDate != ''">
+			   		   	and e.date &lt;= STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%S') and e.date &gt;= STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			   		</when>
+			   	</choose>
+				<if test="date != null and  date != ''">
+					and e.date = #{date,jdbcType=VARCHAR} 
+				</if>
+				 group by e.bizid
+			     order by m.id
+	 </select>
+	  <select id="queryAgentListByPage" parameterType="map" resultMap="BaseResultMap">
+	     select t.mid,e.realname as name,t.date,sum(t.paytotal) paytotal,sum(t.invitetotal) invitetotal  
+	     from taxes_invite t 
+	     left join ${dbTable}.memberagents e on(e.mid=t.mid)
+	     where  
+	     1=1
+				<if test="name != null and name != ''">
+					and e.realname like CONCAT('%',#{name},'%')
+				</if>
+				<choose>
+			   		<when test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+			   		  	and t.date &lt;= STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%S') and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			   		</when>
+			   		<when test="startDate != null and startDate != ''">
+			   		  	and t.date &lt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%S') and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			   		</when>
+			   		<when test="endDate != null and endDate != ''">
+			   		   	and t.date &lt;= STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d %H:%i:%S') and t.date &gt;= STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			   		</when>
+			   	</choose>
+				<if test="id != null and  id != ''">
+					and e.belongid = #{id,jdbcType=INTEGER} 
+				</if>
+				 group by t.mid
+			     order by t.mid
+	 </select>
+</mapper>
