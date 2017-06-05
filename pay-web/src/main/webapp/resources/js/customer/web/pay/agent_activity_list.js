@@ -100,7 +100,7 @@ var dtGridColumns = [{
     headerClass : 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
         if (0 == value) {
-            return "20%推广奖励";
+            return "10-20%推广奖励";
         }
         if (1 == value) {
             return "5.1活动一";

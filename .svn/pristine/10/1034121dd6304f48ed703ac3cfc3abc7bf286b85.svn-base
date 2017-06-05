@@ -1,4 +1,5 @@
 var gameType = $('#gameType').val();
+var activityType = $('#type').val();
 
 var dtGridColumns = [{
     id : 'mid',
@@ -92,6 +93,24 @@ var dtGridColumns = [{
         return value;
     }
 },{
+    id : 'type',
+    title : '活动类型',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        if (0 == value) {
+            return "10-20%推广奖励";
+        }
+        if (1 == value) {
+            return "5.1活动一";
+        }
+        if (2 == value) {
+            return "5.1活动二";
+        }
+        return value;
+    }
+},{
     id : 'isaward',
     title : '操作',
     type : 'string',
@@ -155,10 +174,11 @@ function confrimPay(openid, date, mid,rebatetotal) {
 
             $.ajax({
                 type : "POST",
-                url : sys.rootPath + '/' + gameType + "/activityPay.html",
+                url : sys.rootPath + "/corpPay/activityPay.html",
                 data : {
                     openid:openid,
                     date:date,
+                    gameType:gameType,
                     mid:mid
                 },
                 dataType : "json",
@@ -190,10 +210,11 @@ function confrimPay(openid, date, mid,rebatetotal) {
     }else {
         $.ajax({
             type : "POST",
-            url : sys.rootPath + '/' + gameType + "/activityPay.html",
+            url : sys.rootPath + "/corpPay/activityPay.html",
             data : {
                 openid:openid,
                 date:date,
+                gameType:gameType,
                 mid:mid
             },
             dataType : "json",
@@ -275,11 +296,11 @@ $('#oneKeyPay').on('click',function () {
     var last = requirtDate;
 
     layer.open({
-        content: '确认要一键支付'+first + '--' + last+'吗？,这个操作大概需要几十秒钟，系统提示支付成功后，再进行操作，切勿多次点击确定、防止重复提交!'
+        content: '确认要一键支付吗？,这个操作大概需要几十秒钟，系统提示支付成功后，再进行操作，切勿多次点击确定、防止重复提交!'
         ,btn: ['确定', '取消']
         ,yes: function(index, layero){
             if (countPay != 1) {
-                layer.msg("正在批量支付中，请耐心等待！请勿重复点击确定按钮，防止重复支付！！！", {icon: 5});
+                layer.msg("正在批量支付中，请耐心等待！请勿重复点击确定按钮，防止重复支付！", {icon: 5});
                 return;
             }
             countPay = 2;
@@ -289,9 +310,11 @@ $('#oneKeyPay').on('click',function () {
 
             $.ajax({
                 type : "POST",
-                url : sys.rootPath + '/' + gameType + "/activityBatchPay.html",
+                url : sys.rootPath + "/corpPay/activityBatchPay.html",
                 data : {
-                    searchDate:requirtDate
+                    searchDate:requirtDate,
+                    gameType:gameType,
+                    type:activityType
                 },
                 dataType : "json",
                 beforeSend : function() {
@@ -348,12 +371,12 @@ var dtGridOption = {
     check : true,
     checkWidth :'37px',
     extraWidth : '37px',
-    loadURL : sys.rootPath + '/'+gameType+'/agentActivitySta.html',
+    loadURL : sys.rootPath + '/corpPay/agentActivityCorpPayList.html?gameType='+gameType,
     columns : dtGridColumns,
     gridContainer : 'dtGridContainer',
     toolbarContainer : 'dtGridToolBarContainer',
     tools : 'refresh|export[excel]',//'refresh|print|export[excel,csv,pdf,txt]'
-    exportFileName : '代理商上周结算发放详情' + lastMonday + "--" + lastSunday,
+    exportFileName : '活动支付' + lastMonday + "--" + lastSunday,
     pageSize : pageSize,
     pageSizeLimit : [10, 20, 30,100,200]
 };
@@ -369,6 +392,7 @@ $(function() {
     grid.parameters['searchDate'] = $('#lastSunday').val();
     grid.parameters['mid'] = $('#mid').val();
     grid.parameters['isaward'] = $('#isaward').val();
+    grid.parameters['type'] = $('#type').val();
 
     grid.load();
     $("#btnSearch").click(customSearch);
@@ -401,6 +425,7 @@ function customSearch() {
     //grid.parameters['searchDate'] = $('#lastSunday').val();
     grid.parameters['isaward'] = $('#isaward').val();
     grid.parameters['mid'] = $('#mid').val();
+    grid.parameters['type'] = $('#type').val();
     grid.refresh(true);
 }
 
@@ -418,6 +443,8 @@ function refreshDataGrid() {
     //grid.parameters['searchDate'] = $('#lastSunday').val();
     grid.parameters['isaward'] = $('#isaward').val();
     grid.parameters['mid'] = $('#mid').val();
+    grid.parameters['type'] = $('#type').val();
+    
     grid.refresh(true);
 }
 

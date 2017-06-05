@@ -8,27 +8,27 @@
   <component name="ChangeListManager">
     <list readonly="true" id="655e2668-4e01-49ef-a490-e3b00fae49fc" name="Default" comment="" />
     <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-sys/qs-sys.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-model/sync-model.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-sys/qs-sys.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver/sync-receiver.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-web/sync-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" />
     </list>
     <list id="08238244-5bd2-4c65-bcfd-bb652b521bca" name="Failed commit: Failed commit: Default" comment="修复已知Bug" />
@@ -85,18 +85,7 @@
     <favorites_list name="2017年2月21日213834" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="jdbc.properties" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-95">
-              <caret line="53" column="67" lean-forward="false" selection-start-line="53" selection-start-column="67" selection-end-line="53" selection-end-column="67" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -109,7 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>&lt;serv</find>
       <find>&lt;servl</find>
       <find>&lt;servlect</find>
       <find>&lt;servlec</find>
@@ -139,6 +127,7 @@
       <find>sc_majiang_log</find>
       <find>getChildrenAgentsByBid</find>
       <find>192.168.1.199</find>
+      <find>contextConfigLocation</find>
     </findStrings>
     <replaceStrings>
       <replace>127.0.0.1</replace>
@@ -310,6 +299,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -322,11 +314,174 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WEB-INF" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="spring" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -498,70 +653,31 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\index.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\agent\agent_userGradeUi_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\css\customer\commons.css</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\agent\agent_userGradeUi_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\game_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\controller\TaxesWeekDownController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\sys\controller\IndexController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\service\IDictService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\service\impl\DictServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\controller\DictController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\mapper\DictMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\constant\Constant.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\controller\MemberagentsController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\mapper\MemberbusinessMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\mapper\MemberagentsMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\model\Memberbusiness.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\service\impl\MemberagentsServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\service\IMemberagentsService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\datacenter\DictMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberbusinessMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberagentsMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\log\game\TaxesInviteWeekMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\generatorConfig.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\Constants.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\AppConstants.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\datasource.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\dynamic-datasource.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\util\ConstantUtil.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\java\com\qs\datasource\util\DataSourcesUtil.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\resources\jdbc.properties</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\impl\CommonAgentsRelationServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\ICommonAgentsRelationService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\impl\TaxesInviteWeekMapperServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\service\IActiTimeControlService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\service\impl\ActiTimeControlServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg\acti\StoreMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\tpls\converted_list.html</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\css\common.css</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\index.html</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\routes.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_center_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\mobile\game_notice_main.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\mobile\stop_server_notice_main.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\cfg\acti\acti_time_form.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\activity\acti_center_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\cfg\acti_time_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\login.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\cfg\acti\controller\ActiTimeControlController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\member\controller\MembersController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\activity\controller\ActiCenterController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\webside\activity\ActiSendGoldMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\webside\activity\ActiCenterMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\service\impl\ActiTimeControlServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\service\IActiTimeControlService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\ConfigController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\service\impl\ActiSendGoldServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\service\impl\ActiCenterServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\service\IActiCenterService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\mapper\ActiCenterMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\interceptor\SignInterceptor.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiCenterMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\pub\game\CommonAgentsRelationMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\pub\game\mapper\CommonAgentsRelationMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\service\impl\ActiSendGoldServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\WEB-INF\view\pay\pay_log_list.jsp</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\WEB-INF\view\web\pay\agent_activity_list.jsp</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\resources\js\customer\pay\pay_log_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\resources\js\customer\web\pay\agent_activity_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\PayBaseController.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\log\agent\TaxesInviteWeekMapper.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\generatorConfig.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\log\game\TaxesInviteDayMapper.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\memberbusiness_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\service\impl\TaxesInviteDayServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\service\ITaxesInviteDayService.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\controller\TaxesInviteDayController.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\AppConstants.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\resources\spring\spring-shiro.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\index.html</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\routes.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\main.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\controller\award_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\controller\ranking_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\tpls\odr.html</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\tpls\ranking_list.html</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\lib\bootstrap\bootstrap.min.css</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\css\common.css</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -569,67 +685,42 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\memberagents_add_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\memberbusiness_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\memberagents_add_details_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\user_add_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\user_add_details_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\agent_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\memberpayment_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\memberpayment_details_list.jsp</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\memberpayment_details_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\user_add_details_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\agent_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\memberagents_add_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\memberbusiness_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\memberpayment_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\memberagents_add_details_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\user_add_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\model\TaxesInviteDay.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\service\ITaxesInviteDayService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\service\impl\TaxesInviteDayServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\controller\TaxesInviteDayController.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\mapper\TaxesInviteDayMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\mapper\MemberpaymentMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\model\Memberpayment.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberpaymentMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\log\game\TaxesInviteDayMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\qianmajiang</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\qianmajiang\qianMajiang-log-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-datasource\src\main\resources\spring\qianmajiang\qianMajiang-main-W-dataSource.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\activity\service\IActiSendGoldService.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\activity\service\impl\ActiSendGoldServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\webside\activity\model\ActiSendGold.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\model\ActiTimeControl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\mapper\ActiTimeControlMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg\acti\ActiTimeControlMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\tpls\odr.html</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\tpls\ranking_list.html</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\left</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\left\y_ph.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\left\y_jp.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\left\y_yd.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\left\y_dz.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\left\y_gz.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ph_bg.jpg</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\a_hover.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ydh.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\2.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\3.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\4.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\5.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\6.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\7.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\8.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\9.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\ranking\1.png</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\controller\ranking_list.js</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\cfg\acti\ActiTimeControlMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\model\ActiTimeControl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\mapper\ActiTimeControlMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiSendGoldMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\activity\mapper\ActiSendGoldMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_award_form.jsp</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_award_list.jsp</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\activity\acti_award_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\activity\controller\ActiAwardController.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\target\m2e-wtp\web-resources</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\activity\mapper\ActiIntegralMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\activity\mapper\ActiAwardRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\activity\mapper\ActiAwardMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\activity\mapper\ActiAwardAddressMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiAwardMapper.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiAwardAddressMapper.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiIntegralMapper.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiAwardRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\log\game\MajiangGameRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\game_record_list.jsp</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\game_record_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\model\MajiangGameRecord.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\mapper\MajiangGameRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\activity\service\impl\ActiAwardServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\activity\service\IActiAwardService.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\webside\activity\model\ActiAwardRecord.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\webside\activity\model\ActiAward.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\webside\activity\model\ActiAwardAddress.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-model\src\main\java\com\qs\webside\activity\model\ActiIntegral.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\address_bj.jpg</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\bc_button.png</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\bj</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\bj\ph_di2.png</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\bj\dz_di.png</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\img\xg_button.png</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\service.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\js\controller\address.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\tpls\address.html</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\lib\md5</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\lib\md5\jquery.md5.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\qs-shop\src\main\webapp\lib\md5\md5.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -637,12 +728,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\model\ActiTimeControl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\cfg\acti\mapper\ActiTimeControlMapper.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\cfg\acti\ActiTimeControlMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\cfg\acti\ActiTimeControlMapper.xml</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\model\ActiTimeControl.java</PATH>
-          <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\cfg\acti\mapper\ActiTimeControlMapper.java</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\WEB-INF\view\web\agent_activity_list.jsp</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\WEB-INF\view\web\agent_simplePay_list.jsp</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\resources\js\customer\web\agent_activity_list.js</PATH>
+          <PATH vcs="svn" revision="2129">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\webapp\resources\js\customer\web\agent_simplePay_list.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -693,7 +782,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED" />
-        <PATH vcs="svn" revision="2116">D:\java\qs_project\2017年4月15日\qs_project\qs-business\src\main\resources\jdbc.properties</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Not in repository" />
@@ -1497,6 +1585,11 @@
       <workItem from="1496323986949" duration="317000" />
       <workItem from="1496324334824" duration="180000" />
       <workItem from="1496496921751" duration="173000" />
+      <workItem from="1496511366736" duration="67000" />
+      <workItem from="1496547108924" duration="239000" />
+      <workItem from="1496548381468" duration="21000" />
+      <workItem from="1496548967254" duration="3352000" />
+      <workItem from="1496670436067" duration="48000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1614,7 +1707,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="231655000" />
+    <option name="totallyTimeSpent" value="235382000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1642,7 +1735,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24358974" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25801283" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1695,41 +1788,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/log/game/service/impl/TaxesInviteServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-456">
-          <caret line="23" column="13" lean-forward="true" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-model/src/main/java/com/qs/log/agent/model/TeamInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/util/BusinessDateUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/util/Validator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-312">
-          <caret line="5" column="35" lean-forward="true" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/aop/LogAspect.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="31" column="13" lean-forward="false" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/agent/service/impl/TaxesInviteWeekMapperServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2136">
@@ -1821,13 +1879,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/webside.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="528">
-          <caret line="22" column="24" lean-forward="true" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/log/game/service/impl/MailServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -1843,33 +1894,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-model/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
           <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="436" column="24" lean-forward="false" selection-start-line="436" selection-start-column="24" selection-end-line="436" selection-end-column="24" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="uml://MAVEN/com.qs:qs-web:0.0.1-SNAPSHOT">
@@ -2169,23 +2220,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1128">
           <caret line="59" column="35" lean-forward="false" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="103" column="42" lean-forward="true" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/redis.properties">
@@ -2196,13 +2247,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="75" column="5" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -2214,8 +2265,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-95">
-          <caret line="53" column="67" lean-forward="false" selection-start-line="53" selection-start-column="67" selection-end-line="53" selection-end-column="67" />
+        <state relative-caret-position="336">
+          <caret line="66" column="44" lean-forward="false" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/webside.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="528">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/joda-time/joda-time/2.9.6/joda-time-2.9.6.jar!/org/joda/time/LocalDate.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="30" column="19" lean-forward="false" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-common/src/main/java/com/qs/common/util/DateFormatterUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="23" column="5" lean-forward="true" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/webapp/WEB-INF/web.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1118">
+          <caret line="89" column="20" lean-forward="true" selection-start-line="89" selection-start-column="20" selection-end-line="89" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="50" column="17" lean-forward="false" selection-start-line="50" selection-start-column="9" selection-end-line="50" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-mvc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="165" column="11" lean-forward="true" selection-start-line="165" selection-start-column="11" selection-end-line="165" selection-end-column="11" />
           <folding />
         </state>
       </provider>

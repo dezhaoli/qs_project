@@ -6,7 +6,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <%--<%@include file="/common/common.jspf" %>--%>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath }/resources/js/customer/web/agent_activity_list.js"></script>
+        src="${pageContext.request.contextPath }/resources/js/customer/web/pay/agent_activity_list.js"></script>
 
 <div class="page-content">
     <div class="row">
@@ -24,8 +24,18 @@
 
         <div class="col-sm-1">
             <select class="form-control" name="isaward" id="isaward">
+                <option value="">全部</option> 
                 <option selected="selected" value="1">已审核</option>
                 <option value="2">已支付</option>
+            </select>
+        </div>
+        
+              <div class="col-sm-1">
+            <select class="form-control" name="type" id="type">
+               <option value="">全部</option>
+                <option  value="0">10-20%推广奖励</option>
+                <option value="1">5.1绑定新用户充值奖励</option>
+                 <option value="2">5.1直属会员充值奖励</option>
             </select>
         </div>
 
@@ -40,11 +50,20 @@
             </div>
         </div>--%>
 
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             <input type="number" class="input form-control" name="mid" id="mid" placeholder="请输入MID"/>
+    
+        </div>
+        
+               <div class="col-sm-1">
+                   <span class="input-group-btn">
+                <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
+                    <i class="fa fa-search"></i>查询
+                </button>
+            </span>
         </div>
 
-        <div class="col-sm-1">
+<%--         <div class="col-sm-1">
             <!-- 搜索 -->
             <div class="input-group" style="width: 100%;">
                 <select class="form-control" name="seacrhVersionKeySite" id="searchYear" >
@@ -66,7 +85,7 @@
                 </button>
             </span>
             </div>
-        </div>
+        </div> --%>
         <div class="col-sm-2">
 
         </div>
@@ -89,16 +108,17 @@
                  style="opacity: 1; z-index: 0;">
                 <div class="widget-header">
                     <c:if test="${!empty gameType and gameType == 'majiang'}">
-                        <h4 class="widget-title lighter">麻将代理商周信息统计</h4>
+                        <h4 class="widget-title lighter">麻将活动奖励</h4>
                     </c:if>
                     <c:if test="${!empty gameType and gameType == 'bull'}">
-                        <h4 class="widget-title lighter">斗牛代理商周信息统计</h4>
+                        <h4 class="widget-title lighter">斗牛活动奖励</h4>
                     </c:if>
                     <c:if test="${!empty gameType and gameType == 'runfast'}">
-                        <h4 class="widget-title lighter">跑胡子代理商20%推广奖励</h4>
+                        <h4 class="widget-title lighter">跑得快/跑胡子活动奖励</h4>
                     </c:if>
+              
                     <c:if test="${empty gameType}">
-                        <h4 class="widget-title lighter">代理商周信息统计</h4>
+                        <h4 class="widget-title lighter">活动奖励</h4>
                     </c:if>
                     <div class="widget-toolbar no-border">
                         <a href="#" data-action="fullscreen" class="orange2">

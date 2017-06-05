@@ -33,7 +33,7 @@
               <div class="col-sm-1">
             <select class="form-control" name="type" id="type">
                <option value="">全部</option>
-                <option  value="0">20%推广奖励</option>
+                <option  value="0">10-20%推广奖励</option>
                 <option value="1">5.1绑定新用户充值奖励</option>
                  <option value="2">5.1直属会员充值奖励</option>
             </select>
