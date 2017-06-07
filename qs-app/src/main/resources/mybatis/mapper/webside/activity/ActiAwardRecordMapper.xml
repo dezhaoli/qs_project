@@ -201,21 +201,7 @@
     SELECT
     <include refid="Base_Column_List" />
     from acti_award_record
-    <where>
-      <if test="isReview != null and isReview != ''">
-        is_review = #{isReview}
-      </if>
-      <if test="mid != null and mid != ''">
-        AND mid = #{mid}
-      </if>
-      <if test="startTime != null and startTime != ''">
-        AND create_time &gt;= #{startTime}
-      </if>
-      <if test="endTime != null and endTime != ''">
-        AND create_time &lt;= #{endTime}
-      </if>
-    </where>
-    order by id DESC
+    order by id
   </select>
 
 </mapper>
