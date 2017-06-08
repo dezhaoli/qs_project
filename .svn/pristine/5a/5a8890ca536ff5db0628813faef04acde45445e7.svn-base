@@ -1,0 +1,26 @@
+/*
+ * 文件名：IMemberFides.java	 
+ * 时     间：上午11:34:32
+ * 作     者：wangzhen      
+ * 版     权：2014-2022  牵手互动, 公司保留所有权利.
+ * 
+ */
+package com.qs.agent.game.service;
+
+import java.util.List;
+import java.util.Map;
+
+import com.qs.agent.game.model.MemberFides;
+
+/** 
+ * @ClassName: IMemberFides 
+ * @描述: (这里用一句话描述这个类的作用) 
+ * @author qs
+ * @date 2017年6月8日 上午11:34:32 
+ */
+public interface IMemberFidesService
+{
+
+	List<MemberFides> queryListByPage(Map<String, Object> parameters);
+	
+}

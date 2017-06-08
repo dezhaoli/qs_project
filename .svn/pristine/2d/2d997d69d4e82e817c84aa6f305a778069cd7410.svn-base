@@ -1,0 +1,101 @@
+package com.qs.webside.activity.controller;
+
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.AppConstants;
+import com.qs.webside.activity.model.ActiAward;
+import com.qs.webside.activity.model.ActiAwardRecord;
+import com.qs.webside.activity.model.ActiIntegral;
+import com.qs.webside.activity.service.IActiAwardRecordService;
+import com.qs.webside.activity.service.IActiAwardService;
+import com.qs.webside.activity.service.IActiIntegralService;
+import com.qs.webside.util.AccessToken;
+import com.qs.webside.util.ContextUtil;
+import org.apache.commons.lang.StringUtils;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ * Created by zun.wei on 2017/6/7 15:21.
+ * Description:活动中心奖品兑换记录表
+ */
+@Controller
+@RequestMapping(value = "/actiAwardRecord/")
+public class ActiAwardRecordController extends BaseController {
+
+    @Resource
+    private IActiAwardRecordService actiAwardRecordService;
+
+    @Resource
+    private IActiAwardService actiAwardService;
+
+    @Resource
+    private IActiIntegralService actiIntegralService;
+
+
+    /**
+     * @param model
+     * @param request
+     * @param actiAwardRecord
+     * @return
+     * @Author:zun.wei , @Date:2017/6/8 13:59
+     * @Description:活动中心积分兑换奖品接口
+     */
+    @RequestMapping("exchangePrizes.do")
+    @ResponseBody
+    public Object addExchangePrizes(Model model, HttpServletRequest request, ActiAwardRecord actiAwardRecord) {
+        AccessToken token = ContextUtil.getAccessTokenInfo(actiAwardRecord.getSesskey());
+        //Map<String, Object> returnMap = new HashMap<>();
+        if (actiAwardRecord.getAwardId() == null)
+            return this.getReturnData(-101, AppConstants.Result.FAILURE);
+        if (StringUtils.isBlank(actiAwardRecord.getName()))
+            return this.getReturnData(-102, AppConstants.Result.FAILURE);
+        if (actiAwardRecord.getIntegral() == null)
+            return this.getReturnData(-103, AppConstants.Result.FAILURE);
+        if (actiAwardRecord.getAwardNum() == null)
+            return this.getReturnData(-104, AppConstants.Result.FAILURE);
+        ActiAward actiAward = actiAwardService.selectByPrimaryKey(actiAwardRecord.getAwardId());//奖品
+        if (actiAward == null)
+            return this.getReturnData(-105, AppConstants.Result.FAILURE);
+        long hashExAwards = actiAwardRecordService.checkAwardRecordSumByActiType(actiAward.getType());//已兑换奖品个数
+        long awards = actiAward.getAwardNum();//奖品总数
+        long exAwards = actiAwardRecord.getAwardNum();//想要兑换的奖品个数
+        if (exAwards < 1) return this.getReturnData(-106, AppConstants.Result.FAILURE);
+        if ((awards - hashExAwards) >= exAwards) {//判断奖品数量是否充足
+            ActiIntegral actiIntegral = actiIntegralService.selectByMid(token.getMid());
+            if (actiIntegral != null) {
+                long nowIntegral = actiIntegral.getNowIntegral();
+                long needIntegral = actiAward.getIntegral();
+                if (nowIntegral >= needIntegral * exAwards) {//比较现存积分与需要的积分值
+                    long usedIntegral = actiIntegral.getUsedIntegral();
+                    nowIntegral = nowIntegral - needIntegral * exAwards;
+                    usedIntegral = usedIntegral + needIntegral * exAwards;
+                    actiIntegral.setNowIntegral(nowIntegral);
+                    actiIntegral.setUsedIntegral(usedIntegral);
+                    int resultAddIntegral = actiIntegralService.updateByPrimaryKey(actiIntegral);
+                    if (resultAddIntegral > 0) {//更新积分成功
+                        int result = actiAwardRecordService.insertSelective(actiAwardRecord);
+                        if (result > 0) {//插入奖品兑换记录表成功
+                            return this.getReturnData(result, AppConstants.Result.FAILURE);
+                        } else {//插入奖品兑换记录表失败
+                            return this.getReturnData(-107, AppConstants.Result.FAILURE);
+                        }
+                    } else {//更新积分失败
+                        return this.getReturnData(-108, AppConstants.Result.FAILURE);
+                    }
+                } else {//积分不足
+                    return this.getReturnData(-109, AppConstants.Result.FAILURE);
+                }
+            } else {//当前人没有积分对象
+                return this.getReturnData(-110, AppConstants.Result.FAILURE);
+            }
+        } else {//奖品不足
+            return this.getReturnData(111, AppConstants.Result.FAILURE);
+        }
+    }
+
+}

@@ -1,0 +1,129 @@
+/*
+ * 文件名：MemberpaymentController.java	 
+ * 时     间：下午2:10:02
+ * 作     者：wangzhen      
+ * 版     权：2014-2022  牵手互动, 公司保留所有权利.
+ * 
+ */
+package com.qs.agent.game.controller;
+
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.agent.game.model.Memberpayment;
+import com.qs.agent.game.service.IMemberpaymentService;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.dtgrid.util.ExportUtils;
+import com.qs.common.exception.SystemException;
+import com.qs.constant.Constant;
+import com.qs.datasource.DataSourceSwitch;
+
+/** 
+ * @ClassName: MemberpaymentController 
+ * @描述: (这里用一句话描述这个类的作用) 
+ * @author qs
+ * @date 2017年6月8日 下午2:10:02 
+ */
+@Controller
+@RequestMapping("/memberpayment/")
+public class MemberpaymentController extends BaseController
+{
+	@Resource
+	private IMemberpaymentService memberpaymentService;
+	@Autowired
+	private RedisTemplate<String,String> redisTemplate; 
+	
+	/**
+	 * 
+	 * @标题: toMemberpaymentUi 
+	 * @描述:  跳转到用户充值统计页面
+	 *
+	 * @参数信息
+	 *    @return
+	 *
+	 * @返回类型 String
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("toMemberpaymentUi.html")
+	public String  toMemberpaymentUi(){
+		return "/WEB-INF/view/agent/memberpayment_list";
+	}
+	/**
+	 * 
+	 * @标题: queryMemberpaymentList 
+	 * @描述:  用户充值统计接口
+	 *
+	 * @参数信息
+	 *    @param gridPager
+	 *    @param response
+	 *    @return
+	 *
+	 * @返回类型 Object
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("queryMemberpaymentList.html")
+	@ResponseBody
+	public Object queryMemberpaymentList(String gridPager,
+			HttpServletResponse response){
+		try
+		{
+			ValueOperations<String, String> valueOper = redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE);
+			String mainDataSourceType = dataSourceName + "AgentDataSource";
+			DataSourceSwitch.setMainDataSourceType(mainDataSourceType);
+			
+			Map<String, Object> parameters = null;
+			// 映射Pager对象
+			Pager pager = JSON.parseObject(gridPager, Pager.class);
+			// 判断是否包含自定义参数
+			parameters = pager.getParameters();
+			parameters.put("dbtable", dataSourceName);
+			
+			// 3、判断是否是导出操作
+			if (pager.getIsExport())
+			{
+				if (pager.getExportAllData())
+				{
+					// 3.1、导出全部数据
+					List<Memberpayment> list = memberpaymentService
+							.queryListByPage(parameters);
+					ExportUtils.exportAll(response, pager, list);
+					return null;
+				} else
+				{
+					// 3.2、导出当前页数据
+					ExportUtils.export(response, pager);
+					return null;
+				}
+			} else
+			{
+				// 设置分页，page里面包含了分页信息
+				Page<Object> page = PageHelper.startPage(pager.getNowPage(),
+						pager.getPageSize());
+				
+				List<Memberpayment> list = memberpaymentService.queryListByPage(parameters);
+				return getReturnPage(pager, page, list);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			throw new SystemException(e);
+		}
+	}
+}
