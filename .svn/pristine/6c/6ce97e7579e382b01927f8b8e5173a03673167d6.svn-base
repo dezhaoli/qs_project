@@ -1,0 +1,54 @@
+define(['app',"layer"],function(app){
+    app.controller('ctrl.address',function($scope,$location,$http,$myService){
+    	var hash =location.href;
+        var url=hash.substring(0,hash.indexOf("/index.html")) 
+        $scope.onEdit=function (){
+        	$(".qs_address_ul").find('input').removeAttr("disabled");
+        }
+        
+        var parma={
+        		"sesskey":"52159-1497001008469-101-66060edf720a1b44e3aef04c5afcd2bb-0-6",
+        		"signCode":$myService.getDate()};
+        parma.sign=$myService.sortObjectKeys(parma);
+        var hash = $location.hash();
+        //用户信息查询
+        $.post(url+"/api/activity/getAddressInfo.do", parma,
+        		function(data){
+        	setInterval(function(){  
+        		$scope.$apply(function(){  
+        				$scope.data=JSON.parse(data).data;
+        		});  
+        	},100);
+        });
+        
+        
+        //修改用户地址信息
+        $scope.updateAddress=function (ids){
+        	var par={
+        			"sesskey":"52159-1497001008469-101-66060edf720a1b44e3aef04c5afcd2bb-0-6",
+            		"signCode":$myService.getDate(),
+        			"id":$("#userid").val(),
+        			"name":$("#name").val(),
+        			"qq":$("#qq").val(),
+        			"wechat":$("#wechat").val(),
+        			"email":$("#email").val(),
+        			"phone":$("#phone").val(),
+        			"address":$("#address").val()
+        	}
+        	par.sign=$myService.sortObjectKeys(par);
+        	$.post(url+"/api/activity/updateAddress.do", par,
+            		function(data){
+        		$scope.data=JSON.parse(data).data;
+        			
+        			layer.msg($scope.data.message, {
+        				icon : 6,
+        				time : 800
+        			});
+        		$(".qs_address_ul").find('input').attr("disabled","disabled");
+            });
+        	
+        	
+        }
+        
+    });
+});

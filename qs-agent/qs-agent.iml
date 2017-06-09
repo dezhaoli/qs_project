@@ -64,7 +64,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.woodstox:stax2-api:3.1.4" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.woodstox:woodstox-core:5.0.3" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.12" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
     <orderEntry type="module" module-name="qs-datasource" />
     <orderEntry type="module" module-name="qs-common" />
@@ -174,7 +173,6 @@
     <orderEntry type="library" name="Maven: me.hao0:common:1.0.9" level="project" />
     <orderEntry type="library" name="Maven: com.github.kevinsawicki:http-request:6.0" level="project" />
     <orderEntry type="library" name="Maven: me.hao0:wepay-core:1.2.4" level="project" />
-    <orderEntry type="library" name="Maven: com.googlecode.xmemcached:xmemcached:2.2.0" level="project" />
     <orderEntry type="library" name="Maven: com.baidu.disconf:disconf-client:2.6.36" level="project" />
     <orderEntry type="library" name="Maven: com.baidu.disconf:disconf-core:2.6.36" level="project" />
     <orderEntry type="library" name="Maven: org.apache.zookeeper:zookeeper:3.3.6" level="project" />
@@ -190,5 +188,7 @@
     <orderEntry type="library" name="Maven: wsdl4j:wsdl4j:1.5.1" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.0.4" level="project" />
     <orderEntry type="library" name="Maven: commons-discovery:commons-discovery:0.2" level="project" />
+    <orderEntry type="library" name="Maven: com.googlecode.xmemcached:xmemcached:1.4.3" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.5" level="project" />
   </component>
 </module>

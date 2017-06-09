@@ -15,4 +15,13 @@ public interface ActiIntegralMapper extends IBaseMapper {
     int updateByPrimaryKeySelective(ActiIntegral record);
 
     int updateByPrimaryKey(ActiIntegral record);
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/8 19:38
+     * @Description:根据mid查询积分对象
+     * @param mid
+     * @return
+     */
+    ActiIntegral selectByMid(Integer mid);
+
 }

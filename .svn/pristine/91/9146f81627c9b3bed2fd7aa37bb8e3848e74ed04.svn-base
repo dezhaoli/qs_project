@@ -1,0 +1,134 @@
+{
+    "award": [
+        {
+            "name": "加多宝",
+            "imgurl": "img/1.jpg",
+            "integrate": 5000,
+            "userscore":200,
+            "state": 1
+        },
+        {
+            "name": "耳坠",
+            "imgurl": "img/2.jpg",
+            "integrate": 20000,
+             "userscore":200,
+            "state": 2
+        },
+        {
+            "name": "水壶",
+            "imgurl": "img/3.jpg",
+            "integrate": 52000,
+            "userscore":200,
+            "state": 3
+        }
+    ],
+    "ranking":[
+        {
+            "name": "misKing",
+            "integrate": 32515982,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs046.jpg"
+        },
+        {
+            "name": "张珊",
+            "integrate": 32515682,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs041.jpg"
+        },
+        {
+            "name": "李四",
+            "integrate": 15792461,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs042.jpg"
+        },
+        {
+            "name": "王二",
+            "integrate": 154854346,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs043.jpg"
+        },
+        {
+            "name": "麻子",
+            "integrate": 8759626,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs044.jpg"
+        },
+        {
+            "name": "赵武",
+            "integrate": 4975872,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs045.jpg"
+        },
+        {
+            "name": "小明",
+            "integrate": 785965,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs046.jpg"
+        },
+        {
+            "name": "小红",
+            "integrate": 7887,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs047.jpg"
+        },
+        {
+            "name": "小样",
+            "integrate": 92456,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs048.jpg"
+        },
+        {
+            "name": "亲吃饭么",
+            "integrate": 1201,
+            "userimg": "http://www.jiaheyx.com/Public/Home/qsimage/qs049.jpg"
+        }
+    ],
+    "converted": [
+        {
+            
+            "shopname": "加多宝",
+            "imgurl": "img/1.jpg",
+            "time": "2017-12-04",
+            "integrate":7854
+        },
+        {
+            "shopname": "水壶",
+            "imgurl": "img/2.jpg",
+            "time": "2017-12-04",
+            "integrate":4514
+        },
+        {
+            "shopname": "耳钉",
+            "imgurl": "img/3.jpg",
+            "time": "2017-12-04",
+            "integrate":13642
+        },{
+            
+            "shopname": "加多宝",
+            "imgurl": "img/1.jpg",
+            "time": "2017-12-04",
+            "integrate":7854
+        },
+        {
+            "shopname": "水壶",
+            "imgurl": "img/2.jpg",
+            "time": "2017-12-04",
+            "integrate":4514
+        },
+        {
+            "shopname": "耳钉",
+            "imgurl": "img/3.jpg",
+            "time": "2017-12-04",
+            "integrate":13642
+        },{
+            
+            "shopname": "加多宝",
+            "imgurl": "img/1.jpg",
+            "time": "2017-12-04",
+            "integrate":7854
+        },
+        {
+            "shopname": "水壶",
+            "imgurl": "img/2.jpg",
+            "time": "2017-12-04",
+            "integrate":4514
+        },
+        {
+            "shopname": "耳钉",
+            "imgurl": "img/3.jpg",
+            "time": "2017-12-04",
+            "integrate":13642
+        }
+    ]
+}
