@@ -27,7 +27,6 @@ import com.qs.webside.agent.service.IAgentMidsServcie;
 import com.qs.webside.agent.service.IMemberAgentService;
 import com.qs.webside.game.model.BaseParam;
 import com.qs.webside.game.service.IBaseParamService;
-import com.qs.webside.member.model.AgentMids;
 import com.qs.webside.member.model.MemberAgents;
 import com.qs.webside.member.model.MemberFides;
 import com.qs.webside.member.model.Members;
@@ -135,8 +134,6 @@ public class MembersController extends BaseController{
             MemberAgents memberAgents = memberAgentService.selectByMid(agentId);
             map.put("memberAgents", memberAgents);
         }
-        AgentMids agentMids = agentMidsServcie.selectByMid(Integer.valueOf(id));//待开房
-        map.put("agentMids", agentMids);
         model.addAttribute("memberFides", map);
         return "WEB-INF/view/web/user/member_userInfo_show";
     }
@@ -505,7 +502,7 @@ public class MembersController extends BaseController{
         int result = memberFidesService.updateByPrimaryKeySelective(memberFides);
         
         //绑定邀请人、发消息给服务器
-        SendMsgToCServer.sendMsgToCServer(mid, 6, bingdingId, goldhost, goldport);
+        SendMsgToCServer.sendMsgToCServer(bingdingId, 6, 1, goldhost, goldport);
         if (result > 0) {
             map.put(CommonContants.SUCCESS, Boolean.TRUE);
             map.put(CommonContants.DATA, null);
@@ -611,45 +608,23 @@ public class MembersController extends BaseController{
             map.put(CommonContants.MESSAGE, CommonContants.OPERATE_FAILURE + ":取消用户不是代理商！");
             return map;
         }
-        int childAgentsCount = memberAgentService.getCountAgentsByParentId(isAgent.getMid());
-        if (childAgentsCount > 0) {
-            map.put(CommonContants.SUCCESS, Boolean.FALSE);
-            map.put(CommonContants.DATA, null);
-            map.put(CommonContants.MESSAGE, CommonContants.OPERATE_FAILURE + ":所取消的代理商还有直属代理商存在不能删除！");
-            return map;
-        }
         /*agentMidsServcie.deleteByMid(mbf.getMid());
         memberInviteService.insertSelective(memberinvite);
         commonAgentsRelationService.insertSelective(commonAR);*/
-        List<MemberFides> memberFidesList = memberFidesService.selectAengtInviteInfo(isAgent.getMid());
-        if (memberFidesList != null && memberFidesList.size() > 0) {
-            for (MemberFides fides : memberFidesList) {
-                fides.setInvite(0);
-                int result = memberFidesService.updateByPrimaryKeySelective(fides);
-                BaseParam baseParam = baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
-                //清除memcache待开房记录
-                if (baseParam !=null ) {
-                    if (!MemcachedUtil.isBlankMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + fides.getMid())) {
-                        MemcachedUtil.deleteMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + fides.getMid());
-                        //删除待开房
-                        agentMidsServcie.deleteByMid(fides.getMid());
-                    }
-                }
-                //取消绑定、发消息给服务器
-                SendMsgToCServer.sendMsgToCServer(fides.getMid(), 6, 0, goldhost, goldport);
-            }
-        }
-        agentMidsServcie.deleteByAgentMid(isAgent.getMid());
+     
+        agentMidsServcie.deleteByMid(isAgent.getMid());
         memberInviteService.deleteBySiteId(isAgent.getSitemid());
         commonAgentsRelationService.deleteByMidAndGameType(isAgent.getMid(),gameType);
         agentClubGroupService.deleteByMid(isAgent.getMid());//删除俱乐部
         agentClubMemberService.deleteByCmid(isAgent.getMid());//删除俱乐部成员表
         int result = memberAgentService.deleteByPrimaryKey(isAgent.getId());
         if (result > 0) {
+        	 
             //发送消息通知C++通知客户端，会员状态身份改变
             if (Integer.parseInt(gameType) >= 20) {
                 SendMsgToCServer.sendMsgToCServer(isAgent.getMid(), 5, 0, goldhost, goldport);
             }
+            
             map.put(CommonContants.SUCCESS, Boolean.TRUE);
             map.put(CommonContants.DATA, null);
             map.put(CommonContants.MESSAGE, CommonContants.OPERATE_SUCCESS + ":成功取消代理！");
