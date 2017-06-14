@@ -8,8 +8,8 @@ var dtGridColumns = [{
         return value ;
     }
 },{
-    id : 'roomid',
-    title : '房间号',
+    id : 'oprenRoom',
+    title : '房间数',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -26,22 +26,23 @@ var dtGridColumns = [{
         return value ;
     }
 },{
-    id : 'pay',
+    id : 'countGold',
     title : '消耗金币房卡',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-        return -value;
+        return value;
     }
 },{
-    id : 'date',
-    title : '日期',
+    id : 'player1',
+    title : '操作',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-        return value ;
+//    	 return value ;
+    	return '<button class="btn btn-primary agent_but" onclick="showSettleDetail(\'' + value + '\')">查看明细</button>';
     }
 }];
 
@@ -100,7 +101,7 @@ function customSearch() {
     grid.parameters['sDate'] = $('#startTime').val();
 	grid.parameters['eDate'] = $('#endTime').val();
     grid.refresh(true);
-    getParam();
+   getParam();
     /*$("#oprenRoom").text('${resultParam.oprenRoom }');
     $("#countGold").text('${resultParam.countGold }');*/
 }

@@ -85,7 +85,58 @@
     <favorites_list name="2017年2月21日213834" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="48">
+              <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="award_list.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/controller/award_list.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/routes.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="18" column="53" lean-forward="true" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -299,6 +350,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -487,7 +541,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-datasource" />
+              <option name="myItemId" value="qs-shop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -501,7 +555,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-datasource" />
+              <option name="myItemId" value="qs-shop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -519,37 +573,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-datasource" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spring" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-datasource" />
+              <option name="myItemId" value="qs-shop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -561,15 +585,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spring" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jxmajiang" />
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -583,7 +599,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-datasource" />
+              <option name="myItemId" value="qs-shop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -595,25 +611,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
+              <option name="myItemId" value="tpls" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -627,47 +629,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
+              <option name="myItemId" value="qs-shop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -679,7 +641,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="webapp" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -693,7 +659,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
+              <option name="myItemId" value="qs-shop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -705,49 +671,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
+              <option name="myItemId" value="webapp" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webside" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webside" />
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -765,7 +693,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-business" />
+              <option name="myItemId" value="qs-shop" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs_project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="qs-shop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -780,20 +730,13 @@
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="org.mvnsearch.intellij.plugin.zookeeper.ui.ZkProjectConfigurable" />
+    <property name="settings.editor.selected.configurable" value="vcs.CVS" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -961,39 +904,29 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\impl\BusinessServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\member\controller\MembersController.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\webside\activity\ActiAwardRecordMapper.xml</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\webside\activity\ActiAwardMapper.xml</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\webside.properties</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\css\common.css</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\converted_list.js</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\ranking_list.js</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\address.js</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\rule.js</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\award_list.js</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\web\rule.html</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\MemberController.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\mapper\ActiAwardMapper.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\service\impl\ActiAwardServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\service\IActiAwardService.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\controller\ActiAwardRecordController.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\controller\ActiAwardController.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberAgentsMapper.xml</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberPayMentMapper.xml</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberagentsMapper.xml</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\datacenter\PlayingMapper.xml</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\datacenter\CreateRoomMapper.xml</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\playing_list.jsp</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\playing_list.js</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\controller\CreateRoomController.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\controller\PlayingController.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\model\UserLoginLog.java</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\agent_roomInfo_list.jsp</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\team_selectVipDirectlyInfoUi_list.js</PATH>
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\webside\agent\controller\UserGoldOriginController.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_award_record_list.jsp</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\cfg\acti\agent_store_form.jsp</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\cfg\acti\store_form.jsp</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\activity\acti_award_record_list.js</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\cfg\acti\controller\AgentStoreController.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\cfg\acti\controller\StoreController.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\activity\controller\ActiAwardRecordController.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\pub\game\DictMapper.xml</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\log\game\MajiangGameRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiSendGoldMapper.xml</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\activity\mapper\ActiSendGoldMapper.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\pub\game\mapper\DictMapper.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\resources\generatorConfig.xml</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\agent_roomInfo_list.jsp</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\agent_roomInfo_list.js</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\webside\agent\controller\AgentRoomController.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\game\service\IMajiangGameRecordService.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\game\service\impl\MajiangGameRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\activity\service\impl\ActiSendGoldServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\activity\service\IActiSendGoldService.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\IDictService.java</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\pub\game\service\impl\DictServiceImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1001,6 +934,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\agent_roomDetail_list.jsp</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\agent_roomInfo_list2.js</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\agent_roomDetail_list.js</PATH>
+          <PATH vcs="svn" revision="2289">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\webside\util\PagesUtil.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1008,7 +945,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="2278">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\data.json</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1883,6 +1819,9 @@
       <workItem from="1497156967421" duration="487000" />
       <workItem from="1497274624521" duration="81000" />
       <workItem from="1497361391272" duration="123000" />
+      <workItem from="1497362250223" duration="278000" />
+      <workItem from="1497363098858" duration="2256000" />
+      <workItem from="1497449470169" duration="476000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -2007,7 +1946,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="246448000" />
+    <option name="totallyTimeSpent" value="249458000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2030,12 +1969,12 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32745314" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32745314" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31196582" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32318377" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2089,249 +2028,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-business/src/main/java/com/qs/webside/business/controller/AgentSettlementController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
-          <caret line="56" column="43" lean-forward="false" selection-start-line="56" selection-start-column="43" selection-end-line="56" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/87fc309e-2504-4db3-b1bf-e39b1e5d3ec4/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/066fd341-2e2a-4b32-9de8-a15bd0714bf1/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/d3d1d377-dae5-45ab-a348-26e21744e1b0/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="17681" column="29" lean-forward="true" selection-start-line="17681" selection-start-column="29" selection-end-line="17681" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-agent/qs-agent.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/log/game/service/impl/MailServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-service/src/main/java/com/qs/log/game/service/IMailService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="18" column="8" lean-forward="false" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-model/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="20" column="24" lean-forward="true" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="26" column="31" lean-forward="false" selection-start-line="26" selection-start-column="31" selection-end-line="26" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="436" column="24" lean-forward="false" selection-start-line="436" selection-start-column="24" selection-end-line="436" selection-end-column="24" />
-        </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="uml://MAVEN/com.qs:qs-web:0.0.1-SNAPSHOT">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>MAVEN</ID>
-          <OriginalElement>com.qs:qs-web:0.0.1-SNAPSHOT</OriginalElement>
-          <nodes>
-            <node x="" y="">com.qs:qs-web:0.0.1-SNAPSHOT</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/com.qs:qs-mapper:jar:0.0.1-SNAPSHOT</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/cn.com.riversoft:weixin-common:jar:0.9.4</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/org.apache.httpcomponents:httpclient:jar:4.5</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/org.apache.httpcomponents:httpclient:jar:4.5/org.apache.httpcomponents:httpcore:jar:4.4.1</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/org.apache.httpcomponents:httpclient:jar:4.5/commons-codec:commons-codec:jar:1.9</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:fluent-hc:jar:4.5/commons-logging:commons-logging:jar:1.2</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.apache.httpcomponents:httpmime:jar:4.5</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.google.guava:guava:jar:18.0</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-databind:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-databind:jar:2.8.6/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.0</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-databind:jar:2.8.6/com.fasterxml.jackson.core:jackson-core:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/com.fasterxml.jackson.module:jackson-module-jaxb-annotations:jar:2.8.6/com.fasterxml.jackson.core:jackson-annotations:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.jackson.dataformat:jackson-dataformat-xml:jar:2.8.6/org.codehaus.woodstox:stax2-api:jar:3.1.4</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/com.fasterxml.woodstox:woodstox-core:jar:5.0.3</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/commons-io:commons-io:jar:2.4</node>
-            <node x="" y="">com.qs:qs-service:jar:0.0.1-SNAPSHOT/cn.com.riversoft:weixin-open:jar:0.9.4/org.slf4j:slf4j-api:jar:1.7.12</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.slf4j:slf4j-api:jar:1.7.21</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.slf4j:jul-to-slf4j:jar:1.7.21</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.slf4j:jul-to-slf4j:jar:1.7.21/org.slf4j:slf4j-api:jar:1.7.12</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/ch.qos.logback:logback-core:jar:1.1.7</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/ch.qos.logback:logback-classic:jar:1.1.7</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.logback-extensions:logback-ext-spring:jar:0.1.4</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.logback-extensions:logback-ext-spring:jar:0.1.4/ch.qos.logback:logback-classic:jar:1.1.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.commons:commons-lang3:jar:3.4</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.commons:commons-pool2:jar:2.4.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-core:jar:1.3.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-core:jar:1.3.2/org.slf4j:slf4j-api:jar:1.6.4</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-ehcache:jar:1.3.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-ehcache:jar:1.3.2/net.sf.ehcache:ehcache-core:jar:2.5.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-web:jar:1.3.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-spring:jar:1.3.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-quartz:jar:1.3.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-cas:jar:1.3.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.shiro:shiro-cas:jar:1.3.2/org.jasig.cas.client:cas-client-core:jar:3.2.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/redis.clients:jedis:jar:2.8.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/redis.clients:jedis:jar:2.8.0/org.apache.commons:commons-pool2:jar:2.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.quartz-scheduler:quartz:jar:2.2.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.quartz-scheduler:quartz:jar:2.2.3/org.slf4j:slf4j-api:jar:1.7.7</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.quartz-scheduler:quartz-jobs:jar:2.2.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-web:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-aop:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-beans:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-core:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-tx:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-expression:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-context:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-context-support:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-test:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-orm:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-orm:jar:4.3.0.RELEASE/org.springframework:spring-jdbc:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-aspects:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-aspects:jar:4.3.0.RELEASE/org.aspectj:aspectjweaver:jar:1.8.9</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-webmvc:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-jms:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-jms:jar:4.3.0.RELEASE/org.springframework:spring-messaging:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework:spring-oxm:jar:4.3.0.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.aspectj:aspectjweaver:jar:1.8.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.aspectj:aspectjrt:jar:1.8.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/asm:asm:jar:3.3.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/aopalliance:aopalliance:jar:1.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis:mybatis-spring:jar:1.3.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis:mybatis:jar:3.4.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis.caches:mybatis-ehcache:jar:1.0.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.mybatis.caches:mybatis-ehcache:jar:1.0.3/net.sf.ehcache:ehcache-core:jar:2.6.8</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.pagehelper:pagehelper:jar:4.1.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.pagehelper:pagehelper:jar:4.1.0/com.github.jsqlparser:jsqlparser:jar:0.9.4</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sf.ehcache:ehcache-core:jar:2.6.11</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sf.ehcache:ehcache-core:jar:2.6.11/org.slf4j:slf4j-api:jar:1.6.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/mysql:mysql-connector-java:jar:5.1.39</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:druid:jar:1.0.15</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:druid:jar:1.0.15/com.alibaba:jconsole:jar:1.8.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:druid:jar:1.0.15/com.alibaba:tools:jar:1.8.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.alibaba:fastjson:jar:1.2.24</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/jstl:jstl:jar:1.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/taglibs:standard:jar:1.1.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-beanutils:commons-beanutils:jar:1.8.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-fileupload:commons-fileupload:jar:1.3.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-fileupload:commons-fileupload:jar:1.3.1/commons-io:commons-io:jar:2.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/commons-collections:commons-collections:jar:3.2.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/org.jodd:jodd-core:jar:3.8.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/javax.mail:javax.mail-api:jar:1.5.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/com.sun.mail:javax.mail:jar:1.5.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.jodd:jodd-mail:jar:3.8.0/com.sun.mail:javax.mail:jar:1.5.6/javax.activation:activation:jar:1.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.axet:kaptcha:jar:0.0.9</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.axet:kaptcha:jar:0.0.9/com.jhlabs:filters:jar:2.0.235</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-core:jar:0.2-incubating</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.sirona:sirona-plugins-api:jar:0.2-incubating</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.commons:commons-lang3:jar:3.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.velocity:velocity:jar:1.7</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.velocity:velocity:jar:1.7/commons-collections:commons-collections:jar:3.2.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-reporting:jar:classes:0.2-incubating/org.apache.velocity:velocity:jar:1.7/commons-lang:commons-lang:jar:2.4</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-web:jar:0.2-incubating</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-web:jar:0.2-incubating/org.apache.sirona:sirona-aop:jar:0.2-incubating</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.apache.sirona:sirona-web:jar:0.2-incubating/org.apache.sirona:sirona-aop:jar:0.2-incubating/org.apache.commons:commons-proxy:jar:1.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/io.reactivex:rxjava:jar:1.1.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sourceforge.jexcelapi:jxl:jar:2.6.12</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/net.sourceforge.jexcelapi:jxl:jar:2.6.12/log4j:log4j:jar:1.2.14</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.itextpdf:itextpdf:jar:5.5.10</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.itextpdf:itext-asian:jar:5.2.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.flywaydb:flyway-core:jar:4.0.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/joda-time:joda-time:jar:2.9.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/javax.inject:javax.inject:jar:1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-context:jar:4.1.7.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-context-support:jar:4.1.7.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-aop:jar:4.1.7.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-tx:jar:4.1.7.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/org.springframework.data:spring-data-redis:jar:1.6.1.RELEASE/org.springframework:spring-core:jar:4.1.7.RELEASE</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/dom4j:dom4j:jar:1.6.1</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/dom4j:dom4j:jar:1.6.1/xml-apis:xml-apis:jar:1.0.b2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.alibaba:fastjson:jar:1.2.7</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/org.apache.httpcomponents:httpclient:jar:4.3.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/org.apache.httpcomponents:httpmime:jar:4.3.6</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.sun.xml.bind:jaxb-impl:jar:2.1.12</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/org.slf4j:slf4j-api:jar:1.7.19</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.vdurmont:emoji-java:jar:3.1.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.github.liyiorg:weixin-popular:jar:2.8.6/com.vdurmont:emoji-java:jar:3.1.3/org.json:json:jar:20140107</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.foxinmy:weixin4j-base:jar:1.7.4</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.foxinmy:weixin4j-base:jar:1.7.4/com.alibaba:fastjson:jar:1.2.3</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:alipay-api:jar:1.3.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9/com.github.kevinsawicki:http-request:jar:6.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9/com.fasterxml.jackson.core:jackson-databind:jar:2.4.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:alipay-core:jar:1.3.0/me.hao0:common:jar:1.0.9/joda-time:joda-time:jar:2.8.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:wepay-core:jar:1.2.4</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/me.hao0:wepay-core:jar:1.2.4/me.hao0:common:jar:1.1.2</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.googlecode.xmemcached:xmemcached:jar:2.2.0</node>
-            <node x="" y="">com.qs:qs-side:jar:0.0.1-SNAPSHOT/com.qs:qs-model:jar:0.0.1-SNAPSHOT/com.qs:qs-common:jar:0.0.1-SNAPSHOT/com.googlecode.xmemcached:xmemcached:jar:2.2.0/org.slf4j:slf4j-api:jar:1.7.5</node>
-            <node x="" y="">junit:junit:jar:4.12</node>
-            <node x="" y="">junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3</node>
-            <node x="" y="">javax.servlet:servlet-api:jar:2.5</node>
-            <node x="" y="">javax.servlet.jsp:jsp-api:jar:2.1</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="0.9" x="1472.0" y="4381.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-          <VISIBILITY>All</VISIBILITY>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/java/com/qs/log/game/controller/MailController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -2461,23 +2157,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1128">
           <caret line="59" column="35" lean-forward="false" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="103" column="42" lean-forward="true" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/redis.properties">
@@ -2488,13 +2184,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="75" column="5" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -2597,7 +2293,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="70" column="37" lean-forward="false" selection-start-line="70" selection-start-column="37" selection-end-line="70" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2612,6 +2307,90 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
           <caret line="39" column="58" lean-forward="false" selection-start-line="39" selection-start-column="58" selection-end-line="39" selection-end-column="58" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-job.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-redis.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-668">
+          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/lib/angular-1.3.0.14/angular.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/lib/angular-1.3.0.14/angular-ui-router.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/controller/address.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="48">
+          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/lib/angular-1.3.0.14/angular.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="9626" column="2" lean-forward="false" selection-start-line="9626" selection-start-column="2" selection-end-line="9626" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/controller/award_list.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" column="3" lean-forward="false" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="50" lean-forward="false" selection-start-line="6" selection-start-column="50" selection-end-line="6" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="13" lean-forward="false" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/js/routes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="18" column="53" lean-forward="true" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
+          <folding />
         </state>
       </provider>
     </entry>
