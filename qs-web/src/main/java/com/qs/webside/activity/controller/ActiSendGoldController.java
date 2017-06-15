@@ -1,0 +1,86 @@
+package com.qs.webside.activity.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.Constants;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.util.PageUtil;
+import com.qs.pub.game.model.Dict;
+import com.qs.pub.game.service.IDictService;
+import com.qs.webside.activity.model.ActiSendGold;
+import com.qs.webside.activity.service.IActiSendGoldService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/6/15 11:15.
+ * Description:活动中心发放金币
+ */
+@Controller
+@RequestMapping(value = "/actiSendGold/")
+public class ActiSendGoldController extends BaseController {
+
+    @Resource
+    private IActiSendGoldService actiSendGoldService;
+
+    @Resource
+    private IDictService dictService;
+
+    @RequestMapping(value = "listUi.html", method = RequestMethod.GET)
+    public String listUi(Model model, HttpServletRequest request) {
+        PageUtil page = super.getPage(request);
+        List<Dict> activityList = dictService.findDictList(Constants.Dict.ACTIVITY_ID);//活动类型选择
+        model.addAttribute("activityList", activityList);
+        String activityListJson = JSON.toJSONString(activityList);
+        model.addAttribute("activityListJson", activityListJson);
+        model.addAttribute("page", page);
+        return "/WEB-INF/view/web/activity/acti_sendGold_list";
+    }
+
+
+    @RequestMapping("list.html")
+    @ResponseBody
+    public Object list(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            //parameters.put("site", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<ActiSendGold> list = actiSendGoldService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/15 11:47
+     * @Description:获取条件筛选的发放金币总额
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("querySumSendGoldByCondition.html")
+    @ResponseBody
+    public Object querySumSendGoldByCondition(String endTime,String startTime,String mid,String type) throws Exception {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("endTime", endTime);
+        parameters.put("startTime", startTime);
+        parameters.put("mid", mid);
+        parameters.put("type", type);
+        return actiSendGoldService.querySumSendGoldByCondition(parameters);
+    }
+
+}
