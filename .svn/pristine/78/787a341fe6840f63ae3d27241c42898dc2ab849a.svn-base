@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.sys.mapper.GroupCompanyMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.sys.model.GroupCompany" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="selected" property="selected"  />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="user_group_name" property="userGroupName" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, company_id, group_id, create_time
+  </sql>
+  
+   <select id="queryGroupList" resultMap="BaseResultMap" parameterType="map" >
+    SELECT
+	s1.id,
+	null parent_id,
+	s1.user_group_name,
+	CASE
+	WHEN c.group_id IS NULL THEN
+		FALSE
+	ELSE
+		TRUE
+	END AS selected
+	FROM
+		sys_group s1
+	LEFT JOIN sys_group_company c ON s1.id = c.group_id
+	AND c.company_id =${companyId}
+  </select>
+  
+  <select id="selectByCompanyId" resultType="int" parameterType="java.lang.Integer" >
+    select 
+    count(*)
+    from sys_group_company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByCompanyId" parameterType="java.lang.Integer" >
+    delete from sys_group_company
+    where company_id = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <insert id="addCompanyBatch" parameterType="map" >
+    insert into sys_group_company (company_id,
+      group_id, create_time)
+    values 
+    <foreach collection="resourceIds" item ="groupId" separator=",">
+    	(#{companyId,jdbcType=INTEGER},
+     	 #{groupId}, now())
+      </foreach>
+  </insert>
+  
+</mapper>
