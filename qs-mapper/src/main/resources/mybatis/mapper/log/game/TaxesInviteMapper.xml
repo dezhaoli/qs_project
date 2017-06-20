@@ -127,6 +127,21 @@
     GROUP BY b.mid
   </select>
 
+    <!-- 根据时间段获取代理商团队的充值统计——专门给江西麻将 -->
+    <select id="getAgentTeamPayChangeCountByDateForJx" parameterType="map" resultType="map">
+        SELECT SUM(a.paytotal - a.selftotal) AS totalpay,b.*
+        FROM taxes_invite a <!-- log -->
+        RIGHT JOIN (SELECT mid,<!-- c.realname, -->realname,alevel
+        FROM ${memberagents} d
+        <!--   left join ${common_agents_info} as c
+             ON d.sitemid=c.sitemid -->
+        WHERE belongid = #{belongid}) b
+        ON a.mid=b.mid
+        WHERE a.date between #{starDate}
+        AND date_add(#{endDate},interval 1 day)
+        GROUP BY b.mid
+    </select>
+
   <select id="getAgentUnderBusinessChangeCountByDate" parameterType="map" resultType="double">
       SELECT SUM(paytotal) AS allpay
       FROM taxes_invite a

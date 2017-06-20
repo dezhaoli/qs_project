@@ -16,8 +16,21 @@ public class Group {
     private String icon;
     
     private Boolean selected;
+    
+    private String gameType;
+    
 
-    public Integer getParentId()
+    public String getGameType()
+	{
+		return gameType;
+	}
+
+	public void setGameType(String gameType)
+	{
+		this.gameType = gameType;
+	}
+
+	public Integer getParentId()
 	{
 		return parentId;
 	}

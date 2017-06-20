@@ -1,8 +1,10 @@
 define(['app',"layer"],function(app){
-    app.controller('ctrl.index',function($scope,$location,$http,$myService,$state,$timeout,$window ){
+    app.controller('ctrl.index',function($scope,$location,$http,$myService,$state,$timeout,$window,$state ){
     	
     	var hash =location.href;
         var url=hash.substring(0,hash.indexOf("/index.html")); 
+        $(".qs_ul li").children("a").removeClass("cli_hover");
+        $(".qs_ul li").children("a").eq(0).addClass("cli_hover");
         
         var parma={
         		"sesskey":sessionStorage.sesskey,
@@ -12,9 +14,17 @@ define(['app',"layer"],function(app){
         $scope.getuserinfo=function (){
         	$.post(url+"/api/actiIntegral/getRankingByUserMid.do", parma,
         			function(data){
-        		$timeout(function(){  
-        				$scope.user=JSON.parse(data).data;
-        		},100);
+                	var result=JSON.parse(data);
+                	if (result.svflag==1){
+                		$timeout(function(){  
+            				$scope.user=JSON.parse(data).data;
+                		},100);
+                	}else {
+                		console.log(data);
+                		window.datas=result;
+                		$state.go('errormsg');
+                	}
+        		
         	});
         }
       //用户信息查询
@@ -22,11 +32,16 @@ define(['app',"layer"],function(app){
         	
         	$.post(url+"/api/actiAward/getCommodityList.do", parma,
         			function(data){
-        		if (data.svflag!=3){
+        		var result=JSON.parse(data);
+            	if (result.svflag==1){
         			$timeout(function(){  
         					$scope.data=JSON.parse(data).data;
         			},500);
-        		}
+            	}else {
+            		console.log(data);
+            		window.datas=result;
+            		$state.go('errormsg');
+            	}
         	});
         }
         $scope.getuserinfo();
@@ -43,7 +58,8 @@ define(['app',"layer"],function(app){
         	$.post(url+"/api/actiAwardRecord/exchangePrizes.do", par,
             		function(data){
         		
-            	if (data.svflag!=3){
+        		var result=JSON.parse(data);
+            	if (result.svflag==1){
             		$timeout(function(){  
             				$scope.datas=JSON.parse(data).data;
             				if($scope.datas==-104) {
@@ -58,6 +74,10 @@ define(['app',"layer"],function(app){
             					return;
             				}
             		},500);
+            	}else {
+            		console.log(data);
+            		window.datas=result;
+            		$state.go('errormsg');
             	}
             });
         }

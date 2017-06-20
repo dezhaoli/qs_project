@@ -49,6 +49,13 @@ public interface TaxesInviteMapper extends IBaseMapper {
     List<Map<String, Object>> getAgentTeamPayChangeCountByDate(Map<String, Object> parameters);
 
     /**
+     *  根据时间段获取代理商团队的充值统计--专门给江西麻将
+     * @param parameters
+     * @return
+     */
+    List<Map<String, Object>> getAgentTeamPayChangeCountByDateForJx(Map<String, Object> parameters);
+
+    /**
      *  根据时间段获取商务下的代理商所有的充值统计
      * @param parameters
      * @return

@@ -51,7 +51,7 @@ public interface ITaxesInviteService {
      * @param parameters
      * @return
      */
-    List<Map<String, Object>> getAgentTeamPayChangeCountByDate(Map<String, Object> parameters,String dbName);
+    List<Map<String, Object>> getAgentTeamPayChangeCountByDate(Map<String, Object> parameters,String dbName,Integer gameType);
 
     /**
      *  根据时间段获取商务下的代理商所有的充值统计
@@ -65,7 +65,7 @@ public interface ITaxesInviteService {
      * @param parameters
      * @return
      */
-    List<Map<String, Object>> agentTeamRechargeStatistics(Map<String, Object> parameters,String dbName);
+    List<Map<String, Object>> agentTeamRechargeStatistics(Map<String, Object> parameters,String dbName,Integer gameType);
 
     /**
      * 根据时间一段时间获取代理商的明细充值

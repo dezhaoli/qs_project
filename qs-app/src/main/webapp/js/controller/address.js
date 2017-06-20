@@ -1,5 +1,7 @@
 define(['app',"layer"],function(app){
-    app.controller('ctrl.address',function($scope,$location,$http,$myService,$timeout){
+    app.controller('ctrl.address',function($scope,$location,$http,$myService,$timeout,$state){
+    	$(".qs_ul li").children("a").removeClass("cli_hover");
+        $(".qs_ul li").children("a").eq(4).addClass("cli_hover");
     	var hash =location.href;
         var url=hash.substring(0,hash.indexOf("/index.html")); 
         $scope.onEdit=function (){
@@ -14,9 +16,16 @@ define(['app',"layer"],function(app){
         //用户信息查询
         $.post(url+"/api/activity/getAddressInfo.do", parma,
         		function(data){
-        	$timeout(function(){  
-        				$scope.data=JSON.parse(data).data;
-        	},100);
+        	var result=JSON.parse(data);
+        	if (result.svflag==1){
+        		$timeout(function(){  
+        			$scope.data=JSON.parse(data).data;
+        		},100);
+        	}else {
+        		console.log(data);
+        		window.datas=result;
+        		$state.go('errormsg');
+        	}
         });
         
         
@@ -52,13 +61,23 @@ define(['app',"layer"],function(app){
         	par.sign=$myService.sortObjectKeys(par);
         	$.post(url+"/api/activity/updateAddress.do", par,
             		function(data){
-        		$scope.data=JSON.parse(data).data;
-        			
-        			layer.msg($scope.data.message, {
-        				icon : 6,
-        				time : 800
-        			});
-        		$(".qs_address_ul").find('input').attr("disabled","disabled");
+        		var result=JSON.parse(data);
+            	if (result.svflag==1){
+            		
+	        		$scope.data=JSON.parse(data).data;
+	        			layer.msg($scope.data.message, {
+	        				icon : 6,
+	        				time : 800
+	        			});
+	        		$(".qs_address_ul").find('input').attr("disabled","disabled");
+	        		$timeout(function(){
+	        			$state.go('index');
+	        		},1000);
+	            	}else {
+	            		console.log(data);
+	            		window.datas=result;
+	            		$state.go('errormsg');
+	            	}
             });
         	
         	

@@ -6,12 +6,13 @@
     <id column="parent_id" property="parentId" jdbcType="INTEGER" />
     <id column="selected" property="selected" />
     
+    <result column="game_type" property="gameType" jdbcType="VARCHAR" />
     <result column="user_group_name" property="userGroupName" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_group_name, create_time, update_time
+    id, user_group_name, create_time, update_time,game_type
   </sql>
   
   
@@ -30,7 +31,26 @@
   <select id="queryListByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from sys_group
+    from sys_group s
+    <where>
+	    <if test="userGroupName != null and userGroupName != ''">
+	    	and s.user_group_name like CONCAT('%',#{userGroupName},'%')
+	    </if>
+    </where>
+  </select>
+  
+  <select id="queryListGroupPrivilege" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    r.*
+    from sys_group r
+	    <if test="ifLeader == 1">
+	    	inner join sys_group_leader g on r.id = g.group_id 
+			inner join tb_user u on g.user_id=u.u_id 
+			where u.u_id = #{id}
+	    </if>
+	    <if test="ifBusiness == 1">
+	    	where 1=2
+	    </if>
   </select>
   
   <select id="queryUserGroupList" resultMap="BaseResultMap" parameterType="map" >
@@ -55,15 +75,16 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.qs.pub.sys.model.Group" >
-    insert into sys_group (user_group_name, create_time, 
+    insert into sys_group (user_group_name,game_type, create_time, 
       update_time)
-    values (#{userGroupName,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+    values (#{userGroupName,jdbcType=VARCHAR},#{gameType,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
       #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   
   <update id="updateByPrimaryKey" parameterType="com.qs.pub.sys.model.Group" >
     update sys_group
     set user_group_name = #{userGroupName,jdbcType=VARCHAR},
+      game_type = #{gameType,jdbcType=VARCHAR},
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

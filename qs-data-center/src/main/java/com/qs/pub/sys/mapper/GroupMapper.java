@@ -22,4 +22,6 @@ public interface GroupMapper extends IBaseMapper {
 	Group findByName(String groupName);
 
 	List<Group> queryUserGroupList(Map<String, Object> parameter);
+
+	List<Group> queryListGroupPrivilege(Map<String, Object> parameters);
 }

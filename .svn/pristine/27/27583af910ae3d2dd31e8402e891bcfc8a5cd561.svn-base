@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteWeekMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteWeek" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="rebatetotal" property="rebatetotal" jdbcType="DECIMAL" />
+    <result column="bindpeople" property="bindpeople" jdbcType="SMALLINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="taxrate" property="taxrate" jdbcType="DECIMAL" />
+    <result column="isaward" property="isaward" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="getWeekCountGrade" resultType="map" parameterType="map">
+    select B.grade ,COUNT(B.grade ) counts from ( 
+	select 
+	( 
+	case  
+	when A.paytotal &lt;700  then 1 
+	when A.paytotal &gt;=700 and  A.paytotal &lt;1400 then 2 
+	when A.paytotal &gt;=1400 and  A.paytotal &lt; 2100 then 3 
+	when A.paytotal &gt;=2800 and  A.paytotal &lt; 3500 then 4 
+	when A.paytotal &gt;=3500  then 5   end 
+	) grade from taxes_invite_week A inner join ${dbTable}.memberagents m on m.mid=A.mid  inner join ${gameType}.memberbusiness e on e.id=m.belongid
+	<if test="belongid != null and belongid != ''">
+		and e.id=#{belongid}
+	</if>
+	<where>
+		<if test="grade != null and grade != ''">
+			<if test="grade == 1">
+				and A.paytotal &lt;=700
+			</if>
+			<if test="grade == 2">
+				and A.paytotal &gt;=700 and  A.paytotal &lt;1400
+			</if>
+			<if test="grade == 3">
+				and A.paytotal &gt;=1400 and  A.paytotal &lt; 2100
+			</if>
+			<if test="grade == 4">
+				and A.paytotal &gt;=2800 and  A.paytotal &lt; 3500
+			</if>
+			<if test="grade == 5">
+				and A.paytotal &gt;=3500
+			</if>
+		</if>
+		
+		<if test="ifLeader == 1">
+			and e.id in 
+			<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+		    ${id}  
+		    </foreach> 
+		</if>
+		
+		
+	<if test="ifBusiness == 1">
+		and e.id = #{businessId,jdbcType=INTEGER}
+	</if>
+	<if test="groupId != null and groupId != ''">
+		and e.id in 
+		<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+	    ${id}  
+	    </foreach> 
+	</if>
+	<if test="businessId != null and businessId != ''">
+		and e.id = #{businessId}
+	</if>
+	 and A.date=#{eDate}	 
+	</where> ) B  GROUP BY B.grade  ORDER BY B.grade
+  </select>
+  <select id="getWeekCountGradeList" resultType="map" parameterType="map">
+    select dat.id,dat.name,sum(dat.paytotal) paytotal,count(dat.grade) total, dat.grade,dat.date from 
+    (
+    select e.id,e.name,DATE_FORMAT(A.date, '%Y-%m-%d') date,A.paytotal, 
+	( 
+	case  
+	when A.paytotal &lt;700  then 1 
+	when A.paytotal &gt;=700 and  A.paytotal &lt;1400 then 2 
+	when A.paytotal &gt;=1400 and  A.paytotal &lt; 2100 then 3 
+	when A.paytotal &gt;=2800 and  A.paytotal &lt; 3500 then 4 
+	when A.paytotal &gt;=3500  then 5   end 
+	) grade from taxes_invite_week A inner join ${dbTable}.memberagents m on m.mid=A.mid  inner join ${gameType}.memberbusiness e on e.id=m.belongid 
+	<where> 
+	<if test="ifLeader == 1">
+		and e.id in 
+		<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+	    ${id}  
+	    </foreach> 
+	</if>
+	<if test="ifBusiness == 1">
+		and e.id = #{businessId,jdbcType=INTEGER}
+	</if>
+	<if test="groupId != null and groupId != ''">
+		and e.id in 
+		<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+	    ${id}  
+	    </foreach> 
+	</if>
+	<if test="businessId != null and businessId != ''">
+		and e.id = #{businessId}
+	</if>
+	and A.date=#{eDate} 
+	</where>
+	) dat group by dat.id,dat.grade 
+	order by dat.id,dat.grade desc
+  </select>
+  <select id="getWeekCountGradeSecondList" resultType="map" parameterType="map">
+    select A.mid,m.realname,e.name,DATE_FORMAT(A.date, '%Y-%m-%d') date,A.paytotal, 
+	( 
+	case  
+	when A.paytotal &lt;=3500  then 1 
+	when A.paytotal &gt;=3501 and  A.paytotal &lt;7000 then 2 
+	when A.paytotal &gt;=7000 and  A.paytotal &lt; 10000 then 3 
+	when A.paytotal &gt;=10000 and  A.paytotal &lt; 20000 then 4 
+	when A.paytotal &gt;=20000  then 5   end  
+	) grade from taxes_invite_week A inner join ${dbTable}.memberagents m on m.mid=A.mid  inner join ${gameType}.memberbusiness e on e.id=m.belongid 
+	and e.id=#{belongid} 
+	<where>
+		and A.date=#{eDate}
+		<if test="grade != null and grade != ''">
+			<if test="grade == 1">
+				and A.paytotal &lt;=3500
+			</if>
+			<if test="grade == 2">
+				and A.paytotal &gt;=3501 and  A.paytotal &lt;7000
+			</if>
+			<if test="grade == 3">
+				and A.paytotal &gt;=7000 and  A.paytotal &lt; 10000
+			</if>
+			<if test="grade == 4">
+				and A.paytotal &gt;=10000 and  A.paytotal &lt; 20000
+			</if>
+			<if test="grade == 5">
+				and A.paytotal &gt;=20000
+			</if>
+		</if> 
+	</where>
+	order by A.paytotal desc
+  </select>
+</mapper>

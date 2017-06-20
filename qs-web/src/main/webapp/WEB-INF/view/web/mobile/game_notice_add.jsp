@@ -3,6 +3,22 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
+<script>
+    jeDate({
+        dateCell:"#stime",//isinitVal:true,
+        format:"YYYY-MM-DD hh:mm:ss",
+        isinitVal:true,
+        isTime:true, //isClear:false,
+        minDate:"2014-09-19 00:00:00"
+    });
+    jeDate({
+        dateCell : '#etime',
+        format:"YYYY-MM-DD hh:mm:ss",
+        isinitVal:true,
+        isTime:true, //isClear:false,
+        minDate:"2014-09-19 00:00:00"
+    });
+</script>
 <link rel="stylesheet" href="${ctx }/resources/js/cronGen/cronGen.css"/>
 <script type="text/javascript" src="${ctx }/resources/js/cronGen/cronGen.min.js"></script>
 
@@ -349,7 +365,7 @@ $(function () {
 </script>
 
 
-<script>
+<%--<script>
     $(function () {
         jeDate({
             dateCell: '#stime',
@@ -368,7 +384,7 @@ $(function () {
             maxDate: '2050-06-01 00:00' //最大日期
         });
     });
-</script>
+</script>--%>
 
 <script>
 function titleValidate(_val){

@@ -1,0 +1,277 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<c:set var="ctx" value="${pageContext.request.contextPath }"/>
+<script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
+<div class="page-content">
+    <div class="controls controls-row">
+        <div class="form-horizontal" role="form">
+            <div class="form-group">
+<!--                 <label class="control-label col-sm-1 no-padding-right">年份</label> -->
+				<div class="col-sm-3">
+					<div class="clearfix">
+						<select class="form-control" name="seacrhVersionKeySite"
+							id="searchYear">
+							<option selected="selected">请选择年份</option>
+							<c:forEach items="${years}" var="y">
+								<option value="${y}">${y}</option>
+							</c:forEach>
+						</select>
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="input-group" style="width: 100%;">
+						<select class="form-control" name="seacrhVersionKeySite"
+							id="searchDate">
+							<option selected="selected">请选择日期</option>
+						</select> 
+						<span class="input-group-btn">
+							<button id="btnSearch" class="btn btn-primary btn-sm"
+								type="button">
+								<i class="fa fa-search"></i>查询
+							</button>
+						</span>
+					</div>
+				</div>
+				
+			</div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:5px;">
+        <div class="col-xs-12 widget-container-col ui-sortable"
+             style="min-height: 127px;">
+            <!-- #section:custom/widget-box.options.transparent -->
+            <div class="widget-box transparent ui-sortable-handle"
+                 style="opacity: 1; z-index: 0;">
+                <div class="widget-header">
+                    <h4 class="widget-title lighter">代理商周信息统计</h4>
+                    <div class="widget-toolbar no-border">
+                        <a href="#" data-action="fullscreen" class="orange2">
+                            <i class="ace-icon fa fa-arrows-alt"></i>
+                        </a>
+                        <a href="#" data-action="collapse" class="green">
+                            <i class="ace-icon fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+					<table class="table table-condensed table-hover">
+			                <thead>
+			                <tr>
+			                    <th></th>
+			                    <th>充值<br>总额</th>
+			                    <th>结算<br>总额</th>
+			                    <th>操作</th>
+			                </tr>
+			                </thead>
+			                <tbody>
+			                <tr>
+			                    <td>直属会员</td>
+			                    <td class="teamInfo00">${data.teamInfo00}</td>
+			                    <td class="teamInfo01">${data.teamInfo01}</td>
+			                    <td><button class="btn-default table-btn　agent_all"  onclick="showSettleDetail(1)"  style="      margin-bottom: 3px;font-size: 14px;height: 30px;padding: 2px 12px !important;　border: 0px solid;border-radius: 5px !important;color: #fff">明细</button></td>
+			                </tr>
+			                <tr>
+			                    <td>二级团队</td>
+			                    <td class="teamInfo10">${data.teamInfo10}</td>
+			                    <td class="teamInfo11">${data.teamInfo11}</td>
+			                    <td><button class="btn-default table-btn　agent_all" onclick="showSettleDetail(2)"  style="     margin-bottom: 3px;border-radius: 5px !important; font-size: 14px;height: 30px;padding: 2px 11px !important;color: #fff">明细</button></td>
+			                </tr>
+			         <c:choose>
+					<c:when test="${gameType <20}">
+			                <tr>
+			                    <td>三级团队</td>
+			                    <td class="teamInfo20">${data.teamInfo20}</td>
+			                    <td class="teamInfo21">${data.teamInfo21}</td>
+			                    <td><button class="btn-default table-btn　agent_all" onclick="showSettleDetail(3)"  style="     margin-bottom: 3px;border-radius: 5px !important; font-size: 14px;height: 30px;padding: 2px 11px !important;color: #fff">明细</button></td>
+			                </tr>
+					
+			          </c:when> 
+						<c:otherwise> 
+				<!--   江西麻将文字说明 -->
+			     
+			       </c:otherwise> 
+					</c:choose> 
+			                <tr>
+			                    <td>总计</td>
+			                    <td class="paytotal">${data.paytotal}</td>
+			                    <td class="rebateTotal">${data.rebateTotal}</td>
+			                    <td>----</td>
+			                </tr>
+			                <tr>
+			                    <td>实际发放</td>
+			                    <td>----</td>
+			                    <td class="rebateTotal2">${data.rebateTotal }</td>
+			                    <td>
+			                    <c:if test="${data.result.isaward ==0 }">
+			                        <span class="text-danger">未审核</span>
+			                    </c:if>
+			                    <c:if test="${data.result.isaward ==1 }">
+			                        <span class="text-danger">已审核</span>
+			                    </c:if>
+			                     <c:if test="${data.result.isaward ==2 }">
+			                        <span class="text-danger">已发放</span>
+			                    </c:if>
+			                    </td>
+			                </tr>
+			                </tbody>
+            </table>
+            <c:choose>
+				<c:when test="${gameType <20}">
+	                 <div class="well">
+				            提示：<br>
+				            1、直属会员：当直属会员产生充值后，分成比例为40%<br>
+				            2、当代理商邀请人数没有达到15人，不享受本周的二、三级代理分成，如第二周邀请人数达到15人，第一周的二三级提成将无法领取。<br>
+				            3、前三个月均不代扣代理商个人所得税。超过三个月后，且每周总推广费用在1000元以上的代理，按4%代扣个人所得税，1000元以下者免扣。<br>
+				            4、每周一和周二统计，周三至周五发放提成，例如：提成＞1 到发放日期会自动发至微信钱包中<br>
+				            5、广东麻将增设代理月奖，以月为一时间单位，当代理直属玩家总充值消费额达到15000-29999元时可获得统计额的5%做为佣金奖励，达到30000元及以上时可获得统计额的10%做为佣金奖励。<br>
+				            <%-- 1、直属会员：3500元以下，分成比例 ${rouleParam.lowScale} %， 达到3500元以上7000元以下，分成比例 ${rouleParam.middleScale}%， 
+				            7000元以上，分成比例  ${rouleParam.highScale}%； 二级团队分成比例${rouleParam.team1}%，三级团队分成比例 ${rouleParam.team2}%。<br>
+				            2、您在成为代理商的前三个月，暂不收税，超过三个月之后按4%收税。<br>
+				            3、每周一和周二统计，周三至周五发放提成，提成满足50元以上的发放，未满50元累计到下周发放。 --%>
+				     </div>
+			          </c:when> 
+						<c:otherwise> 
+				<!--   江西麻将文字说明 -->
+			     <div class="well">
+			            提示：<br>
+			            1、直属会员：每周总充值【不包含代理商本人充值金额】消费额在3500元以下者，按40%结算。在3500元至7000元之间者，按45%结算。达到7000元以上者，按50%结算；可获取二级团队总充值消费额的15%。 <br>
+			            2、您在成为代理商的前三个月，均不代扣个人所得税。超过三个月后，且每周总推广费用在1000元以上者，按4%代扣个人所得税，1000元以下者免扣。<br>
+			                                       例：三个月后代理商A一周的推广费用达到2000元，代扣税40元，可获得1960元。<br>
+			            3、每周一和周二统计，周三至周五发放推广费用，不论金额大小均当周发放，不进行累加。<br>
+			            <%-- 1、直属会员：3500元以下，分成比例 ${rouleParam.lowScale} %， 达到3500元以上7000元以下，分成比例 ${rouleParam.middleScale}%， 
+			            7000元以上，分成比例  ${rouleParam.highScale}%； 二级团队分成比例${rouleParam.team1}%，三级团队分成比例 ${rouleParam.team2}%。<br>
+			            2、您在成为代理商的前三个月，暂不收税，超过三个月之后按4%收税。<br>
+			            3、每周一和周二统计，周三至周五发放提成，提成满足50元以上的发放，未满50元累计到下周发放。 --%>
+			     </div>
+			     
+			       </c:otherwise> 
+					</c:choose> 
+				
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$(function (){
+	setTimeout(function (){
+		//debugger;
+		 $('#searchYear option').eq(1).attr("selected",true);
+         $("#searchYear").change();
+         $('#searchDate option').eq(1).attr("selected",true);
+	},0);
+	
+	//$("#searchYear option:first-child").attr("selected",true);
+});
+    var json = '${jsonDate}';
+    var obj = JSON.parse(json);
+    $(function () {
+        $('#searchYear').on('change',function (e) {
+            var yearVal = $(this).children('option:selected').val();
+            $('#searchDate').html('<option selected="selected">请选择日期</option>');
+            if (yearVal == '请选择年份') {
+                $('#searchDate').html('<option selected="selected">请选择日期</option>');
+                return;
+            }
+            //alert(yearVal);
+            var date = handleInitResponse.execute(yearVal);
+            for (var i = 0;i<date.length;i++) {
+                var arr = date[i];
+                var v = arr.replace('月','-').replace('月','-');
+                var vv = v.replace('日','-').replace('日','').substr(8);
+                $('#searchDate').append('<option value="'+vv+'">'+arr+'</option>');
+            }
+        });
+
+    });
+
+    var handleInitResponse = {
+        execute:function (data) {
+            return eval('obj.a' + data );
+        }
+    }
+    
+    $("#btnSearch").click(customSearch);
+    
+    //查询
+    function customSearch() {
+        var searchYear =  $('#searchYear').val();
+        var searchDate =  $('#searchDate').val();
+        if (searchYear == "请选择年份" || searchDate == "请选择日期") {
+            layer.msg('请选择查询时间',{time:800});
+            return;
+        }
+        var requirtDate = searchYear + "-" + searchDate;
+    	var url = "${ctx}/agentroom/teamWeekSttlementSubmit.html";
+        $.ajax({
+			type : "POST",
+			url : url,
+			data : {"time":requirtDate},
+			dataType : "json",
+			success : function(msg) {
+				if (msg.success == true) {
+					
+					 $(".teamInfo00").text(msg.data.teamInfo00);
+					 $(".teamInfo01").text(msg.data.teamInfo01);
+				     $(".teamInfo10").text(msg.data.teamInfo10);
+					 $(".teamInfo11").text(msg.data.teamInfo11);
+					 $(".teamInfo20").text(msg.data.teamInfo20);
+				     $(".teamInfo21").text(msg.data.teamInfo21);
+					 $(".paytotal").text(msg.data.paytotal);
+					 $(".rebateTotal").text(msg.data.rebateTotal);
+					 $(".rebateTotal2").text(msg.data.rebateTotal);
+					 
+					 if(msg.data.result.isaward == 0){
+						 $(".text-danger").text("未审核")
+					 }
+					 if(msg.data.result.isaward == 1){
+						 $(".text-danger").text("已审核")
+					 }
+					 if(msg.data.result.isaward == 2){
+						 $(".text-danger").text("已发放")
+					 }
+				} else {
+					layer.msg(msg.message, {
+						icon : 5,
+						time : 500
+					});
+				}
+			}
+
+		});
+    }
+    
+    
+   //查看明细
+   
+   	function showSettleDetail(type){
+   		var searchYear =  $('#searchYear').val();
+        var searchDate =  $('#searchDate').val();
+        var requirtDate="";
+        if (searchYear != "请选择年份" || searchDate != "请选择日期") {
+            requirtDate= searchYear + "-" + searchDate;
+        }
+      
+		var title= $('#searchDate :selected').text() ;
+		if (type==1){
+			title=title+"(直属会员)"
+		}
+		if (type==2){
+			title=title+"(二级团队)"
+		}
+		if (type==3){
+			title=title+"(三级团队)"
+		}
+		  layer.open({
+		        type: 2,
+		        title:title,
+		        area: ['95%','90%'],
+		        fixed: false, //不固定
+		        maxmin: true,
+		        content: sys.rootPath + '/agentroom/submitTaxesInviteUi.html?endTime='+requirtDate+"&type="+type
+		});
+	}
+</script>

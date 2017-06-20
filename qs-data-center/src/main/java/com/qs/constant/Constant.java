@@ -51,6 +51,14 @@ public class Constant
 			}
 			 return  tempGameCode+"";
 	 }
+	 
+	 //数据权限管理 变量
+	 public static class DataPrivilege{
+		 
+		 public static final String IF_ADMIN = "ifAdmin";//是否管理员
+		 public static final String IF_LEADER = "ifLeader";//是否领导
+		 public static final String IF_BUSINESS = "ifBusiness";//是否商务
+	 }
 	
 	 
 }

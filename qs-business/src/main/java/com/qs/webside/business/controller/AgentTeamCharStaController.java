@@ -88,7 +88,7 @@ public class AgentTeamCharStaController extends BaseController {
             parameters.put("endDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         }
         Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
-        List<Map<String, Object>> list = taxesInviteService.agentTeamRechargeStatistics(parameters,gameCode);
+        List<Map<String, Object>> list = taxesInviteService.agentTeamRechargeStatistics(parameters,gameCode,businessDataSourceUtil.getGameType());
         return getReturnPage(pager, page, list);
     }
 

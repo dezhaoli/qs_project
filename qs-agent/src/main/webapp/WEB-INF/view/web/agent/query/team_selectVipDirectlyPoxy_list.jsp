@@ -92,6 +92,17 @@
     </div>
 </div>
 <script>
+
+function selectGlod(id){
+	  layer.open({
+	        type: 2,
+	        title:"金币余额",
+	        area: ['80%','40%'],
+	        fixed: false, //不固定
+	        maxmin: true,
+	        content: sys.rootPath + '/agentroom/getGoldCountUi.html?id='+id
+	}); 
+}
 //查看明细
 	function showSettleDetail(mid){
   

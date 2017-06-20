@@ -1,12 +1,16 @@
 package com.qs.pub.sync.service.impl;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.qs.common.ip2region.DbSearcher;
 import com.qs.pub.sync.common.SyncLogTool;
 import com.qs.pub.sync.service.LogErrorService;
 import com.qs.pub.sync.service.LogSuccessService;
@@ -47,6 +51,9 @@ public class SyncServiceImpl implements SyncService {
 	@Resource
 	private ICreateRoomService createRoomService;
 	
+	@Autowired
+	private DbSearcher ipSearcher;
+	
 	 
 
 	
@@ -56,9 +63,23 @@ public class SyncServiceImpl implements SyncService {
 		
 		logger.debug("syncPlaying===========::"+syncPlaying.getIp());
 		
+		String ip=syncPlaying.getIp();
+	
+		
 		int result = 0;
-		try
-		{
+		try{
+			
+			if(!StringUtils.isBlank(ip)){
+				 String region="";
+			     region = ipSearcher.memorySearch(ip).getRegion();
+			     String[] regions = StringUtils.split(region, '|');
+			     syncPlaying.setProvince(regions[2]);
+			     syncPlaying.setCity(regions[3]);
+			     syncPlaying.setRegion(regions[2]+regions[3]);
+			     
+
+			}
+			
 			result = playingService.insert(syncPlaying);
 			result = playingService.insertPlayingDistinct(syncPlaying);
 		} catch (Exception e)

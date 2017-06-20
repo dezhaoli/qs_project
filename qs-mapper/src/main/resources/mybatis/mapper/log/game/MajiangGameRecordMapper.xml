@@ -210,10 +210,10 @@
       a.player2,-- 玩家2ID
       a.player3,-- 玩家3ID
       a.player4,-- 玩家4ID
-     (SELECT substring_index(data_game, ';', 1)) AS datap1, -- 玩家1总论积分
-     (SELECT substring_index(substring_index(data_game, ';', -4), ';', 1)) AS datap2, -- 玩家2总论积分
-     (SELECT substring_index(substring_index(data_game, ';', -3), ';', 1)) AS datap3, -- 玩家3总论积分
-     (SELECT substring_index(substring_index(data_game, ';', -2), ';', 1)) AS datap4, -- 玩家4总论积分
+      (SELECT substring_index(data_game, ';', 1)) AS datap1, -- 玩家1总论积分
+      (SELECT substring_index(substring_index(data_game, ';', 2), ';', -1)) AS datap2, -- 玩家2总论积分
+      (SELECT substring_index(substring_index(data_game, ';', 3), ';', -1)) AS datap3, -- 玩家3总论积分
+      (SELECT substring_index(substring_index(data_game, ';', 4), ';', -1)) AS datap4, -- 玩家4总论积分
      (SELECT NAME FROM ${dbName}.memberfides0 b WHERE b.mid=a.player1 LIMIT 1) AS namep1, -- 玩家1名字
      (SELECT NAME FROM ${dbName}.memberfides0 b WHERE b.mid=a.player2 LIMIT 1) AS namep2, -- 玩家2名字
      (SELECT NAME FROM ${dbName}.memberfides0 b WHERE b.mid=a.player3 LIMIT 1) AS namep3, -- 玩家3名字

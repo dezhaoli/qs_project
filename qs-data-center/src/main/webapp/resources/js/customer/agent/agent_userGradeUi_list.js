@@ -2,10 +2,6 @@
 var gameType="gd_majiang";
 //chare数据
 $(function(){ 
-
-	
-
-
 var chart = document.getElementById('chartsId');    
 var echart = echarts.init(chart); 
 var option = {
@@ -58,7 +54,7 @@ function getShotEchars() {
     $.ajax({
 		type : "POST",
 		url : url,
-		data : {"eDate":requirtDate,"gameType":gameType,"businessName":$("#businessName").val()},
+		data : {"eDate":requirtDate,"gameType":gameType,"groupId":$("#groupIdBusiness").val(),"businessId":$("#businessIdByGroupId").val()},
 		dataType : "json",
 		success : function(msg) {
 			if (msg.success == true) {
@@ -210,7 +206,6 @@ function getShotEchars() {
 	 * 这里不传入分页信息，防止删除记录后重新计算的页码比当前页码小而导致计算异常
 	 */
 	function customSearch() {
-		debugger;
 		var searchYear =  $('#searchYear').val();
         var searchDate =  $('#searchDate').val();
         var requirtDate = "";
@@ -228,7 +223,8 @@ function getShotEchars() {
 	    grid.parameters = new Object();
 	    grid.parameters['gameType'] =gameType; 
 	    grid.parameters['eDate'] = requirtDate;
-	    grid.parameters['businessName'] = $("#businessName").val();
+	    grid.parameters['groupId'] = $("#groupIdBusiness").val();
+	    grid.parameters['businessId'] = $("#businessIdByGroupId").val();
 	    grid.refresh(true);
 	    getShotEchars();
 	}

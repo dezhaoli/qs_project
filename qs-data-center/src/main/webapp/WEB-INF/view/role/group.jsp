@@ -13,14 +13,14 @@
 		<i class="fa fa-trash-o"></i>&nbsp;删除
 	</button> -->
 	<button id="btnSetResource" type="button" onclick="webside.common.editModel('/group/permissionUI.html')" class="btn btn-info btn-sm">
-		<i class="fa fa-gears"></i>&nbsp;分配权限
+		<i class="fa fa-gears"></i>&nbsp;分配商务权限
 	</button>
 	<button id="btnSetLeader" type="button" onclick="webside.common.editModel('/group/permissionLeaderUI.html')" class="btn btn-info btn-sm">
 		<i class="fa fa-gears"></i>&nbsp;分配责任人
 	</button>
 </div>
 <div class="input-group">
-     <input id="searchKey" type="text" class="input form-control" placeholder="角色名称...">
+     <input id="searchKey" type="text" class="input form-control" placeholder="组名称...">
      <span class="input-group-btn">
          <button id="btnSearch" class="btn btn-primary btn-sm" type="button"> <i class="fa fa-search"></i> 搜索</button>
      </span>

@@ -40,5 +40,7 @@ public interface GroupService
 
 	boolean addLeaderPermBatch(Integer valueOf, List<Integer> list);
 
+	List<Group> queryListGroupPrivilege(Map<String, Object> parameters);
+
 	
 }

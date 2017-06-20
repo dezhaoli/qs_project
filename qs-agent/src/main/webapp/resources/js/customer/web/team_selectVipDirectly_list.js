@@ -5,7 +5,7 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-        return "<a href='#'  style='color: #52b2d8' onclick='selectGlod("+value+");'>"+value+"</a>" ;
+        return "<span  style='color: #52b2d8' onclick='selectGlod("+value+");'>"+value+"</span>" ;
     }
 },{
     id : 'realname',
@@ -91,7 +91,7 @@ $(function() {
  * 自定义查询
  * 这里不传入分页信息，防止删除记录后重新计算的页码比当前页码小而导致计算异常
  */
-function customSearch() {
+/*function customSearch() {
     grid.parameters = new Object();
     
     grid.parameters['type'] ="1";
@@ -99,14 +99,5 @@ function customSearch() {
     grid.parameters['querymid'] = $("#midSearch").val();
     grid.refresh(true);
 }
+*/
 
-function selectGlod(id){
-	  layer.open({
-	        type: 2,
-	        title:"金币余额",
-	        area: ['98%','45%'],
-	        fixed: false, //不固定
-	        maxmin: true,
-	        content: sys.rootPath + '/agentroom/getGoldCountUi.html?id='+id
-	}); 
-}

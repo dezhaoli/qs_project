@@ -4,6 +4,26 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 <%--<%@include file="/common/common.jspf" %>--%>
+<script>
+    $(function() {
+        jeDate({
+            dateCell : '#startTime',
+            isinitVal : true,
+            format : 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+            minDate : '2016-09-01', //最小日期
+            maxDate : '2050-06-01', //最大日期
+            isToday:true
+        });
+        jeDate({
+            dateCell : '#endTime',
+            isinitVal : true,
+            format : 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+            minDate : '2016-09-01', //最小日期
+            maxDate : '2050-06-01', //最大日期
+            isToday:true
+        });
+    });
+</script>
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/agent_teamCharSta_list.js"></script>
 <script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
@@ -85,23 +105,3 @@
     </div>
 </div>
 
-<script>
-    $(function() {
-        jeDate({
-            dateCell : '#startTime',
-            isinitVal : true,
-            format : 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate : '2016-09-01', //最小日期
-            maxDate : '2050-06-01', //最大日期
-            isToday:true
-        });
-        jeDate({
-            dateCell : '#endTime',
-            isinitVal : true,
-            format : 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate : '2016-09-01', //最小日期
-            maxDate : '2050-06-01', //最大日期
-            isToday:true
-        });
-    });
-</script>

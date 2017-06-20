@@ -144,4 +144,11 @@ public class GroupServiceImpl implements GroupService
 		}
 	}
 
+	@Override
+	public List<Group> queryListGroupPrivilege(Map<String, Object> parameters)
+	{
+		// TODO Auto-generated method stub
+		return groupMapper.queryListGroupPrivilege(parameters);
+	}
+
 }

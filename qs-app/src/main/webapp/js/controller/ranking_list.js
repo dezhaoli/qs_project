@@ -1,6 +1,8 @@
 define(['app'],function(app){
 	
     app.controller('ctrl.ranking',function($scope,$http,$myService,$location,$timeout){
+    	$(".qs_ul li").children("a").removeClass("cli_hover");
+        $(".qs_ul li").children("a").eq(1).addClass("cli_hover");
     	
     	  var parma={
           		"sesskey":sessionStorage.sesskey,
@@ -12,9 +14,17 @@ define(['app'],function(app){
           //用户信息查询67
           $.post(url+"/api/actiIntegral/rankingList.do", parma,
           		function(data){
-        	  $timeout(function(){  
-          				$scope.data=JSON.parse(data).data.actiIntegralList;
-          	},100);
+        	  
+        	  var result=JSON.parse(data);
+          	if (result.svflag==1){
+	        	  $timeout(function(){  
+	          				$scope.data=JSON.parse(data).data.actiIntegralList;
+	          	},100);
+          	}else {
+        		console.log(data);
+        		window.datas=result;
+        		$state.go('errormsg');
+        	}
           });
        
     });

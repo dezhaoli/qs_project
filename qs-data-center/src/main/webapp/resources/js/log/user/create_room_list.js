@@ -106,7 +106,6 @@ var setOption=function (appName,playName,stime,etime){
 		}
 	});
 }
-setOption();
 
 $(function() {
     if(null != $("#orderByColumn").val() && '' != $("#orderByColumn").val())

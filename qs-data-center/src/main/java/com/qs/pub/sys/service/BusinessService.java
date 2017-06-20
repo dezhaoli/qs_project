@@ -28,5 +28,17 @@ public interface BusinessService
 	int update(Business businessEntity);
 
 	Business findById(int id);
+
+
+	List<Business> selectByGroupId(Integer groupId);
+
+	List findByuId(Long id);
+
+	List findBusinessByGroupId(int id);
+
+	Integer selectBusiness(Long id);
+
+	Integer ifLeader(Long id);
+
 	
 }

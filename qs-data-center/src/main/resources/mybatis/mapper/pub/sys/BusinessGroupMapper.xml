@@ -34,16 +34,16 @@
   
   <select id="queryLeaderList" resultMap="BaseResultMap" parameterType="map" >
     SELECT
-		s1.id,
-		s1.company_id,
-		s1.business_name,
+		s1.u_id id,
+		null company_id,
+		s1.u_name business_name,
 		CASE
 		WHEN c.group_id IS NULL THEN
 			FALSE
 		ELSE
 			TRUE
-		END AS selected from sys_business s1 
-		LEFT JOIN sys_group_leader c ON s1.id = c.business_id and c.group_id=${groupId}
+		END AS selected from tb_user s1 
+		LEFT JOIN sys_group_leader c ON s1.u_id = c.user_id and c.group_id=${groupId}
   </select>
   
   <select id="selectByGroupId" resultType="int" parameterType="java.lang.Integer" >
@@ -52,6 +52,7 @@
     from sys_business_group
     where group_id = #{id,jdbcType=INTEGER}
   </select>
+
   <delete id="deleteByGroupId" parameterType="java.lang.Integer" >
     delete from sys_business_group
     where group_id = #{id,jdbcType=INTEGER}

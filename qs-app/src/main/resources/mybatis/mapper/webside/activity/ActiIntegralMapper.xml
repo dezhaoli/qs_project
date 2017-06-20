@@ -152,7 +152,7 @@
     FROM acti_integral ai,memberfides0 mf
     WHERE mf.mid = ai.mid
     GROUP BY id
-    ORDER BY integral DESC LIMIT 0,10
+    ORDER BY integral DESC LIMIT 0,20
   </select>
 
   <select id="selectByMid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

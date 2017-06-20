@@ -68,6 +68,9 @@ var dtGridColumns = [{//SELECT a.fmid,SUM(a.pamount) AS ptotal,b.name AS usernam
         if (name == null) {
             name = ' ';
         }
+        if (value == 0) {
+            return " -- ";
+        }
         return '玩家3ID:'+ value + ' | 名字:' + name + ' | 总论积分:' + record.datap3;
     }
 },{
@@ -80,6 +83,9 @@ var dtGridColumns = [{//SELECT a.fmid,SUM(a.pamount) AS ptotal,b.name AS usernam
         var name = record.namep4;
         if (name == null) {
             name = ' ';
+        }
+        if (value == 0) {
+            return " -- ";
         }
         return '玩家4ID:'+ value + ' | 名字:' + name + ' | 总论积分:' + record.datap4;
     }

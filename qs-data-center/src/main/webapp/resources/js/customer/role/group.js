@@ -12,6 +12,19 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 }, {
+    id : 'gameType',
+    title : '游戏类型',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+        if (value == '1') {
+            return '湖南牵手';
+        } else if(value == '2') {
+            return '广东乐玩';
+        }
+    }
+}, {
     id : 'createTime',
     title : '创建时间',
     type : 'date',
@@ -86,7 +99,7 @@ $(function() {
  */
 function customSearch() {
     grid.parameters = new Object();
-    grid.parameters['name'] = $("#searchKey").val();
+    grid.parameters['userGroupName'] = $("#searchKey").val();
     grid.refresh(true);
 }
 

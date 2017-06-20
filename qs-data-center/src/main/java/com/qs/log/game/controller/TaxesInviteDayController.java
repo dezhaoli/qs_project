@@ -83,7 +83,7 @@ public class TaxesInviteDayController extends BaseController
 			parameters.put("gameCode", Constant.getDataCenterBusinessGameCode(gameCode));
 			if (gameType != null && !gameType.trim().equals(""))
 			{
-				if (gameType.equals("gd_majiang_pub"))
+				if (gameType.endsWith("_majiang_pub"))
 				{
 					parameters.put("stat", gameType);
 				} else

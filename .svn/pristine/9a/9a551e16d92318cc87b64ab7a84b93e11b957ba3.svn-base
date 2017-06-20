@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.sync.mapper.PlayingMapper">
+  <resultMap id="BaseResultMap" type="com.qs.sync.model.SyncPlaying">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="play_name" jdbcType="VARCHAR" property="playName" />
+    <result column="play_id" jdbcType="VARCHAR" property="playId" />
+    <result column="game_start_time" jdbcType="DATE" property="gameStartTime" />
+    <result column="game_stop_time" jdbcType="TIMESTAMP" property="gameStopTime" />
+     <result column="totals" jdbcType="INTEGER" property="totals" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, app_id, game_start_time, game_stop_time, play_name,play_id
+  </sql>
+  
+  <insert id="insert" parameterType="com.qs.sync.model.SyncPlaying">
+    insert into dc_playing (id, mid, app_id, play_id,play_name,
+      game_start_time, game_stop_time)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, #{playId,jdbcType=VARCHAR}, #{playName,jdbcType=VARCHAR}, 
+      #{gameStartTime,jdbcType=TIMESTAMP}, #{gameStopTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <insert id="insertPlayingDistinct" parameterType="com.qs.sync.model.SyncPlaying">
+    insert IGNORE into dc_playing_total ( mid, app_id, play_id,play_name,
+      game_start_time, game_stop_time,play_date,ip,region,province,city,terminal_type)
+    values (#{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, #{playId,jdbcType=VARCHAR}, #{playName,jdbcType=VARCHAR}, 
+      #{gameStartTime,jdbcType=TIMESTAMP}, #{gameStopTime,jdbcType=TIMESTAMP}, #{gameStartTime,jdbcType=TIMESTAMP},#{ip},#{region},#{province},#{city},#{terminalType})
+  </insert>
+  
+</mapper>

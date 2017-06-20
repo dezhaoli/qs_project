@@ -30,10 +30,12 @@ import com.qs.common.exception.ServiceException;
 import com.qs.common.exception.SystemException;
 import com.qs.common.util.PageUtil;
 import com.qs.common.util.RandomUtil;
+import com.qs.pub.sys.model.Business;
 import com.qs.pub.sys.model.Group;
 import com.qs.pub.sys.model.RoleEntity;
 import com.qs.pub.sys.model.UserEntity;
 import com.qs.pub.sys.model.UserInfoEntity;
+import com.qs.pub.sys.service.BusinessService;
 import com.qs.pub.sys.service.RoleService;
 import com.qs.pub.sys.service.UserService;
 import com.qs.webside.shiro.ShiroAuthenticationManager;
@@ -52,6 +54,8 @@ public class UserController extends BaseController {
 	
 	@Autowired
 	private RoleService roleService;
+	@Autowired
+	private BusinessService businessService;
 	
 	@RequestMapping("listUI.html")
 	public String listUI(Model model, HttpServletRequest request) {
@@ -545,6 +549,19 @@ public class UserController extends BaseController {
 			logger.error(e.getMessage(), e);
 		}
 		return jstreeList;
+	}
+	
+	@RequestMapping("businessList.html")
+	@ResponseBody
+	public Object findBusiness(Model model, Long id) {
+		try
+		{
+			List<Business> list = businessService.queryListByPage(null);
+			return list;
+		}catch(Exception e)
+		{
+			throw new AjaxException(e);
+		}
 	}
 	
 }

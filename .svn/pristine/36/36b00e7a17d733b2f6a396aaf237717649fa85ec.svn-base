@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInvite" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="selftotal" property="selftotal" jdbcType="DECIMAL" />
+    <result column="invitetotal" property="invitetotal" jdbcType="INTEGER" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.qs.log.game.model.TaxesInvite" >
+    insert into taxes_invite (mid, date, paytotal, 
+      selftotal, invitetotal, parentid
+      )
+    values (#{mid,jdbcType=INTEGER}, #{date,jdbcType=DATE}, #{paytotal,jdbcType=DECIMAL}, 
+      #{selftotal,jdbcType=DECIMAL}, #{invitetotal,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.TaxesInvite" >
+    insert into taxes_invite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="paytotal != null" >
+        paytotal,
+      </if>
+      <if test="selftotal != null" >
+        selftotal,
+      </if>
+      <if test="invitetotal != null" >
+        invitetotal,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="paytotal != null" >
+        #{paytotal,jdbcType=DECIMAL},
+      </if>
+      <if test="selftotal != null" >
+        #{selftotal,jdbcType=DECIMAL},
+      </if>
+      <if test="invitetotal != null" >
+        #{invitetotal,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <select id="getPayAndInviteTotalByMid" parameterType="java.lang.Integer" resultType="map">
+    SELECT SUM(paytotal) AS paytotal,
+      SUM(invitetotal) AS invitetotal
+    FROM taxes_invite
+    WHERE mid=#{mid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getPayAndInviteTotalByParentId" parameterType="java.lang.Integer" resultType="map">
+    SELECT SUM(paytotal) AS paytotal,
+      SUM(invitetotal) AS invitetotal
+    FROM taxes_invite
+    WHERE parentid=#{parentid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getPayAndInviteTotalByAgentParentId" parameterType="map" resultType="map">
+    SELECT SUM(a.paytotal) AS paytotal,
+      SUM(invitetotal) AS invitetotal
+    FROM taxes_invite AS a
+      INNER JOIN (SELECT mid FROM
+          ${dbName}
+      WHERE parent_id=#{agentParentId,jdbcType=INTEGER}) AS b
+        ON a.parentid=b.mid
+    WHERE a.mid>0 
+  </select>
+
+<!-- 获取团队的总充值分1,2,3级代理商 根据充值时间查询-->
+ <select id="getPayTempInviteCountByTime" parameterType="map"
+	resultType="map">
+<!-- 	江西团队团队充值不包含自己充值 -->
+	<if test="gameType &gt;=20">
+		select firpay,secpay,thdpay from ( 
+	      (SELECT SUM(paytotal-selftotal) as firpay FROM taxes_invite WHERE mid=#{mid} AND  date &gt;=#{sdate} AND date &lt;=#{edate}) fpay,
+	  (SELECT SUM(paytotal-selftotal) as secpay FROM taxes_invite WHERE parentid=#{mid} AND date &gt;=#{sdate} AND date &lt;=#{edate} ) spay ,
+	  (SELECT SUM(a.paytotal-a.selftotal) as thdpay FROM taxes_invite AS a INNER JOIN
+		                    (SELECT mid FROM ${DBName} as b WHERE parent_id=#{mid}) AS b ON a.parentid=b.mid WHERE
+		                    a.date&gt;=#{sdate} AND a.date&lt;=#{edate} ) tpay
+	 
+	)
+	</if>
+	<if test=" gameType &lt;20">
+		select firpay,secpay,thdpay from (
+		      (SELECT SUM(paytotal) as firpay FROM taxes_invite WHERE mid=#{mid} AND  date &gt;=#{sdate} AND date &lt;=#{edate}) fpay,
+		  (SELECT SUM(paytotal) as secpay FROM taxes_invite WHERE parentid=#{mid} AND date &gt;=#{sdate} AND date &lt;=#{edate} ) spay ,
+		  (SELECT SUM(a.paytotal) as thdpay FROM taxes_invite AS a INNER JOIN
+			                    (SELECT mid FROM ${DBName} as b WHERE parent_id=#{mid}) AS b ON a.parentid=b.mid WHERE
+			                    a.date&gt;=#{sdate} AND a.date&lt;=#{edate} ) tpay
+		 
+		) 
+	</if>
+	
+</select>
+
+  <select id="getAgentTeamPayChangeCountByDate" parameterType="map" resultType="map">
+    SELECT SUM(a.paytotal) AS totalpay,b.*
+    FROM taxes_invite a <!-- log -->
+      RIGHT JOIN (SELECT mid,<!-- c.realname, -->realname,alevel
+                  FROM ${memberagents} d
+                 <!--   left join ${common_agents_info} as c
+                      ON d.sitemid=c.sitemid -->
+                  WHERE belongid = #{belongid}) b
+        ON a.mid=b.mid
+    WHERE a.date between #{starDate}
+    AND date_add(#{endDate},interval 1 day)
+    GROUP BY b.mid
+  </select>
+
+    <!-- 根据时间段获取代理商团队的充值统计——专门给江西麻将 -->
+    <select id="getAgentTeamPayChangeCountByDateForJx" parameterType="map" resultType="map">
+        SELECT SUM(a.paytotal - a.selftotal) AS totalpay,b.*
+        FROM taxes_invite a <!-- log -->
+        RIGHT JOIN (SELECT mid,<!-- c.realname, -->realname,alevel
+        FROM ${memberagents} d
+        <!--   left join ${common_agents_info} as c
+             ON d.sitemid=c.sitemid -->
+        WHERE belongid = #{belongid}) b
+        ON a.mid=b.mid
+        WHERE a.date between #{starDate}
+        AND date_add(#{endDate},interval 1 day)
+        GROUP BY b.mid
+    </select>
+
+  <select id="getAgentUnderBusinessChangeCountByDate" parameterType="map" resultType="double">
+      SELECT SUM(paytotal) AS allpay
+      FROM taxes_invite a
+      RIGHT JOIN
+      ${memberagents} b
+      ON a.mid=b.mid
+      where a.date between #{starDate}
+      AND date_add(#{endDate},interval 1 day)
+      and b.belongid = #{belongid}
+    <!-- SELECT SUM(paytotal) AS allpay
+    FROM taxes_invite a
+      RIGHT JOIN
+      (SELECT mid FROM ${memberagents}
+      WHERE belongid = #{belongid}) b
+        ON a.mid=b.mid
+    WHERE a.date between #{starDate}
+    AND date_add(#{endDate},interval 1 day) -->
+  </select>
+
+<!--   查一天周时间段明细 -->
+	<select id="selectByIdTexesInviteDay" resultMap="BaseResultMap"
+		parameterType="map">
+	<!-- 江西充值明细不包含自己 -->
+	<if test="gameType &gt;=20">
+	
+			<if test="type==1">
+				SELECT mid, date ,paytotal-selftotal as paytotal
+				from taxes_invite
+				where mid = #{mid}
+				<!-- <if test="endTime != '' "> -->
+				and date &lt;=#{endTime}
+				<!-- </if> -->
+				<!-- <if test="satrtDate !='' "> -->
+				and date &gt;=#{satrtDate}  ORDER BY date DESC
+				<!-- </if> -->
+			</if>
+			<if test="type==2">
+				SELECT SUM(paytotal-selftotal) AS paytotal,date
+				FROM taxes_invite
+				WHERE parentid= #{mid}
+				<!-- <if test="endTime != '' "> -->
+				and date &lt;=#{endTime}
+				<!-- </if> -->
+				<!-- <if test="satrtDate !='' "> -->
+				and date &gt;=#{satrtDate}
+				<!-- </if> -->
+				GROUP BY date  ORDER BY date DESC
+			</if>
+			<if test="type==3">
+				SELECT SUM(a.paytotal-a.selftotal) AS paytotal,date
+				FROM taxes_invite AS a
+				INNER JOIN
+				(SELECT mid FROM ${dbName} WHERE parent_id= #{mid}) AS b ON
+				a.parentid=b.mid WHERE
+				1=1
+				<!-- <if test="endTime != '' "> -->
+				and a.date &lt;=#{endTime}
+				<!-- </if> -->
+				<!-- <if test="satrtDate !='' "> -->
+				and a.date &gt;=#{satrtDate}
+				<!-- </if> -->
+				GROUP BY a.date  ORDER BY date DESC
+			</if>
+	</if>
+	<if test=" gameType &lt;20">
+	
+			<if test="type==1">
+				SELECT mid, date ,paytotal
+				from taxes_invite
+				where mid = #{mid}
+				<!-- <if test="endTime != '' "> -->
+				and date &lt;=#{endTime}
+				<!-- </if> -->
+				<!-- <if test="satrtDate !='' "> -->
+				and date &gt;=#{satrtDate}  ORDER BY date DESC
+				<!-- </if> -->
+			</if>
+			<if test="type==2">
+				SELECT SUM(paytotal) AS paytotal,date
+				FROM taxes_invite
+				WHERE parentid= #{mid}
+				<!-- <if test="endTime != '' "> -->
+				and date &lt;=#{endTime}
+				<!-- </if> -->
+				<!-- <if test="satrtDate !='' "> -->
+				and date &gt;=#{satrtDate}
+				<!-- </if> -->
+				GROUP BY date  ORDER BY date DESC
+			</if>
+			<if test="type==3">
+				SELECT SUM(a.paytotal) AS paytotal,date
+				FROM taxes_invite AS a
+				INNER JOIN
+				(SELECT mid FROM ${dbName} WHERE parent_id= #{mid}) AS b ON
+				a.parentid=b.mid WHERE
+				1=1
+				<!-- <if test="endTime != '' "> -->
+				and a.date &lt;=#{endTime}
+				<!-- </if> -->
+				<!-- <if test="satrtDate !='' "> -->
+				and a.date &gt;=#{satrtDate}
+				<!-- </if> -->
+				GROUP BY a.date  ORDER BY date DESC
+			</if>
+	</if>
+		
+	</select>
+
+	<!-- 根据商务id统计个人充值总数与团队人数 -->
+	<select id="getBusinessCountPayAndTotal" parameterType="map" resultType="map">
+        SELECT SUM(a.paytotal) AS totalpay,SUM(a.invitetotal) AS totalinvite
+        FROM taxes_invite a INNER JOIN ${dbName} b
+        on b.mid = a.mid where b.belongid = #{id}
+
+        <!-- SELECT SUM(a.paytotal) AS totalpay,SUM(a.invitetotal) AS totalinvite FROM taxes_invite a,
+                          (SELECT mid FROM  ${dbName} WHERE belongid=#{id}) b WHERE a.mid=b.mid -->
+    </select>
+
+</mapper>

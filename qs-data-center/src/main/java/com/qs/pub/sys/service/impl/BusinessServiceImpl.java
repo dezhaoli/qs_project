@@ -53,4 +53,34 @@ public class BusinessServiceImpl implements BusinessService
 	{
 		return businessMapper.findById(id);
 	}
+
+	@Override
+	public List<Business> selectByGroupId(Integer groupId)
+	{
+		return businessMapper.selectByGroupId(groupId);
+	}
+
+	@Override
+	public List findByuId(Long id)
+	{
+		return businessMapper.findByuId(id);
+	}
+
+	@Override
+	public List findBusinessByGroupId(int id)
+	{
+		return businessMapper.findBusinessByGroupId(id);
+	}
+
+	@Override
+	public Integer selectBusiness(Long id)
+	{
+		return businessMapper.selectBusiness(id);
+	}
+
+	@Override
+	public Integer ifLeader(Long id)
+	{
+		return businessMapper.ifLeader(id);
+	}
 }

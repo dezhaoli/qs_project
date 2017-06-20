@@ -25,4 +25,6 @@ public interface ITaxesInviteWeekService {
 
 	List<Map<String, Object>> getWeekCountGradeSecondList(
 			Map<String, Object> parameters);
+
+
 }

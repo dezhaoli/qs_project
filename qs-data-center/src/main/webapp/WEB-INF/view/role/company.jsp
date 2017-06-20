@@ -17,7 +17,7 @@
 	</button>
 </div>
 <div class="input-group">
-     <input id="searchKey" type="text" class="input form-control" placeholder="角色名称...">
+     <input id="searchKey" type="text" class="input form-control" placeholder="分公司名称...">
      <span class="input-group-btn">
          <button id="btnSearch" class="btn btn-primary btn-sm" type="button"> <i class="fa fa-search"></i> 搜索</button>
      </span>

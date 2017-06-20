@@ -24,7 +24,7 @@
 	</button>
 	</shiro:hasPermission>
 	<button id="btnSetResource" type="button" onclick="webside.common.editModel('/user/permissionUI.html')" class="btn btn-info btn-sm">
-		<i class="fa fa-gears"></i>&nbsp;分配权限
+		<i class="fa fa-gears"></i>&nbsp;分配分公司权限
 	</button>
 </div>
 <div class="input-group">

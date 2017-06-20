@@ -25,8 +25,8 @@ public class Test
 	{
 		Map map = new HashMap();
 		map.put("logType", "3");
-		map.put("mid", "106");
-		map.put("appId", "6");
+		map.put("mid", "20");
+		map.put("appId", "20");
 		map.put("gameStartTime", 1495691544);
 		map.put("gameStopTime", 1495691544);
 		map.put("playId", "4");

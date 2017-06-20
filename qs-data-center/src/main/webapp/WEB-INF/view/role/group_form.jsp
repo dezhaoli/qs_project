@@ -27,15 +27,30 @@ $(function() {
 			<input type="hidden" id="orderByType" name="orderByType" value="${page.orderByType }">
 			<input type="hidden" name="id" id="roleId" value="${groupEntity.id }">
 		</c:if>
-		   <div class="form-group">
-		      <label class="control-label col-sm-1 no-padding-right" for="userGroupName">组名称</label>
-		      <div class="col-sm-10">
-		      <div class="clearfix">
-		         <input class="form-control" name="userGroupName" id="userGroupName" type="text" 
-		           value="${groupEntity.userGroupName }" placeholder="组名称..."/>
-		      </div>
-		      </div>
-		   </div>
+			    <div class="form-group" >
+			           	<label class="control-label col-sm-1 no-padding-right">组名称</label>
+		                <div class="col-sm-11">
+		                    <input class="form-control" name="userGroupName" id="userGroupName" type="text"
+		                         value="${groupEntity.userGroupName }"    placeholder="组名称..." required="required"/>
+		                </div>
+				</div>
+			   <div class="form-group" >
+			           	<label class="control-label col-sm-1 no-padding-right">游戏类型</label>
+		                <div class="col-sm-11">
+		                               <select class="form-control" name="gameType" id="gameType" required="required">
+		                               		<option value="">请选择...</option>
+		                               		<!-- <option value="2">跑得快</option>
+		                               		<option value="3">斗牛</option>
+		                               		<option value="4">麻将</option>
+		                               		<option value="5">金溪麻将</option>
+		                               		<option value="9">潮汕木虱</option>
+		                               		<option value="105">四川麻将</option>
+		                               		<option value="106">广东麻将</option> -->
+		                               		<option value="1" <c:if test="${groupEntity.gameType eq '1' }">selected="selected"</c:if>>湖南牵手</option>
+		                               		<option value="2" <c:if test="${groupEntity.gameType eq '2' }">selected="selected"</c:if>>广东乐玩</option>
+		                               </select>
+		                </div>
+				</div>
 		</form>
 		<div class="hr hr-dotted"></div>
 	</div>

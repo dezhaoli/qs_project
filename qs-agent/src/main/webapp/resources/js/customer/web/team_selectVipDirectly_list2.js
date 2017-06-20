@@ -5,7 +5,7 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-    	  return "<a href='#'  style='color: #52b2d8' onclick='selectGlod("+value+");'>"+value+"</a>" ;
+    	  return "<span  style='color: #52b2d8' onclick='selectGlod("+value+");'>"+value+"</span>" ;
     }
 },{
     id : 'realname',
@@ -101,7 +101,7 @@ function customSearch() {
     grid.refresh(true);
 }
 
-function selectGlod(id){
+/*function selectGlod(id){
 	  layer.open({
 	        type: 2,
 	        title:"金币余额",
@@ -110,5 +110,5 @@ function selectGlod(id){
 	        maxmin: true,
 	        content: sys.rootPath + '/agentroom/getGoldCountUi.html?id='+id
 	}); 
-}
+}*/
 

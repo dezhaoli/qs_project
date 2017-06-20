@@ -119,7 +119,7 @@
 			                </tbody>
             </table>
             <c:choose>
-				<c:when test="${gameType <=20}">
+				<c:when test="${gameType <20}">
 	                 <div class="well">
 				            提示：<br>
 				            1、直属会员：当直属会员产生充值后，分成比例为40%<br>

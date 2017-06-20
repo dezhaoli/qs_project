@@ -22,11 +22,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
+import com.baidu.disconf.client.support.utils.StringUtil;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.common.Common;
+import com.qs.common.constant.CommonContants;
 import com.qs.common.dtgrid.model.Pager;
 import com.qs.common.dtgrid.util.ExportUtils;
 import com.qs.common.exception.AjaxException;
@@ -101,6 +104,26 @@ public class BusinessController extends BaseController
 		}
 		
 	}
+	
+	
+	@RequestMapping("businessAllList.html")
+	@ResponseBody
+	public Object  businessAllList(){
+		try
+		{
+			Map<String, Object> parameters = null;
+			List<Business> list = businessService.queryListByPage(parameters);
+			
+			return list;
+			
+		} catch (Exception e)
+		{
+			throw new SystemException(e);
+		}
+		
+	}
+	
+	
 	@RequestMapping("toAdd.html")
 	public String toAdd(){
 		return "/WEB-INF/view/role/business_from";
@@ -175,5 +198,11 @@ public class BusinessController extends BaseController
 			throw new AjaxException(e);
 		}
 		return map;
+	}
+	@RequestMapping("selectByGroupId.html")
+	@ResponseBody
+	public Object selectByGroupId(String groupId){
+		List<Business> list = businessService.selectByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
+		return list;
 	}
 }

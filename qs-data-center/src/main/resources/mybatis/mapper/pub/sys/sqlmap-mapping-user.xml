@@ -17,7 +17,9 @@
 		u_credentials_salt,
 		u_creator_name,
 		u_create_time,
-		u_update_time
+		u_update_time,
+		u_if_business,
+		business_id
 	</sql>
 
 	<sql id="userInfoAttributes">
@@ -42,6 +44,8 @@
 		<result property="creatorName" column="u_creator_name"/>
 		<result property="createTime" column="u_create_time"/>
 		<result property="updateTime" column="u_update_time"/>
+		<result property="ifBusiness" column="u_if_business"/>
+		<result property="businessId" column="business_id"/>
 		<association property="role" column="id" javaType="com.qs.pub.sys.model.RoleEntity">
 			<id property="id" column="r_id"/>
 			<result property="name" column="r_name"/>
@@ -84,6 +88,8 @@
 		u.u_creator_name,
 		u.u_create_time,
 		u.u_update_time,
+		u.u_if_business,
+		u.business_id,
 		r.r_id,
 		r.r_name,
 		r.r_key,
@@ -116,6 +122,8 @@
 		u.u_creator_name,
 		u.u_create_time,
 		u.u_update_time,
+		u.u_if_business,
+		u.business_id,
 		r.r_id,
 		r.r_name,
 		r.r_key,
@@ -139,6 +147,8 @@
 		u.u_creator_name,
 		u.u_create_time,
 		u.u_update_time,
+		u.u_if_business,
+		u.business_id,
 		r.r_id,
 		r.r_name,
 		r.r_key,
@@ -191,7 +201,9 @@
 			u_description,
 			u_credentials_salt,
 			u_creator_name,
-			u_create_time
+			u_create_time,
+			u_if_business,
+			business_id
 			)   
 		values (
 			#{userName},
@@ -200,7 +212,9 @@
 			#{description},
 			#{credentialsSalt},
 			#{creatorName},
-			#{createTime}
+			#{createTime},
+			#{ifBusiness},
+			#{businessId}
 			)  
 	</insert>
 	
@@ -238,6 +252,12 @@
 			</if>
 			<if test="locked != null">
 				u_locked = ${locked},
+			</if>
+			<if test="ifBusiness != null">
+				u_if_business = ${ifBusiness},
+			</if>
+			<if test="businessId != null">
+				business_id = ${businessId},
 			</if>
 		</set>
 		where u_id = ${id}

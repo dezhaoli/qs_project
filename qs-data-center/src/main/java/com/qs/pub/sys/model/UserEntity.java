@@ -77,6 +77,39 @@ public class UserEntity extends BaseEntity {
 	 * 前端列表页使用
 	 */
 	private String roleName;
+	/**
+	 * 是否商务
+	 */
+	private Boolean ifBusiness;
+	
+	private Integer businessId;
+	
+	
+
+	public Integer getBusinessId()
+	{
+		return businessId;
+	}
+
+	public void setBusinessId(Integer businessId)
+	{
+		this.businessId = businessId;
+	}
+
+	public Boolean getIfBusiness()
+	{
+		return ifBusiness;
+	}
+
+	public void setIfBusiness(Boolean ifBusiness)
+	{
+		this.ifBusiness = ifBusiness;
+	}
+
+	public void setRoleName(String roleName)
+	{
+		this.roleName = roleName;
+	}
 
 	public UserEntity() {
 

@@ -20,9 +20,6 @@ public class TaxesInviteServiceImpl implements ITaxesInviteService {
     @Resource
     private TaxesInviteMapper taxesInviteMapper;
 
-    //@Value("${game.gameCode}")
-    //private String dbName;
-
     @Override
     public int insert(TaxesInvite record) {
         return taxesInviteMapper.insert(record);
@@ -46,14 +43,6 @@ public class TaxesInviteServiceImpl implements ITaxesInviteService {
     @Override
     public Map<String, Object> getPayAndInviteTotalByAgentParentId(Integer agentParentId,String dbName) {
         Map<String, Object> map = new HashMap<String, Object>();
-        /*if (websideUrl != null) {
-            int start = websideUrl.lastIndexOf("/");
-            int offset = websideUrl.lastIndexOf("?");
-            String dbName = websideUrl.substring(start + 1, offset);
-            map.put("dbName", dbName + ".memberagents");
-        } else {
-            map.put("dbName", "sc_majiang.memberagents");
-        }*/
         map.put("dbName", dbName + ".memberagents");
         map.put("agentParentId", agentParentId);
         return taxesInviteMapper.getPayAndInviteTotalByAgentParentId(map);
@@ -92,11 +81,13 @@ public class TaxesInviteServiceImpl implements ITaxesInviteService {
 		
 		return result;
 	}
+
     @Override
-    public List<Map<String, Object>> getAgentTeamPayChangeCountByDate(Map<String, Object> parameters,String dbName) {
+    public List<Map<String, Object>> getAgentTeamPayChangeCountByDate(Map<String, Object> parameters,String dbName,Integer gameType) {
         parameters.put("memberagents", dbName + ".memberagents");
-        //parameters.put("common_agents_info", dbName + ".common_agents_info");
-        return taxesInviteMapper.getAgentTeamPayChangeCountByDate(parameters);
+        if (gameType == null) gameType = -1;
+        return gameType >= 20 ? taxesInviteMapper.getAgentTeamPayChangeCountByDateForJx(parameters):
+        taxesInviteMapper.getAgentTeamPayChangeCountByDate(parameters);
     }
 
     @Override
@@ -106,35 +97,32 @@ public class TaxesInviteServiceImpl implements ITaxesInviteService {
     }
 
     @Override
-    public List<Map<String, Object>> agentTeamRechargeStatistics(Map<String, Object> parameters,String dbName) {
+    public List<Map<String, Object>> agentTeamRechargeStatistics(Map<String, Object> parameters,String dbName,Integer gameType) {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         if ("".equals(parameters.get("starDate")) || null == parameters.get("starDate")) parameters.put("starDate", simpleDateFormat.format(new Date()));
         if ("".equals(parameters.get("endDate")) || null == parameters.get("endDate")) parameters.put("endDate", simpleDateFormat.format(new Date()));
-        List<Map<String, Object>> data = getAgentTeamPayChangeCountByDate(parameters,dbName);
+        List<Map<String, Object>> data = getAgentTeamPayChangeCountByDate(parameters,dbName,gameType);
 
         if (data != null && data.size() < 1) return new ArrayList<Map<String, Object>>();
-        Double totalPayCount = getAgentUnderBusinessChangeCountByDate(parameters,dbName);
-        Double totalPagePay = 0.0;
-        for (Map<String, Object> datum : data) {
-            Double pay = Double.parseDouble(datum.get("totalpay") + "");
-            totalPagePay += pay;
-        }
-        for (Map<String, Object> datum : data) {
-            datum.put("totalPagePay", totalPagePay);
-            datum.put("totalPayCount", totalPayCount);
-            list.add(datum);
+        if (data != null) {
+            Double totalPayCount = getAgentUnderBusinessChangeCountByDate(parameters,dbName);
+            Double totalPagePay = 0.0;
+            for (Map<String, Object> datum : data) {
+                Double pay = Double.parseDouble(datum.get("totalpay") + "");
+                totalPagePay += pay;
+            }
+            for (Map<String, Object> datum : data) {
+                datum.put("totalPagePay", totalPagePay);
+                datum.put("totalPayCount", totalPayCount);
+                list.add(datum);
+            }
         }
         return list;
     }
 
 	@Override
 	public List<TaxesInvite> selectByIdTexesInviteDay(Map<String, Object> paramters) {
-		
-			/*Object type=paramters.get("type");
-			if(type.equals(CommonContants.HTREE_TEMPE)) {
-				paramters.put("dbName",  dbName + ".memberagents");
-			}*/
 		return taxesInviteMapper.selectByIdTexesInviteDay(paramters);
 	}
 

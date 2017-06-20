@@ -17,6 +17,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +35,11 @@ import com.qs.common.dtgrid.util.ExportUtils;
 import com.qs.common.exception.AjaxException;
 import com.qs.common.exception.SystemException;
 import com.qs.common.util.PageUtil;
+import com.qs.constant.Constant;
 import com.qs.pub.sys.model.BusinessGroup;
 import com.qs.pub.sys.model.Group;
+import com.qs.pub.sys.model.UserEntity;
+import com.qs.pub.sys.service.BusinessService;
 import com.qs.pub.sys.service.GroupService;
 import com.qs.webside.util.TreeUtil;
 
@@ -53,6 +57,8 @@ public class GroupController extends BaseController
 {
 	@Resource
 	private GroupService groupService;
+	@Resource
+	private BusinessService businessService;
 	
 	@RequestMapping("toGroupListUi.html")
 	public String toMemberagentsListUi(String gameType, Model model)
@@ -108,6 +114,9 @@ public class GroupController extends BaseController
 		}
 		
 	}
+	
+	
+	
 	
 	@RequestMapping("addUI.html")
 	public String addUI() {
@@ -350,4 +359,45 @@ public class GroupController extends BaseController
 		}
 		return jstreeList;
 	}
+	
+	/**
+	 * 
+	 * @标题: selectGroup 
+	 * @描述:  用户分组查询
+	 *
+	 * @参数信息
+	 *    @return
+	 *
+	 * @返回类型 Object
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	@RequestMapping("selectGroup.html")
+	@ResponseBody
+	public Object selectGroup(){
+		UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		List<Group> list = null;
+		//如果是领导人可查看的商务id
+		List businessIdList = businessService.findByuId(userEntity.getId());
+		//如果式商务，只能看自己
+        Integer businessId = businessService.selectBusiness(userEntity.getId());
+        
+        Integer leaderTotals = businessService.ifLeader(userEntity.getId());
+        
+        //判断是否是管理员
+		if(userEntity.getIfBusiness() != null && userEntity.getIfBusiness()){
+			//判断是否是公司负责人
+			if(leaderTotals > 0){
+				parameters.put(Constant.DataPrivilege.IF_LEADER,1);
+				parameters.put("id", userEntity.getId());
+			}else{
+				    //判断是否式普通商务
+					parameters.put(Constant.DataPrivilege.IF_BUSINESS,1);
+			}
+		}
+		list = groupService.queryListGroupPrivilege(parameters);
+		return list;
+	}
+	
 }

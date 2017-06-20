@@ -1,0 +1,41 @@
+<div  style=" margin-left: 100px;overflow:hidden;">
+	 <div class="row qs_phb_body" >
+	  <div style="background-color:#40373A;margin: 90px 45px 0px;color: #FFF;    font-size: 18px; ">
+		   <table class="table table-striped qs_ph_table text-center" style="margin-bottom: 5px; ">
+			    <tr style="background-color: #C13329">
+			      <td style="width: 120px"></td>
+			      <td>头像</td>
+			      <td>昵称</td>
+			      <td>积分</td>
+			    </tr>
+			</table>
+			<div style="overflow-y: scroll;height: 370px;">
+			
+		    <table class="table table-striped qs_ph_table text-center"  >
+			   <!--  <tr style="background-color: #C13329">
+			      <td></td>
+			      <td>头像</td>
+			      <td>昵称</td>
+			      <td>积分</td>
+			    </tr> -->
+			  <tbody>
+			    <tr ng-repeat="item in data">
+			      <td ng-if="$index ==0"><img alt="" src="img/ranking/1.png" ></td>
+			      <td ng-if="$index ==1"><img alt="" src="img/ranking/2.png" ></td>
+			      <td ng-if="$index ==2"><img alt="" src="img/ranking/3.png" ></td>
+			      <td ng-if="$index >2">{{$index+1}}</td>
+			      <td><img alt="" class="qs_ph_imghead" src="{{item.icon}}" ></td>
+			      <td>{{item.name}}</td>
+			      <td>{{item.integral}}</td>
+			    </tr>
+			   
+			  </tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="row qs_phb_foot" >
+	    
+	</div> -->
+</div>
+

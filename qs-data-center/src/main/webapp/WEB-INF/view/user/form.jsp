@@ -87,11 +87,34 @@
 		      </div>
 		   </div>   
 		   
+		     <div class="form-group">
+		      <label class="control-label col-sm-1 no-padding-right" for="deleteStatus">是否商务</label>
+		      <div class="col-sm-10">
+		      <div class="clearfix">
+		      
+		  			<select class="form-control" id="ifBusiness" name="ifBusiness" style="width: 100%" onchange="getValue(this.value)">
+						<option value="0" <c:if test="${userEntity.ifBusiness eq false }">selected="selected"</c:if>>否</option>
+						<option value="1" <c:if test="${userEntity.ifBusiness eq true }">selected="selected"</c:if>>是</option>
+					</select>
+		      </div>
+		      </div>
+		   </div> 
+		   
+		    <div class="form-group" style="display:none" id="businessIdDiv">
+		      <label class="control-label col-sm-1 no-padding-right" for="description">商务关联</label>
+		      <div class="col-sm-10">
+		      <div class="clearfix">
+		         <select class="form-control" id="businessId" name="businessId" style="width: 100%">
+				 </select>
+		      </div>
+		      </div>
+		   </div> 
+		   
 		   <div class="form-group">
 		      <label class="control-label col-sm-1 no-padding-right" for="roleId">所属角色</label>
 		      <div class="col-sm-10">
 		      <div class="clearfix">
-		        <select <c:if test="${userSession.role.name eq '超级管理员'}">readonly</c:if> class="form-control" name="role.id" id="roleId" style="width: 100%">
+		        <select <c:if test="${userSession.role.name eq '超级管理员'}">readonly</c:if> class="form-control" name="role.id" id="roleId" style="width: 100%" >
 					<option value=""></option>
 					<c:choose>
 						<c:when test="${!empty userEntity}">
@@ -137,6 +160,7 @@
 				</div>
 		      </div>
 		   </div> 
+		   
 		   <div class="form-group">
 		      <label class="control-label col-sm-1 no-padding-right" for="description">用户描述</label>
 		      <div class="col-sm-10">
@@ -164,3 +188,44 @@
 		<i class="fa fa-undo"></i>&nbsp;返回
 	</button>
 </div>
+
+
+<script>
+function getValue(_val){
+	if(_val == 1){
+		$('#businessIdDiv').css('display','block'); 
+	}
+	if(_val == 0){
+		$('#businessIdDiv').css('display','none'); 
+	}
+}
+
+$.ajax({
+	type : "POST",
+	url : sys.rootPath+"/user/businessList.html",
+	dataType : "json",
+	success : function(data) {
+		$('#businessId').empty();   //清空resText里面的所有内容
+        var a = "${userEntity.businessId}";
+        var html = '<option value="" >请选择...</option>'; 
+        $.each(data, function(commentIndex, comment){
+        	if(a==comment.id){
+        		html += '<option value="'+comment.id+'" selected="selected">' + comment.businessName
+                + '</option>'; 
+        	}else{
+        		html += '<option value="'+comment.id+'">' + comment.businessName
+                + '</option>'; 
+        	}
+             
+        });
+        $('#businessId').html(html);
+     }
+
+});
+$(function(){ 
+	var a = "${userEntity.ifBusiness}";
+	if(a == 'true'){
+		$('#businessIdDiv').css('display','block'); 
+	}
+})
+</script>

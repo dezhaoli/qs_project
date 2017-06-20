@@ -22,7 +22,7 @@
   </delete>
   <insert id="addBusinessBatch" parameterType="map" >
     insert into sys_group_leader (group_id,
-      business_id, create_time)
+      user_id, create_time)
     values 
     <foreach collection="resourceIds" item ="id" separator=",">
     	(#{groupId,jdbcType=INTEGER},
