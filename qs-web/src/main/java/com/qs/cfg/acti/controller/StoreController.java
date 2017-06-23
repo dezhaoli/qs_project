@@ -136,7 +136,9 @@ public class StoreController extends BaseController {
 			}
 		}catch(Exception e)
 		{
-			throw new AjaxException(e);
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.ADD_FAILURE);
 		}
 		return map;
 	}
@@ -170,7 +172,9 @@ public class StoreController extends BaseController {
 			}
 		}catch(Exception e)
 		{
-			throw new AjaxException(e);
+			map.put(CommonContants.SUCCESS, Boolean.FALSE);
+			map.put(CommonContants.DATA, null);
+			map.put(CommonContants.MESSAGE, CommonContants.EDIT_FAILURE);
 		}
 		return map;
 	}

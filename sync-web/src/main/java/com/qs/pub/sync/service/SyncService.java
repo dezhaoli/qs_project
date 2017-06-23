@@ -4,6 +4,7 @@ import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncOrganization;
 import com.qs.sync.model.SyncPlaying;
 import com.qs.sync.model.SyncUser;
+import com.qs.sync.model.SyncUserLoginLog;
 
 /**
  * 数据同步服务
@@ -23,6 +24,8 @@ public interface SyncService {
     public int syncCreateRoom(SyncCreateRoom syncCreateRoom);
 	public int syncCreateRoomLog(SyncCreateRoom syncCreateRoom);
 	public int syncPlayingLog(SyncPlaying syncPlaying);
+	public int syncUserLoginLog(SyncUserLoginLog syncUserLoginLog);
+	public int syncUserLoginLogError(SyncUserLoginLog syncUserLoginLog);
     
    
 }

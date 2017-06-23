@@ -66,7 +66,17 @@
 		
 		
 	<if test="ifBusiness == 1">
-		and e.id = #{businessId,jdbcType=INTEGER}
+		<choose>
+				<when test="businessId != null">
+					and e.id in 
+					<foreach collection="businessId" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+		</choose>
 	</if>
 	<if test="groupId != null and groupId != ''">
 			<choose>
@@ -117,7 +127,17 @@
 		</if>
 	<!-- 普通商务数据权限查询 -->
 	<if test="ifBusiness == 1">
-		and e.id = #{businessId,jdbcType=INTEGER}
+		<choose>
+				<when test="businessIdList2 != null">
+					and e.id in 
+					<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+		</choose>
 	</if>
 	<!-- 页面  按照分公司条件查询  -->
 	<if test="groupId != null and groupId != ''">

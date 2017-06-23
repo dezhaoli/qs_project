@@ -1,6 +1,7 @@
 package com.qs.pub.sys.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.qs.common.base.basemapper.IBaseMapper;
 import com.qs.pub.sys.model.Business;
@@ -20,15 +21,15 @@ public interface BusinessMapper extends IBaseMapper {
 
 	Business findById(int id);
 
-	List findByuId(Long id);
+	List findByuId(Map map);
 
 	List findByAll();
 
-	Integer ifLeader(Long id);
+	Integer ifLeader(Map<String, Object> map);
 
-	Integer selectBusiness(Long id);
+	List selectBusiness(Map<String, Object> parameters);
 
 	List findBusinessByGroupId(int i);
 
-	List<Business> selectByGroupId(Integer groupId);
+	List<Business> selectByGroupId(Map map);
 }

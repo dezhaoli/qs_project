@@ -58,16 +58,16 @@
     </init-param>
     <init-param>
       <param-name>loginPassword</param-name>
-      <param-value>druid</param-value>
+      <param-value>qsdruid</param-value>
     </init-param>
-    <init-param>
+<!--     <init-param>
       <param-name>allow</param-name>
-      <param-value>127.0.0.1/24,127.0.0.1</param-value>
+      <param-value>0.0.0.0/24,127.0.0.1,116.30.28.47</param-value>
     </init-param>
     <init-param>
       <param-name>deny</param-name>
       <param-value>172.101.106.13</param-value>
-    </init-param>
+    </init-param> -->
   </servlet>
   <servlet-mapping>
     <servlet-name>DruidStatView</servlet-name>

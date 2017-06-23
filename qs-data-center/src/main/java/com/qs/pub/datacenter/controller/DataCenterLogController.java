@@ -111,26 +111,26 @@ public class DataCenterLogController extends BaseController
 				String logType = obj.getString("logType");
 				if (logType != null && !logType.trim().equals(""))
 				{
-					if (logType.equals(LogType.accountLog))
+					if (logType.equals(LogType.ACCOUNT_LOG))
 					{
 						rows = accountLogService.insert(
 								JSON.parseObject(params, AccountLog.class));
-					} else if (logType.equals(LogType.userAddLog))
+					} else if (logType.equals(LogType.USER_ADD_LOG))
 					{
 						rows = userAddLogService.insert(
 								JSON.parseObject(params, UserAddLog.class));
-					} else if (logType.equals(LogType.userLoginLog))
+					} else if (logType.equals(LogType.USER_LOGIN_LOG))
 					{
 						rows = userLoginLogService.insert(
 								JSON.parseObject(params, UserLoginLog.class));
-					} else if (logType.equals(LogType.playing))
+					} else if (logType.equals(LogType.PLAYING))
 					{
 						SyncPlaying pl = JSON.parseObject(params,
 								SyncPlaying.class);
 						pl.setFromSysCode("sync-data");
 						sendDataFacade.sendByJms(pl);
 						rows = 1;
-					} else if (logType.equals(LogType.createRoom))
+					} else if (logType.equals(LogType.CREATE_ROOM))
 					{
 						SyncCreateRoom sc = JSON.parseObject(params,
 								SyncCreateRoom.class);

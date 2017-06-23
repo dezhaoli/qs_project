@@ -78,6 +78,10 @@ public class AppConstants {
 		public static final int  FAILURE_1007=1007;
 		public static final int  FAILURE_1008=1008;
 		public static final int  FAILURE_1009=1009;
+		public static final int  FAILURE_1010=1010;
+		public static final int  FAILURE_1011=1011;
+		public static final int  FAILURE_1012=1012;
+		public static final int  FAILURE_1013=1013;
 		public static final int  FAILURE_1102=1102;
 		
 	}

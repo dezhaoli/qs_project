@@ -27,6 +27,7 @@ import com.qs.common.constant.LogType;
 import com.qs.common.util.ContextUtil;
 import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncPlaying;
+import com.qs.sync.model.SyncUserLoginLog;
 import com.qs.sync.sender.SendDataFacade;
 
 /** 
@@ -75,19 +76,24 @@ public class DataCenterLogController extends BaseController
 				String logType = obj.getString("logType");
 				if (logType != null && !logType.trim().equals(""))
 				{
-					if (logType.equals(LogType.playing))
+					if (logType.equals(LogType.PLAYING))
 					{
 						SyncPlaying pl = JSON.parseObject(params,
 								SyncPlaying.class);
 						pl.setFromSysCode("sync-data");
 						sendResult=sendDataFacade.sendByJms(pl);
-					} else if (logType.equals(LogType.createRoom))
+					} else if (logType.equals(LogType.CREATE_ROOM))
 					{
 						SyncCreateRoom sc = JSON.parseObject(params,
 								SyncCreateRoom.class);
 						sc.setFromSysCode("sync-data");
 						sendResult=sendDataFacade.sendByJms(sc);
-					}
+					}else if (logType.equals(LogType.USER_LOGIN_LOG))
+					{
+						SyncUserLoginLog su = JSON.parseObject(params,SyncUserLoginLog.class);
+						su.setFromSysCode("sync-data");
+						sendResult=sendDataFacade.sendByJms(su);
+					} 
 				}
 				if (sendResult)
 				{

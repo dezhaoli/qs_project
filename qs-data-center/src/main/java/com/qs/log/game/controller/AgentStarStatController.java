@@ -189,6 +189,12 @@ public class AgentStarStatController extends BaseController
 	@RequestMapping("userGradeList.html")
 	public Map<String ,Object> userGradeList(String gridPager) {
 			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+			Map<String, Object>  map = new HashMap<String,Object>();
+			
+			
 			Map<String, Object> parameters = null;
 	        // 映射Pager对象
 	        Pager pager = JSON.parseObject(gridPager, Pager.class);
@@ -197,9 +203,12 @@ public class AgentStarStatController extends BaseController
 	        
 			
 			//如果是领导人可查看的商务id
-			List businessIdList = businessService.findByuId(userEntity.getId());
+	        map.put("gameType", gameType);
+	        map.put("uId", userEntity.getId());
+			List businessIdList = businessService.findByuId(map);
 			//如果式商务，只能看自己
-	        Integer businessId = businessService.selectBusiness(userEntity.getId());
+			map.put("accountName", userEntity.getAccountName());
+	        List businessIdList2 = businessService.selectBusiness(map);
 	        
 	        
 	        //条件查询（组id）
@@ -207,7 +216,7 @@ public class AgentStarStatController extends BaseController
 	        //通过组id查询商务id
 			List businessIdListByGroup = businessService.findBusinessByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
 	        
-	        Integer leaderTotals = businessService.ifLeader(userEntity.getId());
+	        Integer leaderTotals = businessService.ifLeader(map);
 	        
 	        //判断是否是管理员
 			if(userEntity.getIfBusiness() != null && userEntity.getIfBusiness()){
@@ -218,12 +227,10 @@ public class AgentStarStatController extends BaseController
 				}else{
 					    //判断是否式普通商务
 						parameters.put(Constant.DataPrivilege.IF_BUSINESS,1);
-						parameters.put("businessId",businessId);
+						parameters.put("businessIdList2",businessIdList2 != null && businessIdList2.size()>0?businessIdList2:null);
 				}
 			}
 			
-	        ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
-			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
 		    String logDataSourceType=dataSourceName+"LogDataSource";
 			String mainDataSourceType = dataSourceName + "AgentDataSource";
 	        DataSourceSwitch.setLogDataSourceType(logDataSourceType);
@@ -233,7 +240,6 @@ public class AgentStarStatController extends BaseController
     			parameters.put("eDate", DateUtil.getDatalastWeek());
     		}
 	        
-	        String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
 			parameters.put("dbTable", dataSourceName);
 			parameters.put("gameType", gameType);
 			parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);
@@ -248,19 +254,26 @@ public class AgentStarStatController extends BaseController
 	@RequestMapping("userGradeChar.html")
 	public Map<String,Object> userGradeChar(String eDate,String belongid,String grade,String groupId,String businessId) {
 		UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+		ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+		String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+		String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+		Map<String, Object>  map = new HashMap<String,Object>();
 
-		List businessIdList = businessService.findByuId(userEntity.getId());
+		map.put("gameType", gameType);
+		map.put("uId", userEntity.getId());
+		List businessIdList = businessService.findByuId(map);
 		List businessIdListByGroup = businessService.findBusinessByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
 		//List businessIdAllList = taxesInviteWeekService.findByAll();
-        Integer businessId2 = businessService.selectBusiness(userEntity.getId());
-        Integer leaderTotals = businessService.ifLeader(userEntity.getId());
+		
+		
+		map.put("accountName", userEntity.getAccountName());
+        List businessIdList2 = businessService.selectBusiness(map);
+        Integer leaderTotals = businessService.ifLeader(map);
 		
 		
 		Map<String,Object> result=new HashMap<>();
 		Map<String,Object> parma=new HashMap<>();
 		Map<String,Object> entity=new HashMap<>();
-		ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
-		String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
 	    String logDataSourceType=dataSourceName+"LogDataSource";
 		String mainDataSourceType = dataSourceName + "AgentDataSource";
     	DataSourceSwitch.setLogDataSourceType(logDataSourceType);
@@ -270,7 +283,6 @@ public class AgentStarStatController extends BaseController
 		 }else{
 				parma.put("eDate",eDate);
 		}
-		 String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
 		 parma.put("dbTable", dataSourceName);
 		 parma.put("gameType", gameType);
 		 parma.put("belongid", belongid);
@@ -289,7 +301,7 @@ public class AgentStarStatController extends BaseController
 				}else{
 					    //判断是否式普通商务
 					parma.put(Constant.DataPrivilege.IF_BUSINESS,1);
-					parma.put("businessId",businessId2);
+					parma.put("businessId",businessIdList2);
 				}
 			}
 		 

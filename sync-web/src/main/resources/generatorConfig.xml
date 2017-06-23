@@ -28,20 +28,20 @@
         </javaModelGenerator>  
   		
   		<!-- java mapper xml生成路径 -->
-        <!-- <sqlMapGenerator targetPackage="datacenter"  
-            targetProject="D:\java\myHome\qs-data-center\src\main\resources\mybatis\mapper\pub">  
+        <sqlMapGenerator targetPackage="sync"  
+            targetProject="D:\java\myHome\sync-web\src\main\resources\mybatis\mapper\pub">  
             <property name="enableSubPackages" value="true" />  
-        </sqlMapGenerator> -->  
+        </sqlMapGenerator>  
       
         <!-- mapper java -->
-		<!-- <javaClientGenerator type="XMLMAPPER"  
-            targetPackage="com.qs.pub.datacenter.mapper" targetProject="D:\java\myHome\qs-data-center\src\main\java">  
+		<javaClientGenerator type="XMLMAPPER"  
+            targetPackage="com.qs.pub.sync.mapper" targetProject="D:\java\myHome\sync-web\src\main\java">  
             <property name="enableSubPackages" value="true" /> 
             <property name="rootInterface" value="com.qs.common.base.basemapper.IBaseMapper"/>
-		</javaClientGenerator> -->
+		</javaClientGenerator>
 		
 		
-		<table schema="data_center" tableName="dc_sync_log_error" domainObjectName="LogErrors" enableCountByExample="false"
+		<table schema="data_center" tableName="dc_user_login_log" domainObjectName="SyncUserLoginLog" enableCountByExample="false"
 			enableUpdateByExample="false"
 			enableDeleteByExample="false"
 			enableSelectByExample="false"

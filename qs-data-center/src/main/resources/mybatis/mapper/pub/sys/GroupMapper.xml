@@ -43,14 +43,20 @@
     select 
     r.*
     from sys_group r
-	    <if test="ifLeader == 1">
-	    	inner join sys_group_leader g on r.id = g.group_id 
+    <choose>
+    	<when test="ifLeader == 1">
+    		inner join sys_group_leader g on r.id = g.group_id 
 			inner join tb_user u on g.user_id=u.u_id 
-			where u.u_id = #{id}
-	    </if>
-	    <if test="ifBusiness == 1">
-	    	where 1=2
-	    </if>
+			<where>
+				u.u_id = #{uId} and r.game_type=#{gameType}
+			</where> 
+    	</when>
+    	<otherwise>
+    	  <where>
+    	  	r.game_type=#{gameType}
+    	  </where>
+    	</otherwise>
+    </choose>
   </select>
   
   <select id="queryUserGroupList" resultMap="BaseResultMap" parameterType="map" >

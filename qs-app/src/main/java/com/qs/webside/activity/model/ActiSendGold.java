@@ -1,8 +1,9 @@
 package com.qs.webside.activity.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class ActiSendGold {
+public class ActiSendGold implements Serializable {
     private Integer id;
 
     private Integer mid;

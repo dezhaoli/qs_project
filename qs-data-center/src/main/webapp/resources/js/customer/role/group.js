@@ -18,10 +18,14 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution : function(value, record, column, grid, dataNo, columnNo) {
-        if (value == '1') {
-            return '湖南牵手';
-        } else if(value == '2') {
+        if (value == 'beardkx') {
+            return '开心乐玩';
+        } else if(value == 'gd_majiang_pub') {
             return '广东乐玩';
+        } else if(value == 'majiangjx'){
+        	return '江西乐玩'
+        } else if(value == 'runfast'){
+        	return '湖南牵手'
         }
     }
 }, {

@@ -30,15 +30,15 @@ public interface BusinessService
 	Business findById(int id);
 
 
-	List<Business> selectByGroupId(Integer groupId);
+	List<Business> selectByGroupId(Map<String, Object> map);
 
-	List findByuId(Long id);
+	List findByuId(Map<String, Object> map);
 
 	List findBusinessByGroupId(int id);
 
-	Integer selectBusiness(Long id);
+	Integer ifLeader(Map<String, Object> map);
 
-	Integer ifLeader(Long id);
+	List selectBusiness(Map<String, Object> parameters);
 
 	
 }

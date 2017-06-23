@@ -16,6 +16,7 @@ define(['app',"layer"],function(app){
                 	var result=JSON.parse(data);
                 	if (result.svflag==1){
                 		$timeout(function(){  
+                			$scope.user=JSON.parse(data).data;
             				$scope.nowIntegral=JSON.parse(data).data.nowIntegral;
                 		},100);
                 	}else if (result.svflag==1001){
@@ -69,7 +70,7 @@ define(['app',"layer"],function(app){
                   		function(data){
               		
               		var result=JSON.parse(data);
-              		if(result.data==-104) {
+              		if(result.svflag==1002) {
               			layer.msg("请完善地址信息！", { icon : 5, time : 1000 });
               			setTimeout(function (){$state.go("address");},1200);
               			return;
@@ -84,6 +85,10 @@ define(['app',"layer"],function(app){
                   					return;
                   				}
                   		},500);
+                  	}else if(result.svflag==1005 || result.svflag==1007){
+                  		layer.msg("积分不足！", { icon : 5, time : 1000 });
+                  	}else if(result.svflag==1006){
+                  		layer.msg("当前暂无可用积分！", { icon : 5, time : 1000 });
                   	}else {
                   		console.log(data);
                   		window.datas=result;

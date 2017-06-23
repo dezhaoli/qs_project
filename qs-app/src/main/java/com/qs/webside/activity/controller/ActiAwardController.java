@@ -32,57 +32,69 @@ public class ActiAwardController extends BaseController {
     @Resource
     private IActiAwardService actiAwardService;
 
-    @Resource
-    private IActiIntegralService actiIntegralService;
-    
-    @Resource
-    private IActiAwardRecordService actiAwardRecordService;
     /**
-     * @Author:zun.wei , @Date:2017/6/12 9:55
-     * @Description:获取兑换的商品列表
-     * @param model
-     * @param request
+     * @Author:zun.wei , @Date:2017/6/23 15:15
+     * @Description:获取商品列表信息
+     * @param baseRequest
      * @return
      */
     @ResponseBody
+    @RequestMapping("getCommodityList.do")
+    public Object getCommodityList(BaseRequest baseRequest) {
+        AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("mid", token.getMid());
+        List<Map<String,Object>> actiAwardList = actiAwardService.queryListByPage(parameters);
+        if (actiAwardList != null && actiAwardList.size() > 0) {
+            return this.getReturnData(actiAwardList, AppConstants.Result.SUCCESS);
+        } else {
+            return this.getReturnData(actiAwardList, AppConstants.Result.FAILURE);
+        }
+    }
+
+
+    /*@ResponseBody
     @RequestMapping("getCommodityList.do")
     public Object getCommodityList(BaseRequest baseRequest) {
         List<ActiAward> actiAwardList = actiAwardService.queryListByPage(new HashMap<>());
         if (actiAwardList == null) {
             return this.getReturnData(actiAwardList, AppConstants.Result.FAILURE);
         } else {
-        	 AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
-        	 ActiIntegral actiIntegral = actiIntegralService.selectByMid(token.getMid());
-        	if (actiIntegral ==null) {
-        		  return this.getReturnData(actiAwardList, AppConstants.Result.SUCCESS);
-        	}
-        	for (ActiAward acta : actiAwardList) {
-        		Map<String, Object> parameterMap = new HashMap<>();
+            AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+            ActiIntegral actiIntegral = actiIntegralService.selectByMid(token.getMid());
+            if (actiIntegral == null) {
+                for (ActiAward actiAward : actiAwardList) {
+                    actiAward.setState(Constants.Award.LACK);
+                }
+                return this.getReturnData(actiAwardList, AppConstants.Result.SUCCESS);
+            }
+            for (ActiAward acta : actiAwardList) {
+                Map<String, Object> parameterMap = new HashMap<>();
                 parameterMap.put("actiType", acta.getType());
                 parameterMap.put("awardId", acta.getId());
                 long hashExAwards = actiAwardRecordService.checkAwardRecordSumByActiType(parameterMap);//已兑换奖品个数
-                int count=actiAwardRecordService.countAwardNumber(new ActiAwardRecord(acta.getId(), token.getMid()));
-        		if(hashExAwards<acta.getAwardNum()){
-        			if (acta.getIntegral()<=actiIntegral.getNowIntegral()){
-        				if(acta.getReceiveNum()==null) {
-        					acta.setReceiveNum(0);
-        				}
-        				if (acta.getReceiveNum()>count){
-        					acta.setState(Constants.Award.CONVERT);
-        				}else {
-        					acta.setState(Constants.Award.CONVERTED);
-        				}
-        			}else {
-        				acta.setState(Constants.Award.LACK);
-        			}
-        		}else{
-        			acta.setState(Constants.Award.CONVERTED);
-        		}
-			}
-        	
+                int count = actiAwardRecordService.countAwardNumber(new ActiAwardRecord(acta.getId(), token.getMid()));
+                if (hashExAwards < acta.getAwardNum()) {
+                    if (acta.getIntegral() <= actiIntegral.getNowIntegral()) {
+                        if (acta.getReceiveNum() == null) {
+                            acta.setReceiveNum(0);
+                        }
+                        if (acta.getReceiveNum() > count) {
+                            acta.setState(Constants.Award.CONVERT);
+                        } else {
+                            acta.setState(Constants.Award.CONVERTED);
+                        }
+                    } else {
+                        acta.setState(Constants.Award.LACK);
+                    }
+                } else {
+                    acta.setState(Constants.Award.CONVERTED);
+                }
+            }
+
             return this.getReturnData(actiAwardList, AppConstants.Result.SUCCESS);
         }
-    }
+    }*/
 
 
 }

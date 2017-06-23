@@ -23,7 +23,7 @@ public interface IActiAwardService {
 
     int updateByPrimaryKey(ActiAward record);
 
-    List<ActiAward> queryListByPage(Map<String, Object> parameters);
+    List<Map<String,Object>> queryListByPage(Map<String, Object> parameters);
 
     /**
      * @Author:zun.wei , @Date:2017/6/13 20:12

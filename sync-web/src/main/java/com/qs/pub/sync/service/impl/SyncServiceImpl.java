@@ -1,7 +1,5 @@
 package com.qs.pub.sync.service.impl;
 
-import java.io.IOException;
-
 import javax.annotation.Resource;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,16 +10,18 @@ import org.springframework.stereotype.Service;
 
 import com.qs.common.ip2region.DbSearcher;
 import com.qs.pub.sync.common.SyncLogTool;
+import com.qs.pub.sync.service.ICreateRoomService;
+import com.qs.pub.sync.service.IPlayingService;
+import com.qs.pub.sync.service.IUserLoginLogService;
 import com.qs.pub.sync.service.LogErrorService;
 import com.qs.pub.sync.service.LogSuccessService;
 import com.qs.pub.sync.service.SyncService;
-import com.qs.pub.sync.service.ICreateRoomService;
-import com.qs.pub.sync.service.IPlayingService;
 import com.qs.sync.model.LogError;
 import com.qs.sync.model.LogSuccess;
 import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncObject;
 import com.qs.sync.model.SyncPlaying;
+import com.qs.sync.model.SyncUserLoginLog;
 
 /**
  * 同步数据服务实现
@@ -38,6 +38,8 @@ public class SyncServiceImpl implements SyncService {
 	private LogErrorService logErrorService;
 	@Autowired
 	private LogSuccessService logSuccessService;
+	@Autowired
+	private IUserLoginLogService userLoginLogService;
 	
 	
 	/**
@@ -92,14 +94,13 @@ public class SyncServiceImpl implements SyncService {
 	public int syncPlayingLog(SyncPlaying syncPlaying)
 	{
 		int result = 0;
-		try
-		{
+		try{
 			result = playingService.insert(syncPlaying);
-		} catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return result;
+			} catch (Exception e)
+			{
+				e.printStackTrace();
+			}
+			return result;
 	}
 
 
@@ -213,6 +214,55 @@ public class SyncServiceImpl implements SyncService {
 	protected static String getCallerMethod(){
 		StackTraceElement ste = Thread.currentThread().getStackTrace()[3];
 		return ste.getClassName() + "." + ste.getMethodName() + "(line" + ste.getLineNumber() + ")";
+	}
+	
+	/**
+	 * app  用户登录日志信息同步
+	 */
+	@Override
+	public int syncUserLoginLog(SyncUserLoginLog syncUserLoginLog)
+	{
+		String ip = syncUserLoginLog.getIp();
+		int result=0;
+		try{
+			if(!StringUtils.isBlank(ip)){
+				 String region="";
+			     region = ipSearcher.memorySearch(ip).getRegion();
+			     String[] regions = StringUtils.split(region, '|');
+			     syncUserLoginLog.setProvince(regions[2]);
+			     syncUserLoginLog.setCity(regions[3]);
+			     syncUserLoginLog.setRegion(regions[2]+regions[3]);
+			}
+		   result = userLoginLogService.insert(syncUserLoginLog);
+		   return result;
+		}catch(Exception e){
+			this.saveErrorLog(syncUserLoginLog, SyncUserLoginLog.class.getSimpleName(), "", "", "0");
+			e.printStackTrace();
+		}
+		return result;
+	}
+	/**
+	 * 
+	 * @标题: syncUserLoginLogError 
+	 * @描述:  用户登录 同步失败信息，重新保存
+	 *
+	 * @参数信息
+	 *    @param syncUserLoginLog
+	 *    @return
+	 *
+	 * @返回类型 int
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	public int syncUserLoginLogError(SyncUserLoginLog syncUserLoginLog) {
+		int result=0;
+		try{
+		   result = userLoginLogService.insert(syncUserLoginLog);
+		   return result;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
 	}
  
 

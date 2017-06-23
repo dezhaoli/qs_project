@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.sys.mapper.BusinessMapper">
+  <resultMap id="BaseResultMap" type="com.qs.pub.sys.model.Business">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="business_id" jdbcType="INTEGER" property="businessId" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="company_id" jdbcType="INTEGER" property="companyId" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, business_id, business_name, company_id, company_name, app_id, create_user, create_time, 
+    update_user, update_time, icon
+  </sql>
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_business
+  </select>
+  <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_business
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_business
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.pub.sys.model.Business">
+    insert into sys_business (business_id, business_name, 
+      app_id, 
+      create_user, create_time, 
+      icon)
+    values (#{businessId,jdbcType=INTEGER}, #{businessName,jdbcType=VARCHAR}, 
+      #{appId,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, now(),
+      #{icon,jdbcType=VARCHAR})
+  </insert>
+  
+  
+  <update id="updateByPrimaryKey" parameterType="com.qs.pub.sys.model.Business">
+    update sys_business
+    set business_id = #{businessId,jdbcType=INTEGER},
+      business_name = #{businessName,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=INTEGER},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = now()
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findByuId" parameterType="map" resultType="Integer">
+    select bu.business_id from tb_user u 
+		inner join sys_group_leader e  on u.u_id=e.user_id 
+		inner join sys_group r on e.group_id= r.id 
+		inner join sys_business_group s on (r.id=s.group_id) 
+		inner join sys_business bu on (bu.id=s.business_id) where u.u_id = #{uId} and r.game_type = #{gameType}
+  </select>
+  
+  <select id="findBusinessByGroupId" parameterType="Integer" resultType="Integer">
+    select b.business_id from sys_group g 
+    inner join sys_business_group s on g.id=s.group_id 
+    inner join sys_business b on s.business_id=b.id  where g.id = #{id}
+  </select>
+  
+  <select id="selectByGroupId" resultType="com.qs.pub.sys.model.BusinessGroup" parameterType="java.lang.Integer" >
+    select s.id, s.business_id, s.business_name
+     from sys_group g 
+     inner join sys_business_group b on g.id = b.group_id
+     inner join sys_business s on s.id=b.business_id
+	<where>
+	 b.group_id  = #{groupId,jdbcType=INTEGER}
+	 and g.game_type =#{gameType}
+	</where>
+  </select>
+  
+  <select id="findByAll"  resultType="Integer">
+    select s.business_id from sys_group g 
+	inner join sys_business_group b on g.id=b.group_id 
+	inner join sys_business s on s.id = b.business_id
+  </select>
+  
+   <select id="ifLeader" resultType="Integer" parameterType="map">
+  	select count(*) from tb_user u  
+  	inner join sys_group_leader l on(u.u_id=l.user_id) 
+  	inner join sys_group g on(g.id=l.group_id)
+  	where u.u_id = #{uId,jdbcType=INTEGER} and g.game_type=#{gameType}
+  </select>
+  
+  <select id="selectBusiness" resultType="Integer" parameterType="map">
+	select s.business_id from tb_user u 
+	inner join sys_business s on s.phone = u.u_account_name
+	inner join sys_business_group b on s.id=b.business_id
+	inner join sys_group g on g.id=b.group_id
+	<where> 
+	g.game_type=#{gameType} 
+	and u.u_account_name=#{accountName}
+	</where>
+  </select>
+</mapper>

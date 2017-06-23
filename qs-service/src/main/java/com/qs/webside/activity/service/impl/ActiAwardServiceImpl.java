@@ -1,11 +1,14 @@
 package com.qs.webside.activity.service.impl;
 
+import com.qs.common.constant.CacheConstan;
 import com.qs.common.constant.Constants;
 import com.qs.pub.game.model.Dict;
 import com.qs.pub.game.service.IDictService;
 import com.qs.webside.activity.mapper.ActiAwardMapper;
 import com.qs.webside.activity.model.ActiAward;
 import com.qs.webside.activity.service.IActiAwardService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,16 +29,19 @@ public class ActiAwardServiceImpl implements IActiAwardService {
     private IDictService dictService;
 
     @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_LIST_CACHE_NAME}, allEntries = true)
     public int deleteByPrimaryKey(Integer id) {
         return actiAwardMapper.deleteByPrimaryKey(id);
     }
 
     @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_LIST_CACHE_NAME}, allEntries = true)
     public int insert(ActiAward record) {
         return actiAwardMapper.insert(record);
     }
 
     @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_LIST_CACHE_NAME}, allEntries = true)
     public int insertSelective(ActiAward record) {
         return actiAwardMapper.insertSelective(record);
     }
@@ -46,11 +52,13 @@ public class ActiAwardServiceImpl implements IActiAwardService {
     }
 
     @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_LIST_CACHE_NAME}, allEntries = true)
     public int updateByPrimaryKeySelective(ActiAward record) {
         return actiAwardMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_LIST_CACHE_NAME}, allEntries = true)
     public int updateByPrimaryKey(ActiAward record) {
         return actiAwardMapper.updateByPrimaryKey(record);
     }

@@ -55,15 +55,15 @@ public class BusinessServiceImpl implements BusinessService
 	}
 
 	@Override
-	public List<Business> selectByGroupId(Integer groupId)
+	public List<Business> selectByGroupId(Map map)
 	{
-		return businessMapper.selectByGroupId(groupId);
+		return businessMapper.selectByGroupId(map);
 	}
 
 	@Override
-	public List findByuId(Long id)
+	public List findByuId(Map map)
 	{
-		return businessMapper.findByuId(id);
+		return businessMapper.findByuId(map);
 	}
 
 	@Override
@@ -73,14 +73,14 @@ public class BusinessServiceImpl implements BusinessService
 	}
 
 	@Override
-	public Integer selectBusiness(Long id)
+	public List selectBusiness(Map<String, Object> parameters)
 	{
-		return businessMapper.selectBusiness(id);
+		return businessMapper.selectBusiness(parameters);
 	}
 
 	@Override
-	public Integer ifLeader(Long id)
+	public Integer ifLeader(Map<String,Object> map)
 	{
-		return businessMapper.ifLeader(id);
+		return businessMapper.ifLeader(map);
 	}
 }

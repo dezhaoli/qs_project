@@ -18,6 +18,7 @@ import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncOrganization;
 import com.qs.sync.model.SyncPlaying;
 import com.qs.sync.model.SyncUser;
+import com.qs.sync.model.SyncUserLoginLog;
 
 /**
  * @ClassName: ErrorDataHandleTask
@@ -54,9 +55,11 @@ public class ErrorDataHandleTask {
 				if (SyncContans.FromTableCode.PLAYING.equals(modelCode))
 				{
 					this.playingErrorLogHandle(errorLog);
-				} else
+				} else if(SyncContans.FromTableCode.ROOM.equals(modelCode))
 				{
 					this.roomErrorLogHandle(errorLog);
+				}else if(SyncContans.FromTableCode.USER_LOGIN.equals(modelCode)){
+					this.userLoginErrorLogHandel(errorLog);
 				}
 			}
 			
@@ -66,11 +69,39 @@ public class ErrorDataHandleTask {
 		
 	}
 	
+	private void userLoginErrorLogHandel(LogError errorLog)
+	{
+
+		logger.debug("playingErrorLogHandle====================");
+		SyncUserLoginLog	syncUserLoginLog = JsonUtil.fromJsonObject(errorLog.getContent(), SyncUserLoginLog.class);
+		int result=0;
+		//异常,所有系统同步一遍
+		result=dataSyncService.syncUserLoginLogError(syncUserLoginLog);
+		
+		int sendNum=Integer.parseInt(errorLog.getSendNum());
+		sendNum+=1;
+		errorLog.setSendNum(sendNum+"");
+		
+		if(result==1){
+			//同步成功
+			errorLog.setStatus("1");
+			errorLog.setSendNum(sendNum+"");
+			errorLog.setModifyTime(new Date());
+			logErrorMapper.update(errorLog);
+			
+		}else{
+			errorLog.setStatus("0");
+			errorLog.setSendNum(sendNum+"");
+			errorLog.setModifyTime(new Date());
+			logErrorMapper.update(errorLog);
+		}
+	}
+
 	/**
 	 * 在玩错误日志
 	 */
 	public void playingErrorLogHandle(LogError errorLog) {
-		logger.debug("userErrorLogHandle====================");
+		logger.debug("playingErrorLogHandle====================");
 		SyncPlaying	syncPlaying = JsonUtil.fromJsonObject(errorLog.getContent(), SyncPlaying.class);
 		int result=0;
 		//异常,所有系统同步一遍

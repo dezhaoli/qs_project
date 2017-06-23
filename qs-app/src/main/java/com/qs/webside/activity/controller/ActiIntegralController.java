@@ -37,12 +37,13 @@ public class ActiIntegralController extends BaseController {
     @RequestMapping("rankingList.do")
     public Object getActiIntegralRankingList(BaseRequest baseRequest) {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
-        ActiIntegral actiIntegral = actiIntegralService.selectByMid(token.getMid());
+        //ActiIntegral actiIntegral = actiIntegralService.selectByMid(token.getMid());
         List<Map<String,Object>> actiIntegralList = actiIntegralService.queryListByPage(new HashMap<>());
         Map<String, Object> returnMap = new HashMap<>();
-        returnMap.put("userIntegral", actiIntegral);
+        //returnMap.put("userIntegral", actiIntegral);
         returnMap.put("actiIntegralList", actiIntegralList);
-        if (actiIntegral == null || actiIntegralList == null) {
+        //if (actiIntegral == null || actiIntegralList == null) {
+        if (actiIntegralList == null) {
             return this.getReturnData(returnMap, AppConstants.Result.FAILURE);
         } else {
             return this.getReturnData(returnMap, AppConstants.Result.SUCCESS);

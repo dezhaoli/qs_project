@@ -12,6 +12,7 @@ import com.qs.pub.sync.service.SyncService;
 import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncObject;
 import com.qs.sync.model.SyncPlaying;
+import com.qs.sync.model.SyncUserLoginLog;
 
 /**
  * 
@@ -30,25 +31,33 @@ public class ReceiveDataImpl implements IReceiveData {
 	/**
 	 * 消息接收处理
 	 */
-	public void handleMessage(ActiveMQObjectMessage message,Session session) {
+	public void handleMessage(ActiveMQObjectMessage message, Session session)
+	{
 		Object myMessage = null;
-		try {
+		try
+		{
 			myMessage = (Object) message.getObject();
-		
-		
-		SyncObject so=(SyncObject)myMessage;
-		log.debug("fromSystemCode===========::"+so.getFromSysCode()+"=========fromSysMethod=======::"+so.getFromSysMethod());
-		
-		if(myMessage instanceof SyncPlaying){
-			this.syncPlaying(myMessage);
 			
-		}else if(myMessage instanceof SyncCreateRoom){
-			this.syncCreateRoom(myMessage);
-		}
-		} catch (JMSException e) {
+			SyncObject so = (SyncObject) myMessage;
+			log.debug("fromSystemCode===========::" + so.getFromSysCode()
+					+ "=========fromSysMethod=======::"
+					+ so.getFromSysMethod());
+			
+			if (myMessage instanceof SyncPlaying)
+			{
+				this.syncPlaying(myMessage);
+				
+			} else if (myMessage instanceof SyncCreateRoom)
+			{
+				this.syncCreateRoom(myMessage);
+			}else if(myMessage instanceof SyncUserLoginLog){
+				this.syncUserLoginLog(myMessage);
+			}
+		} catch (JMSException e)
+		{
 			e.printStackTrace();
 		}
-	     
+		
 	}
 	
 
@@ -70,6 +79,23 @@ public class ReceiveDataImpl implements IReceiveData {
 	public void syncCreateRoom(Object myMessage){
 		SyncCreateRoom syncCreateRoom=(SyncCreateRoom)myMessage;
 		dataSyncService.syncCreateRoom(syncCreateRoom);
+		
+	}
+	/**
+	 * 
+	 * @标题: syncUserLoginLog 
+	 * @描述:  同步登陆日志数据
+	 *
+	 * @参数信息
+	 *    @param myMessage
+	 *
+	 * @返回类型 void
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	public void syncUserLoginLog(Object myMessage){
+		SyncUserLoginLog syncUserLoginLog=(SyncUserLoginLog)myMessage;
+		dataSyncService.syncUserLoginLog(syncUserLoginLog);
 		
 	}
 	

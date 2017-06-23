@@ -1,8 +1,10 @@
 package com.qs.webside.activity.service.impl;
 
+import com.qs.common.constant.CacheConstan;
 import com.qs.webside.activity.mapper.ActiIntegralMapper;
 import com.qs.webside.activity.model.ActiIntegral;
 import com.qs.webside.activity.service.IActiIntegralService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -51,6 +53,7 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
     }
 
     @Override
+    @Cacheable(value = {CacheConstan.INTEGRAL_RANKING_CACHE_NAME},key="#root.methodName+'SortList:'")
     public List<Map<String,Object>> queryListByPage(Map<String, Object> parameters) {
         return actiIntegralMapper.queryListByPage(parameters);
     }

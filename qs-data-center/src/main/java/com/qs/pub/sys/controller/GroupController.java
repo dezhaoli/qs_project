@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +62,8 @@ public class GroupController extends BaseController
 	private GroupService groupService;
 	@Resource
 	private BusinessService businessService;
+	@Autowired
+	private RedisTemplate<String,String> redisTemplate;
 	
 	@RequestMapping("toGroupListUi.html")
 	public String toMemberagentsListUi(String gameType, Model model)
@@ -376,25 +381,28 @@ public class GroupController extends BaseController
 	@ResponseBody
 	public Object selectGroup(){
 		UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+		ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+		String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+		String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+		Map<String, Object>  map = new HashMap<String,Object>();
+		
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		List<Group> list = null;
-		//如果是领导人可查看的商务id
-		List businessIdList = businessService.findByuId(userEntity.getId());
-		//如果式商务，只能看自己
-        Integer businessId = businessService.selectBusiness(userEntity.getId());
-        
-        Integer leaderTotals = businessService.ifLeader(userEntity.getId());
+		
+		
+		map.put("gameType", gameType);
+		map.put("uId", userEntity.getId());
+        Integer leaderTotals = businessService.ifLeader(map);
         
         //判断是否是管理员
 		if(userEntity.getIfBusiness() != null && userEntity.getIfBusiness()){
 			//判断是否是公司负责人
 			if(leaderTotals > 0){
 				parameters.put(Constant.DataPrivilege.IF_LEADER,1);
-				parameters.put("id", userEntity.getId());
-			}else{
-				    //判断是否式普通商务
-					parameters.put(Constant.DataPrivilege.IF_BUSINESS,1);
+				parameters.put("uId", userEntity.getId());
 			}
+		}else{
+			parameters.put("gameType", gameType);
 		}
 		list = groupService.queryListGroupPrivilege(parameters);
 		return list;

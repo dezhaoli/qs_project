@@ -299,9 +299,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -682,6 +679,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -853,37 +853,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_award_form.jsp</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\activity\acti_award_record_list.js</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\activity\controller\ActiAwardRecordController.java</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\webside\activity\ActiAwardMapper.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\spring\spring-mvc.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\index.html</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\main.js</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\converted_list.js</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\address.js</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\controller\award_list.js</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\service.js</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\js\routes.js</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\web\converted_list.html</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\web\ranking_list.html</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\web\address.html</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\web\award_list.html</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\css\common.css</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\controller\ActiAwardRecordController.java</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\controller\ActiAwardController.java</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\util\ExecutorThreadUtil.java</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\activity\ActiAwardRecordMapper.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\log\game\TaxesInviteWeekMapper.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\sys\sqlmap-mapping-user.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\sys\sqlmap-mapping-role.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\sys\BusinessGroupMapper.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\spring\dataResource\webside-datasource.xml</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\agent\agent_userGrade_details_list.jsp</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\agent\agent_userGradeUi_list.jsp</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\role\group_permission.jsp</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\role\leader_permission.jsp</PATH>
-          <PATH vcs="svn" revision="2463">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\controller\AgentStarStatController.java</PATH>
+          <PATH vcs="svn" revision="2494">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\WEB-INF\web.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -1784,6 +1754,7 @@
       <workItem from="1497968867532" duration="59000" />
       <workItem from="1498055158643" duration="116000" />
       <workItem from="1498137928284" duration="1079000" />
+      <workItem from="1498222292470" duration="1460000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1908,7 +1879,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="253456000" />
+    <option name="totallyTimeSpent" value="254916000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1936,7 +1907,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36004272" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36431623" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2070,23 +2041,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1128">
           <caret line="59" column="35" lean-forward="false" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="103" column="42" lean-forward="true" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/redis.properties">
@@ -2097,13 +2068,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="75" column="5" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">

@@ -17,6 +17,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +38,7 @@ import com.qs.common.dtgrid.util.ExportUtils;
 import com.qs.common.exception.AjaxException;
 import com.qs.common.exception.SystemException;
 import com.qs.common.util.PageUtil;
+import com.qs.constant.Constant;
 import com.qs.pub.sys.model.Business;
 import com.qs.pub.sys.model.Company;
 import com.qs.pub.sys.model.UserEntity;
@@ -52,6 +56,8 @@ public class BusinessController extends BaseController
 {
 	@Resource
 	private BusinessService businessService;
+	@Autowired
+	private RedisTemplate<String,String> redisTemplate;
 	@RequestMapping("toBusinessListUi.html")
 	public String toBusinessListUi(){
 		
@@ -202,7 +208,17 @@ public class BusinessController extends BaseController
 	@RequestMapping("selectByGroupId.html")
 	@ResponseBody
 	public Object selectByGroupId(String groupId){
-		List<Business> list = businessService.selectByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
+		UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+		ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+		String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+		Map<String, Object>  map = new HashMap<String,Object>();
+		
+		String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+		Integer groupIds = StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId);
+		map.put("gameType", gameType);
+		map.put("groupId", groupIds);
+		
+		List<Business> list = businessService.selectByGroupId(map);
 		return list;
 	}
 }

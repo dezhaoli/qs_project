@@ -6,8 +6,8 @@ import org.apache.activemq.command.ActiveMQTopic;
 
 import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncObject;
-import com.qs.sync.model.SyncOrganization;
 import com.qs.sync.model.SyncPlaying;
+import com.qs.sync.model.SyncUserLoginLog;
 
 
 /**
@@ -30,6 +30,8 @@ public class DataUtil {
 			return new ActiveMQTopic(TopicConstants.TOPIC_NAME_PLAYING);
 		}else if(model instanceof SyncCreateRoom) {
 			return new ActiveMQTopic(TopicConstants.TOPIC_NAME_CREATE_ROOM);
+		}else if(model instanceof SyncUserLoginLog){
+			return new ActiveMQTopic(TopicConstants.TOPIC_NAME_USER_LOGIN);
 		}
     	return null;
     	

@@ -159,25 +159,19 @@ $(function() {
                 required : true
             }
             ,
-            img : {
-                required : true
-            } ,
             starttimeStr : {
                 required : true
             } ,
             endtimeStr : {
                 required : true
             }
-            
         },
         messages : {
-         
         	money : "金额",
         	gold : "金币",
         	song : "赠送金币",
-        	img : "图片路径",
         	starttimeStr : "活动开始时间",
-        	endtimeStr : "活动结束时间",
+        	endtimeStr : "活动结束时间"
         },
         highlight : function(e) {
             $(e).closest('.form-group').removeClass('has-info').addClass('has-error');

@@ -40,8 +40,8 @@
 	 	<property name="expires">
 			<map>
 				<entry key="mobileversion" value="3600"/> 
-				<entry key="gameRecord" value="604800"/> 
-				
+				<entry key="gameRecord" value="604800"/>
+				<entry key="integralRanking" value="1800"/>
 			</map>
 		</property>
 	</bean>

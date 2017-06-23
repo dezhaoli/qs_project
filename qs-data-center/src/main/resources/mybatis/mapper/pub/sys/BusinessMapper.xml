@@ -54,12 +54,12 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="findByuId" parameterType="Long" resultType="Integer">
+  <select id="findByuId" parameterType="map" resultType="Integer">
     select bu.business_id from tb_user u 
 		inner join sys_group_leader e  on u.u_id=e.user_id 
 		inner join sys_group r on e.group_id= r.id 
 		inner join sys_business_group s on (r.id=s.group_id) 
-		inner join sys_business bu on (bu.id=s.business_id) where u.u_id = #{uId}
+		inner join sys_business bu on (bu.id=s.business_id) where u.u_id = #{uId} and r.game_type = #{gameType}
   </select>
   
   <select id="findBusinessByGroupId" parameterType="Integer" resultType="Integer">
@@ -70,9 +70,13 @@
   
   <select id="selectByGroupId" resultType="com.qs.pub.sys.model.BusinessGroup" parameterType="java.lang.Integer" >
     select s.id, s.business_id, s.business_name
-     from sys_business_group b 
-    inner join sys_business s on s.id=b.business_id
-	where b.group_id  = #{groupId,jdbcType=INTEGER}
+     from sys_group g 
+     inner join sys_business_group b on g.id = b.group_id
+     inner join sys_business s on s.id=b.business_id
+	<where>
+	 b.group_id  = #{groupId,jdbcType=INTEGER}
+	 and g.game_type =#{gameType}
+	</where>
   </select>
   
   <select id="findByAll"  resultType="Integer">
@@ -81,11 +85,21 @@
 	inner join sys_business s on s.id = b.business_id
   </select>
   
-   <select id="ifLeader" resultType="Integer" parameterType="Long">
-  	select count(*) from tb_user u  inner join sys_group_leader l on(u.u_id=l.user_id) where u.u_id = #{uId,jdbcType=INTEGER} ;
+   <select id="ifLeader" resultType="Integer" parameterType="map">
+  	select count(*) from tb_user u  
+  	inner join sys_group_leader l on(u.u_id=l.user_id) 
+  	inner join sys_group g on(g.id=l.group_id)
+  	where u.u_id = #{uId,jdbcType=INTEGER} and g.game_type=#{gameType}
   </select>
   
-  <select id="selectBusiness" resultType="Integer" parameterType="Long">
-  	select s.business_id from tb_user t inner join sys_business s on t.business_id = s.id where t.u_id = #{uId,jdbcType=INTEGER} ;
+  <select id="selectBusiness" resultType="Integer" parameterType="map">
+	select s.business_id from tb_user u 
+	inner join sys_business s on s.phone = u.u_account_name
+	inner join sys_business_group b on s.id=b.business_id
+	inner join sys_group g on g.id=b.group_id
+	<where> 
+	g.game_type=#{gameType} 
+	and u.u_account_name=#{accountName}
+	</where>
   </select>
 </mapper>

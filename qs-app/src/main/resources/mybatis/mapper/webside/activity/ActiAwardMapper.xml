@@ -233,14 +233,36 @@
   </update>
 
   <!-- 需要控制在对应活动时间内 -->
-  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
-    SELECT
+  <select id="queryListByPage" parameterType="map" resultType="map">
+    <!-- SELECT
     aa.id, aa.name, aa.integral, aa.award_num, aa.img_url, aa.review, aa.limit_num,
       aa.receive_num, aa.type, aa.remark,aa.descr, aa.ext1, aa.ext2, aa.create_time, aa.creater_id,
       aa.update_time, aa.modifier_id
     from acti_award  aa,acti_center ac
     WHERE aa.type = ac.type
     AND ac.start_time &lt;= NOW() AND NOW() &lt;= ac.end_time
+    order by aa.id,aa.integral DESC -->
+    SELECT aa.id,aa.name,aa.award_num AS awardNum,aa.integral,aa.img_url AS imgUrl,(aa.award_num - COUNT(aar.id)) AS goodCount ,
+    IF(aa.receive_num > IFNULL(bb.gerenhuan,0) -- 比较可兑换个数与个人已换个数
+    AND (aa.award_num - COUNT(aar.id)) > 0  -- 比较奖品个数与兑换个数
+    AND ac.close_time &gt;= NOW(), -- 比较面板关闭时间和当前时间
+    IF(IFNULL(ai.now_integral,0) &lt; aa.integral  AND IFNULL(aar.mid,0) > 0,2,1),0) AS status
+    FROM acti_award_record aar
+    RIGHT JOIN acti_award aa
+    ON aar.award_id = aa.id
+    INNER JOIN acti_center ac
+    ON ac.type = aa.type
+    LEFT JOIN (
+    SELECT COUNT(baar.id) AS gerenhuan,baar.award_id as awardId
+    FROM acti_award_record baar
+    WHERE mid = #{mid}
+    GROUP BY baar.award_id
+    ) bb
+    ON bb.awardId = aa.id
+    LEFT JOIN acti_integral ai
+    ON ai.mid = aar.mid
+    WHERE ac.start_time &lt;= NOW() AND NOW() &lt;= ac.end_time
+    GROUP BY aa.id
     order by aa.id,aa.integral DESC
   </select>
 

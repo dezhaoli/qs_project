@@ -179,7 +179,7 @@ public class MemberController extends BaseController {
 	   map.put("isgrant",isgrant); //是否被授权
 	   map.put("isroomcard",0);//是否领取房卡
 	   //登录日志收集
-	   //this.loginLogs(user,ip);
+	   this.loginLogs(user,ip);
 	   return this.getReturnData(map,AppConstants.Result.SUCCESS);
     }
 	

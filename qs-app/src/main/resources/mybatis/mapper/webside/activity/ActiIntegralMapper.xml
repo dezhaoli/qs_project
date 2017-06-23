@@ -147,10 +147,10 @@
   <select id="queryListByPage" parameterType="map" resultType="map">
     SELECT ai.id,ai.mid,ai.now_integral AS nowIntegral,ai.used_integral AS usedIntegral,
       ai.type,ai.remark,ai.descr,ai.ext1,ai.ext2,
-      SUM(ai.now_integral + ai.used_integral)AS integral,
+      SUM(ai.now_integral + ai.used_integral) AS integral,
       mf.name,mf.icon
     FROM acti_integral ai,memberfides0 mf
-    WHERE mf.mid = ai.mid
+    WHERE mf.mid = ai.mid  AND (ai.now_integral + ai.used_integral) > 0
     GROUP BY id
     ORDER BY integral DESC LIMIT 0,30
   </select>

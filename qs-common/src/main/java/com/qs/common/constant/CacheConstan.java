@@ -32,4 +32,8 @@ public class CacheConstan {
 
     public static final String ACTIVITY_CENTER_CACHE_NAME = "activityCenter";
 
+    public static final String INTEGRAL_RANKING_CACHE_NAME = "integralRanking";
+
+    public static final String ACTI_AWARD_LIST_CACHE_NAME = "actiAwardList";
+
 }

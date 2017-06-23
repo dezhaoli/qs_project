@@ -1,8 +1,10 @@
 package com.qs.webside.activity.service.impl;
 
+import com.qs.common.constant.CacheConstan;
 import com.qs.webside.activity.mapper.ActiAwardMapper;
 import com.qs.webside.activity.model.ActiAward;
 import com.qs.webside.activity.service.IActiAwardService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -51,7 +53,8 @@ public class ActiAwardServiceImpl implements IActiAwardService {
     }
 
     @Override
-    public List<ActiAward> queryListByPage(Map<String, Object> parameters) {
+    //@Cacheable(value = {CacheConstan.ACTI_AWARD_LIST_CACHE_NAME},key="#root.methodName+'AwardList:'")
+    public List<Map<String,Object>> queryListByPage(Map<String, Object> parameters) {
         return actiAwardMapper.queryListByPage(parameters);
     }
 

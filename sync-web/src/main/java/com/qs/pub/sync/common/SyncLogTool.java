@@ -4,9 +4,6 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import net.sf.json.JSONObject;
-import net.sf.json.JsonConfig;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -17,9 +14,11 @@ import com.qs.sync.model.LogError;
 import com.qs.sync.model.LogSuccess;
 import com.qs.sync.model.SyncCreateRoom;
 import com.qs.sync.model.SyncObject;
-import com.qs.sync.model.SyncOrganization;
 import com.qs.sync.model.SyncPlaying;
-import com.qs.sync.model.SyncUser;
+import com.qs.sync.model.SyncUserLoginLog;
+
+import net.sf.json.JSONObject;
+import net.sf.json.JsonConfig;
 
 public class SyncLogTool {
 
@@ -98,6 +97,10 @@ public class SyncLogTool {
 				jsonObject= JSONObject.fromObject(user,config);  
 			}else if(record instanceof SyncCreateRoom){
 				SyncCreateRoom org = (SyncCreateRoom)record;
+				JsonConfig config = MyJsonConfig.getJsonConfig();
+				jsonObject= JSONObject.fromObject(org,config);  
+			}else if(record instanceof SyncUserLoginLog){
+				SyncUserLoginLog org = (SyncUserLoginLog)record;
 				JsonConfig config = MyJsonConfig.getJsonConfig();
 				jsonObject= JSONObject.fromObject(org,config);  
 			}

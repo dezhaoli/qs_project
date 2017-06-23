@@ -46,8 +46,10 @@ $(function() {
 		                               		<option value="9">潮汕木虱</option>
 		                               		<option value="105">四川麻将</option>
 		                               		<option value="106">广东麻将</option> -->
-		                               		<option value="1" <c:if test="${groupEntity.gameType eq '1' }">selected="selected"</c:if>>湖南牵手</option>
-		                               		<option value="2" <c:if test="${groupEntity.gameType eq '2' }">selected="selected"</c:if>>广东乐玩</option>
+		                               		<option value="beardkx" <c:if test="${groupEntity.gameType eq 'beardkx' }">selected="selected"</c:if>>开心乐玩</option>
+		                               		<option value="gd_majiang_pub" <c:if test="${groupEntity.gameType eq 'gd_majiang_pub' }">selected="selected"</c:if>>广东乐玩</option>
+		                               		<option value="majiangjx" <c:if test="${groupEntity.gameType eq 'majiangjx' }">selected="selected"</c:if>>江西乐玩</option>
+		                               		<option value="runfast" <c:if test="${groupEntity.gameType eq 'runfast' }">selected="selected"</c:if>>湖南牵手</option>
 		                               </select>
 		                </div>
 				</div>

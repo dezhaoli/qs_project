@@ -110,6 +110,7 @@
 			    /js/** = anon
 			    /lib/** = anon
 			    /web/** = anon
+			    /druid/**=anon
 			    /** = authc
 			</value>
 		</property>

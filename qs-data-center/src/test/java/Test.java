@@ -25,12 +25,14 @@ public class Test
 	{
 		Map map = new HashMap();
 		map.put("logType", "3");
-		map.put("mid", "20");
+		map.put("mid", "2033");
 		map.put("appId", "20");
 		map.put("gameStartTime", 1495691544);
 		map.put("gameStopTime", 1495691544);
 		map.put("playId", "4");
 		map.put("playName", "推到胡h");
+		map.put("city", "深圳");
+		map.put("ip", "www.baidu.com");
 		
 		map.put("createRoomTime", "1489751719");
 		//map.put("playName", "推到跑胡子5");
@@ -45,7 +47,7 @@ public class Test
 		try{
 		String res = "";
 		for(int i =0;i<1;i++){
-			 res = HttpClientUtil.httpClientByPost("http://192.168.1.92:8080/qs-data-center/dataCenter/dataCenterLogDispatch.html",map);
+			 res = HttpClientUtil.httpClientByPost("http://192.168.1.92:8080/sync-producer/dataCenter/dataCenterLogDispatch.html",map);
 		}
 		System.out.println(res);
 		}catch(Exception e){

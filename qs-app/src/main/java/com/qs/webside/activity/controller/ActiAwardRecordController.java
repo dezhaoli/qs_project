@@ -65,17 +65,17 @@ public class ActiAwardRecordController extends BaseController {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
         int mid = token.getMid();
         ActiAward actiAward = actiAwardService.selectByIdLimitByActiTime(id);//奖品(如果活动时间截止，就查询不到商品)
-        if (actiAward == null) return this.getReturnData(-105, AppConstants.Result.FAILURE);
+        if (actiAward == null) return this.getReturnData(null, AppConstants.Result.FAILURE);
         if (!"1".equals(actiAward.getRemark())) {//如果不是兑换房卡的商品
             ActiAwardAddress actiAwardAddress = actiAwardAddressService.selectByMidKey(mid);//收获地址
-            if (actiAwardAddress == null) return this.getReturnData(-104, AppConstants.Result.FAILURE);
+            if (actiAwardAddress == null) return this.getReturnData(null, AppConstants.Result.FAILURE_1002);
         }
         Map<String, Object> parameterMap = new HashMap<>();
         parameterMap.put("actiType", actiAward.getType());
         parameterMap.put("awardId", actiAward.getId());
         long hashExAwards = actiAwardRecordService.checkAwardRecordSumByActiType(parameterMap);//已兑换奖品个数
         long awards = actiAward.getAwardNum();//奖品总数
-        if (number < 1) return this.getReturnData(-106, AppConstants.Result.FAILURE);
+        if (number < 1) return this.getReturnData(null,  AppConstants.Result.FAILURE_1003);
         return verifyPrizeQuantity(number, mid, actiAward, hashExAwards, awards);
     }
 
@@ -108,12 +108,35 @@ public class ActiAwardRecordController extends BaseController {
      * @Description:验证奖品数量
      */
     private Object verifyPrizeQuantity(int number, int mid, ActiAward actiAward, long hashExAwards, long awards) {
+        if (verifyUserReceNum(mid, actiAward)) return this.getReturnData(null,  AppConstants.Result.FAILURE_1004);
         if ((awards - hashExAwards) >= number) {//判断奖品数量是否充足
             ActiIntegral actiIntegral = actiIntegralService.selectByMid(mid);
             return verifyIntegralObject(number, mid, actiAward, actiIntegral);
         } else {//奖品不足
-            return this.getReturnData(111, AppConstants.Result.FAILURE);
+            return this.getReturnData(null,  AppConstants.Result.FAILURE_1005);
         }
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/23 10:55
+     * @Description: 验证用户可领取次数是否达到上限
+     * @param mid 用户mid
+     * @param actiAward 奖品对象
+     * @return
+     */
+    private boolean verifyUserReceNum(int mid, ActiAward actiAward) {
+        Integer limitNum = actiAward.getLimitNum();//是否打开限制领取，0表示不限制，1表示限制
+        if (limitNum == null) limitNum = 0;
+        if (limitNum != 0) {
+            Integer receiveNum = actiAward.getReceiveNum();//可领取次数
+            if (receiveNum == null) receiveNum = 0;
+            int hasReceNum = actiAwardRecordService.countAwardNumber
+                    (new ActiAwardRecord(actiAward.getId(), mid));//用户已兑换个数
+            if (receiveNum <= hasReceNum) {//用户已兑换大于等于可领取次数时
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -131,7 +154,7 @@ public class ActiAwardRecordController extends BaseController {
             long needIntegral = actiAward.getIntegral();
             return verifyIntegral(number, mid, actiAward, actiIntegral, nowIntegral, needIntegral);
         } else {//当前人没有积分对象
-            return this.getReturnData(-110, AppConstants.Result.FAILURE);
+            return this.getReturnData(null,  AppConstants.Result.FAILURE_1006);
         }
     }
 
@@ -156,7 +179,7 @@ public class ActiAwardRecordController extends BaseController {
             int resultAddIntegral = actiIntegralService.updateByPrimaryKey(actiIntegral);
             return updateInegral(number, mid, actiAward, resultAddIntegral);
         } else {//积分不足
-            return this.getReturnData(-109, AppConstants.Result.FAILURE);
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1007);
         }
     }
 
@@ -174,7 +197,7 @@ public class ActiAwardRecordController extends BaseController {
             int result = actiAwardRecordService.insertSelective(preparationRecord(mid, actiAward, number));
             return addActiAwardRecord(mid, actiAward, result);
         } else {//更新积分失败
-            return this.getReturnData(-108, AppConstants.Result.FAILURE);
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1008);
         }
     }
 
@@ -190,7 +213,7 @@ public class ActiAwardRecordController extends BaseController {
         if (result > 0) {//插入奖品兑换记录表成功
             return exchangeRoomCard(mid, actiAward, result);
         } else {//插入奖品兑换记录表失败
-            return this.getReturnData(-107, AppConstants.Result.FAILURE);
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1009);
         }
     }
 
@@ -224,7 +247,7 @@ public class ActiAwardRecordController extends BaseController {
         if ((Boolean) updateMap.get(CommonContants.RESULT)) {
             return this.getReturnData(result, AppConstants.Result.SUCCESS);
         } else {//发放房卡失败
-            return this.getReturnData(-112, AppConstants.Result.FAILURE);
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1010);
         }
     }
 

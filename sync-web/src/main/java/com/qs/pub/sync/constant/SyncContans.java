@@ -27,6 +27,7 @@ public class SyncContans {
 	public static class FromTableCode{
 		public static final String PLAYING= "SyncPlaying"; //在玩
 		public static final String ROOM= "SyncCreateRoom";//创建房间
+		public static final String USER_LOGIN= "SyncUserLogin";//创建房间
 	}
 	
 	public static class SaveLogFlag{

@@ -139,6 +139,7 @@
 			<mvc:exclude-mapping path="/web/**" />
 			<mvc:exclude-mapping path="/index.html" />
 			<mvc:exclude-mapping path="/css/common.css" />
+			<mvc:exclude-mapping path="/druid/**" />
 			<bean class="com.qs.webside.interceptor.TokenInterceptor" />
 		</mvc:interceptor>
 		
@@ -153,6 +154,7 @@
 			<mvc:exclude-mapping path="/web/**" />
 			<mvc:exclude-mapping path="/index.html" />
 			<mvc:exclude-mapping path="/css/common.css" />
+			<mvc:exclude-mapping path="/druid/**" />
 			<bean class="com.qs.webside.interceptor.SignInterceptor" />
 		</mvc:interceptor>
 		

@@ -41,7 +41,7 @@
 	<!--这个是sessionAwareTopic目的地 -->
 	<bean id="sessionAwareTopic" class="org.apache.activemq.command.ActiveMQTopic">
 		<constructor-arg>
-			<value>topicPlayingDataCenter,topicCreateRoomDataCenter</value>
+			<value>topicPlayingDataCenter,topicCreateRoomDataCenter,topicUserLoginDataCenter</value>
 		</constructor-arg>
 	</bean>
 	

@@ -15,17 +15,17 @@ package com.qs.common.constant;
 public class LogType
 {
 	//1账单日志
-	public static final String accountLog = "1";
+	public static final String ACCOUNT_LOG = "1";
 	// 2新增用户
-	public static final String userAddLog = "2";
+	public static final String USER_ADD_LOG = "2";
 	//3用户登录
-	public static final String userLoginLog = "3";
+	public static final String USER_LOGIN_LOG = "3";
 	/**
 	 * 在玩用户
 	 */
-	public static final String playing = "4";
+	public static final String PLAYING = "4";
 	/**
 	 * 创建房间用户
 	 */
-	public static final String createRoom = "5";
+	public static final String CREATE_ROOM = "5";
 }
