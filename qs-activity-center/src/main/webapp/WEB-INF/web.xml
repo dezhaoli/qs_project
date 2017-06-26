@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>pay-web</display-name>
+  <display-name>qs-app</display-name>
   <welcome-file-list>
+  	<welcome-file>index.html</welcome-file>
     <welcome-file>login.jsp</welcome-file>
   </welcome-file-list>
   <filter>
@@ -57,16 +58,16 @@
     </init-param>
     <init-param>
       <param-name>loginPassword</param-name>
-      <param-value>druid</param-value>
+      <param-value>qsdruid</param-value>
     </init-param>
-    <init-param>
+<!--     <init-param>
       <param-name>allow</param-name>
-      <param-value>127.0.0.1/24,127.0.0.1</param-value>
+      <param-value>0.0.0.0/24,127.0.0.1,116.30.28.47</param-value>
     </init-param>
     <init-param>
       <param-name>deny</param-name>
       <param-value>172.101.106.13</param-value>
-    </init-param>
+    </init-param> -->
   </servlet>
   <servlet-mapping>
     <servlet-name>DruidStatView</servlet-name>
@@ -94,6 +95,9 @@
   </context-param>
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
   <servlet>
     <servlet-name>springmvc</servlet-name>

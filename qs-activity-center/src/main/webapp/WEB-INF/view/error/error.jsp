@@ -6,8 +6,6 @@
 			+ path + "/";
 %>
 <%@ page session="false" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
     <head>
@@ -17,7 +15,7 @@
 	<meta http-equiv="Expires" content="0" />
 	<meta http-equiv="X-UA-Compatible" content="E=edge;chrome=1" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>网络异常 :</title>
+        <title>系统发生异常 :(</title>
         <style>
             ::-moz-selection {
                 background: #b3d4fc;
@@ -156,10 +154,10 @@
     </head>
     <body>
         <div class="container">
-            <h1> <span></span></h1>
-            <p>抱歉,网络异常</p>
+            <h1>发生错误 <span>:(</span></h1>
+            <p>抱歉,系统发生错误了</p>
             <ul>
-                <li><a href="${ctx}/logout.html">点击请重新登入</a></li>
+                <li>请刷新再试试</li>
                 <li>或联系管理员</li>
             </ul>
         </div>

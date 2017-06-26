@@ -1,15 +1,12 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="qs-activity-center:war exploded">
-    <output-path>$PROJECT_DIR$/qs-activity-center/target/qs-activity-center</output-path>
+    <output-path>$PROJECT_DIR$/qs-activity-center/target/qs-acti-center</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="qs-activity-center" />
         </element>
         <element id="directory" name="lib">
-          <element id="archive" name="qs-side-0.0.1-SNAPSHOT.jar">
-            <element id="module-output" name="qs-side" />
-          </element>
           <element id="archive" name="qs-common-0.0.1-SNAPSHOT.jar">
             <element id="module-output" name="qs-common" />
           </element>
@@ -91,6 +88,8 @@
           <element id="library" level="project" name="Maven: com.itextpdf:itext-asian:5.2.0" />
           <element id="library" level="project" name="Maven: org.flywaydb:flyway-core:4.0.3" />
           <element id="library" level="project" name="Maven: joda-time:joda-time:2.9.6" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: javax.servlet.jsp:jsp-api:2.1" />
           <element id="library" level="project" name="Maven: javax.inject:javax.inject:1" />
           <element id="library" level="project" name="Maven: org.springframework.data:spring-data-redis:1.6.1.RELEASE" />
           <element id="library" level="project" name="Maven: dom4j:dom4j:1.6.1" />
@@ -121,10 +120,13 @@
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.16.1-GA" />
           <element id="library" level="project" name="Maven: com.google.guava:guava:19.0-rc2" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjtools:1.7.4" />
+          <element id="archive" name="qs-side-0.0.1-SNAPSHOT.jar">
+            <element id="module-output" name="qs-side" />
+          </element>
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/qs-activity-center/target/qs-activity-center/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/qs-activity-center/target/qs-acti-center/META-INF/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="qs-activity-center/web/Web" />
     </root>

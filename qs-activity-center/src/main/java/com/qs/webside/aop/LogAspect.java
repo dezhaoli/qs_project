@@ -10,9 +10,8 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.qs.webside.shiro.ShiroAuthenticationManager;
 import com.qs.pub.sys.model.LogInfoEntity;
-import com.qs.pub.sys.service.LogInfoService;
+import com.qs.webside.shiro.ShiroAuthenticationManager;
 
 /**
  * 前置通知（@Before）：在某连接点（join point）之前执行的通知，但这个通知不能阻止连接点前的执行（除非它抛出一个异常）
@@ -24,7 +23,7 @@ import com.qs.pub.sys.service.LogInfoService;
  * @ClassName: LogAspect
  * @Description: 日志记录，添加、删除、修改方法AOP
  * @author gaogang
- * @date 2016年7月12日 下午4:03:58
+ * @date 2017年7月12日 下午4:03:58
  *
  */
 @Component
@@ -32,36 +31,36 @@ import com.qs.pub.sys.service.LogInfoService;
 public class LogAspect {
 
 	@Autowired
-	private LogInfoService logService;// 日志记录Service
+	//private LogInfoService logService;// 日志记录Service
 
 	/**
 	 * 添加业务逻辑方法切入点 定义在controller包里的以add为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.*.controller.*.add(..))")
+	@Pointcut("execution(* com.webside.*.controller.*.add(..))")
 	public void insertServiceCall() {
 	}
 
 	/**
 	 * 修改业务逻辑方法切入点 定义在controller包里的以update为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.*.controller.*.update(..)) "
-			+ "|| execution(* com.qs.*.*.controller.*.resetPassword(..)) "
-			+ "|| execution(* com.qs.*.*.controller.*.info(..)) "
-			+ "|| execution(* com.qs.*.*.controller.*.password(..))")
+	@Pointcut("execution(* com.webside.*.controller.*.update(..)) "
+			+ "|| execution(* com.webside.*.controller.*.resetPassword(..)) "
+			+ "|| execution(* com.webside.*.controller.*.info(..)) "
+			+ "|| execution(* com.webside.*.controller.*.password(..))")
 	public void updateServiceCall() {
 	}
 
 	/**
 	 * 删除业务逻辑方法切入点 定义在controller包里以delete为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.*.controller.*.delete*(..))")
+	@Pointcut("execution(* com.webside.*.controller.*.delete*(..))")
 	public void deleteServiceCall() {
 	}
 	
 	/**
 	 * 授权业务逻辑方法切入点 定义在controller包里以delete为前缀的方法的执行
 	 */
-	@Pointcut("execution(* com.qs.*.*.controller.*.permission(..))")
+	@Pointcut("execution(* com.webside.*.controller.*.permission(..))")
 	public void permissionServiceCall() {
 	}
 
@@ -96,7 +95,7 @@ public class LogAspect {
 		log.setContent(opContent);// 操作内容
 		log.setOperation("insert");// 操作
 
-		logService.log(log);// 添加日志
+		//logService.log(log);// 添加日志
 	}
 
 	/**
@@ -130,7 +129,7 @@ public class LogAspect {
 		log.setContent(opContent);// 操作内容
 		log.setOperation("update");// 操作
 
-		logService.log(log);// 添加日志
+		//logService.log(log);// 添加日志
 	}
 
 	/**
@@ -163,7 +162,7 @@ public class LogAspect {
 		log.setContent(rs.toString());// 操作内容
 		log.setOperation("delete");// 操作
 
-		logService.log(log);// 添加日志
+		//logService.log(log);// 添加日志
 	}
 
 	/**
@@ -197,7 +196,7 @@ public class LogAspect {
 		log.setContent(opContent);// 操作内容
 		log.setOperation("permission");// 操作
 
-		logService.log(log);// 添加日志
+		//logService.log(log);// 添加日志
 	}
 
 	

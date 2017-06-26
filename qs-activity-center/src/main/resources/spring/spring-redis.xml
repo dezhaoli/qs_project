@@ -39,7 +39,9 @@
 	 	<constructor-arg ref="redisTemplate"/>
 	 	<property name="expires">
 			<map>
-				<entry key="org" value="${redis.expire}"/> 
+				<entry key="mobileversion" value="3600"/> 
+				<entry key="gameRecord" value="604800"/>
+				<entry key="integralRanking" value="1800"/>
 			</map>
 		</property>
 	</bean>

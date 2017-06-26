@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width"> -->
+    <title>积分兑换</title>
+    <script data-main="js/main" src="lib/require/require.min.js" ></script>
+	<link  type="text/css" rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+	<link  type="text/css" rel="stylesheet" href="lib/layer-v2.3/skin/layer.css">
+<!-- 	<link  type="text/css" rel="stylesheet" href="css/common.css"> -->
+	 <script>
+		// 	动态加载样式common
+		function includeLinkStyle(url) {
+			var link = document.createElement("link");
+			link.rel = "stylesheet";
+			link.type = "text/css";
+			link.href = url;
+			document.getElementsByTagName("head")[0].appendChild(link);
+		}
+		includeLinkStyle("css/common.css?t="+new Date().getTime());
+	</script>  
+<style type="text/css">
+
+
+</style>
+
+</head>
+<body style="width: 100% ;height: 100%">
+	<div class="col-xs-2 left left_right0" style="background: #223c53;width:100px;">
+	<ul class="nav qs_ul">
+	    <li><a title="index" ui-sref="index" class="left_a"><img alt="" src="img/left/y_jp.png" style="width: 43px;" > </a>  </li>
+	    <li><a title="page" ui-sref="ranking"  class="left_a"><img alt="" src="img/left/y_ph.png" style="width: 70px"> </a></li>
+	    <li><a title="page" ui-sref="converted"  class="left_a"><img alt="兑换" src="img/left/y_yd.png" style="width: 68px;"> </a></li>
+	    <li><a title="page" ui-sref="rule"  class="left_a"> <img alt="规则" src="img/left/y_gz.png" style="width: 50px;"></a></li>
+	    <li><a title="page" ui-sref="address"  class="left_a"><img alt="地址" src="img/left/y_dz.png" style="width: 53px;"></a></li>
+	</ul>
+	</div>
+	
+	<div ui-view  style="padding-left: 0px;padding-right: 0px;width: 100% ">请稍等！</div>
+</body>
+
+</html>

@@ -2,9 +2,6 @@ package com.qs.webside.shiro;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
-
-import javax.inject.Inject;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -20,12 +17,7 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-
-import com.qs.pub.sys.mapper.ResourceMapper;
-import com.qs.pub.sys.mapper.UserMapper;
-import com.qs.pub.sys.model.ResourceEntity;
 import com.qs.pub.sys.model.UserEntity;
-import com.qs.webside.shiro.ShiroAuthenticationManager;
 
 
 /**
@@ -38,11 +30,6 @@ import com.qs.webside.shiro.ShiroAuthenticationManager;
  */
 public class MyRealm extends AuthorizingRealm {
 
-	@Inject
-	private ResourceMapper resourceMapper;
-
-	@Inject
-	private UserMapper userMapper;
 
 	/**
 	 * 授权信息
@@ -52,18 +39,9 @@ public class MyRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 		UserEntity user = ShiroAuthenticationManager.getUserEntity();
 		if (user != null) {
-			List<ResourceEntity> resourceList = resourceMapper.findResourcesByUserId(user.getId().intValue());
 			// 权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
 			SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-			//根据用户ID查询角色（role），放入到Authorization里。
-			// 单角色用户情况
-			info.addRole(user.getRole().getName());
-			// 多角色用户情况
-			// info.setRoles(user.getRolesName());
-			// 用户的角色对应的所有权限
-			for (ResourceEntity resourceEntity : resourceList) {
-				info.addStringPermission(resourceEntity.getSourceKey());
-			}
+	
 			//或者直接查询出所有权限set集合
 			//info.setStringPermissions(permissions);
 			return info;
@@ -85,12 +63,9 @@ public class MyRealm extends AuthorizingRealm {
 		SimpleAuthenticationInfo authenticationInfo = null;
 		String username = (String)token.getPrincipal();
 
-		UserEntity userEntity = userMapper.findByName(username);
+		UserEntity userEntity =null;// userMapper.findByName(username);
 		if (userEntity != null) {
 			if (userEntity.getLocked() == 1) {
-				throw new LockedAccountException(); // 帐号被锁定
-			}
-			if(userEntity.getDeleteStatus()==1){
 				throw new LockedAccountException(); // 帐号被锁定
 			}
 			// 从数据库查询出来的账号名和密码,与用户输入的账号和密码对比
@@ -100,7 +75,7 @@ public class MyRealm extends AuthorizingRealm {
             authenticationInfo = new SimpleAuthenticationInfo(
             		userEntity, // 用户对象
             		userEntity.getPassword(), // 密码
-					ByteSource.Util.bytes(userEntity.getCredentialsSalt()),// salt=username+salt
+            		ByteSource.Util.bytes(userEntity.getCredentialsSalt()),// salt=username+salt
 					getName() // realm name
 			);
             /*
@@ -117,7 +92,6 @@ public class MyRealm extends AuthorizingRealm {
 
 	}
 	
-
 	 public <T> void changePrincipals(T runAsUser){
 	    	Collection<T> principals = new HashSet<T>();
 	    	principals.add(runAsUser);
@@ -183,7 +157,6 @@ public class MyRealm extends AuthorizingRealm {
 			clearCachedAuthorizationInfo();
 			clearCachedAuthenticationInfo();
 		}
-
 
 
 }
