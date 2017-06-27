@@ -13,13 +13,6 @@ shiro.session.validate.interval=1800000
 mail.126.username=
 mail.126.password=
 
-game.hostport=192.168.1.142:9036,192.168.1.142:9036,192.168.1.142:9036
-game.goldhost=192.168.1.142
-game.goldport=9036
-game.ver=1
-game.activityurl=http://192.168.1.128:8090/app/
-game.headimgurl=http://192.168.1.128:8090/app/img/
-game.configurl=http://192.168.1.128:8090/gdmajiang/
 game.gametype=6
-game.shareurl=http://download.longzupoker.com/
-game.javaurl=
+
+app.interfaceSendGold.url=http://192.168.1.128:8090/app/api/acti/sendGold.html

@@ -9,6 +9,7 @@
     <list readonly="true" id="655e2668-4e01-49ef-a490-e3b00fae49fc" name="Default" comment="" />
     <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
@@ -17,7 +18,6 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver/sync-receiver.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-web/sync-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
@@ -299,7 +299,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -680,8 +679,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -853,42 +853,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\logback.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\redis.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\spring-shiro.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\spring-mvc.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\spring-redis.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\spring-applicationContext.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\spring-mybatis.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\generatorConfig.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\jdbc.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\webside.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\WEB-INF\view\error\error.jsp</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\WEB-INF\web.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\login.jsp</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\util\AccessToken.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\util\ContextUtil.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\interceptor\TokenInterceptor.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\aop\LogAspect.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\shiro\MyRealm.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\pom.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\user\member_userInfo_show.jsp</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\member_user_management_list.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\member\controller\MembersController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\MajiangjxController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\CorpPayController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\util\ConstantUtil.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\webside\interceptor\TokenInterceptor.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberFidesMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberFidesMapper.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\constant\Constant.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\spring\spring-mybatis.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\datacenter\DictMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\jdbc.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\test\java\Test.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\HttpClientUtil.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\member\service\IMemberFidesService.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\member\service\impl\MemberFidesServiceImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -896,170 +860,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\spring-memcache.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\spring-disconf.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\pay.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiAwardMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiSendGoldMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiCenterMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiAwardAddressMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiIntegralMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiAwardRecordMapper.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\member</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\disconf.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\css</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\css\common.css</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\index.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\login.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\a_hover.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ydh.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\1.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\2.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\3.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\4.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\5.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\6.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\7.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\8.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ranking\9.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\left</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\left\y_yd.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\left\y_dz.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\left\y_gz.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\left\y_ph.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\left\y_jp.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\bj</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\bj\dz_di.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\bj\ph_di2.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\xg_button.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\ph_bg.jpg</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\1.jpg</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\address_bj.jpg</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\2.jpg</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\3.jpg</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\4.jpg</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\img\bc_button.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\main.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller\award_list.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller\error</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller\error\errormsg.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller\converted_list.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller\ranking_list.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller\address.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\controller\rule.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\app.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\service.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\js\routes.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\WEB-INF</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\WEB-INF\web.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\converted_list.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\ranking_list.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\address.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\error</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\error\errormsg.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\rule.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\web\award_list.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\md5</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\md5\jquery.md5.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\md5\md5.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14\angular-toastr.tpls.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14\angular-route.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14\angular.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14\angular-message.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14\angular.min.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14\angular-toastr.css</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\angular-1.3.0.14\angular-ui-router.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\require</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\require\domReady.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\require\text.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\require\require-2.1.0.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\require\require-1.0.8.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\require\require.min.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\require\i18n.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\bootstrap</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\bootstrap\bootstrap.min.css</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\bootstrap\bootstrap.min.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\jquery</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\jquery\jquery-1.11.3.min.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\jquery\jquery.mobile.custom.min.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\jquery\jquery-2.1.4.min.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin\layer.css</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin\default</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin\default\loading-2.gif</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin\default\icon-ext.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin\default\icon.png</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin\default\loading-0.gif</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\skin\default\loading-1.gif</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\lib\layer-v2.3\layer.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\gdapp</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\gdapp\redis.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\gdapp\pay.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\gdapp\jdbc.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\gdapp\webside.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\gdapp\disconf.properties</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\api</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\api\model</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\api\model\BaseRequest.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiAwardAddress.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiIntegral.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiCenterDto.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiAwardRecord.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiAward.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiSendGold.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiCenter.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiAwardRecordService.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiAwardService.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiSendGoldService.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiCenterService.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiAwardAddressService.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiIntegralService.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiAwardRecordServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiAwardServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiSendGoldServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiCenterServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiAwardAddressServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiIntegralServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiIntegralController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiAwardRecordController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiAwardController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiCenterController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiAwardAddressController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiAwardRecordMapper.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiAwardMapper.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiSendGoldMapper.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiCenterMapper.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiAwardAddressMapper.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiIntegralMapper.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\util\ExecutorThreadUtil.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\interceptor\SignInterceptor.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\interceptor\RequestUtil.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\filter</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\filter\AccessTokenFilter.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\user\agent_cancelMemberBinding_list.jsp</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\agent_cancelmemberbinding_list.js</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity\controller\ActivityController.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\spring\dataResource\beardfpf-datasource.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\spring\dataResource\qianmajiang-datasource.xml</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\MyX509TrustManager.java</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SignUtils.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -1067,15 +867,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\spring\dataResource</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\pub</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\log</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\index.jsp</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\webapp\welcome.html</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\log\game</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\pub\act</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\pub\util</PATH>
-          <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\pub\sys</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -1098,6 +889,7 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
+        <PATH vcs="svn" revision="2535">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1112,7 +904,6 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-        <PATH vcs="svn" revision="2506">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with property conflicts" />
@@ -1967,6 +1758,7 @@
       <workItem from="1498282571548" duration="73000" />
       <workItem from="1498371572959" duration="604000" />
       <workItem from="1498482566347" duration="649000" />
+      <workItem from="1498569568047" duration="179000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -2091,7 +1883,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256242000" />
+    <option name="totallyTimeSpent" value="256421000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2119,7 +1911,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.37713677" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38194445" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
