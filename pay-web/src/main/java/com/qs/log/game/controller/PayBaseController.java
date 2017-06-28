@@ -308,9 +308,9 @@ public class PayBaseController extends BaseController {
             return map;
         }
         
-        if(money.intValue()>10000){
+        if(money.intValue()>500){
             map.put(CommonContants.SUCCESS, Boolean.FALSE);
-            map.put(CommonContants.MESSAGE, "支付金额大于10000元");
+            map.put(CommonContants.MESSAGE, "支付金额大于500元");
             return map;
         }
         
