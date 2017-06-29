@@ -110,7 +110,8 @@ function cannelBinding(mid) {
         },
         contentType: "application/x-www-form-urlencoded; charset=utf-8",
         success:function(data){
-            if (data.success == true) {
+            data = JSON.parse(data);
+            if (data.success == true || data.success == 'true') {
                 layer.msg(data.message, {
                     icon : 6
                 });

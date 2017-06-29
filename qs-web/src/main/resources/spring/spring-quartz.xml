@@ -50,7 +50,7 @@
 				<prop key="org.quartz.jobStore.tablePrefix">QRTZ_</prop>
 				<prop key="org.quartz.jobStore.dataSource">qzDS</prop>
 				<prop key="org.quartz.jobStore.isClustered">true</prop>
-				<prop key="org.quartz.jobStore.clusterCheckinInterval">18000000</prop>
+				<prop key="org.quartz.jobStore.clusterCheckinInterval">20000</prop>
 				<prop key="org.quartz.jobStore.maxMisfiresToHandleAtATime">1</prop>
         	</props>
         </property>

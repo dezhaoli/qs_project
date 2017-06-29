@@ -117,7 +117,7 @@ public class NoticeServiceImpl implements INoticeService
 			
 			//发布定时公告
 				if(pushType==3){
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 					//LocalDate stime2 = LocalDate.parse(stime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
 					//LocalDate etime2 = LocalDate.parse(etime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
 					ScheduleJobEntity job = new ScheduleJobEntity();
@@ -126,6 +126,7 @@ public class NoticeServiceImpl implements INoticeService
 					job.setJobClassName("com.qs.pub.quartz.job.NoticeJob");
 					job.setJobDesc("定时发送指定消息");
 					job.setCronExpression(record.getCorn());
+					//job.setCronExpression("0 0/2 * * * ?");
 					//job.setStartDate(stime2.toDate());
 					//job.setEndDate(etime2.toDate());
 					job.setStartDate(sdf.parse(stime));
@@ -207,16 +208,17 @@ public class NoticeServiceImpl implements INoticeService
 			}
 			int rows = gameNoticeRecordMapper.updateByPrimaryKey(record);
 			
-			LocalDate stime2 = LocalDate.parse(stime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
-			LocalDate etime2 = LocalDate.parse(etime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss"));
+			/*LocalDate stime2 = LocalDate.parse(stime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm"));
+			LocalDate etime2 = LocalDate.parse(etime, DateTimeFormat.forPattern("yyyy-MM-dd HH:mm"));*/
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			ScheduleJobEntity job = new ScheduleJobEntity();
 			job.setJobName(record.getTitle());
 			job.setJobGroup("发布定时任务");
 			job.setJobClassName("com.qs.pub.quartz.job.NoticeJob");
 			job.setJobDesc("定时发送指定消息");
 			job.setCronExpression(record.getCorn());
-			job.setStartDate(stime2.toDate());
-			job.setEndDate(etime2.toDate());
+			job.setStartDate(sdf.parse(stime));
+			job.setEndDate(sdf.parse(etime));
 			job.setTriggerName(record.getTitle());
 			if(StringUtils.isEmpty(job.getTriggerGroup()))
 			{

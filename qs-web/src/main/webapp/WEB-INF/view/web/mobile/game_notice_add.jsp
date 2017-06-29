@@ -6,17 +6,17 @@
 <script>
     jeDate({
         dateCell:"#stime",//isinitVal:true,
-        format:"YYYY-MM-DD hh:mm:ss",
+        format:"YYYY-MM-DD hh:mm",
         isinitVal:true,
         isTime:true, //isClear:false,
-        minDate:"2014-09-19 00:00:00"
+        minDate:"2014-09-19 00:00"
     });
     jeDate({
         dateCell : '#etime',
-        format:"YYYY-MM-DD hh:mm:ss",
+        format:"YYYY-MM-DD hh:mm",
         isinitVal:true,
         isTime:true, //isClear:false,
-        minDate:"2014-09-19 00:00:00"
+        minDate:"2014-09-19 00:00"
     });
 </script>
 <link rel="stylesheet" href="${ctx }/resources/js/cronGen/cronGen.css"/>

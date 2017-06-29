@@ -42,5 +42,12 @@ public interface ActiSendGoldMapper extends IBaseMapper {
      */
     ActiSendGold queryByShare(Map<String, Object> paramegers);
 
+    /**
+     * @Author:zun.wei , @Date:2017/6/29 15:52
+     * @Description:如果不存在就插入，存在就更新
+     * @param record
+     * @return
+     */
+    int insertOrUpate(ActiSendGold record);
 
 }

@@ -21,8 +21,8 @@
     <result column="corn" property="corn" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    t.id, t.title, t.content, t.img, t.url, t.type, t.stime, t.etime ,FROM_UNIXTIME(t.stime,'%Y-%m-%d %H:%m:%s') as starttimeStr,
-  FROM_UNIXTIME(t.etime,'%Y-%m-%d %H:%m:%s') as endtimeStr,t.inter,t.gametype,t.push_type,t.push_user_id,t.push_time,push_user_name,t.corn
+    t.id, t.title, t.content, t.img, t.url, t.type, t.stime, t.etime ,FROM_UNIXTIME(t.stime,'%Y-%m-%d %H:%i:%s') as starttimeStr,
+  FROM_UNIXTIME(t.etime,'%Y-%m-%d %H:%i:%s') as endtimeStr,t.inter,t.gametype,t.push_type,t.push_user_id,t.push_time,push_user_name,t.corn
   </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

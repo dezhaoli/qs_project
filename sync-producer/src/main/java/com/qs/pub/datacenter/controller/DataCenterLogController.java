@@ -37,11 +37,20 @@ import com.qs.sync.sender.SendDataFacade;
  * @date 2017年5月15日 下午6:48:50 
  */
 @Controller
-@RequestMapping(value = "/dataCenter/")
+@RequestMapping(value = "/")
 public class DataCenterLogController extends BaseController
 {
 	private static final String key = "Fk$M$EbTAZqdK!BV";
 	Logger logger = Logger.getLogger(DataCenterLogController.class);
+	
+	
+	@RequestMapping(value="datacenter/dataCenter/dataCenterLogDispatch.html", method=RequestMethod.POST)
+	@ResponseBody
+	public Object dataCenterLogDispatch2(@RequestBody String params,
+			HttpServletRequest request)
+	{
+		return this.dataCenterLogDispatch(params, request);
+	}
 
 	/**
 	 * 
@@ -57,7 +66,7 @@ public class DataCenterLogController extends BaseController
 	 * @开发者 wangzhen
 	 * @可能抛出异常
 	 */
-	@RequestMapping(value="dataCenterLogDispatch.html", method=RequestMethod.POST)
+	@RequestMapping(value="dataCenter/dataCenterLogDispatch.html", method=RequestMethod.POST)
 	@ResponseBody
 	public Object dataCenterLogDispatch(@RequestBody String params,
 			HttpServletRequest request)

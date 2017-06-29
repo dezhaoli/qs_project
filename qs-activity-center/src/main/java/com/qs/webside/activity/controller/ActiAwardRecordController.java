@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.AppConstants;
 import com.qs.common.constant.CommonContants;
-import com.qs.webside.activity.model.ActiAward;
-import com.qs.webside.activity.model.ActiAwardAddress;
-import com.qs.webside.activity.model.ActiAwardRecord;
-import com.qs.webside.activity.model.ActiIntegral;
+import com.qs.webside.activity.model.*;
 import com.qs.webside.activity.service.*;
 import com.qs.webside.api.model.BaseRequest;
 import com.qs.webside.util.AccessToken;
@@ -48,8 +45,6 @@ public class ActiAwardRecordController extends BaseController {
     @Value("${app.interfaceSendGold.url}")
     private String sendGoldUrl;
 
-    //@Resource
-    //private GameService gameService;
 
     /**
      * @param request
@@ -247,9 +242,16 @@ public class ActiAwardRecordController extends BaseController {
             String httpsResponse = actiSendGoldService.sendGold(sesskey, Integer.parseInt(actiAward.getDescr()), AppConstants.GoldLogSourceType.INTEGRAL_SEND_GOLD,
                     new Date(System.currentTimeMillis()).getTime() / 1000, sendGoldUrl);
             Map updateMap = JSON.parseObject(httpsResponse, Map.class);
-           /* Map<String, Object> updateMap = gameService.updateGold(mid,
-                    Integer.parseInt(actiAward.getDescr()),
-                    AppConstants.GoldLogSourceType.INTEGRAL_SEND_GOLD);*/
+            boolean updateResult = (boolean) updateMap.get(CommonContants.RESULT);
+            if (updateResult) {
+                ActiSendGold actiSendGold = new ActiSendGold();
+                actiSendGold.setMid(mid);
+                actiSendGold.setSendTime(new Date());
+                actiSendGold.setSendDate(new Date());
+                actiSendGold.setType(5);//积分兑换类型为5
+                actiSendGold.setGold(Integer.parseInt(actiAward.getDescr()));
+                actiSendGoldService.insertOrUpate(actiSendGold);
+            }
             return sendRoomCard(result, updateMap);
         } else {
             return this.getReturnData(result, AppConstants.Result.SUCCESS);

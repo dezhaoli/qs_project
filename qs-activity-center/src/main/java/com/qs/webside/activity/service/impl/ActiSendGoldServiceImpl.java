@@ -84,10 +84,6 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
                     int insertResult = actiSendGoldMapper.insertIgnoreSelective(actiSendGold1);
                     if (insertResult > 0) {//插入成功
                         //TODO调用发送金币接口
-                        /*Map<String, Object> updateMap = gameService.updateGold(mid,
-                                AppConstants.ActivityCenter.ACTIVITY_COMMENT_SEND_GOLD,
-                                AppConstants.GoldLogSourceType.ACTIVITY_COMMENT_ADD_GOLD);
-                        updateMap.put("goldNum", AppConstants.ActivityCenter.ACTIVITY_COMMENT_SEND_GOLD);*/
                         String httpsResponse = sendGold(sesskey, AppConstants.ActivityCenter.ACTIVITY_COMMENT_SEND_GOLD,
                                 AppConstants.GoldLogSourceType.ACTIVITY_COMMENT_ADD_GOLD,
                                 new Date(System.currentTimeMillis()).getTime() / 1000,
@@ -147,10 +143,6 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
                     int insertResult = actiSendGoldMapper.insertIgnoreSelective(actiSendGold1);
                     if (insertResult > 0) {//插入成功
                         //TODO调用发送金币接口
-                        /*Map<String, Object> updateMap = gameService.updateGold(mid,
-                                AppConstants.ActivityCenter.ACTIVITY_SHARE_SEND_GOLD,
-                                AppConstants.GoldLogSourceType.ACTIVITY_SHARE_ADD_GOLD);
-                        updateMap.put("goldNum", AppConstants.ActivityCenter.ACTIVITY_SHARE_SEND_GOLD);*/
                         String httpsResponse = sendGold(sesskey, AppConstants.ActivityCenter.ACTIVITY_SHARE_SEND_GOLD,
                                 AppConstants.GoldLogSourceType.ACTIVITY_SHARE_ADD_GOLD,
                                 new Date(System.currentTimeMillis()).getTime() / 1000,
@@ -204,6 +196,11 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
             nameValuePairList.add(new BasicNameValuePair("sign", expectSign));
             return HttpClientUtil.httpClientByPost(sendGoldUrl,nameValuePairList);
         }
+    }
+
+    @Override
+    public int insertOrUpate(ActiSendGold record) {
+        return actiSendGoldMapper.insertOrUpate(record);
     }
 
 }

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.NoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.game.model.Notice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="stime" property="stime" jdbcType="INTEGER" />
+    <result column="etime" property="etime" jdbcType="INTEGER" />
+    <result column="inter" property="inter" jdbcType="INTEGER" />
+    <result column="gametype" property="gametype" jdbcType="INTEGER" />
+    <result column="push_type" property="pushType" jdbcType="INTEGER" />
+    <result column="push_user_id" property="pushUserId" jdbcType="INTEGER" />
+    <result column="push_time" property="pushTime" jdbcType="TIMESTAMP" />
+    <result column="push_user_name" property="pushUserName" jdbcType="TIMESTAMP" />
+    <result column="starttimeStr" property="starttimeStr" jdbcType="VARCHAR" />
+    <result column="endtimeStr" property="endtimeStr" jdbcType="VARCHAR" />
+    <result column="corn" property="corn" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    t.id, t.title, t.content, t.img, t.url, t.type, t.stime, t.etime ,FROM_UNIXTIME(t.stime,'%Y-%m-%d %H:%i:%s') as starttimeStr,
+  FROM_UNIXTIME(t.etime,'%Y-%m-%d %H:%i:%s') as endtimeStr,t.inter,t.gametype,t.push_type,t.push_user_id,t.push_time,push_user_name,t.corn
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from notice t
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 通过标题查询数据 -->
+  <select id="selectByTitle" resultMap="BaseResultMap" parameterType="string" >
+    select 
+    <include refid="Base_Column_List" />
+    from notice t
+     where title = #{title,jdbcType=VARCHAR}
+  </select>
+  
+  <!--游戏公告主页面数据列表查询  -->
+  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from notice t
+     <where>
+    1=1
+    <if test="title != null and title != ''">
+    and title like CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+    </if>
+    <if test="pushType != null and pushType != ''">
+    and push_type = #{pushType,jdbcType=VARCHAR}
+    </if>
+    </where>
+    order by t.id desc
+  </select>
+  <!--游戏公告主页面数据添加  -->
+  <insert id="insert" parameterType="com.qs.webside.game.model.Notice" >
+    insert into notice (title,content,type,stime,etime,corn,gametype,push_type,push_user_id,push_time,push_user_name)
+    values (#{title,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{stime,jdbcType=VARCHAR}, #{etime,jdbcType=VARCHAR}, 
+      #{corn,jdbcType=VARCHAR}, #{gametype,jdbcType=INTEGER}, #{pushType,jdbcType=INTEGER}, #{pushUserId,jdbcType=INTEGER}, #{pushTime,jdbcType=TIMESTAMP}, #{pushUserName,jdbcType=VARCHAR})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.game.model.Notice" >
+    update notice
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      stime = #{stime,jdbcType=INTEGER},
+      etime = #{etime,jdbcType=INTEGER},
+      corn = #{corn,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=INTEGER},
+      push_user_id = #{pushUserId,jdbcType=INTEGER},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      push_user_name = #{pushUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

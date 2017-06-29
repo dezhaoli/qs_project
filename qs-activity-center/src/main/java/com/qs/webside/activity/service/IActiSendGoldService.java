@@ -1,5 +1,7 @@
 package com.qs.webside.activity.service;
 
+import com.qs.webside.activity.model.ActiSendGold;
+
 /**
  * Created by zun.wei on 2017/6/1 18:23.
  * Description:活动中心发放金币
@@ -13,12 +15,6 @@ public interface IActiSendGoldService {
      * @return
      */
     Object checkUserIsComment(Integer mid);
-
-
-    //Object sendGoldByComment(Integer mid,int gameType);
-
-
-    //Object sendGoldByShare(Integer mid,int gameType);
 
     /**
      * @Author:zun.wei , @Date:2017/6/1 19:25
@@ -47,4 +43,13 @@ public interface IActiSendGoldService {
      * @return 返回值
      */
     String sendGold(String sesskey, int goldNum, int sendType, long signCode, String sendGoldUrl);
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/29 15:52
+     * @Description:如果不存在就插入，存在就更新
+     * @param record
+     * @return
+     */
+    int insertOrUpate(ActiSendGold record);
+
 }

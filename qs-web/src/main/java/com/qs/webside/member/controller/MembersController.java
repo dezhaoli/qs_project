@@ -542,12 +542,14 @@ public class MembersController extends BaseController{
         
         BaseParam baseParam = baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
         //清除memcache待开房记录
-        if (baseParam !=null ) {
+        if (baseParam != null && StringUtils.isNotBlank(baseParam.getValue())) {
             if (!MemcachedUtil.isBlankMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + mid)) {
                 MemcachedUtil.deleteMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + mid);
-              //删除待开房
+                //删除待开房
                 agentMidsServcie.deleteByMid(mid);
             }
+        } else {
+            agentMidsServcie.deleteByMid(mid);//删除待开房
         }
         //取消绑定、发消息给服务器
         SendMsgToCServer.sendMsgToCServer(mid, 6, 0, goldhost, goldport);

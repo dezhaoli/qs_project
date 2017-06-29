@@ -240,9 +240,16 @@ $("#corn").cronGen({
             focusInvalid: false,
             ignore: "",
             rules: {
-            	push_type: {
+                content: {
+                    required: true
+                },
+                inter: {
                     required: true
                 }
+            },
+            messages: {
+                content: "请填写停服内容",
+                inter: "请填写停服时间！"
             },
             highlight: function (e) {
                 $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
@@ -316,11 +323,11 @@ $(function () {
                     $('#parent_id').empty();   //清空resText里面的所有内容
                     var html = ''; 
                     $.each(data, function(commentIndex, comment){
-                    	console.log(comment);
+                    	//console.log(comment);
                          html += '<option value="'+comment.id+'">' + comment.name
                                     + '</option>'; 
                     });
-                    console.log(html);
+                    //console.log(html);
                     $('#parent_id').html(html);
                  }
     });

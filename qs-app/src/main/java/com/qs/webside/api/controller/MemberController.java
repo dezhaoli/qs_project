@@ -167,6 +167,23 @@ public class MemberController extends BaseController {
 		   log.debug("isgrant=================::1");
 		   isgrant=1;
 	   }
+	   
+	  int today= DateUtil.convertToInt(DateUtil.getNewDate());
+	  int lastLoginTime=user.getLgtm();
+	  if(lastLoginTime<today){
+		  log.debug("login mid=================::"+user.getMid()+"==::lastLoginTime"+lastLoginTime+"=====::"+today);
+		  Memberfides updateUser=new Memberfides();
+		  updateUser.setMid(user.getMid());
+		  updateUser.setLgtm(DateUtil.currentTimeToInt());
+		  int loginCount=user.getLxlg()+1;
+		  updateUser.setLxlg(loginCount);
+		  //更新登录次数登录时间
+		  memberService.updateMemberfides(updateUser);
+		   //登录日志收集
+		   this.loginLogs(user,ip);
+		   
+	  }
+	   
 	   map.put("aUser",user);
 	   map.put("aGame",gameMap);
 	   map.put("isdayfrist",isdayfrist);
@@ -178,8 +195,8 @@ public class MemberController extends BaseController {
 	   map.put("istester",0); //是否活动测试者
 	   map.put("isgrant",isgrant); //是否被授权
 	   map.put("isroomcard",0);//是否领取房卡
-	   //登录日志收集
-	   this.loginLogs(user,ip);
+	
+
 	   return this.getReturnData(map,AppConstants.Result.SUCCESS);
     }
 	
@@ -246,7 +263,8 @@ public class MemberController extends BaseController {
 		wxUser.setGp((byte)login.getGp());
 		wxUser.setPasswd(login.getDeviceid());
 		wxUser.setMtime((long)DateUtil.currentTimeToInt());
-		wxUser.setLxlg(DateUtil.currentTimeToInt());
+		wxUser.setLgtm(DateUtil.currentTimeToInt());
+		wxUser.setLxlg(0);
 		
 		if(StringUtil.isBlank(unionid)){
 			return this.getReturnData(AppConstants.ResultMsg.NO_OPENID,AppConstants.Result.FAILURE);
@@ -911,9 +929,11 @@ public class MemberController extends BaseController {
 			gmType=100+gmType;
 		}
 		loginLogs.put("appId", gameType);
-		loginLogs.put("terminalType", "");
+		loginLogs.put("terminalType",user.getGp());
 		loginLogs.put("channelId", "");
 		loginLogs.put("ip",ip);
+		loginLogs.put("mtime",user.getMtime());
+		loginLogs.put("lgtm",user.getLgtm());
 		loginLogs.put("loginTime", new Date());
 		loginLogs.put("logoutTime", new Date());
 		ExecutorThreadUtil.httpClientSyncErrorByThread(loginLogs);

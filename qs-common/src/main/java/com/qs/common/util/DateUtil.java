@@ -63,6 +63,38 @@ public class DateUtil {
 		return dateNum;
 	}
 	
+	public static String intToDateStr(String intDateTime,String dateFormat) {
+		String dateStr = "";
+		try
+		{
+			if (StringUtils.isNotBlank(intDateTime)) {
+				Date date = new Date(Integer.valueOf(intDateTime)*1000L);
+				SimpleDateFormat sf = new SimpleDateFormat(dateFormat);
+				dateStr = sf.format(date);
+			}
+		} catch (NumberFormatException e)
+		{
+			e.printStackTrace();
+		}
+		return dateStr;
+	}
+	
+	public static String fromatDateToStr(Date date,String dateFormat) {
+		String dateStr = "";
+		try
+		{
+			if (date != null) {
+				SimpleDateFormat sf = new SimpleDateFormat(dateFormat);
+				dateStr = sf.format(date);
+			}
+		} catch (NumberFormatException e)
+		{
+			e.printStackTrace();
+		}
+		return dateStr;
+	}
+	
+	
 	/**
 	 * 把当前的时间转int
 	 * @return
@@ -320,7 +352,7 @@ public class DateUtil {
 		    
 			return sdf.format(date.getTime());
 	    }
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {/*
 
 		//System.out.println(DateUtil.convert2long("2017-02-13 00:00"));
 		Long l=1490152553468l;
@@ -331,7 +363,12 @@ public class DateUtil {
 		//所在周结束日期
 		//System.out.println(getDateFilstDay("2017-03-30"));
 		System.out.println(getEndDate("2017-05-06",6));
-	}
+	*/
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	Date date = new Date(1469103031*1000L);
+    	
+    	//System.out.println(intToDateTime("1469103031","yyyy-MM-dd"));
+    }
     
 	public static String getCurrentDayStr(){
 		 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
