@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.datacenter.mapper.UserKeepMapper">
+  <resultMap id="BaseResultMap" type="com.qs.pub.datacenter.model.UserKeep">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="user_Id" jdbcType="INTEGER" property="userId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="create_date" jdbcType="DATE" property="createDate" />
+    <result column="create_date_str" jdbcType="VARCHAR" property="createDateStr" />
+    <result column="one" jdbcType="INTEGER" property="one" />
+    <result column="two" jdbcType="INTEGER" property="two" />
+    <result column="three" jdbcType="INTEGER" property="three" />
+    <result column="four" jdbcType="INTEGER" property="four" />
+    <result column="five" jdbcType="INTEGER" property="five" />
+    <result column="six" jdbcType="INTEGER" property="six" />
+    <result column="seven" jdbcType="INTEGER" property="seven" />
+    <result column="fifteen" jdbcType="INTEGER" property="fifteen" />
+    <result column="thirty" jdbcType="INTEGER" property="thirty" />
+    <result column="extend1" jdbcType="VARCHAR" property="extend1" />
+    <result column="extend2" jdbcType="VARCHAR" property="extend2" />
+    <result column="extend3" jdbcType="VARCHAR" property="extend3" />
+    <result column="extend4" jdbcType="VARCHAR" property="extend4" />
+    <result column="extend5" jdbcType="VARCHAR" property="extend5" />
+    
+    <result column="totals" jdbcType="INTEGER" property="totals" />
+    <result column="one_percent" jdbcType="DOUBLE" property="onePercent" />
+    <result column="two_percent" jdbcType="DOUBLE" property="twoPercent" />
+    <result column="three_percent" jdbcType="DOUBLE" property="threePercent" />
+    <result column="four_percent" jdbcType="DOUBLE" property="fourPercent" />
+    <result column="five_percent" jdbcType="DOUBLE" property="fivePercent" />
+    <result column="six_percent" jdbcType="DOUBLE" property="sixPercent" />
+    <result column="seven_percent" jdbcType="DOUBLE" property="sevenPercent" />
+    <result column="fifteen_percent" jdbcType="DOUBLE" property="fifteenPercent" />
+    <result column="thirty_percent" jdbcType="DOUBLE" property="thirtyPercent" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, user_Id, user_name, app_id, create_date, one, two, three, four, five, six, seven, 
+    fifteen, thirty, extend1, extend2, extend3, extend4, extend5
+  </sql>
+  <select id="queryUserKeepList" parameterType="map" resultMap="BaseResultMap">
+		    SELECT
+		    DATE_FORMAT(k.create_date,'%Y-%m-%d') create_date_str,
+			count(k.user_Id) totals,
+			sum(ifnull(k.one, 0)) one,
+			sum(ifnull(k.two, 0)) two,
+			sum(ifnull(k.three, 0)) three,
+			sum(ifnull(k.four, 0)) four,
+			sum(ifnull(k.five, 0)) five,
+			sum(ifnull(k.six, 0)) six,
+			sum(ifnull(k.seven, 0)) seven,
+			sum(ifnull(k.fifteen, 0)) fifteen,
+			sum(ifnull(k.thirty, 0)) thirty,
+			round(ifnull(sum(k.one)/count(k.user_Id),0),2) one_percent,
+			round(ifnull(sum(k.two)/count(k.user_Id),0),2) two_percent,
+			round(ifnull(sum(k.three)/count(k.user_Id),0),2) three_percent,
+			round(ifnull(sum(k.four)/count(k.user_Id),0),2) four_percent,
+			round(ifnull(sum(k.five)/count(k.user_Id),0),2) five_percent,
+			round(ifnull(sum(k.six)/count(k.user_Id),0),2) six_percent,
+			round(ifnull(sum(k.seven)/count(k.user_Id),0),2) seven_percent,
+			round(ifnull(sum(k.fifteen)/count(k.user_Id),0),2) fifteen_percent,
+			round(ifnull(sum(k.thirty)/count(k.user_Id),0),2) thirty_percent
+		FROM
+			dc_user_keep k 
+			<where>
+			 and k.app_id = #{gameCode,jdbcType=INTEGER}
+			 and k.create_date &lt; date_sub(STR_TO_DATE(#{endTime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+   			 and k.create_date &gt;= STR_TO_DATE(#{startTime,jdbcType=VARCHAR},'%Y-%m-%d')
+			</where>
+		GROUP BY
+			k.create_date
+  </select>
+</mapper>

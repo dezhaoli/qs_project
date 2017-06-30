@@ -97,7 +97,7 @@
         <property name="interceptorNames" value="websideTxInterceptor"/>
         <property name="beanNames">
             <list>
-                <value>*Service</value>
+                <value>*ServiceImpl</value>
             </list>
         </property>
     </bean>

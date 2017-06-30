@@ -1,0 +1,280 @@
+$(function () {
+    jeDate({
+        dateCell: '#startTime',
+        isinitVal:new Date(),
+        //isinitVal:false,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06-01', //最小日期
+        maxDate: '2050-06-01' //最大日期
+    });
+    jeDate({
+        dateCell: '#endTime',
+        isinitVal:new Date(),
+        //isinitVal:false,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06-01', //最小日期
+        maxDate: '2050-06-01' //最大日期
+    });
+});
+
+var startDate = $("#startTime").val();
+var endDate = $("#endTime").val();
+
+var saveDate = new Date(Date.parse(endDate.replace(/-/g, "/")));
+saveDate.setDate(saveDate.getDate()-6);
+
+var year = saveDate.getFullYear();
+var month = saveDate.getMonth() + 1 < 10 ? "0" + (saveDate.getMonth() + 1) : saveDate.getMonth() + 1;
+var date = saveDate.getDate() < 10 ? "0" + saveDate.getDate() : saveDate.getDate();
+
+startDate = year + "-" + month + "-" + date;
+
+$('#startTime').val(startDate);
+
+var dtGridColumns = [{
+    id : 'createDateStr',
+    title : '日期',
+    type : 'date',
+    format:'yyyy-MM-dd',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'totals',
+    title : '注册',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'one',
+    title : '1天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'two',
+    title : '2天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'three',
+    title : '3天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'four',
+    title : '4天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'five',
+    title : '5天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'six',
+    title : '6天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'seven',
+    title : '7天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'fifteen',
+    title : '15天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'thirty',
+    title : '30天回头',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'onePercent',
+    title : '1天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'twoPercent',
+    title : '2天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'threePercent',
+    title : '3天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'fourPercent',
+    title : '4天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'fivePercent',
+    title : '5天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'sixPercent',
+    title : '6天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'sevenPercent',
+    title : '7天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'fifteenPercent',
+    title : '15天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+},{
+    id : 'thirtyPercent',
+    title : '30天回头率',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution : function(value, record, column, grid, dataNo, columnNo) {
+    	if(value==0){
+    		return '0%';
+    	}else{
+    		return value*100+'%';
+    	}
+    }
+}];
+
+//动态设置jqGrid的rowNum
+var pageSize = $("#pageSize").val();
+pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
+
+
+var dtGridOption = {
+	    lang : 'zh-cn',
+	    ajaxLoad : true,
+	    check : true,
+	    checkWidth :'37px',
+	    extraWidth : '37px',
+	    loadURL : sys.rootPath + '/userKeep/queryUserKeepList.html',
+	    columns : dtGridColumns,
+	    gridContainer : 'dtGridContainer',
+	    toolbarContainer : 'dtGridToolBarContainer',
+	    tools : 'refresh|export[excel]',
+	    exportFileName : '用户留存统计',
+	    pageSize : pageSize,
+	    pageSizeLimit : [10, 20, 30]
+	};
+
+var grid = $.fn.dlshouwen.grid.init(dtGridOption);
+
+
+$(function() {
+    if(null != $("#orderByColumn").val() && '' != $("#orderByColumn").val())
+    {
+        grid.sortParameter.columnId = $("#orderByColumn").val();
+        grid.sortParameter.sortType = $("#orderByType").val();
+    }
+    grid.parameters = new Object();
+    grid.parameters['startTime'] = $("#startTime").val();
+    grid.parameters['endTime'] = $("#endTime").val();
+    grid.load();
+    $("#btnSearch").click(customSearch);
+    
+    //注册回车键事件
+    document.onkeypress = function(e){
+    var ev = document.all ? window.event : e;
+        if(ev.keyCode==13) {
+            customSearch();
+        }
+    };
+    
+});
+
+
+/**
+ * 自定义查询
+ * 这里不传入分页信息，防止删除记录后重新计算的页码比当前页码小而导致计算异常
+ */
+function customSearch() {
+    grid.parameters = new Object();
+    grid.parameters['startTime'] = $("#startTime").val();
+    grid.parameters['endTime'] = $("#endTime").val();
+    grid.refresh(true);
+}
+
+
+
+

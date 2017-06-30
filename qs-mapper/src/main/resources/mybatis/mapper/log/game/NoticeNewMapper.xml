@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.NoticeNewMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.NoticeNew" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="push_type" property="pushType" jdbcType="INTEGER" />
+    <result column="img" property="img" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="acti_type" property="actiType" jdbcType="TINYINT" />
+    <result column="stime" property="stime" jdbcType="INTEGER" />
+    <result column="etime" property="etime" jdbcType="INTEGER" />
+    <result column="interval_time" property="intervalTime" jdbcType="INTEGER" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+    <result column="push_time" property="pushTime" jdbcType="TIMESTAMP" />
+    <result column="push_user_name" property="pushUserName" jdbcType="VARCHAR" />
+    <result column="is_enable" property="isEnable" jdbcType="VARCHAR" />
+    <result column="startTime" property="startTime" jdbcType="VARCHAR" />
+    <result column="endTime" property="endTime" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.qs.log.game.model.NoticeNew" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, push_type, img, url, acti_type, stime, etime, interval_time, gametype, 
+    push_time, push_user_name, is_enable,from_unixtime(stime,'%Y-%m-%d %H:%m:%s') as startTime,from_unixtime(etime,'%Y-%m-%d %H:%m:%s') as endTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from notice_new
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from notice_new
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.log.game.model.NoticeNew" >
+    insert into notice_new (id, title, push_type, 
+      img, url, acti_type, 
+      stime, etime, interval_time, 
+      gametype, push_time, push_user_name, 
+      is_enable, content)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{pushType,jdbcType=INTEGER}, 
+      #{img,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{actiType,jdbcType=TINYINT}, 
+      #{stime,jdbcType=INTEGER}, #{etime,jdbcType=INTEGER}, #{intervalTime,jdbcType=INTEGER}, 
+      #{gametype,jdbcType=TINYINT}, #{pushTime,jdbcType=TIMESTAMP}, #{pushUserName,jdbcType=VARCHAR}, 
+      #{isEnable,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.NoticeNew" >
+    insert into notice_new
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="pushType != null" >
+        push_type,
+      </if>
+      <if test="img != null" >
+        img,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="actiType != null" >
+        acti_type,
+      </if>
+      <if test="stime != null" >
+        stime,
+      </if>
+      <if test="etime != null" >
+        etime,
+      </if>
+      <if test="intervalTime != null" >
+        interval_time,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+      <if test="pushTime != null" >
+        push_time,
+      </if>
+      <if test="pushUserName != null" >
+        push_user_name,
+      </if>
+      <if test="isEnable != null" >
+        is_enable,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null" >
+        #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="actiType != null" >
+        #{actiType,jdbcType=TINYINT},
+      </if>
+      <if test="stime != null" >
+        #{stime,jdbcType=INTEGER},
+      </if>
+      <if test="etime != null" >
+        #{etime,jdbcType=INTEGER},
+      </if>
+      <if test="intervalTime != null" >
+        #{intervalTime,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="pushTime != null" >
+        #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushUserName != null" >
+        #{pushUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null" >
+        #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.game.model.NoticeNew" >
+    update notice_new
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="pushType != null" >
+        push_type = #{pushType,jdbcType=INTEGER},
+      </if>
+      <if test="img != null" >
+        img = #{img,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="actiType != null" >
+        acti_type = #{actiType,jdbcType=TINYINT},
+      </if>
+      <if test="stime != null" >
+        stime = #{stime,jdbcType=INTEGER},
+      </if>
+      <if test="etime != null" >
+        etime = #{etime,jdbcType=INTEGER},
+      </if>
+      <if test="intervalTime != null" >
+        interval_time = #{intervalTime,jdbcType=INTEGER},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="pushTime != null" >
+        push_time = #{pushTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pushUserName != null" >
+        push_user_name = #{pushUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="isEnable != null" >
+        is_enable = #{isEnable,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qs.log.game.model.NoticeNew" >
+    update notice_new
+    set title = #{title,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      acti_type = #{actiType,jdbcType=TINYINT},
+      stime = #{stime,jdbcType=INTEGER},
+      etime = #{etime,jdbcType=INTEGER},
+      interval_time = #{intervalTime,jdbcType=INTEGER},
+      gametype = #{gametype,jdbcType=TINYINT},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      push_user_name = #{pushUserName,jdbcType=VARCHAR},
+      is_enable = #{isEnable,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.game.model.NoticeNew" >
+    update notice_new
+    set title = #{title,jdbcType=VARCHAR},
+      push_type = #{pushType,jdbcType=INTEGER},
+      img = #{img,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      acti_type = #{actiType,jdbcType=TINYINT},
+      stime = #{stime,jdbcType=INTEGER},
+      etime = #{etime,jdbcType=INTEGER},
+      interval_time = #{intervalTime,jdbcType=INTEGER},
+      gametype = #{gametype,jdbcType=TINYINT},
+      push_time = #{pushTime,jdbcType=TIMESTAMP},
+      push_user_name = #{pushUserName,jdbcType=VARCHAR},
+      is_enable = #{isEnable,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />,
+    <include refid="Blob_Column_List"/>
+    from notice_new
+    <where>
+      <if test="searchType != null and searchType != ''">
+        push_type = #{searchType}
+      </if>
+      <if test="searchTitle != null and searchTitle != ''">
+        and title = #{searchTitle}
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+</mapper>
