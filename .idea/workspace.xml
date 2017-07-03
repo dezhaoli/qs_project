@@ -8,28 +8,28 @@
   <component name="ChangeListManager">
     <list readonly="true" id="655e2668-4e01-49ef-a490-e3b00fae49fc" name="Default" comment="" />
     <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-sys/qs-sys.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-model/sync-model.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver/sync-receiver.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-model/sync-model.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver/sync-receiver.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-web/sync-web.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
     </list>
     <list id="08238244-5bd2-4c65-bcfd-bb652b521bca" name="Failed commit: Failed commit: Default" comment="修复已知Bug" />
     <ignored path="$PROJECT_DIR$/qs-app/target/" />
@@ -148,7 +148,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/sys/service/agent/service/OpenOAuthService.java" />
         <option value="$PROJECT_DIR$/qs-service/pom.xml" />
         <option value="$PROJECT_DIR$/qs-service/src/main/java/com/qs/webside/sys/service/agent/service/IOpenOAuthService.java" />
         <option value="$PROJECT_DIR$/qs-psyllidae/src/main/webapp/WEB-INF/view/web/oauth/oathUi.jsp" />
@@ -199,6 +198,7 @@
         <option value="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
         <option value="$PROJECT_DIR$/qs-web/src/main/java/com/qs/webside/member/controller/MembersController.java" />
+        <option value="$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/webside/agent/AdminAgentPublishMapper.xml" />
       </list>
     </option>
   </component>
@@ -299,8 +299,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -323,7 +321,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-web" />
+              <option name="myItemId" value="qs-mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -337,7 +335,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-web" />
+              <option name="myItemId" value="qs-mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -355,89 +353,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WEB-INF" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-web" />
+              <option name="myItemId" value="qs-mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -453,7 +369,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spring" />
+              <option name="myItemId" value="mybatis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -467,61 +383,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
+              <option name="myItemId" value="qs-mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -533,7 +395,19 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webside" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -547,7 +421,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
+              <option name="myItemId" value="qs-mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -559,11 +433,23 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="tpls" />
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="webside" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="agent" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -577,7 +463,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
+              <option name="myItemId" value="qs-mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -589,11 +475,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
+              <option name="myItemId" value="resources" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="mybatis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -607,7 +497,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
+              <option name="myItemId" value="qs-mapper" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -616,71 +506,13 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="webapp" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs_project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="qs-shop" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -853,6 +685,40 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\CorpPayController.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\log\agent\mapper\AgentDateBaseJobLogMappper.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\log\game\mapper\NoticeNewMapper.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\log\agent\AgentDateBaseJobMappper.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\log\game\NoticeNewMapper.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\game\IpaddressUseLogMapper.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\common\common.jspf</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\user_keep_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\agent\agent_userGradeUi_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\agent\member_fides_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\model\MemberFides.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\service\impl\MemberagentsServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\service\IMemberagentsService.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\controller\MemberagentsController.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\mapper\MemberagentsMapper.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\model\Playing.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\service\IPlayingService.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\service\impl\PlayingServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\controller\PlayingController.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\mapper\PlayingMapper.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\datacenter\PlayingMapper.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberFidesMapper.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberagentsMapper.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\generatorConfig.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\agent\service\IAgentDateBaseJobLogService.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\agent\service\impl\AgentDateBaseJobLogServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\game\service\impl\NoticeNewServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\log\game\service\INoticeNewService.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\resources\spring\spring-job.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\notice\notice_new_form.jsp</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\notice\notice_new_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\log\game\controller\NoticeNewController.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\agent\job\DateBaseUapdateAgentJob.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -860,6 +726,22 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\arppu_list.jsp</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\memberagents_level_list.jsp</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\taxesInvite_list.jsp</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\active_list.jsp</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\active_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\arppu_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\memberagents_level_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\taxesInvite_list.js</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\controller\TaxesInviteController.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\mapper\TaxesInviteMapper.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\model\TaxesInvite.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\service\ITaxesInviteService.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\service\impl\TaxesInviteServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\log\game\TaxesInviteMapper.xml</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\resources\db\deltable_40.sql</PATH>
+          <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\agent\job\NoticeScanJob.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -889,7 +771,7 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="2586">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="2603">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1762,7 +1644,9 @@
       <workItem from="1498657199729" duration="211000" />
       <workItem from="1498658011563" duration="432000" />
       <workItem from="1498738164922" duration="1231000" />
-      <workItem from="1498831986982" duration="251000" />
+      <workItem from="1498831986982" duration="1760000" />
+      <workItem from="1498888784961" duration="618000" />
+      <workItem from="1499087011452" duration="67000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1887,7 +1771,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="258546000" />
+    <option name="totallyTimeSpent" value="260740000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1915,7 +1799,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2986111" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30608973" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1969,21 +1853,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-app/src/main/webapp/resources/images/background/1.jpg" />
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/webside/member/mapper/MemberAgentsMapper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="118" column="17" lean-forward="true" selection-start-line="118" selection-start-column="17" selection-end-line="118" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/webside/member/MemberAgentsMapper.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="566" column="53" lean-forward="true" selection-start-line="566" selection-start-column="53" selection-end-line="566" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/java/com/qs/pub/sys/controller/IndexController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-7">
@@ -2332,6 +2201,37 @@
         <state relative-caret-position="394">
           <caret line="58" column="43" lean-forward="true" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mybatis-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-974">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/java/com/qs/webside/agent/mapper/AdminAgentPublishMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="15" column="22" lean-forward="false" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/webside/agent/AdminAgentPublishMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="24" column="11" lean-forward="true" selection-start-line="24" selection-start-column="11" selection-end-line="24" selection-end-column="11" />
+          <folding>
+            <marker date="1498569621470" expanded="true" signature="1265:1380" ph="select from admin_agent_publish" />
+            <marker date="1498569621470" expanded="true" signature="1467:1536" ph="delete from " />
+            <marker date="1498569621470" expanded="true" signature="1638:2017" ph="insert into admin_agent_publish... " />
+            <marker date="1498569621470" expanded="true" signature="3692:4499" ph="update admin... " />
+            <marker date="1498569621470" expanded="true" signature="4613:5013" ph="update admin... " />
+            <marker date="1498569621470" expanded="true" signature="5114:5212" ph="select from admin_agent_publish" />
+            <marker date="1498569621470" expanded="true" signature="5320:5443" ph="select showt... admin_agent_publish" />
+          </folding>
         </state>
       </provider>
     </entry>

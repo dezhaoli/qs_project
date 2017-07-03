@@ -163,10 +163,6 @@ public class CorpPayController extends PayBaseController {
     	String mchid=baseParamService.getBaseParamValueByCode(gameType+".mchid");
     	String certfile=baseParamService.getBaseParamValueByCode(gameType+".certfile");
     	String gameNo=baseParamService.getBaseParamValueByCode(gameType+".gameType");
-    	appid="wx54899e374e18b09f";
-    	apikey="56fb70fc76b6808b3a46621047a69150";
-    	mchid="";
-    	
     	
 	    WeixinPayProxy PAY = null;
         WeixinPayAccount ACCOUNT = null;

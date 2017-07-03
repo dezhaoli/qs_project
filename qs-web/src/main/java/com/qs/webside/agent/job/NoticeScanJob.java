@@ -1,0 +1,129 @@
+package com.qs.webside.agent.job;
+
+import com.alibaba.fastjson.JSON;
+import com.qs.common.util.SocketPacketUtil;
+import com.qs.log.game.model.NoticeNew;
+import com.qs.log.game.service.INoticeNewService;
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+
+import javax.annotation.Resource;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
+
+
+/**
+ * Created by zun.wei on 2017/7/3 9:35.
+ * Description:游戏公告扫描job
+ */
+public class NoticeScanJob {
+
+    @Resource
+    private INoticeNewService noticeNewService;
+
+    @Value("${game.goldhost}")
+    private String goldhost;
+
+    @Value("${game.goldport}")
+    private int goldport;
+
+    @Value("${game.gametype}")
+    private int gametype;
+
+    private static final Map<String, Date> nextTriggerTime = new HashMap<>();
+
+    private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    private static final Logger log = Logger.getLogger(NoticeScanJob.class);
+
+    /**
+     * @Author:zun.wei , @Date:2017/7/3 9:42
+     * @Description:查询所有启用状态的定时公告
+     */
+    public void searchAllNotices() throws ParseException {
+        List<NoticeNew> noticeNewsList = noticeNewService.queryListByPushType();
+        for (NoticeNew noticeNew : noticeNewsList) {
+            Date startTime = simpleDateFormat.parse(noticeNew.getStartTime());
+            Date endTime = simpleDateFormat.parse(noticeNew.getEndTime());
+            Date nowTime = new Date();
+            if (startTime.getTime() <= nowTime.getTime() && endTime.getTime() >= nowTime.getTime()) {//在时间范围内
+                if (nextTriggerTime.get("tringger" + noticeNew.getId()) == null) {
+                    initNextTrigger(nowTime, noticeNew);
+                    sendToCServer(noticeNew);
+                    initNextTrigger(nowTime, noticeNew);
+                } else {
+                    long nextTringerTime = nextTriggerTime.get("tringger" + noticeNew.getId()).getTime();
+                    long nowDateTime = new Date().getTime();
+                    if (nextTringerTime <= nowDateTime) {//下一次触发时间小于当前时间
+                        initNextTrigger(nowTime, noticeNew);
+                        sendToCServer(noticeNew);
+                        initNextTrigger(nowTime, noticeNew);
+                    }
+                    if (endTime.getTime() <= nowTime.getTime()){//时间截止之后，禁用该公告
+                        noticeNew.setIsEnable("1");//更新为禁用
+                        noticeNewService.updateByPrimaryKeyWithBLOBs(noticeNew,goldhost,goldport,gametype);
+                        nextTriggerTime.remove("tringger" + noticeNew.getId());//移除下一次触发时间
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/7/3 14:16
+     * @Description:装载下一次触发时间
+     * @param nowTime
+     * @param noticeNew
+     */
+    private void initNextTrigger(Date nowTime,NoticeNew noticeNew) {
+        Calendar c = new GregorianCalendar();
+        c.setTime(nowTime);//设置参数时间
+        c.add(Calendar.SECOND,noticeNew.getIntervalTime());//把日期往后增加SECOND 秒.整数往后推,负数往前移动
+        nowTime = c.getTime(); //这个时间就是日期往后推一天的结果
+        nextTriggerTime.put("tringger" + noticeNew.getId(), nowTime);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/7/3 14:17
+     * @Description:发送到c++服务器
+     * @param noticeNew
+     * @return
+     */
+    private boolean sendToCServer(NoticeNew noticeNew) {
+        SocketPacketUtil socketUtil = new SocketPacketUtil(goldhost, goldport);
+        int type = 7;
+        int cmd = 10008;
+        Map<String, Object> jsonMsgMap = new HashMap<String, Object>();
+        jsonMsgMap.put("type", type);
+        jsonMsgMap.put("game_type", gametype);
+        jsonMsgMap.put("msg", noticeNew.getContent());
+        String jsonMsg = JSON.toJSONString(jsonMsgMap);
+        boolean socketFlag = socketUtil.sendData(cmd, 0, jsonMsg);//发送给全部人
+        log.debug("socketFlag===::" + socketFlag);
+        log.debug("socketFlag===:: send timing notice success ! notice id = " + noticeNew.getId());
+        log.debug("socketFlag===:: send timing notice success ! notice connent is " + noticeNew.getContent());
+        socketUtil.close();
+        return socketFlag;
+    }
+
+
+
+   /* SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Calendar c = new GregorianCalendar();
+    Date date = new Date();
+        System.out.println("系统当前时间      ："+df.format(date));
+        c.setTime(date);//设置参数时间
+        c.add(Calendar.SECOND,-30);//把日期往后增加SECOND 秒.整数往后推,负数往前移动
+    date=c.getTime(); //这个时间就是日期往后推一天的结果
+    String str = df.format(date);
+        System.out.println("系统前30秒时间："+str);*/
+        /*
+        输出结果：
+        系统当前时间      ：2015-09-18 10:03:00
+        系统前30秒时间：2015-09-18 10:02:30
+        */
+
+}
