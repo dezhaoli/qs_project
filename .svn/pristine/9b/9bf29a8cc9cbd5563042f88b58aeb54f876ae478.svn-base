@@ -1,0 +1,37 @@
+package com.qs.acti.game.service;
+
+import com.qs.acti.game.model.ActiSendGold;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/6/1 18:23.
+ * Description:活动中心发放金币
+ */
+public interface IActiSendGoldService {
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(ActiSendGold record);
+
+    int insertSelective(ActiSendGold record);
+
+    ActiSendGold selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(ActiSendGold record);
+
+    int updateByPrimaryKey(ActiSendGold record);
+
+    List<ActiSendGold> queryListByPage(Map<String, Object> parameters);
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/14 13:47
+     * @Description:获取条件筛选内的发送的金币总数
+     * @param parameters
+     * @return
+     */
+    int querySumSendGoldByCondition(Map<String, Object> parameters);
+
+
+}

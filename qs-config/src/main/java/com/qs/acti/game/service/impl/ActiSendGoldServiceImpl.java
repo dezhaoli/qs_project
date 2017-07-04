@@ -1,0 +1,64 @@
+package com.qs.acti.game.service.impl;
+
+import com.qs.acti.game.mapper.ActiSendGoldMapper;
+import com.qs.acti.game.model.ActiSendGold;
+import com.qs.acti.game.service.IActiSendGoldService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/6/1 18:24.
+ * Description:活动中心发放金币
+ */
+@Service
+public class ActiSendGoldServiceImpl implements IActiSendGoldService {
+
+
+    @Resource
+    private ActiSendGoldMapper actiSendGoldMapper;
+
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+        return actiSendGoldMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int insert(ActiSendGold record) {
+        return actiSendGoldMapper.insert(record);
+    }
+
+    @Override
+    public int insertSelective(ActiSendGold record) {
+        return actiSendGoldMapper.insertSelective(record);
+    }
+
+    @Override
+    public ActiSendGold selectByPrimaryKey(Integer id) {
+        return actiSendGoldMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(ActiSendGold record) {
+        return actiSendGoldMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(ActiSendGold record) {
+        return actiSendGoldMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<ActiSendGold> queryListByPage(Map<String, Object> parameters) {
+        return actiSendGoldMapper.queryListByPage(parameters);
+    }
+
+    @Override
+    public int querySumSendGoldByCondition(Map<String, Object> parameters) {
+        return actiSendGoldMapper.querySumSendGoldByCondition(parameters);
+    }
+
+}
