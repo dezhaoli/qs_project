@@ -340,7 +340,7 @@
   
   
  <select id="queryUserAndGoldListByPage" parameterType="map" resultType="map">
-	SELECT     m.mid, m.name, m.sex, m.btd, m.city, icon, invite, gp, sta,FROM_UNIXTIME(mtime, '%Y-%m-%d %H:%m:%s') AS mtime , email, bindtime, tel, realname, 
+	SELECT     m.mid, m.name, m.sex, m.btd, m.city, icon, invite, gp, sta,FROM_UNIXTIME(mtime, '%Y-%m-%d %H:%i:%s') AS mtime , email, bindtime, tel, realname,
     identity, yellowvip, isyearvip, passwd, salt, lgtm, lxlg, qq, address,g.gold from memberfides0 m
 	INNER JOIN membercommongame0 g
 	on  m.mid=g.mid

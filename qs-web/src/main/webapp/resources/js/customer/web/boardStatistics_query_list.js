@@ -41,7 +41,7 @@ var dtGridColumns = [{
         return value;
     }
 }];
-// pr.mid,mf.`name`,FROM_UNIXTIME(mf.mtime,'%Y-%m-%d %H:%m:%s') AS RegTime,COUNT(pr.mid) AS allRecord
+
 
 //动态设置jqGrid的rowNum
 var pageSize = $("#pageSize").val();

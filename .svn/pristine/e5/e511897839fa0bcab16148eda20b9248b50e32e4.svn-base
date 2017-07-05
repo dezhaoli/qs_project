@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.member.mapper.MemberPayMentMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.member.model.MemberPayMent" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="fmid" property="fmid" jdbcType="INTEGER" />
+    <result column="tmid" property="tmid" jdbcType="INTEGER" />
+    <result column="tsid" property="tsid" jdbcType="INTEGER" />
+    <result column="pmoneynow" property="pmoneynow" jdbcType="INTEGER" />
+    <result column="pmode" property="pmode" jdbcType="TINYINT" />
+    <result column="pcard" property="pcard" jdbcType="SMALLINT" />
+    <result column="pamount" property="pamount" jdbcType="REAL" />
+    <result column="pcoins" property="pcoins" jdbcType="INTEGER" />
+    <result column="ptime" property="ptime" jdbcType="INTEGER" />
+    <result column="pstatus" property="pstatus" jdbcType="TINYINT" />
+    <result column="ptransno" property="ptransno" jdbcType="VARCHAR" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="isagent" property="isagent" jdbcType="TINYINT" />
+    <result column="bizid" property="bizid" jdbcType="SMALLINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins, ptime, pstatus, 
+    ptransno, gametype, parentid, isagent, bizid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberpayment
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memberpayment
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.member.model.MemberPayMent" >
+    insert into memberpayment (pid, fmid, tmid, 
+      tsid, pmoneynow, pmode, 
+      pcard, pamount, pcoins, 
+      ptime, pstatus, ptransno, 
+      gametype, parentid, isagent, 
+      bizid)
+    values (#{pid,jdbcType=INTEGER}, #{fmid,jdbcType=INTEGER}, #{tmid,jdbcType=INTEGER}, 
+      #{tsid,jdbcType=INTEGER}, #{pmoneynow,jdbcType=INTEGER}, #{pmode,jdbcType=TINYINT}, 
+      #{pcard,jdbcType=SMALLINT}, #{pamount,jdbcType=REAL}, #{pcoins,jdbcType=INTEGER}, 
+      #{ptime,jdbcType=INTEGER}, #{pstatus,jdbcType=TINYINT}, #{ptransno,jdbcType=VARCHAR}, 
+      #{gametype,jdbcType=TINYINT}, #{parentid,jdbcType=INTEGER}, #{isagent,jdbcType=TINYINT}, 
+      #{bizid,jdbcType=SMALLINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.member.model.MemberPayMent" >
+    insert into memberpayment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="fmid != null" >
+        fmid,
+      </if>
+      <if test="tmid != null" >
+        tmid,
+      </if>
+      <if test="tsid != null" >
+        tsid,
+      </if>
+      <if test="pmoneynow != null" >
+        pmoneynow,
+      </if>
+      <if test="pmode != null" >
+        pmode,
+      </if>
+      <if test="pcard != null" >
+        pcard,
+      </if>
+      <if test="pamount != null" >
+        pamount,
+      </if>
+      <if test="pcoins != null" >
+        pcoins,
+      </if>
+      <if test="ptime != null" >
+        ptime,
+      </if>
+      <if test="pstatus != null" >
+        pstatus,
+      </if>
+      <if test="ptransno != null" >
+        ptransno,
+      </if>
+      <if test="gametype != null" >
+        gametype,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="isagent != null" >
+        isagent,
+      </if>
+      <if test="bizid != null" >
+        bizid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="fmid != null" >
+        #{fmid,jdbcType=INTEGER},
+      </if>
+      <if test="tmid != null" >
+        #{tmid,jdbcType=INTEGER},
+      </if>
+      <if test="tsid != null" >
+        #{tsid,jdbcType=INTEGER},
+      </if>
+      <if test="pmoneynow != null" >
+        #{pmoneynow,jdbcType=INTEGER},
+      </if>
+      <if test="pmode != null" >
+        #{pmode,jdbcType=TINYINT},
+      </if>
+      <if test="pcard != null" >
+        #{pcard,jdbcType=SMALLINT},
+      </if>
+      <if test="pamount != null" >
+        #{pamount,jdbcType=REAL},
+      </if>
+      <if test="pcoins != null" >
+        #{pcoins,jdbcType=INTEGER},
+      </if>
+      <if test="ptime != null" >
+        #{ptime,jdbcType=INTEGER},
+      </if>
+      <if test="pstatus != null" >
+        #{pstatus,jdbcType=TINYINT},
+      </if>
+      <if test="ptransno != null" >
+        #{ptransno,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isagent != null" >
+        #{isagent,jdbcType=TINYINT},
+      </if>
+      <if test="bizid != null" >
+        #{bizid,jdbcType=SMALLINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.member.model.MemberPayMent" >
+    update memberpayment
+    <set >
+      <if test="fmid != null" >
+        fmid = #{fmid,jdbcType=INTEGER},
+      </if>
+      <if test="tmid != null" >
+        tmid = #{tmid,jdbcType=INTEGER},
+      </if>
+      <if test="tsid != null" >
+        tsid = #{tsid,jdbcType=INTEGER},
+      </if>
+      <if test="pmoneynow != null" >
+        pmoneynow = #{pmoneynow,jdbcType=INTEGER},
+      </if>
+      <if test="pmode != null" >
+        pmode = #{pmode,jdbcType=TINYINT},
+      </if>
+      <if test="pcard != null" >
+        pcard = #{pcard,jdbcType=SMALLINT},
+      </if>
+      <if test="pamount != null" >
+        pamount = #{pamount,jdbcType=REAL},
+      </if>
+      <if test="pcoins != null" >
+        pcoins = #{pcoins,jdbcType=INTEGER},
+      </if>
+      <if test="ptime != null" >
+        ptime = #{ptime,jdbcType=INTEGER},
+      </if>
+      <if test="pstatus != null" >
+        pstatus = #{pstatus,jdbcType=TINYINT},
+      </if>
+      <if test="ptransno != null" >
+        ptransno = #{ptransno,jdbcType=VARCHAR},
+      </if>
+      <if test="gametype != null" >
+        gametype = #{gametype,jdbcType=TINYINT},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="isagent != null" >
+        isagent = #{isagent,jdbcType=TINYINT},
+      </if>
+      <if test="bizid != null" >
+        bizid = #{bizid,jdbcType=SMALLINT},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.member.model.MemberPayMent" >
+    update memberpayment
+    set fmid = #{fmid,jdbcType=INTEGER},
+      tmid = #{tmid,jdbcType=INTEGER},
+      tsid = #{tsid,jdbcType=INTEGER},
+      pmoneynow = #{pmoneynow,jdbcType=INTEGER},
+      pmode = #{pmode,jdbcType=TINYINT},
+      pcard = #{pcard,jdbcType=SMALLINT},
+      pamount = #{pamount,jdbcType=REAL},
+      pcoins = #{pcoins,jdbcType=INTEGER},
+      ptime = #{ptime,jdbcType=INTEGER},
+      pstatus = #{pstatus,jdbcType=TINYINT},
+      ptransno = #{ptransno,jdbcType=VARCHAR},
+      gametype = #{gametype,jdbcType=TINYINT},
+      parentid = #{parentid,jdbcType=INTEGER},
+      isagent = #{isagent,jdbcType=TINYINT},
+      bizid = #{bizid,jdbcType=SMALLINT}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+	<!--   查询一级,二级，三级用户充值明细 -->
+   <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+	   <if test="type==1">
+		   SELECT  pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins,FROM_UNIXTIME(ptime,'%Y-%m-%d') as toTime, pstatus, 
+    		ptransno, gametype, parentid, isagent, bizid
+			from memberpayment where pstatus=2 and
+			(parentid=#{mid} or fmid=#{mid})  and isagent=0  HAVING toTime BETWEEN #{startTime} AND date_add(#{endTime} ,interval 1 day) ORDER BY ptime DESC
+	   </if>
+	   <if test="type==2">
+		  	SELECT   pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins, FROM_UNIXTIME(ptime,'%Y-%m-%d') as toTime, pstatus, 
+   			 ptransno, gametype, parentid, isagent, bizid
+   			 FROM memberpayment where 
+			((parentid in (${mids}) and isagent=0) or (fmid in(${mids}) and parentid=#{mid})) and pstatus=2  
+			and   FROM_UNIXTIME(ptime,'%Y-%m-%d') &gt;= #{startTime} AND FROM_UNIXTIME(ptime,'%Y-%m-%d') &lt;=#{endTime}  ORDER BY ptime DESC
+	   </if>
+	<if test="type==3">
+		SELECT pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount,
+		pcoins,FROM_UNIXTIME(ptime,'%Y-%m-%d') as toTime, pstatus,
+		ptransno, gametype, parentid, isagent, bizid FROM memberpayment WHERE ((parentid
+		IN(
+		SELECT a.mid FROM memberagents AS a INNER JOIN
+		(SELECT mid FROM memberagents WHERE parent_id=#{mid}) AS b ON a.parent_id=b.mid
+		) AND isagent=0)
+		or (fmid IN(
+		SELECT a.mid FROM memberagents AS a INNER JOIN
+		(
+		SELECT mid FROM memberagents WHERE parent_id=#{mid}) AS b ON a.parent_id=b.mid
+		) AND parentid IN(
+		SELECT mid FROM memberagents WHERE parent_id=#{mid}
+		))) AND pstatus=2 HAVING toTime BETWEEN #{startTime} AND date_add(#{endTime}, INTERVAL 1 day)
+		ORDER BY ptime DESC
+	  </if>
+  	</select>
+
+  <select id="queryListByMidDate" parameterType="map" resultMap="BaseResultMap">
+    SELECT fmid, pamount, FROM_UNIXTIME(ptime, '%Y-%m-%d %H:%i:%s') AS toTime,pmoneynow FROM memberpayment
+    WHERE (fmid = #{mid} OR (parentid = #{mid} AND isagent = 0))  AND pstatus = 2  ORDER BY ptime DESC
+   <!--  HAVING toTime BETWEEN #{starDate} AND date_add(#{endDate},interval 1 day) -->
+  </select>
+
+	<!-- 获取个人充值明细 -->
+  <select id="queryListByMidInfo" parameterType="map" resultType="map">
+    SELECT fmid,pamount,FROM_UNIXTIME(ptime,'%Y-%m-%d') ptime FROM memberpayment WHERE fmid=#{mid} AND pstatus=2 
+	and FROM_UNIXTIME(ptime,'%Y-%m-%d')  BETWEEN #{sDate}  AND #{eDate} ORDER BY ptime DESC
+  </select>
+
+    <!-- `pstatus` tinyint(3) unsigned NOT NULL COMMENT '充值状态:0为提交了表单,1为取消表单,2为完成表单 -->
+  <select id="queryChangeByDate" parameterType="map" resultType="map">
+    SELECT a.fmid,SUM(a.pamount) AS ptotal,b.name AS username
+    FROM memberpayment a
+      LEFT JOIN memberfides0 b
+        ON a.fmid=b.mid
+    WHERE a.pstatus=2
+          and from_unixtime(a.ptime,'%Y-%m-%d')=#{searchDate}
+    GROUP BY a.fmid
+    ORDER BY ptotal
+    DESC
+  </select>
+
+    <!-- 游戏后台充值查询，查询当天总充值金额 -->
+    <select id="queryChangeNowDay" resultType="float">
+        SELECT SUM(mp.pamount) nowdaypay
+        FROM memberpayment mp
+        WHERE pstatus = 2 AND
+        from_unixtime(mp.ptime,'%Y-%m-%d') = date_format(now(), '%Y-%m-%d') LIMIT 0,1
+    </select>
+
+    <select id="queryChangeCountByDate" resultType="float" parameterType="map">
+        SELECT SUM(mp.pamount) nowdaypay
+        FROM memberpayment mp
+        WHERE pstatus = 2 AND
+        from_unixtime(mp.ptime,'%Y-%m-%d') = #{searchDate} LIMIT 0,1
+    </select>
+
+  <!-- 获取订单统计 -->
+  <select id="queryOrderCountByPage" resultType="map" parameterType="map">
+    select SUM(p.pamount) AS paycount,m.name,p.fmid AS paymid  from  memberpayment p
+     INNER JOIN    memberfides0 m   on  p.fmid=m.mid
+     <where>
+         <if test="pstatus != null and pstatus != ''">
+             p.pstatus = #{pstatus}
+          </if>
+          <if test="realname != null and realname != ''">
+            m.name = #{realname}
+          </if>
+          <if test="mid != null and mid != ''">
+            AND m.mid = #{mid}
+          </if>
+         <if test="startTime != null and startTime != ''">
+             AND from_unixtime(p.ptime,'%Y-%m-%d') &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+         AND from_unixtime(p.ptime,'%Y-%m-%d') &lt;= #{endTime}
+         </if>
+     </where>
+     group by    m.mid
+     order by p.ptime desc
+  </select>
+
+    <!-- 游戏后台，订单统计查询当天总充值金额 -->
+    <select id="queryOrderNowDayPayCount" resultType="float">
+        select SUM(p.pamount) AS nowdaypay
+        from  memberpayment p
+        INNER JOIN    memberfides0 m
+        on  p.fmid=m.mid
+        where
+        p.pstatus=2
+        AND
+        from_unixtime(p.ptime,'%Y-%m-%d') = date_format(now(), '%Y-%m-%d')
+        LIMIT 0,1
+    </select>
+
+    <select id="queryOrderPayCountByDate" resultType="float" parameterType="map">
+        select SUM(p.pamount) AS nowdaypay
+        from  memberpayment p
+        INNER JOIN    memberfides0 m
+        on  p.fmid=m.mid
+        where
+        p.pstatus=2
+        <if test="startTime != null and startTime != ''">
+            AND from_unixtime(p.ptime,'%Y-%m-%d') &gt;= #{startTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            AND from_unixtime(p.ptime,'%Y-%m-%d') &lt;= #{endTime}
+        </if>
+        LIMIT 0,1
+    </select>
+
+  <!-- 订单明细 -->
+  <select id="queryOrderDetailByPage" resultType="map" parameterType="map">
+   	SELECT
+	from_unixtime(a.ptime,'%Y-%m-%d %H:%i:%s') AS paytime, -- 日期
+	CONCAT('QS',from_unixtime(a.ptime,'%Y%m%d'),a.pid) AS orderNo, -- 订单号
+	a.fmid AS payman, -- 充值用户ID
+	b.name AS paymanName, -- 用户名
+	a.tmid AS recmen, -- 被充值人ID
+	a.pcard AS loginCount, -- 登录
+	a.pamount, -- 充值金额
+	a.pmoneynow, -- 充值时金币
+	a.pcoins, -- 获得金币
+	a.pstatus, -- 状态
+	a.ptransno, -- 平台订单号
+	a.pmode, -- 充值方式
+	a.parentid, -- 父ID
+	a.isagent, -- 代理
+	a.bizid -- 商务ID
+
+	FROM memberpayment a
+	INNER JOIN  memberfides0 b
+	on   a.fmid=b.mid
+	<where>
+
+	<if test="pstatus != null and pstatus != ''">
+	a.pstatus = #{pstatus}
+	</if>
+	<if test="realname != null and realname != ''">
+	b.name = #{realname}
+	</if>
+	<if test="mid != null and mid != ''">
+	AND b.mid = #{mid}
+	</if>
+
+	<if test="startTime != null and startTime != ''">
+	AND from_unixtime(a.ptime,'%Y-%m-%d') &gt;= #{startTime}
+	</if>
+	<if test="endTime != null and endTime != ''">
+	AND from_unixtime(a.ptime,'%Y-%m-%d') &lt;= #{endTime}
+	</if>
+	<if test="parentid != null and parentid != ''">
+	AND a.parentid = #{parentid}
+	</if>
+	</where>
+	order by a.ptime desc
+    
+  </select>
+ 
+   
+</mapper>

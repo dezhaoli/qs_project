@@ -188,8 +188,13 @@ function resetPwd(id) {
                 //contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (data) {
-                    grid.refresh(true);
-                    layer.msg('重置密码成功!', {icon: 6});
+                    if (data.success == true) {
+                        grid.refresh(true);
+                        layer.msg('重置密码成功!', {icon: 6});
+                    }else {
+                        grid.refresh(true);
+                        layer.msg('重置密码失败!', {icon: 5});
+                    }
                 },
                 error: function (msg) {
                     layer.msg(msg, {icon: 5});

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.PlayerRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.PlayerRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="room" property="room" jdbcType="INTEGER" />
+    <result column="seat" property="seat" jdbcType="INTEGER" />
+    <result column="uuid" property="uuid" jdbcType="VARCHAR" />
+    <result column="timestamp" property="timestamp" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, room, seat, uuid,FROM_UNIXTIME(timestamp,'%Y-%m-%d %H:%i:%S') as timestamp, type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from player_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from player_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qs.log.game.model.PlayerRecord" >
+    insert into player_record (id, mid, room, 
+      seat, uuid, timestamp, 
+      type)
+    values (#{id,jdbcType=BIGINT}, #{mid,jdbcType=INTEGER}, #{room,jdbcType=INTEGER}, 
+      #{seat,jdbcType=INTEGER}, #{uuid,jdbcType=VARCHAR}, #{timestamp,jdbcType=INTEGER}, 
+      #{type,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.PlayerRecord" >
+    insert into player_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="room != null" >
+        room,
+      </if>
+      <if test="seat != null" >
+        seat,
+      </if>
+      <if test="uuid != null" >
+        uuid,
+      </if>
+      <if test="timestamp != null" >
+        timestamp,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="room != null" >
+        #{room,jdbcType=INTEGER},
+      </if>
+      <if test="seat != null" >
+        #{seat,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null" >
+        #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        #{timestamp,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.game.model.PlayerRecord" >
+    update player_record
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="room != null" >
+        room = #{room,jdbcType=INTEGER},
+      </if>
+      <if test="seat != null" >
+        seat = #{seat,jdbcType=INTEGER},
+      </if>
+      <if test="uuid != null" >
+        uuid = #{uuid,jdbcType=VARCHAR},
+      </if>
+      <if test="timestamp != null" >
+        timestamp = #{timestamp,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.game.model.PlayerRecord" >
+    update player_record
+    set mid = #{mid,jdbcType=INTEGER},
+      room = #{room,jdbcType=INTEGER},
+      seat = #{seat,jdbcType=INTEGER},
+      uuid = #{uuid,jdbcType=VARCHAR},
+      timestamp = #{timestamp,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from player_record
+    <where>
+      <if test="mid != null and mid != ''">
+        mid = #{mid,jdbcType=INTEGER}
+      </if>
+      <if test="mid == null or mid == ''">
+        mid = #{mid,jdbcType=INTEGER}
+      </if>
+      <if test="roomId != null and roomId != ''">
+        and room = #{roomId,jdbcType=INTEGER}
+      </if>
+      <if test="cardNum != null and cardNum != ''">
+        and uuid = #{cardNum,jdbcType=VARCHAR}
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+  <select id="queryCardRecordByPage" parameterType="map" resultType="map">
+    SELECT room,seat,uuid,from_unixtime(timestamp,'%Y-%m-%d %H:%i:%s') AS timestamp
+    FROM player_record
+    WHERE room = #{roomid}
+    ORDER BY timestamp DESC
+  </select>
+
+  <!-- 牌局统计 -->
+  <select id="queryBoardStatisticsByPage" parameterType="map" resultType="map">
+    SELECT pr.mid,mf.`name`,FROM_UNIXTIME(mf.mtime,'%Y-%m-%d %H:%i:%s') AS RegTime,COUNT(pr.mid) AS allRecord
+    FROM player_record pr
+    INNER JOIN ${dbName}.memberfides0 mf
+    ON mf.mid = pr.mid
+    <where>
+      <if test="mid != null and mid != ''">
+        pr.mid = #{mid}
+      </if>
+    <if test="startTime != null and startTime != ''">
+      AND FROM_UNIXTIME(pr.`timestamp`,'%Y-%m-%d') &gt;= #{startTime}
+    </if>
+      <if test="endTime != null and endTime != ''">
+        AND FROM_UNIXTIME(pr.`timestamp`,'%Y-%m-%d') &lt;= #{endTime}
+      </if>
+    </where>
+    GROUP BY pr.mid
+    order by pr.id DESC
+  </select>
+
+  <!-- 牌局总数 -->
+  <select id="queryBoardStatisticsByCount" parameterType="map" resultType="int">
+    SELECT COUNT(pr.mid) AS allRecord
+    FROM player_record pr
+    <where>
+      <if test="mid != null and mid != ''">
+        pr.mid = #{mid}
+      </if>
+      <if test="startTime != null and startTime != ''">
+        and FROM_UNIXTIME(pr.`timestamp`,'%Y-%m-%d') &gt;= #{startTime}
+      </if>
+      <if test="endTime != null and endTime != ''">
+        AND FROM_UNIXTIME(pr.`timestamp`,'%Y-%m-%d') &lt;= #{endTime}
+      </if>
+    </where>
+    order by pr.id DESC LIMIT 1
+  </select>
+
+</mapper>

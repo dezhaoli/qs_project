@@ -171,8 +171,12 @@ public class AppConstants {
 	   public static final String   IS_OPEN_APPLE_STORE = "is_open_apple_store";  
 	   
 	   //取memcached_ip
-	   public static final String   MEMCACHED_IP = "memcached_ip";  
-	
+	   public static final String   MEMCACHED_IP = "memcached_ip";
+
+		public static final String   ACTIVITY_CENTER_CLIENT_URL = "activity_center_client_url";
+
+		public static final String   APP_SEND_GOLD_INTERFACE_URL = "app_send_gold_url";
+
 	}
 	
 	

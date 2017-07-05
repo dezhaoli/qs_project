@@ -1,4 +1,4 @@
-$(function () {
+
     jeDate({
         dateCell: '#startDate',
         isinitVal:new Date(),
@@ -15,11 +15,11 @@ $(function () {
         minDate: '1900-06-01', //最小日期
         maxDate: '2050-06-01' //最大日期
     });
-});
 
-/*var startDate = $("#startDate").val();
+
+var startDate = $("#startDate").val();
 var endDate = $("#endDate").val();
-
+/*
 var saveDate = new Date(Date.parse(endDate.replace(/-/g, "/")));
 saveDate.setDate(saveDate.getDate()-6);
 
@@ -31,9 +31,25 @@ startDate = year + "-" + month + "-" + date;
 $('#startDate').val(startDate);*/
 
 var dtGridColumns = [{
+    id : '',
+    title : '排名',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNo, columnNo) {
+    	var str=dataNo + 1;
+        return  str;
+    }
+},{
     id : 'mid',
     title : '用户ID',
     type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'name',
+    title : '用户名',
+    type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
@@ -45,18 +61,39 @@ var dtGridColumns = [{
 },{
     id : 'mtimeStr',
     title : '用户注册时间',
-    type : 'number',
+    type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
     id : 'lgtmStr',
     title : '最后登录时间',
-    type : 'number',
+    type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
     id : 'ifvalid',
     title : '是否已经流失',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNo, columnNo) {
+    	var str='';
+    	switch (value) {
+		case 0:
+			str='否';
+			break;
+		case 1:
+			str='是';
+			break;
+		default:
+			str='';
+			break;
+		}
+        return  str;
+    }
+},{
+    id : 'sta',
+    title : '是否是代理商',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -85,7 +122,7 @@ pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
 var dtGridOption = {
 	    lang : 'zh-cn',
 	    ajaxLoad : true,
-	    check : true,
+	    //check : true,
 	    checkWidth :'37px',
 	    extraWidth : '37px',
 	    loadURL : sys.rootPath + '/memberFides/userPayrankingList.html',

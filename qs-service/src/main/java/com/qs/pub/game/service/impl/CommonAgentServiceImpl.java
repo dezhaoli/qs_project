@@ -60,6 +60,11 @@ public class CommonAgentServiceImpl implements ICommonAgentService {
 		return commonAgentsMapper.selectByPhoneInfo(phone);
 	}
 
+    @Override
+    public int updateSelectiveByIfphoneIsExsit(CommonAgents record) {
+        return commonAgentsMapper.updateSelectiveByIfphoneIsExsit(record);
+    }
+
    /* @Override
     public List<Map<String, Object>> queryOneBeanMapByPage(Map<String, Object> parameter) {
         return commonAgentsMapper.queryOneBeanMapByPage(parameter);

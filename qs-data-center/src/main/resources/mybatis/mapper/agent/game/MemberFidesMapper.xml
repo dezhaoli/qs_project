@@ -56,15 +56,15 @@
   </select>
   
   <select id="userPayrankingList" resultMap="BaseResultMap" parameterType="map" >
-    select dat.mid,dat.name,ifnull(dat.pamount,0) pamount,FROM_UNIXTIME(dat.mtime,'%Y-%m-%d') mtime_str,FROM_UNIXTIME(dat.lgtm,'%Y-%m-%d') lgtm_str,
+    select dat.mid,dat.name,ifnull(dat.pamount,0) pamount,FROM_UNIXTIME(dat.mtime,'%Y-%m-%d') mtime_str,FROM_UNIXTIME(dat.lgtm,'%Y-%m-%d') lgtm_str,dat.isagent sta,
 	case when (TO_DAYS(CURDATE())-TO_DAYS(FROM_UNIXTIME(dat.lgtm,'%Y-%m-%d'))) &gt; 7 then 1 else 0 end as ifvalid
 	 from 
 	(
-	SELECT f.mid,f.name,sum(m.pamount) pamount,f.mtime,f.lgtm FROM memberfides0 f 
-	inner join  memberpayment m on(f.mid=m.tmid) 
+	SELECT f.mid,f.name,sum(m.pamount) pamount,f.mtime,f.lgtm,m.isagent FROM memberfides0 f 
+	inner join  memberpayment m on(f.mid=m.fmid) 
 	where m.ptime &lt; UNIX_TIMESTAMP(DATE_SUB(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),INTERVAL -1 DAY)) 
 	and m.ptime &gt;= UNIX_TIMESTAMP(#{startDate,jdbcType=VARCHAR}) and m.pstatus=2 
-	group by m.tmid
+	group by m.fmid
 	) dat order by dat.pamount desc limit 0,30
   </select>
 </mapper>

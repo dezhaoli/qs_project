@@ -254,17 +254,8 @@
 	  </if>
   	</select>
 
-
-  <!--
-   SELECT fmid,pamount,FROM_UNIXTIME(ptime,'%Y-%m-%d %H:%m:%s') as toTime
-    FROM memberpayment
-    WHERE (fmid=#{mid} OR (parentid=#{mid} AND isagent=0))
-    AND ptime &lt;=#{starDate} and ptime&gt;=#{endDate} AND pstatus=2
-    ORDER BY ptime
-    DESC
-   -->
   <select id="queryListByMidDate" parameterType="map" resultMap="BaseResultMap">
-    SELECT fmid, pamount, FROM_UNIXTIME(ptime, '%Y-%m-%d %H:%m:%s') AS toTime,pmoneynow FROM memberpayment
+    SELECT fmid, pamount, FROM_UNIXTIME(ptime, '%Y-%m-%d %H:%i:%s') AS toTime,pmoneynow FROM memberpayment
     WHERE (fmid = #{mid} OR (parentid = #{mid} AND isagent = 0))  AND pstatus = 2  ORDER BY ptime DESC
    <!--  HAVING toTime BETWEEN #{starDate} AND date_add(#{endDate},interval 1 day) -->
   </select>
@@ -360,7 +351,7 @@
   <!-- 订单明细 -->
   <select id="queryOrderDetailByPage" resultType="map" parameterType="map">
    	SELECT
-	from_unixtime(a.ptime,'%Y-%m-%d %H:%m:%s') AS paytime, -- 日期
+	from_unixtime(a.ptime,'%Y-%m-%d %H:%i:%s') AS paytime, -- 日期
 	CONCAT('QS',from_unixtime(a.ptime,'%Y%m%d'),a.pid) AS orderNo, -- 订单号
 	a.fmid AS payman, -- 充值用户ID
 	b.name AS paymanName, -- 用户名

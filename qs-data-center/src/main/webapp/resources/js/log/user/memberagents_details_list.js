@@ -1,9 +1,48 @@
 
-var gameType = $('#gameType').val();
-var id = $('#id').val();
+    jeDate({
+        dateCell: '#startDate',
+        isinitVal:new Date(),
+        //isinitVal:false,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06-01', //最小日期
+        maxDate: '2050-06-01' //最大日期
+    });
+   /* jeDate({
+        dateCell: '#endTime',
+        isinitVal:new Date(),
+        //isinitVal:false,
+        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06-01', //最小日期
+        maxDate: '2050-06-01' //最大日期
+    });*/
+
+    
+
+    var saveDate = new Date();
+    saveDate.setDate(saveDate.getDate()-14);
+
+    var year = saveDate.getFullYear();
+    var month = saveDate.getMonth() + 1 < 10 ? "0" + (saveDate.getMonth() + 1) : saveDate.getMonth() + 1;
+    var date = saveDate.getDate() < 10 ? "0" + saveDate.getDate() : saveDate.getDate();
+    startDate = year + "-" + month + "-" + date;
+    $('#startDate').val(startDate);
+    
+
 var dtGridColumns = [{
+    id : 'id',
+    title : '商务ID',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
     id : 'name',
     title : '商务名称',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header'
+},{
+    id : 'phone',
+    title : '商务电话',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
@@ -27,13 +66,13 @@ var dtGridColumns = [{
     headerClass : 'dlshouwen-grid-header'
 },{
     id : 'pamount',
-    title : '总金额',
+    title : '代理商充值金额',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
 },{
     id : 'totals',
-    title : '总人数',
+    title : '代理商绑定人数',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
@@ -50,7 +89,7 @@ var dtGridOption = {
 	    check : true,
 	    checkWidth :'37px',
 	    extraWidth : '37px',
-	    loadURL : sys.rootPath + '/memberagents/memberagentsDetails.html?gameType='+gameType+'&id='+id,
+	    loadURL : sys.rootPath + '/memberagents/memberagentsDetails.html',
 	    columns : dtGridColumns,
 	    gridContainer : 'dtGridContainer',
 	    toolbarContainer : 'dtGridToolBarContainer',
@@ -69,6 +108,11 @@ $(function() {
         grid.sortParameter.columnId = $("#orderByColumn").val();
         grid.sortParameter.sortType = $("#orderByType").val();
     }
+    grid.parameters = new Object();
+    grid.parameters['name'] = $("#name").val();
+    grid.parameters['startDate'] = $("#startDate").val();
+    grid.parameters['pamount'] = $("#pamount").val();
+    grid.parameters['totals'] = $("#totals").val();
     grid.load();
     $("#btnSearch").click(customSearch);
     
@@ -89,44 +133,16 @@ $(function() {
  */
 function customSearch() {
     grid.parameters = new Object();
-    grid.parameters['realname'] = $("#realname").val();
-    grid.parameters['mid'] = $("#mid").val();
+    grid.parameters['name'] = $("#name").val();
+    grid.parameters['startDate'] = $("#startDate").val();
+    grid.parameters['pamount'] = $("#pamount").val();
+    grid.parameters['totals'] = $("#totals").val();
     grid.refresh(true);
 }
 
-function edit(id){
-	webside.common.loadPage('/game/shield/editUI.html?id='+id)
-}
-function updateStatus(id,status){
-	$.ajax({
-        type: "GET",
-        url: sys.rootPath+'/dict/updateStatus.html?id='+id+'&status='+status,
-        dataType: "json",
-        success: function(data){
-        	webside.common.loadPage('/dict/dictList.html')
-     }
-    });
-	//webside.common.loadPage('/dict/updateStatus.html?id='+id+'&status='+status)
-}
 
 
-/*$(function () {
-    jeDate({
-        dateCell: '#startTime',
-        isinitVal:new Date(),
-        //isinitVal:false,
-        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-        minDate: '1900-06-01', //最小日期
-        maxDate: '2050-06-01' //最大日期
-    });
-    jeDate({
-        dateCell: '#endTime',
-        isinitVal:new Date(),
-        //isinitVal:false,
-        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-        minDate: '1900-06-01', //最小日期
-        maxDate: '2050-06-01' //最大日期
-    });
-});*/
+
+
 
 

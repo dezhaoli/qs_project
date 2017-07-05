@@ -37,7 +37,10 @@ public class SocketPacketUtil {
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
+			if (socket == null) {
+				log.debug("================>::socket is null;maybe host or port was wrong!");
+			}
 		}
 	}
     
@@ -138,6 +141,11 @@ public class SocketPacketUtil {
     }
 
 	public Boolean sendDataUtf8(Integer cmdType,Integer mid,String jsonMsg) {
+		if (socket == null) {
+			log.debug("================>::SocketPacketUtil sendDataUtf8 function socket is null;send data fail " +
+					"maybe socket host or port is wrong !");
+			return false;
+		}
 		//mid长度
 		packetSize=4;
 		jsonMsg += '\0';

@@ -17,21 +17,36 @@
 	</button>
 	
 </div> -->
+<style>
+
+</style>
 
 <!-- 搜索框 -->
      <form class="form-horizontal" >
 				<div class="form-group" >
-		           	<label class="control-label col-sm-1 no-padding-right">代理商名称</label>
+		           	<label class="control-label col-sm-2 no-padding-right">商务名称</label>
 	                <div class="col-sm-2">
-	                    <input class="form-control" name="realname" id="realname" type="text"
-	                               placeholder="代理商名称..."/>
+	                    <input class="form-control" name="name" id="name" type="text"
+	                               placeholder="商务名称..."/>
 	                </div>
-		           	<label class="control-label col-sm-1 no-padding-right">代理商ID</label>
+		           	<label class="control-label col-sm-2 no-padding-right">代理商创建时间(小于)</label>
 	                <div class="col-sm-2">
-	                    <input class="form-control" name="mid" id="mid" type="text"
-	                               placeholder="代理商ID..."/>
+	                    <input class="form-control" name="startDate" id="startDate" type="text"
+	                               placeholder="代理商创建时间..."/>
 	                </div>
-	                <div class="col-sm-3">
+				</div>
+				<div class="form-group" >
+	                <label class="control-label col-sm-2 no-padding-right">代理商充值金额(小于等于)</label>
+	                <div class="col-sm-2">
+	                    <input class="form-control" name="pamount" id="pamount" type="text" value =0
+	                               placeholder="代理商充值金额..."/>
+	                </div>
+	                <label class="control-label col-sm-2 no-padding-right">代理商绑定人数(小于等于)</label>
+	                <div class="col-sm-2">
+	                    <input class="form-control" name="totals" id="totals" type="text" value =0
+	                               placeholder="代理商绑定人数..."/>
+	                </div>
+	                <div class="col-sm-1">
 	                    <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
 	               			 <i class="fa fa-search"></i>查询
 	           			</button>
@@ -39,8 +54,7 @@
 				</div>
 	</form>
 
-<input type="hidden" id="gameType" value="${gameType}"/>
-<input type="hidden" id="id" value="${id}"/>
+
 
 <div class="row" style="margin-top:5px;">
 	<div class="col-xs-12 widget-container-col ui-sortable"
@@ -76,9 +90,9 @@
 
 </div>
 
-				<div class="center">
+				<!-- <div class="center">
 				    <button id="btn" type="button" onclick="webside.common.loadPage('/memberagents/toMemberagentsListUi.html?gameType=runfast')"
 				            class="btn btn-info btn-sm">
 				        <i class="fa fa-undo"></i>&nbsp;返回
 				    </button>
-				</div>
+				</div> -->

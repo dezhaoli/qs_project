@@ -129,12 +129,11 @@ public class MemberAgentServiceImpl implements IMemberAgentService {
        int result = 0;
 		MemberAgents memberAgents = memberAgentsMapper.selectByPrimaryKey(id);
 		if (memberAgents != null) {
-			if (StringUtils.isBlank(memberAgents.getPhone())) return result;
 			CommonAgents commonAgents = new CommonAgents();
 			commonAgents.setSitemid(memberAgents.getSitemid());
 			commonAgents.setLoginSalt(uuId);
 			commonAgents.setLoginPasswd(passwordCryto);
-			result = commonAgentService.updateByPrimaryKeySelective(commonAgents);
+			result = commonAgentService.updateSelectiveByIfphoneIsExsit(commonAgents);
 		}
 		return result;
 	}

@@ -42,7 +42,7 @@ var dtGridColumns = [{
         return value;
     }
 }];
-//SELECT room,seat,uuid,from_unixtime(timestamp,'%Y-%m-%d %H:%m:%s') AS timestamp
+
 
 //动态设置jqGrid的rowNum
 var pageSize = $("#pageSize").val();

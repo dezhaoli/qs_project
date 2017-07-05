@@ -136,7 +136,7 @@
   </select>
 
   <select id="queryCardRecordByPage" parameterType="map" resultType="map">
-    SELECT room,seat,uuid,from_unixtime(timestamp,'%Y-%m-%d %H:%m:%s') AS timestamp
+    SELECT room,seat,uuid,from_unixtime(timestamp,'%Y-%m-%d %H:%i:%s') AS timestamp
     FROM player_record
     WHERE room = #{roomid}
     ORDER BY timestamp DESC
@@ -144,7 +144,7 @@
 
   <!-- 牌局统计 -->
   <select id="queryBoardStatisticsByPage" parameterType="map" resultType="map">
-    SELECT pr.mid,mf.`name`,FROM_UNIXTIME(mf.mtime,'%Y-%m-%d %H:%m:%s') AS RegTime,COUNT(pr.mid) AS allRecord
+    SELECT pr.mid,mf.`name`,FROM_UNIXTIME(mf.mtime,'%Y-%m-%d %H:%i:%s') AS RegTime,COUNT(pr.mid) AS allRecord
     FROM player_record pr
     INNER JOIN ${dbName}.memberfides0 mf
     ON mf.mid = pr.mid

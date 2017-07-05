@@ -23,7 +23,8 @@
   </resultMap>
   <sql id="Base_Column_List" >
     id, title, push_type, img, url, acti_type, stime, etime, interval_time, gametype, 
-    push_time, push_user_name, is_enable,from_unixtime(stime,'%Y-%m-%d %H:%m:%s') as startTime,from_unixtime(etime,'%Y-%m-%d %H:%m:%s') as endTime
+    push_time, push_user_name, is_enable,from_unixtime(stime,'%Y-%m-%d %H:%i:%s') as startTime,
+    from_unixtime(etime,'%Y-%m-%d %H:%i:%s') as endTime
   </sql>
   <sql id="Blob_Column_List" >
     content

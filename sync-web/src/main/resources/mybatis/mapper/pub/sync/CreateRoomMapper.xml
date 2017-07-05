@@ -18,9 +18,9 @@
   
   <insert id="insert" parameterType="com.qs.sync.model.SyncCreateRoom">
     insert into dc_create_room (id, mid, app_id, 
-      play_name,play_id, create_room_time,play_num)
+      play_name,play_id, create_room_time,play_num,gold)
     values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
-      #{playName,jdbcType=VARCHAR},#{playId,jdbcType=VARCHAR}, #{createRoomTime,jdbcType=TIMESTAMP}, #{playNum,jdbcType=INTEGER})
+      #{playName,jdbcType=VARCHAR},#{playId,jdbcType=VARCHAR}, #{createRoomTime,jdbcType=TIMESTAMP}, #{playNum,jdbcType=INTEGER}, #{gold,jdbcType=INTEGER})
   </insert>
   
  

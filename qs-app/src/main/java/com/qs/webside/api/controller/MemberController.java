@@ -329,6 +329,8 @@ public class MemberController extends BaseController {
 		//移动活动
 		map.put("baseUrl",activityUrl);
 		map.put("appleStore",gameService.getBaseParamValueByCode(AppConstants.BaseParam.IS_OPEN_APPLE_STORE));
+		//活动中心url
+		map.put("actiCenterUrl",gameService.getBaseParamValueByCode(AppConstants.BaseParam.ACTIVITY_CENTER_CLIENT_URL));
 
 		return this.getReturnData(map,AppConstants.Result.SUCCESS);
 	}
@@ -803,7 +805,7 @@ public class MemberController extends BaseController {
 		}
 		
 		String deviceCacheStr =(String) redisTemplate.opsForValue().get(AppConstants.RedisKeyPrefix.MEMBER_WHITE_DEVICE_CACHE);
-		if(!StringUtils.isBlank(deviceCacheStr)&&deviceCacheStr.equals(deviceid)){
+		if(!StringUtils.isBlank(deviceCacheStr)&&deviceCacheStr.contains(deviceid)){
 			isTester=1;
 		}
 		

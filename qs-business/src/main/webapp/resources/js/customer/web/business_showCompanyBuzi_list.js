@@ -1,4 +1,4 @@
-var dtGridColumns = [{//mb.id,mb.`name`,mb.phone,from_unixtime(mb.mktime,'%Y-%m-%d %H:%m:%s') AS mktime
+var dtGridColumns = [{
     id : 'id',
     title : '序号',
     type : 'number',

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.AppConstants;
 import com.qs.common.constant.CommonContants;
+import com.qs.mainku.game.service.IBaseParamService;
 import com.qs.webside.activity.model.*;
 import com.qs.webside.activity.service.*;
 import com.qs.webside.api.model.BaseRequest;
@@ -42,9 +43,11 @@ public class ActiAwardRecordController extends BaseController {
     @Resource
     private IActiSendGoldService actiSendGoldService;
 
-    @Value("${app.interfaceSendGold.url}")
-    private String sendGoldUrl;
+    //@Value("${app.interfaceSendGold.url}")
+    //private String sendGoldUrl;
 
+    @Resource
+    private IBaseParamService baseParamService;
 
     /**
      * @param request
@@ -239,6 +242,7 @@ public class ActiAwardRecordController extends BaseController {
      */
     private Object exchangeRoomCard(int mid, ActiAward actiAward, int result, String sesskey) {
         if ("1".equals(actiAward.getRemark()) && actiAward.getReview() == 0) {//如果兑换的是房卡类型且无需审核
+            String sendGoldUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.APP_SEND_GOLD_INTERFACE_URL);
             String httpsResponse = actiSendGoldService.sendGold(sesskey, Integer.parseInt(actiAward.getDescr()), AppConstants.GoldLogSourceType.INTEGRAL_SEND_GOLD,
                     new Date(System.currentTimeMillis()).getTime() / 1000, sendGoldUrl);
             Map updateMap = JSON.parseObject(httpsResponse, Map.class);

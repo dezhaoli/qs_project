@@ -2,6 +2,7 @@ package com.qs.webside.activity.controller;
 
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.AppConstants;
+import com.qs.mainku.game.service.IBaseParamService;
 import com.qs.webside.activity.service.IActiCenterService;
 import com.qs.webside.activity.service.IActiSendGoldService;
 import com.qs.webside.api.model.BaseRequest;
@@ -30,8 +31,11 @@ public class ActiCenterController extends BaseController {
     @Value("${game.gametype}")
     private int gameType;
 
-    @Value("${app.interfaceSendGold.url}")
-    private String sendGoldUrl;
+    //@Value("${app.interfaceSendGold.url}")
+    //private String sendGoldUrl;
+
+    @Resource
+    private IBaseParamService baseParamService;
 
     @Resource
     private IActiCenterService actiCenterService;
@@ -82,6 +86,7 @@ public class ActiCenterController extends BaseController {
     @ResponseBody
     public Object sendGoldByComment(Model model, HttpServletRequest request, BaseRequest baseRequest) {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        String sendGoldUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.APP_SEND_GOLD_INTERFACE_URL);
         Object map = actiSendGoldService.sendGoldByComment(token.getMid(),gameType,baseRequest.getSesskey(),sendGoldUrl);
         return this.getReturnData(map, AppConstants.Result.SUCCESS);
     }
@@ -98,6 +103,7 @@ public class ActiCenterController extends BaseController {
     @ResponseBody
     public Object sendGoldByShare(Model model, HttpServletRequest request, BaseRequest baseRequest) {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        String sendGoldUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.APP_SEND_GOLD_INTERFACE_URL);
         Object map = actiSendGoldService.sendGoldByShare(token.getMid(),gameType,baseRequest.getSesskey(),sendGoldUrl);
         return this.getReturnData(map, AppConstants.Result.SUCCESS);
     }

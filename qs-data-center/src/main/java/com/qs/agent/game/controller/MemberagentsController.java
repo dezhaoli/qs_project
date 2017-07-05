@@ -168,11 +168,8 @@ public class MemberagentsController extends BaseController
 	 * @可能抛出异常
 	 */
 	@RequestMapping("toMemberagentsDetailsUi.html")
-	public String toMemberagentsDetailsUi(String gameType, String id,
-			Model model)
+	public String toMemberagentsDetailsUi(Model model)
 	{
-		model.addAttribute("gameType", gameType);
-		model.addAttribute("id", id);
 		return "/WEB-INF/view/loginfo/memberagents_details_list";
 	}
 	
@@ -193,8 +190,7 @@ public class MemberagentsController extends BaseController
 	 */
 	@RequestMapping("memberagentsDetails.html")
 	@ResponseBody
-	public Object queryListByPageDetails(String id,
-			String gridPager,HttpServletResponse response)
+	public Object queryListByPageDetails(String gridPager,HttpServletResponse response)
 	{
 		try
 		{
@@ -212,7 +208,6 @@ public class MemberagentsController extends BaseController
 			// 判断是否包含自定义参数
 			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
 			parameters = pager.getParameters();
-			parameters.put("id", id);
 			parameters.put("dbtable", dataSourceName);
 			parameters.put("gameType", gameType);
 			

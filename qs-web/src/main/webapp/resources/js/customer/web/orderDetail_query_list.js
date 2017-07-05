@@ -174,7 +174,7 @@ function showUserInfo(mid) {
     });
 }
 
-/*from_unixtime(a.ptime,'%Y-%m-%d %H:%m:%s') AS paytime, -- 日期
+/*from_unixtime(a.ptime,'%Y-%m-%d %H:%i:%s') AS paytime, -- 日期
 (SELECT CONCAT('QS',from_unixtime(a.ptime,'%Y%m%d'),a.pid)) AS orderNo, -- 订单号
 a.fmid AS payman, -- 充值用户ID
 (SELECT realname FROM memberfides0 b WHERE b.realname = a.fmid LIMIT 1) AS paymanName, -- 用户名

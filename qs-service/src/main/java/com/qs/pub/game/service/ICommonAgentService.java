@@ -35,4 +35,13 @@ public interface ICommonAgentService {
      * @time:2017年4月5日
      */
     CommonAgents selectByPhoneInfo(String phone);
+
+    /**
+     * @Author:zun.wei , @Date:2017/7/5 10:30
+     * @Description:如果手机号码存在则更新
+     * @param record
+     * @return
+     */
+    int updateSelectiveByIfphoneIsExsit(CommonAgents record);
+
 }
