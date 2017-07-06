@@ -107,11 +107,11 @@ var grid = $.fn.dlshouwen.grid.init(dtGridOption);
 
 //使用刚指定的配置项和数据显示图表。
 //myChart.setOption(option);
-var setOption=function (appName,playName,stime,etime){
+var setOption=function (playName,stime,etime,groupId,businessId){
 	$.ajax({
 		type: "POST",
 		url: sys.rootPath+'/playing/playCount.html',
-		data:{'stime':stime,'etime':etime,'appName':appName,'playName':playName},
+		data:{'stime':stime,'etime':etime,'playName':playName,'groupId':groupId,'businessId':businessId},
 		dataType: "json",
 		success: function(data){
 			debugger;
@@ -125,7 +125,6 @@ var setOption=function (appName,playName,stime,etime){
 		}
 	});
 }
-setOption();
 
 
 
@@ -138,9 +137,11 @@ $(function() {
     grid.parameters = new Object();
     grid.parameters['stime'] = stimePlay;
     grid.parameters['etime'] = etimePlay;
+    grid.parameters['groupId'] = $("#groupIdBusiness").val();
+    grid.parameters['businessId'] = $("#businessIdByGroupId").val();
     grid.load();
-    setOption("","",stimePlay,etimePlay);
-    queryPlayingCountTotals(stimePlay,etimePlay,null,null);
+    setOption("",stimePlay,etimePlay,"","");
+    queryPlayingCountTotals(stimePlay,etimePlay,null,null,null);
     $("#btnSearch").click(customSearch);
     
     //注册回车键事件
@@ -159,33 +160,44 @@ $(function() {
  * 这里不传入分页信息，防止删除记录后重新计算的页码比当前页码小而导致计算异常
  */
 function customSearch() {
-	var appName = $("#appName").val();
 	var playName = $("#playName").val();
+	var groupId = $("#groupIdBusiness").val();
+	var businessId = $("#businessIdByGroupId").val();
 	stimePlay = $("#stime").val();
 	etimePlay = $("#etime").val();
     grid.parameters = new Object();
-    grid.parameters['appName'] = appName;
     grid.parameters['playName'] = playName;
-    
-    	grid.parameters['stime'] = stimePlay;
-    	grid.parameters['etime'] = etimePlay;
-    setOption(appName,playName,stimePlay,etimePlay);
-    queryPlayingCountTotals(stimePlay,etimePlay,appName,playName);
+    grid.parameters['stime'] = stimePlay;
+    grid.parameters['etime'] = etimePlay;
+    grid.parameters['groupId'] = groupId;
+    grid.parameters['businessId'] = businessId;
+    setOption(playName,stimePlay,etimePlay,groupId,businessId);
+    queryPlayingCountTotals(stimePlay,etimePlay,playName,groupId,businessId);
     grid.refresh(true);
 }
 
 
 
-function queryPlayingCountTotals(stime,etime,appName,playName){
+function queryPlayingCountTotals(stime,etime,playName,groupId,businessId){
 	$.ajax({
 		type: "POST",
 		url: sys.rootPath+'/playing/queryCountTotal.html',
-		data:{'stime':stime,'etime':etime,'appName':appName,'playName':playName},
+		data:{'stime':stime,'etime':etime,'playName':playName,'groupId':groupId,'businessId':businessId},
 		dataType: "json",
 		success: function(data){
 				$("#countTotals").html(data);
 		}
 	});
+}
+
+
+var lookPlayingDetail = function(appId,playId){
+	 var st  = $("#stime").val();
+	 var et  = $("#etime").val();
+	 var groupId = $("#groupIdBusiness").val();
+	 var businessId = $("#businessIdByGroupId").val();
+	 var playName = $("#playName").val();
+	webside.common.loadPage('/createRoom/toCreateRoomSecondDetailsUi.html?appId='+appId+'&playId='+playId+'&stime='+st+'&etime='+et+'&groupId='+groupId+'&businessId='+businessId)
 }
 
 

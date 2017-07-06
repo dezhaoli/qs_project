@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.agent.game.mapper.MemberagentsMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.agent.game.model.Memberagents" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="passwd" property="passwd" jdbcType="CHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bankcard" property="bankcard" jdbcType="VARCHAR" />
+    <result column="alipay" property="alipay" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="systempasswd" property="systempasswd" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="mktime" property="mktime" jdbcType="INTEGER" />
+    <result column="lastlogintime" property="lastlogintime" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="alevel" property="alevel" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="belongid" property="belongid" jdbcType="SMALLINT" />
+    <result column="areaid" property="areaid" jdbcType="INTEGER" />
+    <result column="firstmid" property="firstmid" jdbcType="INTEGER" />
+    <result column="glevel" property="glevel" jdbcType="TINYINT" />
+    <result column="company" property="company" jdbcType="TINYINT" />
+    <result column="sitemid" property="sitemid" jdbcType="VARCHAR" />
+    <result column="openid" property="openid" jdbcType="VARCHAR" />
+    <result column="mktimeStr" property="mktimeStr" jdbcType="VARCHAR" />
+    <result column="pamount" property="pamount" jdbcType="REAL" />
+    <result column="totals" property="totals" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, passwd, salt, bank, bankcard, alipay, realname, phone, qq, systempasswd, 
+    status, scale, mktime, lastlogintime, parent_id, alevel, remark, belongid, areaid, 
+    firstmid, glevel, company, sitemid, openid,FROM_UNIXTIME(mktime,'%Y-%m-%d %H:%i:%S') mktimeStr
+  </sql>
+  
+  <select id="selectByMid" resultMap="BaseResultMap" parameterType="map" >
+    SELECT  
+		dat.id,dat.name,dat.phone,dat.mid,
+		case when (dat.realname is null or LENGTH(trim(dat.realname)) &lt; 1)  then f.name else dat.realname end realname,
+		dat.pamount,dat.totals ,dat.mktimeStr
+		from (
+		    select b.id,b.name,b.phone,a.mid,a.realname,sum(IFNULL(d.paytotal, 0)) pamount, sum(IFNULL(d.invitetotal,0)) totals ,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') mktimeStr
+		    from ${gameType}.memberbusiness b
+		    	inner join  memberagents 	a  on  b.id=a.belongid
+			left join ${dbtable}_log.taxes_invite d on(a.mid = d.mid)
+			<where>
+				<if test="name != null and name != ''">
+					and b.name like CONCAT('%',#{name},'%')
+				</if>
+				and a.mktime &lt; UNIX_TIMESTAMP(#{startDate})
+			</where>  
+			group by a.mid
+		    )dat inner join  memberfides0 f on f.mid = dat.mid
+		<where>
+			<if test="pamount != null and pamount != ''">
+				dat.pamount &lt;= #{pamount}
+			</if>
+			<if test="totals != null and totals != ''">
+		   		and dat.totals &lt;= #{totals}
+			</if>
+			order by dat.name ,dat.totals  desc
+		</where>
+  </select>
+  
+  
+<!--   <select id="selectByMid" resultMap="BaseResultMap" parameterType="map" >
+    select dat.id,dat.mid,dat.realname,dat.pamount,dat.totals,dat.mktimeStr from (
+    
+    select a.id,a.mid,a.realname,sum(d.paytotal) pamount, sum(d.bindpeople) totals ,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') mktimeStr 
+    
+    from memberagents 	a
+	
+	inner join ${dbtable}_log.taxes_invite_week d on(a.mid = d.mid)
+	
+	where  a.mktime &lt; UNIX_TIMESTAMP('2017-04-01') and d.date &gt; date_sub(now(),interval 28 day) and d.date &lt; now() and a.belongid = #{id,jdbcType=INTEGER}
+	<if test="realname != null and realname != ''">
+	and a.realname like CONCAT('%',#{realname},'%')
+	</if>
+	<if test="mid != null and mid != ''">
+	and a.mid = #{mid,jdbcType=INTEGER}
+	</if>
+	group by d.mid 
+	
+	) dat  where  dat.pamount &lt; 300  and  dat.totals &lt; 15
+  </select> -->
+  
+  <select id="queryMemberagentsAddListDetailsByPage" resultMap="BaseResultMap" parameterType="map" >
+  select e.name,m.mid,m.realname,count(m.mid) totals from memberagents m  left join memberfides0 f on(f.invite=m.mid) inner join ${dbtable}.memberbusiness e on e.id=m.belongid
+  where
+  1=1
+  <choose>
+		<when test="date == null or date == ''">
+		 	and  FROM_UNIXTIME(f.mtime,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+		</when>
+		<otherwise>
+		 	and  FROM_UNIXTIME(f.mtime,'%Y-%m-%d') = #{date,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+	<if test="realname != null and realname != ''">
+	and m.realname like CONCAT('%',#{realname},'%')
+	</if>
+	<if test="mid != null and mid != ''">
+	and m.mid = #{mid,jdbcType=INTEGER}
+	</if>
+	and m.belongid = #{id,jdbcType=INTEGER}
+	group by m.mid
+  </select>
+  
+  <select id="queryMemberpaymentListDetailsByPage" resultMap="BaseResultMap" parameterType="map" >
+  select m.mid,m.realname,count(m.mid) totals from memberagents m  left join memberfides0 f on(f.invite=m.mid)
+  where
+  1=1
+  <choose>
+		<when test="date == null or date == ''">
+		 	and  FROM_UNIXTIME(f.mtime,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+		</when>
+		<otherwise>
+		 	and  FROM_UNIXTIME(f.mtime,'%Y-%m-%d') = #{date,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+	<if test="realname != null and realname != ''">
+	and m.realname like CONCAT('%',#{realname},'%')
+	</if>
+	<if test="mid != null and mid != ''">
+	and m.mid = #{mid,jdbcType=INTEGER}
+	</if>
+	and m.belongid = #{id,jdbcType=INTEGER}
+	group by m.mid
+  </select>
+  
+  <select id="queryUserAddListDetailsByPage" resultMap="BaseResultMap" parameterType="map" >
+  select m.mid,m.realname,count(m.mid) totals from memberagents m  left join memberfides0 f on(f.invite=m.mid)
+  where
+  1=1
+  <choose>
+		<when test="date == null or date == ''">
+		 	and  FROM_UNIXTIME(f.mtime,'%Y-%m-%d') = DATE_FORMAT(now(),'%Y-%m-%d')
+		</when>
+		<otherwise>
+		 	and  FROM_UNIXTIME(f.mtime,'%Y-%m-%d') = #{date,jdbcType=VARCHAR}
+		</otherwise>
+	</choose>
+	<if test="realname != null and realname != ''">
+	and m.realname like CONCAT('%',#{realname},'%')
+	</if>
+	<if test="mid != null and mid != ''">
+	and m.mid = #{mid,jdbcType=INTEGER}
+	</if>
+	and m.belongid = #{id,jdbcType=INTEGER}
+	group by m.mid
+  </select>
+  
+    <select id="queryAgentLevel" resultMap="BaseResultMap"  >
+	 	select e.alevel,ifnull(count(e.mid),0) totals  from 
+		memberagents e 
+		group by e.alevel
+  	</select>
+
+</mapper>

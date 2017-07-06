@@ -133,9 +133,15 @@
       AND b.type=#{type}
     </if>
      AND b.isaward=1
+    <if test="failureList != null">
+     	and  a.mid not in
+	   <foreach item="item" index="index" collection="failureList" open="(" separator="," close=")">  
+        #{item}  
+        </foreach> 
+    </if>
      AND b.rebatetotal&gt;=1  AND b.rebatetotal&lt;=300 and a.openid &lt;&gt;''
-    order by b.rebatetotal desc
-    limit 0,50
+    order by b.date desc, b.rebatetotal desc
+    limit 0,55
   </select>
   
   <!-- b.isaward=1 表示已审核，未支付 -->
@@ -159,8 +165,21 @@
     <if test="mid != null and mid != ''">
       and a.mid = #{mid}
     </if>
-    AND b.rebatetotal&gt;0
-    order by b.rebatetotal desc
+    
+<!--  
+    <if test="mid == null or mid == ''">
+       <if test="failureList != null ">
+     	and  a.mid  not in
+	   <foreach item="item" index="index" collection="failureList" open="(" separator="," close=")">  
+        #{item}  
+        </foreach> 
+    </if>
+    </if>
+     -->
+    
+        
+    AND b.rebatetotal&gt;=1
+    order by b.date desc,b.rebatetotal desc
   </select>
   
   

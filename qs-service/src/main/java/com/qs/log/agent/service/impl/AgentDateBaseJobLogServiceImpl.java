@@ -30,4 +30,27 @@ public class AgentDateBaseJobLogServiceImpl implements IAgentDateBaseJobLogServi
 		agentDateBaseJobLogMappper.delTable40(param);
 	}
 
+	@Override
+	public void createRoomCardCount(Map<String,Object> param) {
+		dropProcedureRoomCartCount();//删除存储过程
+		agentDateBaseJobLogMappper.createRoomCardCount();//创建表如果不存在
+		createRoomCardCountFuntion(param);//创建存储过程
+		executeRoomCardCount();//执行存储过程
+	}
+
+	@Override
+	public void dropProcedureRoomCartCount() {
+		agentDateBaseJobLogMappper.dropProcedureRoomCartCount();
+	}
+
+	@Override
+	public void createRoomCardCountFuntion(Map<String, Object> param) {
+		agentDateBaseJobLogMappper.createRoomCardCountFuntion(param);
+	}
+
+	@Override
+	public void executeRoomCardCount() {
+		agentDateBaseJobLogMappper.executeRoomCardCount();
+	}
+
 }

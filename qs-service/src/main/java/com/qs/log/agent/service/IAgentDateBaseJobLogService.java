@@ -36,4 +36,30 @@ public interface IAgentDateBaseJobLogService {
 	 */
 	void delTable40(Map<String,Object> param);
 
+
+	/**
+	 * @Author:zun.wei , @Date:2017/7/6 19:17
+	 * @Description:更新或创建房卡统计
+	 */
+	void createRoomCardCount(Map<String,Object> param);
+
+	/**
+	 * @Author:zun.wei , @Date:2017/7/6 19:35
+	 * @Description:drop存储过程
+	 */
+	void dropProcedureRoomCartCount();
+
+	/**
+	 * @Author:zun.wei , @Date:2017/7/6 19:41
+	 * @Description:创建存储过程
+	 * @param param
+	 */
+	void createRoomCardCountFuntion(Map<String, Object> param);
+
+	/**
+	 * @Author:zun.wei , @Date:2017/7/6 19:42
+	 * @Description:执行存储过程
+	 */
+	void executeRoomCardCount();
+
 }

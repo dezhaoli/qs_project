@@ -64,13 +64,8 @@ public class NoticeScanJob {
                             sendToCServer(noticeNew);
                             initNextTrigger(nowTime, noticeNew);
                         }
-                        if (endTime.getTime() <= nowTime.getTime()) {//时间截止之后，禁用该公告
-                            noticeNew.setIsEnable("1");//更新为禁用
-                            noticeNewService.updateByPrimaryKeyWithBLOBs(noticeNew, goldhost, goldport, gametype);
-                            nextTriggerTime.remove("tringger" + noticeNew.getId());//移除下一次触发时间
-                        }
                     }
-                } else {
+                } else if (endTime.getTime() < nowTime.getTime()){//时间截止之后，禁用该公告
                     noticeNew.setIsEnable("1");//更新为禁用
                     noticeNewService.updateByPrimaryKeyWithBLOBs(noticeNew, goldhost, goldport, gametype);
                     nextTriggerTime.remove("tringger" + noticeNew.getId());//移除下一次触发时间

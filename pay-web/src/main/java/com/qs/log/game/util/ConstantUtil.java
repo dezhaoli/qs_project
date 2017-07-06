@@ -10,6 +10,9 @@ import aj.org.objectweb.asm.Type;
  * |Editor|File and Code Templates|Includes|File Header
  */
 public class ConstantUtil {
+	
+	
+	public static final String FAILURE_MID_LIST= "failureMidList:";
 
     public static class LogDataSourceConstantKey{
         public static final String Run_Fast_Log= "runfastLogDataSource";
@@ -98,5 +101,6 @@ public class ConstantUtil {
 		}
     	return val;
     }
+
 
 }

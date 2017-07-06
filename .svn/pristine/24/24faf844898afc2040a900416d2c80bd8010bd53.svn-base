@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.RoomCardCountMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.RoomCardCount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="daily_decr" property="dailyDecr" jdbcType="INTEGER" />
+    <result column="all_card" property="allCard" jdbcType="INTEGER" />
+    <result column="agent_card" property="agentCard" jdbcType="INTEGER" />
+    <result column="user_card" property="userCard" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, date, daily_decr, all_card, agent_card, user_card, remark, descr, ext1, ext2, 
+    ext3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from room_card_count
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from room_card_count
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.log.game.model.RoomCardCount" >
+    insert into room_card_count (id, date, daily_decr, 
+      all_card, agent_card, user_card, 
+      remark, descr, ext1, 
+      ext2, ext3)
+    values (#{id,jdbcType=INTEGER}, #{date,jdbcType=DATE}, #{dailyDecr,jdbcType=INTEGER}, 
+      #{allCard,jdbcType=INTEGER}, #{agentCard,jdbcType=INTEGER}, #{userCard,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{descr,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.RoomCardCount" >
+    insert into room_card_count
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="dailyDecr != null" >
+        daily_decr,
+      </if>
+      <if test="allCard != null" >
+        all_card,
+      </if>
+      <if test="agentCard != null" >
+        agent_card,
+      </if>
+      <if test="userCard != null" >
+        user_card,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="ext3 != null" >
+        ext3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=DATE},
+      </if>
+      <if test="dailyDecr != null" >
+        #{dailyDecr,jdbcType=INTEGER},
+      </if>
+      <if test="allCard != null" >
+        #{allCard,jdbcType=INTEGER},
+      </if>
+      <if test="agentCard != null" >
+        #{agentCard,jdbcType=INTEGER},
+      </if>
+      <if test="userCard != null" >
+        #{userCard,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.game.model.RoomCardCount" >
+    update room_card_count
+    <set >
+      <if test="date != null" >
+        date = #{date,jdbcType=DATE},
+      </if>
+      <if test="dailyDecr != null" >
+        daily_decr = #{dailyDecr,jdbcType=INTEGER},
+      </if>
+      <if test="allCard != null" >
+        all_card = #{allCard,jdbcType=INTEGER},
+      </if>
+      <if test="agentCard != null" >
+        agent_card = #{agentCard,jdbcType=INTEGER},
+      </if>
+      <if test="userCard != null" >
+        user_card = #{userCard,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.game.model.RoomCardCount" >
+    update room_card_count
+    set date = #{date,jdbcType=DATE},
+      daily_decr = #{dailyDecr,jdbcType=INTEGER},
+      all_card = #{allCard,jdbcType=INTEGER},
+      agent_card = #{agentCard,jdbcType=INTEGER},
+      user_card = #{userCard,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from room_card_count
+    <where>
+      <if test="startTime != null and startTime != ''">
+        date &gt;= #{startTime}
+      </if>
+      <if test="endTime != null and endTime != ''">
+        and date &lt;= #{endTime}
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+</mapper>

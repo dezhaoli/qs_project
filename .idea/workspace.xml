@@ -299,6 +299,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -512,8 +514,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -721,7 +721,7 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="2650">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="2658">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1599,6 +1599,7 @@
       <workItem from="1499087011452" duration="67000" />
       <workItem from="1499179164989" duration="77000" />
       <workItem from="1499264323490" duration="73000" />
+      <workItem from="1499351059640" duration="115000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1723,7 +1724,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="260890000" />
+    <option name="totallyTimeSpent" value="261005000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1746,12 +1747,12 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32745314" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32745314" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31356838" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25373933" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1805,13 +1806,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-web/src/main/java/com/qs/pub/sys/controller/IndexController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-7">
-          <caret line="292" column="24" lean-forward="true" selection-start-line="292" selection-start-column="24" selection-end-line="292" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/4.3.0.RELEASE/spring-web-4.3.0.RELEASE.jar!/org/springframework/web/method/support/InvocableHandlerMethod.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
@@ -1869,23 +1863,23 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1128">
           <caret line="59" column="35" lean-forward="false" selection-start-line="59" selection-start-column="35" selection-end-line="59" selection-end-column="35" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="103" column="42" lean-forward="true" selection-start-line="103" selection-start-column="42" selection-end-line="103" selection-end-column="42" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-business/src/main/resources/redis.properties">
@@ -1896,13 +1890,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="760">
           <caret line="75" column="5" lean-forward="false" selection-start-line="75" selection-start-column="5" selection-end-line="75" selection-end-column="5" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -2183,6 +2177,33 @@
             <marker date="1498569621470" expanded="true" signature="4613:5013" ph="update admin... " />
             <marker date="1498569621470" expanded="true" signature="5114:5212" ph="select from admin_agent_publish" />
             <marker date="1498569621470" expanded="true" signature="5320:5443" ph="select showt... admin_agent_publish" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-mapper/src/main/resources/mybatis/mapper/log/agent/AgentDateBaseJobMappper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="922">
+          <caret line="43" column="29" lean-forward="false" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
+          <folding>
+            <marker date="1499351096548" expanded="true" signature="714:1634" ph="CREATE TABLE... room_card_count" />
+            <marker date="1499351096548" expanded="true" signature="1704:1742" ph="drop procedu... " />
+            <marker date="1499351096548" expanded="true" signature="1857:3026" ph="CREATE PROCE... roomCardCount" />
+            <marker date="1499351096548" expanded="true" signature="1917:2813" ph=" DECLARE DAT... " />
+            <marker date="1499351096548" expanded="true" signature="1934:1977" ph="DECLARE DATE... " />
+            <marker date="1499351096548" expanded="true" signature="1995:2027" ph="DECLARE dail... " />
+            <marker date="1499351096548" expanded="true" signature="2067:2096" ph="DECLARE allC... " />
+            <marker date="1499351096548" expanded="true" signature="2124:2155" ph="DECLARE agen... " />
+            <marker date="1499351096548" expanded="true" signature="2183:2213" ph="DECLARE user... " />
+            <marker date="1499351096548" expanded="true" signature="2241:2292" ph="SET DATE_SUB... " />
+            <marker date="1499351096548" expanded="true" signature="2310:2439" ph="SET daily_de... " />
+            <marker date="1499351096548" expanded="true" signature="2335:2435" ph="select sum(g... gold_log" />
+            <marker date="1499351096548" expanded="true" signature="2457:2570" ph="SET allCard " />
+            <marker date="1499351096548" expanded="true" signature="2479:2566" ph="SELECT SUM(n... gold_log" />
+            <marker date="1499351096548" expanded="true" signature="2588:2760" ph="SET agentCar... " />
+            <marker date="1499351096548" expanded="true" signature="2612:2756" ph="SELECT SUM(n... gold_log" />
+            <marker date="1499351096548" expanded="true" signature="2778:2812" ph="SET userCard... " />
+            <marker date="1499351096548" expanded="true" signature="2830:2977" ph="INSERT IGNOR... room_card_count" />
           </folding>
         </state>
       </provider>

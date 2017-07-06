@@ -20,10 +20,60 @@
   <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
   select dat.app_id ,m.name app_name,dat.play_id,dat.play_name,count(dat.app_id) totals 
   from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+  	<if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=dat.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+	</if>
   <where>
-   	<if test="appName != null and appName != ''">
-   	  and m.name = #{appName,jdbcType=VARCHAR}
-   	</if>
+  <!-- 公司责任人数据权限查询 --> 
+		<if test="ifLeader == 1">
+			<choose>
+				<when test="businessIdList != null">
+					and e.id in 
+					<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+		</if>
+	<!-- 普通商务数据权限查询 -->
+	<if test="ifBusiness == 1">
+		<choose>
+				<when test="businessIdList2 != null">
+					and e.id in 
+					<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+		</choose>
+	</if>
+	
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			<choose>
+				<when test="businessIdListByGroup != null">
+					and e.id in 
+					<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != '' and businessId != 'null'">
+		and e.id = #{businessId}
+	</if>
+   
    	<if test="playName != null and playName != ''">
    	  and dat.play_name = #{playName,jdbcType=VARCHAR}
    	</if>
@@ -59,10 +109,59 @@
   (
   select dat.app_id ,m.name app_name,dat.play_id,dat.play_name,count(dat.app_id) totals 
   from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+  	<if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=dat.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+	</if>
   <where>
-   	<if test="appName != null and appName != ''">
-   	  and m.name = #{appName,jdbcType=VARCHAR}
-   	</if>
+  <!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+			</if>
+		<!-- 普通商务数据权限查询 -->
+		<if test="ifBusiness == 1">
+			<choose>
+					<when test="businessIdList2 != null">
+						and e.id in 
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+			</choose>
+		</if>
+		
+		<!-- 页面  按照分公司条件查询  -->
+		<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and e.id in 
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+		</if>
+		<!--页面   按照商务条件查询  -->
+		<if test="businessId != null and businessId != '' and businessId != 'null'">
+			and e.id = #{businessId}
+		</if>
    	<if test="playName != null and playName != ''">
    	  and dat.play_name = #{playName,jdbcType=VARCHAR}
    	</if>
@@ -101,10 +200,61 @@
   <select id="queryCount" parameterType="map" resultMap="BaseResultMap">
     SELECT dat.play_name,count(dat.app_id) totals
      from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+     <if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=dat.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+	</if>
 	  <where>
-	   	<if test="appName != null and appName != ''">
-	   	  and m.name = #{appName,jdbcType=VARCHAR}
-	   	</if>
+	  
+		  	<!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+			</if>
+		<!-- 普通商务数据权限查询 -->
+		<if test="ifBusiness == 1">
+			<choose>
+					<when test="businessIdList2 != null">
+						and e.id in 
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+			</choose>
+		</if>
+		
+		<!-- 页面  按照分公司条件查询  -->
+		<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and e.id in 
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+		</if>
+		<!--页面   按照商务条件查询  -->
+		<if test="businessId != null and businessId != '' and businessId != 'null'">
+			and e.id = #{businessId}
+		</if>
+	   	
 	   	<if test="playName != null and playName != ''">
 	   	  and dat.play_name = #{playName,jdbcType=VARCHAR}
 	   	</if>

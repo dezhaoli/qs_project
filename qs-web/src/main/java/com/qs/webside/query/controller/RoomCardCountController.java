@@ -7,7 +7,9 @@ import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.dtgrid.model.Pager;
 import com.qs.common.util.PageUtil;
 import com.qs.log.game.model.GoldLog;
+import com.qs.log.game.model.RoomCardCount;
 import com.qs.log.game.service.IGoldLogService;
+import com.qs.log.game.service.IRoomCardCountService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,8 +33,11 @@ public class RoomCardCountController extends BaseController {
     @Resource
     private IGoldLogService goldLogService;
 
-    @Value("${game.gameCode}")
-    private String dbName;
+    @Resource
+    private IRoomCardCountService roomCardCountService;
+
+    //@Value("${game.gameCode}")
+    //private String dbName;
 
     @RequestMapping(value = "listUi.html", method = RequestMethod.GET)
     public String gameRecordUi(Model model, HttpServletRequest request) {
@@ -41,7 +46,7 @@ public class RoomCardCountController extends BaseController {
         return "WEB-INF/view/web/query/room_count_log_list";
     }
 
-    @RequestMapping("list.html")
+    /*@RequestMapping("list.html")
     @ResponseBody
     public Object orderCount(String gridPager) throws Exception {
         Map<String, Object> parameters = null;
@@ -54,6 +59,21 @@ public class RoomCardCountController extends BaseController {
         Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
         List<Map<String,Object>> list = goldLogService.queryCardCountByDate(parameters);
         return getReturnPage(pager, page, list);
+    }*/
+
+    @RequestMapping("list.html")
+    @ResponseBody
+    public Object orderCount(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<RoomCardCount> list = roomCardCountService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
     }
+
 
 }

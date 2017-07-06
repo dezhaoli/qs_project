@@ -13,4 +13,49 @@
 	<select id="delTable40"  parameterType="map" statementType="CALLABLE">
 	        {call deltable_40()  }
     </select>
+
+	<select id="createRoomCardCount"  parameterType="map" statementType="CALLABLE">
+        CREATE TABLE If Not Exists room_card_count (
+            `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'ID',
+            `date` date NOT NULL DEFAULT '0000-00-00' COMMENT '添加日期',
+            `daily_decr` int(11) NOT NULL DEFAULT 0 COMMENT '每日减少',
+            `all_card` int(11) NOT NULL DEFAULT 0 COMMENT '房卡总数',
+            `agent_card` int(11) NOT NULL DEFAULT 0 COMMENT '代理商房卡',
+            `user_card` int(11) NOT NULL DEFAULT 0 COMMENT '用户房卡',
+            `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+            `descr` varchar(255) DEFAULT NULL COMMENT '描述',
+            `ext1` varchar(255) DEFAULT NULL COMMENT '拓展字段1',
+            `ext2` varchar(255) DEFAULT NULL COMMENT '拓展字段2',
+            `ext3` varchar(255) DEFAULT NULL COMMENT '拓展字段3',
+            PRIMARY KEY (`id`),
+            UNIQUE KEY `unique_date` (`date`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC COMMENT='房卡统计';
+    </select>
+
+    <update id="dropProcedureRoomCartCount">
+        drop procedure if exists roomCardCount
+    </update>
+
+    <select id="createRoomCardCountFuntion"  parameterType="map" statementType="CALLABLE">
+        CREATE PROCEDURE roomCardCount() -- 统计房卡总数
+            BEGIN
+                DECLARE DATE_SUB0 date DEFAULT '0000-00-00';
+                DECLARE daily_decr INT DEFAULT 0; -- 自定义变量1  daily_decr
+                DECLARE allCard INT DEFAULT 0; -- 自定义变量2
+                DECLARE agentCard INT DEFAULT 0; -- 自定义变量3
+                DECLARE userCard INT DEFAULT 0; -- 自定义变量4
+                SET DATE_SUB0 = DATE_SUB(CURDATE(), INTERVAL 1 DAY);
+                SET daily_decr = IFNULL((select sum(gold) daily_decr from gold_log where type in(4,5) AND LEFT(date,10) = DATE_SUB0 LIMIT 0,1),0);
+                SET allCard = IFNULL((SELECT SUM(nowgold) AS allCard FROM gold_log  WHERE LEFT(date,10) = DATE_SUB0 LIMIT 0,1),0);
+                SET agentCard = IFNULL((SELECT SUM(nowgold) AS agentCard FROM gold_log gl INNER JOIN ${memberagents} ma ON gl.mid = ma.mid  where LEFT(gl.date,10) = DATE_SUB0 LIMIT 0,1),0);
+                SET userCard = allCard - agentCard;
+                INSERT IGNORE INTO room_card_count (id,date,daily_decr,all_card,agent_card,user_card) values (null,DATE_SUB0,daily_decr,allCard,agentCard,userCard);
+                COMMIT; -- 提交事务
+            END; -- 结束存储过程
+    </select>
+
+    <select id="executeRoomCardCount"  parameterType="map" statementType="CALLABLE">
+        {CALL roomCardCount()}
+    </select>
+
 </mapper>

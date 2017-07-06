@@ -14,6 +14,10 @@
 	   <!-- 每天3:00执行 0 0 2 * * ? -->
 <!--         <task:scheduled ref="dateBaseUapdateAgentJob" method="updateCommonAgentDataBase" cron="0 0 3 * * ?"/> -->
 		<task:scheduled ref="dateBaseUapdateAgentJob" method="statisticalDailyTable" cron="0 0 3 * * ?"/>
+
+		<!-- 每天1:00执行0 0 1 * * ? -->
+		<task:scheduled ref="dateBaseUapdateAgentJob" method="updateCreateRoomCardCount" cron="0 0 1 * * ?"/>
+
 		<!-- 每周一3:30执行  0 30 2 ? * MON -->
       <task:scheduled ref="dateBaseUapdateAgentJob" method="updateTaxesInviteWeekDataBase" cron="0 30 3 ? * MON"/>
    	<!-- 每5秒钟执行一次 -->

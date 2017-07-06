@@ -158,7 +158,6 @@
     <select id="queryAgentLevel" resultMap="BaseResultMap"  >
 	 	select e.alevel,ifnull(count(e.mid),0) totals  from 
 		memberagents e 
-		left join memberfides0 f on f.invite=e.mid
 		group by e.alevel
   	</select>
 

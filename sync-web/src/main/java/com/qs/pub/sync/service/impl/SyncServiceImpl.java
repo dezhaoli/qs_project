@@ -237,6 +237,7 @@ public class SyncServiceImpl implements SyncService {
 		String ip = syncUserLoginLog.getIp();
 		int result=0;
 		try{
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 			if(!StringUtils.isBlank(ip)){
 				 String region="";
 			     region = ipSearcher.memorySearch(ip).getRegion();
@@ -258,58 +259,56 @@ public class SyncServiceImpl implements SyncService {
 		   SyncUserKeep syncUserKeep = new SyncUserKeep();
 		   syncUserKeep.setAppId(syncUserLoginLog.getAppId());
 		   syncUserKeep.setUserId(syncUserLoginLog.getMid());
-		   //如果用户的注册日期等于当天日期则新增用户,否则维护留存数据
-		   if(currDateStr.equals(mtimeDateStr) ){
-			   syncUserKeep.setCreateDate(nowDate);
-			   result = addSyncUserKeep(syncUserKeep);
-		   }else{
-			   	//获取上次登录时间int类型字符串
-				String lgtimeInt = syncUserLoginLog.getLgtm();
-				String lgtimeStr = DateUtil.intToDateStr(lgtimeInt, "yyyyMMdd");
-					//如果用户上次登录时间等于当天日期则该用户不是第一次登录
-					if(!currDateStr.equals(lgtimeStr) ){
-						SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-						Calendar calst = Calendar.getInstance();;
-				        Calendar caled = Calendar.getInstance();
-				        calst.setTime(sdf.parse(mtimeDateStr));
-				        caled.setTime(sdf.parse(currDateStr));
-				         //设置时间为0时   
-				         calst.set(Calendar.HOUR_OF_DAY, 0);   
-				         calst.set(Calendar.MINUTE, 0);   
-				         calst.set(Calendar.SECOND, 0);   
-				         caled.set(Calendar.HOUR_OF_DAY, 0);   
-				         caled.set(Calendar.MINUTE, 0);   
-				         caled.set(Calendar.SECOND, 0);   
-				        //得到两个日期相差的天数   
-				         int days = ((int)(caled.getTime().getTime()/1000)-(int)(calst.getTime().getTime()/1000))/3600/24; 
-				         boolean ifUpdate = true;
-				         if(days == 1){
-				        	 syncUserKeep.setOne(1);
-				         }else if(days == 2){
-				        	 syncUserKeep.setTwo(1);
-				         }else if(days == 3){
-				        	 syncUserKeep.setThree(1);
-				         }else if(days == 4){
-				        	 syncUserKeep.setFour(1);
-				         }else if(days == 5){
-				        	 syncUserKeep.setFive(1);
-				         }else if(days == 6){
-				        	 syncUserKeep.setSix(1);
-				         }else if(days == 7){
-				        	 syncUserKeep.setSeven(1);
-				         }else if(7 < days && days <= 15){
-					         syncUserKeep.setFifteen(1);
-				         }else if(15 < days && days <= 30){
-				        	 syncUserKeep.setThirty(1); 
-				         }else{
-				        	 ifUpdate = false;
-				         }
-						if(ifUpdate){
-							syncUserKeep.setCreateDate(sdf.parse(mtimeDateStr));
-							result = syncUserKeepService.update(syncUserKeep);
+		   syncUserKeep.setCreateDate(StringUtils.isBlank(mtimeDateStr)?null:sdf.parse(mtimeDateStr));
+		   syncUserKeep.setExtend1(DateUtil.fromatDateToStr(nowDate, "yyyy-MM-dd HH:mm:ss"));
+		   result = addSyncUserKeep(syncUserKeep);
+			   
+			   
+				   	//获取上次登录时间int类型字符串
+					String lgtimeInt = syncUserLoginLog.getLgtm();
+					String lgtimeStr = DateUtil.intToDateStr(lgtimeInt, "yyyyMMdd");
+						//如果用户上次登录时间等于当天日期则该用户不是第一次登录
+						if(!currDateStr.equals(lgtimeStr) && !StringUtils.isBlank(mtimeDateStr) ){
+							syncUserKeep.setExtend1(DateUtil.fromatDateToStr(nowDate, "yyyy-MM-dd HH:mm:ss"));
+							Calendar calst = Calendar.getInstance();;
+					        Calendar caled = Calendar.getInstance();
+					        calst.setTime(sdf.parse(mtimeDateStr));
+					        caled.setTime(sdf.parse(currDateStr));
+					         //设置时间为0时   
+					         calst.set(Calendar.HOUR_OF_DAY, 0);   
+					         calst.set(Calendar.MINUTE, 0);   
+					         calst.set(Calendar.SECOND, 0);   
+					         caled.set(Calendar.HOUR_OF_DAY, 0);   
+					         caled.set(Calendar.MINUTE, 0);   
+					         caled.set(Calendar.SECOND, 0);   
+					        //得到两个日期相差的天数   
+					         int days = ((int)(caled.getTime().getTime()/1000)-(int)(calst.getTime().getTime()/1000))/3600/24; 
+					         boolean ifUpdate = true;
+					         if(days == 1){
+					        	 syncUserKeep.setOne(1);
+					         }else if(days == 2){
+					        	 syncUserKeep.setTwo(1);
+					         }else if(days == 3){
+					        	 syncUserKeep.setThree(1);
+					         }else if(days == 4){
+					        	 syncUserKeep.setFour(1);
+					         }else if(days == 5){
+					        	 syncUserKeep.setFive(1);
+					         }else if(days == 6){
+					        	 syncUserKeep.setSix(1);
+					         }else if(days == 7){
+					        	 syncUserKeep.setSeven(1);
+					         }else if(7 < days && days <= 15){
+						         syncUserKeep.setFifteen(1);
+					         }else if(15 < days && days <= 30){
+					        	 syncUserKeep.setThirty(1); 
+					         }else{
+					        	 ifUpdate = false;
+					         }
+							if(ifUpdate){
+								result = syncUserKeepService.update(syncUserKeep);
+							}
 						}
-					}
-				}
 		   
 		   return result;
 		}catch(Exception e){

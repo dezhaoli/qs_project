@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.datacenter.mapper.PlayingMapper">
+  <resultMap id="BaseResultMap" type="com.qs.pub.datacenter.model.Playing">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="play_name" jdbcType="VARCHAR" property="playName" />
+    <result column="play_id" jdbcType="VARCHAR" property="playId" />
+    <result column="game_start_time" jdbcType="DATE" property="gameStartTime" />
+    <result column="game_stop_time" jdbcType="TIMESTAMP" property="gameStopTime" />
+     <result column="totals" jdbcType="INTEGER" property="totals" />
+     <result column="region" jdbcType="VARCHAR" property="region" />
+     <result column="play_date_str" jdbcType="VARCHAR" property="playDateStr" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, app_id, game_start_time, game_stop_time, play_name,play_id
+  </sql>
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+  select dat.app_id ,m.name app_name,dat.play_id,dat.play_name,count(dat.app_id) totals 
+  from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+  	<if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=dat.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+	</if>
+  <where>
+  <!-- 公司责任人数据权限查询 --> 
+		<if test="ifLeader == 1">
+			<choose>
+				<when test="businessIdList != null">
+					and e.id in 
+					<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+		</if>
+	<!-- 普通商务数据权限查询 -->
+	<if test="ifBusiness == 1">
+		<choose>
+				<when test="businessIdList2 != null">
+					and e.id in 
+					<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+		</choose>
+	</if>
+	
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			<choose>
+				<when test="businessIdListByGroup != null">
+					and e.id in 
+					<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != '' and businessId != 'null'">
+		and e.id = #{businessId}
+	</if>
+   
+   	<if test="playName != null and playName != ''">
+   	  and dat.play_name = #{playName,jdbcType=VARCHAR}
+   	</if>
+   	and dat.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and dat.play_date &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and dat.play_date &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+   </where>
+  	 group by  dat.app_id ,dat.play_id,dat.play_name
+  </select>
+  
+  <select id="queryPageListActive" parameterType="map" resultMap="BaseResultMap">
+  select DATE_FORMAT(dat.play_date,'%Y-%m-%d') play_date_str,count(dat.app_id) totals 
+  from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+  <where>
+   	and dat.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and dat.play_date &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and dat.play_date &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+   </where>
+  	 group by  dat.play_date
+  	 order by dat.play_date desc
+  </select>
+  
+  
+  <select id="queryCountTotalActive" parameterType="map" resultType="Long">
+  select count(dat.app_id) totals 
+  from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+  <where>
+   	and dat.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and dat.play_date &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and dat.play_date &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+   </where>
+  </select>
+  
+  <select id="queryCountTotal" parameterType="map" resultType="Long">
+  select sum(data.totals) from
+  (
+  select dat.app_id ,m.name app_name,dat.play_id,dat.play_name,count(dat.app_id) totals 
+  from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+  	<if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=dat.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+	</if>
+  <where>
+  <!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+			</if>
+		<!-- 普通商务数据权限查询 -->
+		<if test="ifBusiness == 1">
+			<choose>
+					<when test="businessIdList2 != null">
+						and e.id in 
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+			</choose>
+		</if>
+		
+		<!-- 页面  按照分公司条件查询  -->
+		<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and e.id in 
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+		</if>
+		<!--页面   按照商务条件查询  -->
+		<if test="businessId != null and businessId != '' and businessId != 'null'">
+			and e.id = #{businessId}
+		</if>
+   	<if test="playName != null and playName != ''">
+   	  and dat.play_name = #{playName,jdbcType=VARCHAR}
+   	</if>
+   	and dat.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and dat.play_date &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and dat.play_date &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+   </where>
+  	 group by  dat.app_id ,dat.play_id,dat.play_name
+  	 )data
+  </select>
+  
+  <select id="queryListByRegion" parameterType="map" resultMap="BaseResultMap">
+  select dc.app_id ,dc.app_name,dc.region,dc.totals  from (
+	  select dat.app_id ,m.name app_name,dat.region,count(dat.app_id) totals 
+	  from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+	  <where>
+	  	<if test="region != null and region != ''">
+	  	  and dat.region like CONCAT('%',#{region},'%')
+	  	</if>
+	   	and dat.app_id = #{gameCode,jdbcType=VARCHAR}
+	   	and dat.play_date &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and dat.play_date &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+	   </where>
+	  	 group by  dat.app_id,dat.region) dc order by dc.totals desc
+  </select>
+  <select id="queryRegionCountTotal" parameterType="map" resultType="Long">
+	  select count(dat.app_id) totals 
+	  from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+	  <where>
+	  	<if test="region != null and region != ''">
+	  	  and dat.region like CONCAT('%',#{region},'%')
+	  	</if>
+	   	and dat.app_id = #{gameCode,jdbcType=VARCHAR}
+	   	and dat.play_date &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and dat.play_date &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+	   </where>
+  </select>
+  
+  <select id="queryCount" parameterType="map" resultMap="BaseResultMap">
+    SELECT dat.play_name,count(dat.app_id) totals
+     from   dc_playing_total dat left join tb_dict m on(m.code = dat.app_id and m.parent_id=1)
+     <if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=dat.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+	</if>
+	  <where>
+	  
+		  	<!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+			</if>
+		<!-- 普通商务数据权限查询 -->
+		<if test="ifBusiness == 1">
+			<choose>
+					<when test="businessIdList2 != null">
+						and e.id in 
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+			</choose>
+		</if>
+		
+		<!-- 页面  按照分公司条件查询  -->
+		<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and e.id in 
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+		</if>
+		<!--页面   按照商务条件查询  -->
+		<if test="businessId != null and businessId != '' and businessId != 'null'">
+			and e.id = #{businessId}
+		</if>
+	   	
+	   	<if test="playName != null and playName != ''">
+	   	  and dat.play_name = #{playName,jdbcType=VARCHAR}
+	   	</if>
+	   	and dat.app_id = #{gameCode,jdbcType=VARCHAR}
+	   	and dat.play_date &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and dat.play_date &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+	   </where>
+  		 group by  dat.app_id ,dat.play_id,dat.play_name
+  </select>
+  
+  <insert id="insert" parameterType="com.qs.pub.datacenter.model.Playing">
+    insert into dc_playing (mid, app_id, play_id,play_name,
+      game_start_time, game_stop_time)
+    values (#{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, #{playId,jdbcType=VARCHAR}, #{playName,jdbcType=VARCHAR}, 
+      #{gameStartTime,jdbcType=TIMESTAMP}, #{gameStopTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  
+</mapper>

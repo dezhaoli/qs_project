@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +38,7 @@ import com.qs.log.game.service.ITaxesInviteWeekSendService;
 import com.qs.log.game.service.ITaxesInviteWeekService;
 import com.qs.log.game.util.BusinessDateUtil;
 import com.qs.log.game.util.ConstantUtil;
+import com.qs.pub.pay.model.WeixinMsg;
 import com.qs.pub.pay.service.IBaseParamService;
 import com.qs.pub.pay.service.IPayLogService;
 import com.qs.pub.pay.service.IWeinxinMsgService;
@@ -69,6 +73,8 @@ public class ActivityCorpPayController extends PayBaseController {
 	@Autowired
 	private IBaseParamService baseParamService;
 
+	@Autowired
+	private RedisTemplate<String,List<Integer>> redisTemplate;
    
 
 	
@@ -147,6 +153,7 @@ public class ActivityCorpPayController extends PayBaseController {
         PAY = new WeixinPayProxy(ACCOUNT);
         Map<String, Object> map = new HashMap<String, Object>();
      	if(CommonUtils.checkNull(ConstantUtil.getNoPayMid(gameType)).contains(mid+"")){
+			this.saveFailureMidListCache(gameType, mid);
 			map.put(CommonContants.SUCCESS, Boolean.FALSE);
 			map.put(CommonContants.MESSAGE, "不需要返利的代理商");
 		    return map;
@@ -154,6 +161,7 @@ public class ActivityCorpPayController extends PayBaseController {
 		try {
 			map = super.activityWeixinPay(request, mid, date, PAY, taxesInviteWeekSendService, memberAgentService, payLog,Integer.parseInt(gameNo));
 		} catch (WeixinException e) {
+			this.saveFailureMidListCache(gameType, mid);
 			map.put(CommonContants.SUCCESS, Boolean.FALSE);
 			map.put(CommonContants.MESSAGE, e.getMessage());
 			this.saveWeinMsg(mid,weinxinMsgService,Integer.parseInt(gameNo), e);
@@ -165,6 +173,18 @@ public class ActivityCorpPayController extends PayBaseController {
         }
 	    return map;
     }
+
+
+
+	private void saveFailureMidListCache(String gameType, Integer mid){
+		List<Integer> failureLIst=redisTemplate.opsForValue().get(ConstantUtil.FAILURE_MID_LIST+gameType);
+		if(null==failureLIst){
+			failureLIst=new ArrayList<Integer>();
+		}else{
+			failureLIst.add(mid);
+		}
+		redisTemplate.opsForValue().set(ConstantUtil.FAILURE_MID_LIST+gameType, failureLIst,1,TimeUnit.DAYS);
+	}
     
     /**
 	 * 活动批量支付(0到500元)
@@ -197,6 +217,10 @@ public class ActivityCorpPayController extends PayBaseController {
 		
 		parameters.put("dbTable", gameType+ ".memberagents");
 		
+		List<Integer> failureLIst=redisTemplate.opsForValue().get(ConstantUtil.FAILURE_MID_LIST+gameType);
+		failureLIst=failureLIst=null!=failureLIst&&failureLIst.size()>0?failureLIst:null;
+		parameters.put("failureList",failureLIst); 
+		
 	     WeixinPayProxy PAY = null;
 	     WeixinPayAccount ACCOUNT = null;
 	     ACCOUNT = new WeixinPayAccount(appid, apikey, mchid, "", certfile);
@@ -211,6 +235,7 @@ public class ActivityCorpPayController extends PayBaseController {
 					continue;
 				}
 				if(CommonUtils.checkNull(ConstantUtil.getNoPayMid(gameType)).contains(mid+"")){
+					this.saveFailureMidListCache(gameType, mid);
 					continue;
 				}
 				try {
@@ -223,6 +248,7 @@ public class ActivityCorpPayController extends PayBaseController {
 					this.saveWeinMsg(mid,weinxinMsgService,Integer.parseInt(gameNo), e);
 					e.printStackTrace();
 				}catch (Exception e) {   
+					this.saveFailureMidListCache(gameType, mid);
 					map.put(CommonContants.SUCCESS, Boolean.FALSE);
 					map.put(CommonContants.MESSAGE, "支付失败");
 					e.printStackTrace();

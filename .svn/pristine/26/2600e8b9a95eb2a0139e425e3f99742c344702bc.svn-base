@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	                http://www.springframework.org/schema/task
+	                http://www.springframework.org/schema/task/spring-task-4.0.xsd"
+	   default-lazy-init="false" default-autowire="byName">
+	
+	<bean id="dateBaseUapdateAgentJob" class="com.qs.webside.agent.job.DateBaseUapdateAgentJob" />
+	<bean id="noticeScanJob" class="com.qs.webside.agent.job.NoticeScanJob" />
+
+	<task:scheduled-tasks>   
+	   <!-- 每天3:00执行 0 0 2 * * ? -->
+<!--         <task:scheduled ref="dateBaseUapdateAgentJob" method="updateCommonAgentDataBase" cron="0 0 3 * * ?"/> -->
+		<task:scheduled ref="dateBaseUapdateAgentJob" method="statisticalDailyTable" cron="0 0 3 * * ?"/>
+
+		<!-- 每天1:00执行0 0 1 * * ? -->
+		<task:scheduled ref="dateBaseUapdateAgentJob" method="updateCreateRoomCardCount" cron="0 0 1 * * ?"/>
+
+		<!-- 每周一3:30执行  0 30 2 ? * MON -->
+      <task:scheduled ref="dateBaseUapdateAgentJob" method="updateTaxesInviteWeekDataBase" cron="0 30 3 ? * MON"/>
+   	<!-- 每5秒钟执行一次 -->
+      <task:scheduled ref="noticeScanJob" method="searchAllNotices" cron="0/5 * * * * ?"/>
+	
+      <!-- 每周一4:00执行  0 0 4 ? * MON -->
+<!--       <task:scheduled ref="dateBaseUapdateAgentJob" method="delTable40" cron="0 0 4 ? * MON"/> -->
+	</task:scheduled-tasks>
+	
+
+</beans>

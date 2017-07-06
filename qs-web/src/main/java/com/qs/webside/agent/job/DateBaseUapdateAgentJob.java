@@ -70,8 +70,15 @@ public class DateBaseUapdateAgentJob {
 
 	public void statisticalDailyTable(){
 		Map<String, Object> param = new HashMap<String, Object>();
-		log.debug("into updateTaxesInviteWeekDataBase star =============:"+sdf.format(new Date()));
+		log.debug("into statisticalDailyTable star =============:"+sdf.format(new Date()));
 		agentDateBaseJobLogService.statisticalDailyTable(param);
+	}
+
+	public void updateCreateRoomCardCount(){
+		Map<String, Object> param = new HashMap<String, Object>();
+		log.debug("into updateCreateRoomCardCount star =============:"+sdf.format(new Date()));
+		param.put("memberagents", dbName + ".memberagents");
+		agentDateBaseJobLogService.createRoomCardCount(param);
 	}
 	
 	/**

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -33,6 +34,7 @@ import com.qs.constant.Constant;
 import com.qs.pub.datacenter.model.Playing;
 import com.qs.pub.datacenter.service.IPlayingService;
 import com.qs.pub.sys.model.UserEntity;
+import com.qs.pub.sys.service.BusinessService;
 
 /** 
  * @ClassName: PlayingController 
@@ -48,6 +50,8 @@ public class PlayingController extends BaseController
 	private IPlayingService playService;
 	@Autowired
 	private RedisTemplate<String,String> redisTemplate;
+	@Resource
+	private BusinessService businessService;
 	/**
 	 * 
 	 * @标题: toPlayListUi 
@@ -83,16 +87,58 @@ public class PlayingController extends BaseController
 	public Object playList(String gridPager,HttpServletResponse response){
 		try
 		{
-			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			///////////////////////公共代码 start/////////////////
 			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
 			String gameCode = valueOper.get(Constant.DATA_CENTER_GAME_CODE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+			///////////////////////公共代码 end/////////////////
+			
+			Map<String, Object>  map = new HashMap<String,Object>();
+			//如果是领导人可查看的商务id
+			map.put("gameType", gameType);
+			map.put("uId", userEntity.getId());
+			List businessIdList = businessService.findByuId(map);
+			//如果式商务，只能看自己
+			map.put("accountName", userEntity.getAccountName());
+			List businessIdList2 = businessService.selectBusiness(map);
 			
 			Map<String, Object> parameters = null;
 			// 映射Pager对象
 			Pager pager = JSON.parseObject(gridPager, Pager.class);
 			// 判断是否包含自定义参数
 			parameters = pager.getParameters();
+			
+			
+			//条件查询（组id）
+			String groupId = parameters.get("groupId") != null?parameters.get("groupId").toString():"";
+			//通过组id查询商务id
+			List businessIdListByGroup = businessService.findBusinessByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
+			
+			Integer leaderTotals = businessService.ifLeader(map);
+			
+			
+			
+			//判断是否是管理员
+			if(userEntity.getIfBusiness() != null && userEntity.getIfBusiness()){
+				//判断是否是公司负责人
+				if(leaderTotals > 0){
+					parameters.put("businessIdList",businessIdList != null && businessIdList.size()>0?businessIdList:null);
+					parameters.put(Constant.DataPrivilege.IF_LEADER,1);
+				}else{
+					    //判断是否式普通商务
+						parameters.put(Constant.DataPrivilege.IF_BUSINESS,1);
+						parameters.put("businessIdList2",businessIdList2 != null && businessIdList2.size()>0?businessIdList2:null);
+				}
+			}
+			
+			
+			parameters.put("dbTable", dataSourceName);
+			parameters.put("gameType", gameType);
+			parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);
 			parameters.put("gameCode", gameCode);
+			
 			
 			// 3、判断是否是导出操作
 			if (pager.getIsExport())
@@ -128,20 +174,61 @@ public class PlayingController extends BaseController
 	
 	@RequestMapping("queryCountTotal.html")
 	@ResponseBody
-	public Object queryCountTotal(String stime,String etime,String appName,String playName){
+	public Object queryCountTotal(String stime,String etime,String playName,String groupId,String businessId){
 		try
 		{
-			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			///////////////////////公共代码 start/////////////////
 			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
 			String gameCode = valueOper.get(Constant.DATA_CENTER_GAME_CODE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+			///////////////////////公共代码 end/////////////////
+			
+			Map<String, Object>  map = new HashMap<String,Object>();
+			//如果是领导人可查看的商务id
+			map.put("gameType", gameType);
+			map.put("uId", userEntity.getId());
+			List businessIdList = businessService.findByuId(map);
+			//如果式商务，只能看自己
+			map.put("accountName", userEntity.getAccountName());
+			List businessIdList2 = businessService.selectBusiness(map);
 			
 			Map<String, Object> parameters = new HashMap<String,Object>();
-			// 判断是否包含自定义参数
-			parameters.put("gameCode", gameCode);
 			parameters.put("stime", stime);
 			parameters.put("etime", etime);
-			parameters.put("appName", appName);
 			parameters.put("playName", playName);
+			parameters.put("groupId", groupId);
+			parameters.put("businessId", businessId);
+			
+			
+			//通过组id查询商务id
+			List businessIdListByGroup = businessService.findBusinessByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
+			
+			Integer leaderTotals = businessService.ifLeader(map);
+			
+			
+			
+			//判断是否是管理员
+			if(userEntity.getIfBusiness() != null && userEntity.getIfBusiness()){
+				//判断是否是公司负责人
+				if(leaderTotals > 0){
+					parameters.put("businessIdList",businessIdList != null && businessIdList.size()>0?businessIdList:null);
+					parameters.put(Constant.DataPrivilege.IF_LEADER,1);
+				}else{
+					    //判断是否式普通商务
+						parameters.put(Constant.DataPrivilege.IF_BUSINESS,1);
+						parameters.put("businessIdList2",businessIdList2 != null && businessIdList2.size()>0?businessIdList2:null);
+				}
+			}
+			
+			
+			parameters.put("dbTable", dataSourceName);
+			parameters.put("gameType", gameType);
+			parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);
+			parameters.put("gameCode", gameCode);
+			
+			
 			Long totals = playService.queryCountTotal(parameters);
 			return totals == null ?0:totals;
 		} catch (Exception e)
@@ -193,16 +280,59 @@ public class PlayingController extends BaseController
 	 */
 	@RequestMapping("playCount.html")
 	@ResponseBody
-	public Object playCount(String stime,String etime,String appName,String playName){
-		ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+	public Object playCount(String stime,String etime,String playName,String groupId,String businessId){
+		///////////////////////公共代码 start/////////////////
 		UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+		ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+		String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
 		String gameCode = valueOper.get(Constant.DATA_CENTER_GAME_CODE+userEntity.getId());
+		String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+		///////////////////////公共代码 end/////////////////
+		
+		Map<String, Object>  map = new HashMap<String,Object>();
+		//如果是领导人可查看的商务id
+		map.put("gameType", gameType);
+		map.put("uId", userEntity.getId());
+		List businessIdList = businessService.findByuId(map);
+		//如果式商务，只能看自己
+		map.put("accountName", userEntity.getAccountName());
+		List businessIdList2 = businessService.selectBusiness(map);
+		
 		Map<String, Object> parameters = new HashMap<String,Object>();
 		parameters.put("stime", stime);
         parameters.put("etime", etime);
-        parameters.put("appName", appName);
         parameters.put("playName", playName);
-        parameters.put("gameCode", gameCode);
+        parameters.put("groupId", groupId);
+        parameters.put("businessId", businessId);
+		
+		
+		//通过组id查询商务id
+		List businessIdListByGroup = businessService.findBusinessByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
+		
+		Integer leaderTotals = businessService.ifLeader(map);
+		
+		
+		
+		//判断是否是管理员
+		if(userEntity.getIfBusiness() != null && userEntity.getIfBusiness()){
+			//判断是否是公司负责人
+			if(leaderTotals > 0){
+				parameters.put("businessIdList",businessIdList != null && businessIdList.size()>0?businessIdList:null);
+				parameters.put(Constant.DataPrivilege.IF_LEADER,1);
+			}else{
+				    //判断是否式普通商务
+					parameters.put(Constant.DataPrivilege.IF_BUSINESS,1);
+					parameters.put("businessIdList2",businessIdList2 != null && businessIdList2.size()>0?businessIdList2:null);
+			}
+		}
+		
+		
+		parameters.put("dbTable", dataSourceName);
+		parameters.put("gameType", gameType);
+		parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);
+		parameters.put("gameCode", gameCode);
+		
+		
         
 		List<Playing> list = playService.queryCount(parameters);
 		List<String> list2 = new ArrayList<String>();

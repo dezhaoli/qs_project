@@ -37,8 +37,10 @@
     startDate = year + "-" + month + "-" + date;
     $('#startTime').val(startDate);
 </script>
+<%--<script type="text/javascript"
+        src="${pageContext.request.contextPath }/resources/js/customer/web/query/room_count_log_list.js"></script>--%>
 <script type="text/javascript"
-        src="${pageContext.request.contextPath }/resources/js/customer/web/query/room_count_log_list.js"></script>
+        src="${pageContext.request.contextPath }/resources/js/customer/web/query/room_count_log_list1.js"></script>
 
 <div class="page-content">
      <form class="form-horizontal" >

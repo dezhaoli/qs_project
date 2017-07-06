@@ -23,6 +23,7 @@ import com.qs.log.game.model.TaxesInviteWeekSend;
 import com.qs.log.game.service.ITaxesInviteWeekSendService;
 import com.qs.log.game.service.ITaxesInviteWeekService;
 import com.qs.log.game.util.BusinessDateUtil;
+import com.qs.log.game.util.ConstantUtil;
 import com.qs.log.game.util.MyExportUtils;
 import com.qs.pub.pay.model.PayLog;
 import com.qs.pub.pay.model.WeixinMsg;
@@ -33,6 +34,8 @@ import com.qs.pub.sys.model.UserEntity;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.time.DateUtils;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 
 import javax.servlet.http.HttpServletRequest;
@@ -52,6 +55,9 @@ import java.util.*;
 public class PayBaseController extends BaseController {
 
 
+	@Autowired
+	private RedisTemplate<String,List<Integer>> redisTemplate;
+	
     /**
      *  微信企业支付
      * @param mid
@@ -508,6 +514,10 @@ public class PayBaseController extends BaseController {
             parameters.put("searchDate", BusinessDateUtil.getLastWeekSunday());
         }
         parameters.put("dbTable", gameType + ".memberagents");
+		List<Integer> failureLIst=redisTemplate.opsForValue().get(ConstantUtil.FAILURE_MID_LIST+gameType);
+		failureLIst=failureLIst=null!=failureLIst&&failureLIst.size()>0?failureLIst:null;
+		parameters.put("failureList",failureLIst);
+		
         if(pager.getIsExport()){//判断是否是导出操作
             if(pager.getExportAllData()){
                 //3.1、导出全部数据

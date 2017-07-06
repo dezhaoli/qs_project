@@ -25,11 +25,11 @@ public class Test
 	{
 		Map map = new HashMap();
 		map.put("logType", "3");
-		map.put("mid", "111");
+		map.put("mid", "225");
 		map.put("appId", "107");
-		/*map.put("mtime", 1498736687);
-		map.put("lgtm", 1498736687);
-		map.put("gameStopTime", 1498736687);*/
+		map.put("mtime", 1499221966);
+		map.put("lgtm", 1499308366);
+		map.put("gameStopTime", 1498736687);
 		map.put("playId", "4");
 		map.put("playName", "贵阳玩法");
 		map.put("city", "深圳");
