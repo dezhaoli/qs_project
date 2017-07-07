@@ -85,20 +85,10 @@ public class ConfigController extends BaseController {
 	public Object getStore(Model model, HttpServletRequest request,BaseRequest baseRequest) {
 		String content="";
 		try{
-			if (20 == gameType) {//如果是江西麻将，类型为20；还要判断是不是代理商。
-				AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
-				Memberagents memberagents = memberAgentService.findMemberagentsByMid(token.getMid());
-				if (memberagents != null) {
-					content = agentStoreSerivce.createAgentStoreJson();
-				} else {
-					content = storeService.createStoreJson();
-				}
-			} else {//其他游戏
-				content=storeService.createStoreJson();
-			}
-		}catch(Exception e)
-		{
-			throw new SystemException(e);
+			content=storeService.createStoreJson();
+		}catch(Exception e){
+			 e.printStackTrace();
+			//throw new SystemException(e);
 		}
 		return this.getReturnData(content,AppConstants.Result.SUCCESS);
 	}

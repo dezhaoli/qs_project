@@ -299,8 +299,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -685,6 +685,34 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiSendGoldMapper.xml</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiCenterMapper.xml</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiIntegralMapper.xml</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiIntegralController.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiIntegralMapper.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiIntegralServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiSendGoldServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiCenterServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiIntegralService.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\acti\game\service\impl\ActiCenterServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\SyncUserLoginLogMapper.xml</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\member\member_testWhiteList_list.jsp</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\member_testWhiteList_list.js</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\game\controller\MemberWhiteListController.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\ConfigController.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\MemberController.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\log\game\controller\PayBaseController.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\java\com\qs\webside\interceptor\TokenInterceptor.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\resources\spring\spring-mybatis.xml</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\resources\jdbc.properties</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����������־�ӿ�˵��.docx</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberWhiteListMapper.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberWhiteListMapper.xml</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\test\java\Test.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\user_keep_list.js</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\CacheConstan.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\member\service\IMemberWhiteListService.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\member\service\impl\MemberWhiteListServicerImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -692,6 +720,12 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiSendIntegralMapper.xml</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiSendIntegralMapper.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiSendIntegral.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiSendIntegralServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiSendIntegralService.java</PATH>
+          <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\pay-web\src\main\resources\spring\dataResource\beardph-datasource.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -721,7 +755,7 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="2658">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="2675">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1600,6 +1634,7 @@
       <workItem from="1499179164989" duration="77000" />
       <workItem from="1499264323490" duration="73000" />
       <workItem from="1499351059640" duration="115000" />
+      <workItem from="1499426178632" duration="54000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1724,7 +1759,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="261005000" />
+    <option name="totallyTimeSpent" value="261059000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1747,12 +1782,12 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32745314" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32745314" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25373933" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25694445" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2185,26 +2220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="922">
           <caret line="43" column="29" lean-forward="false" selection-start-line="43" selection-start-column="29" selection-end-line="43" selection-end-column="29" />
-          <folding>
-            <marker date="1499351096548" expanded="true" signature="714:1634" ph="CREATE TABLE... room_card_count" />
-            <marker date="1499351096548" expanded="true" signature="1704:1742" ph="drop procedu... " />
-            <marker date="1499351096548" expanded="true" signature="1857:3026" ph="CREATE PROCE... roomCardCount" />
-            <marker date="1499351096548" expanded="true" signature="1917:2813" ph=" DECLARE DAT... " />
-            <marker date="1499351096548" expanded="true" signature="1934:1977" ph="DECLARE DATE... " />
-            <marker date="1499351096548" expanded="true" signature="1995:2027" ph="DECLARE dail... " />
-            <marker date="1499351096548" expanded="true" signature="2067:2096" ph="DECLARE allC... " />
-            <marker date="1499351096548" expanded="true" signature="2124:2155" ph="DECLARE agen... " />
-            <marker date="1499351096548" expanded="true" signature="2183:2213" ph="DECLARE user... " />
-            <marker date="1499351096548" expanded="true" signature="2241:2292" ph="SET DATE_SUB... " />
-            <marker date="1499351096548" expanded="true" signature="2310:2439" ph="SET daily_de... " />
-            <marker date="1499351096548" expanded="true" signature="2335:2435" ph="select sum(g... gold_log" />
-            <marker date="1499351096548" expanded="true" signature="2457:2570" ph="SET allCard " />
-            <marker date="1499351096548" expanded="true" signature="2479:2566" ph="SELECT SUM(n... gold_log" />
-            <marker date="1499351096548" expanded="true" signature="2588:2760" ph="SET agentCar... " />
-            <marker date="1499351096548" expanded="true" signature="2612:2756" ph="SELECT SUM(n... gold_log" />
-            <marker date="1499351096548" expanded="true" signature="2778:2812" ph="SET userCard... " />
-            <marker date="1499351096548" expanded="true" signature="2830:2977" ph="INSERT IGNOR... room_card_count" />
-          </folding>
         </state>
       </provider>
     </entry>

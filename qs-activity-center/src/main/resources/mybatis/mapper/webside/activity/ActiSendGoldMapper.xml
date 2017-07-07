@@ -259,9 +259,10 @@
     <include refid="Base_Column_List" />
     from acti_send_gold
     where
-    mid = #{mid} and type = 0 order by id limit 1
+    mid = #{mid} and type = 2 order by id limit 1
   </select>
 
+  <!-- type = 1表示分享送,2表示评论送,5积分兑换 -->
   <!-- type = 1 表示分享送,根据mid查询当天是否分享获得过金币 -->
   <select id="queryByShare" resultMap="BaseResultMap" parameterType="map" >
     select

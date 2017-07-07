@@ -7,17 +7,31 @@
 
 <form id="storeForm" name="storeForm" class="form-horizontal" role="form" method="post">
     <div class="form-group">
-        <%--<label class="control-label col-sm-1 no-padding-right no-padding-left">MID:</label>--%>
         <div class="col-sm-5">
             <div class="clearfix">
                 <input class="form-control" name="mid" id="mid" type="number"
                        value="" placeholder="MID..."/>
             </div>
         </div>
+        <div class="col-sm-1">
         <button id="btnAdd" type="button" onclick="javascript:$('#storeForm').submit();"
                 class="btn btn-primary btn-sm">
             <i class="fa fa-user-plus"></i>&nbsp;添加
         </button>
+        </div>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-1">
+            <button id="allCancel" type="button" onclick="effectOrUnEffect(0)"
+                    class="btn btn-warning btn-sm">
+                <i class="fa fa-user-secret"></i>&nbsp;全部失效
+            </button>
+        </div>
+        <div class="col-sm-1">
+            <button id="allEffect" type="button" onclick="effectOrUnEffect(1)"
+                    class="btn btn-success btn-sm">
+                <i class="fa fa-user-secret"></i>&nbsp;全部生效
+            </button>
+        </div>
     </div>
 </form>
 

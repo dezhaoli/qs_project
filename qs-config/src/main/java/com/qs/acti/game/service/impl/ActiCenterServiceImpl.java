@@ -5,6 +5,7 @@ import com.qs.common.constant.CacheConstan;
 import com.qs.acti.game.mapper.ActiCenterMapper;
 import com.qs.acti.game.model.ActiCenter;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -22,19 +23,25 @@ public class ActiCenterServiceImpl implements IActiCenterService {
     private ActiCenterMapper actiCenterMapper;
 
     @Override
-    @CacheEvict(value = {CacheConstan.ACTIVITY_CENTER_CACHE_NAME}, allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_CACHE_NAME, allEntries = true),
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_TYPE_CACHE_NAME,allEntries = true)})
     public int deleteByPrimaryKey(Integer id) {
         return actiCenterMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    @CacheEvict(value = {CacheConstan.ACTIVITY_CENTER_CACHE_NAME}, allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_CACHE_NAME, allEntries = true),
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_TYPE_CACHE_NAME,allEntries = true)})
     public int insert(ActiCenter record) {
         return actiCenterMapper.insert(record);
     }
 
     @Override
-    @CacheEvict(value = {CacheConstan.ACTIVITY_CENTER_CACHE_NAME}, allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_CACHE_NAME, allEntries = true),
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_TYPE_CACHE_NAME,allEntries = true)})
     public int insertSelective(ActiCenter record) {
         return actiCenterMapper.insertSelective(record);
     }
@@ -45,13 +52,17 @@ public class ActiCenterServiceImpl implements IActiCenterService {
     }
 
     @Override
-    @CacheEvict(value = {CacheConstan.ACTIVITY_CENTER_CACHE_NAME}, allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_CACHE_NAME, allEntries = true),
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_TYPE_CACHE_NAME,allEntries = true)})
     public int updateByPrimaryKeySelective(ActiCenter record) {
         return actiCenterMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
-    @CacheEvict(value = {CacheConstan.ACTIVITY_CENTER_CACHE_NAME}, allEntries = true)
+    @Caching(evict = {
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_CACHE_NAME, allEntries = true),
+            @CacheEvict(value = CacheConstan.ACTIVITY_CENTER_TYPE_CACHE_NAME,allEntries = true)})
     public int updateByPrimaryKey(ActiCenter record) {
         return actiCenterMapper.updateByPrimaryKey(record);
     }

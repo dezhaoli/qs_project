@@ -70,8 +70,8 @@ public class TokenInterceptor  implements HandlerInterceptor {
 		//hour>=20&&hour<=24||
 		if(hour>=0&&hour<=8){
     		Map<String, Object> responseMap=this.getReturnData("当前时间系统停止支付，请在工作时间支付！");
-    	  // this.responseMessage(response, responseMap);
-    	  // return false;
+    	   this.responseMessage(response, responseMap);
+    	   return false;
      }
 		
 		UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
@@ -82,8 +82,8 @@ public class TokenInterceptor  implements HandlerInterceptor {
 		}
 		if(!returnFlag){
 			Map<String, Object> responseMap=this.getReturnData("不在工作区中...,请联系管理员！");
-			 // this.responseMessage(response, responseMap);
-	    	 // return false;
+			  this.responseMessage(response, responseMap);
+	    	  return false;
 		}
 		
 
@@ -95,8 +95,8 @@ public class TokenInterceptor  implements HandlerInterceptor {
 		
 		if(!returnFlag){
 			Map<String, Object> responseMap=this.getReturnData("不在白名单中...,请联系管理员！");
-			// this.responseMessage(response, responseMap);
-	    	// return false;
+			 this.responseMessage(response, responseMap);
+	    	 return false;
 		}
 		
 		

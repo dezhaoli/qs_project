@@ -24,4 +24,12 @@ public interface ActiIntegralMapper extends IBaseMapper {
      */
     ActiIntegral selectByMid(Integer mid);
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/7 14:21
+     * @Description:不存在就插入积分对象，存在就更新。
+     * @param record 积分对象
+     * @return
+     */
+    int insertOrUpate(ActiIntegral record);
+
 }

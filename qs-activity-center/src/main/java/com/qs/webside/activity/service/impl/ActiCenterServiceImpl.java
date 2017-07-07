@@ -64,6 +64,7 @@ public class ActiCenterServiceImpl implements IActiCenterService {
     }
 
     @Override
+    @Cacheable(value = {CacheConstan.ACTIVITY_CENTER_TYPE_CACHE_NAME},key = "#root.methodName + ':'+#root.args[0]")
     public Map<String, Object> queryListActivityByStatusAndType(Integer type) {
         return actiCenterMapper.queryListActivityByStatusAndType(type);
     }

@@ -325,7 +325,7 @@
   <!-- 根据活动状态和类型查询活动是否存在 -->
   <select id="queryListActivityByStatusAndType" resultType="map" parameterType="integer">
     SELECT
-    title, descr, type,status,
+    title, descr, type,status,card_record AS cardRecord, reward,
     unix_timestamp(close_time) AS closeTime,
     unix_timestamp(start_time) AS  startTime,
     unix_timestamp(end_time) AS  endTime

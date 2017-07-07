@@ -113,6 +113,37 @@ function takeEffectRecord(id) {
     });
 }
 
+function effectOrUnEffect(type) {
+    $.ajax({
+        type : "POST",
+        async: true,    //或false,是否异步
+        url : sys.rootPath + "/game/whiteList/updateEffectOrUnEffect.html",
+        data : {
+            type:type
+        },
+        dataType : "json",
+        success : function(resultdata) {
+            if (resultdata.success) {
+                layer.msg(resultdata.message, {
+                    icon : 1
+                });
+            } else {
+                layer.msg(resultdata.message, {
+                    icon : 5
+                });
+            }
+            grid.refresh(true);
+        },
+        error : function(data, errorMsg) {
+            layer.msg(data.responseText, {
+                icon : 2
+            });
+            grid.refresh(true);
+        }
+    });
+}
+
+
 //动态设置jqGrid的rowNum
 var pageSize = $("#pageSize").val();
 pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;

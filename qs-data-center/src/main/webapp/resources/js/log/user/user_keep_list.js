@@ -108,7 +108,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -121,7 +121,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -134,7 +134,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -147,7 +147,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -160,7 +160,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -173,7 +173,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -186,7 +186,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -199,7 +199,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 },{
@@ -212,7 +212,7 @@ var dtGridColumns = [{
     	if(value==0){
     		return '0%';
     	}else{
-    		return value*100+'%';
+    		return Math.round((value*100))+'%';
     	}
     }
 }];

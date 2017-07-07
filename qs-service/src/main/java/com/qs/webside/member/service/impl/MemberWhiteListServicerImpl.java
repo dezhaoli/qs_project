@@ -6,18 +6,15 @@ import com.qs.webside.member.mapper.MemberWhiteListMapper;
 import com.qs.webside.member.model.MemberFides;
 import com.qs.webside.member.model.MemberWhiteList;
 import com.qs.webside.member.service.IMemberWhiteListService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zun.wei on 2017/2/27.
@@ -91,6 +88,11 @@ public class MemberWhiteListServicerImpl implements IMemberWhiteListService {
 		String memberWhiteDeviceCacheKey=AppConstants.RedisKeyPrefix.MEMBER_WHITE_DEVICE_CACHE;
 		redisTemplate.opsForValue().set(memberWhiteDeviceCacheKey, devicelist);    
 }
+
+    @Override
+    public int updateTakeEffectAll(int type) {
+        return memberWhiteListMapper.updateTakeEffectAll(type);
+    }
 
     @Override
     public MemberWhiteList selectById(Integer id) {

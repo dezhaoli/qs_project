@@ -22,4 +22,12 @@ public interface MemberWhiteListMapper extends IBaseMapper {
 
     int updateTakeEffectActById(Integer id);
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/7 10:28
+     * @Description:生效或失效全部
+     * @param type 0表示失效，1表示生效
+     * @return
+     */
+    int updateTakeEffectAll(int type);
+
 }

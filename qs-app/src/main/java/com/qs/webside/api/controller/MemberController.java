@@ -77,8 +77,8 @@ public class MemberController extends BaseController {
     @Value("${game.ver}")
     private String ver;
     
-    @Value("${game.activityurl}")
-    private String activityUrl;
+    //@Value("${game.activityurl}")
+    //private String activityUrl;
     
     @Value("${game.configurl}")
     private String configUrl;
@@ -326,12 +326,12 @@ public class MemberController extends BaseController {
 		map.put("dataUrl",configUrl+"config/");
 		//活动图片
 		map.put("mobileUrl",headImgUrl);
-		//移动活动
-		map.put("baseUrl",activityUrl);
 		map.put("appleStore",gameService.getBaseParamValueByCode(AppConstants.BaseParam.IS_OPEN_APPLE_STORE));
-		//活动中心url
-		map.put("actiCenterUrl",gameService.getBaseParamValueByCode(AppConstants.BaseParam.ACTIVITY_CENTER_CLIENT_URL));
-
+		//移动活动
+		//map.put("baseUrl",activityUrl);
+		String actiBaseUrl = gameService.getBaseParamValueByCode(AppConstants.BaseParam.ACTIVITY_CENTER_CLIENT_URL);
+		map.put("baseUrl",actiBaseUrl + "index.html");//活动中心静态首页
+		map.put("actiCenterUrl",actiBaseUrl);//活动中心调用接口url前缀
 		return this.getReturnData(map,AppConstants.Result.SUCCESS);
 	}
     /**
@@ -805,8 +805,12 @@ public class MemberController extends BaseController {
 		}
 		
 		String deviceCacheStr =(String) redisTemplate.opsForValue().get(AppConstants.RedisKeyPrefix.MEMBER_WHITE_DEVICE_CACHE);
-		if(!StringUtils.isBlank(deviceCacheStr)&&deviceCacheStr.contains(deviceid)){
+		
+		if(!StringUtils.isBlank(deviceid)&&deviceid.length()>10){
+		 if(!StringUtils.isBlank(deviceCacheStr)&&deviceCacheStr.contains(deviceid)){
+			 //测试用户
 			isTester=1;
+		 }
 		}
 		
 		//测试

@@ -33,4 +33,20 @@ public interface IActiIntegralService {
      */
     ActiIntegral selectByMid(Integer mid);
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/7 13:50
+     * @Description:分享链接送积分
+     * @param mid 用户mid
+     * @return
+     */
+    Object sendIntegralByShare(int mid);
+
+    /**
+     * @Author:zun.wei , @Date:2017/7/7 14:21
+     * @Description:不存在就插入积分对象，存在就更新。
+     * @param record 积分对象
+     * @return
+     */
+    int insertOrUpate(ActiIntegral record);
+
 }

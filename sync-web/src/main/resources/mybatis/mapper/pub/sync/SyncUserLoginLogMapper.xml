@@ -15,7 +15,7 @@
     <result column="province" property="province" jdbcType="VARCHAR" />
     <result column="city" property="city" jdbcType="VARCHAR" />
   </resultMap>
-  <insert id="insert" parameterType="com.qs.pub.sync.mapper.SyncUserLoginLogMapper" >
+  <insert id="insert" parameterType="com.qs.sync.model.SyncUserLoginLog" >
     insert into dc_user_login_log (mid, app_id, 
       app_version, terminal_type, channel_id, 
       login_time, logout_time, ip, 

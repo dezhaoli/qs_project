@@ -65,5 +65,19 @@ public class ActiIntegralController extends BaseController {
         }
     }
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/7 13:33
+     * @Description:分享链接送积分
+     * @param baseRequest 积分请求
+     * @return
+     */
+    @RequestMapping("sendIntegralByShare.do")
+    @ResponseBody
+    public Object sendIntegralByShare(BaseRequest baseRequest) {
+        AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        Object map = actiIntegralService.sendIntegralByShare(token.getMid());
+        return this.getReturnData(map, AppConstants.Result.SUCCESS);
+    }
+
 
 }

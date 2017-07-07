@@ -28,9 +28,6 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
     @Resource
     private ActiSendGoldMapper actiSendGoldMapper;
 
-/*    @Resource
-    private GameService gameService;*/
-
     @Resource
     private IActiCenterService actiCenterService;
 

@@ -116,7 +116,8 @@
 
   <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
     SELECT <include refid="Base_Column_List" />
-    from member_white_list order by id
+    from member_white_list 
+    order by id
   </select>
 
   <select id="selectByMid" resultType="com.qs.webside.member.model.MemberWhiteList" parameterType="java.lang.Integer">
@@ -126,5 +127,9 @@
     WHERE mid = #{mid,jdbcType=INTEGER}
     LIMIT 0,1
   </select>
+
+  <update id="updateTakeEffectAll" parameterType="java.lang.Integer">
+    UPDATE member_white_list set test_type = #{type}
+  </update>
 
 </mapper>

@@ -25,10 +25,10 @@ public class Test
 	{
 		Map map = new HashMap();
 		map.put("logType", "3");
-		map.put("mid", "225");
+		map.put("mid", "3002");
 		map.put("appId", "107");
-		map.put("mtime", 1499221966);
-		map.put("lgtm", 1499308366);
+		map.put("mtime", "1499390269");
+		map.put("lgtm", "1499390269");
 		map.put("gameStopTime", 1498736687);
 		map.put("playId", "4");
 		map.put("playName", "贵阳玩法");
@@ -51,7 +51,7 @@ public class Test
 		try{
 		String res = "";
 		for(int i =0;i<1;i++){
-			 res = HttpClientUtil.httpClientByPost("http://192.168.1.92:8080/sync-producer/dataCenter/dataCenterLogDispatch.html",map);
+			 res = HttpClientUtil.httpClientByPost("http://datacenter.longzupoker.com:8888/datacenter/dataCenter/dataCenterLogDispatch.html",map);
 		}
 		System.out.println(res);
 		}catch(Exception e){

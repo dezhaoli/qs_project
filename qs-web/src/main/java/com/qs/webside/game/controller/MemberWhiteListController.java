@@ -156,6 +156,7 @@ public class MemberWhiteListController extends BaseController{
         try {
             int result = memberWhiteListService.updateTakeEffectById(id);
             if (result > 0) {
+                memberWhiteListService.setMemberWhiteDeviceCache();
                 map.put(CommonContants.SUCCESS, Boolean.TRUE);
                 map.put(CommonContants.DATA, null);
                 map.put(CommonContants.MESSAGE, CommonContants.OPERATE_SUCCESS);
@@ -166,6 +167,31 @@ public class MemberWhiteListController extends BaseController{
             }
         } catch (Exception e) {
             throw new AjaxException(e);
+        }
+        return map;
+    }
+
+
+    /**
+     * @Author:zun.wei , @Date:2017/7/7 10:37
+     * @Description:生效或失效全部
+     * @param type 0表示失效，1表示生效
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/updateEffectOrUnEffect.html",method = RequestMethod.POST)
+    public Object updateEffectOrUnEffect(int type) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = memberWhiteListService.updateTakeEffectAll(type);
+        if (result > 0) {
+            memberWhiteListService.setMemberWhiteDeviceCache();
+            map.put(CommonContants.SUCCESS, Boolean.TRUE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, CommonContants.OPERATE_SUCCESS);
+        } else {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, CommonContants.OPERATE_FAILURE);
         }
         return map;
     }

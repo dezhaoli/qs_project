@@ -44,6 +44,8 @@
 	<import resource="classpath:/spring/dataResource/beardfpf-datasource.xml"/>
 	 <!-- 江西麻将数据源(包括主库，log库) -->
 	<import resource="classpath:/spring/dataResource/jxmajiang-datasource.xml"/>
+	<!-- 乐玩碰胡数据源(包括主库，log库) -->
+	 <import resource="classpath:/spring/dataResource/beardph-datasource.xml"/> 
 
 	<!-- ==========================================配置动态数据源================================================ -->
 	<!-- 配置动态数据源 -->
@@ -61,6 +63,7 @@
 				<entry value-ref="gdmajiangLogDataSource" key="gd_majiangLogDataSource"/>
 				<entry value-ref="beardfpfLogDataSource" key="beardfpfLogDataSource"/>
 			    <entry value-ref="jxmajiangLogDataSource" key="jx_majiangLogDataSource"/>
+			      <entry value-ref="beardphLogDataSource" key="beardphLogDataSource"/>
 			</map>
 		</property>
 		<property name="defaultTargetDataSource" ref="runfastLogDataSource"/>
@@ -79,6 +82,7 @@
 				<entry value-ref="scmajiangAgentDataSource" key="sc_majiangAgentDataSource"/>
 			    <entry value-ref="beardfpfAgentDataSource" key="beardfpfAgentDataSource"/>
 			    <entry value-ref="jxmajiangAgentDataSource" key="jx_majiangAgentDataSource"/>
+			     <entry value-ref="beardphAgentDataSource" key="beardphAgentDataSource"/>
 			    
 			</map>
 		</property>

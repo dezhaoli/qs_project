@@ -163,4 +163,67 @@
     where mid = #{mid,jdbcType=INTEGER}
   </select>
 
+  <insert id="insertOrUpate" parameterType="com.qs.webside.activity.model.ActiIntegral" >
+    insert into acti_integral
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="nowIntegral != null" >
+        now_integral,
+      </if>
+      <if test="usedIntegral != null" >
+        used_integral,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="nowIntegral != null" >
+        #{nowIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="usedIntegral != null" >
+        #{usedIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update now_integral = now_integral + values(now_integral)
+  </insert>
+
 </mapper>
