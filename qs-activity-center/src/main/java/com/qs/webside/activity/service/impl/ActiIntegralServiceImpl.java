@@ -162,26 +162,25 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
     }
 
     @Override
-    public Object useGoldToSendIntegral(int mid,int integralType) {
+    public Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) {
         //TODO 1.获取当前时间消耗的房卡数量。
         int nowGold = 0;
         Map<String, Object> result = new HashMap<>();
-        List<Map<String, Object>> cfgs = actiIntegralCfgService.queryListByActiTypeLimitByDate(10);//缓存
+        Map<String, Object> map = new HashMap<>();
+        map.put("actiType", 10);
+        List<Map<String, Object>> cfgs = actiIntegralCfgService.queryListByActiTypeLimitByDate(map);//缓存
         if (cfgs != null && cfgs.size() > 0) {
             Map<String, Object> cfg1 = cfgs.get(0);
             long closeTime = (long) cfg1.get("closeTime");
             long nowTime = new Date().getTime() / 1000;
             if (closeTime < nowTime) {
-                cfgs = actiIntegralCfgService.queryListByActiTypeLimitByDate2(10);//非缓存，清缓存
-                if (cfgs == null || cfgs.size() < 1) {
-                    result.put(CommonContants.RESULT, Boolean.FALSE);
-                    result.put(CommonContants.ERROR, -1);
-                    result.put(CommonContants.MESSAGE, "消耗房卡送积分未配置,或活动已过期！");
-                    return result;
-                }
+                result.put(CommonContants.RESULT, Boolean.FALSE);
+                result.put(CommonContants.ERROR, -4);
+                result.put(CommonContants.MESSAGE, "活动已过期！");
+                return result;
             }
             for (int i = 0; i < cfgs.size(); i++) {
-                if ((int)cfgs.get(i).get("id") == integralType) {
+                if ((int)cfgs.get(i).get("id") == cfgType) {
                     int gold = (int) cfgs.get(i).get("gold");
                     if (nowGold < gold) {
                         result.put(CommonContants.RESULT, Boolean.FALSE);
@@ -189,15 +188,29 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
                         result.put(CommonContants.MESSAGE, "当前所消耗的房卡不足!");
                         return result;
                     }
-                    ValueOperations valueOper = redisTemplate.opsForValue();
-                    valueOper.set("i" + simpleDateFormat.format(new Date())//设置成已领取
-                            + ":" + mid + ":" + cfgs.get(i).get("id"),1,2, TimeUnit.DAYS);
-                    break;
+                    ValueOperations<String, Integer> v = redisTemplate.opsForValue();
+                    Integer receive = v.get("i" + simpleDateFormat.format(new Date())
+                            + ":" + mid + ":" + cfgs.get(i).get("id"));
+                    if (receive == null) receive = 0;
+                    if (receive == 0) {
+                        ValueOperations valueOper = redisTemplate.opsForValue();
+                        valueOper.set("i" + simpleDateFormat.format(new Date())//设置成已领取
+                                + ":" + mid + ":" + cfgs.get(i).get("id"), 1, 2, TimeUnit.DAYS);
+                        result.put(CommonContants.RESULT, Boolean.TRUE);
+                        result.put(CommonContants.DATA, cfgs.get(i).get("integral"));
+                        result.put(CommonContants.MESSAGE, "成功兑换" + cfgs.get(i).get("integral") + "积分!");
+                        return result;
+                    } else {
+                        result.put(CommonContants.RESULT, Boolean.FALSE);
+                        result.put(CommonContants.ERROR, -3);
+                        result.put(CommonContants.MESSAGE, "当天已经领取过该奖励了!");
+                        return result;
+                    }
                 }
             }
             result.put(CommonContants.RESULT, Boolean.TRUE);
-            result.put(CommonContants.DATA, 1);
-            result.put(CommonContants.MESSAGE, "兑换成功!");
+            result.put(CommonContants.DATA, -5);
+            result.put(CommonContants.MESSAGE, "不存在的配置!");
             return result;
         } else {
             result.put(CommonContants.RESULT, Boolean.FALSE);
@@ -208,36 +221,35 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
     }
 
     @Override
-    public Object checkUseGoldToSendIntegral(int mid) {
+    public Map<String, Object> checkUseGoldToSendIntegral(int mid) {
         //TODO 1.获取当前时间消耗的房卡数量。
         int nowGold = 0;
         Map<String, Object> result = new HashMap<>();
-        List<Map<String, Object>> cfgs = actiIntegralCfgService.queryListByActiTypeLimitByDate(10);//缓存
+        Map<String, Object> map = new HashMap<>();
+        map.put("actiType", 10);
+        List<Map<String, Object>> cfgs = actiIntegralCfgService.queryListByActiTypeLimitByDate(map);//缓存
         if (cfgs != null && cfgs.size() > 0) {
             Map<String, Object> cfg1 = cfgs.get(0);
             long closeTime = (long) cfg1.get("closeTime");
             long nowTime = new Date().getTime() / 1000;
             if (closeTime < nowTime) {
-                cfgs = actiIntegralCfgService.queryListByActiTypeLimitByDate2(10);//非缓存，清缓存
-                if (cfgs == null || cfgs.size() < 1) {
-                    result.put(CommonContants.RESULT, Boolean.FALSE);
-                    result.put(CommonContants.ERROR, -1);
-                    result.put(CommonContants.MESSAGE, "消耗房卡送积分未配置,或活动已过期！");
-                    return result;
-                }
+                result.put(CommonContants.RESULT, Boolean.FALSE);
+                result.put(CommonContants.ERROR, -2);
+                result.put(CommonContants.MESSAGE, "活动已过期！");
+                return result;
             }
             List<Map<String, Object>> items = new ArrayList<>();
-            Map<String, Object> receives = new HashMap<>();
             for (int i = 0; i < cfgs.size(); i++) {
-                ValueOperations<String, String> valueOper = redisTemplate.opsForValue();
-                String receive = valueOper.get("i" + simpleDateFormat.format(new Date())
+                Map<String, Object> receives = new HashMap<>();
+                ValueOperations<String, Integer> valueOper = redisTemplate.opsForValue();
+                Integer receive = valueOper.get("i" + simpleDateFormat.format(new Date())
                         + ":" + mid + ":" + cfgs.get(i).get("id"));
-                if (receive == null) receive = "0";//0 表示未领取,1 表示已领取;
-                receives.put("integralType" + i, cfgs.get(i).get("id"));
-                receives.put("status_" + i, receive);
-                receives.put("nowGold_" + i, nowGold);
-                receives.put("gold_" + i, cfgs.get(i).get("gold"));
-                receives.put("integral_" + i, cfgs.get(i).get("integral"));
+                if (receive == null) receive = 0;//0 表示未领取,1 表示已领取;
+                receives.put("cfgType", cfgs.get(i).get("id"));//配置类型
+                receives.put("status", receive);//兑换状态
+                receives.put("nowGold", nowGold);//当前所消耗的房卡
+                receives.put("gold", cfgs.get(i).get("gold"));//所需消耗的房卡
+                receives.put("integral", cfgs.get(i).get("integral"));//奖励的积分
                 items.add(receives);
             }
             result.put(CommonContants.RESULT, Boolean.TRUE);

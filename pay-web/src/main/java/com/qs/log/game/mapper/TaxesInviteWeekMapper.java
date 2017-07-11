@@ -20,14 +20,30 @@ public interface TaxesInviteWeekMapper extends IBaseMapper {
     List<Map<String, Object>> getHistoryAgentsRebateList(Map<String, Object> parameters);
     
     
+    /**
+     * 
+     * @标题: getPaoDeKuaiWeekPayInfoByDate 
+     * @描述: 跑得快周结算列表
+     *
+     * @参数信息
+     *    @param parameters
+     *    @return
+     *
+     * @返回类型 List<Map<String,Object>>
+     * @开发者 QS
+     * @可能抛出异常
+     */
+    List<Map<String, Object>> getPaoDeKuaiWeekPayInfoByDate(Map<String, Object> parameters);
 
     /**
      * //@Author:zun.wei, @Date:2017/4/5 15:48
-     * 根据时间获取周结算发放
+     * 根据时间获取周结算列表
      * @param parameters
      * @return
      */
     List<Map<String, Object>> getWeekPayInfoByDate(Map<String, Object> parameters);
+    
+    
     
     /**
      *  查询单条记录（周结算）

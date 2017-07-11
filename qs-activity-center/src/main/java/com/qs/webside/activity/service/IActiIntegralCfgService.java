@@ -31,14 +31,7 @@ public interface IActiIntegralCfgService {
      * @param actiType
      * @return
      */
-    List<Map<String,Object>> queryListByActiTypeLimitByDate(int actiType);
+    List<Map<String,Object>> queryListByActiTypeLimitByDate(Map<String,Object> actiType);
 
-    /**
-     * @Author:zun.wei , @Date:2017/7/10 15:52
-     * @Description:根据活动类型和时间获取配置对象列表（无缓存,清缓存）
-     * @param actiType
-     * @return
-     */
-    List<Map<String,Object>> queryListByActiTypeLimitByDate2(int actiType);
 
 }

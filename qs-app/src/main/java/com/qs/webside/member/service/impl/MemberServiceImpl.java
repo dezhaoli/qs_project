@@ -288,7 +288,21 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public AgentMids getAgentGrantByMid(Integer mid){
-		return agentMidsMapper.getAgentGrantByMid(mid);
+		AgentMids agentMids=agentMidsMapper.getAgentGrantByMid(mid);
+		if (agentMids !=null ){
+
+			try {
+				String openRoom=memcachedClient.get(CommonContants.OPEN_SESSION_KEY+mid)+"";
+				log.debug("getAgentGrantByMid openRoom:+++++++++++++++++++"+openRoom);
+				if(openRoom == null || "".equals(openRoom) || "null".equals(openRoom)){
+					log.debug("getAgentGrantByMid userinfo:"+CommonContants.OPEN_SESSION_KEY+mid+"::value::"+agentMids.getAmid()+"");
+					memcachedClient.set(CommonContants.OPEN_SESSION_KEY+mid,0,agentMids.getAmid()+"");
+				}
+			} catch (TimeoutException | InterruptedException | MemcachedException e) {
+				e.printStackTrace();
+			}
+		}
+		return agentMids;
 	}
 
 

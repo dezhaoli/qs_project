@@ -28,6 +28,6 @@ public interface ActiIntegralCfgMapper extends IBaseMapper {
      * @param actiType
      * @return
      */
-    List<Map<String,Object>> queryListByActiTypeLimitByDate(int actiType);
+    List<Map<String,Object>> queryListByActiTypeLimitByDate(Map<String,Object> actiType);
 
 }

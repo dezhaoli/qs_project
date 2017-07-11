@@ -33,8 +33,10 @@ input::-webkit-outer-spin-button {
 								<option value="runfast">牵手跑得快/跑胡子</option>
 								<option value="bull">疯狂斗牛OL</option>
 								<option value="majiang">牵手湖南麻将</option>
-								<option value="9">牵手木虱</option>
-								<option value="5">金溪麻将</option>
+							    <option value="beardph">乐玩碰胡</option>
+							   <option value="gd_majiang">广东麻将</option>
+								
+							
 			</select>
         </div>
         <div class="col-sm-2">

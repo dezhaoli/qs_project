@@ -10,11 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * //@Author:zun.wei, @Date:2017/4/7 13:42
- *  周统计表
- * Created by zun.wei on 2017/4/7.
- * To change this template use File|Default Setting
- * |Editor|File and Code Templates|Includes|File Header
+ * 
+ * @ClassName: TaxesInviteWeekServiceImpl 
+ * @描述:周结算支付
+ * @author moys
+ * @date 2017年7月11日 下午7:43:58
  */
 @Service
 public class TaxesInviteWeekServiceImpl implements ITaxesInviteWeekService {
@@ -54,6 +54,24 @@ public class TaxesInviteWeekServiceImpl implements ITaxesInviteWeekService {
     @Override
     public List<Map<String, Object>> getWeekPayHistoryDetailInfoByDate(Map<String, Object> parameters) {
         return taxesInviteWeekMapper.getWeekPayHistoryDetailInfoByDate(parameters);
+    }
+    
+    /**
+     * 
+     * @标题: getPaoDeKuaiWeekPayInfoByDate 
+     * @描述: 跑得快周结算列表(单独方法)
+     *
+     * @参数信息
+     *    @param parameters
+     *    @return
+     *
+     * @返回类型 List<Map<String,Object>>
+     * @开发者 QS
+     * @可能抛出异常
+     */
+    @Override
+    public List<Map<String, Object>> getPaoDeKuaiWeekPayInfoByDate(Map<String, Object> parameters) {
+        return taxesInviteWeekMapper.getPaoDeKuaiWeekPayInfoByDate(parameters);
     }
 
     @Override

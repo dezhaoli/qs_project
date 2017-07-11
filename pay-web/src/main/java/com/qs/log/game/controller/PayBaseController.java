@@ -418,7 +418,7 @@ public class PayBaseController extends BaseController {
 
     
 
-    private int savePayLog(TaxesInviteWeek qRecord, MemberAgents agent, String ip,IPayLogService payLog,int gameType,String tranNo,String msg,int status) {
+    protected int savePayLog(TaxesInviteWeek qRecord, MemberAgents agent, String ip,IPayLogService payLog,int gameType,String tranNo,String msg,int status) {
         PayLog log = new PayLog();
         log.setMid(qRecord.getMid());
         log.setAddDate(qRecord.getDate());

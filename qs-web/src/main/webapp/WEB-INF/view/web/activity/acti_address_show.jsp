@@ -80,7 +80,7 @@
                     </form>
                 </c:if>
                 <c:if test="${empty actiAwardAddress}">
-                    发现异常！
+                    未填写收货地址！
                 </c:if>
                 <div class="hr hr-dotted"></div>
             </div>

@@ -71,12 +71,12 @@
 
         </div>
          <div class="col-sm-1">
-            <span class="input-group-btn">
+           <%--  <span class="input-group-btn">
                <shiro:hasPermission name="pay:batch">
                 <button id="oneKeyPay" class="btn btn-danger btn-sm" type="button">
                     <i class="fa fa-anchor"></i>一键支付
                 </button>
-                </shiro:hasPermission>
+                </shiro:hasPermission> --%>
             </span>
         </div>
     </div>
@@ -95,7 +95,7 @@
                         <h4 class="widget-title lighter">斗牛代理商周信息统计</h4>
                     </c:if>
                     <c:if test="${!empty gameType and gameType == 'runfast'}">
-                        <h4 class="widget-title lighter">跑得快/跑胡子代理商周信息统计</h4>
+                        <h4 class="widget-title lighter">跑得快代理商周信息统计</h4>
                     </c:if>
                     <c:if test="${empty gameType}">
                         <h4 class="widget-title lighter">代理商周信息统计</h4>

@@ -64,15 +64,10 @@ public class ActiIntegralCfgServiceImpl implements IActiIntegralCfgService {
     }
 
     @Override
-    @Cacheable(value = CacheConstan.ACTI_INTEGRAL_CFG_CACHE_NAME,key = "#root.methodName+':'+root.args[0]")
-    public List<Map<String,Object>> queryListByActiTypeLimitByDate(int actiType) {
+    @Cacheable(value = CacheConstan.ACTI_INTEGRAL_CFG_CACHE_NAME,key = "#root.methodName+':'+#actiType.get('actiType')")
+    public List<Map<String,Object>> queryListByActiTypeLimitByDate(Map<String,Object> actiType) {
         return actiIntegralCfgMapper.queryListByActiTypeLimitByDate(actiType);
     }
 
-    @Override
-    @CacheEvict(value = CacheConstan.ACTI_INTEGRAL_CFG_CACHE_NAME,allEntries = true)
-    public List<Map<String, Object>> queryListByActiTypeLimitByDate2(int actiType) {
-        return actiIntegralCfgMapper.queryListByActiTypeLimitByDate(actiType);
-    }
 
 }

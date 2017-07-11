@@ -51,7 +51,7 @@ public class Test
 		try{
 		String res = "";
 		for(int i =0;i<1;i++){
-			 res = HttpClientUtil.httpClientByPost("http://datacenter.longzupoker.com:8888/datacenter/dataCenter/dataCenterLogDispatch.html",map);
+			 res = HttpClientUtil.httpClientByPost("http://192.168.1.92:8080/sync-producer/dataCenter/dataCenterLogDispatch.html",map);
 		}
 		System.out.println(res);
 		}catch(Exception e){

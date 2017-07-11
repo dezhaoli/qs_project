@@ -183,7 +183,7 @@ public class MemberController extends BaseController {
 		   this.loginLogs(user,ip);
 		   
 	  }
-	   
+		handleAvatar(user);//解决 /0 的头像问题。
 	   map.put("aUser",user);
 	   map.put("aGame",gameMap);
 	   map.put("isdayfrist",isdayfrist);
@@ -199,6 +199,18 @@ public class MemberController extends BaseController {
 
 	   return this.getReturnData(map,AppConstants.Result.SUCCESS);
     }
+
+	/**
+	 * @Author:zun.wei , @Date:2017/7/11 19:24
+	 * @Description:处理 /0 头像问题
+	 * @param user
+	 */
+	private void handleAvatar(Memberfides user) {
+		String icon = user.getIcon();
+		if ("/0".equals(icon)) {
+			user.setIcon("");
+		}
+	}
 	
 	/**
 	 * 登录

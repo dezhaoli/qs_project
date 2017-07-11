@@ -153,12 +153,12 @@ public class CreateRoomController extends BaseController
 						Column bean = new Column();
 						bean.setId("businessName");
 						bean.setTitle("商务名称");
-						Column bean2 = new Column();
+						/*Column bean2 = new Column();
 						bean2.setId("userGroupName");
-						bean2.setTitle("区域");
+						bean2.setTitle("区域");*/
 						
 						columns.add(bean);
-						columns.add(bean2);
+						//columns.add(bean2);
 						
 						pager.setExportColumns(columns);
 						ExportUtils.exportAll(response, pager, list);

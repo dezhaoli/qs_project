@@ -156,7 +156,7 @@
 $(function() {
 	jeDate({
 		dateCell : '#searchDate',
-		isinitVal : true,
+		isinitVal : false,
 		format : 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
 		minDate : '1900-06-01', //最小日期
 		maxDate : '2050-06-01' //最大日期

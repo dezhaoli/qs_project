@@ -58,7 +58,7 @@ public interface IActiIntegralService {
      * @param mid
      * @return
      */
-    Object useGoldToSendIntegral(int mid,int integralType);
+    Map<String, Object> useGoldToSendIntegral(int mid,int cfgType);
 
     /**
      * @Author:zun.wei , @Date:2017/7/10 16:05
@@ -66,6 +66,6 @@ public interface IActiIntegralService {
      * @param mid
      * @return
      */
-    Object checkUseGoldToSendIntegral(int mid);
+    Map<String, Object> checkUseGoldToSendIntegral(int mid);
 
 }

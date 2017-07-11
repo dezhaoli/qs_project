@@ -156,14 +156,14 @@
     order by id DESC
   </select>
 
-  <select id="queryListByActiTypeLimitByDate" parameterType="int" resultType="map">
+  <select id="queryListByActiTypeLimitByDate" parameterType="map" resultType="map">
     SELECT
     aic.id, aic.gold, aic.integral, aic.acti_type AS actiType, aic.version, aic.content, aic.remark
     , aic.descr, aic.ext1, aic.ext2,unix_timestamp(ac.close_time) AS closeTime
     from acti_integral_cfg aic,acti_center ac
     WHERE aic.acti_type = ac.type
     <if test="actiType != null and actiType != ''">
-      AND acti_type = #{actiType}
+      AND aic.acti_type = #{actiType}
     </if>
     AND ac.start_time &lt;= NOW()
     AND NOW() &lt;= ac.close_time

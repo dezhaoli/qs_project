@@ -2,6 +2,7 @@ package com.qs.webside.activity.controller;
 
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
 import com.qs.webside.activity.model.ActiIntegral;
 import com.qs.webside.activity.service.IActiIntegralService;
 import com.qs.webside.api.model.BaseRequest;
@@ -91,10 +92,10 @@ public class ActiIntegralController extends BaseController {
     @ResponseBody
     public Object useGoldToSendIntegral(BaseRequest baseRequest, HttpServletRequest request) {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
-        String type = request.getParameter("integralType");
-        int integralType = -1;
-        if (StringUtils.isNotBlank(type)) integralType = Integer.parseInt(type);
-        Object map = actiIntegralService.useGoldToSendIntegral(token.getMid(),integralType);
+        String type = request.getParameter("cfgType");
+        int cfgType = -1;
+        if (StringUtils.isNotBlank(type)) cfgType = Integer.parseInt(type);
+        Map<String, Object> map = actiIntegralService.useGoldToSendIntegral(token.getMid(),cfgType);
         return this.getReturnData(map, AppConstants.Result.SUCCESS);
     }
 
@@ -108,7 +109,7 @@ public class ActiIntegralController extends BaseController {
     @ResponseBody
     public Object checkUseGoldToSendIntegral(BaseRequest baseRequest) {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
-        Object map = actiIntegralService.checkUseGoldToSendIntegral(token.getMid());
+        Map<String, Object> map = actiIntegralService.checkUseGoldToSendIntegral(token.getMid());
         return this.getReturnData(map, AppConstants.Result.SUCCESS);
     }
 
