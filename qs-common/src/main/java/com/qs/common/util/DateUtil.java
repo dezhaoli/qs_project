@@ -149,68 +149,6 @@ public class DateUtil {
 	 } 
 	 
 
-	 /**
-     * 日期设置一年 分周提示
-     * @return Map<String,List<String>>
-     * @throws ParseException
-     */
-    public static Map<String,List<String>> getAgentInfoDateTime() throws ParseException {
-        //请注意月份是从0-11
-        Calendar start = Calendar.getInstance();
-        start.set(2016,9, 1);//月份从0开始，这里从2016年10月开始。
-        Calendar end = Calendar.getInstance();
-        //end.set(2017, 3, 1);
-        end.setTime(new Date());
-
-        int sunday = 0;
-        int monDay = 0;
-        int year = 0;
-        String mon = null;
-        String sun = null;
-        Map<String, List<String>> map = new HashMap<String, List<String>>();
-        List<String> dataList = new ArrayList<String>();
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat formatMonth = new SimpleDateFormat("MM月dd日");
-        while(start.compareTo(end) <= 0) {
-            int w = start.get(Calendar.DAY_OF_WEEK);
-            if (w == Calendar.MONDAY) {//星期一
-                mon = formatMonth.format(start.getTime());
-                monDay = 1;
-            }
-            if (w == Calendar.SUNDAY) {//1为星期天，7为星期六
-                if (monDay == 1) {
-                    sun = formatMonth.format(start.getTime());
-                    sunday = 1;
-                }
-
-            }
-            if (monDay == sunday && monDay == 1) {
-                if (year == 0) year = start.get(Calendar.YEAR);
-                if (year == start.get(Calendar.YEAR)) {
-                    String data = mon + "--" + sun;
-                    dataList.add(data);
-                } else {
-                    if (year != 0) {
-                        map.put("a" + year, dataList);
-                        dataList = new ArrayList<String>();
-                        year += 1;
-                    }
-                }
-                monDay = 0;
-                sunday = 0;
-                mon = null;
-                sun = null;
-            }
-            //打印每天2
-            //System.out.println(format.format(start.getTime()));
-            //循环，每次天数加1
-            start.set(Calendar.DATE, start.get(Calendar.DATE) + 1);
-        }
-        map.put("a" + year, dataList);//当前年的数据。
-        //System.out.println("map = " + map);
-        return map;
-    }
     
     /**
      * 获取参数时间为该年第几周

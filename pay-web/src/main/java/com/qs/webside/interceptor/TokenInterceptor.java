@@ -67,8 +67,7 @@ public class TokenInterceptor  implements HandlerInterceptor {
 		  
 	
 		boolean returnFlag=false;
-		//hour>=20&&hour<=24||
-		if(hour>=0&&hour<=8){
+		if(hour>21&&hour<=24||hour>=0&&hour<=8){
     		Map<String, Object> responseMap=this.getReturnData("当前时间系统停止支付，请在工作时间支付！");
     	   this.responseMessage(response, responseMap);
     	   return false;

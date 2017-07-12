@@ -41,5 +41,11 @@ public class TaxesInviteServiceImpl implements ITaxesInviteService
 	{
 		return taxesInviteMapper.queryListByPageOfArppu(parameters);
 	}
+	@Override
+	public List<TaxesInvite> queryListCountByBusinessId(
+			Map<String, Object> parameters)
+	{
+		return taxesInviteMapper.queryListCountByBusinessId(parameters);
+	}
 	
 }

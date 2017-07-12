@@ -161,7 +161,7 @@
       b.bindpeople,b.paytotal,b.isaward,b.rebatetotal,b.date
     FROM ${dbTable} a,
       taxes_invite_week b ,runfast.mid_openid p
-    WHERE a.mid=b.mid and a.mid=p.mid  and (a.openid ='' or a.openid is  null)
+    WHERE a.mid=b.mid and a.mid=p.mid
     <if test="isaward != null and isaward != ''">
       AND b.isaward=#{isaward}
     </if>

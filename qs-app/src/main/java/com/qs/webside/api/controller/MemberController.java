@@ -209,6 +209,8 @@ public class MemberController extends BaseController {
 		String icon = user.getIcon();
 		if ("/0".equals(icon)) {
 			user.setIcon("");
+		}else if (icon != null && icon.length() < 5) {
+			user.setIcon("");
 		}
 	}
 	
@@ -832,7 +834,6 @@ public class MemberController extends BaseController {
 		if(null!=testVersion&&!StringUtils.isBlank(testVersion.getUrlTest())){
 			if(!StringUtils.isBlank(deviceid)&&!StringUtils.isBlank(testVersion.getDevicelistTest())){
 		    	if(testVersion.getDevicelistTest().contains(deviceid)){
-		    		isTester=1;
 		    		//isTester=0;
 			    if(testVersion.getBigversion()>mobileVersionRequest.getBigversion()){
 					return returnMobileVersionMap(mobileVersionRequest, map, testVersion,true,returnJavaUrl,isTester,isIosCheckVersion);	

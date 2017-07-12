@@ -14,24 +14,6 @@ import java.util.*;
  */
 public class BusinessDateUtil {
 
-
-     /* public static void main(String[] args) throws Exception {
-
-        int currentMaxDays = getCurrentMonthDay();
-
-        int maxDaysByDate = getDaysByYearMonth(2012, 11);
-
-        String week = getDayOfWeekByDate("2012-12-25");
-
-        System.out.println("本月天数：" + currentMaxDays);
-        System.out.println("2012年11月天数：" + maxDaysByDate);
-        System.out.println("2012-12-25是：" + week);
-        System.out.println("--------------------------------------");
-
-        test();
-        System.out.println("--------------------------------------");
-    }*/
-
     /**
      * 获取当月的 天数
      * */
@@ -119,25 +101,6 @@ public class BusinessDateUtil {
         return dayForWeek;
     }
 
-
-
-  /*  public static void dayReport(Date month) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(month);//month 为指定月份任意日期
-        int year = cal.get(Calendar.YEAR);
-        int m = cal.get(Calendar.MONTH);
-        int dayNumOfMonth = getDaysByYearMonth(year, m);
-        cal.set(Calendar.DAY_OF_MONTH, 1);// 从一号开始
-
-        for (int i = 0; i < dayNumOfMonth; i++, cal.add(Calendar.DATE, 1)) {
-            Date d = cal.getTime();
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String df = simpleDateFormat.format(d);
-            System.out.println("df = " + df);
-        }
-    }*/
-
-
     /**
      * 获取代理商周信息统计 日期查询表
      * @return Map<String,List<String>>
@@ -181,6 +144,7 @@ public class BusinessDateUtil {
                     dataList.add(data);
                 } else {
                     if (year != 0) {
+                        Collections.reverse(dataList);
                         map.put("a" + year, dataList);
                         dataList = new ArrayList<>();
                         year += 1;
@@ -196,23 +160,11 @@ public class BusinessDateUtil {
             //循环，每次天数加1
             start.set(Calendar.DATE, start.get(Calendar.DATE) + 1);
         }
+        Collections.reverse(dataList);
         map.put("a" + year, dataList);//当前年的数据。
         //System.out.println("map = " + map);
         return map;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public static void test_bak() throws ParseException {

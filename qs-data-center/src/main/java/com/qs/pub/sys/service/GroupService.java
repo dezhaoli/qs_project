@@ -42,5 +42,7 @@ public interface GroupService
 
 	List<Group> queryListGroupPrivilege(Map<String, Object> parameters);
 
+	List<Integer> queryBusinessIdListByGroupId(Integer groupId);
+
 	
 }

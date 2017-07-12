@@ -28,4 +28,6 @@ public interface BusinessGroupMapper extends IBaseMapper {
 	List<BusinessGroup> queryBusinessList(Map<String, Object> parameter);
 
 	List<BusinessGroup> queryLeaderList(Map<String, Object> parameter);
+
+	List<Integer> queryBusinessIdListByGroupId(Integer groupId);
 }

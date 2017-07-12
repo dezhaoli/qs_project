@@ -196,9 +196,11 @@ union all
 	dat.play_id,
 	dat.play_name,
 	sum(dat.gold)gold,
-	sum(dat.totals)totals,
 	dat.business_name,
-	dat.user_group_name
+	sum(dat.totals)totals
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,dat.user_group_name
+	</if>
     from (
     SELECT 
     d.app_id,
@@ -207,36 +209,36 @@ union all
 	d.play_name,
 	ifnull(sum(d.gold),0) gold,
 	count(d.app_id) totals,
-	bu.business_name,
-	e.id,
-	r.id groupId,
+	e.name business_name,
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id groupId,
 	r.user_group_name
+	</if>
     from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
 		left join ${dbTable}.memberfides0 f on f.mid=d.mid
 		left join ${dbTable}.memberagents  c on f.invite=c.mid 
 		left join ${gameType}.memberbusiness e on e.id=c.belongid
-		<choose>
 			<!-- 公司责任人数据权限查询 --> 
-			<when test="ifLeader == 1">
+			<if test="ifLeader == 1">
 				left join sys_business bu on (e.id = bu.business_id)
 				left join sys_business_group s on (bu.id=s.business_id)
 				left join sys_group r on (r.id=s.group_id)
 				left join sys_group_leader e on (e.group_id= r.id  and r.game_type = #{gameType})
 				left join tb_user u   on (u.u_id=e.user_id  and u.u_id = #{uId})
-			</when>
+			</if>
 			<!-- 普通商务数据权限查询 -->
-			<when test="ifBusiness == 1">
+			<if test="ifBusiness == 1">
 				left join sys_business bu on (e.id = bu.business_id)
 				left join tb_user u on (bu.phone = u.u_account_name and u.u_account_name=#{accountName})
 				left join sys_business_group b on (bu.id=b.business_id)
 				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
-			</when>
-			<otherwise>
+			</if>
+			<if test="groupId != null and groupId != '' and groupId != 'null'">
 				left join sys_business bu on (e.id = bu.business_id)
 				left join sys_business_group b on (bu.id=b.business_id)
 				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
-			</otherwise>
-		</choose>
+		    </if>
     <where>
     
 	
@@ -259,8 +261,10 @@ union all
     group by
     d.app_id,
 	d.play_id,
-	e.id,
-	r.id
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id
+	</if>
 	
 union all
 
@@ -271,36 +275,36 @@ SELECT
 	d.play_name,
 	ifnull(sum(d.gold),0) gold,
 	count(d.app_id) totals,
-	bu.business_name,
-	e.id,
-	r.id groupId,
+	e.name business_name,
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id groupId,
 	r.user_group_name
+	</if>
     from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
 		left join ${dbTable}.memberfides0 f on f.mid=d.mid
 		left join ${dbTable}.memberagents  c on f.mid=c.mid 
 		left join ${gameType}.memberbusiness e on e.id=c.belongid
-		<choose>
 			<!-- 公司责任人数据权限查询 --> 
-			<when test="ifLeader == 1">
+			<if test="ifLeader == 1">
 				left join sys_business bu on (e.id = bu.business_id)
 				left join sys_business_group s on (bu.id=s.business_id)
 				left join sys_group r on (r.id=s.group_id)
 				left join sys_group_leader e on (e.group_id= r.id  and r.game_type = #{gameType})
 				left join tb_user u   on (u.u_id=e.user_id  and u.u_id = #{uId})
-			</when>
+			</if>
 			<!-- 普通商务数据权限查询 -->
-			<when test="ifBusiness == 1">
+			<if test="ifBusiness == 1">
 				left join sys_business bu on (e.id = bu.business_id)
 				left join tb_user u on (bu.phone = u.u_account_name and u.u_account_name=#{accountName})
 				left join sys_business_group b on (bu.id=b.business_id)
 				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
-			</when>
-			<otherwise>
+			</if>
+			<if test="groupId != null and groupId != '' and groupId != 'null'">
 				left join sys_business bu on (e.id = bu.business_id)
 				left join sys_business_group b on (bu.id=b.business_id)
 				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
-			</otherwise>
-		</choose>
+		    </if>
     <where>
     
 	
@@ -323,9 +327,15 @@ SELECT
     group by
     d.app_id,
 	d.play_id,
-	e.id,
-	r.id )dat
-	group by dat.app_id,dat.play_id,dat.id,dat.groupId
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id 
+	</if>
+	)dat
+	group by dat.app_id,dat.play_id,dat.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,dat.groupId
+	</if>
 	
   </select>
   

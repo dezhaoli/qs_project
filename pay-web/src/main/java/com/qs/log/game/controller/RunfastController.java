@@ -278,6 +278,9 @@ public class RunfastController extends PayBaseController {
 		            map.put(CommonContants.MESSAGE, "openid为空");
 		            return map;
 		        }
+		       //设置 openid
+		       agent.setOpenid(openid);
+		        
 		        String ip ="121.196.224.140";
 		  
 		        String tranNo = PayUtil.getTransferNo();

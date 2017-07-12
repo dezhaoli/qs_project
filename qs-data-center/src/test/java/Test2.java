@@ -1,7 +1,7 @@
-import com.qs.common.util.ContextUtil;
-import com.qs.pub.datacenter.model.Playing;
-
-import jodd.util.StringUtil;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /*
@@ -20,9 +20,14 @@ import jodd.util.StringUtil;
 public class Test2
 {
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws ParseException
 	{
-		System.out.println(StringUtil.isBlank(""));
+		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println(sdf.parse("2017-05-25").getMonth());*/
+		
+		List list = new ArrayList();
+		list.add("sss");
+		System.out.println(list.get(list.size()-1));
 		
 	}
 	

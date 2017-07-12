@@ -32,5 +32,27 @@
 			) dat
 
   	</select>
+  	
+  	<select id="queryListCountByBusinessId" parameterType="map" resultMap="BaseResultMap" >
+		select sum(t.paytotal) paytotal,DATE_FORMAT(t.date,'%m') date_str from 
+			runfast_log.taxes_invite t 
+			inner join runfast.memberagents m on t.mid=m.mid
+			inner join runfast.memberbusiness e on m.belongid=e.id
+			where t.date &lt; STR_TO_DATE(#{etime},'%Y-%m') 
+			and t.date &gt;= STR_TO_DATE(#{stime},'%Y-%m')
+			<choose>
+				<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+				</when>
+				<otherwise>
+						and e.id = 0
+				</otherwise>
+			</choose>
+			group by DATE_FORMAT(t.date,'%Y-%m') 
+			order by date_str
+  	</select>
   
 </mapper>

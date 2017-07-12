@@ -150,5 +150,11 @@ public class GroupServiceImpl implements GroupService
 		// TODO Auto-generated method stub
 		return groupMapper.queryListGroupPrivilege(parameters);
 	}
+	@Override
+	public List<Integer> queryBusinessIdListByGroupId(Integer groupId)
+	{
+		// TODO Auto-generated method stub
+		return businessGroupMapper.queryBusinessIdListByGroupId(groupId);
+	}
 
 }

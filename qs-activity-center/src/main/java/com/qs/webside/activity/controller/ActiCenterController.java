@@ -2,12 +2,14 @@ package com.qs.webside.activity.controller;
 
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.AppConstants;
+import com.qs.common.util.DateUtil;
 import com.qs.mainku.game.service.IBaseParamService;
 import com.qs.webside.activity.service.IActiCenterService;
 import com.qs.webside.activity.service.IActiSendGoldService;
 import com.qs.webside.api.model.BaseRequest;
 import com.qs.webside.util.AccessToken;
 import com.qs.webside.util.ContextUtil;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by zun.wei on 2017/5/31 14:18.
@@ -108,5 +111,50 @@ public class ActiCenterController extends BaseController {
         return this.getReturnData(map, AppConstants.Result.SUCCESS);
     }
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/12 18:08
+     * @Description:活动倒计时剩余天数
+     * @param request
+     * @return
+     */
+    @RequestMapping("countdownToActivity.do")
+    @ResponseBody
+    public Object countdownToActivity(HttpServletRequest request) throws ParseException {
+        String type = request.getParameter("actiType");
+        int actiType = -1;
+        if (StringUtils.isNotBlank(type)) actiType = Integer.parseInt(type);
+        Map<String, Object> map = actiCenterService.queryListActivityByStatusAndType(actiType);
+        Map<String, Object> result = new HashMap<>();
+        if (map != null && map.size() > 0) {
+            long endTime = (long) map.get("endTime") * 1000;
+            long nowTime = new Date().getTime();
+            int days = daysBetween(new Date(nowTime), new Date(endTime));
+            result.put("time", days >= 0 ? days : 0);
+            return this.getReturnData(result, AppConstants.Result.SUCCESS);
+        }
+        result.put("time", 0);
+        return this.getReturnData(result, AppConstants.Result.SUCCESS);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/7/12 19:20
+     * @Description:获取两个日期之间相差的天数
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 两个时间相差的天数
+     * @throws ParseException
+     */
+    private int daysBetween(Date startTime, Date endTime) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        startTime = sdf.parse(sdf.format(startTime));
+        endTime = sdf.parse(sdf.format(endTime));
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startTime);
+        long time1 = cal.getTimeInMillis();
+        cal.setTime(endTime);
+        long time2 = cal.getTimeInMillis();
+        long between_days = (time2 - time1) / (1000 * 3600 * 24);
+        return Integer.parseInt(String.valueOf(between_days));
+    }
 
 }

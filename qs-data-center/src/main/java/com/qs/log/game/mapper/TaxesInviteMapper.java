@@ -12,4 +12,7 @@ public interface TaxesInviteMapper extends IBaseMapper {
     int insertSelective(TaxesInvite record);
 
 	List<TaxesInvite> queryListByPageOfArppu(Map<String, Object> parameters);
+
+	List<TaxesInvite> queryListCountByBusinessId(
+			Map<String, Object> parameters);
 }

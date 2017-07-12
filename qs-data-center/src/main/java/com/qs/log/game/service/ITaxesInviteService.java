@@ -24,5 +24,8 @@ public interface ITaxesInviteService
 	List<TaxesInvite> queryListByPage(Map<String, Object> parameters);
 
 	List<TaxesInvite> queryListByPageOfArppu(Map<String, Object> parameters);
+
+	List<TaxesInvite> queryListCountByBusinessId(
+			Map<String, Object> parameters);
 	
 }
