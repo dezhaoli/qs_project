@@ -76,8 +76,11 @@ public class NoticeNewController extends BaseController {
     public String addUI(Model model, HttpServletRequest request,int noticeType) {
         PageUtil page = new PageUtil(request);
         model.addAttribute("page", page);
+        model.addAttribute("pushType", noticeType);
         if (noticeType == 2) {//定时公告
             return "/WEB-INF/view/web/notice/notice_new_form";
+        } else if (noticeType == 3) {//滚动公告
+            return "/WEB-INF/view/web/notice/notice_roll_form";
         } else {//在线公告
             return "/WEB-INF/view/web/notice/notice_new_online_form";
         }
@@ -89,8 +92,12 @@ public class NoticeNewController extends BaseController {
         PageUtil page = new PageUtil(request);
         model.addAttribute("page", page);
         model.addAttribute("record", record);
-        if (record.getPushType() == 2) {//定时公告
+        int pushType = record.getPushType();
+        model.addAttribute("pushType", pushType);
+        if (pushType == 2) {//定时公告
             return "/WEB-INF/view/web/notice/notice_new_form";
+        }else if (pushType == 3) {//滚动公告
+            return "/WEB-INF/view/web/notice/notice_roll_form";
         } else {//在线公告
             return "/WEB-INF/view/web/notice/notice_new_online_form";
         }
@@ -99,7 +106,6 @@ public class NoticeNewController extends BaseController {
     @RequestMapping("add.html")
     @ResponseBody
     public Object add(NoticeNew record) throws ParseException {
-        record.setIsEnable("0");
         choosePushType(record);
         Map<String, Object> map = new HashMap<String, Object>();
         int result = noticeNewService.insertSelective(record,goldhost,goldport,gametype);
@@ -135,7 +141,8 @@ public class NoticeNewController extends BaseController {
      */
     private void choosePushType(NoticeNew noticeNew) throws ParseException {
         UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
-        if (StringUtils.isNotBlank(noticeNew.getTitle())) {//有标题说明是定时公告
+        int pushType = noticeNew.getPushType();
+        if (pushType == 2) {//发布定时公告
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             int stime = (int) (simpleDateFormat.parse(noticeNew.getStartTime()).getTime() / 1000);
             int etime = (int)(simpleDateFormat.parse(noticeNew.getEndTime()).getTime() / 1000);
@@ -143,11 +150,16 @@ public class NoticeNewController extends BaseController {
             noticeNew.setEtime(etime);
             noticeNew.setPushTime(new Date());
             noticeNew.setPushUserName(userEntity.getUserName());
-            noticeNew.setPushType(2);//发布定时公告
-        } else {
+            //noticeNew.setPushType(2);
+        } else if (pushType == 3) {//发布滚动公告
             noticeNew.setPushTime(new Date());
             noticeNew.setPushUserName(userEntity.getUserName());
-            noticeNew.setPushType(1);//在线公告
+            //noticeNew.setPushType(3);
+        } else {//在线公告
+            noticeNew.setIsEnable("0");
+            noticeNew.setPushTime(new Date());
+            noticeNew.setPushUserName(userEntity.getUserName());
+            //noticeNew.setPushType(1);
         }
     }
 

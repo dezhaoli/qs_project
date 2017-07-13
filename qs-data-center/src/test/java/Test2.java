@@ -1,7 +1,7 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /*
@@ -22,12 +22,17 @@ public class Test2
 	
 	public static void main(String[] args) throws ParseException
 	{
-		/*SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println(sdf.parse("2017-05-25").getMonth());*/
-		
-		List list = new ArrayList();
-		list.add("sss");
-		System.out.println(list.get(list.size()-1));
+		Date stime = new SimpleDateFormat("yyyy-MM").parse("2014-6");// 定义起始日期
+		Date etime = new SimpleDateFormat("yyyy-MM").parse("2016-5");// 定义结束日期
+		Calendar cd = Calendar.getInstance();// 定义日期实例
+		cd.setTime(stime);// 设置日期起始时间
+		while (cd.getTime().before(etime))
+		{// 判断是否到结束日期
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
+			String str = sdf.format(cd.getTime());
+			System.out.println(str);// 输出日期结果
+			cd.add(Calendar.MONTH, 1);// 进行当前日期月份加1
+		}
 		
 	}
 	

@@ -55,7 +55,7 @@ min-height: 553px; }
 .qs_address_body{background:url("../img/address_bj.jpg");background-repeat:no-repeat;background-size: 100% 100%; /* min-height: 500px;width: 100%; */margin: 0px }
  .qs_address_ul li{    background: rgba(255, 255, 255, 0.0)!important;border: 0px;text-align: left;font-size: 2em;}
  .qs_address_foot{background:url("../img/bj/dz_di.png");background-repeat: repeat;height:0px;width: 101% }
- .qs_address_ul{margin:60px 120px; color: #600000;font-size: 1.5em;}
+ .qs_address_ul{margin: 40px 120px 118px; color: #600000;font-size: 1.5em;}
  .qs_address_ul input{font-size: 22px;}
 /* -----地址  -s----*/
 

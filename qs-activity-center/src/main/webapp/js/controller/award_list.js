@@ -5,6 +5,34 @@ define(['app',"layer"],function(app){
         var url=hash.substring(0,hash.indexOf("/index.html")); 
         $(".qs_ul li").children("a").removeClass("cli_hover");
         $(".qs_ul li").children("a").eq(0).addClass("cli_hover");
+        
+        var dataparam={
+        		"actiType":5,
+        		"sesskey":sessionStorage.sesskey,
+        		"signCode":$myService.getDate()};
+        dataparam.sign=$myService.sortObjectKeys(dataparam);
+
+
+        //用户信息查询
+        $scope.getTime=function (){
+        	$.post(url+"/api/activity/countdownToActivity.do ", dataparam,
+        			function(data){
+                	var result=JSON.parse(data);
+                	if (result.svflag==1){
+                		$timeout(function(){  
+                			$scope.time=JSON.parse(data).data.time;
+                		},100);
+                	}else if (result.svflag==1001){
+                		$scope.time=0;	
+                	}else {
+                		console.log(data);
+                		window.datas=result;
+                		$state.go('errormsg');
+                	}
+        		
+        	});
+        }
+        $scope.getTime();
         var parma={
         		"sesskey":sessionStorage.sesskey,
         		"signCode":$myService.getDate()};

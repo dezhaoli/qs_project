@@ -20,6 +20,7 @@
            <option selected="selected" value="">请选择发布类型</option>
            <option value="1">在线公告</option>
            <option value="2">定时公告</option>
+           <option value="3">滚动公告</option>
        </select>
    </div>
     <div class="col-sm-1">
@@ -33,9 +34,10 @@
 
        <div class="col-sm-2">
            <select class="form-control" name="searchType" id="searchType">
-               <option value="" selected="selected">请选择发布类型...</option>
-               <option value="1" >在线公告...</option>
-               <option value="2" >定时公告...</option>
+               <option value="" selected="selected">全部</option>
+               <option value="1" >在线公告</option>
+               <option value="2" >定时公告</option>
+               <option value="3">滚动公告</option>
            </select>
        </div>
        <div class="col-sm-3">
@@ -87,9 +89,11 @@
         var opt = $("#changeType").val();
         if (opt == 1) {
             webside.common.addModel('/noticeNew/addUI.html?noticeType='+1);//在线公告
-        }else if (opt = 2){
+        }else if (opt == 2){
             webside.common.addModel('/noticeNew/addUI.html?noticeType='+2);//定时公告
-        }else {
+        }else if (opt == 3){
+            webside.common.addModel('/noticeNew/addUI.html?noticeType='+3);//滚动公告
+        } else {
 
         }
     });

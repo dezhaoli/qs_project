@@ -10,6 +10,7 @@ import com.qs.log.game.service.INoticeNewService;
 import org.apache.log4j.Logger;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -30,14 +31,20 @@ public class NoticeNewServiceImpl implements INoticeNewService {
     private static final Logger log = Logger.getLogger(NoticeNewServiceImpl.class);
 
     @Override
-    @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true)
+    @Caching(evict = {
+            @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true),
+            @CacheEvict(value = CacheConstan.NEW_NOTICE_PUSH_TYPE_CACHE_NAME,allEntries = true)
+    })
     public int deleteByPrimaryKey(Integer id) {
         NoticeUtil.hasJob = true;
         return noticeNewMapper.deleteByPrimaryKey(id);
     }
 
     @Override
-    @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true)
+    @Caching(evict = {
+            @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true),
+            @CacheEvict(value = CacheConstan.NEW_NOTICE_PUSH_TYPE_CACHE_NAME,allEntries = true)
+    })
     public int insertSelective(NoticeNew record,String goldhost,int goldport,int gameType) {
         int pushType = record.getPushType();
         //发布在线公告
@@ -54,7 +61,10 @@ public class NoticeNewServiceImpl implements INoticeNewService {
     }
 
     @Override
-    @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true)
+    @Caching(evict = {
+            @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true),
+            @CacheEvict(value = CacheConstan.NEW_NOTICE_PUSH_TYPE_CACHE_NAME,allEntries = true)
+    })
     public int updateByPrimaryKeyWithBLOBs(NoticeNew record,String goldhost,int goldport,int gameType) {
         int pushType = record.getPushType();
         //发布在线公告

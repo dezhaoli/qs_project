@@ -24,13 +24,13 @@ var myChart = echarts.init(document.getElementById('main'));
 };*/
 var option = {
 	    title: {
-	        text: '在玩人数'
+	        text: '分公司业绩趋势图'
 	    },
 	    tooltip: {
 	        trigger: 'axis'
 	    },
 	    legend: {
-	        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+	        data:[]
 	    },
 	    grid: {
 	        left: '3%',
@@ -46,19 +46,14 @@ var option = {
 	    xAxis: {
 	        type: 'category',
 	        boundaryGap: false,
-	        data: ['周一','周二','周三','周四','周五','周六','周日']
+	        data: []
 	    },
 	    yAxis: {
+	    	name:'金额/月份',
+	    	nameTextStyle:{color : '#438eb9'},
 	        type: 'value'
 	    },
-	    series: [
-	        {
-	            name:'人数',
-	            type:'line',
-	            stack: '总量',
-	            data:[0,0,0]
-	        }
-	    ]
+	    series: []
 	};
 
 
@@ -67,24 +62,36 @@ $(function () {
         dateCell: '#stime',
         isinitVal:new Date(),
         //isinitVal:false,
-        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-        minDate: '1900-06-01', //最小日期
-        maxDate: '2050-06-01' //最大日期
+        format: 'YYYY-MM', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06', //最小日期
+        maxDate: '2050-06' //最大日期
     });
     jeDate({
         dateCell: '#etime',
         isinitVal:new Date(),
         //isinitVal:false,
-        format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
-        minDate: '1900-06-01', //最小日期
-        maxDate: '2050-06-01' //最大日期
+        format: 'YYYY-MM', // 分隔符可以任意定义，该例子表示只显示年月
+        minDate: '1900-06', //最小日期
+        maxDate: '2050-06' //最大日期
     });
 });
 
+
+
+
+var saveDate = new Date(Date.parse($("#etime").val().replace(/-/g, "/")));
+saveDate.setMonth(saveDate.getMonth()-5);
+
+var year = saveDate.getFullYear();
+var month = saveDate.getMonth() + 1 < 10 ? "0" + (saveDate.getMonth() + 1) : saveDate.getMonth() + 1;
+var date = saveDate.getDate() < 10 ? "0" + saveDate.getDate() : saveDate.getDate();
+
+startDate = year + "-" + month;
+
+$('#stime').val(startDate);
+
 var stimePlay =  $("#stime").val();
 var etimePlay =  $("#etime").val();
-
-
 
 
 //动态设置jqGrid的rowNum
@@ -105,24 +112,22 @@ var setOption=function (stime,etime){
 		dataType: "json",
 		success: function(data){
 			debugger;
-			//option.series[0].data=JSON.parse(array[1]);
-			//option.xAxis.data= JSON.parse(array[0]);
-			// 使用刚指定的配置项和数据显示图表。data.lengend
+			option.series=[];
 			var legend=JSON.parse(data.lengend);
-			var series=JSON.parse(data.data);
 			option.legend.data=legend;
+			option.xAxis.data=JSON.parse(data.xAxis);
+			var datas=JSON.parse(data.data);
 			for(var i=0;i<legend.length;i++){
 				var ser={
-				           name:'人数',
-				            type:'line',
+				           name:'',
+				           type:'line',
 				           stack: '总量',
-				            data:[0,0,0]};
+				           data:[0,0,0]
+				};
 				ser.name=legend[i];
-				ser.data=JSON.parse(data.xAxis);
+				ser.data=datas[i];
 				option.series.push(ser);
 			}
-//			option.series.data=JSON.parse(data.data);
-			option.xAxis.data=JSON.parse(data.xAxis);
 			myChart.setOption(option);
 		}
 	});

@@ -2,6 +2,7 @@ package com.qs.webside.activity.service;
 
 import com.qs.webside.activity.model.ActiIntegral;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,7 @@ public interface IActiIntegralService {
      * @param mid
      * @return
      */
-    Map<String, Object> useGoldToSendIntegral(int mid,int cfgType);
+    Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) throws IOException ;
 
     /**
      * @Author:zun.wei , @Date:2017/7/10 16:05
@@ -66,6 +67,6 @@ public interface IActiIntegralService {
      * @param mid
      * @return
      */
-    Map<String, Object> checkUseGoldToSendIntegral(int mid);
+    Map<String, Object> checkUseGoldToSendIntegral(int mid) throws IOException;
 
 }

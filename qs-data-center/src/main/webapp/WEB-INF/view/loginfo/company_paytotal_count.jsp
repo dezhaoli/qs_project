@@ -33,7 +33,7 @@ width:80px;
 
 
 <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-<div id="main" class="col-xs-11" style="width:100%;min-height: 300px;"></div>
+<div id="main" class="col-xs-11" style="width:100%;min-height: 500px;margin-top:20px;"></div>
 
 <div class="row" style="margin-top:5px;">
 	<div class="col-xs-12 widget-container-col ui-sortable"

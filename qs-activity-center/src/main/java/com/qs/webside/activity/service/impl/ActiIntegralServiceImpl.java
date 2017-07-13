@@ -1,8 +1,12 @@
 package com.qs.webside.activity.service.impl;
 
+import com.qs.common.constant.AppConstants;
 import com.qs.common.constant.CacheConstan;
 import com.qs.common.constant.CommonContants;
+import com.qs.common.util.MemcachedUtil;
+import com.qs.mainku.game.model.BaseParam;
 import com.qs.mainku.game.model.MemberFides;
+import com.qs.mainku.game.service.IBaseParamService;
 import com.qs.mainku.game.service.IMemberFidesService;
 import com.qs.webside.activity.mapper.ActiIntegralMapper;
 import com.qs.webside.activity.model.ActiIntegral;
@@ -11,12 +15,14 @@ import com.qs.webside.activity.service.IActiCenterService;
 import com.qs.webside.activity.service.IActiIntegralCfgService;
 import com.qs.webside.activity.service.IActiIntegralService;
 import com.qs.webside.activity.service.IActiSendIntegralService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -44,6 +50,9 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
 
     @Resource
     private RedisTemplate redisTemplate;
+
+    @Resource
+    private IBaseParamService baseParamService;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -162,9 +171,13 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
     }
 
     @Override
-    public Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) {
-        //TODO 1.获取当前时间消耗的房卡数量。
-        int nowGold = 0;
+    public Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) throws IOException {
+        String memcachedUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.MEMCACHED_IP);
+        memcachedUrl = StringUtils.isBlank(memcachedUrl) ? "" : memcachedUrl;
+        String memcachedKey = "ds" + simpleDateFormat.format(new Date()) + "|" + mid + "";
+        Object o = MemcachedUtil.getMemcached(memcachedUrl, memcachedKey);
+        int nowGold = o == null ? 0 : Integer.parseInt(o + "");
+        nowGold = nowGold > 0 ? nowGold : 0;
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> map = new HashMap<>();
         map.put("actiType", 10);
@@ -221,9 +234,13 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
     }
 
     @Override
-    public Map<String, Object> checkUseGoldToSendIntegral(int mid) {
-        //TODO 1.获取当前时间消耗的房卡数量。
-        int nowGold = 0;
+    public Map<String, Object> checkUseGoldToSendIntegral(int mid) throws IOException {
+        String memcachedUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.MEMCACHED_IP);
+        memcachedUrl = StringUtils.isBlank(memcachedUrl) ? "" : memcachedUrl;
+        String memcachedKey = "ds" + simpleDateFormat.format(new Date()) + "|" + mid + "";
+        Object o = MemcachedUtil.getMemcached(memcachedUrl, memcachedKey);
+        int nowGold = o == null ? 0 : Integer.parseInt(o + "");
+        nowGold = nowGold > 0 ? nowGold : 0;
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> map = new HashMap<>();
         map.put("actiType", 10);

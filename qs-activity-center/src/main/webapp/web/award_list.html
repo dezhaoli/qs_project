@@ -1,5 +1,8 @@
 <div >
-	<div style="height: 50px;background: #223c53;color: #FFF;font-size: 1.2em;padding: 15px 15px 30px;" class="header">我的积分：{{nowIntegral}}</div>
+	<div style="height: 50px;background: #223c53;color: #FFF;font-size: 1.2em;padding: 15px 15px 30px;" class="header">
+	我的积分：{{nowIntegral}}
+	<span style="margin-left: 25%;">活动结束剩余：{{time}}天</span>
+	</div>
 	 <div class="row qs_rowHight" >
 	    <div class="col-sm-6 col-md-3 qs_divBody qs_heightwithd" ng-repeat="item in data" >
 	            <img src="{{item.imgUrl}}" alt="图片加载中……" class="qs_heightwithd">

@@ -36,15 +36,15 @@ define(['app',"layer"],function(app){
         	var id = $("#userid").val();
         	var name = $("#name").val();
         	var qq = $("#qq").val();
-        	var wechat = $("#wechat").val();
-        	var email = $("#email").val();
+//        	var wechat = $("#wechat").val();
+//        	var email = $("#email").val();
         	var phone = $("#phone").val();
         	var address = $("#address").val();
         	//if (!id){/*layer.msg("ID为空！", { icon : 5,time : 800 });*/return }
         	if (!name){layer.msg("姓名不能为空！", { icon : 5,time : 1000 });return }
         	if (!qq){layer.msg("QQ不能为空！", { icon : 5,time : 1000 });return }
-        	if (!wechat){layer.msg("微信不能为空！", { icon : 5,time : 1000 });return }
-        	if (!email){layer.msg("邮箱不能为空！", { icon : 5,time : 1000 });return }
+//        	if (!wechat){layer.msg("微信不能为空！", { icon : 5,time : 1000 });return }
+//        	if (!email){layer.msg("邮箱不能为空！", { icon : 5,time : 1000 });return }
         	if (!phone){layer.msg("手机号不能为空！", { icon : 5,time : 1000 });return }
         	if (!address){layer.msg("地址不能为空！", { icon : 5,time : 1000 }); return
         	}
@@ -61,8 +61,8 @@ define(['app',"layer"],function(app){
         			"id":id,
         			"name":name,
         			"qq":qq,
-        			"wechat":wechat,
-        			"email":email,
+//        			"wechat":wechat,
+//        			"email":email,
         			"phone":phone,
         			"address":address
         	}

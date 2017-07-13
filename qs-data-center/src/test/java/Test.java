@@ -24,8 +24,8 @@ public class Test
 	public static void main(String[] args)
 	{
 		Map map = new HashMap();
-		map.put("logType", "3");
-		map.put("mid", "3002");
+		map.put("logType", "4");
+		map.put("mid", "666222");
 		map.put("appId", "107");
 		map.put("mtime", "1499390269");
 		map.put("lgtm", "1499390269");
@@ -51,7 +51,7 @@ public class Test
 		try{
 		String res = "";
 		for(int i =0;i<1;i++){
-			 res = HttpClientUtil.httpClientByPost("http://192.168.1.92:8080/sync-producer/dataCenter/dataCenterLogDispatch.html",map);
+			 res = HttpClientUtil.httpClientByPost("http://192.168.1.128:8088/datacenter/dataCenter/dataCenterLogDispatch.html",map);
 		}
 		System.out.println(res);
 		}catch(Exception e){

@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.qs.log.game.model.NoticeNew;
+import com.qs.log.game.service.INoticeNewService;
+import com.qs.webside.api.model.BaseRequest;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -20,6 +23,8 @@ import com.qs.webside.api.model.MemberInviteRequest;
 import com.qs.webside.util.AccessToken;
 import com.qs.webside.util.ContextUtil;
 
+import javax.annotation.Resource;
+
 
 @Controller
 @Scope("prototype")
@@ -31,6 +36,8 @@ public class NoticeController extends BaseController {
 	@Autowired
 	private NoticeService noticeService;
 
+	@Resource
+	private INoticeNewService noticeNewService;
 
 	/**
 	 * 获取所有公告信息
@@ -77,6 +84,22 @@ public class NoticeController extends BaseController {
 			 return this.getReturnData(map,record);
 		 }
 	}
-	
+
+	/**
+	 * @Author:zun.wei , @Date:2017/7/13 14:04
+	 * @Description:获取最新一条滚动公告
+	 * @param baseRequest
+	 * @return
+	 */
+	@RequestMapping(value = "newNotice/getRollNotice.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Object getRollNotice(BaseRequest baseRequest){
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("pushType", 3);
+		List<NoticeNew> noticeNewList = noticeNewService.queryListByPushType(parameters);
+		return this.getReturnData(noticeNewList, AppConstants.Result.SUCCESS);
+
+	}
+
 
 }

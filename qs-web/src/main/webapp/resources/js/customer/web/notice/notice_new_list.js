@@ -22,6 +22,7 @@ var dtGridColumns = [
     title: '内容',
     type: 'string',
     columnClass: 'text-center',
+    width:500,
     headerClass: 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
         return value;
@@ -37,9 +38,17 @@ var dtGridColumns = [
             return "在线公告";
         }else if(value == 2){
             return "定时公告";
+        }else if(value == 3){
+            return "滚动公告";
         }
         return value;
     }
+}, {
+    id: 'intervalTime',
+    title: '间隔时间(秒)',
+    type: 'string',
+    columnClass: 'text-center',
+    headerClass: 'dlshouwen-grid-header'
 }, {
     id: 'startTime',
     title: '开始时间',

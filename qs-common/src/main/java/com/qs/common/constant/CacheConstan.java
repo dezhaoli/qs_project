@@ -48,6 +48,8 @@ public class CacheConstan {
 
     public static final String NEW_NOTICE_CACHE_NAME = "newNotice";
 
+    public static final String NEW_NOTICE_PUSH_TYPE_CACHE_NAME = "newNoticePushType";
+
     public static final String ACTI_INTEGRAL_CFG_CACHE_NAME = "actiIntegralCfg";
 
 }

@@ -716,7 +716,7 @@ public class AgentRoomController extends BaseController{
     		BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
     		if (iosBaseParam !=null ){
     			log.debug("insertOpenRoom into "+iosBaseParam.getValue()+"::"+CommonContants.OPEN_SESSION_KEY+mid+":value:"+AgentUtil.getAgentMid());
-    			MemcachedUtil.setMemcached(iosBaseParam.getValue(), CommonContants.OPEN_SESSION_KEY+mid, AgentUtil.getAgentMid()+"", 30*24*3600);
+    			MemcachedUtil.setMemcached(iosBaseParam.getValue(), CommonContants.OPEN_SESSION_KEY+mid, AgentUtil.getAgentMid()+"", 0);
     		}else {
     			log.debug("into insertOpenRoom BaseParam is:: null ");
     		}

@@ -25,6 +25,8 @@
                 <input type="hidden" name="id" id="id" value="${record.id }">
             </c:if>
 
+            <input type="hidden" name="pushType" id="pushType" value="${pushType}">
+
             <div class="form-group">
                 <label class="control-label col-sm-1 no-padding-right">内容</label>
                 <div class="col-sm-11">

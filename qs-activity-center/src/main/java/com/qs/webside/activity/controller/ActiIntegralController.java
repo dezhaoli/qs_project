@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,7 +91,7 @@ public class ActiIntegralController extends BaseController {
      */
     @RequestMapping("useGoldToSendIntegral.do")
     @ResponseBody
-    public Object useGoldToSendIntegral(BaseRequest baseRequest, HttpServletRequest request) {
+    public Object useGoldToSendIntegral(BaseRequest baseRequest, HttpServletRequest request) throws IOException {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
         String type = request.getParameter("cfgType");
         int cfgType = -1;
@@ -107,7 +108,7 @@ public class ActiIntegralController extends BaseController {
      */
     @RequestMapping("checkUseGoldToSendIntegral.do")
     @ResponseBody
-    public Object checkUseGoldToSendIntegral(BaseRequest baseRequest) {
+    public Object checkUseGoldToSendIntegral(BaseRequest baseRequest) throws IOException {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
         Map<String, Object> map = actiIntegralService.checkUseGoldToSendIntegral(token.getMid());
         return this.getReturnData(map, AppConstants.Result.SUCCESS);

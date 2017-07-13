@@ -1,0 +1,104 @@
+package com.qs.log.game.service.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.qs.common.constant.CacheConstan;
+import com.qs.common.util.NoticeUtil;
+import com.qs.common.util.SocketPacketUtil;
+import com.qs.log.game.mapper.NoticeNewMapper;
+import com.qs.log.game.model.NoticeNew;
+import com.qs.log.game.service.INoticeNewService;
+import org.apache.log4j.Logger;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/6/30 14:14.
+ * Description:新公告业务层
+ */
+@Service
+public class NoticeNewServiceImpl implements INoticeNewService {
+
+    @Resource
+    private NoticeNewMapper noticeNewMapper;
+
+    private static final Logger log = Logger.getLogger(NoticeNewServiceImpl.class);
+
+    @Override
+    @Caching(evict = {
+            @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true),
+            @CacheEvict(value = CacheConstan.NEW_NOTICE_PUSH_TYPE_CACHE_NAME,allEntries = true)
+    })
+    public int deleteByPrimaryKey(Integer id) {
+        NoticeUtil.hasJob = true;
+        return noticeNewMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    @Caching(evict = {
+            @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true),
+            @CacheEvict(value = CacheConstan.NEW_NOTICE_PUSH_TYPE_CACHE_NAME,allEntries = true)
+    })
+    public int insertSelective(NoticeNew record,String goldhost,int goldport,int gameType) {
+        int pushType = record.getPushType();
+        //发布在线公告
+        if(pushType==1){
+            sendToCServer(record, goldhost, goldport,gameType);
+        }
+        NoticeUtil.hasJob = true;
+        return noticeNewMapper.insertSelective(record);
+    }
+
+    @Override
+    public NoticeNew selectByPrimaryKey(Integer id) {
+        return noticeNewMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    @Caching(evict = {
+            @CacheEvict(value={CacheConstan.NEW_NOTICE_CACHE_NAME},allEntries=true),
+            @CacheEvict(value = CacheConstan.NEW_NOTICE_PUSH_TYPE_CACHE_NAME,allEntries = true)
+    })
+    public int updateByPrimaryKeyWithBLOBs(NoticeNew record,String goldhost,int goldport,int gameType) {
+        int pushType = record.getPushType();
+        //发布在线公告
+        if(pushType==1){
+            sendToCServer(record, goldhost, goldport,gameType);
+        }
+        NoticeUtil.hasJob = true;
+        return noticeNewMapper.updateByPrimaryKeyWithBLOBs(record);
+    }
+
+    @Override
+    public List<NoticeNew> queryListByPage(Map<String, Object> parameters) {
+        return noticeNewMapper.queryListByPage(parameters);
+    }
+
+    @Override
+    @Cacheable(value = {CacheConstan.NEW_NOTICE_CACHE_NAME},key = "#root.methodName")
+    public List<NoticeNew> queryListByPushType() {
+        return noticeNewMapper.queryListByPushType();
+    }
+
+    private boolean sendToCServer(NoticeNew noticeNew,String goldhost,int goldport,int gameType) {
+        SocketPacketUtil socketUtil = new SocketPacketUtil(goldhost, goldport);
+        int type = 7;
+        int cmd = 10008;
+        Map<String, Object> jsonMsgMap = new HashMap<String, Object>();
+        jsonMsgMap.put("type", type);
+        jsonMsgMap.put("msg", noticeNew.getContent());
+        String jsonMsg = JSON.toJSONString(jsonMsgMap);
+        boolean socketFlag = socketUtil.sendDataUtf8(cmd, 0, jsonMsg);//发送给全部人
+        log.debug("socketFlag===::" + socketFlag);
+        log.debug("socketFlag===:: send online notice success ! notice content = " + noticeNew.getContent());
+        socketUtil.close();
+        return socketFlag;
+    }
+
+}

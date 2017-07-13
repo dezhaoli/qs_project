@@ -34,11 +34,11 @@
   	</select>
   	
   	<select id="queryListCountByBusinessId" parameterType="map" resultMap="BaseResultMap" >
-		select sum(t.paytotal) paytotal,DATE_FORMAT(t.date,'%m') date_str from 
-			runfast_log.taxes_invite t 
-			inner join runfast.memberagents m on t.mid=m.mid
-			inner join runfast.memberbusiness e on m.belongid=e.id
-			where t.date &lt; STR_TO_DATE(#{etime},'%Y-%m') 
+		select sum(t.paytotal) paytotal,DATE_FORMAT(t.date,'%Y-%m') date_str from 
+			taxes_invite t 
+			inner join ${dbtable}.memberagents m on t.mid=m.mid
+			inner join ${gameType}.memberbusiness e on m.belongid=e.id
+			where t.date &lt; DATE_FORMAT(DATE_SUB(STR_TO_DATE(CONCAT(#{etime},'-01'),'%Y-%m-%d'),INTERVAL -1 MONTH),'%Y-%m')
 			and t.date &gt;= STR_TO_DATE(#{stime},'%Y-%m')
 			<choose>
 				<when test="businessIdList != null">
