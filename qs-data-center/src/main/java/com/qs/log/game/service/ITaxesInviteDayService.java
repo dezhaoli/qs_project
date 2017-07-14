@@ -30,5 +30,7 @@ public interface ITaxesInviteDayService
 			Map<String, Object> parameters);
 
 	Double queryBusinessAmountTotal(Map<String, Object> parameters);
+
+	List<TaxesInviteDay> queryAllBusinessAgent(Map<String, Object> parameters);
 	
 }

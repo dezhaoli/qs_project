@@ -46,4 +46,7 @@ public interface IMemberagentsService
 			Map<String, Object> parameters);
 
 	List<Memberagents> queryAgentLevel(Map<String, Object> parameters);
+
+	List<Memberagents> queryListCountByBusinessId(
+			Map<String, Object> parameters);
 }

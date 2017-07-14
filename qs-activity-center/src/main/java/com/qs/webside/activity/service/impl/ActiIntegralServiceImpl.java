@@ -16,6 +16,8 @@ import com.qs.webside.activity.service.IActiIntegralCfgService;
 import com.qs.webside.activity.service.IActiIntegralService;
 import com.qs.webside.activity.service.IActiSendIntegralService;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
@@ -32,6 +34,8 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 public class ActiIntegralServiceImpl implements IActiIntegralService {
+
+    private Log log = LogFactory.getLog(ActiIntegralServiceImpl.class);
 
     @Resource
     private ActiIntegralMapper actiIntegralMapper;
@@ -205,13 +209,24 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
                     Integer receive = v.get("i" + simpleDateFormat.format(new Date())
                             + ":" + mid + ":" + cfgs.get(i).get("id"));
                     if (receive == null) receive = 0;
-                    if (receive == 0) {
-                        ValueOperations valueOper = redisTemplate.opsForValue();
-                        valueOper.set("i" + simpleDateFormat.format(new Date())//设置成已领取
-                                + ":" + mid + ":" + cfgs.get(i).get("id"), 1, 2, TimeUnit.DAYS);
-                        result.put(CommonContants.RESULT, Boolean.TRUE);
-                        result.put(CommonContants.DATA, cfgs.get(i).get("integral"));
-                        result.put(CommonContants.MESSAGE, "成功兑换" + cfgs.get(i).get("integral") + "积分!");
+                    if (receive == 0) {//表示未领取过
+                        ActiIntegral actiIntegral = new ActiIntegral();
+                        actiIntegral.setMid(mid);
+                        actiIntegral.setNowIntegral(Long.parseLong(cfgs.get(i).get("integral") + ""));
+                        int updateResult = actiIntegralMapper.insertOrUpate(actiIntegral);
+                        if (updateResult > 0) {//更新积分成功
+                            ValueOperations valueOper = redisTemplate.opsForValue();
+                            valueOper.set("i" + simpleDateFormat.format(new Date())//设置成已领取
+                                    + ":" + mid + ":" + cfgs.get(i).get("id"), 1, 2, TimeUnit.DAYS);
+                            result.put(CommonContants.RESULT, Boolean.TRUE);
+                            result.put(CommonContants.DATA, cfgs.get(i).get("integral"));
+                            result.put(CommonContants.MESSAGE, "成功兑换" + cfgs.get(i).get("integral") + "积分!");
+                        } else {
+                            log.debug("Exchange points error ===>:: udpate user integral fail ！");
+                            result.put(CommonContants.RESULT, Boolean.FALSE);
+                            result.put(CommonContants.DATA, -6);
+                            result.put(CommonContants.MESSAGE, "更新用户积分失败!");
+                        }
                         return result;
                     } else {
                         result.put(CommonContants.RESULT, Boolean.FALSE);
@@ -221,7 +236,7 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
                     }
                 }
             }
-            result.put(CommonContants.RESULT, Boolean.TRUE);
+            result.put(CommonContants.RESULT, Boolean.FALSE);
             result.put(CommonContants.DATA, -5);
             result.put(CommonContants.MESSAGE, "不存在的配置!");
             return result;

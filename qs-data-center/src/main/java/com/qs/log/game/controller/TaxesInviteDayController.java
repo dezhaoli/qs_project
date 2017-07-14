@@ -7,6 +7,7 @@
  */
 package com.qs.log.game.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.dtgrid.model.Column;
 import com.qs.common.dtgrid.model.Pager;
 import com.qs.common.dtgrid.util.ExportUtils;
 import com.qs.common.exception.SystemException;
@@ -353,6 +355,78 @@ public class TaxesInviteDayController extends BaseController
 				list = taxesInviteDayService.queryGameRecordListByPage(parameters);
 				return getReturnPage(pager, page, list);
 			}
+		} catch (Exception e)
+		{
+			throw new SystemException(e);
+		}
+		
+	}
+	@RequestMapping("exportAll.html")
+	@ResponseBody
+	public void exportAll(String startDate,String endDate,HttpServletResponse response){
+		try
+		{
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+		    String logDataSourceType=dataSourceName+"LogDataSource";
+			String mainDataSourceType = dataSourceName + "AgentDataSource";
+		    DataSourceSwitch.setLogDataSourceType(logDataSourceType);
+			DataSourceSwitch.setMainDataSourceType(mainDataSourceType);
+			
+			Map<String, Object> parameters = new HashMap<String,Object>();
+			// 判断是否包含自定义参数
+			parameters.put("dbTable", dataSourceName);
+			parameters.put("startDate", startDate);
+			parameters.put("endDate", endDate);
+			parameters.put("gameType", gameType);
+			List<TaxesInviteDay> list = taxesInviteDayService.queryAllBusinessAgent(parameters);
+			Pager pager = new Pager();
+			pager.setExportFileName("代理商团队充值明细");
+			pager.setExportType("excel");
+			
+			List<Column> columns = new ArrayList<Column>();
+			Column bean = new Column();
+			bean.setId("businessName");
+			bean.setTitle("商务名称");
+			Column bean2 = new Column();
+			bean2.setId("mid");
+			bean2.setTitle("代理商ID");
+			
+			Column bean3 = new Column();
+			bean3.setId("name");
+			bean3.setTitle("代理商名称");
+			
+			Column bean4 = new Column();
+			bean4.setId("invitetotal");
+			bean4.setTitle("新增注册用户数量");
+			
+			Column bean5 = new Column();
+			bean5.setId("paytotal");
+			bean5.setTitle("充值总金额");
+			
+			Column bean6 = new Column();
+			bean6.setId("startDate");
+			bean6.setTitle("开始日期  ");
+			
+			Column bean7 = new Column();
+			bean7.setId("endDate");
+			bean7.setTitle("结束日期  ");
+			
+			
+			
+			columns.add(bean);
+			columns.add(bean2);
+			columns.add(bean3);
+			columns.add(bean4);
+			columns.add(bean5);
+			columns.add(bean6);
+			columns.add(bean7);
+			
+			pager.setExportColumns(columns);
+			ExportUtils.exportAll(response, pager, list);
+			
 		} catch (Exception e)
 		{
 			throw new SystemException(e);

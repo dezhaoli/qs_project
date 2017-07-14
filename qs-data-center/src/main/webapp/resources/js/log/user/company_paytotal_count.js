@@ -1,27 +1,7 @@
-//基于准备好的dom，初始化echarts实例
+﻿//基于准备好的dom，初始化echarts实例
 var myChart = echarts.init(document.getElementById('main'));
 
-//指定图表的配置项和数据
-/*var option = {
- title: {
-     text: '在玩人数'
- },
- tooltip: {},
- legend: {
-	  data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
- },
- xAxis: {
-	 type: 'category',
-     data: ["0"]
- },
- yAxis: {},
- series: [{
-     name: '人数',
-     //color:'red',
-     type: 'line',
-     data: ["0"]
- }]
-};*/
+/*
 var option = {
 	    title: {
 	        text: '分公司业绩趋势图'
@@ -55,7 +35,41 @@ var option = {
 	    },
 	    series: []
 	};
+*/
 
+var option = {
+	    title: {
+	        text: '分公司业绩趋势图'
+	    },
+	    tooltip: {
+	        trigger: 'axis'
+	    },
+	    legend: {
+	        data:[]
+	    },
+	    grid: {
+	        left: '3%',
+	        right: '4%',
+	        bottom: '3%',
+	        containLabel: true
+	    },
+	    toolbox: {
+	        feature: {
+	            saveAsImage: {}
+	        }
+	    },
+	    xAxis: {
+	        type: 'category',
+	        boundaryGap: false,
+	        data: []
+	    },
+	    yAxis: {
+		name:'金额/月份',
+	    	nameTextStyle:{color : '#438eb9'},
+	        type: 'value'
+	    },
+	    series: []
+	};
 
 $(function () {
     jeDate({
@@ -121,7 +135,7 @@ var setOption=function (stime,etime){
 				var ser={
 				           name:'',
 				           type:'line',
-				           stack: '总量',
+				           
 				           data:[0,0,0]
 				};
 				ser.name=legend[i];

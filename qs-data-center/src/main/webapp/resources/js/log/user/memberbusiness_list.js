@@ -95,6 +95,7 @@ $(function() {
     queryAmountTotals(startDate,endDate,null,null);
     grid.load();
     $("#btnSearch").click(customSearch);
+    $("#btnExport").click(exportAll);
     
     //注册回车键事件
     document.onkeypress = function(e){
@@ -127,6 +128,9 @@ function customSearch() {
      endDate = endDateStr;
      queryAmountTotals(startDate,endDate,groupId,businessId);
     grid.refresh(true);
+}
+function exportAll() {
+	$("#exportAction").submit();
 }
 
 

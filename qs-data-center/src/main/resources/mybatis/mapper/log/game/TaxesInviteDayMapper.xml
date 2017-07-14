@@ -158,11 +158,28 @@
 				 and e.date &lt; date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and e.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
 		</where>		
 	 </select>
+	  
+	  <select id="queryAllBusinessAgent" parameterType="map" resultMap="BaseResultMap">
+	     	select e.mid,case WHEN  e.realname is null THEN   a.realname else e.realname   end  as name,u.name as  business_name,t.date,sum(t.paytotal) paytotal,sum(t.bindpeople) invitetotal, 
+			     #{startDate,jdbcType=VARCHAR} as  startDate,#{endDate,jdbcType=VARCHAR} as endDate
+			     from taxes_invite_week t 
+			     right join ${dbTable}.memberagents e on(e.mid=t.mid) 
+			     inner join ${gameType}.memberbusiness u on u.id=e.belongid
+			     LEFT JOIN ${gameType}.common_agents_info a ON e.sitemid = a.sitemid
+			    <where>
+					  and t.date &lt;  date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+					  and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')  
+				</where>
+						 group by e.mid
+					     order by e.mid	
+	  </select>
 	  <select id="queryAgentListByPage" parameterType="map" resultMap="BaseResultMap">
-	     select e.mid,e.realname as name,u.name as  business_name,t.date,sum(t.paytotal) paytotal,sum(t.invitetotal) invitetotal, 
+	     select e.mid,case WHEN  e.realname is null THEN   a.realname else e.realname   end  as name,u.name as  business_name,t.date,sum(t.paytotal) paytotal,sum(t.invitetotal) invitetotal, 
 	     #{startDate,jdbcType=VARCHAR} as  startDate,#{endDate,jdbcType=VARCHAR} as endDate
 	     from taxes_invite t 
-	     right join ${dbTable}.memberagents e on(e.mid=t.mid) inner join ${gameType}.memberbusiness u on u.id=e.belongid
+	     right join ${dbTable}.memberagents e on(e.mid=t.mid) 
+	     inner join ${gameType}.memberbusiness u on u.id=e.belongid
+	     LEFT JOIN ${gameType}.common_agents_info a ON e.sitemid = a.sitemid
 	    <where>
 				<if test="name != null and name != ''">
 					and e.realname like CONCAT('%',#{name},'%')

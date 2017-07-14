@@ -96,5 +96,12 @@ public class MemberagentsServiceImpl implements IMemberagentsService
 	{
 		return memberagentsMapper.queryAgentLevel(parameters);
 	}
+
+	@Override
+	public List<Memberagents> queryListCountByBusinessId(
+			Map<String, Object> parameters)
+	{
+		return memberagentsMapper.queryListCountByBusinessId(parameters);
+	}
 	
 }

@@ -18,7 +18,7 @@
 </div> -->
 
 <!-- 搜索框 -->
-     <form class="form-horizontal" >
+     <form class="form-horizontal" id="exportAction" action="businessCount/exportAll.html" >
 				<div class="form-group" >
 					  <div class="col-sm-2" id="divGroupId">
 	                    <div class="clearfix">
@@ -52,13 +52,18 @@
 	               			 <i class="fa fa-search"></i>查询
 	           			</button>
 	                </div>
+	                <div class="col-sm-1">
+	                    <button id="btnExport" class="btn btn-primary btn-sm" type="button">
+	               			 导出全部
+	           			</button>
+	                </div>
 				</div>
 	</form>
 
 <input type="hidden" id="date" value="${date}"/>
 
 <div class="row" style="margin-top:5px;">
-	<div class="col-xs-12 widget-container-col ui-sortable"
+	<div class="col-xs-12 widget-container-col ui-sortable" 
 		style="min-height: 127px;">
 		<div class="widget-box transparent ui-sortable-handle"
 			style="opacity: 1; z-index: 0;">

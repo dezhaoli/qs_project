@@ -39,7 +39,6 @@ import com.github.pagehelper.PageHelper;
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.dtgrid.model.Pager;
 import com.qs.common.dtgrid.util.ExportUtils;
-import com.qs.common.util.DateUtil;
 import com.qs.constant.Constant;
 import com.qs.datasource.DataSourceSwitch;
 import com.qs.log.game.model.TaxesInvite;
@@ -48,6 +47,7 @@ import com.qs.pub.pay.controller.PayLogController;
 import com.qs.pub.sys.model.Group;
 import com.qs.pub.sys.model.UserEntity;
 import com.qs.pub.sys.service.GroupService;
+import com.qs.pub.util.DateHandle;
 
 /** 
  * @ClassName: TaxesInviteController 
@@ -193,8 +193,8 @@ public class TaxesInviteController extends BaseController
 	@ResponseBody
 	public Object taxesInviteCountOfCompanyList(String stime,String etime){
 		try
-		{
-			JSONArray dateHandle = dateHandle(stime,etime);
+		{	
+			
 			ValueOperations<String, String> valueOper = redisTemplate.opsForValue();
 			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
 			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
@@ -203,6 +203,8 @@ public class TaxesInviteController extends BaseController
 			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
 			
 			JSONArray lengend=new JSONArray();
+			//获取年月数值
+			JSONArray dateHandle = DateHandle.dateHandle(stime,etime);
 			//xAxis项
 			JSONArray xAxis= dateHandle;
 			JSONArray datas=new JSONArray();
@@ -290,43 +292,5 @@ public class TaxesInviteController extends BaseController
 		}
 		
 		return null;
-	}
-	
-	public static JSONArray dateHandle(String stime,String etime) throws ParseException{
-		JSONArray list = new JSONArray();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM");
-		/*Date sDate = sdf.parse(stime);
-		Date eDate = sdf.parse(etime);
-		
-		int s = sDate.getMonth()+1;
-		int e = eDate.getMonth()+1;
-		do{
-			if(s<10){
-				list.add("0"+s);
-			}else{
-				list.add(""+s);
-			}
-			s++;
-		}while(s<=e);*/
-		
-		Date sDate = new SimpleDateFormat("yyyy-MM").parse(stime);// 定义起始日期
-		Date eDate = new SimpleDateFormat("yyyy-MM").parse(etime);// 定义结束日期
-		Calendar cd = Calendar.getInstance();// 定义日期实例
-		cd.setTime(sDate);// 设置日期起始时间
-		while (cd.getTime().before(eDate))
-		{// 判断是否到结束日期
-			String DateStr = sdf.format(cd.getTime());
-			list.add(DateStr);
-			cd.add(Calendar.MONTH, 1);// 进行当前日期月份加1
-		}
-		String DateStr = sdf.format(cd.getTime());
-		list.add(DateStr);
-		
-		return list;
-	}
-	
-	public static void main(String[] args) throws ParseException
-	{
-		System.out.println(dateHandle("2017-02-3","2017-05-3"));
 	}
 }

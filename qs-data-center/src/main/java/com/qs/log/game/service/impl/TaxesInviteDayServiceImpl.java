@@ -58,4 +58,11 @@ public class TaxesInviteDayServiceImpl implements ITaxesInviteDayService
 	{
 		return taxesInviteDayMapper.queryBusinessAmountTotal(parameters);
 	}
+
+	@Override
+	public List<TaxesInviteDay> queryAllBusinessAgent(
+			Map<String, Object> parameters)
+	{
+		return taxesInviteDayMapper.queryAllBusinessAgent(parameters);
+	}
 }

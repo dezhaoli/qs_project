@@ -160,5 +160,27 @@
 		memberagents e 
 		group by e.alevel
   	</select>
+  	
+    <select id="queryListCountByBusinessId" resultMap="BaseResultMap" parameterType="map" >
+	 	select count(m.mid) totals, FROM_UNIXTIME(m.mktime,'%Y-%m') mktimeStr  from memberagents m 
+		inner join ${gameType}.memberbusiness e on m.belongid=e.id
+		<where>  
+			 FROM_UNIXTIME(m.mktime,'%Y-%m') &lt; (DATE_FORMAT(DATE_SUB(STR_TO_DATE(CONCAT(#{etime},'-01'),'%Y-%m-%d'),INTERVAL -1 MONTH),'%Y-%m'))
+			 and FROM_UNIXTIME(m.mktime,'%Y-%m') &gt;= #{stime}
+			 <choose>
+				<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+				</when>
+				<otherwise>
+						and e.id = 0
+				</otherwise>
+			</choose>
+		</where>
+		group by FROM_UNIXTIME(m.mktime,'%Y-%m') 
+		order by mktimeStr
+  	</select>
 
 </mapper>

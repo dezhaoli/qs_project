@@ -7,8 +7,13 @@
  */
 package com.qs.agent.game.controller;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -23,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qs.agent.game.model.Memberagents;
@@ -34,7 +41,11 @@ import com.qs.common.dtgrid.util.ExportUtils;
 import com.qs.common.exception.SystemException;
 import com.qs.constant.Constant;
 import com.qs.datasource.DataSourceSwitch;
+import com.qs.log.game.model.TaxesInvite;
+import com.qs.pub.sys.model.Group;
 import com.qs.pub.sys.model.UserEntity;
+import com.qs.pub.sys.service.GroupService;
+import com.qs.pub.util.DateHandle;
 
 /**
  * @ClassName: MemberagentsController
@@ -50,7 +61,9 @@ public class MemberagentsController extends BaseController
 	private IMemberagentsService memberagentsService;
 	
 	@Autowired
-	private RedisTemplate<String,String> redisTemplate; 
+	private RedisTemplate<String,String> redisTemplate;
+	@Resource
+	private GroupService groupService;
 	
 	/**
 	 * 
@@ -863,6 +876,117 @@ public class MemberagentsController extends BaseController
 		{
 			e.printStackTrace();
 		}
+		return null;
+	}
+	
+	
+	@RequestMapping("toMemberagentsListOfAddCountUi.html")
+	public String toMemberagentsListOfAddCountUi(){
+		
+		return "/WEB-INF/view/loginfo/memberagents_count";
+	}
+	@RequestMapping("memberagentsListOfAddCount.html")
+	@ResponseBody
+	public Object memberagentsListOfAddCount(String stime,String etime){
+		try
+		{	
+			
+			ValueOperations<String, String> valueOper = redisTemplate.opsForValue();
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String logDataSourceType=dataSourceName+"LogDataSource";
+			String mainDataSourceType = dataSourceName + "AgentDataSource";
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+			
+			JSONArray lengend=new JSONArray();
+			//获取年月数值
+			JSONArray dateHandle = DateHandle.dateHandle(stime,etime);
+			//xAxis项
+			JSONArray xAxis= dateHandle;
+			JSONArray datas=new JSONArray();
+			
+			
+			Map<Integer, Object> groupBusinessId = new HashMap<Integer,Object>();
+			Map<String, Object> parameters = new HashMap<String,Object>();
+			// 映射Pager对象
+			// 判断是否包含自定义参数
+			parameters.put("gameType", gameType);
+			parameters.put("dbtable", dataSourceName);
+			parameters.put("stime", stime);
+			parameters.put("etime", etime);
+			//根据gameType查询分公司
+			List<Group> groupList = groupService.queryListGroupPrivilege(parameters);
+			List<Integer> businessIds = new ArrayList<Integer>();
+			//将查出来的分公司信息放入map集合中
+			if(groupList != null && !groupList.isEmpty()){
+				for(Group group:groupList){
+					Integer groupId = group.getId();
+					businessIds = groupService.queryBusinessIdListByGroupId(groupId);
+					groupBusinessId.put(groupId, businessIds);
+				}
+			}else{
+				JSONObject js=new JSONObject();
+				js.put("lengend", JSON.toJSONString(lengend));
+				js.put("xAxis", JSON.toJSONString(xAxis));
+				js.put("data", JSON.toJSONString(datas));
+				return js;
+			}
+			
+			DataSourceSwitch.setLogDataSourceType(logDataSourceType);
+			DataSourceSwitch.setMainDataSourceType(mainDataSourceType);
+			/**
+			 * 遍历分公司集合
+			 */
+			Set<Integer> set = groupBusinessId.keySet();
+			Iterator<Integer> it = set.iterator();
+			while(it.hasNext()){
+				Integer key = it.next();
+				List<Integer> businessIdList = (List<Integer>) groupBusinessId.get(key);
+				parameters.put("businessIdList",businessIdList != null && !businessIdList.isEmpty()?businessIdList:null);
+				List<Memberagents> taxList = memberagentsService.queryListCountByBusinessId(parameters);
+				
+				//lengend项  分公司
+				for(Group group:groupList){
+					Integer groupId = group.getId();
+					if(key == groupId){
+						lengend.add(group.getUserGroupName());
+					}
+				}
+				//如果查出来的数据不为空
+				if(taxList != null && !taxList.isEmpty()){
+					List<Integer> da  = new ArrayList<Integer>();
+					for(int i = 0;i<dateHandle.size();i++){
+						boolean flag = true;
+						int index = taxList.size();
+						for(int j=0;j<index && flag;j++){
+							if(dateHandle.get(i).equals(taxList.get(j).getMktimeStr())){
+								da.add(taxList.get(j).getTotals());
+								flag = false;
+							}
+						}
+						if(flag){
+							da.add(0);
+						}
+					}
+					datas.add(da);
+				}else{
+					List<BigDecimal> da  = new ArrayList<BigDecimal>();
+					for(int i = 0;i<dateHandle.size();i++){
+						da.add(new BigDecimal(0));
+					}
+					datas.add(da);
+				}
+			}
+			JSONObject js=new JSONObject();
+			js.put("lengend", JSON.toJSONString(lengend));
+			js.put("xAxis", JSON.toJSONString(xAxis));
+			js.put("data", JSON.toJSONString(datas));
+			return js;
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 }

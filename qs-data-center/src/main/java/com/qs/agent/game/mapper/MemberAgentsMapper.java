@@ -33,4 +33,7 @@ public interface MemberagentsMapper extends IBaseMapper {
 
 	List<Memberagents> queryAgentLevel(Map<String, Object> parameters);
 
+	List<Memberagents> queryListCountByBusinessId(
+			Map<String, Object> parameters);
+
 }

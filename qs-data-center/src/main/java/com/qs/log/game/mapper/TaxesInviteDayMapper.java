@@ -16,4 +16,6 @@ public interface TaxesInviteDayMapper extends IBaseMapper {
 	List<TaxesInviteDay> queryAgentListByPage(Map<String, Object> parameters);
 
 	Double queryBusinessAmountTotal(Map<String, Object> parameters);
+
+	List<TaxesInviteDay> queryAllBusinessAgent(Map<String, Object> parameters);
 }
