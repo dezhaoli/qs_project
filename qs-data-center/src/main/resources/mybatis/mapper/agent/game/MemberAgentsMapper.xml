@@ -182,5 +182,18 @@
 		group by FROM_UNIXTIME(m.mktime,'%Y-%m') 
 		order by mktimeStr
   	</select>
+    <select id="queryBusinessCountOfAdd" resultMap="BaseResultMap" parameterType="map" >
+	 	select count(m.mid) totals, FROM_UNIXTIME(m.mktime,'%Y-%m') mktimeStr  from memberagents m 
+		inner join ${gameType}.memberbusiness e on m.belongid=e.id
+		<where>  
+			 FROM_UNIXTIME(m.mktime,'%Y-%m') &lt; (DATE_FORMAT(DATE_SUB(STR_TO_DATE(CONCAT(#{etime},'-01'),'%Y-%m-%d'),INTERVAL -1 MONTH),'%Y-%m'))
+			 and FROM_UNIXTIME(m.mktime,'%Y-%m') &gt;= #{stime}
+				<if test="businessId != null">
+						and e.id = #{businessId}
+				</if>
+		</where>
+		group by FROM_UNIXTIME(m.mktime,'%Y-%m') 
+		order by mktimeStr
+  	</select>
 
 </mapper>

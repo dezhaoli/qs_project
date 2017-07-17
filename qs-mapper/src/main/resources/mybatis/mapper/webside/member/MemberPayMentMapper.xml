@@ -226,14 +226,16 @@
 		   SELECT  pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins,FROM_UNIXTIME(ptime,'%Y-%m-%d') as toTime, pstatus, 
     		ptransno, gametype, parentid, isagent, bizid
 			from memberpayment where pstatus=2 and
-			(parentid=#{mid} or fmid=#{mid})  and isagent=0  HAVING toTime BETWEEN #{startTime} AND date_add(#{endTime} ,interval 1 day) ORDER BY ptime DESC
+			(parentid=#{mid} or fmid=#{mid})  and isagent=0  
+			and FROM_UNIXTIME(ptime,'%Y-%m-%d') &gt;= #{startTime} and FROM_UNIXTIME(ptime,'%Y-%m-%d') &lt;#{endTime}  ORDER BY ptime DESC
+<!-- 			 HAVING toTime BETWEEN #{startTime} AND date_add(#{endTime} ,interval 1 day) ORDER BY ptime DESC -->
 	   </if>
 	   <if test="type==2">
 		  	SELECT   pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins, FROM_UNIXTIME(ptime,'%Y-%m-%d') as toTime, pstatus, 
    			 ptransno, gametype, parentid, isagent, bizid
    			 FROM memberpayment where 
 			((parentid in (${mids}) and isagent=0) or (fmid in(${mids}) and parentid=#{mid})) and pstatus=2  
-			and   FROM_UNIXTIME(ptime,'%Y-%m-%d') &gt;= #{startTime} AND FROM_UNIXTIME(ptime,'%Y-%m-%d') &lt;=#{endTime}  ORDER BY ptime DESC
+			and   FROM_UNIXTIME(ptime,'%Y-%m-%d') &gt;= #{startTime} AND FROM_UNIXTIME(ptime,'%Y-%m-%d') &lt;#{endTime}  ORDER BY ptime DESC
 	   </if>
 	<if test="type==3">
 		SELECT pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount,
@@ -249,8 +251,9 @@
 		SELECT mid FROM memberagents WHERE parent_id=#{mid}) AS b ON a.parent_id=b.mid
 		) AND parentid IN(
 		SELECT mid FROM memberagents WHERE parent_id=#{mid}
-		))) AND pstatus=2 HAVING toTime BETWEEN #{startTime} AND date_add(#{endTime}, INTERVAL 1 day)
-		ORDER BY ptime DESC
+		))) AND pstatus=2 
+		and FROM_UNIXTIME(ptime,'%Y-%m-%d') &gt;= #{startTime} and FROM_UNIXTIME(ptime,'%Y-%m-%d') &lt;#{endTime}  ORDER BY ptime DESC
+<!-- 		HAVING toTime BETWEEN #{startTime} AND date_add(#{endTime}, INTERVAL 1 day) ORDER BY ptime DESC -->
 	  </if>
   	</select>
 

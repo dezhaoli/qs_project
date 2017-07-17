@@ -241,6 +241,7 @@ public class CreateRoomController extends BaseController
 			parameters.put("etime", etime);
 			parameters.put("businessId", businessId);
 			parameters.put("groupId", groupId);
+			parameters.put("playName", playName);
 			parameters.put("dbTable", dataSourceName);
 			parameters.put("gameType", gameType);
 			parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);

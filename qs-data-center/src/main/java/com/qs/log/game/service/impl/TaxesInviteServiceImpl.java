@@ -47,5 +47,11 @@ public class TaxesInviteServiceImpl implements ITaxesInviteService
 	{
 		return taxesInviteMapper.queryListCountByBusinessId(parameters);
 	}
+	@Override
+	public List<TaxesInvite> queryBusinessCountOfPaytotal(
+			Map<String, Object> parameters)
+	{
+		return taxesInviteMapper.queryBusinessCountOfPaytotal(parameters);
+	}
 	
 }

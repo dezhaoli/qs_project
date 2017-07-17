@@ -63,7 +63,7 @@ BEGIN
 					(case  when c.paytotal3>0 then c.paytotal3*0 else 0 end) proceeds3 
 					 from (
 					SELECT SUM(paytotal-selftotal) AS paytotal1,SUM(invitetotal) AS invitetotal1 FROM taxes_invite WHERE date>=nowdate AND date<=endtmp AND mid=@mid ) a,
-					(SELECT SUM(paytotal-selftotal) AS paytotal2,SUM(invitetotal) AS invitetotal2 FROM taxes_invite WHERE date>=nowdate AND date<=endtmp AND parentid=@mid) b,
+					(SELECT SUM(paytotal) AS paytotal2,SUM(invitetotal) AS invitetotal2 FROM taxes_invite WHERE date>=nowdate AND date<=endtmp AND parentid=@mid) b,
 					(SELECT SUM(0) AS paytotal3,SUM(i.invitetotal) AS invitetotal3 FROM taxes_invite i INNER JOIN  jx_majiang.memberagents a ON a.parent_id=@mid AND a.status=0 AND i.parentid=a.mid WHERE 
 								i.date>=nowdate AND i.date<=endtmp ) c ) p;
 

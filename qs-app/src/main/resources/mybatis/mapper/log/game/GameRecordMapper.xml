@@ -190,7 +190,10 @@
 		SELECT 
 	   <include refid="Base_Column_List" />
 		FROM majiang_game_record
-	     WHERE (player1=#{mid} OR player2=#{mid} OR player3=#{mid} OR player4=#{mid} OR master=#{mid}) 
+	     WHERE (player1=#{mid} OR player2=#{mid} OR player3=#{mid} OR player4=#{mid} OR master=#{mid})
+       <if test="type != null and type != ''">
+         and type = #{type}
+       </if>
 	     ORDER BY id DESC LIMIT #{startRow},#{pageSize}
 	</select>
 	

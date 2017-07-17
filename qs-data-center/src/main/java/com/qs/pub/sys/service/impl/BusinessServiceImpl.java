@@ -14,8 +14,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.qs.pub.sys.mapper.BusinessGroupMapper;
 import com.qs.pub.sys.mapper.BusinessMapper;
 import com.qs.pub.sys.model.Business;
+import com.qs.pub.sys.model.BusinessGroup;
 import com.qs.pub.sys.service.BusinessService;
 
 /** 
@@ -29,6 +31,8 @@ public class BusinessServiceImpl implements BusinessService
 {
 	@Resource
 	private BusinessMapper businessMapper;
+	@Resource
+	private BusinessGroupMapper businessGroupMapper;
 
 	@Override
 	public List<Business> queryListByPage(Map<String, Object> parameters)
@@ -82,5 +86,12 @@ public class BusinessServiceImpl implements BusinessService
 	public Integer ifLeader(Map<String,Object> map)
 	{
 		return businessMapper.ifLeader(map);
+	}
+
+	@Override
+	public List<BusinessGroup> queryBusinessListByGroupId(
+			Map<String, Object> parameters)
+	{
+		return businessGroupMapper.queryBusinessListByGroupId(parameters);
 	}
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.qs.pub.sys.model.Business;
+import com.qs.pub.sys.model.BusinessGroup;
 
 /** 
  * @ClassName: BusinessService 
@@ -39,6 +40,8 @@ public interface BusinessService
 	Integer ifLeader(Map<String, Object> map);
 
 	List selectBusiness(Map<String, Object> parameters);
+
+	List<BusinessGroup> queryBusinessListByGroupId(Map<String, Object> parameters);
 
 	
 }

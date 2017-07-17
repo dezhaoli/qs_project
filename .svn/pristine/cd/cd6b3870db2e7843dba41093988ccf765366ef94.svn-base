@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.GameRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.GameRecord" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="uid" property="uid" jdbcType="CHAR" />
+    <result column="roomid" property="roomid" jdbcType="INTEGER" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="player1" property="player1" jdbcType="INTEGER" />
+    <result column="player2" property="player2" jdbcType="INTEGER" />
+    <result column="player3" property="player3" jdbcType="INTEGER" />
+    <result column="player4" property="player4" jdbcType="INTEGER" />
+    <result column="data_game" property="dataGame" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="master" property="master" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="TINYINT" />
+    <result column="pay" property="pay" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, uid, roomid, num, player1, player2, player3, player4, data_game, date, master, 
+    type, pay
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from majiang_game_record
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from majiang_game_record
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.qs.log.game.model.GameRecord" >
+    insert into majiang_game_record (id, uid, roomid, 
+      num, player1, player2, 
+      player3, player4, data_game, 
+      date, master, type, 
+      pay)
+    values (#{id,jdbcType=BIGINT}, #{uid,jdbcType=CHAR}, #{roomid,jdbcType=INTEGER}, 
+      #{num,jdbcType=INTEGER}, #{player1,jdbcType=INTEGER}, #{player2,jdbcType=INTEGER}, 
+      #{player3,jdbcType=INTEGER}, #{player4,jdbcType=INTEGER}, #{dataGame,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{master,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, 
+      #{pay,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.log.game.model.GameRecord" >
+    insert into majiang_game_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="roomid != null" >
+        roomid,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="player1 != null" >
+        player1,
+      </if>
+      <if test="player2 != null" >
+        player2,
+      </if>
+      <if test="player3 != null" >
+        player3,
+      </if>
+      <if test="player4 != null" >
+        player4,
+      </if>
+      <if test="dataGame != null" >
+        data_game,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="master != null" >
+        master,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="pay != null" >
+        pay,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=CHAR},
+      </if>
+      <if test="roomid != null" >
+        #{roomid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="player1 != null" >
+        #{player1,jdbcType=INTEGER},
+      </if>
+      <if test="player2 != null" >
+        #{player2,jdbcType=INTEGER},
+      </if>
+      <if test="player3 != null" >
+        #{player3,jdbcType=INTEGER},
+      </if>
+      <if test="player4 != null" >
+        #{player4,jdbcType=INTEGER},
+      </if>
+      <if test="dataGame != null" >
+        #{dataGame,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="master != null" >
+        #{master,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=TINYINT},
+      </if>
+      <if test="pay != null" >
+        #{pay,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.log.game.model.GameRecord" >
+    update majiang_game_record
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=CHAR},
+      </if>
+      <if test="roomid != null" >
+        roomid = #{roomid,jdbcType=INTEGER},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="player1 != null" >
+        player1 = #{player1,jdbcType=INTEGER},
+      </if>
+      <if test="player2 != null" >
+        player2 = #{player2,jdbcType=INTEGER},
+      </if>
+      <if test="player3 != null" >
+        player3 = #{player3,jdbcType=INTEGER},
+      </if>
+      <if test="player4 != null" >
+        player4 = #{player4,jdbcType=INTEGER},
+      </if>
+      <if test="dataGame != null" >
+        data_game = #{dataGame,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="master != null" >
+        master = #{master,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=TINYINT},
+      </if>
+      <if test="pay != null" >
+        pay = #{pay,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.log.game.model.GameRecord" >
+    update majiang_game_record
+    set uid = #{uid,jdbcType=CHAR},
+      roomid = #{roomid,jdbcType=INTEGER},
+      num = #{num,jdbcType=INTEGER},
+      player1 = #{player1,jdbcType=INTEGER},
+      player2 = #{player2,jdbcType=INTEGER},
+      player3 = #{player3,jdbcType=INTEGER},
+      player4 = #{player4,jdbcType=INTEGER},
+      data_game = #{dataGame,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      master = #{master,jdbcType=INTEGER},
+      type = #{type,jdbcType=TINYINT},
+      pay = #{pay,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+     <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+		SELECT 
+	   <include refid="Base_Column_List" />
+		FROM majiang_game_record
+	     WHERE (player1=#{mid} OR player2=#{mid} OR player3=#{mid} OR player4=#{mid} OR master=#{mid})
+       <if test="type != null and type != ''">
+         and type = #{type}
+       </if>
+	     ORDER BY id DESC LIMIT #{startRow},#{pageSize}
+	</select>
+	
+</mapper>

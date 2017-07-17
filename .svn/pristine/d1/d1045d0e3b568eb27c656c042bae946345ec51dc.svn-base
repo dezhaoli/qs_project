@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.sys.mapper.BusinessGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.sys.model.BusinessGroup" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="group_id" property="groupId" jdbcType="INTEGER" />
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="business_id" property="businessId" jdbcType="INTEGER" />
+    <result column="business_name" property="businessName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="companyName" property="company_name" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="selected" property="selected"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, group_id, group_name, business_id, create_time
+  </sql>
+  
+  <select id="queryBusinessList" resultMap="BaseResultMap" parameterType="map" >
+    SELECT
+		s1.id,
+		s1.company_id,
+		s1.business_name,
+		CASE
+		WHEN c.group_id IS NULL THEN
+			FALSE
+		ELSE
+			TRUE
+		END AS selected from sys_business s1 
+		LEFT JOIN sys_business_group c ON s1.id = c.business_id and c.group_id=${roleId}
+  </select>
+  
+  <select id="queryBusinessListByGroupId" resultMap="BaseResultMap" parameterType="map" >
+     SELECT
+		s1.business_id,
+		s1.business_name
+	  from sys_business s1 
+		INNER JOIN sys_business_group c ON s1.id = c.business_id 
+    	INNER JOIN sys_group g on g.id=c.group_id and g.id=${groupId} and g.game_type=#{gameType}
+    	order by s1.id 
+  </select>
+  
+  <select id="queryBusinessIdListByGroupId" resultType="Integer" parameterType="Integer" >
+    SELECT
+		 s1.business_id
+		 from sys_business s1 
+		INNER JOIN sys_business_group c ON s1.id = c.business_id and c.group_id=#{groupId}
+  </select>
+  
+  <select id="queryLeaderList" resultMap="BaseResultMap" parameterType="map" >
+    SELECT
+		s1.u_id id,
+		null company_id,
+		s1.u_name business_name,
+		CASE
+		WHEN c.group_id IS NULL THEN
+			FALSE
+		ELSE
+			TRUE
+		END AS selected from tb_user s1 
+		LEFT JOIN sys_group_leader c ON s1.u_id = c.user_id and c.group_id=${groupId} 
+		<where>
+		 and s1.u_if_business = 1
+		</where>
+  </select>
+  
+  <select id="selectByGroupId" resultType="int" parameterType="java.lang.Integer" >
+    select 
+    count(*)
+    from sys_business_group
+    where group_id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByGroupId" parameterType="java.lang.Integer" >
+    delete from sys_business_group
+    where group_id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="addBusinessBatch" parameterType="map" >
+    insert into sys_business_group (group_id,
+      business_id, create_time)
+    values 
+    <foreach collection="resourceIds" item ="id" separator=",">
+    	(#{groupId,jdbcType=INTEGER},
+     	 #{id}, now())
+      </foreach>
+  </insert>
+  
+</mapper>

@@ -27,5 +27,8 @@ public interface ITaxesInviteService
 
 	List<TaxesInvite> queryListCountByBusinessId(
 			Map<String, Object> parameters);
+
+	List<TaxesInvite> queryBusinessCountOfPaytotal(
+			Map<String, Object> parameters);
 	
 }

@@ -173,7 +173,7 @@ union all
 	   			and f.invite =0
 	   		</when>
 	   		<otherwise>
-	   		  	1=2
+	   		  	and 1=2
 	   		</otherwise>
 	   	</choose>
    	and d.app_id = #{gameCode,jdbcType=VARCHAR}
@@ -611,7 +611,7 @@ union all
 	   			and f.invite =0
 	   		</when>
 	   		<otherwise>
-	   		  	1=2
+	   		  	and 1=2
 	   		</otherwise>
 	   	</choose>
 	   	and d.app_id = #{gameCode,jdbcType=VARCHAR}

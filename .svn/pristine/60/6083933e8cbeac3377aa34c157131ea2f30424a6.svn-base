@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInvite" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="paycount" property="paycount" jdbcType="INTEGER" />
+    <result column="average" property="average" jdbcType="REAL" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="date_str" property="dateStr" jdbcType="VARCHAR" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="selftotal" property="selftotal" jdbcType="DECIMAL" />
+    <result column="invitetotal" property="invitetotal" jdbcType="INTEGER" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+  </resultMap>
+	<select id="queryListByPage" parameterType="map" resultMap="BaseResultMap" >
+	    select DATE_FORMAT(t.date,'%Y-%m-%d') date_str, ifnull(sum(t.paycount),0)paycount
+	    from taxes_directly_day t 
+	    where 
+	    t.date &gt;= STR_TO_DATE(#{startDate},'%Y-%m-%d')
+		and t.date &lt;= STR_TO_DATE(#{endDate},'%Y-%m-%d') 
+		group by DATE_FORMAT(t.date,'%Y-%m-%d')
+		order by t.date desc
+  	</select>
+	<select id="queryListByPageOfArppu" parameterType="map" resultMap="BaseResultMap" >
+	    select round(ifnull(sum(dat.paytotal)/count(dat.mid),0),2) as average  from 
+			(
+			select sum(t.paytotal) paytotal,t.mid from taxes_invite t 
+			where 
+			t.date &gt;= STR_TO_DATE(#{startDate},'%Y-%m-%d')
+		    and t.date &lt;= STR_TO_DATE(#{endDate},'%Y-%m-%d') 
+			group by t.mid
+			) dat
+
+  	</select>
+  	
+  	<select id="queryListCountByBusinessId" parameterType="map" resultMap="BaseResultMap" >
+		select sum(t.paytotal) paytotal,DATE_FORMAT(t.date,'%Y-%m') date_str from 
+			taxes_invite t 
+			inner join ${dbtable}.memberagents m on t.mid=m.mid
+			inner join ${gameType}.memberbusiness e on m.belongid=e.id
+			where t.date &lt; DATE_FORMAT(DATE_SUB(STR_TO_DATE(CONCAT(#{etime},'-01'),'%Y-%m-%d'),INTERVAL -1 MONTH),'%Y-%m')
+			and t.date &gt;= STR_TO_DATE(#{stime},'%Y-%m')
+			<choose>
+				<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+				</when>
+				<otherwise>
+						and e.id = 0
+				</otherwise>
+			</choose>
+			group by DATE_FORMAT(t.date,'%Y-%m') 
+			order by date_str
+  	</select>
+  	<select id="queryBusinessCountOfPaytotal" parameterType="map" resultMap="BaseResultMap" >
+		select sum(t.paytotal) paytotal,DATE_FORMAT(t.date,'%Y-%m') date_str from 
+			taxes_invite t 
+			inner join ${dbtable}.memberagents m on t.mid=m.mid
+			inner join ${gameType}.memberbusiness e on m.belongid=e.id
+			where t.date &lt; DATE_FORMAT(DATE_SUB(STR_TO_DATE(CONCAT(#{etime},'-01'),'%Y-%m-%d'),INTERVAL -1 MONTH),'%Y-%m')
+			and t.date &gt;= STR_TO_DATE(#{stime},'%Y-%m')
+			<if test="businessId != null">
+				and e.id = #{businessId}
+			</if>
+			group by DATE_FORMAT(t.date,'%Y-%m')
+			order by date_str
+  	</select>
+  
+</mapper>

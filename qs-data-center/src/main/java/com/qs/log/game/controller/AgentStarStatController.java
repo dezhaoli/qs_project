@@ -442,7 +442,7 @@ public class AgentStarStatController extends BaseController
 		
 		Map<String, List<String>> date;
 		try {
-			date = DateUtil.getAgentInfoDateTime();
+			date = DateUtils.getAgentInfoDateTime();
 			String json = JSON.toJSONString(date);
 			List<String> keys = new ArrayList<String>();
 			Set<String> keySet = date.keySet();

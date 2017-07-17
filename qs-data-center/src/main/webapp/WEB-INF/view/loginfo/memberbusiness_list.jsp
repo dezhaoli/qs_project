@@ -26,7 +26,7 @@
 					 	 </select>
 	                    </div>
 		              </div>
-		                <div class="col-sm-2" id="divBusinessId">
+		                <div class="col-sm-1" id="divBusinessId">
 		                    <div class="clearfix">
 		                     <select class="form-control" id="businessIdByGroupId" name="businessIdByGroupId" style="width: 100%">
 						 	 </select>
@@ -52,9 +52,9 @@
 	               			 <i class="fa fa-search"></i>查询
 	           			</button>
 	                </div>
-	                <div class="col-sm-1">
+	                <div class="col-sm-2">
 	                    <button id="btnExport" class="btn btn-primary btn-sm" type="button">
-	               			 导出全部
+	               			 导出全部代理商周统计
 	           			</button>
 	                </div>
 				</div>

@@ -45,7 +45,7 @@ var dtGridColumns = [{
     headerClass : 'dlshouwen-grid-header'
 },{
     id : 'paytotal',
-    title : '充值总金额',
+    title : '直属会员充值总金额',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'

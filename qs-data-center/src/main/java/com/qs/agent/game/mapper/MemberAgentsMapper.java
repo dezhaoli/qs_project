@@ -36,4 +36,6 @@ public interface MemberagentsMapper extends IBaseMapper {
 	List<Memberagents> queryListCountByBusinessId(
 			Map<String, Object> parameters);
 
+	List<Memberagents> queryBusinessCountOfAdd(Map<String, Object> parameters);
+
 }

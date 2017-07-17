@@ -200,7 +200,8 @@ public class GameController extends BaseController {
 		parameter.put("pageSize",pageSize);
 		parameter.put("startRow",startRow);
 		parameter.put("mid",token.getMid());
-	
+		parameter.put("type", gameRecordRequest.getType());//添加玩法条件.
+
 		List<Object> listResult=gameRecordService.queryGameRecordListByPage(parameter);
 		Game game=memberService.findGameById(token.getMid());
 		resultMap.put("arr", listResult);

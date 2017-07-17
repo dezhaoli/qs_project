@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.qs.common.base.basemapper.IBaseMapper;
+import com.qs.pub.sys.model.Business;
 import com.qs.pub.sys.model.BusinessGroup;
 
 public interface BusinessGroupMapper extends IBaseMapper {
@@ -30,4 +31,6 @@ public interface BusinessGroupMapper extends IBaseMapper {
 	List<BusinessGroup> queryLeaderList(Map<String, Object> parameter);
 
 	List<Integer> queryBusinessIdListByGroupId(Integer groupId);
+
+	List<BusinessGroup> queryBusinessListByGroupId(Map<String, Object> parameters);
 }
