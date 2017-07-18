@@ -31,4 +31,6 @@ public interface TaxesInviteWeekMapper extends IBaseMapper {
 			Map<String, Object> parameters);
 
 	Double queryStarCountTotals(Map<String, Object> parameters);
+
+    List<Map<String,Object>> getMemberagentRankingList(Map<String, Object> parameters);
 }

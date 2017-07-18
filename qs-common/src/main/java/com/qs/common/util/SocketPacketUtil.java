@@ -173,6 +173,42 @@ public class SocketPacketUtil {
 		return true;
 	}
 
+
+	public Boolean CLoginDemo(Integer cmdType,Integer mid,String sessionKey,Integer gp,Integer gameType) {
+		if (socket == null) {
+			log.debug("================>::SocketPacketUtil sendDataUtf8 function socket is null;send data fail " +
+					"maybe socket host or port is wrong !");
+			return false;
+		}
+		//mid长度
+		packetSize=4;//mid长度
+		sessionKey += '\0';
+		Integer msgLen = null;
+		msgLen = sessionKey.getBytes().length;//json 长度
+		packetSize+=msgLen+4;//命令 长度
+		//packetSize+=6; //这个包头长度
+		packetSize+=8; //gp gameType 长度
+		this.buffer = new byte[6 + packetSize];
+		this.buffer[0] = 'Q';
+		this.buffer[1] = 'S';
+		this.buffer[2] = (byte) (this.packetSize & 0xff);
+		this.buffer[3] = (byte) (this.packetSize >> 8 & 0xff);
+		this.buffer[4] = (byte) (cmdType & 0xff);
+		this.buffer[5] = (byte) (cmdType >> 8 & 0xff);
+		System.arraycopy(toLH(mid), 0, buffer, 6, 4);
+		System.arraycopy(toLH(msgLen), 0, buffer, 10, 4);
+		System.arraycopy(sessionKey.getBytes(), 0, buffer, 14, msgLen);
+		System.arraycopy(toLH(gp), 0, buffer, 14+msgLen, 4);
+		System.arraycopy(toLH(gameType), 0, buffer, 18+msgLen, 4);
+		try {
+			socket.getOutputStream().write(this.buffer);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 	
     public Boolean receiveData() {
       	byte[] recvHead =new byte[4] ;

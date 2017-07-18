@@ -411,8 +411,7 @@ public class AgentStarStatController extends BaseController
 			}
 		 
 		List<Map<String,Object>> list= taxesInviteWeekService.getWeekCountGrade(parma);
-		JSONArray js=new JSONArray();
-		int[] arr={0,0,0,0,0};  
+		int[] arr={0,0,0,0,0};
 		if (list !=null ) {
 			for (int i = 0; i < list.size(); i++) {
 				entity=list.get(i);
@@ -532,5 +531,139 @@ public class AgentStarStatController extends BaseController
 		}
 			
 	       
+	}
+
+
+	/**
+	 * 代理商付费排行榜
+	 * @param gameType
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("memberagentRankingListUi.html")
+	public String memberagentRankingListUi(String gameType,Model model,HttpServletRequest request){
+
+		Map<String, List<String>> date;
+		try {
+			date = DateUtils.getAgentInfoDateTime();
+			String json = JSON.toJSONString(date);
+			List<String> keys = new ArrayList();
+			Set<String> keySet = date.keySet();
+			Iterator<String> ki = keySet.iterator();
+			PageUtil page = new PageUtil();
+			if(request.getParameterMap().containsKey("page")){
+				page.setPageNum(Integer.valueOf(request.getParameter("page")));
+				page.setPageSize(Integer.valueOf(request.getParameter("rows")));
+			}
+			while (ki.hasNext()) {
+				String key = ki.next();
+				keys.add(key.substring(1));
+			}
+			model.addAttribute("page", page);
+			model.addAttribute("years", keys);
+			model.addAttribute("jsonDate", json);
+			model.addAttribute("gameType", gameType);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return "WEB-INF/view/agent/memberagent_ranking_list";
+	}
+
+	@ResponseBody
+	@RequestMapping("memberagentRankingList.html")
+	public Map<String ,Object> memberagentRankingList(String gridPager,HttpServletResponse response) {
+		try
+		{
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+			Map<String, Object>  map = new HashMap();
+
+
+			Map<String, Object> parameters = null;
+			// 映射Pager对象
+			Pager pager = JSON.parseObject(gridPager, Pager.class);
+			// 判断是否包含自定义参数
+			parameters = pager.getParameters();
+
+
+			//如果是领导人可查看的商务id
+			map.put("gameType", gameType);
+			map.put("uId", userEntity.getId());
+			List businessIdList = businessService.findByuId(map);
+			//如果式商务，只能看自己
+			map.put("accountName", userEntity.getAccountName());
+			List businessIdList2 = businessService.selectBusiness(map);
+
+
+			//条件查询（组id）
+			String groupId = parameters.get("groupId") != null?parameters.get("groupId").toString():"";
+			//通过组id查询商务id
+			List businessIdListByGroup = businessService.findBusinessByGroupId(StringUtils.isEmpty(groupId)?-1:Integer.valueOf(groupId));
+
+			Integer leaderTotals = businessService.ifLeader(map);
+
+			//判断是否是管理员
+			if(userEntity.getIfBusiness() != null && userEntity.getIfBusiness()){
+				//判断是否是公司负责人
+				if(leaderTotals > 0){
+					parameters.put("businessIdList",businessIdList != null && businessIdList.size()>0?businessIdList:null);
+					parameters.put(Constant.DataPrivilege.IF_LEADER,1);
+				}else{
+					//判断是否式普通商务
+					parameters.put(Constant.DataPrivilege.IF_BUSINESS,1);
+					parameters.put("businessIdList2",businessIdList2 != null && businessIdList2.size()>0?businessIdList2:null);
+				}
+			}
+
+			String logDataSourceType=dataSourceName+"LogDataSource";
+			String mainDataSourceType = dataSourceName + "AgentDataSource";
+			DataSourceSwitch.setLogDataSourceType(logDataSourceType);
+			DataSourceSwitch.setMainDataSourceType(mainDataSourceType);
+
+			if (StringUtils.isEmpty(parameters.get("eDate").toString())){
+				parameters.put("eDate", DateUtil.getDatalastWeek());
+			}
+
+			parameters.put("dbTable", dataSourceName);
+			parameters.put("gameType", gameType);
+			parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);
+
+			// 3、判断是否是导出操作
+			if (pager.getIsExport())
+			{
+				if (pager.getExportAllData())
+				{
+					// 3.1、导出全部数据
+					List<Map<String, Object>> list = taxesInviteWeekService
+							.getMemberagentRankingList(parameters);
+					ExportUtils.exportAll(response, pager, list);
+					return null;
+				} else
+				{
+					// 3.2、导出当前页数据
+					ExportUtils.export(response, pager);
+					return null;
+				}
+			} else
+			{
+				// 设置分页，page里面包含了分页信息
+				Page<Object> page = PageHelper.startPage(pager.getNowPage(),
+						pager.getPageSize());
+				List<Map<String, Object>> list = taxesInviteWeekService
+						.getMemberagentRankingList(parameters);
+				return getReturnPage(pager, page, list);
+			}
+		} catch (NumberFormatException e)
+		{
+			e.printStackTrace();
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 }

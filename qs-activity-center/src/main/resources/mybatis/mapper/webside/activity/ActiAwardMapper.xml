@@ -258,7 +258,8 @@
     IF(aa.receive_num > IFNULL(bb.gerenhuan,0) -- 比较可兑换个数与个人已换个数
     AND (aa.award_num - COUNT(aar.id)) > 0  -- 比较奖品个数与兑换个数
     AND ac.close_time &gt;= NOW(), -- 比较面板关闭时间和当前时间
-    IF(IFNULL(ai.now_integral,0) &lt; aa.integral  AND IFNULL(aar.mid,0) > 0,2,if(aa.stock &lt; 1,0,1)),0) AS status
+    IF(aa.stock &lt; 1,0,1),0) AS status
+  --  IF(IFNULL(ai.now_integral,0) &lt; aa.integral  AND IFNULL(aar.mid,0) > 0,2,if(aa.stock &lt; 1,0,1)),0) AS status
     FROM acti_award_record aar
     RIGHT JOIN acti_award aa
     ON aar.award_id = aa.id

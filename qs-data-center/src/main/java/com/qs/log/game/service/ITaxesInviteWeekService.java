@@ -29,5 +29,5 @@ public interface ITaxesInviteWeekService {
 	Double queryStarCountTotals(Map<String, Object> parameters);
 
 
-
+    List<Map<String,Object>> getMemberagentRankingList(Map<String, Object> parameters);
 }

@@ -955,7 +955,9 @@ public class MemberController extends BaseController {
 		loginLogs.put("lgtm",user.getLgtm());
 		loginLogs.put("loginTime", new Date());
 		loginLogs.put("logoutTime", new Date());
-		ExecutorThreadUtil.httpClientSyncErrorByThread(loginLogs);
+		if(!AppConstants.VISITORNAME.equals(user.getName())){
+		   ExecutorThreadUtil.httpClientSyncErrorByThread(loginLogs);
+		}
 	}
 
 

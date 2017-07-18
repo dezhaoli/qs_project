@@ -40,6 +40,10 @@ public class TaxesInviteWeekServiceImpl implements ITaxesInviteWeekService {
 		return taxesInviteWeekMapper.queryStarCountTotals(parameters);
 	}
 
-	
+	@Override
+	public List<Map<String, Object>> getMemberagentRankingList(Map<String, Object> parameters) {
+		return taxesInviteWeekMapper.getMemberagentRankingList(parameters);
+	}
+
 
 }

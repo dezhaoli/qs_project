@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="user-scalable=no">
-<!--     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width"> -->
+    <meta name="viewport" content="">
+	<!--<meta name="viewport" content="user-scalable=no"> -->
+	<!--     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width"> -->
     <title>积分兑换</title>
     <script data-main="js/main" src="lib/require/require.min.js" ></script>
 	<link  type="text/css" rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
 	<link  type="text/css" rel="stylesheet" href="lib/layer-v2.3/skin/layer.css">
-<!-- 	<link  type="text/css" rel="stylesheet" href="css/common.css"> -->
-	 <script>
+	 <script type="text/javascript">
 		// 	动态加载样式common
 		function includeLinkStyle(url) {
 			var link = document.createElement("link");
@@ -19,7 +19,41 @@
 			document.getElementsByTagName("head")[0].appendChild(link);
 		}
 		includeLinkStyle("css/common.css?t="+new Date().getTime());
-	</script>  
+		
+		//用于ios浏览器设置适应
+		function checkPlatform(){
+			if (/android/i.test(navigator.userAgent)) {
+					//document.getElementsByTagName('head')[0].appendChild(oMeta);
+					// 	 var con= document.getElementsByTagName('meta')[1];
+					// 	 con.content="user-scalable=no";
+					//document.write("This is iOS'browser.");//这是iOS平台下浏览器
+					//       document.write("This is Android'browser.");//这是Android平台下浏览器
+				}
+
+				if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
+					var con = document.getElementsByTagName('meta')[1];
+					con.content = "user-scalable=no";
+					//document.write("This is iOS'browser.");//这是iOS平台下浏览器
+
+				}
+
+				if (/Linux/i.test(navigator.userAgent)) {
+					// document.write("This is Linux'browser.");//这是Linux平台下浏览器
+				}
+
+				if (/Linux/i.test(navigator.platform)) {
+					// document.write("This is Linux operating system.");//这是Linux操作系统平台
+				}
+
+				if (/MicroMessenger/i.test(navigator.userAgent)) {
+					//       document.write("This is MicroMessenger'browser.");//这是微信平台下浏览器
+				}
+
+			}
+			window.onload = function() {
+				checkPlatform();
+			};
+		</script>  
 <style type="text/css">
 
 

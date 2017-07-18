@@ -36,7 +36,7 @@
 	                </div>
 				</div>
 				<div class="form-group" >
-	                <label class="control-label col-sm-2 no-padding-right">代理商充值金额(小于等于)</label>
+	                <label class="control-label col-sm-2 no-padding-right">代理商直属会员充值金额(小于等于)</label>
 	                <div class="col-sm-2">
 	                    <input class="form-control" name="pamount" id="pamount" type="text" value =0
 	                               placeholder="代理商充值金额..."/>

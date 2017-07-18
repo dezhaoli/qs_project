@@ -249,4 +249,68 @@
 	</where>
 	order by A.paytotal desc
   </select>
+
+	<select id="getMemberagentRankingList" resultType="map" parameterType="map">
+			select dat.id,dat.name,dat.realname,dat.paytotal,dat.mktime as date from
+			(
+				select e.id,e.name,m.mid,
+				CASE WHEN  m.realname is null THEN   a.realname else m.realname end  as  realname,sum(t.paytotal)  paytotal,
+				FROM_UNIXTIME(m.mktime,'%Y-%m-%d') mktime
+				from ${dbTable}_log.taxes_invite_week t
+				INNER JOIN ${dbTable}.memberagents m on t.mid=m.mid
+				INNER JOIN ${gameType}.memberbusiness e on e.id=m.belongid
+				LEFT JOIN ${gameType}.common_agents_info a on (m.sitemid = a.sitemid)
+				<where>
+					<!-- 公司责任人数据权限查询 -->
+					<if test="ifLeader == 1">
+						<choose>
+							<when test="businessIdList != null">
+								and e.id in
+								<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+									${id}
+								</foreach>
+							</when>
+							<otherwise>
+								and 1=2
+							</otherwise>
+						</choose>
+					</if>
+					<!-- 普通商务数据权限查询 -->
+					<if test="ifBusiness == 1">
+						<choose>
+							<when test="businessIdList2 != null">
+								and e.id in
+								<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+									${id}
+								</foreach>
+							</when>
+							<otherwise>
+								and 1=2
+							</otherwise>
+						</choose>
+					</if>
+					<!-- 页面  按照分公司条件查询  -->
+					<if test="groupId != null and groupId != ''">
+						<choose>
+							<when test="businessIdListByGroup != null">
+								and e.id in
+								<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+									${id}
+								</foreach>
+							</when>
+							<otherwise>
+								and 1=2
+							</otherwise>
+						</choose>
+					</if>
+					<!--页面   按照商务条件查询  -->
+					<if test="businessId != null and businessId != ''">
+						and e.id = #{businessId}
+					</if>
+					and t.date=#{eDate}
+				</where>
+				group by e.id,m.mid
+			  ) dat
+				order by dat.paytotal desc
+	</select>
 </mapper>
