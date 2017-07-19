@@ -9,10 +9,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CacheConstan;
 import com.qs.common.constant.CommonContants;
 import com.qs.common.util.CommonUtils;
 import com.qs.common.util.crypto.MD5;
@@ -161,11 +164,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	@Cacheable(value={CacheConstan.MEMBERFIDES_CACHE_STORE_NAME},key="#root.methodName+':'+#root.args[0]")
 	public Memberfides findMemberfidesById(Integer id) {
 		return memberfidesMapper.selectByPrimaryKey(id);
 	}
 
 	@Override
+	@CacheEvict(value = {CacheConstan.MEMBERFIDES_CACHE_STORE_NAME},key = "'findMemberfidesById:'+#record.mid")
 	public int updateMemberfides(Memberfides record) {
 		return memberfidesMapper.updateByPrimaryKeySelective(record);
 	}

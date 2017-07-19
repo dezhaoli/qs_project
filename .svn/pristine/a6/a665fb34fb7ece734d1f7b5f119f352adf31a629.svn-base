@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteWeekMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteWeek" >
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="date" property="date" jdbcType="DATE" />
+    <result column="startDate" property="startDate" jdbcType="VARCHAR" />
+    <result column="endDate" property="endDate" jdbcType="VARCHAR" />
+    <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+    <result column="rebatetotal" property="rebatetotal" jdbcType="DECIMAL" />
+    <result column="bindpeople" property="bindpeople" jdbcType="SMALLINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="taxrate" property="taxrate" jdbcType="DECIMAL" />
+    <result column="isaward" property="isaward" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <select id="getWeekCountGrade" resultType="map" parameterType="map">
+    select B.grade ,COUNT(B.grade ) counts from ( 
+	select 
+	( 
+	case  
+	when ifnull(A.paytotal,0) &lt;700  then 1 
+	when ifnull(A.paytotal,0) &gt;=700 and  ifnull(A.paytotal,0) &lt;1400 then 2 
+	when ifnull(A.paytotal,0) &gt;=1400 and  ifnull(A.paytotal,0) &lt; 2100 then 3 
+	when ifnull(A.paytotal,0) &gt;=2100 and  ifnull(A.paytotal,0) &lt; 2800 then 4 
+	when ifnull(A.paytotal,0) &gt;=2800  then 5   end 
+	) grade from taxes_invite_week A inner join ${dbTable}.memberagents m on m.mid=A.mid  inner join ${gameType}.memberbusiness e on e.id=m.belongid
+	<if test="belongid != null and belongid != ''">
+		and e.id=#{belongid}
+	</if>
+	<where>
+		<if test="grade != null and grade != ''">
+			<if test="grade == 1">
+				and ifnull(A.paytotal,0) &lt;700
+			</if>
+			<if test="grade == 2">
+				and ifnull(A.paytotal,0) &gt;=700 and  ifnull(A.paytotal,0) &lt;1400
+			</if>
+			<if test="grade == 3">
+				and ifnull(A.paytotal,0) &gt;=1400 and  ifnull(A.paytotal,0) &lt; 2100
+			</if>
+			<if test="grade == 4">
+				and ifnull(A.paytotal,0) &gt;=2100 and  ifnull(A.paytotal,0) &lt; 2800
+			</if>
+			<if test="grade == 5">
+				and ifnull(A.paytotal,0) &gt;=2800
+			</if>
+		</if>
+		
+		<if test="ifLeader == 1">
+			<choose>
+				<when test="businessIdList != null">
+					and e.id in 
+					<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+			</choose>
+		</if>
+		
+		
+	<if test="ifBusiness == 1">
+		<choose>
+				<when test="businessId != null">
+					and e.id in 
+					<foreach collection="businessId" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+		</choose>
+	</if>
+	<if test="groupId != null and groupId != ''">
+			<choose>
+				<when test="businessIdListByGroup != null">
+					and e.id in 
+					<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+			</choose>
+	</if>
+	<!--页面按照商务条件查询  -->
+	<if test="businessId != null and businessId != ''">
+		and e.id = #{businessId}
+	</if>
+	 and A.date=#{eDate}	 
+	</where> ) B  GROUP BY B.grade  ORDER BY B.grade
+  </select>
+  <select id="getWeekCountGradeList" resultType="map" parameterType="map">
+    select dat.id,dat.name,sum(dat.paytotal) paytotal,count(dat.grade) total, dat.grade,dat.date from 
+    (
+    select e.id,e.name,DATE_FORMAT(A.date, '%Y-%m-%d') date,ifnull(A.paytotal,0) paytotal, 
+	( 
+	case  
+	when ifnull(A.paytotal,0) &lt;700  then 1 
+	when ifnull(A.paytotal,0) &gt;=700 and  ifnull(A.paytotal,0) &lt;1400 then 2 
+	when ifnull(A.paytotal,0) &gt;=1400 and  ifnull(A.paytotal,0) &lt; 2100 then 3 
+	when ifnull(A.paytotal,0) &gt;=2100 and  ifnull(A.paytotal,0) &lt; 2800 then 4 
+	when ifnull(A.paytotal,0) &gt;=2800  then 5   end 
+	) grade from taxes_invite_week A inner join ${dbTable}.memberagents m on m.mid=A.mid  inner join ${gameType}.memberbusiness e on e.id=m.belongid 
+	<where>
+	<!-- 公司责任人数据权限查询 --> 
+		<if test="ifLeader == 1">
+			<choose>
+				<when test="businessIdList != null">
+					and e.id in 
+					<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+			</choose>
+		</if>
+	<!-- 普通商务数据权限查询 -->
+	<if test="ifBusiness == 1">
+		<choose>
+				<when test="businessIdList2 != null">
+					and e.id in 
+					<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+		</choose>
+	</if>
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			<choose>
+				<when test="businessIdListByGroup != null">
+					and e.id in 
+					<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+			</choose>
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != ''">
+		and e.id = #{businessId}
+	</if>
+	and A.date=#{eDate} 
+	</where>
+	) dat group by dat.id,dat.grade 
+	order by dat.id,dat.grade desc
+  </select>
+  <select id="queryStarCountTotals" resultType="Double" parameterType="map">
+   
+    select sum(A.paytotal) paytotal
+     from taxes_invite_week A inner join ${dbTable}.memberagents m on m.mid=A.mid  inner join ${gameType}.memberbusiness e on e.id=m.belongid 
+	<where>
+	<!-- 公司责任人数据权限查询 --> 
+		<if test="ifLeader == 1">
+			<choose>
+				<when test="businessIdList != null">
+					and e.id in 
+					<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+			</choose>
+		</if>
+	<!-- 普通商务数据权限查询 -->
+	<if test="ifBusiness == 1">
+		<choose>
+				<when test="businessIdList2 != null">
+					and e.id in 
+					<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+		</choose>
+	</if>
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			<choose>
+				<when test="businessIdListByGroup != null">
+					and e.id in 
+					<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and 1=2
+				</otherwise>
+			</choose>
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != ''">
+		and e.id = #{businessId}
+	</if>
+	and A.date=#{eDate} 
+	</where>
+  </select>
+  <select id="getWeekCountGradeSecondList" resultType="map" parameterType="map">
+    select A.mid,m.realname,e.name,DATE_FORMAT(A.date, '%Y-%m-%d') date,ifnull(A.paytotal,0) paytotal, 
+	( 
+	case  
+	when ifnull(A.paytotal,0) &lt;700  then 1 
+	when ifnull(A.paytotal,0) &gt;=700 and  ifnull(A.paytotal,0) &lt;1400 then 2  
+	when ifnull(A.paytotal,0) &gt;=1400 and  ifnull(A.paytotal,0) &lt; 2100 then 3 
+	when ifnull(A.paytotal,0) &gt;=2100 and  ifnull(A.paytotal,0) &lt; 2800 then 4 
+	when ifnull(A.paytotal,0) &gt;=2800  then 5   end 
+	) grade from taxes_invite_week A inner join ${dbTable}.memberagents m on m.mid=A.mid  inner join ${gameType}.memberbusiness e on e.id=m.belongid 
+	and e.id=#{belongid} 
+	<where>
+		and A.date=#{eDate}
+		<if test="grade != null and grade != ''">
+			<if test="grade == 1">
+				and ifnull(A.paytotal,0) &lt;700
+			</if>
+			<if test="grade == 2">
+				and ifnull(A.paytotal,0) &gt;=700 and  ifnull(A.paytotal,0) &lt;1400
+			</if>
+			<if test="grade == 3">
+				and ifnull(A.paytotal,0) &gt;=1400 and  ifnull(A.paytotal,0) &lt; 2100
+			</if>
+			<if test="grade == 4">
+				and ifnull(A.paytotal,0) &gt;=2100 and  ifnull(A.paytotal,0) &lt; 2800
+			</if>
+			<if test="grade == 5">
+				and ifnull(A.paytotal,0) &gt;=2800
+			</if>
+		</if> 
+	</where>
+	order by A.paytotal desc
+  </select>
+
+	<select id="getMemberagentRankingList" resultType="map" parameterType="map">
+			select dat.id,dat.name,dat.realname,dat.paytotal,dat.mktime as date,dat.rebatetotal,dat.bindpeople,DATE_FORMAT(DATE_SUB(STR_TO_DATE(#{eDate},'%Y-%m-%d'),INTERVAL 6 DAY),'%Y-%m-%d') startDate,#{eDate} endDate from
+			(
+				select e.id,e.name,m.mid,
+				CASE WHEN  m.realname is null THEN   a.realname else m.realname end  as  realname,sum(t.paytotal)  paytotal,
+				sum(t.rebatetotal) rebatetotal,sum(t.bindpeople) bindpeople,
+				FROM_UNIXTIME(m.mktime,'%Y-%m-%d') mktime
+				from ${dbTable}_log.taxes_invite_week t
+				INNER JOIN ${dbTable}.memberagents m on t.mid=m.mid
+				INNER JOIN ${gameType}.memberbusiness e on e.id=m.belongid
+				LEFT JOIN ${gameType}.common_agents_info a on (m.sitemid = a.sitemid)
+				<where>
+					<!-- 公司责任人数据权限查询 -->
+					<if test="ifLeader == 1">
+						<choose>
+							<when test="businessIdList != null">
+								and e.id in
+								<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+									${id}
+								</foreach>
+							</when>
+							<otherwise>
+								and 1=2
+							</otherwise>
+						</choose>
+					</if>
+					<!-- 普通商务数据权限查询 -->
+					<if test="ifBusiness == 1">
+						<choose>
+							<when test="businessIdList2 != null">
+								and e.id in
+								<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+									${id}
+								</foreach>
+							</when>
+							<otherwise>
+								and 1=2
+							</otherwise>
+						</choose>
+					</if>
+					<!-- 页面  按照分公司条件查询  -->
+					<if test="groupId != null and groupId != ''">
+						<choose>
+							<when test="businessIdListByGroup != null">
+								and e.id in
+								<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+									${id}
+								</foreach>
+							</when>
+							<otherwise>
+								and 1=2
+							</otherwise>
+						</choose>
+					</if>
+					<!--页面   按照商务条件查询  -->
+					<if test="businessId != null and businessId != ''">
+						and e.id = #{businessId}
+					</if>
+					and t.date=#{eDate}
+				</where>
+				group by e.id,m.mid
+			  ) dat
+				order by dat.paytotal desc
+	</select>
+</mapper>

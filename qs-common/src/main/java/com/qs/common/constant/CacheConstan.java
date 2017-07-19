@@ -16,6 +16,12 @@ public class CacheConstan {
 
     //参数表base_param
     public static final String BASEPARAM_CACHE_STORE_NAME = "baseparam";
+    
+    //用户表
+    public static final String MEMBERFIDES_CACHE_STORE_NAME = "memberFides";
+    
+    //代理商
+    public static final String MEMBERAGENT_CACHE_STORE_NAME = "memberAgent";
 
     //服务器入口列表
     public static final String IP_ADDRESS_CACHE_STORE_NAME = "ipAddress";

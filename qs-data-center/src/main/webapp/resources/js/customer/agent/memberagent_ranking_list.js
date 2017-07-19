@@ -4,7 +4,7 @@ var gameType="";
 $(function(){ 
 //表格格数据
     var dtGridColumns = [{
-        id : '',
+        id : 'rank',
         title : '排名',
         type : 'number',
         columnClass : 'text-center',
@@ -33,7 +33,31 @@ $(function(){
         headerClass : 'dlshouwen-grid-header'
     },{
         id : 'paytotal',
-        title : '充值总金额',
+        title : '代理商团队充值总金额',
+        type : 'number',
+        columnClass : 'text-center',
+        headerClass : 'dlshouwen-grid-header'
+    },{
+        id : 'rebatetotal',
+        title : '返利总金额',
+        type : 'number',
+        columnClass : 'text-center',
+        headerClass : 'dlshouwen-grid-header'
+    },{
+        id : 'bindpeople',
+        title : '代理商团队招募总人数',
+        type : 'number',
+        columnClass : 'text-center',
+        headerClass : 'dlshouwen-grid-header'
+    },{
+        id : 'startDate',
+        title : '充值开始时间',
+        type : 'number',
+        columnClass : 'text-center',
+        headerClass : 'dlshouwen-grid-header'
+    },{
+        id : 'endDate',
+        title : '充值结束日期',
         type : 'number',
         columnClass : 'text-center',
         headerClass : 'dlshouwen-grid-header'
@@ -81,6 +105,7 @@ $(function(){
 	   // debugger;
 	    //queryTarCountTotals(requirtDate,null,null);
 	    $("#btnSearch").click(customSearch);
+    	$("#btnExport").click(exportAll);
 	    //注册回车键事件
 	    document.onkeypress = function (e) {
 	        var ev = document.all ? window.event : e;
@@ -139,3 +164,34 @@ function queryTarCountTotals(eDate,groupId,businessId){
 	});
 }
 
+function exportAll() {
+    debugger;
+    var searchYear =  $('#searchYear').val();
+    var searchDate =  $('#searchDate').val();
+    var requirtDate = "";
+    if (searchYear == "请选择年份") {
+        requirtDate="";
+        alert("请选择年份");
+        return;
+    }else if(searchDate == "请选择日期"){
+        alert("请选择日期");
+        return;
+    }
+    else{
+        requirtDate = searchYear + "-" + searchDate;
+    }
+
+    var saveDate = new Date(Date.parse(requirtDate.replace(/-/g, "/")));
+    saveDate.setDate(saveDate.getDate()-6);
+
+    var year = saveDate.getFullYear();
+    var month = saveDate.getMonth() + 1 < 10 ? "0" + (saveDate.getMonth() + 1) : saveDate.getMonth() + 1;
+    var date = saveDate.getDate() < 10 ? "0" + saveDate.getDate() : saveDate.getDate();
+
+    var startDate = year + "-" + month + "-" + date;
+
+	$("#startDate").val(startDate);
+	$("#endDate").val(requirtDate);
+	debugger;
+    $("#exportAction").submit();
+}

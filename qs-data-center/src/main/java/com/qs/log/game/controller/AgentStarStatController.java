@@ -7,34 +7,13 @@
  */
 package com.qs.log.game.controller;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.CommonContants;
+import com.qs.common.dtgrid.model.Column;
 import com.qs.common.dtgrid.model.Pager;
 import com.qs.common.dtgrid.util.ExportUtils;
 import com.qs.common.exception.SystemException;
@@ -46,9 +25,22 @@ import com.qs.datasource.DataSourceSwitch;
 import com.qs.log.game.model.TaxesInviteWeekDown;
 import com.qs.log.game.service.ITaxesInviteWeekService;
 import com.qs.log.game.service.IWeekDownService;
-import com.qs.pub.datacenter.model.CreateRoom;
 import com.qs.pub.sys.model.UserEntity;
 import com.qs.pub.sys.service.BusinessService;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.text.ParseException;
+import java.util.*;
 
 /** 
  * @ClassName: TaxesInviteWeekDownController 
@@ -634,6 +626,7 @@ public class AgentStarStatController extends BaseController
 			// 3、判断是否是导出操作
 			if (pager.getIsExport())
 			{
+
 				if (pager.getExportAllData())
 				{
 					// 3.1、导出全部数据

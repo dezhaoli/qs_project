@@ -1,7 +1,0 @@
-define(['app',"bootstrap","jquery"],function(app){
-	
-    app.controller('ctrl.rule',function($scope,$http){
-    	$(".qs_ul li").children("a").removeClass("cli_hover");
-        $(".qs_ul li").children("a").eq(3).addClass("cli_hover");
-    });
-});

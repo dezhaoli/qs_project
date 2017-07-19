@@ -39,7 +39,7 @@ public class BaseParamServiceImpl implements IBaseParamService {
 	
 	
 	@Override
-	@Cacheable(value={CacheConstan.BASEPARAM_CACHE_STORE_NAME},key="#root.methodName")
+	//@Cacheable(value={CacheConstan.BASEPARAM_CACHE_STORE_NAME},key="#root.methodName")
 	public List<BaseParam> selectAllList() {
 		return baseParamMapper.selectAllList();
 	}

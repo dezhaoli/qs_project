@@ -185,7 +185,7 @@ public class SocketPacketUtil {
 		sessionKey += '\0';
 		Integer msgLen = null;
 		msgLen = sessionKey.getBytes().length;//json 长度
-		packetSize+=msgLen+4;//命令 长度
+		packetSize+=msgLen+4;//消息 长度
 		//packetSize+=6; //这个包头长度
 		packetSize+=8; //gp gameType 长度
 		this.buffer = new byte[6 + packetSize];
@@ -268,9 +268,8 @@ public class SocketPacketUtil {
         map.put("type", 3);
         map.put("msg", 0);
         String jsonMsg=JSON.toJSONString(map);
-        SocketPacketUtil socketPacket = new SocketPacketUtil("",901);
-       
-        socketPacket.sendData(10008,123, jsonMsg);
+        SocketPacketUtil socketPacket = new SocketPacketUtil("192.168.1.142",9040);
+        socketPacket.sendData(10008,52171, jsonMsg);
         socketPacket.receiveData();
        
     }

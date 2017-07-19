@@ -33,6 +33,12 @@ var dtGridColumns = [{
             return '商务金币添加';
         }else if (value == '16') {
             return '邮件赠送';
+        }else if (value == '20') {
+            return '分享送房卡';
+        }else if (value == '21') {
+            return '评论送房卡';
+        }else if (value == '22') {
+            return '积分兑换';
         }
         return value;
     }

@@ -1,0 +1,199 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html>
+<!-- saved from url=(0157)http://wx.maxpanda.cn/weixin/joinRoom?token=7cfbFKh_R3OF-eQ1O5b7Q7VETfRGOOQ-HH-LX5Q52RXhzxbUxoVzJNrp_EmDjbS3Ejo36j2v17-DNOJvCrcVdOg4LzhzBK1kPA&roomNum=703216 -->
+<html xmlns="http://www.w3.org/1999/xhtml" style="font-size: 75px;">
+<!-- Head --><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <title>加入房间</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="format-detection" content="telephone=no">
+        
+        <script src="./files/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="./files/zepto.min.js"></script>
+        <script>
+            var apiHost = 'http://wx.maxpanda.cn/weixin';
+            var host    = 'http://wx.maxpanda.cn/weixin';
+            wx.config({
+                debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                appId: 'wx7057ffc04761589c', // 必填，公众号的唯一标识
+                timestamp: '1500361228', // 必填，生成签名的时间戳
+                nonceStr: 'GlnyhaaNbHYPSCm9', // 必填，生成签名的随机串
+                signature: 'f5055178f4c119cfa839a7a47ef4f3ccac4d8454',// 必填，签名，见附录1
+                jsApiList: [
+                    'onMenuShareAppMessage', 'scanQRCode', 'chooseWXPay', 'sendAppMessage', 'hideAllNonBaseMenuItem', 'showAllNonBaseMenuItem',
+                    'onMenuShareTimeline','hideMenuItems','getLocation'
+                ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            }); 
+            wx.error(function (res) {
+              //alert(res.errMsg);
+            });
+        </script>
+        <script>
+        var _czc = _czc || [];
+        _czc.push(["_setAccount", "1260643284"]);
+        </script>
+
+    <style type="text/css"></style></head>
+    <!-- /Head -->
+    <!-- Body -->
+    <body>
+                <script type="text/javascript" src="./files/rem2.js"></script>
+        <link rel="stylesheet" href="./files/joinRoom.css">
+        <div class="all-container">
+            <div class="icon-bg">
+                <div class="roomid-box" >
+                    <p class="roomid-font">房间号:<span class="room-id">703216</span></p>
+                    <p>贵阳麻将-8局</p>
+                </div>
+                <div class="room-play-box">
+                                    <p class="room-play"><span>满堂鸡</span></p>
+                                    <p class="room-play"><span>连庄</span></p>
+									
+                                </div>
+            </div>
+            <p class="room-font">房间成员</p>
+            <div class="user-head">
+                            <div class="user-head2"><img src="./files/200.jpg"></div>
+                            <div class="user-head1"><span>等待<br>加入</span></div>
+                            <div class="user-head1"><span>等待<br>加入</span></div>
+                            <div class="user-head1"><span>等待<br>加入</span></div>
+                        </div>
+            <div class="username-div">
+                            <p class="username">Zun</p>
+                            <p class="username"></p>
+                            <p class="username"></p>
+                            <p class="username"></p>
+                        </div>
+                        <!-- 用户未授权过 -->
+                <a href="http://wx.maxpanda.cn/weixin/weixinAuthOther?state=stateKey:1500361228" style="display: inline-block;">
+                    <div class="joinRoom">加入房间</div>
+                </a> 
+            
+                        <div class="openApp-android" style="">
+                <p>加入成功</p>
+                <p>手动打开游戏就能进入房间啦</p>
+            </div>
+            
+            <div class="joinRoom-loading" style="display:none">
+                <div class="joinRoom-loading-bg"></div><br>
+                <span class="joinRoom-loading-font">正在加入房间</span>
+            </div>
+            <div class="join-fail" style="display:none">
+                <p class="join-fail-font" style="display:none">加入失败</p>
+                <!--在其他房间 加入失败-->
+                <p class="join-fail-font1 join-fail-exit" style="display:none">你还在其它房间里呢<br>先把那边退了吧</p>
+                <!--房间已满-->
+                <p class="join-fail-font1 join-fail-roomFull" style="display:none">你来晚了，位置都被被人抢了</p>
+                <!--房间解散了-->
+                <p class="join-fail-font1 join-fail-dissolve" style="display:none">你来晚了，房间都解散了</p>
+                <!--账号被封-->
+                <p class="join-fail-font1 join-fail-close" style="display:none">你的账号已被查封<br>请联系公众号“地道游戏”</p>
+                <!--其他错误-->
+                <p class="join-fail-font1 join-fail-other" style="display:none">请稍候再试</p>
+            </div>
+        </div>
+    <script src="./files/mlink.min.js"></script>
+    <script>
+       // var options = {
+       //     mlink:  "http://a.mlinks.cc/AacB",
+       //     button: document.querySelector('a#joinRoomBtn'),
+       //     autoLaunchApp: false,
+       // };
+       // new Mlink(options);
+    </script>
+        <script>
+
+    $(function() {
+        $("#joinroom").on('click', function() {
+            $('.user-head').hide();
+            $('.room-font').hide();
+            $('.username-div').hide();
+            $('#joinroom').hide();
+            $('.joinRoom-loading').show();
+            console.log('addroom');
+            $.ajax({
+                type:"get",
+                url: apiHost + "/joinServerRoom",
+                dataType:"json",
+                data:{
+                    roomNum:'703216'
+                },
+                success:function(data){
+                    console.log(data);
+                    $('.joinRoom-loading').hide();
+                    if (data.code == 0) {
+                        // 重新渲染房间成员数据
+                        var users = data.data;
+                        console.log(users);
+                        var listr = '';
+                        var namestr = '';
+                        for(var i =0 ;i<users.length;i++){
+                            if (users[i]['userId'] == 0) {
+                                listr += '<div class="user-head1"><span>等待<br>加入</span></div>';
+                            } else {
+                                listr += '<div class="user-head2"><img src="' + users[i]['avatar'] +'" /></div>';
+                            }
+                            namestr += '<p class="username">' + users[i]['nickname'] +'</p>';
+                        }
+                        console.log(listr);
+                        console.log(namestr);
+                        $('.user-head').html(listr); 
+                        $('.username-div').html(namestr);
+                        $('.room-font').show();
+                        $('.user-head').show();
+                        $('.username-div').show();
+                        $('#joinRoomBtn').show();
+                        $('.openApp-btn').show();
+                        $('.openApp-android').show();
+                    } else {
+                        if (data.code == -2304) {
+                            location.href = host + "/roomError?errCode=" + data.code+"&errPage=roomErrorVer";
+                        } else {
+                            $('.join-fail-font').show();
+                            $('.join-fail').show();
+                        }
+                    }
+                    if (data.code == -1014) {
+                        $('.join-fail-close').show();
+                    } else if (data.code == -2017) {
+                        //alert(data.message);
+                    } else if (data.code == -2202) {
+                        $('.join-fail-exit').show();
+                    } else if (data.code == -2302) {
+                        $('.join-fail-dissolve').show();
+                    } else if (data.code == -2303) {
+                        $('.join-fail-roomFull').show();
+                    } else {
+                        $('.join-fail-other').show();
+                    }
+                }
+            });
+        });
+    });
+        </script>
+    <script>
+        $(function() {
+
+            $(".joinRoom1").on('click', function() {
+                var url = apiHost + "/download"
+                location.href = url;
+            })
+        })
+    </script>
+    <style>
+        -webkit-user-select: none;
+        -webkit-tap-highlight-color: rgba(200, 200, 200, 0);
+    </style>
+    <!-- 
+            <div style="display:none">
+            <script src="./files/z_stat.php" language="JavaScript"></script><script src="./files/core.php" charset="utf-8" type="text/javascript"></script><a href="http://www.cnzz.com/stat/website.php?web_id=1260643284" target="_blank" title="站长统计">站长统计</a>
+            </div> -->
+            
+    <!--  /Body -->
+
+</body>
+</html>

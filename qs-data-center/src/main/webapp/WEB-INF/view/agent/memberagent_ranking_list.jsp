@@ -5,7 +5,7 @@
 <script type="text/javascript" src="${ctx }/resources/js/customer/agent/memberagent_ranking_list.js"></script>
 
 	<div class="controls controls-row">
-        <div class="form-horizontal" role="form">
+		<form class="form-horizontal" id="exportAction" action="businessCount/exportAll.html" >
                 <div class="col-sm-2" id="divGroupId">
                     <div class="clearfix">
                      <select class="form-control" id="groupIdBusiness" name="groupIdBusiness" style="width: 100%" onchange="selectBusiness(this.value)">
@@ -44,7 +44,14 @@
 					</div>
 
 			</div>
-        </div>
+			<div class="col-sm-2">
+				<button id="btnExport" class="btn btn-primary btn-sm" type="button">
+					导出代理商周统计
+				</button>
+			</div>
+			<input type="hidden" id="startDate" name="startDate"  value=""/>
+			<input type="hidden" id="endDate" name="endDate" value=""/>
+        </form>
     </div>
 
 	<input type="hidden" id="gameType" value="${gameType}"/>

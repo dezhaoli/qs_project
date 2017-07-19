@@ -42,6 +42,7 @@
 				<entry key="mobileversion" value="3600"/> 
 				<entry key="gameRecord" value="604800"/>
 				<entry key="integralRanking" value="1800"/>
+				<entry key="ipAddress" value="7200"/>
 			</map>
 		</property>
 	</bean>

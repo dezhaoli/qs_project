@@ -194,6 +194,9 @@
        <if test="type != null and type != ''">
          and type = #{type}
        </if>
+       <if test="type != null and type == -123"><!-- 江西麻将刷选麻将类 -->
+         and type != 4
+       </if>
 	     ORDER BY id DESC LIMIT #{startRow},#{pageSize}
 	</select>
 	

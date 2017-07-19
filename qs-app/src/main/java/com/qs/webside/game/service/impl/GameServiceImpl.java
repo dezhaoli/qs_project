@@ -222,6 +222,7 @@ public class GameServiceImpl implements GameService {
 	}
 
 	@Override
+	@Cacheable(value={CacheConstan.IP_ADDRESS_CACHE_STORE_NAME},key="#root.methodName+':'+#root.args[0]")
 	public Ipaddress findIpaddressByType(String type) {
 		return ipaddressMapper.findIpaddressByType(type);
 	}

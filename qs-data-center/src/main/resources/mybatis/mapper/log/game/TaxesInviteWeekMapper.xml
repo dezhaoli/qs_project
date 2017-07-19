@@ -4,6 +4,8 @@
   <resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteWeek" >
     <result column="mid" property="mid" jdbcType="INTEGER" />
     <result column="date" property="date" jdbcType="DATE" />
+    <result column="startDate" property="startDate" jdbcType="VARCHAR" />
+    <result column="endDate" property="endDate" jdbcType="VARCHAR" />
     <result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
     <result column="rebatetotal" property="rebatetotal" jdbcType="DECIMAL" />
     <result column="bindpeople" property="bindpeople" jdbcType="SMALLINT" />
@@ -251,10 +253,11 @@
   </select>
 
 	<select id="getMemberagentRankingList" resultType="map" parameterType="map">
-			select dat.id,dat.name,dat.realname,dat.paytotal,dat.mktime as date from
+			select dat.id,dat.name,dat.realname,dat.paytotal,dat.mktime as date,dat.rebatetotal,dat.bindpeople,DATE_FORMAT(DATE_SUB(STR_TO_DATE(#{eDate},'%Y-%m-%d'),INTERVAL 6 DAY),'%Y-%m-%d') startDate,#{eDate} endDate from
 			(
 				select e.id,e.name,m.mid,
 				CASE WHEN  m.realname is null THEN   a.realname else m.realname end  as  realname,sum(t.paytotal)  paytotal,
+				sum(t.rebatetotal) rebatetotal,sum(t.bindpeople) bindpeople,
 				FROM_UNIXTIME(m.mktime,'%Y-%m-%d') mktime
 				from ${dbTable}_log.taxes_invite_week t
 				INNER JOIN ${dbTable}.memberagents m on t.mid=m.mid

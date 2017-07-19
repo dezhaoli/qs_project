@@ -95,7 +95,7 @@ $(function() {
     queryAmountTotals(startDate,endDate,null,null);
     grid.load();
     $("#btnSearch").click(customSearch);
-    $("#btnExport").click(exportAll);
+    //$("#btnExport").click(exportAll);
     
     //注册回车键事件
     document.onkeypress = function(e){
