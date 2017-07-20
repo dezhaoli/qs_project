@@ -191,12 +191,14 @@
 	   <include refid="Base_Column_List" />
 		FROM majiang_game_record
 	     WHERE (player1=#{mid} OR player2=#{mid} OR player3=#{mid} OR player4=#{mid} OR master=#{mid})
-       <if test="type != null and type != ''">
-         and type = #{type}
-       </if>
-       <if test="type != null and type == -123"><!-- 江西麻将刷选麻将类 -->
-         and type != 4
-       </if>
+         <if test="type != null and type != ''">
+           <if test="type != -123">
+             and type = #{type}
+           </if>
+           <if test="type == -123"><!-- 江西麻将刷选麻将类 -->
+             and type != 4
+           </if>
+         </if>
 	     ORDER BY id DESC LIMIT #{startRow},#{pageSize}
 	</select>
 	

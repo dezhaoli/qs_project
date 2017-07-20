@@ -39,7 +39,7 @@ width:80px;
 		<div class="widget-box transparent ui-sortable-handle"
 			style="opacity: 1; z-index: 0;">
 			<div class="widget-header">
-				<h4 class="widget-title lighter">创建房间数据统计列表</h4>
+				<h4 class="widget-title lighter">商务创建房间数据统计列表</h4>
 				<div class="widget-toolbar no-border">
 					<a href="#" data-action="fullscreen" class="orange2"> 
 						<i class="ace-icon fa fa-arrows-alt"></i>
@@ -68,7 +68,7 @@ width:80px;
 </div>
 
 <div class="center">
-				    <button id="btn" type="button" onclick="webside.common.loadPage('/createRoom/toCreateRoom.html')"
+				    <button id="btn" type="button" onclick="webside.common.loadPage('/createRoom/toCreateRoom.html?stime='+$('#stime2').val()+'&etime='+$('#etime2').val())"
 				            class="btn btn-info btn-sm">
 				        <i class="fa fa-undo"></i>&nbsp;返回
 				    </button>

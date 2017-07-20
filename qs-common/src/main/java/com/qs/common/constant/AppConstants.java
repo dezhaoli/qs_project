@@ -43,8 +43,9 @@ public class AppConstants {
 		public static final String GAME_STOP_NOTICE_CACHE = "gameStopNotice:";
 		//白名单设备列表
 		public static final String MEMBER_WHITE_DEVICE_CACHE = "memberWhite:devicelist";
-		
-	
+		//白名单禁用列表
+		public static final String MEMBER_WHITE_DISABLE_LIST_CACHE = "memberWhite:disableList";
+
 	}
 	
 	public static class NotifyMsg{

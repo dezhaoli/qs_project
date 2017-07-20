@@ -174,7 +174,7 @@ public class SocketPacketUtil {
 	}
 
 
-	public Boolean CLoginDemo(Integer cmdType,Integer mid,String sessionKey,Integer gp,Integer gameType) {
+	public Boolean loginServer(Integer cmdType,Integer mid,String sessionKey,Integer gp,Integer gameType) {
 		if (socket == null) {
 			log.debug("================>::SocketPacketUtil sendDataUtf8 function socket is null;send data fail " +
 					"maybe socket host or port is wrong !");
@@ -185,7 +185,7 @@ public class SocketPacketUtil {
 		sessionKey += '\0';
 		Integer msgLen = null;
 		msgLen = sessionKey.getBytes().length;//json 长度
-		packetSize+=msgLen+4;//消息 长度
+		packetSize+=msgLen+4;//消息 长度,对应@1
 		//packetSize+=6; //这个包头长度
 		packetSize+=8; //gp gameType 长度
 		this.buffer = new byte[6 + packetSize];
@@ -196,7 +196,7 @@ public class SocketPacketUtil {
 		this.buffer[4] = (byte) (cmdType & 0xff);
 		this.buffer[5] = (byte) (cmdType >> 8 & 0xff);
 		System.arraycopy(toLH(mid), 0, buffer, 6, 4);
-		System.arraycopy(toLH(msgLen), 0, buffer, 10, 4);
+		System.arraycopy(toLH(msgLen), 0, buffer, 10, 4);  //@1
 		System.arraycopy(sessionKey.getBytes(), 0, buffer, 14, msgLen);
 		System.arraycopy(toLH(gp), 0, buffer, 14+msgLen, 4);
 		System.arraycopy(toLH(gameType), 0, buffer, 18+msgLen, 4);
@@ -208,13 +208,57 @@ public class SocketPacketUtil {
 		}
 		return true;
 	}
+	
+	
+	
+	public Boolean joinRoom(Integer cmdType,Integer roomid) {
+		if (socket == null) {
+			log.debug("================>::SocketPacketUtil sendDataUtf8 function socket is null;send data fail " +
+					"maybe socket host or port is wrong !");
+			return false;
+		}
+		//roomid长度
+		packetSize=4;//roomid长度
+		this.buffer = new byte[6 + packetSize];
+		this.buffer[0] = 'Q';
+		this.buffer[1] = 'S';
+		this.buffer[2] = (byte) (this.packetSize & 0xff);
+		this.buffer[3] = (byte) (this.packetSize >> 8 & 0xff);
+		this.buffer[4] = (byte) (cmdType & 0xff);
+		this.buffer[5] = (byte) (cmdType >> 8 & 0xff);
+		System.arraycopy(toLH(roomid), 0, buffer, 6, 4);
+		try {
+			socket.getOutputStream().write(this.buffer);
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 
 	
     public Boolean receiveData() {
-      	byte[] recvHead =new byte[4] ;
     	try {
-			socket.getInputStream().read(recvHead,0,4);
-			log.debug("receiveData result==::"+this.bytes2Integer(this.toLH(this.bytes2Integer(recvHead))));
+
+			
+	        byte[] recvHead = new byte[4];
+	        byte[] recvHead2 = new byte[2];
+	        socket.getInputStream().read(recvHead2, 0, 2);
+	    	String DataStr = new String(recvHead2);
+			System.out.println(DataStr);
+			socket.getInputStream().read(recvHead, 0, 2);
+	       
+	        int len=bytes2Integer(toLH(bytes2Integer(recvHead)));
+	        
+	        System.out.println("len=======::"+len);
+	        socket.getInputStream().read(recvHead, 0, 2);
+	        int cmd=bytes2Integer(toLH(bytes2Integer(recvHead)));
+	        System.out.println("cmd===::"+cmd);
+	        
+	        byte[] recvData = new byte[4];
+	        socket.getInputStream().read(recvData, 0, 4);
+	        System.out.println(bytes2Integer(toLH(bytes2Integer(recvData))));
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -222,6 +266,44 @@ public class SocketPacketUtil {
 		}
     	return true;
     }
+    
+    public Boolean receiveData2() {
+    	try {
+
+			
+	        byte[] recvHead = new byte[4];
+	        byte[] recvHead2 = new byte[2];
+	        socket.getInputStream().read(recvHead2, 0, 2);
+	    	String DataStr = new String(recvHead2);
+			socket.getInputStream().read(recvHead, 0, 2);
+	       
+	        int len=bytes2Integer(toLH(bytes2Integer(recvHead)));
+	        
+	     
+	        socket.getInputStream().read(recvHead, 0, 2);
+	        int cmd=bytes2Integer(toLH(bytes2Integer(recvHead)));
+	        
+	        if(cmd==1103||cmd==1001){
+	          System.out.println("len=======::"+len);
+	          System.out.println(DataStr);
+	          System.out.println("cmd===::"+cmd);
+	          byte[] recvData = new byte[4];
+	          socket.getInputStream().read(recvData, 0, 4);
+	          System.out.println(bytes2Integer(toLH(bytes2Integer(recvData))));
+	          return true;
+	        }
+	        else{
+	        	byte[] buffer = new byte[len];
+        		socket.getInputStream().read(buffer, 0, len);
+	        }
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+    	return false;
+    }
+
     
     public void close() {
     	if(null!=socket){
@@ -263,16 +345,22 @@ public class SocketPacketUtil {
     }
     
     
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put("type", 3);
-        map.put("msg", 0);
-        String jsonMsg=JSON.toJSONString(map);
+
         SocketPacketUtil socketPacket = new SocketPacketUtil("192.168.1.142",9040);
-        socketPacket.sendData(10008,52171, jsonMsg);
+        socketPacket.loginServer(1000, 52171, "52171-1500549914331-101-48dcfd46e437f83697d34e8939c9cedc-0-6",101,2400);
         socketPacket.receiveData();
-       
-    }
+        socketPacket.joinRoom(1103, 100009);
+        //socketPacket.receiveData2();
+        while(true){
+        	Boolean result= socketPacket.receiveData2();
+        	if(result){  
+        		break;
+        	}
+        }
+       socketPacket.close(); 
+    }*/
     
 
   

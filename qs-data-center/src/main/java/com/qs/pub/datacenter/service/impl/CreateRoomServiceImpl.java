@@ -18,11 +18,11 @@ import com.qs.pub.datacenter.mapper.CreateRoomMapper;
 import com.qs.pub.datacenter.model.CreateRoom;
 import com.qs.pub.datacenter.service.ICreateRoomService;
 
-/** 
- * @ClassName: CreateRoomServiceImpl 
- * @描述: (这里用一句话描述这个类的作用) 
+/**
+ * @ClassName: CreateRoomServiceImpl
+ * @描述: (这里用一句话描述这个类的作用)
  * @author qs
- * @date 2017年5月23日 下午5:39:34 
+ * @date 2017年5月23日 下午5:39:34
  */
 @Service
 public class CreateRoomServiceImpl implements ICreateRoomService
@@ -63,5 +63,15 @@ public class CreateRoomServiceImpl implements ICreateRoomService
 	{
 		return createRoomMapper.queryListOfExport(parameters);
 	}
-	
+
+    @Override
+    public List<CreateRoom> queryListThreeDetails(Map<String, Object> parameters) {
+        return createRoomMapper.queryListThreeDetails(parameters);
+    }
+
+    @Override
+    public List<CreateRoom> queryListFourDetails(Map<String, Object> parameters) {
+        return createRoomMapper.queryListFourDetails(parameters);
+    }
+
 }

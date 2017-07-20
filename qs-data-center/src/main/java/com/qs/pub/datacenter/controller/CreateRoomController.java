@@ -378,4 +378,135 @@ public class CreateRoomController extends BaseController
 		}
 		
 	}
+
+
+	@RequestMapping("toCreateRoomThreeDetailsUi.html")
+	public String toCreateRoomThreeDetailsUi(Model model,String appId,String playId,String stime,String etime,String businessId){
+		model.addAttribute("appId", appId);
+		model.addAttribute("playId", playId);
+		model.addAttribute("businessId", businessId);
+		model.addAttribute("stime", stime);
+		model.addAttribute("etime", etime);
+
+		return "/WEB-INF/view/loginfo/create_room_three_list";
+	}
+
+	@RequestMapping("queryCreateRoomThreeDetails.html")
+	@ResponseBody
+	public Object queryCreateRoomThreeDetails(String gridPager,HttpServletResponse response){
+		try
+		{
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String gameCode = valueOper.get(Constant.DATA_CENTER_GAME_CODE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+
+			Map<String, Object> parameters = null;
+			// 映射Pager对象
+			Pager pager = JSON.parseObject(gridPager, Pager.class);
+			// 判断是否包含自定义参数
+			parameters = pager.getParameters();
+
+			parameters.put("dbTable", dataSourceName);
+			parameters.put("gameType", gameType);
+			parameters.put("gameCode", gameCode);
+			// 3、判断是否是导出操作
+			if (pager.getIsExport())
+			{
+				if (pager.getExportAllData())
+				{
+					// 3.1、导出全部数据
+					List<CreateRoom> list = createRoomService
+							.queryListThreeDetails(parameters);
+					ExportUtils.exportAll(response, pager, list);
+					return null;
+				} else
+				{
+					// 3.2、导出当前页数据
+					ExportUtils.export(response, pager);
+					return null;
+				}
+			} else
+			{
+				// 设置分页，page里面包含了分页信息
+				Page<Object> page = PageHelper.startPage(pager.getNowPage(),
+						pager.getPageSize());
+				List<CreateRoom> list = createRoomService
+						.queryListThreeDetails(parameters);
+				return getReturnPage(pager, page, list);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+
+	}
+
+
+	@RequestMapping("toCreateRoomFourDetailsUi.html")
+	public String toCreateRoomFourDetailsUi(Model model,String appId,String playId,String stime,String etime,String businessId,String mid){
+		model.addAttribute("appId", appId);
+		model.addAttribute("playId", playId);
+		model.addAttribute("businessId", businessId);
+		model.addAttribute("mid", mid);
+		model.addAttribute("stime", stime);
+		model.addAttribute("etime", etime);
+
+		return "/WEB-INF/view/loginfo/create_room_four_list";
+	}
+
+	@RequestMapping("queryCreateRoomFourDetails.html")
+	@ResponseBody
+	public Object queryCreateRoomFourDetails(String gridPager,HttpServletResponse response){
+		try
+		{
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String gameCode = valueOper.get(Constant.DATA_CENTER_GAME_CODE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+
+			Map<String, Object> parameters = null;
+			// 映射Pager对象
+			Pager pager = JSON.parseObject(gridPager, Pager.class);
+			// 判断是否包含自定义参数
+			parameters = pager.getParameters();
+
+			parameters.put("dbTable", dataSourceName);
+			parameters.put("gameType", gameType);
+			parameters.put("gameCode", gameCode);
+			// 3、判断是否是导出操作
+			if (pager.getIsExport())
+			{
+				if (pager.getExportAllData())
+				{
+					// 3.1、导出全部数据
+					List<CreateRoom> list = createRoomService
+							.queryListFourDetails(parameters);
+					ExportUtils.exportAll(response, pager, list);
+					return null;
+				} else
+				{
+					// 3.2、导出当前页数据
+					ExportUtils.export(response, pager);
+					return null;
+				}
+			} else
+			{
+				// 设置分页，page里面包含了分页信息
+				Page<Object> page = PageHelper.startPage(pager.getNowPage(),
+						pager.getPageSize());
+				List<CreateRoom> list = createRoomService
+						.queryListFourDetails(parameters);
+				return getReturnPage(pager, page, list);
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+
+	}
 }

@@ -25,17 +25,17 @@ var dtGridColumns = [{
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
-}/*,{
+},{
     id : '',
     title : '操作',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
-        
-        return "<a href='javascript:lookDetail("+record.id+")'>查看明细</a>";
+
+        return '<a href="javascript:lookCreateRoomDetailOfThree('+record.appId+',\''+record.playId+'\',\''+record.id+'\')">查看代理商明细</a>';
     }
-}*/];
+}];
 
 //动态设置jqGrid的rowNum
 var pageSize = $("#pageSize").val();
@@ -138,7 +138,11 @@ $(function() {
 
 
 
-
+var lookCreateRoomDetailOfThree = function(appId,playId,id){
+    var st  = $("#stime2").val();
+    var et  = $("#etime2").val();
+    webside.common.loadPage('/createRoom/toCreateRoomThreeDetailsUi.html?stime='+st+'&etime='+et+'&businessId='+id+'&appId='+appId+'&playId='+playId);
+}
 
 
 

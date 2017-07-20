@@ -112,7 +112,7 @@
 		<property name="interceptorNames" value="websideTxInterceptor"/>
 		<property name="beanNames">
 			<list>
-				<value>*Service</value>
+				<value>*ServiceImpl</value>
 			</list>
 		</property>
 	</bean>
@@ -204,7 +204,7 @@
 		<property name="interceptorNames" value="cfgTxInterceptor"/>
 		<property name="beanNames">
 			<list>
-				<value>*Service</value>
+				<value>*ServiceImpl</value>
 			</list>
 		</property>
 	</bean>
@@ -296,7 +296,7 @@
 		<property name="interceptorNames" value="logTxInterceptor"/>
 		<property name="beanNames">
 			<list>
-				<value>*Service</value>
+				<value>*ServiceImpl</value>
 			</list>
 		</property>
 	</bean>
@@ -396,7 +396,7 @@
 		<property name="interceptorNames" value="pubTxInterceptor"/>
 		<property name="beanNames">
 			<list>
-				<value>*Service</value>
+				<value>*ServiceImpl</value>
 			</list>
 		</property>
 	</bean>
@@ -495,7 +495,7 @@
 		<property name="interceptorNames" value="actiTxInterceptor"/>
 		<property name="beanNames">
 			<list>
-				<value>*Service</value>
+				<value>*ServiceImpl</value>
 			</list>
 		</property>
 	</bean>

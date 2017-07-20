@@ -108,7 +108,10 @@
     select 
     <include refid="Base_Column_List" />
     from room_record
-    where uuid = #{uuid} and type=#{type}
+    where uuid = #{uuid}
+      <if test="type != null and type != ''">
+      and type=#{type}
+      </if>
     limit 1
   </select>
   

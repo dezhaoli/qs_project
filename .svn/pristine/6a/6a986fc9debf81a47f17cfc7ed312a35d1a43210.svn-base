@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.datacenter.mapper.CreateRoomMapper">
+  <resultMap id="BaseResultMap" type="com.qs.pub.datacenter.model.CreateRoom">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="play_name" jdbcType="VARCHAR" property="playName" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="user_group_name" jdbcType="VARCHAR" property="userGroupName" />
+    <result column="business_name" jdbcType="VARCHAR" property="businessName" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="play_id" jdbcType="VARCHAR" property="playId" />
+    <result column="create_room_time" jdbcType="TIMESTAMP" property="createRoomTime" />
+    <result column="totals" jdbcType="INTEGER" property="totals" />
+    <result column="gold" jdbcType="INTEGER" property="gold" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, app_id, play_name,play_id, create_room_time
+  </sql>
+  
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+  select
+  	dat.app_id,
+	dat.app_name,
+	dat.play_id,
+	dat.play_name,
+	sum(dat.gold) gold,
+	sum(dat.totals) totals
+    from 
+    (
+    SELECT 
+    d.app_id,
+	m.name app_name,
+	d.play_id,
+	d.play_name,
+	ifnull(sum(d.gold),0) gold,
+	count(d.app_id) totals
+    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+    <if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=d.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+    </if>		
+    <where>
+    <!-- 公司责任人数据权限查询 --> 
+		<if test="ifLeader == 1">
+			<choose>
+				<when test="businessIdList != null">
+					and e.id in 
+					<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+		</if>
+	<!-- 普通商务数据权限查询 -->
+	<if test="ifBusiness == 1">
+		<choose>
+				<when test="businessIdList2 != null">
+					and e.id in 
+					<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+		</choose>
+	</if>
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			<choose>
+				<when test="businessIdListByGroup != null">
+					and e.id in 
+					<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != '' and businessId != 'null'">
+		and e.id = #{businessId}
+	</if>
+   	<if test="playName != null and playName != ''">
+   	  and d.play_name = #{playName,jdbcType=VARCHAR}
+   	</if>
+   	<if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+   	and f.invite >0
+   	</if>
+   	and d.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+    </where>
+    group by
+    d.app_id,
+	d.play_id
+	
+union all
+	
+	SELECT 
+    d.app_id,
+	m.name app_name,
+	d.play_id,
+	d.play_name,
+	ifnull(sum(d.gold),0) gold,
+	count(d.app_id) totals
+    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+    <if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+		left join ${dbTable}.memberfides0 f on f.mid=d.mid
+		left join ${dbTable}.memberagents  c on f.mid=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+    </if>
+    <where>
+    <!-- 公司责任人数据权限查询 --> 
+		<if test="ifLeader == 1">
+			<choose>
+				<when test="businessIdList != null">
+					and e.id in 
+					<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+		</if>
+	<!-- 普通商务数据权限查询 -->
+	<if test="ifBusiness == 1">
+		<choose>
+				<when test="businessIdList2 != null">
+					and e.id in 
+					<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+		</choose>
+	</if>
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			<choose>
+				<when test="businessIdListByGroup != null">
+					and e.id in 
+					<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+				    ${id}  
+				    </foreach> 
+				</when>
+				<otherwise>
+				and e.id=0
+				</otherwise>
+			</choose>
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != '' and businessId != 'null'">
+		and e.id = #{businessId}
+	</if>
+   	<if test="playName != null and playName != ''">
+   	  and d.play_name = #{playName,jdbcType=VARCHAR}
+   	</if>
+   		<choose>
+	   		<when test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+	   			and f.invite =0
+	   		</when>
+	   		<otherwise>
+	   		  	and 1=2
+	   		</otherwise>
+	   	</choose>
+   	and d.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+    </where>
+    group by
+    d.app_id,
+	d.play_id
+	)dat
+	group by 
+	dat.app_id,
+	dat.play_id
+  </select>
+  
+  <select id="queryListOfExport" parameterType="map" resultMap="BaseResultMap">
+  select 
+  	dat.app_id,
+	dat.app_name,
+	dat.play_id,
+	dat.play_name,
+	sum(dat.gold)gold,
+	dat.business_name,
+	sum(dat.totals)totals
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,dat.user_group_name
+	</if>
+    from (
+    SELECT 
+    d.app_id,
+	m.name app_name,
+	d.play_id,
+	d.play_name,
+	ifnull(sum(d.gold),0) gold,
+	count(d.app_id) totals,
+	e.name business_name,
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id groupId,
+	r.user_group_name
+	</if>
+    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+		left join ${dbTable}.memberfides0 f on f.mid=d.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+			<!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				left join sys_business bu on (e.id = bu.business_id)
+				left join sys_business_group s on (bu.id=s.business_id)
+				left join sys_group r on (r.id=s.group_id)
+				left join sys_group_leader e on (e.group_id= r.id  and r.game_type = #{gameType})
+				left join tb_user u   on (u.u_id=e.user_id  and u.u_id = #{uId})
+			</if>
+			<!-- 普通商务数据权限查询 -->
+			<if test="ifBusiness == 1">
+				left join sys_business bu on (e.id = bu.business_id)
+				left join tb_user u on (bu.phone = u.u_account_name and u.u_account_name=#{accountName})
+				left join sys_business_group b on (bu.id=b.business_id)
+				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
+			</if>
+			<if test="groupId != null and groupId != '' and groupId != 'null'">
+				left join sys_business bu on (e.id = bu.business_id)
+				left join sys_business_group b on (bu.id=b.business_id)
+				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
+		    </if>
+    <where>
+    
+	
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			r.id = #{groupId,jdbcType=INTEGER}
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != '' and businessId != 'null'">
+		and e.id = #{businessId}
+	</if>
+   	<if test="playName != null and playName != ''">
+   	  and d.play_name = #{playName,jdbcType=VARCHAR}
+   	</if>
+   	and f.invite >0
+   	and d.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+    </where>
+    group by
+    d.app_id,
+	d.play_id,
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id
+	</if>
+	
+union all
+
+SELECT 
+    d.app_id,
+	m.name app_name,
+	d.play_id,
+	d.play_name,
+	ifnull(sum(d.gold),0) gold,
+	count(d.app_id) totals,
+	e.name business_name,
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id groupId,
+	r.user_group_name
+	</if>
+    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+		left join ${dbTable}.memberfides0 f on f.mid=d.mid
+		left join ${dbTable}.memberagents  c on f.mid=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+			<!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				left join sys_business bu on (e.id = bu.business_id)
+				left join sys_business_group s on (bu.id=s.business_id)
+				left join sys_group r on (r.id=s.group_id)
+				left join sys_group_leader e on (e.group_id= r.id  and r.game_type = #{gameType})
+				left join tb_user u   on (u.u_id=e.user_id  and u.u_id = #{uId})
+			</if>
+			<!-- 普通商务数据权限查询 -->
+			<if test="ifBusiness == 1">
+				left join sys_business bu on (e.id = bu.business_id)
+				left join tb_user u on (bu.phone = u.u_account_name and u.u_account_name=#{accountName})
+				left join sys_business_group b on (bu.id=b.business_id)
+				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
+			</if>
+			<if test="groupId != null and groupId != '' and groupId != 'null'">
+				left join sys_business bu on (e.id = bu.business_id)
+				left join sys_business_group b on (bu.id=b.business_id)
+				left join sys_group r on (r.id=b.group_id and r.game_type=#{gameType})
+		    </if>
+    <where>
+    
+	
+	<!-- 页面  按照分公司条件查询  -->
+	<if test="groupId != null and groupId != ''">
+			r.id = #{groupId,jdbcType=INTEGER}
+	</if>
+	<!--页面   按照商务条件查询  -->
+	<if test="businessId != null and businessId != '' and businessId != 'null'">
+		and e.id = #{businessId}
+	</if>
+   	<if test="playName != null and playName != ''">
+   	  and d.play_name = #{playName,jdbcType=VARCHAR}
+   	</if>
+   	and f.invite =0
+   	and d.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+    </where>
+    group by
+    d.app_id,
+	d.play_id,
+	e.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,r.id 
+	</if>
+	)dat
+	group by dat.app_id,dat.play_id,dat.id
+	<if test="groupId != null and groupId != '' and groupId != 'null'">
+	,dat.groupId
+	</if>
+	
+  </select>
+  
+  
+  
+  
+  <select id="queryListSecondDetails" parameterType="map" resultMap="BaseResultMap">
+  select
+  dat.id,dat.name,
+    dat.app_id ,dat.app_name,dat.play_id,dat.play_name,sum(dat.totals) totals
+   from (
+    SELECT 
+	e.id,e.name,
+    d.app_id ,m.name app_name,d.play_id,d.play_name,count(d.app_id) totals
+    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1) 
+		left join ${dbTable}.memberfides0 f on f.mid=d.mid
+		left join ${dbTable}.memberagents  c on f.invite=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+    <where>
+   	and f.invite >0
+   	and d.app_id = #{appId,jdbcType=INTEGER}
+   	and d.play_id = #{playId,jdbcType=INTEGER}
+   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+    </where>
+    group by e.id
+    
+ union all
+ 
+ 	SELECT 
+	e.id,e.name,
+    d.app_id ,m.name app_name,d.play_id,d.play_name,count(d.app_id) totals
+    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1) 
+		left join ${dbTable}.memberfides0 f on f.mid=d.mid
+		left join ${dbTable}.memberagents  c on f.mid=c.mid 
+		left join ${gameType}.memberbusiness e on e.id=c.belongid
+    <where>
+   	and f.invite =0
+   	and d.app_id = #{appId,jdbcType=INTEGER}
+   	and d.play_id = #{playId,jdbcType=INTEGER}
+   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+    </where>
+    group by e.id)dat group by dat.id   
+  </select>
+
+	<select id="queryListThreeDetails" parameterType="map" resultMap="BaseResultMap">
+	  select
+	  dat.id,dat.name,dat.mid,dat.realname,
+		dat.app_id ,dat.app_name,dat.play_id,dat.play_name,sum(dat.totals) totals
+	   from (
+		SELECT
+		e.id,e.name,c.mid,
+		c.realname,
+		d.app_id ,m.name app_name,d.play_id,d.play_name,count(d.app_id) totals
+		from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+			left join ${dbTable}.memberfides0 f on f.mid=d.mid
+			left join ${dbTable}.memberagents  c on f.invite=c.mid
+			left join ${gameType}.memberbusiness e on e.id=c.belongid
+		<where>
+		and e.id = #{businessId}
+		and f.invite >0
+		and d.app_id = #{appId,jdbcType=INTEGER}
+		and d.play_id = #{playId,jdbcType=INTEGER}
+		and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day)
+		and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+		</where>
+		group by e.id,c.mid
+
+	 union all
+
+		SELECT
+		e.id,e.name,c.mid,
+		c.realname,
+		d.app_id ,m.name app_name,d.play_id,d.play_name,count(d.app_id) totals
+		from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+			left join ${dbTable}.memberfides0 f on f.mid=d.mid
+			left join ${dbTable}.memberagents  c on f.mid=c.mid
+			left join ${gameType}.memberbusiness e on e.id=c.belongid
+		<where>
+		and e.id = #{businessId}
+		and f.invite =0
+		and d.app_id = #{appId,jdbcType=INTEGER}
+		and d.play_id = #{playId,jdbcType=INTEGER}
+		and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day)
+		and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+		</where>
+		group by e.id,c.mid
+		)dat group by dat.id,dat.mid
+  </select>
+	<select id="queryListFourDetails" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		e.id,e.name,c.mid,
+		c.realname,
+		f.name as user_name,
+		d.app_id ,m.name app_name,d.play_id,d.play_name,count(d.app_id) totals
+		from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+			left join ${dbTable}.memberfides0 f on f.mid=d.mid
+			left join ${dbTable}.memberagents  c on f.invite=c.mid
+			left join ${gameType}.memberbusiness e on e.id=c.belongid
+		<where>
+		and e.id = #{businessId}
+		and c.mid = #{mid}
+		and d.app_id = #{appId,jdbcType=INTEGER}
+		and d.play_id = #{playId,jdbcType=INTEGER}
+		and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day)
+		and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+		</where>
+		group by e.id,c.mid,f.mid
+  </select>
+  
+  <select id="queryCreateRoomTotal" parameterType="map" resultType="Long">
+  select sum(dat.totals) totals from (
+	  SELECT count(d.app_id) totals
+	    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1)
+	      <if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+			left join ${dbTable}.memberfides0 f on f.mid=d.mid
+			left join ${dbTable}.memberagents  c on f.invite=c.mid 
+			left join ${gameType}.memberbusiness e on e.id=c.belongid
+		 </if>	
+	    <where>
+	    <!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+			</if>
+		<!-- 普通商务数据权限查询 -->
+		<if test="ifBusiness == 1">
+			<choose>
+					<when test="businessIdList2 != null">
+						and e.id in 
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+			</choose>
+		</if>
+		<!-- 页面  按照分公司条件查询  -->
+		<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and e.id in 
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+		</if>
+		<!--页面   按照商务条件查询  -->
+		<if test="businessId != null and businessId != '' and businessId != 'null'">
+			and e.id = #{businessId}
+		</if>
+	   	<if test="playName != null and playName != ''">
+	   	  and d.play_name = #{playName,jdbcType=VARCHAR}
+	   	</if>
+	   	<if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+	    and f.invite >0
+	    </if>
+	   	and d.app_id = #{gameCode,jdbcType=VARCHAR}
+	   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+	   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+	    </where>
+	    
+union all
+	
+	SELECT count(d.app_id) totals
+	    from dc_create_room d left join tb_dict m on(m.code = d.app_id and m.parent_id=1) 
+	    <if test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+			left join ${dbTable}.memberfides0 f on f.mid=d.mid
+			left join ${dbTable}.memberagents  c on f.mid=c.mid 
+			left join ${gameType}.memberbusiness e on e.id=c.belongid
+	    </if>		
+	    <where>
+	    <!-- 公司责任人数据权限查询 --> 
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and e.id in 
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+			</if>
+		<!-- 普通商务数据权限查询 -->
+		<if test="ifBusiness == 1">
+			<choose>
+					<when test="businessIdList2 != null">
+						and e.id in 
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+			</choose>
+		</if>
+		<!-- 页面  按照分公司条件查询  -->
+		<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and e.id in 
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+					    ${id}  
+					    </foreach> 
+					</when>
+					<otherwise>
+					and e.id=0
+					</otherwise>
+				</choose>
+		</if>
+		<!--页面   按照商务条件查询  -->
+		<if test="businessId != null and businessId != '' and businessId != 'null'">
+			and e.id = #{businessId}
+		</if>
+	   	<if test="playName != null and playName != ''">
+	   	  and d.play_name = #{playName,jdbcType=VARCHAR}
+	   	</if>
+	   	<choose>
+	   		<when test="ifLeader == 1 or ifBusiness == 1 or (groupId != null and groupId != '') or (businessId != null and businessId != '' and businessId != 'null')">
+	   			and f.invite =0
+	   		</when>
+	   		<otherwise>
+	   		  	and 1=2
+	   		</otherwise>
+	   	</choose>
+	   	and d.app_id = #{gameCode,jdbcType=VARCHAR}
+	   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) 
+	   	and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+	    </where>)dat	    
+  </select>
+  
+  
+  <select id="queryCount" parameterType="map" resultMap="BaseResultMap">
+    SELECT d.play_name,count(d.play_name) totals 
+    FROM dc_create_room d left join tb_dict m on(m.code = d.app_id) 
+   <where>
+   1=1
+   	<if test="appName != null and appName != ''">
+   	  and m.name = #{appName,jdbcType=VARCHAR}
+   	</if>
+   	<if test="playName != null and playName != ''">
+   	  and d.play_name = #{playName,jdbcType=VARCHAR}
+   	</if>
+   	and d.app_id = #{gameCode,jdbcType=VARCHAR}
+   	and d.create_room_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and d.create_room_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+   	and m.parent_id=1
+   </where>
+   group by d.app_id ,d.play_id,d.play_name
+  </select>
+  
+  <insert id="insert" parameterType="com.qs.pub.datacenter.model.CreateRoom">
+    insert into dc_create_room (id, mid, app_id, 
+      play_name,play_id, create_room_time)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
+      #{playName,jdbcType=VARCHAR},#{playId,jdbcType=VARCHAR}, #{createRoomTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+ 
+</mapper>

@@ -26,4 +26,8 @@ public interface CreateRoomMapper extends IBaseMapper {
 	List<CreateRoom> queryListSecondDetails(Map<String, Object> parameters);
 
 	List<CreateRoom> queryListOfExport(Map<String, Object> parameters);
+
+    List<CreateRoom> queryListThreeDetails(Map<String, Object> parameters);
+
+    List<CreateRoom> queryListFourDetails(Map<String, Object> parameters);
 }

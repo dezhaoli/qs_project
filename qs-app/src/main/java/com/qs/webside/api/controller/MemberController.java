@@ -2,6 +2,7 @@ package com.qs.webside.api.controller;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -312,11 +313,21 @@ public class MemberController extends BaseController {
     	
     	   Map<String,Object>  stopNoticeMap =(Map<String,Object>)redisTemplate.opsForValue().get(AppConstants.RedisKeyPrefix.GAME_STOP_NOTICE_CACHE);
     	  //停服公告
-    	  if(null!=stopNoticeMap){
-    		    String stopMessage=(String) stopNoticeMap.get("content");
-    			map.put("msg",stopMessage);
-    			return this.getReturnData(map,AppConstants.Result.FAILURE_1004);
-    	  }
+		if (null != stopNoticeMap) {
+			List<Integer> midsList = (List<Integer>) redisTemplate.opsForValue().//测试白名单禁用用户mid缓存
+					get(AppConstants.RedisKeyPrefix.MEMBER_WHITE_DISABLE_LIST_CACHE);
+			if (midsList != null && midsList.size() > 0) {
+				if (!midsList.contains(mid)) {
+					String stopMessage = (String) stopNoticeMap.get("content");
+					map.put("msg", stopMessage);
+					return this.getReturnData(map, AppConstants.Result.FAILURE_1004);
+				}
+			} else {
+				String stopMessage = (String) stopNoticeMap.get("content");
+				map.put("msg", stopMessage);
+				return this.getReturnData(map, AppConstants.Result.FAILURE_1004);
+			}
+		}
  		
     	String socketIp=hostPort;
     	//玩牌局数

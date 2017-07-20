@@ -86,7 +86,7 @@
     <favorites_list name="2017年2月21日213834" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -300,6 +300,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -510,9 +512,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -684,6 +684,24 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\resources\spring\spring-mybatis.xml</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\log\game\GameRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\log\game\RoomRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\MemberController.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\GameController.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\log\game\controller\TaxesInviteController.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\mapper\CreateRoomMapper.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\model\CreateRoom.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\service\ICreateRoomService.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\service\impl\CreateRoomServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\controller\CreateRoomController.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\datacenter\CreateRoomMapper.xml</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\create_room_second_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\create_room_second_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\AppConstants.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SocketPacketUtil.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SocketUtils.java</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\member\service\impl\MemberWhiteListServicerImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -691,6 +709,10 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\create_room_three_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\loginfo\create_room_four_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\create_room_three_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\log\user\create_room_four_list.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -698,6 +720,40 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\webside\activity</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\activity</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\pay</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\pay</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\agent_weekStaInfoHistoryDetail_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\pay</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\agent_payWhite_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\agent_payWhiteAdd_from.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\agent_activity_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\agent_weekStaInfo_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\agent_weekStaHistoryInfo_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\WEB-INF\view\web\agent_simplePay_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\web\agent_payWhite_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\web\agent_activity_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\web\agent_weekStaInfo_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\web\agent_weekStaHistoryInfo_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\web\agent_simplePay_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\web\agent_weekStaInfoHistoryDetail_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\webapp\resources\js\customer\web\pay</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\agent_payWhite_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\agent_payWhiteAdd_from.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\agent_activity_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\agent_weekStaInfo_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\agent_weekStaHistoryInfo_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\agent_simplePay_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\agent_weekStaInfoHistoryDetail_list.jsp</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\WEB-INF\view\web\pay</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\resources\js\customer\web\pay</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\resources\js\customer\web\agent_payWhite_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\resources\js\customer\web\agent_activity_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\resources\js\customer\web\agent_weekStaInfo_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\resources\js\customer\web\agent_weekStaHistoryInfo_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\resources\js\customer\web\agent_simplePay_list.js</PATH>
+          <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\webapp\resources\js\customer\web\agent_weekStaInfoHistoryDetail_list.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -720,7 +776,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="2811">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="2833">D:\java\qs_project\2017年4月15日\qs_project\pay-web</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1612,7 +1669,8 @@
       <workItem from="1500380204094" duration="88000" />
       <workItem from="1500380846683" duration="95000" />
       <workItem from="1500381675433" duration="3204000" />
-      <workItem from="1500469967316" duration="92000" />
+      <workItem from="1500469967316" duration="684000" />
+      <workItem from="1500550891673" duration="714000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1737,7 +1795,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="267371000" />
+    <option name="totallyTimeSpent" value="268677000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1760,20 +1818,20 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32745314" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2996795" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30341882" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34178612" sideWeight="0.48450854" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5065789" order="5" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34178612" sideWeight="0.48450854" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Repositories" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2131,7 +2189,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2885">
           <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
@@ -2163,7 +2220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="25" lean-forward="true" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2186,7 +2242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>

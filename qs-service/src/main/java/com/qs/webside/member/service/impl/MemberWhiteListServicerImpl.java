@@ -11,10 +11,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by zun.wei on 2017/2/27.
@@ -68,25 +65,29 @@ public class MemberWhiteListServicerImpl implements IMemberWhiteListService {
     @Override
     public void setMemberWhiteDeviceCache() {
 	    String devicelist="";
+        List<Integer> disableWhiteList = new ArrayList<>();
         List<MemberWhiteList> list = memberWhiteListMapper.queryListByPage(new HashMap<String, Object>());
         if (list != null && list.size() > 0) {
             StringBuffer sb = new StringBuffer(" ");
             Iterator<MemberWhiteList> iterator = list.iterator();
             while (iterator.hasNext()) {
                 MemberWhiteList m = iterator.next();
-                if (1 == m.getTestType()) {
+                if (1 == m.getTestType()) {//生效的白名单用户
                     MemberFides memberFides = memberFidesMapper.selectByMemberMid(m.getMid());
                     if (memberFides != null && memberFides.getPasswd() != null
                             && !"".equals(memberFides.getPasswd())) {
-                        sb.append(memberFides.getPasswd()).append(",");   
+                        sb.append(memberFides.getPasswd()).append(",");
                     }
+                } else {//未生效的白名单用户
+                    disableWhiteList.add(m.getMid());
                 }
             }
             devicelist= sb.toString().substring(0, sb.toString().length() - 1);
         }
-        
+
 		String memberWhiteDeviceCacheKey=AppConstants.RedisKeyPrefix.MEMBER_WHITE_DEVICE_CACHE;
-		redisTemplate.opsForValue().set(memberWhiteDeviceCacheKey, devicelist);    
+		redisTemplate.opsForValue().set(memberWhiteDeviceCacheKey, devicelist);
+        redisTemplate.opsForValue().set(AppConstants.RedisKeyPrefix.MEMBER_WHITE_DISABLE_LIST_CACHE, disableWhiteList);//禁用的白名单mid列表
 }
 
     @Override

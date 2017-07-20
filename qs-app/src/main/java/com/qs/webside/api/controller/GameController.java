@@ -80,7 +80,7 @@ public class GameController extends BaseController {
 		
 		RoomRecord paraRecord=new RoomRecord();
 		paraRecord.setUuid(roomRecordRequest.getUuid());
-		paraRecord.setType(gameType);
+		if (20 != gameType) paraRecord.setType(gameType);//江西麻将不添加类型条件
 		Map<String, Object> map = new HashMap<String, Object>();
 		RoomRecord roomRecord=gameRecordService.getPaiJuData(paraRecord);
 	    String infoJson="";

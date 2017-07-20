@@ -39,7 +39,6 @@ import com.qs.constant.Constant;
 import com.qs.datasource.DataSourceSwitch;
 import com.qs.log.game.model.TaxesInvite;
 import com.qs.log.game.service.ITaxesInviteService;
-import com.qs.pub.pay.controller.PayLogController;
 import com.qs.pub.sys.model.BusinessGroup;
 import com.qs.pub.sys.model.Group;
 import com.qs.pub.sys.model.UserEntity;
@@ -65,7 +64,7 @@ public class TaxesInviteController extends BaseController
 	private GroupService groupService;
 	@Resource
 	private BusinessService businessService;
-	Logger log = Logger.getLogger(PayLogController.class); 
+	Logger log = Logger.getLogger(TaxesInviteController.class); 
 	
 	@RequestMapping("toTaxesInviteUi.html")
 	private String toTaxesInviteUi(){

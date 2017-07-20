@@ -11,12 +11,30 @@ public class CreateRoom {
     private String appName;
     private String playId;
     private String playName;
+    private String realname;
     private String userGroupName;
     private String businessName;
     private String name;
+    private String userName;
     private Integer gold;
 
-    public String getUserGroupName()
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getRealname() {
+		return realname;
+	}
+
+	public void setRealname(String realname) {
+		this.realname = realname;
+	}
+
+	public String getUserGroupName()
 	{
 		return userGroupName;
 	}
