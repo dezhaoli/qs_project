@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="ctx" value="${pageContext.request.contextPath }" />
-<script type="text/javascript" src="${ctx }/resources/js/log/user/memberagents_count.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/customer/web/company/business_paytotal_count.js"></script>
 
 <style>
 .col-sm-1{
@@ -13,6 +13,13 @@ width:80px;
 <!-- 搜索框 -->
      <form class="form-horizontal" >
 				<div class="form-group" >
+					<label class="control-label col-sm-1 no-padding-right">分公司</label>
+				 	<div class="col-sm-2" id="divGroupId">
+	                    <div class="clearfix">
+	                     <select class="form-control" id="groupIdBusiness" name="groupIdBusiness" style="width: 100%" >
+					 	 </select>
+	                    </div>
+	                </div>
 		           	<label class="control-label col-sm-1 no-padding-right">开始时间</label>
 	                <div class="col-sm-2">
 	                    <input class="form-control" name="stime" id="stime" type="text"
@@ -56,4 +63,29 @@ width:80px;
 	</div>
 
 </div>
+
+<script type="text/javascript">
+$.ajax({
+	type : "POST",
+	url : sys.rootPath+"/group/selectGroup.html",
+	dataType : "json",
+	success : function(data) {
+		debugger;
+		if(data.length==0){
+			$('#divGroupId').remove(); 
+			$('#divBusinessId').remove(); 
+		}else{
+			$('#groupIdBusiness').empty();   //清空resText里面的所有内容
+	        var html = ''; 
+	        $.each(data, function(commentIndex, comment){
+	        		html += '<option value="'+comment.id+'">' + comment.userGroupName
+	                + '</option>'; 
+	        });
+	        $('#groupIdBusiness').html(html);
+		}
+		
+     }
+
+});
+</script>
 
