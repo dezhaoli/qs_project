@@ -183,6 +183,12 @@ public class AppConstants {
 		//分享链接进入房间回调url地址
 		public static final String   SHARE_LINK_JOIN_ROOM_REDIRECT_URL = "share_link_join_room_redirect_url";
 
+		//分享链接进入房间appid
+		public static final String   SHARE_LINK_JOIN_ROOM_APP_ID = "share_link_join_room_appid";
+
+		//分享链接进入房间appSecret
+		public static final String   SHARE_LINK_JOIN_ROOM_APP_SECRET = "share_link_join_room_app_secret";
+
 	}
 	
 	

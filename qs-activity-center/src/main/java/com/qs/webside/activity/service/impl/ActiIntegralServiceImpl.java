@@ -15,6 +15,8 @@ import com.qs.webside.activity.service.IActiCenterService;
 import com.qs.webside.activity.service.IActiIntegralCfgService;
 import com.qs.webside.activity.service.IActiIntegralService;
 import com.qs.webside.activity.service.IActiSendIntegralService;
+import net.rubyeye.xmemcached.MemcachedClient;
+import net.rubyeye.xmemcached.exception.MemcachedException;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -27,6 +29,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by zun.wei on 2017/6/8 19:10.
@@ -57,6 +60,9 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
 
     @Resource
     private IBaseParamService baseParamService;
+
+    @Resource
+    private MemcachedClient memcachedClient;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -175,12 +181,15 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
     }
 
     @Override
-    public Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) throws IOException {
+    public Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) throws IOException, InterruptedException, MemcachedException, TimeoutException {
         String memcachedUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.MEMCACHED_IP);
         memcachedUrl = StringUtils.isBlank(memcachedUrl) ? "" : memcachedUrl;
         String memcachedKey = "ds" + simpleDateFormat.format(new Date()) + "|" + mid + "";
-        Object o = MemcachedUtil.getMemcached(memcachedUrl, memcachedKey);
+        //Object o = MemcachedUtil.getMemcached(memcachedUrl, memcachedKey);
+        log.debug("useGoldToSendIntegral memcached key is ---------------::" + memcachedKey);
+        Integer o = memcachedClient.get(memcachedKey);
         int nowGold = o == null ? 0 : Integer.parseInt(o + "");
+        log.debug("useGoldToSendIntegral memcached value is ---------------::" + nowGold);
         nowGold = nowGold > 0 ? nowGold : 0;
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> map = new HashMap<>();
@@ -249,12 +258,15 @@ public class ActiIntegralServiceImpl implements IActiIntegralService {
     }
 
     @Override
-    public Map<String, Object> checkUseGoldToSendIntegral(int mid) throws IOException {
+    public Map<String, Object> checkUseGoldToSendIntegral(int mid) throws IOException, InterruptedException, MemcachedException, TimeoutException {
         String memcachedUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.MEMCACHED_IP);
         memcachedUrl = StringUtils.isBlank(memcachedUrl) ? "" : memcachedUrl;
         String memcachedKey = "ds" + simpleDateFormat.format(new Date()) + "|" + mid + "";
-        Object o = MemcachedUtil.getMemcached(memcachedUrl, memcachedKey);
+        log.debug("checkUseGoldToSendIntegral memcached key is ---------------::" + memcachedKey);
+        //Object o = MemcachedUtil.getMemcached(memcachedUrl, memcachedKey);
+        Integer o = memcachedClient.get(memcachedKey);
         int nowGold = o == null ? 0 : Integer.parseInt(o + "");
+        log.debug("checkUseGoldToSendIntegral memcached key is ---------------::" + nowGold);
         nowGold = nowGold > 0 ? nowGold : 0;
         Map<String, Object> result = new HashMap<>();
         Map<String, Object> map = new HashMap<>();

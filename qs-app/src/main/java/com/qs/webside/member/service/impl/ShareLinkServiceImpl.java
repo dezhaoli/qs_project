@@ -6,6 +6,7 @@ import com.qs.webside.member.model.Memberfides;
 import com.qs.webside.member.model.Members;
 import com.qs.webside.member.service.IShareLinkService;
 import com.qs.webside.member.service.MemberService;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -29,15 +30,17 @@ public class ShareLinkServiceImpl implements IShareLinkService {
 
 
     @Override
-    public String joinRoom(int roomid, String unionid, Model model, int gp, String sesskey, String cIp, int cPort, int gameType) throws IOException {
+    public void joinRoom(int roomid, String unionid, Model model, int gp, String sesskey, String cIp, int cPort, int gameType) throws IOException {
         Members members = memberService.findMembersBySitemid(unionid);
+        /*if (StringUtils.isBlank(unionid)) {//测试用
+            members = new Members();
+            members.setMid(54118);
+        }*/
         Map<String, Object> map = new HashMap<>();
-        //members = new Members();
-        //members.setMid(54118);
         if (members != null) {
             Memberfides memberfides = memberService.findMemberfidesById(members.getMid());
             if (memberfides != null) {//用户存在
-                getReadyJoin(roomid, gp, sesskey, cIp, cPort, memberfides, map, gameType);
+                requestToCServer(roomid, gp, sesskey, cIp, cPort, memberfides, map, gameType);
             } else {//用户不存在，查不到数据
                 log.debug("no checkout on db ;please confirm memberfides0 table ----------::");
                 map.put(CommonContants.SUCCESS, Boolean.FALSE);
@@ -49,10 +52,23 @@ public class ShareLinkServiceImpl implements IShareLinkService {
         }
         model.addAttribute("roomid", roomid);
         model.addAttribute("joinRoomResult", map);
-        return "/web/share/joinRoom";
+        log.debug("join room result --------:: roomid is " + roomid + " joinRoomResult :" + map);
     }
 
-    private void getReadyJoin(int roomid, int gp, String sesskey, String cIp, int cPort, Memberfides memberfides, Map<String, Object> map, int gameType) throws IOException {
+    /**
+     * @Author:zun.wei , @Date:2017/7/24 15:03
+     * @Description:向C++服务器提交请求
+     * @param roomid 房间号
+     * @param gp gp
+     * @param sesskey
+     * @param cIp socket ip
+     * @param cPort socket port
+     * @param memberfides 人员
+     * @param map 返回值map
+     * @param gameType 游戏类型
+     * @throws IOException
+     */
+    private void requestToCServer(int roomid, int gp, String sesskey, String cIp, int cPort, Memberfides memberfides, Map<String, Object> map, int gameType) throws IOException {
         int mid = memberfides.getMid();
         SocketUtils socketUtils = switchSocketUtilByGameType(gameType, gp, sesskey, cIp, cPort, mid);
         boolean login = socketUtils.writeToServer();//登录c++ 服务器
@@ -75,6 +91,15 @@ public class ShareLinkServiceImpl implements IShareLinkService {
     }
 
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/24 15:04
+     * @Description:执行加入房间请求操作
+     * @param roomid 房间号
+     * @param mid 请求加入房间的人
+     * @param socketUtils SocketUtils工具类对象
+     * @param map 返回值map
+     * @throws IOException
+     */
     private void executeJoinRoom(int roomid, int mid, SocketUtils socketUtils, Map<String, Object> map) throws IOException {
         long t1 = System.currentTimeMillis();
         while (true) {
@@ -97,6 +122,17 @@ public class ShareLinkServiceImpl implements IShareLinkService {
         }
     }
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/24 15:05
+     * @Description:根据游戏类型切换不同的SocketUtils 构造方法
+     * @param gameType 游戏类型
+     * @param gp gp
+     * @param sesskey session key
+     * @param cIp socket ip
+     * @param cPort socket port
+     * @param mid 请求加入房间的mid
+     * @return
+     */
     private SocketUtils switchSocketUtilByGameType(int gameType, int gp, String sesskey, String cIp, int cPort, int mid) {
         switch (gameType) {
             case 6:
@@ -106,6 +142,15 @@ public class ShareLinkServiceImpl implements IShareLinkService {
         }
     }
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/24 15:07
+     * @Description:根据游戏类型切换构造不同的加入房间命令
+     * @param gameType 游戏类型
+     * @param roomid 房间号
+     * @param mid 请求加入房间的mid
+     * @param socketUtils SocketUtils
+     * @return
+     */
     private boolean switchJoinRoomTypeByGameType(int gameType, int roomid, int mid, SocketUtils socketUtils) {
         switch (gameType) {
             case 6:
@@ -115,6 +160,14 @@ public class ShareLinkServiceImpl implements IShareLinkService {
         }
     }
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/24 15:08
+     * @Description:加入广东麻将房间命令请求
+     * @param roomid 房间号
+     * @param mid 请求加入房间的mid
+     * @param socketUtils SocketUtils
+     * @return
+     */
     private boolean joinMajiangRoom(int roomid, int mid, SocketUtils socketUtils) {
         log.debug("user mid is " + mid + " join room " + roomid + ";" + "socket connect c++ server successful; ");
         boolean joinRoom = socketUtils.setCmd(1103).setIntParam(roomid).build().writeToServer();
@@ -122,6 +175,16 @@ public class ShareLinkServiceImpl implements IShareLinkService {
         return joinRoom;
     }
 
+    /**
+     * @Author:zun.wei , @Date:2017/7/24 15:09
+     * @Description:构造广东麻将SocketUtils的登录命令和端口
+     * @param gp gp
+     * @param sesskey session key
+     * @param cIp socket ip
+     * @param cPort socket port
+     * @param mid 请求加入房间的mid
+     * @return
+     */
     private SocketUtils createMajiangSocketUtils(int gp, String sesskey, String cIp, int cPort, int mid) {
         return new SocketUtils().createSocket(cIp, cPort).setCmd(1000).fromUserMid(mid).setStrParam(sesskey).setIntParam(gp).setIntParam(2400).build();
     }

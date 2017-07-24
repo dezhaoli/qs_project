@@ -78,6 +78,7 @@ public class DateBaseUapdateAgentJob {
 		Map<String, Object> param = new HashMap<String, Object>();
 		log.debug("into updateCreateRoomCardCount star =============:"+sdf.format(new Date()));
 		param.put("memberagents", dbName + ".memberagents");
+		param.put("membercommongame0", dbName + ".membercommongame0");
 		agentDateBaseJobLogService.createRoomCardCount(param);
 	}
 	

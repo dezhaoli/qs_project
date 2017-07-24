@@ -44,6 +44,10 @@ public class MemcachedUtil {
 					e.printStackTrace();
 				} catch (MemcachedException e) {
 					e.printStackTrace();
+				} finally {
+					if (memcachedClient != null) {
+					memcachedClient.shutdown();
+					}
 				}  
 		   
 	}
@@ -74,7 +78,11 @@ public class MemcachedUtil {
 					e.printStackTrace();
 				} catch (MemcachedException e) {
 					e.printStackTrace();
-				}
+				} finally {
+					if (memcachedClient != null) {
+						memcachedClient.shutdown();
+					}
+				}  
 				return value;  
 		   
 	}
@@ -110,7 +118,11 @@ public class MemcachedUtil {
 					e.printStackTrace();
 				} catch (MemcachedException e) {
 					e.printStackTrace();
-				}
+				} finally {
+					if (memcachedClient != null) {
+						memcachedClient.shutdown();
+					}
+				}  
 				return false;  
 		   
 	}
@@ -136,7 +148,11 @@ public class MemcachedUtil {
 					e.printStackTrace();
 				} catch (MemcachedException e) {
 					e.printStackTrace();
-				}
+				}  finally {
+					if (memcachedClient != null) {
+						memcachedClient.shutdown();
+					}
+				}  
 				return value;  
 		   
 	}

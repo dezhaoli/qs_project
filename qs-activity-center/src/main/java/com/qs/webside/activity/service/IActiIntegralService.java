@@ -1,11 +1,13 @@
 package com.qs.webside.activity.service;
 
 import com.qs.webside.activity.model.ActiIntegral;
+import net.rubyeye.xmemcached.exception.MemcachedException;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by zun.wei on 2017/6/8 19:09.
@@ -59,7 +61,7 @@ public interface IActiIntegralService {
      * @param mid
      * @return
      */
-    Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) throws IOException ;
+    Map<String, Object> useGoldToSendIntegral(int mid,int cfgType) throws IOException, InterruptedException, MemcachedException, TimeoutException;
 
     /**
      * @Author:zun.wei , @Date:2017/7/10 16:05
@@ -67,6 +69,6 @@ public interface IActiIntegralService {
      * @param mid
      * @return
      */
-    Map<String, Object> checkUseGoldToSendIntegral(int mid) throws IOException;
+    Map<String, Object> checkUseGoldToSendIntegral(int mid) throws IOException, InterruptedException, MemcachedException, TimeoutException;
 
 }

@@ -8,6 +8,7 @@ import com.qs.webside.activity.service.IActiIntegralService;
 import com.qs.webside.api.model.BaseRequest;
 import com.qs.webside.util.AccessToken;
 import com.qs.webside.util.ContextUtil;
+import net.rubyeye.xmemcached.exception.MemcachedException;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by zun.wei on 2017/6/9 10:19.
@@ -91,7 +93,7 @@ public class ActiIntegralController extends BaseController {
      */
     @RequestMapping("useGoldToSendIntegral.do")
     @ResponseBody
-    public Object useGoldToSendIntegral(BaseRequest baseRequest, HttpServletRequest request) throws IOException {
+    public Object useGoldToSendIntegral(BaseRequest baseRequest, HttpServletRequest request) throws IOException, InterruptedException, MemcachedException, TimeoutException {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
         String type = request.getParameter("cfgType");
         int cfgType = -1;
@@ -108,7 +110,7 @@ public class ActiIntegralController extends BaseController {
      */
     @RequestMapping("checkUseGoldToSendIntegral.do")
     @ResponseBody
-    public Object checkUseGoldToSendIntegral(BaseRequest baseRequest) throws IOException {
+    public Object checkUseGoldToSendIntegral(BaseRequest baseRequest) throws IOException, InterruptedException, MemcachedException, TimeoutException {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
         Map<String, Object> map = actiIntegralService.checkUseGoldToSendIntegral(token.getMid());
         return this.getReturnData(map, AppConstants.Result.SUCCESS);

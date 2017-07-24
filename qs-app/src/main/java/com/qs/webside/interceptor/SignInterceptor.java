@@ -41,7 +41,7 @@ public class SignInterceptor implements HandlerInterceptor{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if (true) return true;
+
 		String sign = (String) request.getParameter("sign");
 		String signCode = (String) request.getParameter("signCode");
 		logger.debug("sign===::"+sign);

@@ -46,8 +46,8 @@
                 DECLARE userCard INT DEFAULT 0; -- 自定义变量4
                 SET DATE_SUB0 = DATE_SUB(CURDATE(), INTERVAL 1 DAY);
                 SET daily_decr = IFNULL((select sum(gold) daily_decr from gold_log where type in(4,5) AND LEFT(date,10) = DATE_SUB0 LIMIT 0,1),0);
-                SET allCard = IFNULL((SELECT SUM(nowgold) AS allCard FROM gold_log  WHERE LEFT(date,10) = DATE_SUB0 LIMIT 0,1),0);
-                SET agentCard = IFNULL((SELECT SUM(nowgold) AS agentCard FROM gold_log gl INNER JOIN ${memberagents} ma ON gl.mid = ma.mid  where LEFT(gl.date,10) = DATE_SUB0 LIMIT 0,1),0);
+                SET allCard = IFNULL((SELECT SUM(gold) FROM ${membercommongame0}  LIMIT 0,1),0);
+                SET agentCard = IFNULL((SELECT SUM(gold) AS agentCard FROM ${membercommongame0} gl INNER JOIN ${memberagents} ma ON gl.mid = ma.mid  LIMIT 0,1),0);
                 SET userCard = allCard - agentCard;
                 INSERT IGNORE INTO room_card_count (id,date,daily_decr,all_card,agent_card,user_card) values (null,DATE_SUB0,daily_decr,allCard,agentCard,userCard);
                 COMMIT; -- 提交事务

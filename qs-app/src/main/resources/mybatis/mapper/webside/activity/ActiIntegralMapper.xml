@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.activity.mapper.ActiIntegralMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.activity.model.ActiIntegral" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="now_integral" property="nowIntegral" jdbcType="BIGINT" />
+    <result column="used_integral" property="usedIntegral" jdbcType="BIGINT" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, now_integral, used_integral, type, remark, descr, ext1, ext2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from acti_integral
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from acti_integral
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.activity.model.ActiIntegral" >
+    insert into acti_integral (id, mid, now_integral, 
+      used_integral, type, remark, 
+      descr, ext1, ext2)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{nowIntegral,jdbcType=BIGINT}, 
+      #{usedIntegral,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.activity.model.ActiIntegral" >
+    insert into acti_integral
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="nowIntegral != null" >
+        now_integral,
+      </if>
+      <if test="usedIntegral != null" >
+        used_integral,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="nowIntegral != null" >
+        #{nowIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="usedIntegral != null" >
+        #{usedIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.activity.model.ActiIntegral" >
+    update acti_integral
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="nowIntegral != null" >
+        now_integral = #{nowIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="usedIntegral != null" >
+        used_integral = #{usedIntegral,jdbcType=BIGINT},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.activity.model.ActiIntegral" >
+    update acti_integral
+    set mid = #{mid,jdbcType=INTEGER},
+      now_integral = #{nowIntegral,jdbcType=BIGINT},
+      used_integral = #{usedIntegral,jdbcType=BIGINT},
+      type = #{type,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+<!--  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from acti_integral
+    order by id
+  </select>-->
+
+  <select id="queryListByPage" parameterType="map" resultType="map">
+    SELECT ai.id,ai.mid,ai.now_integral AS nowIntegral,ai.used_integral AS usedIntegral,
+      ai.type,ai.remark,ai.descr,ai.ext1,ai.ext2,
+      SUM(ai.now_integral + ai.used_integral) AS integral,
+      mf.name,mf.icon
+    FROM acti_integral ai,memberfides0 mf
+    WHERE mf.mid = ai.mid  AND (ai.now_integral + ai.used_integral) > 0
+    GROUP BY id
+    ORDER BY integral DESC LIMIT 0,30
+  </select>
+
+  <select id="selectByMid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from acti_integral
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+</mapper>

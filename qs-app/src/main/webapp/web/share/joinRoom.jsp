@@ -14,39 +14,18 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-
-    <script src="${ctx }/web/share/files/jweixin-1.0.0.js"></script>
-    <script type="text/javascript" src="${ctx }/web/share/files/zepto.min.js"></script>
-    <script>
-        var apiHost = 'http://wx.maxpanda.cn/weixin';
-        var host = 'http://wx.maxpanda.cn/weixin';
-        wx.config({
-            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-            appId: 'wx7057ffc04761589c', // 必填，公众号的唯一标识
-            timestamp: '1500361228', // 必填，生成签名的时间戳
-            nonceStr: 'GlnyhaaNbHYPSCm9', // 必填，生成签名的随机串
-            signature: 'f5055178f4c119cfa839a7a47ef4f3ccac4d8454',// 必填，签名，见附录1
-            jsApiList: [
-                'onMenuShareAppMessage', 'scanQRCode', 'chooseWXPay', 'sendAppMessage', 'hideAllNonBaseMenuItem', 'showAllNonBaseMenuItem',
-                'onMenuShareTimeline', 'hideMenuItems', 'getLocation'
-            ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        });
-        wx.error(function (res) {
-            //alert(res.errMsg);
-        });
-    </script>
-    <script>
-        var _czc = _czc || [];
-        _czc.push(["_setAccount", "1260643284"]);
-    </script>
-
-    <style type="text/css"></style>
+    <link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css">
+<%--     <script src="${ctx }/web/share/files/mlink.min.js"></script> --%>
+<%--     <script src="${ctx }/web/share/files/jweixin-1.0.0.js"></script> --%>
+<%--     <script type="text/javascript" src="${ctx }/web/share/files/zepto.min.js"></script> --%>
+    <script type="text/javascript" src="${ctx }/lib/jquery/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="${ctx }/lib/md5/jquery.md5.js"></script> 
+    <script type="text/javascript" src="${ctx }/web/share/files/rem2.js"></script>
 </head>
 <!-- /Head -->
 <!-- Body -->
 <body>
-<script type="text/javascript" src="${ctx }/web/share/files/rem2.js"></script>
-<link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css">
+
 <div class="all-container">
     <div class="icon-bg">
         <div class="roomid-box">
@@ -73,10 +52,10 @@
         <p class="username"></p>
     </div>
     <!-- 用户未授权过 -->
-    <a href="${url}" style="display: inline-block;">
-        <div class="joinRoom">加入房间</div>
-    </a>
-
+   <a href="${url}" class="sJoinRoom" style="display: inline-block;">
+         <div class="joinRoom">加入房间</div>
+    </a> 
+   <div class="joinRoom okJoinRoom" style="background-color: #21dd7c;display: none;">已加入请打开app游戏……</div>
     <div class="openApp-android" style="">
         <p>加入成功</p>
         <p>手动打开游戏就能进入房间啦</p>
@@ -101,10 +80,22 @@
         <p class="join-fail-font1 join-fail-other" style="display:none">请稍候再试</p>
     </div>
 </div>
-<script src="${ctx }/web/share/files/mlink.min.js"></script>
 <script>
 
-    $(function () {
+	var data="${joinRoomResult}";
+	if (data) {
+		$('.joinRoom-loading').hide();
+		$(".sJoinRoom").hide();
+		if(data.success){
+			$(".okJoinRoom").show();
+		}else {
+			if(data.error == -3){
+				 $('.join-fail-font').show();
+                 $('.join-fail').show();
+			}
+		}
+	}
+   /*  $(function () {
         $("#joinroom").on('click', function () {
             $('.user-head').hide();
             $('.room-font').hide();
@@ -170,35 +161,8 @@
                 }
             });
         });
-    });
+    }); */
 </script>
-<script>
-    $(function () {
-
-        $(".joinRoom1").on('click', function () {
-            var url = apiHost + "/download"
-            location.href = url;
-        })
-    })
-</script>
-<%--<style>
-    -webkit-user-select: none
-
-    ;
-    -webkit-tap-highlight-color:
-
-    rgba
-    (
-    200
-    ,
-    200
-    ,
-    200
-    ,
-    0
-    )
-    ;
-</style>--%>
 <!--  /Body -->
 </body>
 </html>

@@ -31,9 +31,18 @@ public class SocketUtils {
 
     private List<Integer> integers = new ArrayList<Integer>();
 
+    private int nowWriteIndex = 0;
+
+    private int strTypeIndex = 0;
+
+    private int intTypeIndex = 0;
+
+    private List<String> type = new ArrayList<>();
+
+
     /**
-     * @param ip      IP地址
-     * @param port    端口
+     * @param ip   IP地址
+     * @param port 端口
      * @return
      * @Author:zun.wei , @Date:2017/7/19 11:46
      * @Description:创建socket
@@ -69,6 +78,7 @@ public class SocketUtils {
         strings.add(parameter);
         parameter += '\0';
         packetSize += parameter.getBytes().length + 4;
+        type.add(0 + "_" + strTypeIndex++);//String 用0表示
         return this;
     }
 
@@ -81,6 +91,70 @@ public class SocketUtils {
     public SocketUtils setIntParam(Integer parameter) {
         packetSize += 4;
         integers.add(parameter);
+        type.add(1 + "_" + intTypeIndex++);//Integer 用1表示
+        return this;
+    }
+
+
+    private void buildUserMid() {
+        if (mid != null) {
+            nowWriteIndex += 6;
+            System.arraycopy(toLH(mid), 0, buffer, nowWriteIndex, 4);//拷贝到buffer的第6位开始（前六位是包头）
+            nowWriteIndex += 4;
+        } else {
+            nowWriteIndex += 6;
+        }
+    }
+
+    private void buildParams() {
+        if (type.size() > 0) {
+            for (String t : type) {
+                String[] tt = t.split("_");
+                int t1 = Integer.parseInt(tt[0]);
+                int t2 = Integer.parseInt(tt[1]);
+                switch (t1) {
+                    case 0:buildStrParam(t2);
+                        break;
+                    case 1:buildIntParam(t2);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    private void buildStrParam(int index) {//String类型
+        String msg = strings.get(index);
+        msg += '\0';
+        Integer msgLen = msg.getBytes().length;
+        System.arraycopy(toLH(msgLen), 0, buffer, nowWriteIndex, 4);//告知文本长度
+        System.arraycopy(msg.getBytes(), 0, buffer, nowWriteIndex += 4, msgLen);//告知文本内容
+        nowWriteIndex += msgLen;
+    }
+
+    private void buildIntParam(int index) {//Integer类型
+        System.arraycopy(toLH(integers.get(index)), 0, buffer, nowWriteIndex, 4);//告知长度
+        nowWriteIndex += 4;
+    }
+
+    /**
+     * @param cmdType
+     * @return
+     * @Author:zun.wei , @Date:2017/7/20 17:37
+     * @Description:C ++ 命令
+     */
+    public SocketUtils setCmd(int cmdType) {
+        this.packetSize = 0;
+        this.mid = null;
+        this.strings.clear();
+        this.integers.clear();
+        this.buffer = new byte[0];
+        this.cmdType = cmdType;
+        this.nowWriteIndex = 0;
+        this.type.clear();
+        this.intTypeIndex = 0;
+        this.strTypeIndex = 0;
         return this;
     }
 
@@ -99,29 +173,8 @@ public class SocketUtils {
         this.buffer[4] = (byte) (cmdType & 0xff);
         this.buffer[5] = (byte) (cmdType >> 8 & 0xff);
 
-        int a = 0;
-        if (mid != null) {
-            a += 6;
-            System.arraycopy(toLH(mid), 0, buffer, a, 4);//拷贝到buffer的第6位开始（前六位是包头）
-        }
-
-        int b = 0;
-        for (int i = 0; i < strings.size(); i++) {//String类型
-            if (b == 0) b = (a == 0 ? 2 : a) + 4;
-            String msg = strings.get(i);
-            msg += '\0';
-            Integer msgLen = msg.getBytes().length;
-            System.arraycopy(toLH(msgLen), 0, buffer, b, 4);//告知文本长度
-            System.arraycopy(msg.getBytes(), 0, buffer, b += 4, msgLen);//告知文本内容
-            b += msgLen;
-        }
-
-        for (int i = 0; i < integers.size(); i++) {//Integer类型
-            if (b == 0) b = (a == 0 ? 2 : a) + 4;
-            System.arraycopy(toLH(integers.get(i)), 0, buffer, b, 4);//告知长度
-            b += 4;
-        }
-
+        buildUserMid();
+        buildParams();
         return this;
     }
 
@@ -153,7 +206,7 @@ public class SocketUtils {
     /**
      * 将int转为低字节在前，高字节在后的byte数组
      */
-    private static byte[] toLH(int n) {
+    private byte[] toLH(int n) {
         byte[] b = new byte[4];
         b[0] = (byte) (n & 0xff);
         b[1] = (byte) (n >> 8 & 0xff);
@@ -162,7 +215,7 @@ public class SocketUtils {
         return b;
     }
 
-    private static int bytes2Integer(byte[] byteVal) {
+    private int bytes2Integer(byte[] byteVal) {
         int result = 0;
         for (int i = 0; i < byteVal.length; i++) {
             int tmpVal = (byteVal[i] << (8 * (3 - i)));
@@ -186,10 +239,10 @@ public class SocketUtils {
     }
 
     /**
-     * @Author:zun.wei , @Date:2017/7/19 19:28
-     * @Description:获取socket返回的Integer数据
      * @return
      * @throws IOException
+     * @Author:zun.wei , @Date:2017/7/19 19:28
+     * @Description:获取socket返回的Integer数据
      */
     public Integer receviveInteger() throws IOException {
         InputStream inputStream = this.socket.getInputStream();
@@ -269,21 +322,6 @@ public class SocketUtils {
         }
     }
 
-    /**
-     * @Author:zun.wei , @Date:2017/7/20 17:37
-     * @Description:C ++ 命令
-     * @param cmdType
-     * @return
-     */
-    public SocketUtils setCmd(int cmdType) {
-        this.packetSize = 0;
-        this.mid = null;
-        this.strings.clear();
-        this.integers.clear();
-        this.buffer = new byte[0];
-        this.cmdType = cmdType;
-        return this;
-    }
 
    /* public static void main(String[] args) throws IOException {
         SocketUtils socketUtils = new SocketUtils().createSocket("192.168.1.142", 9040).setCmd(1000)//9040

@@ -38,7 +38,7 @@ public class TokenInterceptor  implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,    
             HttpServletResponse response, Object handler) throws Exception {
-		if (true) return true;
+
         String sesskey = (String) request.getParameter("sesskey");
         logger.debug("sesskey===::"+sesskey);
         

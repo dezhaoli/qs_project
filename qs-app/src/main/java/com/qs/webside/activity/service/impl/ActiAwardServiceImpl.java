@@ -1,0 +1,67 @@
+package com.qs.webside.activity.service.impl;
+
+import com.qs.common.constant.CacheConstan;
+import com.qs.webside.activity.mapper.ActiAwardMapper;
+import com.qs.webside.activity.model.ActiAward;
+import com.qs.webside.activity.service.IActiAwardService;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/6/8 13:28.
+ * Description:
+ */
+@Service
+public class ActiAwardServiceImpl implements IActiAwardService {
+
+    @Resource
+    private ActiAwardMapper actiAwardMapper;
+
+
+    @Override
+    public int deleteByPrimaryKey(Integer id) {
+        return actiAwardMapper.deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public int insert(ActiAward record) {
+        return actiAwardMapper.insert(record);
+    }
+
+    @Override
+    public int insertSelective(ActiAward record) {
+        return actiAwardMapper.insertSelective(record);
+    }
+
+    @Override
+    public ActiAward selectByPrimaryKey(Integer id) {
+        return actiAwardMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int updateByPrimaryKeySelective(ActiAward record) {
+        return actiAwardMapper.updateByPrimaryKeySelective(record);
+    }
+
+    @Override
+    public int updateByPrimaryKey(ActiAward record) {
+        return actiAwardMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    //@Cacheable(value = {CacheConstan.ACTI_AWARD_LIST_CACHE_NAME},key="#root.methodName+'AwardList:'")
+    public List<Map<String,Object>> queryListByPage(Map<String, Object> parameters) {
+        return actiAwardMapper.queryListByPage(parameters);
+    }
+
+    @Override
+    public ActiAward selectByIdLimitByActiTime(Integer id) {
+        return actiAwardMapper.selectByIdLimitByActiTime(id);
+    }
+
+
+}

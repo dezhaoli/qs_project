@@ -17,8 +17,7 @@ public interface IShareLinkService {
      * @param unionid 微信unionid
      * @param model spring 模型
      * @param gameType
-     * @return 跳转的view视图地址
      */
-    String joinRoom(int roomid, String unionid, Model model, int gp, String sesskey, String cIp, int cPort, int gameType) throws IOException;
+    void joinRoom(int roomid, String unionid, Model model, int gp, String sesskey, String cIp, int cPort, int gameType) throws IOException;
 
 }

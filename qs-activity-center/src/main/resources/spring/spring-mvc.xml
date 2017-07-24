@@ -125,7 +125,7 @@
     </bean>
     
 	<mvc:interceptors>
-		<mvc:interceptor>
+		<!--<mvc:interceptor>
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/api/login.do" />
 			<mvc:exclude-mapping path="/api/getAutoUpdateInfo.do" />
@@ -140,7 +140,7 @@
 			<mvc:exclude-mapping path="/css/common.css" />
 			<mvc:exclude-mapping path="/druid/**" />
 			<bean class="com.qs.webside.interceptor.TokenInterceptor" />
-		</mvc:interceptor>
+		</mvc:interceptor>-->
 		
 		<mvc:interceptor>
 			<mvc:mapping path="/**" />
