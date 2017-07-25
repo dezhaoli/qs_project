@@ -92,21 +92,21 @@
 <!-- 	江西团队团队充值不包含自己充值 -->
 	<if test="gameType &gt;=20">
 		select firpay,secpay,thdpay from ( 
-	      (SELECT SUM(paytotal-selftotal) as firpay FROM taxes_invite WHERE mid=#{mid} AND  date &gt;=#{sdate} AND date &lt;#{edate}) fpay,
-	  (SELECT SUM(paytotal) as secpay FROM taxes_invite WHERE parentid=#{mid} AND date &gt;=#{sdate} AND date &lt;#{edate} ) spay ,
+	      (SELECT SUM(paytotal-selftotal) as firpay FROM taxes_invite WHERE mid=#{mid} AND  date &gt;=#{sdate} AND date &lt;#={edate}) fpay,
+	  (SELECT SUM(paytotal) as secpay FROM taxes_invite WHERE parentid=#{mid} AND date &gt;=#{sdate} AND date &lt;=#{edate} ) spay ,
 	  (SELECT SUM(a.paytotal) as thdpay FROM taxes_invite AS a INNER JOIN
 		                    (SELECT mid FROM ${DBName} as b WHERE parent_id=#{mid}) AS b ON a.parentid=b.mid WHERE
-		                    a.date&gt;=#{sdate} AND a.date&lt;#{edate} ) tpay
+		                    a.date&gt;=#{sdate} AND a.date&lt;=#{edate} ) tpay
 	 
 	)
 	</if>
 	<if test=" gameType &lt;20">
 		select firpay,secpay,thdpay from (
-		      (SELECT SUM(paytotal) as firpay FROM taxes_invite WHERE mid=#{mid} AND  date &gt;=#{sdate} AND date &lt;#{edate}) fpay,
-		  (SELECT SUM(paytotal) as secpay FROM taxes_invite WHERE parentid=#{mid} AND date &gt;=#{sdate} AND date &lt;#{edate} ) spay ,
+		      (SELECT SUM(paytotal) as firpay FROM taxes_invite WHERE mid=#{mid} AND  date &gt;=#{sdate} AND date &lt;=#{edate}) fpay,
+		  (SELECT SUM(paytotal) as secpay FROM taxes_invite WHERE parentid=#{mid} AND date &gt;=#{sdate} AND date &lt;=#{edate} ) spay ,
 		  (SELECT SUM(a.paytotal) as thdpay FROM taxes_invite AS a INNER JOIN
 			                    (SELECT mid FROM ${DBName} as b WHERE parent_id=#{mid}) AS b ON a.parentid=b.mid WHERE
-			                    a.date&gt;=#{sdate} AND a.date&lt;#{edate} ) tpay
+			                    a.date&gt;=#{sdate} AND a.date&lt;=#{edate} ) tpay
 		 
 		) 
 	</if>
