@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.sys.mapper.GameDictMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.sys.model.GameDict" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="DECIMAL" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="ext_code" property="extCode" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_by" property="updateBy" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="extend1" property="extend1" jdbcType="VARCHAR" />
+    <result column="extend2" property="extend2" jdbcType="VARCHAR" />
+    <result column="selected" property="selected"  jdbcType="REAL"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, type, description, sort, parent_id, ext_code, create_by, create_date, 
+    update_by, update_date, remarks, status, icon, extend1, extend2
+  </sql>
+  <!-- 查询所有游戏 -->
+  <select id="queryDictList" resultMap="BaseResultMap" >
+    SELECT
+		s1.id,
+		null company_id,
+		s1.name name,
+		CASE
+		WHEN c.group_id IS NULL THEN
+			FALSE
+		ELSE
+			TRUE
+		END AS selected from tb_dict s1 
+		LEFT JOIN sys_game_group_middle c ON s1.id=c.dict_id and c.group_id=#{id} where s1.parent_id=1 
+  </select>
+  
+</mapper>

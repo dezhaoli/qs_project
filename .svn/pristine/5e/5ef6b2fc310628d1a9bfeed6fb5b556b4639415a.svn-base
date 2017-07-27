@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.sys.mapper.GameGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.sys.model.GameGroup" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+  
+    
+    <result column="group_name" property="groupName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+     <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+     <result column="user_id" property="userId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, group_name, create_time, update_time,create_user
+  </sql>
+  <!-- 查找中间表中游戏分组的游戏记录 -->
+  <select id="selectByGameGroupId" resultType="int" >
+    select 
+    count(*)
+    from sys_game_group_middle
+    where group_id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 删除游戏分组中间表中的所有游戏id -->
+  <delete id="deleteByGameGroupId" >
+    delete from sys_game_group_middle
+    where group_id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 添加游戏分组中间表中的所有游戏id和分组id -->
+  <insert id="addGameGroupMiddle" parameterType="map" >
+    insert into sys_game_group_middle (group_id,
+      dict_id)
+    values 
+    <foreach collection="resourceIds" item ="dictId" separator=",">
+    	(#{groupId,jdbcType=INTEGER},
+     	 #{dictId})
+     </foreach>
+  </insert>
+  <!-- 按照主键来查询 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_game_group 
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findAll" resultMap="BaseResultMap" >
+   select 
+    g.*,m.user_id
+    from sys_game_group g
+    LEFT JOIN  sys_game_group_user_middle m on g.id = m.group_id
+    
+  </select>
+
+  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_game_group s
+    <where>
+	    <if test="userGroupName != null and userGroupName != ''">
+	    	and s.group_name like CONCAT('%',#{userGroupName},'%')
+	    </if>
+    </where>
+  </select>
+  
+   
+  <insert id="insert" parameterType="com.qs.pub.sys.model.GameGroup" >
+    insert into sys_game_group (group_name, create_time, 
+      update_time)
+    values (#{groupName,jdbcType=VARCHAR}, NOW(), 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  
+  <update id="updateByPrimaryKey" parameterType="com.qs.pub.sys.model.Group" >
+    update sys_game_group
+    set group_name = #{groupName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <select id="findByName" resultType="com.qs.pub.sys.model.GameGroup" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_game_group
+    where group_name = #{groupName}
+  </select>
+
+</mapper>
