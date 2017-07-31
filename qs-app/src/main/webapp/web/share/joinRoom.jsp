@@ -22,8 +22,40 @@
     <script type="text/javascript" src="${ctx }/lib/md5/jquery.md5.js"></script> 
     <script type="text/javascript" src="${ctx }/web/share/files/rem2.js"></script>
     <style>
+        /* 设置滚动条的样式 */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        /* 滚动槽 */
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background: rgba(0,0,0,0.1);
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        }
+        ::-webkit-scrollbar-thumb:window-inactive {
+            background: rgba(255,0,0,0.4);
+        }
 
-        /* 设置滚动条的样式 */::-webkit-scrollbar {    width: 12px;}/* 滚动槽 */::-webkit-scrollbar-track {    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);    border-radius: 10px;}/* 滚动条滑块 */::-webkit-scrollbar-thumb {    border-radius: 10px;    background: rgba(0,0,0,0.1);    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);}::-webkit-scrollbar-thumb:window-inactive {    background: rgba(255,0,0,0.4);}
+        #denglu *{
+            margin-left: 0rem;
+            margin-right: 0rem;
+            vertical-align:middle;  /* 居中对齐， */
+            font-size:12px;
+        }
+        .user-head3{
+            width: 1rem;
+            height: 1rem;
+            border-radius:0.2rem;
+            margin-right: -2rem;
+            margin-left: -2rem;
+            border-radius: 50%;
+        }
+
     </style>
 </head>
 <!-- /Head -->
@@ -67,6 +99,12 @@
         <p>加入成功</p>
         <p>手动打开游戏就能进入房间啦</p>
     </div>
+
+    <div id="denglu" style="display: none;">
+    　　<span>当前账号:</span>
+        <img class="user-head3" id="nowUserIcon">
+        <span id="nowUserMid"></span>
+　　</div>
 
     <div class="joinRoom-loading" style="display:none">
         <div class="joinRoom-loading-bg"></div>
@@ -260,8 +298,8 @@
             type : "POST",
             url : "${ctx}/api/shareLink/cookieJoinRoom.html",
             data : {
-                code : code,
-                roomid : $('.room-id').text()
+                code : code
+                //roomid : $('.room-id').text()
             },
             dataType : "json",
             success : function(resultdata) {
@@ -269,6 +307,9 @@
                     nowUserIcon = resultdata.nowUserIcon;
                     nowUserName = resultdata.nowUserName;
                     nowUserMid = resultdata.nowUserMid;
+                    $("#nowUserIcon").attr('src',nowUserIcon);
+                    $('#nowUserMid').text(nowUserMid);
+                    $('#denglu').css('display', 'block');
                     initRoomInfo(nowUserMid,null);
                 }else {
                     initRoomInfo(null,null);

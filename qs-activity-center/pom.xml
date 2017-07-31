@@ -82,6 +82,13 @@
 				<profiles.active>scacti</profiles.active>
 			</properties>
 		</profile>
+		<!-- 江西麻将 -->
+		<profile>
+			<id>jxacti</id>
+			<properties>
+				<profiles.active>jxacti</profiles.active>
+			</properties>
+		</profile>
 	</profiles>
     
 	<build>

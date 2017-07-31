@@ -92,8 +92,18 @@
       <file leaf-file-name="ShareLinkController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller/ShareLinkController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1032">
-              <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="120" column="93" lean-forward="false" selection-start-line="120" selection-start-column="93" selection-end-line="120" selection-end-column="93" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AppConstants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qs-common/src/main/java/com/qs/common/constant/AppConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4464">
+              <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -703,6 +713,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\pom.xml</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\webapp\web\share\joinRoom.jsp</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\ShareLinkController.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -710,6 +723,13 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\jxacti</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\jxacti\disconf.properties</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\IShareLinkService.java</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\ShareLinkServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\ShareLinkSwitchSocket.java</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\ShareLinkHandReData.java</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\ShareLinkBaseServiceImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -717,6 +737,8 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\member\service\IShareLinkService.java</PATH>
+          <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\member\service\impl\ShareLinkServiceImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -739,8 +761,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="2913">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
-        <PATH vcs="svn" revision="2913">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
+        <PATH vcs="svn" revision="2916">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1641,7 +1663,9 @@
       <workItem from="1500898504915" duration="1265000" />
       <workItem from="1500990898385" duration="557000" />
       <workItem from="1501076771299" duration="1671000" />
-      <workItem from="1501167462685" duration="122000" />
+      <workItem from="1501167462685" duration="468000" />
+      <workItem from="1501302035109" duration="139000" />
+      <workItem from="1501501780416" duration="79000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1773,7 +1797,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="281955000" />
+    <option name="totallyTimeSpent" value="282519000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1786,7 +1810,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1802,7 +1825,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33333334" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34188035" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1858,13 +1881,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-redis.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-668">
-          <caret line="29" column="8" lean-forward="true" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qs-shop/src/main/webapp/lib/angular-1.3.0.14/angular.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2013,33 +2029,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2885">
           <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
           <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -2155,13 +2171,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3216">
           <caret line="134" column="21" lean-forward="true" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/sms/UegateSoap.java">
@@ -2210,7 +2226,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
           <caret line="86" column="0" lean-forward="true" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2221,10 +2236,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/qs-common/src/main/java/com/qs/common/constant/AppConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4464">
+          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/qs-app/src/main/java/com/qs/webside/api/controller/ShareLinkController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1032">
-          <caret line="163" column="0" lean-forward="false" selection-start-line="163" selection-start-column="0" selection-end-line="163" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="120" column="93" lean-forward="false" selection-start-line="120" selection-start-column="93" selection-end-line="120" selection-end-column="93" />
           <folding />
         </state>
       </provider>
