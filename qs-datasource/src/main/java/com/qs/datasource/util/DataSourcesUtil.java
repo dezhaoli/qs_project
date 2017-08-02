@@ -144,7 +144,15 @@ public class DataSourcesUtil {
 					name=ConstantUtil.GameNameQianMJ.QIAN_MAJIANG_LOG_WRITE;
 				}
 				break;
-				
+			case 17:
+				name=ConstantUtil.GameNameKxBeard.KX_BEARD_WRITE;
+				if (ConstantUtil.TypeCode.CFG.equals(DBType)){
+					name=ConstantUtil.GameNameKxBeard.KX_BEARD_CFG_WRITE;
+				}
+				if (ConstantUtil.TypeCode.LOG.equals(DBType)){
+					name=ConstantUtil.GameNameKxBeard.KX_BEARD_LOG_WRITE;
+				}
+				break;
 			case 20:
 				name=ConstantUtil.GameNameJXMJ.JX_MAJIANG_WRITE;
 				if (ConstantUtil.TypeCode.CFG.equals(DBType)){

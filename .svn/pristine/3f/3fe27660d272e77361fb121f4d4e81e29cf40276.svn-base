@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!-- ==========================================配置动态数据源================================================ -->
+    <!-- Log库 -->
+    <bean id="logDynamicDataSource" class="com.qs.datasource.LogDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry value-ref="kxBeardLogWriteDataSource" key="kxBeardLogWriteDataSource"/>
+                <!--<entry value-ref="scMajiangLogWriteDataSource" key="scMajiangLogWriteDataSource"/>-->
+            </map>
+        </property>
+        <!-- 默认数据源 -->
+        <property name="defaultTargetDataSource" ref="kxBeardLogWriteDataSource"/>
+    </bean>
+
+    <!-- 主库 -->
+    <bean id="mainDynamicDataSource" class="com.qs.datasource.MainDataSources">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry value-ref="kxBeardMainWriteDataSource" key="kxBeardMainWriteDataSource"/>
+                <!--<entry value-ref="scMajiangMainWriteDataSource" key="scMajiangMainWriteDataSource"/>-->
+            </map>
+        </property>
+        <!-- 默认数据源 -->
+        <property name="defaultTargetDataSource" ref="kxBeardMainWriteDataSource"/>
+    </bean>
+    <!-- ==========================================配置动态数据源================================================= -->
+
+</beans>

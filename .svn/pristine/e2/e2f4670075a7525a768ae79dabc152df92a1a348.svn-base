@@ -1,0 +1,103 @@
+package com.qs.datasource.util;
+
+import org.apache.log4j.Logger;
+
+
+/**
+ * 
+ * @ClassName: ConstantUtil 
+ * @描述: 常量工具包
+ * @author QS
+ * @date 2017年6月2日 下午1:40:18
+ */
+public class ConstantUtil {
+	
+	public static final String AGENT_GAME_TYPE_SESSION_KEY="agentGameTypeSessionKey:";
+	public static final String BUSINESS_GAME_TYPE_SESSION_KEY="businessGameTypeSessionKey:";
+	
+	public static class GameType{
+		
+		public static final Integer GD_MAJIANG=5;
+		
+		public static final Integer SC_MAJIANG=6;
+	}
+	
+	public static class ReadWrite{
+		public static final String READ="Read";
+		public static final String Write="Write";
+	}
+	
+	public static class TypeCode{
+		public static final String CFG="Cfg";
+		public static final String LOG="Log";
+	}
+	
+	/**
+	 * 
+	 * @ClassName: GameNameGDMJ 
+	 * @描述: 广东麻将数据源
+	 * @author moyousheng
+	 * @date 2017年6月2日 下午1:39:17
+	 */
+	public static class GameNameGDMJ{
+		public static final String GD_MAJIANG_WRITE="gdMajiangMainWriteDataSource";
+		
+		public static final String GD_MAJIANG_CFG_WRITE="gdMajiangCfgWriteDataSource";
+		
+		public static final String GD_MAJIANG_LOG_WRITE="gdMajiangLogWriteDataSource";
+	}
+	
+	/**
+	 * 
+	 * @ClassName: GameNameSCMJ 
+	 * @描述: 四川麻将数据源
+	 * @author  moyousheng
+	 * @date 2017年6月2日 下午1:38:45
+	 */
+	public static class GameNameSCMJ{
+		
+		public static final String SC_MAJIANG_WRITE="scMajiangMainWriteDataSource";
+		
+		public static final String SC_MAJIANG_CFG_WRITE="scMajiangCfgWriteDataSource";
+		
+		public static final String SC_MAJIANG_LOG_WRITE="scMajiangLogWriteDataSource";
+	}
+	
+	/**
+	 * 
+	 * @ClassName: GameNameQianMJ 
+	 * @描述:贵州麻将数据源
+	 * @author moyousheng
+	 * @date 2017年6月2日 下午1:37:21
+	 */
+	public static class GameNameQianMJ{
+		public static final String QIAN_MAJIANG_WRITE="qianMajiangMainWriteDataSource";
+		public static final String QIAN_MAJIANG_CFG_WRITE="qianMajiangCfgWriteDataSource";
+		public static final String QIAN_MAJIANG_LOG_WRITE="qianMajiangLogWriteDataSource";
+	}
+    /**
+     * 
+     * @ClassName: GameNameJXMJ 
+     * @描述: 江西麻将数据源
+     * @author moyousheng
+     * @date 2017年6月2日 下午1:37:57
+     */
+	public static class GameNameJXMJ{
+		public static final String JX_MAJIANG_WRITE="jxMajiangMainWriteDataSource";
+		public static final String JX_MAJIANG_CFG_WRITE="jxMajiangCfgWriteDataSource";
+		public static final String JX_MAJIANG_LOG_WRITE="jxMajiangLogWriteDataSource";
+	}
+	
+	/**
+	 *  
+	 * @author zyy
+	 * 开心跑胡子
+	 */
+	public static class GameNameKxBeard{
+		public static final String KX_BEARD_WRITE="kxBeardMainWriteDataSource";
+		public static final String KX_BEARD_CFG_WRITE="kxBeardCfgWriteDataSource";
+		public static final String KX_BEARD_LOG_WRITE="kxBeardLogWriteDataSource";
+	}
+
+
+}

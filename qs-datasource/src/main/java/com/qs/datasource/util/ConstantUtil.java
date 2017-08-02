@@ -88,6 +88,16 @@ public class ConstantUtil {
 		public static final String JX_MAJIANG_LOG_WRITE="jxMajiangLogWriteDataSource";
 	}
 	
+	/**
+	 *  
+	 * @author zyy
+	 * 开心跑胡子
+	 */
+	public static class GameNameKxBeard{
+		public static final String KX_BEARD_WRITE="kxBeardMainWriteDataSource";
+		public static final String KX_BEARD_CFG_WRITE="kxBeardCfgWriteDataSource";
+		public static final String KX_BEARD_LOG_WRITE="kxBeardLogWriteDataSource";
+	}
 
 
 }

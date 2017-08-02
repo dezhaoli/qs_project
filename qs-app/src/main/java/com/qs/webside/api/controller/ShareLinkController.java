@@ -125,13 +125,10 @@ public class ShareLinkController extends BaseController {
             User user = SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(), "zh_CN");
             redisTemplate.opsForValue().set(tokenCode, snsToken.getRefresh_token(), 29, TimeUnit.DAYS);
             unionid = user.getUnionid();
-            System.out.println("user = " + user);
-            System.out.println("joinRoomCallBack redisTemplate.opsForValue().get(tokenCode) = " + code);
-            System.out.println("joinRoomCallBack redisTemplate.opsForValue().get(tokenCode) = " + redisTemplate.opsForValue().get(tokenCode));
         }
         shareLinkService.joinRoom(roomid, unionid, model, gp, sesskey, cIp, cPort, gameType);
         model.addAttribute("code", code);
-        System.out.println("joinRoomCallBack code = " + code);
+        log.debug("the joinRoomCallBack code is ----------::" + code);
         return "/web/share/joinRoom";
     }
 
@@ -156,10 +153,8 @@ public class ShareLinkController extends BaseController {
             SnsToken snsToken = SnsAPI.oauth2RefreshToken(appId, refreshToken);
             User user = SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(), "zh_CN");
             unionid = user.getUnionid();
-            System.out.println("user = " + user);
-            System.out.println("cookieJoinRoom redisTemplate.opsForValue().get(tokenCode) = " + code);
-            System.out.println("cookieJoinRoom redisTemplate.opsForValue().get(tokenCode) = " + redisTemplate.opsForValue().get(AppConstants.RedisKeyPrefix.SHARE_LINK_REFRESH_TOKEN + code));
         }
+        log.debug("the cookieJoinRoomCallBack code is ----------::" + code);
         if (StringUtils.isNotBlank(state)) {
             String[] params = state.split("_qs_");
             String sesskey = params[0];

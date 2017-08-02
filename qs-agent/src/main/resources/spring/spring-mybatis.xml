@@ -20,7 +20,8 @@
 	<context:annotation-config />
 	
 	<import resource="classpath:spring/datasource.xml"/>
-	<!--<import resource="classpath:spring/datasource-jx.xml"/>-->
+<!-- 	<import resource="classpath:spring/datasource-jx.xml"/> -->
+<!-- <import resource="classpath:spring/datasource-kxbeark.xml"/> -->
 	
 	<bean id="agentDataSourceUtil" class="com.qs.webside.util.AgentDataSourceUtil"/>
 

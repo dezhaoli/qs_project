@@ -20,18 +20,18 @@
 <!-- 搜索框 -->
      <form class="form-horizontal" id="exportAction" action="businessCount/exportAll.html" >
 				<div class="form-group" >
-					  <div class="col-sm-2" id="divGroupId">
+					  <%--<form-groupdiv class="col-sm-2" id="divGroupId">
 	                    <div class="clearfix">
 	                     <select class="form-control" id="groupIdBusiness" name="groupIdBusiness" style="width: 100%" onchange="selectBusiness(this.value)">
 					 	 </select>
 	                    </div>
-		              </div>
+		              </form-groupdiv>
 		                <div class="col-sm-1" id="divBusinessId">
 		                    <div class="clearfix">
 		                     <select class="form-control" id="businessIdByGroupId" name="businessIdByGroupId" style="width: 100%">
 						 	 </select>
 		                    </div>
-		                </div>
+		                </div>--%>
 		           <!-- 	<label class="control-label col-sm-1 no-padding-right">商务名称</label>
 	                <div class="col-sm-2">
 	                    <input class="form-control" name="name" id="name" type="text"
@@ -99,48 +99,4 @@
 
 </div>
 
-<script>
-$.ajax({
-	type : "POST",
-	url : sys.rootPath+"/group/selectGroup.html",
-	dataType : "json",
-	success : function(data) {
-		debugger;
-		if(data.length==0){
-			$('#divGroupId').remove(); 
-			$('#divBusinessId').remove(); 
-		}else{
-			$('#groupIdBusiness').empty();   //清空resText里面的所有内容
-	        var html = '<option value="" selected="selected">请选择分公司...</option>'; 
-	        $.each(data, function(commentIndex, comment){
-	        		html += '<option value="'+comment.id+'">' + comment.userGroupName
-	                + '</option>'; 
-	        });
-	        $('#groupIdBusiness').html(html);
-		}
-		
-     }
 
-});
-
-function selectBusiness(_val){
-	$.ajax({
-		type : "POST",
-		url : sys.rootPath+"/sysBusiness/selectByGroupId.html",
-		data:{"groupId":_val},
-		dataType : "json",
-		success : function(data) {
-			$('#businessIdByGroupId').empty();   //清空resText里面的所有内容
-	        var html = '<option value="" selected="selected">请选择商务...</option>'; 
-	        $.each(data, function(commentIndex, comment){
-	        		html += '<option value="'+comment.businessId+'">' + comment.businessName
-	                + '</option>'; 
-	        });
-	        $('#businessIdByGroupId').html(html);
-	     }
-
-	});
-	
-}
-
-</script>

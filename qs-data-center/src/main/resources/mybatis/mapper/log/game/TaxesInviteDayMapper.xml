@@ -81,9 +81,7 @@
 				<if test="businessId != null and businessId != '' and businessId != 'null'">
 					and m.id = #{businessId}
 				</if>
-				<if test="name != null and name != ''">
-					and m.name like CONCAT('%',#{name},'%')
-				</if>
+
 				 and e.date &lt; date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and e.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
 		</where>		
 		 group by m.id
@@ -171,7 +169,7 @@
 					  and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')  
 				</where>
 						 group by e.mid
-					     order by e.mid	
+					     order by business_name
 	  </select>
 	  <select id="queryAgentListByPage" parameterType="map" resultMap="BaseResultMap">
 	     select e.mid,case WHEN  e.realname is null THEN   a.realname else e.realname   end  as name,u.name as  business_name,t.date,sum(t.paytotal) paytotal,sum(t.invitetotal) invitetotal, 
