@@ -1,0 +1,56 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<script type="text/javascript">
+	
+	
+function isWeixn(){
+	var ua = navigator.userAgent.toLowerCase();
+	var img =document.getElementById("img");
+			
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+		img.src = "setup.png"
+	 } else {
+		getMobileOperatingSystem()
+	}
+ }
+
+/**
+ * Determine the mobile operating system.
+ * This function either returns 'iOS', 'Android' or 'Other'
+ */
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ))
+  {
+	window.location.href="https://itunes.apple.com/us/app/id1218694718";
+
+  }
+  else if(userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1  )
+  { 
+	//window.location.href="http://dw2.jiaheyx.com/scmajiang_1.0.1_20170417.apk";
+	window.location.href="http://dw2.jiaheyx.com/scmajiang_1.0.1_20170417.apk";
+	
+  }
+  else
+  {
+	window.location.href="http://dw2.jiaheyx.com//scmajiang_1.0.1_20170417.apk";
+  }
+}
+
+
+	window.onload=function(){isWeixn()}
+</script>
+
+<title>四川麻将下载</title>
+</head>
+<body>
+	<img src="" id="img" width="100%"/>
+</body>
+</html>

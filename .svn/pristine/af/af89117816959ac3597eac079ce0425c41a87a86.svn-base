@@ -1,0 +1,172 @@
+
+
+@charset "UTF-8";
+
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+html,body{
+    font-family: 'Microsoft YaHei UI Light', 'Microsoft YaHei UI';
+    font-size: 12px;
+    background-color: #edf6fd;
+    line-height: 1.5;
+}
+input,button{ outline: none; }
+button,input[type="button"]{  -webkit-appearance: none;  }
+li{  list-style: none;  }
+img{
+    border: 0;
+    vertical-align: middle;
+}
+a:link,a:hover,a:visited,a:active{  text-decoration: none;  }
+
+.clear::after{
+    display: block;
+    content: ' ';
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+
+.header{
+    height: 100px;
+    background: url("top.jpg") no-repeat scroll center center;
+    background-size: 100% 100%;
+}
+
+.kxheader{
+    height: 100px;
+    background: url("topkx.jpg") no-repeat scroll center center;
+    background-size: 100% 100%;
+}
+
+@media screen and (min-width: 768px){
+    .header{ height: 199px; }
+    .kxheader{ height: 199px; }
+}
+.main{
+    padding: 0 10px 30px;
+}
+.main ul{
+    min-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media screen and (min-width: 700px) and (max-width: 1020px){
+    .main ul{ max-width: 600px;}
+}
+@media screen and (min-width: 1020px){
+    .main ul{ max-width: 100%;}
+}
+.main ul::before,.main ul::after{
+    display: table;
+    content: " ";
+}
+.main ul li{
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+@media screen and (max-width: 480px){
+   
+	@media screen and (orientation: landscape) {
+		.main ul li{ width: 50%;padding: 10px 2px; }
+		.li-content .game-logo{ width: 32%; }
+		.li-content .game-desc{ width: 68%; padding-left: 2px; }
+		.li-content .game-logo img{ height: 64px;  margin-left: -32px;margin-top: -32px;}
+	}
+	@media screen and (orientation: portrait) {
+		.header{ background-size:150% 100%;}
+		.kxheader{ background-size:150% 100%;}
+		.main ul li{ width: 100%; }
+	}
+}
+
+@media screen and (min-width: 1020px) and (max-width:1500px){
+    .main ul li{ width: 25%;max-width:360px; padding: 10px 4px;}
+}
+@media screen and (min-width: 1501px){
+    .main ul li{ width: 25%;max-width:360px;}
+}
+.li-content{
+    position: relative;
+    background-color: #5997E2;
+    border-radius: 15px;
+}
+.li-content-cover{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    border-radius: 15px;
+    opacity: 0.7;
+    z-index: 10;
+}
+.li-content-except{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/disabled.png") no-repeat center center;
+    z-index: 11;
+}
+.game-logo,.game-desc{
+    float: left;
+    height: 130px;
+}
+.game-logo{
+    position: relative;
+    width: 36%;
+}
+.game-logo img{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+	height: 86px;
+    margin-left: -43px;
+	margin-top: -43px;
+
+}
+
+.game-desc{
+    width: 64%;
+    padding: 2px 0px;
+	padding-left: 8px;
+    color: #fff;
+}
+
+.game-desc h4{
+    font-size: 14px;
+    margin: 2px 0;
+}
+.game-desc p{
+    padding: 2px 0;
+}
+
+.game-desc a{
+    display: block;
+    width: 80px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    color: #FFF;
+    text-align: center;
+    background-color: #FFB901;
+    border-radius: 10px;
+}
+
+
+
+
+

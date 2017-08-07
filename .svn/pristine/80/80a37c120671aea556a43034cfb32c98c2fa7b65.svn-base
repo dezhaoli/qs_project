@@ -1,0 +1,55 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<script type="text/javascript">
+	
+	
+function isWeixn(){
+	var ua = navigator.userAgent.toLowerCase();
+	var img =document.getElementById("img");
+			
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+		img.src = "setup.png"
+	 } else {
+		getMobileOperatingSystem()
+	}
+ }
+
+/**
+ * Determine the mobile operating system.
+ * This function either returns 'iOS', 'Android' or 'Other'
+ */
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ))
+  {
+	//window.location.href="itms-services://?action=download-manifest&url=https://ssl.wiseyq.com/ccpuls2_apps/ios.plist";
+	window.location.href="https://itunes.apple.com/cn/app/qian-shou-pao-de-kuai/id1135379470?mt=8";
+
+  }
+  else if(userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1  )
+  { 
+	window.location.href="http://downloads.jiaheyx.com/apk/paodekuai_1.0.9.20170213.apk?mkey=576cef71c3af0ece&f=8f5d&c=0&fsname=jiahepoker1.0.1.apk&p=.apk&_=1487775710";
+  }
+  else
+  {
+	window.location.href="http://downloads.jiaheyx.com/apk/paodekuai_1.0.9.20170213.apk?mkey=576cef71c3af0ece&f=8f5d&c=0&fsname=jiahepoker1.0.1.apk&p=.apk&_=1487775710";
+  }
+}
+
+
+	window.onload=function(){isWeixn()}
+</script>
+
+<title>牵手跑得快下载</title>
+</head>
+<body>
+	<img src="" id="img" width="100%"/>
+</body>
+</html>
