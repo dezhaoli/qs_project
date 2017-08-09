@@ -28,4 +28,8 @@ public class LogType
 	 * 创建房间用户
 	 */
 	public static final String CREATE_ROOM = "5";
+	/**
+	 * 炸弹春天统计
+	 */
+	public static final String ADD_GAME_RULE = "6";
 }

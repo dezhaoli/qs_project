@@ -15,6 +15,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.AppConstants.MemcacheKeyPrefix;
 import com.qs.common.constant.CacheConstan;
 import com.qs.common.constant.CommonContants;
 import com.qs.common.util.CommonUtils;
@@ -277,6 +278,19 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int updateCommongame(Commongame record) {
+		try
+		{
+			memcachedClient.delete(MemcacheKeyPrefix.TMGMCOM+record.getMid());
+		} catch (TimeoutException e)
+		{
+			e.printStackTrace();
+		} catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		} catch (MemcachedException e)
+		{
+			e.printStackTrace();
+		}
 		return commongameMapper.updateByPrimaryKeySelective(record);
 	}
 
@@ -297,11 +311,11 @@ public class MemberServiceImpl implements MemberService {
 		if (agentMids !=null ){
 
 			try {
-				String openRoom=memcachedClient.get(CommonContants.OPEN_SESSION_KEY+mid)+"";
+				String openRoom=memcachedClient.get(MemcacheKeyPrefix.OPEN_SESSION_KEY+mid)+"";
 				log.debug("getAgentGrantByMid openRoom:+++++++++++++++++++"+openRoom);
 				if(openRoom == null || "".equals(openRoom) || "null".equals(openRoom)){
-					log.debug("getAgentGrantByMid userinfo:"+CommonContants.OPEN_SESSION_KEY+mid+"::value::"+agentMids.getAmid()+"");
-					memcachedClient.set(CommonContants.OPEN_SESSION_KEY+mid,0,agentMids.getAmid()+"");
+					log.debug("getAgentGrantByMid userinfo:"+MemcacheKeyPrefix.OPEN_SESSION_KEY+mid+"::value::"+agentMids.getAmid()+""); 
+					memcachedClient.set(MemcacheKeyPrefix.OPEN_SESSION_KEY+mid,0,agentMids.getAmid()+"");
 				}
 			} catch (TimeoutException | InterruptedException | MemcachedException e) {
 				e.printStackTrace();

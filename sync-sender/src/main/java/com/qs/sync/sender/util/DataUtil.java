@@ -5,6 +5,7 @@ import javax.jms.Destination;
 import org.apache.activemq.command.ActiveMQTopic;
 
 import com.qs.sync.model.SyncCreateRoom;
+import com.qs.sync.model.SyncGameRule;
 import com.qs.sync.model.SyncObject;
 import com.qs.sync.model.SyncPlaying;
 import com.qs.sync.model.SyncUserKeep;
@@ -35,6 +36,8 @@ public class DataUtil {
 			return new ActiveMQTopic(TopicConstants.TOPIC_NAME_USER_LOGIN);
 		}else if(model instanceof SyncUserKeep){
 			return new ActiveMQTopic(TopicConstants.TOPIC_NAME_USER_Add);
+		}else if(model instanceof SyncGameRule){
+			return new ActiveMQTopic(TopicConstants.TOPIC_NAME_GAME_RULE);
 		}
     	return null;
     	

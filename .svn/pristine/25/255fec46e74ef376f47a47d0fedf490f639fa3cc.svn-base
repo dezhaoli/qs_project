@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation=
+		"http://www.springframework.org/schema/beans 
+		classpath:org/springframework/beans/factory/xml/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context 
+		classpath:org/springframework/context/config/spring-context-4.0.xsd"
+	default-autowire="byName">
+
+
+	<bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+	    <property name="connectionFactory">
+	        <bean class="org.apache.activemq.ActiveMQConnectionFactory">  
+	            <property name="brokerURL" value="failover:(${mq.brokerURL})" />  
+	            <property name="closeTimeout" value="60000" />
+	            <property name="userName" value="${mq.userName}" />
+	            <property name="password" value="${mq.password}" />
+	            <!--<property name="optimizeAcknowledge" value="true" />-->
+	            <property name="optimizedAckScheduledAckInterval" value="10000" />
+	        </bean>
+	    </property>
+	</bean>
+  
+	<!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+	<bean id="jmsConnectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+		<property name="targetConnectionFactory" ref="pooledConnectionFactory" />
+		 <property name="clientId" value="${mq.clientId}"></property> 
+	</bean>
+	
+	<!-- Spring JMS Template -->  
+<!-- 	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">  
+		<property name="connectionFactory" ref="jmsConnectionFactory"></property>
+		<property name="explicitQosEnabled" value="true" /> deliveryMode, priority, timeToLive 的开关，要生效，必须配置为true，默认false  
+        <property name="deliveryMode" value="2" /> 发送模式  DeliveryMode.NON_PERSISTENT=1:非持久 ; DeliveryMode.PERSISTENT=2:持久
+	</bean> -->
+	
+	
+	<!--这个是sessionAwareTopic目的地 -->
+	<bean id="sessionAwareTopic" class="org.apache.activemq.command.ActiveMQTopic">
+		<constructor-arg>
+			<value>topicPlayingDataCenter,topicCreateRoomDataCenter,topicUserLoginDataCenter,topicUserAddDataCenter,topicGameRuleDataCenter</value>
+		</constructor-arg>
+	</bean>
+	
+	<!--消息发送pojo-->
+	<!-- 	<bean id="messageSender" class="com.apusic.ausp.sync.sender.mq.JmsSenderSpring" >
+	</bean> -->
+	
+	<!--消息发送总门面-->  
+<!-- 	<bean id="sendDataFacade" class="com.apusic.ausp.sync.sender.SendDataFacade">
+		<property name="jmsSenderSpring" ref="messageSender" />
+	</bean> -->
+	
+	
+	<!--消息接收容器，多线程异步接收消息-->  
+	<bean id="topicListenerContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">  
+		<property name="connectionFactory" ref="jmsConnectionFactory" />
+		<property name="destination" ref="sessionAwareTopic" />
+		<property name="messageListener" ref="consumerSessionAwareMessageListener" />
+		<!-- <property name="messageListener" ref="messageListener" /> -->
+		<property name="sessionTransacted" value="false" />
+	   <!-- 持久化订阅者 -->
+		<property name="subscriptionDurable" value="true"></property>
+		 <!--订阅 发布模式 -->
+      <property name="pubSubDomain" value="true"></property>
+      <!--如果是durable模式，还需要给connection设置一个clientId -->
+      <property name="clientId" value="${mq.clientId}"></property> 
+       <!-- 配置多个消费者，可以是具体数值，也可以是数值区间，根据消息的规模来确定消费者的多少 --> 
+       <property name="concurrency" value="1-8"></property>
+	</bean>
+	
+	<!-- 可以获取session的MessageListener -->
+	<bean id="consumerSessionAwareMessageListener" class="com.qs.pub.sync.receive.listener.ConsumerSessionAwareMessageListener">
+		<property name="receiveData" ref="receiveData" />
+	</bean>
+
+	<!-- JMS客户端消息接收处理类 -->
+	<bean id="receiveData" class="com.qs.pub.sync.receive.mq.ReceiveDataImpl"></bean>
+
+
+</beans>

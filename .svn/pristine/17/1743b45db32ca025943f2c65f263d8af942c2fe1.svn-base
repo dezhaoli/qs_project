@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<script type="text/javascript">
+	
+	
+function isWeixn(){
+	var ua = navigator.userAgent.toLowerCase();
+	var img =document.getElementById("img");
+			
+	if(ua.match(/MicroMessenger/i)=="micromessenger") {
+	   document.getElementById("img").style.display="block";
+		img.src = "setup.png"
+	 } else {
+		getMobileOperatingSystem()
+	}
+ }
+
+/**
+ * Determine the mobile operating system.
+ * This function either returns 'iOS', 'Android' or 'Other'
+ */
+function getMobileOperatingSystem() {
+  var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+  if( userAgent.match( /iPad/i ) || userAgent.match( /iPhone/i ) || userAgent.match( /iPod/i ))
+  {
+	window.location.href="https://itunes.apple.com/us/app/%E4%B9%90%E7%8E%A9%E6%B1%9F%E8%A5%BF%E9%BA%BB%E5%B0%86/id1226284384?mt=8";
+
+  }
+  else if(userAgent.indexOf('Android') > -1 || userAgent.indexOf('Linux') > -1  )
+  { 
+	//window.location.href="http://dw2.jiaheyx.com/bull_1.0.4_20170113.apk";
+	//window.open("http://dw.longzupoker.com/bull_1.0.4_20170113.apk");
+	window.location.href="http://dw.longzupoker.com/jiangximajiang_1.0.1_20170612.apk";
+	
+  }
+  else
+  {
+	window.location.href="http://dw.longzupoker.com/jiangximajiang_1.0.1_20170612.apk";
+  }
+}
+
+
+	window.onload=function(){isWeixn()}
+</script>
+
+<title>开心跑胡子</title>
+ <link rel="stylesheet" href="./download/download.css">
+</head>
+<body>
+	<img src="" id="img" style="display:none" width="100%"/>
+
+	<div class="main">
+    <ul class="clear">
+              
+					<li>
+                        <div class="li-content clear">
+                <div class="game-logo">
+		    <a href="./kxdown.html">
+			<img src="./download/logo_kx.png" alt="logo">
+		    </a>                    
+                </div>
+
+                    <div class="game-desc">
+                    <h4>开心跑胡子</h4>
+                    <p>版本：1.0.1</p>
+                    <p>大小：31.0M</p>
+                    <p>更新时间：2017年06月12日</p>
+                    <a href="./kxdown.html">
+                        下载
+                    </a>
+
+                </div>
+            </div>
+                    </li>
+              
+            </ul>
+</div>
+
+</body>
+</html>

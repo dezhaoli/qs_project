@@ -9,8 +9,16 @@
  	background: #FFF; 
  } 
 </style>
-<c:choose>
-	<c:when test="${gameType <20}">
+<c:if test="${gameType <20 and gameType !=17}">
+<script type="text/javascript"
+			src="${ctx }/resources/js/customer/web/team_selectVipDirectly_list.js"></script>
+</c:if>
+<c:if test="${gameType >=20 or gameType ==17}">
+<script type="text/javascript"
+			src="${ctx }/resources/js/customer/web/team_selectVipDirectly_list2.js"></script>
+</c:if>
+<%-- <c:choose>
+	<c:when test="${gameType <20 and gameType !=17}">
 		<script type="text/javascript"
 			src="${ctx }/resources/js/customer/web/team_selectVipDirectly_list.js"></script>
 	</c:when>
@@ -18,7 +26,7 @@
 		<script type="text/javascript"
 			src="${ctx }/resources/js/customer/web/team_selectVipDirectly_list2.js"></script>
 	</c:otherwise>
-</c:choose>
+</c:choose> --%>
 <div class="page-content" style="padding-top: 20px">
     <div class="controls controls-row">
         <div class="controls controls-row">

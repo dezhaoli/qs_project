@@ -26,6 +26,7 @@ import com.qs.common.constant.CommonContants;
 import com.qs.common.constant.LogType;
 import com.qs.common.util.ContextUtil;
 import com.qs.sync.model.SyncCreateRoom;
+import com.qs.sync.model.SyncGameRule;
 import com.qs.sync.model.SyncPlaying;
 import com.qs.sync.model.SyncUserKeep;
 import com.qs.sync.model.SyncUserLoginLog;
@@ -107,6 +108,10 @@ public class DataCenterLogController extends BaseController
 						SyncUserKeep sk = JSON.parseObject(params,SyncUserKeep.class);
 						sk.setFromSysCode("sync-data");
 						sendResult=sendDataFacade.sendByJms(sk);
+					} else if(logType.equals(LogType.ADD_GAME_RULE)){
+						SyncGameRule sr = JSON.parseObject(params,SyncGameRule.class);
+						sr.setFromSysCode("sync-data");
+						sendResult=sendDataFacade.sendByJms(sr);
 					}
 				}
 				if (sendResult)

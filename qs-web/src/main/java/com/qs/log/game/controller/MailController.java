@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -94,6 +95,8 @@ public class MailController extends BaseController{
     @RequestMapping(value = "save.html",method = RequestMethod.POST)
     public Object saveMail(Mails record) throws ParseException {
         Map<String, Object> map = new HashMap<String, Object>();
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        record.setExpired(simpleDateFormat.parse(record.getExpiredStr()));
         int executeResult = mailService.addSelective(record,goldHost,goldPort);
         if (executeResult > 0) {
             map.put(CommonContants.SUCCESS, Boolean.TRUE);
@@ -143,6 +146,27 @@ public class MailController extends BaseController{
         Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
         List<Mails> list = mailService.queryMailDetail(parameters);
         return getReturnPage(pager, page, list);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/8/8 11:43
+     * @Description:删除邮件
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "delMail.html",method = RequestMethod.POST)
+    public Object delMail(int id) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int executeResult = mailService.deleteById(id);
+        if (executeResult > 0) {
+            map.put(CommonContants.SUCCESS, Boolean.TRUE);
+            map.put(CommonContants.MESSAGE, CommonContants.DELETE_SUCCESS);
+        } else {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.MESSAGE, CommonContants.DELETE_FAILURE);
+        }
+        return map;
     }
 
 }

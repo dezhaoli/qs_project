@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.sync.mapper.GameRuleMapper">
+  <resultMap id="BaseResultMap" type="com.qs.sync.model.SyncGameRule">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, app_id, create_time,name, type
+  </sql>
+  
+  
+  <insert id="insert" parameterType="com.qs.sync.model.SyncCreateRoom">
+    insert into dc_game_rule (id, mid, app_id, 
+      create_time,name, type)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
+       #{createTime,jdbcType=TIMESTAMP}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
+  </insert>
+  
+ 
+</mapper>

@@ -51,7 +51,7 @@ var dtGridColumns = [{
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
-        
+
         return "<a href='javascript:lookDetail("+record.bizid+")'>查看代理商明细</a>";
     }
 }];
@@ -62,20 +62,20 @@ pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
 
 
 var dtGridOption = {
-	    lang : 'zh-cn',
-	    ajaxLoad : true,
-	    check : true,
-	    checkWidth :'37px',
-	    extraWidth : '37px',
-	    loadURL : sys.rootPath + '/businessCount/queryBusinessCountList.html',
-	    columns : dtGridColumns,
-	    gridContainer : 'dtGridContainer',
-	    toolbarContainer : 'dtGridToolBarContainer',
-	    tools : 'refresh|export[excel]',
-	    exportFileName : '商务业绩统计-商务数据',
-	    pageSize : pageSize,
-	    pageSizeLimit : [10, 20, 30]
-	};
+    lang : 'zh-cn',
+    ajaxLoad : true,
+    check : true,
+    checkWidth :'37px',
+    extraWidth : '37px',
+    loadURL : sys.rootPath + '/businessCount/queryBusinessCountList.html',
+    columns : dtGridColumns,
+    gridContainer : 'dtGridContainer',
+    toolbarContainer : 'dtGridToolBarContainer',
+    tools : 'refresh|export[excel]',
+    exportFileName : '商务业绩统计-商务数据',
+    pageSize : pageSize,
+    pageSizeLimit : [10, 20, 30]
+};
 
 var grid = $.fn.dlshouwen.grid.init(dtGridOption);
 
@@ -86,7 +86,7 @@ $(function() {
         grid.sortParameter.columnId = $("#orderByColumn").val();
         grid.sortParameter.sortType = $("#orderByType").val();
     }
-    
+
     grid.parameters = new Object();
     grid.parameters['startDate'] = startDate;
     grid.parameters['endDate'] = endDate;
@@ -96,15 +96,15 @@ $(function() {
     grid.load();
     $("#btnSearch").click(customSearch);
     //$("#btnExport").click(exportAll);
-    
+
     //注册回车键事件
     document.onkeypress = function(e){
-    var ev = document.all ? window.event : e;
+        var ev = document.all ? window.event : e;
         if(ev.keyCode==13) {
             customSearch();
         }
     };
-    
+
 });
 
 
@@ -117,49 +117,49 @@ function customSearch() {
     var startDateStr = $("#startDate").val();
     var endDateStr = $("#endDate").val();
     var groupId = $("#groupIdBusiness").val();
-	var businessId = $("#businessIdByGroupId").val();
+    var businessId = $("#businessIdByGroupId").val();
     //var name = $("#name").val();
     grid.parameters['startDate'] = startDateStr;
     grid.parameters['endDate'] = endDateStr;
     grid.parameters['name'] = name;
     grid.parameters['groupId'] = groupId;
     grid.parameters['businessId'] = businessId;
-     startDate = startDateStr ;
-     endDate = endDateStr;
-     queryAmountTotals(startDate,endDate,groupId,businessId);
+    startDate = startDateStr ;
+    endDate = endDateStr;
+    queryAmountTotals(startDate,endDate,groupId,businessId);
     grid.refresh(true);
 }
 function exportAll() {
-	$("#exportAction").submit();
+    $("#exportAction").submit();
 }
 
 
 function updateStatus(id,status){
-	$.ajax({
+    $.ajax({
         type: "GET",
         url: sys.rootPath+'/dict/updateStatus.html?id='+id+'&status='+status,
         dataType: "json",
         success: function(data){
-        	webside.common.loadPage('/dict/dictList.html')
-     }
+            webside.common.loadPage('/dict/dictList.html')
+        }
     });
-	//webside.common.loadPage('/dict/updateStatus.html?id='+id+'&status='+status)
+    //webside.common.loadPage('/dict/updateStatus.html?id='+id+'&status='+status)
 }
 
 
 
 var lookDetail = function(_val){
-	webside.common.loadPage('/businessCount/toAgentCountListUi.html?id='+_val)
+    webside.common.loadPage('/businessCount/toAgentCountListUi.html?id='+_val)
 }
 
 function queryAmountTotals(stime,etime,groupId,businessId){
-	$.ajax({
-		type: "POST",
-		url: sys.rootPath+'/businessCount/queryBusinessAmountTotal.html',
-		data:{'stime':stime,'etime':etime,'groupId':groupId,'businessId':businessId},
-		dataType: "json",
-		success: function(data){
-				$("#countTotals").html(data);
-		}
-	});
+    $.ajax({
+        type: "POST",
+        url: sys.rootPath+'/businessCount/queryBusinessAmountTotal.html',
+        data:{'stime':stime,'etime':etime,'groupId':groupId,'businessId':businessId},
+        dataType: "json",
+        success: function(data){
+            $("#countTotals").html(data);
+        }
+    });
 }

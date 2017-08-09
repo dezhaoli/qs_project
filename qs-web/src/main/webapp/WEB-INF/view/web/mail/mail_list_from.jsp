@@ -195,9 +195,8 @@
                                 <label class="control-label col-sm-1 no-padding-right">邮件到期时间</label>
                                 <div class="col-sm-5">
                                     <div class="clearfix">
-                                        <input class="form-control" name="expireTime"
-                                               id="expireTime" type="text"
-                                               value="" placeholder="邮件到期时间..."/>
+                                        <input class="form-control" name="expiredStr"
+                                               id="expireTime" value="" placeholder="邮件到期时间..."/>
                                     </div>
                                 </div>
                             </div>
@@ -268,10 +267,11 @@
     $(function () {
         jeDate({
             dateCell: '#expireTime',
-            isinitVal: false,
+            isinitVal:true,
             format: 'YYYY-MM-DD hh:mm:ss', // 分隔符可以任意定义，该例子表示只显示年月
-            minDate: '1900-06-01 00:00:00', //最小日期
-            maxDate: '2050-06-01 23:59:59' //最大日期
+            minDate:"2014-09-19 00:00:00", //最小日期
+            maxDate: '2050-06-01 23:59:59', //最大日期
+            isTime:true
         });
 
 
@@ -407,13 +407,13 @@
                     if (attach == null || attach == "") {
                         var content = jsonBuilder.add("target",target).add("mids",usersValues)
                             .add("gametype",gameType).add("title",mailTitle)
-                            .add("content",mailContent).add("expired",expireTime)
+                            .add("content",mailContent).add("expiredStr",expireTime)
                             .add("important",important).getJson();
                         return content;
                     }else {
                         var content = jsonBuilder.add("target",target).add("mids",usersValues)
                             .add("gametype",gameType).add("title",mailTitle)
-                            .add("content",mailContent).add("expired",expireTime)
+                            .add("content",mailContent).add("expiredStr",expireTime)
                             .add("important",important).add("fujian",attachs).getJson();
                         return content;
                     }

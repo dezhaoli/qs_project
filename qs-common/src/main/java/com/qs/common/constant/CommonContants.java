@@ -79,6 +79,6 @@ public interface CommonContants{
 	
 	static final String OPEN_ROOME_GB="关闭开房！";
 	
-	static final String OPEN_SESSION_KEY="ROPEN|";
+	//static final String OPEN_SESSION_KEY="ROPEN|";
 	
 }

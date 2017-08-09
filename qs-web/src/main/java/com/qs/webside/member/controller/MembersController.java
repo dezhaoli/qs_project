@@ -5,6 +5,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.AppConstants.MemcacheKeyPrefix;
 import com.qs.common.constant.CommonContants;
 import com.qs.common.dtgrid.model.Pager;
 import com.qs.common.exception.SystemException;
@@ -548,8 +549,8 @@ public class MembersController extends BaseController{
         BaseParam baseParam = baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
         //清除memcache待开房记录
         if (baseParam != null && StringUtils.isNotBlank(baseParam.getValue())) {
-            if (!MemcachedUtil.isBlankMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + mid)) {
-                MemcachedUtil.deleteMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + mid);
+            if (!MemcachedUtil.isBlankMemcached(baseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY + mid)) {
+                MemcachedUtil.deleteMemcached(baseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY + mid);
                 //删除待开房
                 agentMidsServcie.deleteByMid(mid);
             }
@@ -633,8 +634,8 @@ public class MembersController extends BaseController{
                 BaseParam baseParam = baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
                 //清除memcache待开房记录
                 if (baseParam !=null ) {
-                    if (!MemcachedUtil.isBlankMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + fides.getMid())) {
-                        MemcachedUtil.deleteMemcached(baseParam.getValue(), CommonContants.OPEN_SESSION_KEY + fides.getMid());
+                    if (!MemcachedUtil.isBlankMemcached(baseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY + fides.getMid())) {
+                        MemcachedUtil.deleteMemcached(baseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY + fides.getMid());
                         //删除待开房
                         agentMidsServcie.deleteByMid(fides.getMid());
                     }

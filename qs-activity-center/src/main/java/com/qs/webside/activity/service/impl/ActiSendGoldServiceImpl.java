@@ -77,8 +77,13 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
                     actiSendGold1.setSendDate(new Date());
                     actiSendGold1.setSendTime(new Date());
                     actiSendGold1.setType(2);//评论送金币类型为2
-                    int goldNum = (actiCenter.get("reward") == null || Integer.parseInt(actiCenter.get("reward") + "") == 0)
-                            ? 3 : Integer.parseInt(actiCenter.get("reward") + "");
+                    int goldNum = 0;
+                    try {
+                        goldNum = (actiCenter.get("reward") == null || Integer.parseInt(actiCenter.get("reward") + "") == 0)
+                                ? 3 : Integer.parseInt(actiCenter.get("reward") + "");
+                    } catch (NumberFormatException e) {
+                        goldNum = 3;
+                    }
                     actiSendGold1.setGold(goldNum);//赠送金币数量
                     int insertResult = actiSendGoldMapper.insertIgnoreSelective(actiSendGold1);
                     if (insertResult > 0) {//插入成功
@@ -88,6 +93,7 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
                                 new Date(System.currentTimeMillis()).getTime() / 1000,
                                 sendGoldUrl);
                         Map updateMap = JSON.parseObject(httpsResponse, Map.class);
+                        updateMap.put(CommonContants.ERROR, 0);//成功
                         updateMap.put("goldNum", goldNum);
                         return updateMap;
                     } else {
@@ -138,8 +144,13 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
                     actiSendGold1.setSendDate(new Date());
                     actiSendGold1.setSendTime(new Date());
                     actiSendGold1.setType(1);//分享链接送金币类型为1
-                    int goldNum = (actiCenter.get("reward") == null || Integer.parseInt(actiCenter.get("reward") + "") == 0)
-                            ? 1 : Integer.parseInt(actiCenter.get("reward") + "");
+                    int goldNum = 0;
+                    try {
+                        goldNum = (actiCenter.get("reward") == null || Integer.parseInt(actiCenter.get("reward") + "") == 0)
+                                ? 1 : Integer.parseInt(actiCenter.get("reward") + "");
+                    } catch (NumberFormatException e) {
+                        goldNum = 1;
+                    }
                     actiSendGold1.setGold(goldNum);//赠送金币数量
                     int insertResult = actiSendGoldMapper.insertIgnoreSelective(actiSendGold1);
                     if (insertResult > 0) {//插入成功
@@ -149,6 +160,7 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
                                 new Date(System.currentTimeMillis()).getTime() / 1000,
                                 sendGoldUrl);
                         Map updateMap = JSON.parseObject(httpsResponse, Map.class);
+                        updateMap.put(CommonContants.ERROR, 0);//成功
                         updateMap.put("goldNum", goldNum);
                         return updateMap;
                     } else {

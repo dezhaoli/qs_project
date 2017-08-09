@@ -1,6 +1,7 @@
 package com.qs.pub.sync.service;
 
 import com.qs.sync.model.SyncCreateRoom;
+import com.qs.sync.model.SyncGameRule;
 import com.qs.sync.model.SyncOrganization;
 import com.qs.sync.model.SyncPlaying;
 import com.qs.sync.model.SyncUser;
@@ -28,6 +29,11 @@ public interface SyncService {
 	public int addSyncUserLoginLog(SyncUserLoginLog syncUserLoginLog);
 	public int syncUserLoginLogError(SyncUserLoginLog syncUserLoginLog);
 	public int addSyncUserKeep(SyncUserKeep syncUserKeep);
+	/**
+	 * 处理  炸弹春天的统计 
+	 * @param syncGameRule
+	 */
+	public int addSyncGameRule(SyncGameRule syncGameRule);
     
    
 }

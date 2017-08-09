@@ -74,6 +74,7 @@ public class ShareLinkController extends BaseController {
         String sesskey = shareLinkRequest.getSesskey();
         String roomid = shareLinkRequest.getRoomid();
         String wanfaEncode = shareLinkRequest.getWanfa();
+        if (StringUtils.isBlank(wanfaEncode)) wanfaEncode = "";
         wanfaEncode = wanfaEncode.replaceAll(" ", "+");
         String roomtitle = shareLinkRequest.getRoomtitle();
         roomtitle = roomtitle.replaceAll(" ", "+");

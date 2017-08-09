@@ -18,6 +18,10 @@ public class AppConstants {
 	public static class MemcacheKeyPrefix{
 		public static final String SESSKEY = "SESSKEY";
 		public static final String IP = "IP";
+		public static final String OPEN_SESSION_KEY = "ROPEN|";
+		public static final String TMGMCOM = "TMGMCOM";
+		
+		
 	
 	}
 	

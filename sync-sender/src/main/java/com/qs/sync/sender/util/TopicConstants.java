@@ -16,5 +16,7 @@ public class TopicConstants{
 	public static final String TOPIC_NAME_USER_LOGIN = "topicUserLoginDataCenter";
 	
 	public static final String TOPIC_NAME_USER_Add = "topicUserAddDataCenter";
+	
+	public static final String TOPIC_NAME_GAME_RULE="topicGameRuleDataCenter";
 
 }

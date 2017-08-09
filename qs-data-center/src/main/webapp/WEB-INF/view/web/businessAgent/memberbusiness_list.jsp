@@ -63,25 +63,25 @@
 <input type="hidden" id="date" value="${date}"/>
 
 <div class="row" style="margin-top:5px;">
-	<div class="col-xs-12 widget-container-col ui-sortable" 
+	<div class="col-xs-12 widget-container-col ui-sortable"
 		style="min-height: 127px;">
 		<div class="widget-box transparent ui-sortable-handle"
 			style="opacity: 1; z-index: 0;">
 			<div class="widget-header">
 				<h4 class="widget-title lighter">商务业绩统计</h4>
-				<strong style="color:green; margin-left: 150px"> 
+				<strong style="color:green; margin-left: 150px">
 						充值总金额：<span id="countTotals"></span>
-				</strong> 
+				</strong>
 				<div class="widget-toolbar no-border">
-					<a href="#" data-action="fullscreen" class="orange2"> 
+					<a href="#" data-action="fullscreen" class="orange2">
 						<i class="ace-icon fa fa-arrows-alt"></i>
-					</a> 
-					<a href="#" data-action="collapse" class="green"> 
+					</a>
+					<a href="#" data-action="collapse" class="green">
 						<i class="ace-icon fa fa-chevron-up"></i>
 					</a>
 				</div>
 			</div>
-			
+
 			<div class="widget-body" style="display: block;">
 				<div class="widget-main padding-6 no-padding-left no-padding-right">
 					<input id="pageNum" type="hidden" value="${page.pageNum }">
@@ -92,9 +92,9 @@
 					<div id="dtGridToolBarContainer" class="dlshouwen-grid-toolbar-container"></div>
 				</div>
 			</div>
-			
+
 		</div>
-		
+
 	</div>
 
 </div>

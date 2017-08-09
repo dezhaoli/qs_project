@@ -32,6 +32,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.AppConstants.MemcacheKeyPrefix;
 import com.qs.common.constant.CommonContants;
 import com.qs.common.constant.Constants;
 import com.qs.common.dtgrid.model.Pager;
@@ -716,8 +717,8 @@ public class AgentRoomController extends BaseController{
     		//代开房后输入写入mc缓存c++调用
     		BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
     		if (iosBaseParam !=null ){
-    			log.debug("insertOpenRoom into "+iosBaseParam.getValue()+"::"+CommonContants.OPEN_SESSION_KEY+mid+":value:"+AgentUtil.getAgentMid());
-    			MemcachedUtil.setMemcached(iosBaseParam.getValue(), CommonContants.OPEN_SESSION_KEY+mid, AgentUtil.getAgentMid()+"", 0);
+    			log.debug("insertOpenRoom into "+iosBaseParam.getValue()+"::"+MemcacheKeyPrefix.OPEN_SESSION_KEY+mid+":value:"+AgentUtil.getAgentMid());
+    			MemcachedUtil.setMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+mid, AgentUtil.getAgentMid()+"", 0);
     		}else {
     			log.debug("into insertOpenRoom BaseParam is:: null ");
     		}
@@ -756,8 +757,8 @@ public class AgentRoomController extends BaseController{
     		log.debug("socketFlag===::" + socketFlag);
     		BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
     		if (iosBaseParam !=null ){
-    			if (!MemcachedUtil.isBlankMemcached(iosBaseParam.getValue(), CommonContants.OPEN_SESSION_KEY+mid)) {
-    				MemcachedUtil.deleteMemcached(iosBaseParam.getValue(), CommonContants.OPEN_SESSION_KEY+mid);
+    			if (!MemcachedUtil.isBlankMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+mid)) {
+    				MemcachedUtil.deleteMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+mid);
     			}
     		}else {
     			log.debug("into deleteOpenRoom is not Memcached:: n  ull ");
@@ -865,7 +866,7 @@ public class AgentRoomController extends BaseController{
     			 parma.put("member", member);
     			 result= memberAgentService.updateEmpowerAgentSubmit(parma);
     			 
-    			 if(agentDataSourceUtil.getGameType()>=20) {
+    			 if(agentDataSourceUtil.getGameType()>=20 || agentDataSourceUtil.getGameType()==17) {
     		    	boolean socketFlag=SendMsgToCServer.sendMsgToCServer(Integer.valueOf(agentId),5,1,goldHost,goldPort);
     				 log.debug("socketFlag===::" + socketFlag);
     			 }

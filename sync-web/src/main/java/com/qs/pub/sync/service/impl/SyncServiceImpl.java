@@ -19,6 +19,7 @@ import com.qs.common.util.DateUtil;
 import com.qs.pub.sync.common.SyncLogTool;
 import com.qs.pub.sync.service.ICreateRoomService;
 import com.qs.pub.sync.service.IPlayingService;
+import com.qs.pub.sync.service.ISyncGameRoleService;
 import com.qs.pub.sync.service.ISyncUserKeepService;
 import com.qs.pub.sync.service.IUserLoginLogService;
 import com.qs.pub.sync.service.LogErrorService;
@@ -27,6 +28,7 @@ import com.qs.pub.sync.service.SyncService;
 import com.qs.sync.model.LogError;
 import com.qs.sync.model.LogSuccess;
 import com.qs.sync.model.SyncCreateRoom;
+import com.qs.sync.model.SyncGameRule;
 import com.qs.sync.model.SyncObject;
 import com.qs.sync.model.SyncPlaying;
 import com.qs.sync.model.SyncUserKeep;
@@ -52,6 +54,9 @@ public class SyncServiceImpl implements SyncService {
 	
 	@Autowired
 	private ISyncUserKeepService syncUserKeepService;
+	
+	@Autowired
+	private ISyncGameRoleService gameRoleService;
 	
 	
 	/**
@@ -351,6 +356,22 @@ public class SyncServiceImpl implements SyncService {
 		   result = syncUserKeepService.insert(syncUserKeep);
 		   return result;
 		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	/**
+	 * 统计 炸弹  春天
+	 */
+	@Override
+	public int addSyncGameRule(SyncGameRule syncGameRule) {
+		int result=0;
+		try{
+		   result = gameRoleService.insert(syncGameRule);
+		   return result;
+		}catch(Exception e){
+			this.saveErrorLog(syncGameRule, SyncGameRule.class.getSimpleName(), "", "", "0");
 			e.printStackTrace();
 		}
 		return result;

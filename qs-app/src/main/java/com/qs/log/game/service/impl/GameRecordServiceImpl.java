@@ -253,6 +253,11 @@ public class GameRecordServiceImpl implements GameRecordService {
 			    pList.add(gameRecord.getDate());
 			    pList.add(allUser);
 			    pList.add(gameRecord.getUid());
+			    
+			    //当游戏开心跑胡子时候需要type字段
+			    if ( gameType ==17) {
+			    	pList.add(gameRecord.getType());
+			    }
 			    pList.add(gameRecord.getMaster());
 			    pList.add(null);
 			    rsultAllUser.add(pList);

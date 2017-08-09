@@ -19,6 +19,8 @@ public class Mails implements Serializable{
 
     private Date expired;
 
+    private String expiredStr;
+
     private Byte important;
 
     private String fujian;
@@ -28,6 +30,14 @@ public class Mails implements Serializable{
     private String mids;
 
     private String content;
+
+    public String getExpiredStr() {
+        return expiredStr;
+    }
+
+    public void setExpiredStr(String expiredStr) {
+        this.expiredStr = expiredStr;
+    }
 
     public Integer getId() {
         return id;

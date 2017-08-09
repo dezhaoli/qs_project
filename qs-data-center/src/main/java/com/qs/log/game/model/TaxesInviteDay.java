@@ -4,28 +4,28 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class TaxesInviteDay {
-    private Integer mid;
+	private Integer mid;
 
-    private Date date;
+	private Date date;
 
-    private BigDecimal paytotal;
+	private BigDecimal paytotal;
 
-    private Integer invitetotal;
+	private Integer invitetotal;
 
-    private Integer parentid;
-    
-    
-    private Integer bizid;
-    private Integer gametype;
-    private Integer granttotal;
-    private String name;
-    private String businessName;
-    private String startDate;
-    private String endDate;
-    
-     
+	private Integer parentid;
 
-    public String getStartDate()
+
+	private Integer bizid;
+	private Integer gametype;
+	private Integer granttotal;
+	private String name;
+	private String businessName;
+	private String startDate;
+	private String endDate;
+
+
+
+	public String getStartDate()
 	{
 		return startDate;
 	}
@@ -96,42 +96,42 @@ public class TaxesInviteDay {
 	}
 
 	public Integer getMid() {
-        return mid;
-    }
+		return mid;
+	}
 
-    public void setMid(Integer mid) {
-        this.mid = mid;
-    }
+	public void setMid(Integer mid) {
+		this.mid = mid;
+	}
 
-    public Date getDate() {
-        return date;
-    }
+	public Date getDate() {
+		return date;
+	}
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
-    public BigDecimal getPaytotal() {
-        return paytotal;
-    }
+	public BigDecimal getPaytotal() {
+		return paytotal;
+	}
 
-    public void setPaytotal(BigDecimal paytotal) {
-        this.paytotal = paytotal;
-    }
+	public void setPaytotal(BigDecimal paytotal) {
+		this.paytotal = paytotal;
+	}
 
-    public Integer getInvitetotal() {
-        return invitetotal;
-    }
+	public Integer getInvitetotal() {
+		return invitetotal;
+	}
 
-    public void setInvitetotal(Integer invitetotal) {
-        this.invitetotal = invitetotal;
-    }
+	public void setInvitetotal(Integer invitetotal) {
+		this.invitetotal = invitetotal;
+	}
 
-    public Integer getParentid() {
-        return parentid;
-    }
+	public Integer getParentid() {
+		return parentid;
+	}
 
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
-    }
+	public void setParentid(Integer parentid) {
+		this.parentid = parentid;
+	}
 }

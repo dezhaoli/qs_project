@@ -379,6 +379,8 @@ public class MemberController extends BaseController {
 			province="贵州";
 		}else if(gameType==20){
 			province="江西";
+		}else if(gameType==17){
+			province="湖南";
 		}
 		
 		 //非广东/或者四川
@@ -602,7 +604,7 @@ public class MemberController extends BaseController {
 			type=AppConstants.PayType.WXPAY;
 		}
 		
-		if(orderRequest.getMoney()>1000||money<1){
+		if(orderRequest.getMoney()>10000||money<1){
 			return this.getReturnData(map,AppConstants.Result.FAILURE);
 	     }
 		

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.qs.pub.sync.service.SyncService;
 import com.qs.sync.model.SyncCreateRoom;
+import com.qs.sync.model.SyncGameRule;
 import com.qs.sync.model.SyncObject;
 import com.qs.sync.model.SyncPlaying;
 import com.qs.sync.model.SyncUserKeep;
@@ -55,6 +56,8 @@ public class ReceiveDataImpl implements IReceiveData {
 				this.syncUserLoginLog(myMessage);
 			}else if(myMessage instanceof SyncUserKeep){
 				this.syncUserKeep(myMessage);
+			}else if(myMessage instanceof SyncGameRule){
+				this.syncGameRule(myMessage);
 			}
 		} catch (JMSException e)
 		{
@@ -107,6 +110,13 @@ public class ReceiveDataImpl implements IReceiveData {
 		
 	}
 	
-	
+	/**
+	 * 统计炸弹春天
+	 * @param myMessage
+	 */
+	public void syncGameRule(Object myMessage){
+		SyncGameRule syncGameRule=(SyncGameRule)myMessage;
+		dataSyncService.addSyncGameRule(syncGameRule);
+	}
 
 }

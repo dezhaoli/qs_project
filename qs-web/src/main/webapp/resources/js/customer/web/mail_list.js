@@ -54,7 +54,8 @@ var dtGridColumns = [{
     columnClass: 'text-center',
     headerClass: 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
-        return '<button class="btn btn-primary" onclick="show(\'' + record.id + '\')">查看详细</button>';
+        return '<button class="btn btn-primary" onclick="show(\'' + record.id + '\')">查看详细</button>' + ' | ' +
+            '<button class="btn btn-warning" onclick="delMail(\'' + record.id + '\')">删除</button>';
     }
 }];
 
@@ -70,6 +71,43 @@ function show(id) {
     });
 }
 
+function delMail(id) {
+    layer.open({
+        content: '确定要删除？'
+        ,btn: ['确定', '取消']
+        ,yes: function(index, layero){
+            parent.layer.close(index);
+            $.ajax({
+                type: "POST",
+                url: sys.rootPath + "/game/mail/delMail.html",
+                data:{
+                    id :id
+                },//将对象序列化成JSON字符串
+                dataType:"json",
+                //contentType : 'application/json;charset=utf-8', //设置请求头信息
+                success: function(data){
+                    if (data.success == true){
+                        layer.msg(data.message, {icon : 6});
+                        grid.refresh(true);
+                    }else{
+                        layer.msg(data.message, {icon : 5});
+                    }
+                },
+                error: function(res){
+                    layer.msg('系统异常，删除失败！', {icon : 5});
+                }
+            });
+        }
+        ,btn2: function(index, layero){
+            parent.layer.close(index);
+
+        }
+        ,cancel: function(){
+            parent.layer.close(index);
+        }
+    });
+}
+
 
 //动态设置jqGrid的rowNum
 
@@ -79,7 +117,7 @@ pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
 var dtGridOption = {
     lang: 'zh-cn',
     ajaxLoad: true,
-    check: true,
+    check: false,
     checkWidth: '37px',
     extraWidth: '37px',
     loadURL: sys.rootPath + '/game/mail/list.html',
