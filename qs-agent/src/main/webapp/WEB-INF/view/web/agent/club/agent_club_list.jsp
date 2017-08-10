@@ -25,7 +25,15 @@ input::-webkit-outer-spin-button {
  </div>
 </c:when>
 <c:when test="${clubType==1 }"> --%>
-
+<c:choose>
+<c:when test="${gameType ==17 }">
+<div class="row">
+ <div  class="col-sm-12 text-center">
+	 您当前未开通此权限！
+ </div>
+ </div>
+</c:when>
+<c:otherwise>  
  <script type="text/javascript"
         src="${ctx }/resources/js/customer/web/club/agent_club_list.js"></script> 
 <div class="page-content">
@@ -248,3 +256,5 @@ var showNull=function (){
 </script>
 <%-- </c:when>
 </c:choose> --%>
+</c:otherwise>  
+</c:choose>  

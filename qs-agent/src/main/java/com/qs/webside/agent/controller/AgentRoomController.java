@@ -1,5 +1,6 @@
 package com.qs.webside.agent.controller;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -752,17 +753,7 @@ public class AgentRoomController extends BaseController{
     		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
     		int i=agentMidsServcie.deleteByMid(Integer.valueOf(mid));
     		
-    		//取消代理商推C++
-    		boolean socketFlag=SendMsgToCServer.sendMsgToCServer(Integer.valueOf(mid),2,0,goldHost,goldPort);
-    		log.debug("socketFlag===::" + socketFlag);
-    		BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
-    		if (iosBaseParam !=null ){
-    			if (!MemcachedUtil.isBlankMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+mid)) {
-    				MemcachedUtil.deleteMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+mid);
-    			}
-    		}else {
-    			log.debug("into deleteOpenRoom is not Memcached:: n  ull ");
-    		}
+    		rmoveAgentRoom(mid);
     		if (i==1){
     			result.put(CommonContants.SUCCESS, true);
     			
@@ -778,6 +769,22 @@ public class AgentRoomController extends BaseController{
 		}
     	return result;
     }
+    
+    
+  
+	private void rmoveAgentRoom(String mid) throws IOException {
+		//取消代理商推C++
+		boolean socketFlag=SendMsgToCServer.sendMsgToCServer(Integer.valueOf(mid),2,0,goldHost,goldPort);
+		log.debug("socketFlag===::" + socketFlag);
+		BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
+		if (iosBaseParam !=null ){
+			if (!MemcachedUtil.isBlankMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+mid)) {
+				MemcachedUtil.deleteMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+mid);
+			}
+		}else {
+			log.debug("into deleteOpenRoom is not Memcached:: n  ull ");
+		}
+	}
     
     /**
      * 授权下级代理商
@@ -869,6 +876,24 @@ public class AgentRoomController extends BaseController{
     			 if(agentDataSourceUtil.getGameType()>=20 || agentDataSourceUtil.getGameType()==17) {
     		    	boolean socketFlag=SendMsgToCServer.sendMsgToCServer(Integer.valueOf(agentId),5,1,goldHost,goldPort);
     				 log.debug("socketFlag===::" + socketFlag);
+    				 try {
+						rmoveAgentRoom(agentId);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+    				/* //清楚代开房缓存
+    				 BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
+    		    		if (iosBaseParam !=null ){
+    		    			try {
+	    		    			if (!MemcachedUtil.isBlankMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+agentId)) {
+										MemcachedUtil.deleteMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.OPEN_SESSION_KEY+agentId);
+	    		    			}
+    		    			} catch (IOException e) {
+    		    				e.printStackTrace();
+    		    			}
+    		    		}else {
+    		    			log.debug("into deleteOpenRoom is not Memcached:: n  ull ");
+    		    		}*/
     			 }
     			 result.put(CommonContants.SUCCESS, true);
     			 result.put(CommonContants.MESSAGE, Constants.AgentMsg.AUTHORIZER_SUCCESS);

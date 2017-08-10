@@ -35,14 +35,22 @@ var dtGridColumns = [{
         return value;
     }
 },{
-    id : 'title',
+    id : 'gametype',
     title : '游戏类型',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution:function (value, record, column, grid, dataNo, columnNo) {
         if (value == 5) {
-            return '<span class="label label-info arrowed-right arrowed-in">麻将</span>'
+            return '<span class="label label-info arrowed-right arrowed-in">四川麻将</span>'
+        }else if (value == 6) {
+            return '<span class="label label-info arrowed-right arrowed-in">广东麻将</span>'
+        }else if (value == 7) {
+            return '<span class="label label-info arrowed-right arrowed-in">贵州麻将</span>'
+        }else if (value == 20) {
+            return '<span class="label label-info arrowed-right arrowed-in">江西麻将</span>'
+        }else if (value == 17) {
+            return '<span class="label label-info arrowed-right arrowed-in">开心跑胡子</span>'
         }
         return '<span class="label label-success arrowed-in arrowed-in-right">'+value+'</span>';
     }

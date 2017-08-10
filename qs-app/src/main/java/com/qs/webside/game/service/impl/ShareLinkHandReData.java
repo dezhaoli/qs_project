@@ -52,6 +52,8 @@ public class ShareLinkHandReData {
                     return "没有加入俱乐部";
                 case -1109:
                     return "ip地址重复";
+                case -1110:
+                    return "已在其他房间不能换房";
                 default:
                     return "未知错误";
             }

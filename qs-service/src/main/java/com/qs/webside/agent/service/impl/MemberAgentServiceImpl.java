@@ -329,7 +329,7 @@ public class MemberAgentServiceImpl implements IMemberAgentService {
 			
 			agentClubGroupService.insertSelective(agentClubGroup);//当前俱乐部
 			agentClubMemberService.insertSelective(agentClubMember);//当前俱乐部成员
-			if (Integer.parseInt(gameType.toString())>=20){
+			if (Integer.parseInt(gameType.toString())>=20 ||Integer.parseInt(gameType.toString())==17){
 				//删除代开房数据 , 取消免费开房
 				agentMidsServcie.deleteByMid(mbf.getMid());
 			}

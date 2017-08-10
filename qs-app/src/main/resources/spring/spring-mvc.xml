@@ -142,6 +142,8 @@
 			<mvc:exclude-mapping path="/api/shareLink/joinRoom.html" />
 			<mvc:exclude-mapping path="/api/shareLink/joinViewUi.html" />
 			<mvc:exclude-mapping path="/api/shareLink/cookieJoinRoom.html" />
+			<!--<mvc:exclude-mapping path="/api/robot/openRoomViewUi.html" />-->
+			<mvc:exclude-mapping path="/api/robot/sendMsgToJava.html" />
 			<bean class="com.qs.webside.interceptor.TokenInterceptor" />
 		</mvc:interceptor>
 		
@@ -159,6 +161,8 @@
 			<mvc:exclude-mapping path="/api/shareLink/joinRoom.html" />
 			<mvc:exclude-mapping path="/api/shareLink/joinViewUi.html" />
 			<mvc:exclude-mapping path="/api/shareLink/cookieJoinRoom.html" />
+			<!--<mvc:exclude-mapping path="/api/robot/openRoomViewUi.html" />-->
+			<mvc:exclude-mapping path="/api/robot/sendMsgToJava.html" />
 			<bean class="com.qs.webside.interceptor.SignInterceptor" />
 		</mvc:interceptor>
 		

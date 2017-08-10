@@ -172,7 +172,7 @@ public class GameServiceImpl implements GameService {
 			 log.debug("updateGold.errcode===::"+AppConstants.Result.FAILURE);
 			 return  map;
 		}
-		if(Math.abs(gold) > 5000){//不能超过21亿
+		if(Math.abs(gold) > 50000){//不能超过50000
 			 map.put(CommonContants.RESULT,Boolean.FALSE);
 			 map.put("errcode",AppConstants.Result.FAILURE_1002);
 			 log.debug("updateGold.errcode===::"+AppConstants.Result.FAILURE_1002);

@@ -88,6 +88,7 @@ public class AgentClubController extends BaseController{
 			}
 		}
 		PageUtil page = new PageUtil(req);
+	    model.addAttribute("gameType", agentDataSourceUtil.getGameType());
         model.addAttribute("page", page);
         return "/WEB-INF/view/web/agent/club/agent_club_list";
 	}
