@@ -18,6 +18,7 @@
         <module name="qs-datasource" />
         <module name="qs-mapper" />
         <module name="qs-model" />
+        <module name="qs-robot" />
         <module name="qs-service" />
         <module name="qs-shop" />
         <module name="qs-side" />
@@ -43,6 +44,7 @@
       <module name="qs-datasource" target="1.8" />
       <module name="qs-mapper" target="1.8" />
       <module name="qs-model" target="1.8" />
+      <module name="qs-robot" target="1.8" />
       <module name="qs-service" target="1.8" />
       <module name="qs-shop" target="1.8" />
       <module name="qs-side" target="1.8" />

@@ -11,8 +11,8 @@
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/profile/gdapp" />
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/profile/gdapp" />
         </sourceRoots>
       </configuration>
     </facet>

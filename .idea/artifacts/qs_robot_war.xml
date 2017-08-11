@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="qs-robot:war">
+    <output-path>$PROJECT_DIR$/qs-robot/target</output-path>
+    <root id="archive" name="qs-robot.war">
+      <element id="artifact" artifact-name="qs-robot:war exploded" />
+    </root>
+  </artifact>
+</component>

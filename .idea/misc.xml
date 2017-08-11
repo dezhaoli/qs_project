@@ -9,6 +9,7 @@
     <file type="web" url="file://$PROJECT_DIR$/qs-data-center" />
     <file type="web" url="file://$PROJECT_DIR$/qs-dataconfig" />
     <file type="web" url="file://$PROJECT_DIR$/qs-psyllidae" />
+    <file type="web" url="file://$PROJECT_DIR$/qs-robot" />
     <file type="web" url="file://$PROJECT_DIR$/qs-web" />
     <file type="web" url="file://$PROJECT_DIR$/sync-receiver" />
     <file type="web" url="file://$PROJECT_DIR$/sync-web" />
@@ -37,6 +38,7 @@
         <option value="$PROJECT_DIR$/qs-sys/pom.xml" />
         <option value="$PROJECT_DIR$/qs-dataconfig/pom.xml" />
         <option value="$PROJECT_DIR$/qs-shop/pom.xml" />
+        <option value="$PROJECT_DIR$/qs-robot/pom.xml" />
       </list>
     </option>
   </component>

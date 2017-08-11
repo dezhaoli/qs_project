@@ -1,0 +1,63 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<link rel="stylesheet" href="${ctx}/resources/js/bootstrap/bootstrap.min.css"/>
+<%--<link rel="stylesheet" href="${ctx}/resources/js/customer/jqueryMobile/jquery.mobile-1.4.5.css"/>--%>
+		<!--[if IE]>
+		<script src="${ctx}/resources/js/jquery/jquery-1.11.3.min.js"></script>
+		<![endif]-->
+
+
+		<script type="text/javascript">
+			window.jQuery || document.write("<script src='${ctx}/resources/js/jquery/jquery-2.1.4.min.js'>"+"<"+"script>");
+		</script>
+
+		<!-- <![endif]-->
+		
+
+<!-- basic scripts -->
+<script type="text/javascript">
+	if ('ontouchstart' in document.documentElement)document.write("<script src='${ctx}/resources/js/jquery/jquery.mobile.custom.min.js'>" + "<"+"script>");
+</script>
+
+<!--[if lt IE 9]>
+	<script type="text/javascript" src="${ctx}/resources/js/ie/html5shiv.js"></script>
+	<script type="text/javascript" src="${ctx}/resources/js/ie/respond.min.js"></script>
+<![endif]-->
+<!--[if lt IE 8]>
+    <script src="${ctx}/resources/js/ie/json2.js"></script>
+<![endif]-->
+<!--[if lte IE 8]>
+	<script type="text/javascript" src="${ctx}/resources/js/ie/excanvas.min.js"></script>
+<![endif]-->
+
+<script src="${ctx}/resources/js/jqueryui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="${ctx}/resources/js/jqueryui/jquery.ui.touch-punch.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript" src="${ctx}/resources/js/jquery-validation/jquery.validate.min.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/jquery-validation/localization/messages_zh.js"></script>
+
+<script type="text/javascript" src="${ctx}/resources/js/nicescroll/jquery.nicescroll.min.js"></script>
+
+<link rel="stylesheet" href="${ctx }/resources/js/bootstrap-switch/css/bootstrap3/bootstrap-switch.min.css"/>
+<script type="text/javascript" src="${ctx }/resources/js/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+
+<script type="text/javascript" src="${ctx}/resources/js/customer/index/index.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/jedate/jedate.js"></script>
+
+<%--<script type="text/javascript" src="${ctx}/resources/js/customer/jqueryMobile/jquery.mobile-1.4.5.js"></script>--%>
+<script type="text/javascript">
+var sys = sys || {};
+sys.rootPath = "${ctx}";
+sys.pageNum = 10;
+sys.gridStyle = "Bootstrap";
+
+</script> 

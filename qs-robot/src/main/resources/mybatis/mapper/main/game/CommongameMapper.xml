@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.mainku.game.mapper.CommongameMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.mainku.game.model.Commongame" >
+    <id column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="gold" property="gold" jdbcType="BIGINT" />
+    <result column="vip" property="vip" jdbcType="TINYINT" />
+    <result column="bankpasswd" property="bankpasswd" jdbcType="VARCHAR" />
+    <result column="bankAssets" property="bankassets" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mid, gold, vip, bankpasswd, bankAssets
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from membercommongame0
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from membercommongame0
+    where mid = #{mid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.mainku.game.model.Commongame" >
+    insert into membercommongame0 (mid, gold, vip, 
+      bankpasswd, bankAssets)
+    values (#{mid,jdbcType=INTEGER}, #{gold,jdbcType=BIGINT}, #{vip,jdbcType=TINYINT}, 
+      #{bankpasswd,jdbcType=VARCHAR}, #{bankassets,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.mainku.game.model.Commongame" >
+    insert into membercommongame0
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="gold != null" >
+        gold,
+      </if>
+      <if test="vip != null" >
+        vip,
+      </if>
+      <if test="bankpasswd != null" >
+        bankpasswd,
+      </if>
+      <if test="bankassets != null" >
+        bankAssets,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="gold != null" >
+        #{gold,jdbcType=BIGINT},
+      </if>
+      <if test="vip != null" >
+        #{vip,jdbcType=TINYINT},
+      </if>
+      <if test="bankpasswd != null" >
+        #{bankpasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="bankassets != null" >
+        #{bankassets,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.mainku.game.model.Commongame" >
+    update membercommongame0
+    <set >
+      <if test="gold != null" >
+        gold = #{gold,jdbcType=BIGINT},
+      </if>
+      <if test="vip != null" >
+        vip = #{vip,jdbcType=TINYINT},
+      </if>
+      <if test="bankpasswd != null" >
+        bankpasswd = #{bankpasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="bankassets != null" >
+        bankAssets = #{bankassets,jdbcType=BIGINT},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.mainku.game.model.Commongame" >
+    update membercommongame0
+    set gold = #{gold,jdbcType=BIGINT},
+      vip = #{vip,jdbcType=TINYINT},
+      bankpasswd = #{bankpasswd,jdbcType=VARCHAR},
+      bankAssets = #{bankassets,jdbcType=BIGINT}
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+</mapper>
