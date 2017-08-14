@@ -70,4 +70,7 @@ public class CacheConstan {
     //活动中心分享送积分比例配置缓存
     public static final String ACTI_INTEGRAL_CFG_CACHE_NAME = "actiIntegralCfg";
 
+    //上一局游戏玩法配置缓存
+    public static final String LAST_TIME_GAME_CFG_CACHE_NAME = "lastTimeGameCfg:";
+
 }

@@ -41,25 +41,12 @@
         </javaClientGenerator>
 
 
-        <table schema="gd_majiang_acti" tableName="robot_log" domainObjectName="RobotLog" enableCountByExample="false"
+        <table schema="gd_majiang_acti" tableName="robot_open_room" domainObjectName="RobotOpenRoom" enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
                enableSelectByExample="false"
                selectByExampleQueryId="false">
         </table>
 
-        <table schema="gd_majiang_acti" tableName="robot_friends" domainObjectName="RobotFriends" enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
-
-        <table schema="gd_majiang_acti" tableName="robot" domainObjectName="Robot" enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
-        </table>
     </context>
 </generatorConfiguration>

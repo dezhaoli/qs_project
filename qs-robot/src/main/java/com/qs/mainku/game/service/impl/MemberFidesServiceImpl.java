@@ -1,15 +1,22 @@
 package com.qs.mainku.game.service.impl;
 
+import com.qs.common.constant.AppConstants;
 import com.qs.common.constant.CacheConstan;
 import com.qs.mainku.game.mapper.MemberFidesMapper;
+import com.qs.mainku.game.mapper.MembersMapper;
 import com.qs.mainku.game.model.MemberFides;
+import com.qs.mainku.game.model.Members;
 import com.qs.mainku.game.service.IMemberFidesService;
+import com.qs.mainku.game.service.IMemberService;
+import org.apache.log4j.Logger;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by zun.wei on 2017/6/27 11:05.
@@ -18,8 +25,16 @@ import java.util.Map;
 @Service
 public class MemberFidesServiceImpl implements IMemberFidesService {
 
+    private Logger log = Logger.getLogger(MemberFidesServiceImpl.class);
+
     @Resource
     private MemberFidesMapper memberFidesMapper;
+
+    @Resource
+    private RedisTemplate redisTemplate;
+
+    @Resource
+    private IMemberService memberService;
 
     @Override
     public int deleteByPrimaryKey(Integer mid) {
@@ -37,13 +52,13 @@ public class MemberFidesServiceImpl implements IMemberFidesService {
     }
 
     /**
-     * @Author:zun.wei , @Date:2017/6/30 10:03
-     * @Description:根据mid缓存人员基本信息
      * @param mid
      * @return
+     * @Author:zun.wei , @Date:2017/6/30 10:03
+     * @Description:根据mid缓存人员基本信息
      */
     @Override
-    @Cacheable(value={CacheConstan.ACTI_MEMBERFIDES_INTEGRAL_RANKING_CACHE_NAME},key="#root.methodName+':'+#root.args[0]")
+    @Cacheable(value = {CacheConstan.ACTI_MEMBERFIDES_INTEGRAL_RANKING_CACHE_NAME}, key = "#root.methodName+':'+#root.args[0]")
     public MemberFides selectByPrimaryKey(Integer mid) {
         return memberFidesMapper.selectByPrimaryKey(mid);
     }
@@ -106,6 +121,22 @@ public class MemberFidesServiceImpl implements IMemberFidesService {
     @Override
     public List<MemberFides> queryListByPage(Map<String, Object> parameters) {
         return memberFidesMapper.queryListByPage(parameters);
+    }
+
+    @Override
+    public Members findMembersBySitemid(String sitemid) {
+        String cacheKey = AppConstants.RedisKeyPrefix.USER_WEIXIN_CACHE + sitemid;
+        Members entity = (Members) redisTemplate.opsForValue().get(cacheKey);
+        log.debug("Members entity======::" + entity);
+        if (null != entity) {
+            return entity;
+        } else {
+            Members record = memberService.findMembersBySitemid(sitemid);
+            log.debug("Members record======::" + record);
+            String userWeixinCacheKey = AppConstants.RedisKeyPrefix.USER_WEIXIN_CACHE + sitemid;
+            redisTemplate.opsForValue().set(userWeixinCacheKey, record, AppConstants.RedisExpire.USER_WEIXIN_EXPIRE_DATE, TimeUnit.DAYS);
+            return record;
+        }
     }
 
 }

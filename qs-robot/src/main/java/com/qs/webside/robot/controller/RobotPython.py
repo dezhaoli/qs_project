@@ -2,14 +2,14 @@
 # -*- coding: UTF-8 -*-
 
 
-import itchat, threading, requests, json
+import itchat, threading, requests, json, time
 from flask import Flask
 from flask import request
 from multiprocessing import Process, Queue
 
 """消息类型常量"""
-add_friend_request_type = 1 # 他人添加机器人为好友请求
-add_friend_log_type = 2 # 请求把添加好友日志写到db
+add_friend_request_type = 1  # 他人添加机器人为好友请求
+msg_request_open_room = 2  # '开房'关键字请求待开房
 
 """返回值常量"""
 success = "success"
@@ -45,35 +45,37 @@ def send_post_request_to_java(type=0, data=None):
 
 
 @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
-def text_reply(msg):# Note 通知类型，比如添加好友成功后，会收到好友界面的系统的通知:"你已经成功添加了xx为好友，现在可以开始聊天"
-    print('Text', 'Map', 'Card', 'Note', 'Sharing ---::',msg['Type'], msg['Text'],msg)
+def text_reply(msg):  # Note 通知类型，比如添加好友成功后，会收到好友界面的系统的通知:"你已经成功添加了xx为好友，现在可以开始聊天"
+    print('Text', 'Map', 'Card', 'Note', 'Sharing ---::', msg['Type'], msg['Text'], msg)
     # itchat.send('%s: %s' % (msg['Type'], msg['Text']), msg['FromUserName'])
 
 
 @itchat.msg_register('Friends')
 def add_friend(msg):
-    valify_msg = msg['Text']['autoUpdate']['Content']  # 验证消息格式：auth_code+mid
+    valify_msg = msg['Text']['autoUpdate']['Content']  # 验证消息格式：auth_code+mid，amid+dmid
     li = valify_msg.split('+', 1)
     if len(li) == 2 and check_int(li[0]) and check_int(li[1]):
         robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
-        d = {"authCode": str(li[0]), "mid": str(li[1]),"robName": robot_nickname}
-        rd = send_post_request_to_java(type=add_friend_request_type, data=d) # result
-        if int(rd[success]) == 1:# 成功
-            pass
-            #itchat.add_friend(userName=msg['RecommendInfo']['UserName'],status=3) # 同意加为好友
-            #itchat.send_msg('Nice to meet you!', msg['RecommendInfo']['UserName'])
+        d = {"authCode": str(li[0]), "mid": str(li[1]), "robName": robot_nickname}
+        rd = send_post_request_to_java(type=add_friend_request_type, data=d)  # result
+        if int(rd[success]) == 1:  # 成功
+            itchat.add_friend(userName=msg['RecommendInfo']['UserName'], status=3)  # 同意加为好友
+            rn = json.loads(rd[data])
+            add_name = rn['name']
+            itchat.send_msg(add_name + ":感谢您加我为好友！" + '我的名字叫：' + robot_nickname, msg['RecommendInfo']['UserName'])
+            itchat.set_alias(userName=msg['RecommendInfo']['UserName'],
+                             alias="QS_" + str(li[0]) + "_" + str(li[1]))  # 修改备注名称
         else:
             print(int(rd[error]))
 
 
 @itchat.msg_register('Text', isGroupChat=True)
 def text_reply(msg):
-    javaCallBackUrl = "http://192.168.1.204:8080/app/api/robot/openRoomViewUi.html"
     print(msg)
-    try:
-        qunzhuUserName = msg['User']['ChatRoomOwner']
-    except:
-        pass
+    # try:
+    #     qunzhuUserName = msg['User']['ChatRoomOwner']
+    # except:
+    #     pass
     # d = send_post_request_to_java(type=1, data={'name1': 'value1', 'name2': 'value2'})
     # print(d['name1'])
     # qunzhuUserName = msg['User']['MemberList'][0]['UserName']
@@ -87,17 +89,26 @@ def text_reply(msg):
     # for frind in frindLists:
     #     if frind['UserName'] == qunzhuUserName:
     #         print(frind['RemarkName'])
-    if str(msg['Content']) == 'aa':
-        prefix = "请点击此链接完成待开房："
-        print('robot send message by key word ::机器人开房')
-        # itchat.send(u'@%s\u2005 %s' % (msg['ActualNickName'], prefix + javaCallBackUrl + '?fun=' + msg['FromUserName']),
-        #             msg['FromUserName'])
-    if msg['isAt']:
-        # itchat.send(u'@%s\u2005I received: %s' % (msg['ActualNickName'], msg['Content']), msg['FromUserName'])
-        if str(msg['Content']).find("开房") > 0:
-            prefix = "请点击此链接完成待开房："
-            print('robot send message by at me ::开房')
-            # itchat.send(u'@%s\u2005 %s' % (msg['ActualNickName'], prefix + javaCallBackUrl + '?fun=' + msg['FromUserName']),msg['FromUserName'])
+    # if str(msg['Content']) == 'aa':
+    #     prefix = "请点击此链接完成待开房："
+    #     print('robot send message by key word ::机器人开房')
+    #     itchat.send(u'@%s\u2005 %s' % (msg['ActualNickName'], prefix + javaCallBackUrl + '?fun=' + msg['FromUserName']),
+    #                 msg['FromUserName'])
+    # if msg['isAt']:
+    #     itchat.send(u'@%s\u2005I received: %s' % (msg['ActualNickName'], msg['Content']), msg['FromUserName'])
+    #     if str(msg['Content']).find("开房") > 0:
+    #         prefix = "请点击此链接完成待开房："
+    #         print('robot send message by at me ::开房')
+    #         itchat.send(u'@%s\u2005 %s' % (msg['ActualNickName'], prefix + javaCallBackUrl + '?fun=' + msg['FromUserName']),msg['FromUserName'])
+
+    if str(msg['Content']) == '开房':
+        fun = itchat.search_friends(userName=msg['FromUserName'])
+        remark_name = fun['RemarkName']
+        li = remark_name.split('_', 2)
+        if remark_name.startswith('QS_') and len(li) == 3 and check_int(li[1]) and check_int(li[2]):
+            robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+            d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
+            rd = send_post_request_to_java(msg_request_open_room, data=d)
 
 
 def itchatProcess():
@@ -133,6 +144,7 @@ def signin():
 
 def webProcess():
     app.run(port=5555)
+
 
 """web web web web web web web web web web web web web web web web web web web  应用结束"""
 

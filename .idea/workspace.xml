@@ -308,8 +308,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -324,7 +325,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -496,6 +496,19 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\MemberController.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\webside\activity\RobotMapper.xml</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\generatorConfig.xml</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\spring\spring-mvc.xml</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\controller\RobotController.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\controller\RobotPython.py</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\mapper\RobotMapper.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\IMemberFidesService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\MemberFidesServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\CacheConstan.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\AppConstants.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -503,6 +516,79 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\�����������ݿⰲȫ�淶.doc</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-01</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-01\����淶.doc</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-01\LWHY_RULE_����������Ӧ��Ԥ��.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-01\LWHY_RULE_���簲ȫ����.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-01\LWHY_RULE_���ݿ�����ƶ�.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-01\LWHY_RULE_��ά����淶.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-01\LWHY_RULE_������ƹ��.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-02</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-02\�����ݿ���ͼ��.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-02\lbs���ͼ��.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-02\�Ʒ��������.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-02\�����ݿ��ع���.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-02\�Ʒ���������.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-03</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-03\�ʼ�����.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-04</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-04\jenkins+maven+svn+tomcat�Զ�������-�����ֲ�.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-04\SVN��֧���ɴ���ϲ�_v20160401_v1.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-04\LWHY_ǣ���ܺ���_��Ҫ���˵����.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-04\���ֲ�����V1.3��.docx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-04\�ܺ��Ӿ��ֲ���������������.xlsx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-04\ǣ���ܺ�������ƻ���.xlsx</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-05</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�\LWHY1708-05\��˾��������ͼ.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\doc\02_��ƹ���\����ĵ�.zip</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\main\game\MemberagentsMapper.xml</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\main\game\MembersMapper.xml</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\main\game\AgentMidsMapper.xml</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\webside\activity\RobotOpenRoomMapper.xml</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\mlink.min.js</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\bg_majiang.jpg</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\ui_dagou.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\face_jiazai.png</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\zepto.min.js</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\200.jpg</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\rem2.js</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\jweixin-1.0.0.js</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\joinRoom.css</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\joinRoom.jsp</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\openRoom.jsp</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\model\RobotOpenRoom.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotLogService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotLogServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotFriendServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotOpenRoomServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotOpenRoomeService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotFriendService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\mapper\RobotOpenRoomMapper.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\model\Memberagents.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\model\ShareLinkRequest.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\model\Members.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\model\AgentMids.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\IShareLinkService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\IMemberAgentService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\IMemberService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\MemberAgentServcieImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\MemberServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\AgentMidServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\ShareLinkSwitchSocket.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\ShareLinkHandReData.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\ShareLinkBaseServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\ShareLinkServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\IAgentMidService.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\controller\ShareLinkController.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\mapper\MemberagentsMapper.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\mapper\MembersMapper.java</PATH>
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\mapper\AgentMidsMapper.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -510,6 +596,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\RobotService.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -532,8 +619,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="2977">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
-        <PATH vcs="svn" revision="2977">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
+        <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
+        <PATH vcs="svn" revision="2979">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1158,6 +1245,10 @@
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-model" />
         </SvnCopyRootSimple>
         <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-robot" />
+          <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-robot" />
+        </SvnCopyRootSimple>
+        <SvnCopyRootSimple>
           <option name="myVcsRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-service" />
           <option name="myCopyRoot" value="D:\java\qs_project\2017年4月15日\qs_project\qs-service" />
         </SvnCopyRootSimple>
@@ -1445,6 +1536,7 @@
       <workItem from="1502287137260" duration="821000" />
       <workItem from="1502376759520" duration="64000" />
       <workItem from="1502457753297" duration="257000" />
+      <workItem from="1502720295147" duration="204000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1576,7 +1668,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284358000" />
+    <option name="totallyTimeSpent" value="284562000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1604,7 +1696,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27938035" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28258547" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1808,33 +1900,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2885">
           <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
           <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -1950,13 +2042,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3216">
           <caret line="134" column="21" lean-forward="true" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/sms/UegateSoap.java">

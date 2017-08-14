@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.robot.mapper.RobotOpenRoomMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.robot.model.RobotOpenRoom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="amid" property="amid" jdbcType="INTEGER" />
+    <result column="omid" property="omid" jdbcType="INTEGER" />
+    <result column="msgid" property="msgid" jdbcType="INTEGER" />
+    <result column="odate" property="odate" jdbcType="INTEGER" />
+    <result column="rob_name" property="robName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, amid, omid, msgid, rob_name,odate, remark, ext1, ext2, ext3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from robot_open_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from robot_open_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.robot.model.RobotOpenRoom" >
+    insert into robot_open_room (id, amid, omid, 
+      msgid,odate, rob_name, remark,
+      ext1, ext2, ext3)
+    values (#{id,jdbcType=INTEGER}, #{amid,jdbcType=INTEGER}, #{omid,jdbcType=INTEGER}, 
+      #{msgid,jdbcType=INTEGER}, #{odate,jdbcType=INTEGER},#{robName,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.robot.model.RobotOpenRoom" >
+    insert into robot_open_room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="amid != null" >
+        amid,
+      </if>
+      <if test="omid != null" >
+        omid,
+      </if>
+      <if test="msgid != null" >
+        msgid,
+      </if>
+      <if test="odate != null" >
+        odate,
+      </if>
+      <if test="robName != null" >
+        rob_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="ext3 != null" >
+        ext3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="amid != null" >
+        #{amid,jdbcType=INTEGER},
+      </if>
+      <if test="omid != null" >
+        #{omid,jdbcType=INTEGER},
+      </if>
+      <if test="msgid != null" >
+        #{msgid,jdbcType=INTEGER},
+      </if>
+      <if test="odate != null" >
+        #{odate,jdbcType=INTEGER},
+      </if>
+      <if test="robName != null" >
+        #{robName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.robot.model.RobotOpenRoom" >
+    update robot_open_room
+    <set >
+      <if test="amid != null" >
+        amid = #{amid,jdbcType=INTEGER},
+      </if>
+      <if test="omid != null" >
+        omid = #{omid,jdbcType=INTEGER},
+      </if>
+      <if test="msgid != null" >
+        msgid = #{msgid,jdbcType=INTEGER},
+      </if>
+      <if test="odate != null" >
+        odate = #{odate,jdbcType=INTEGER},
+      </if>
+      <if test="robName != null" >
+        rob_name = #{robName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.robot.model.RobotOpenRoom" >
+    update robot_open_room
+    set amid = #{amid,jdbcType=INTEGER},
+      omid = #{omid,jdbcType=INTEGER},
+      msgid = #{msgid,jdbcType=INTEGER},
+      odate = #{odate,jdbcType=INTEGER},
+      rob_name = #{robName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

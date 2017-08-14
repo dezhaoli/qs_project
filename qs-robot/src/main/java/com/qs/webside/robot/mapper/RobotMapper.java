@@ -15,4 +15,13 @@ public interface RobotMapper extends IBaseMapper {
     int updateByPrimaryKeySelective(Robot record);
 
     int updateByPrimaryKey(Robot record);
+
+    /**
+     * @Author:zun.wei , @Date:2017/8/14 10:21
+     * @Description:检查授权码存在且是否在有效期内
+     * @param code
+     * @return 0表示授权码所有者，1表示待开房者，-1表示没有找到
+     */
+    int checkAuthCodeOrMidExist(Integer code);
+
 }

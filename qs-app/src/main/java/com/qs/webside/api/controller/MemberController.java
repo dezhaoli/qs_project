@@ -358,6 +358,8 @@ public class MemberController extends BaseController {
 		String actiBaseUrl = gameService.getBaseParamValueByCode(AppConstants.BaseParam.ACTIVITY_CENTER_CLIENT_URL);
 		map.put("baseUrl",actiBaseUrl + "index.html");//活动中心静态首页
 		map.put("actiCenterUrl",actiBaseUrl);//活动中心调用接口url前缀
+		String robotAppUrl = gameService.getBaseParamValueByCode(AppConstants.BaseParam.ROBOT_APP_URL);
+		map.put("robotAppUrl",robotAppUrl);//机器人url
 		return this.getReturnData(map,AppConstants.Result.SUCCESS);
 	}
     /**

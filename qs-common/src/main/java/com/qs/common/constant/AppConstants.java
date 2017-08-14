@@ -186,6 +186,9 @@ public class AppConstants {
 		//活动中心客户端跳转url
 		public static final String   ACTIVITY_CENTER_CLIENT_URL = "activity_center_client_url";
 
+		//机器人app url
+		public static final String   ROBOT_APP_URL = "robot_app_url";
+
 		//活动中心调用app应用发送金币url接口
 		public static final String   APP_SEND_GOLD_INTERFACE_URL = "app_send_gold_url";
 

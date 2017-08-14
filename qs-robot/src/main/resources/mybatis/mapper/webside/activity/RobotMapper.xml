@@ -149,4 +149,13 @@
       ext3 = #{ext3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="checkAuthCodeOrMidExist" resultType="int" parameterType="java.lang.Integer" >
+    SELECT
+      IF((SELECT COUNT(id) FROM robot WHERE auth_code = #{code} and etime > NOW() AND activation = 0
+        ) > 0,0,IF((SELECT COUNT(id) FROM robot WHERE mid = #{code} AND etime > NOW() AND activation = 1
+                   ) > 0,1,-1))
+      AS result
+  </select>
+
 </mapper>
