@@ -6,7 +6,7 @@ import com.qs.webside.robot.model.RobotOpenRoom;
  * Created by zun.wei on 2017/8/14 15:31.
  * Description:
  */
-public interface IRobotOpenRoomeService {
+public interface IRobotOpenRoomService {
 
     int deleteByPrimaryKey(Integer id);
 
