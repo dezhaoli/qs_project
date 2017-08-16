@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.sync.mapper.SyncUserMapper">
+	<resultMap id="BaseResultMap" type="com.qs.pub.sync.model.SyncUser">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="user_id" jdbcType="INTEGER" property="userId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="age" jdbcType="INTEGER" property="age" />
+		<result column="salary" property="salary" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_id, name, age,salary
+	</sql>
+
+	<insert id="insert" parameterType="com.qs.pub.sync.model.SyncUser"> 
+	insert into dc_user (id,
+		user_id, name, age, salary) values (#{id,jdbcType=INTEGER},
+		#{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{age,jdbcType=INTEGER}, #{salary})
+	</insert>
+
+
+</mapper>

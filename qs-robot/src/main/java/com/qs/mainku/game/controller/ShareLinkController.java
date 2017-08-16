@@ -70,10 +70,12 @@ public class ShareLinkController extends BaseController {
     public String joinRoomViewUi(Model model, ShareLinkRequest shareLinkRequest) throws InterruptedException, MemcachedException, TimeoutException, IOException {
         String sesskey = shareLinkRequest.getSesskey();
         String roomid = shareLinkRequest.getRoomid();
+        if (StringUtils.isBlank(roomid)) roomid = "0";
         String wanfaEncode = shareLinkRequest.getWanfa();
         if (StringUtils.isBlank(wanfaEncode)) wanfaEncode = "";
         wanfaEncode = wanfaEncode.replaceAll(" ", "+");
         String roomtitle = shareLinkRequest.getRoomtitle();
+        if (StringUtils.isBlank(roomtitle)) roomtitle = "";
         roomtitle = roomtitle.replaceAll(" ", "+");
         int jushu = shareLinkRequest.getJushu();
         String state = sesskey + "_qs_" + roomid;
@@ -83,7 +85,7 @@ public class ShareLinkController extends BaseController {
         roomInfoMap.put("wanfaEncode", wanfaEncode);
         shareLinkService.setRoomInfo(roomInfoMap, model, Integer.parseInt(roomid), gameType);
         String redirectUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_REDIRECT_URL);
-        redirectUrl += "/app/api/shareLink/joinRoom.html";
+        redirectUrl += "/api/shareLink/joinRoom.html";
         String appId = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_ID);
         String url = SnsAPI.connectOauth2Authorize(appId, redirectUrl, true, state);
         model.addAttribute("url", url);

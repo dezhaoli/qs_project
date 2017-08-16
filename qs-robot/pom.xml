@@ -61,11 +61,62 @@
               <artifactId>qs-side</artifactId>
               <version>0.0.1-SNAPSHOT</version>
 		</dependency>
+        <!-- servlet api -->
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.1</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
-    
+
+    <profiles>
+        <!-- 广东麻将 -->
+        <profile>
+            <id>gdrobot</id>
+            <properties>
+                <profiles.active>gdrobot</profiles.active>
+            </properties>
+            <!-- 打包时不指定profile id，默认激活本环境 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- 四川麻将 -->
+        <profile>
+            <id>scrobot</id>
+            <properties>
+                <profiles.active>scrobot</profiles.active>
+            </properties>
+        </profile>
+        <!-- 江西麻将 -->
+        <profile>
+            <id>jxrobot</id>
+            <properties>
+                <profiles.active>jxrobot</profiles.active>
+            </properties>
+        </profile>
+    </profiles>
+
 	<build>
 		<finalName>qs-robot</finalName>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/profile/${profiles.active}</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
 		<plugins>
 

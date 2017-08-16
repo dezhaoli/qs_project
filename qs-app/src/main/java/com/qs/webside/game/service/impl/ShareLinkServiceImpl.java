@@ -120,7 +120,16 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
         if (login && socketUtils.receviveInteger() == 0) {//服务器返回0表示登录成功
             boolean joinRoom = ShareLinkSwitchSocket.switchJoinRoomTypeByGameType(gameType, roomid, mid, socketUtils);
             if (joinRoom) {//发送请求到c++服务器成功
-                executeJoinRoom(roomid, mid, socketUtils,map,gameType);
+                //executeJoinRoom(roomid, mid, socketUtils,map,gameType);
+                try {
+                    SocketUtils.callMethod(this, "checkTimeoutRecevice"
+                            , new Class<?>[]{int.class,int.class,SocketUtils.class,Map.class, int.class}
+                            , new Object[]{roomid,mid,socketUtils, map,gameType}
+                            , 5);
+                } catch (Exception e) {
+                    map.put(CommonContants.SUCCESS, 0);
+                    map.put(CommonContants.ERROR, -66);//c++服务器返回加入房间超时
+                }
             } else {
                 map.put(CommonContants.SUCCESS, Boolean.FALSE);
                 map.put(CommonContants.ERROR, -3);//发送加入房间请求失败
@@ -134,8 +143,12 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
             log.debug("share link login fail ---------:: please confirm parameters !");
         }
         socketUtils.close();
+        log.debug("----------::join room socket had been closed！");
     }
 
+    public void checkTimeoutRecevice(int roomid, int mid, SocketUtils socketUtils, Map<String, Object> map, int gameType) throws IOException {
+        executeJoinRoom(roomid, mid, socketUtils,map,gameType);
+    }
 
     /**
      * @Author:zun.wei , @Date:2017/7/24 15:04

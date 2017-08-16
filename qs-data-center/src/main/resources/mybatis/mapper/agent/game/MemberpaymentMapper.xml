@@ -31,7 +31,7 @@
     where pid = #{pid,jdbcType=INTEGER}
   </select>
   
-  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+<!--  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
      select a.date ptime_str ,sum(a.paytotal) as pamount
    		  from ${dbtable}_log.taxes_invite a
     <where> 
@@ -40,12 +40,25 @@
     
     GROUP BY a.date
     ORDER BY a.date DESC
+  </select>-->
+
+  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.date ptime_str,sum(a.paytotal) as pamount
+    from ${stat}.player_pay_day a
+    <where>
+          and a.date &lt;  date_sub(#{endDate,jdbcType=VARCHAR},interval -1 day) and a.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+          and a.gametype = #{gameCode}
+    </where>
+
+    GROUP BY a.date
+    ORDER BY a.date DESC
   </select>
   <select id="queryPayAmountTotal" resultType="Double" parameterType="map" >
      select sum(a.paytotal) as pamount
-   		  from ${dbtable}_log.taxes_invite a
+        from ${stat}.player_pay_day a
     <where> 
           and a.date &lt;  date_sub(#{endDate,jdbcType=VARCHAR},interval -1 day) and a.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+          and a.gametype = #{gameCode}
     </where>
   </select>
 </mapper>

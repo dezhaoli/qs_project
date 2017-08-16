@@ -308,8 +308,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -325,6 +323,8 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -496,33 +496,28 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\agent_roomInfo_list.jsp</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\IMemberAgentService.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\PlayingMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\SyncUserLoginLogMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\ReceiveDataImpl.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\sync-web\pom.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\pub\sys\controller\IndexController.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberAgentsMapper.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberAgentsMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\webside\activity\RobotFriendsMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\webside\activity\RobotOpenRoomMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\webside\activity\RobotMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\model\RobotOpenRoom.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotService.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotOpenRoomServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotFriendServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotFriendService.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\controller\RobotController.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\controller\RobotPython.py</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\mapper\RobotFriendsMapper.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\mapper\RobotMapper.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\MemcachedUtil.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SocketUtils.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\SyncPlaying.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\SyncUserLoginLog.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiSendGoldMapper.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiCenterController.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiSendGoldMapper.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiSendGoldServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiSendGoldService.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\pom.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-applicationContext.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\listener\InitParam.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\listener\ClusterListenerImpl.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\api\controller\ShareLinkController.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\ShareLinkServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\spring\spring-applicationContext.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotOpenRoomByGameType.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\controller\RobotPython.py</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\controller\ShareLinkController.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\pom.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\controller\MemberFidesController.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\agent\game\controller\MemberpaymentController.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberpaymentMapper.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\agent\game\MemberFidesMapper.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SocketUtils.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -530,25 +525,21 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\vip</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\vip\agent_poker_list.js</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\vip\agent_openRoomSum_list.js</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\vip</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\vip\agent_openRoomSum_list.jsp</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\vip\agent_poker_list.jsp</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\webside\agent\controller\AgentVipController.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\main\game\AgentClubGroupMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\main\game\AgentClubMemberMapper.xml</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotOpenRoomService.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotOpenRoomByGameType.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\model\AgentClubGroup.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\model\AgentClubMember.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\AgentClubMemberService.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\AgentClubMemberServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\AgentClubGroupServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\AgentClubGroupService.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\mapper\AgentClubMemberMapper.java</PATH>
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\mapper\AgentClubGroupMapper.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\SyncUserMapper.xml</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\model</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\model\SyncUser.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\SyncUserServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\ISyncUserService.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\mapper\SyncUserMapper.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\util\Underline2Camel.java</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\profile</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\profile\scrobot</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\profile\scrobot\disconf.properties</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\profile\gdrobot</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\profile\gdrobot\disconf.properties</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\profile\jxrobot</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\profile\jxrobot\disconf.properties</PATH>
+          <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\RobotOpenRoomReData.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -556,7 +547,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\IRobotOpenRoomeService.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -579,8 +569,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
-        <PATH vcs="svn" revision="2987">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
+        <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="2999">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1498,6 +1488,7 @@
       <workItem from="1502457753297" duration="257000" />
       <workItem from="1502720295147" duration="798000" />
       <workItem from="1502808156421" duration="284000" />
+      <workItem from="1502894201298" duration="98000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1629,7 +1620,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="285440000" />
+    <option name="totallyTimeSpent" value="285538000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1652,12 +1643,12 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3131202" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3131202" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2857906" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2889957" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1861,33 +1852,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2885">
           <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
           <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -2003,13 +1994,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3216">
           <caret line="134" column="21" lean-forward="true" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/sms/UegateSoap.java">

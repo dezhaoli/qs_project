@@ -2,6 +2,7 @@ package com.qs.common.util;
 
 import com.qs.common.constant.CommonContants;
 
+import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
@@ -9,6 +10,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.lang.reflect.Method;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Created by zun.wei on 2017/7/18 15:33.
@@ -298,28 +307,32 @@ public class SocketUtils {
         String DataStr = new String(recvHead);
         System.out.println("conpany abbreviation=======::" + DataStr);
 
-        byte[] recvPacketSize = new byte[4];
-        inputStream.read(recvPacketSize, 0, 2);
-        int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
-        System.out.println("len=======::" + len);
+        if ("QS".equals(DataStr)) {
+            byte[] recvPacketSize = new byte[4];
+            inputStream.read(recvPacketSize, 0, 2);
+            int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
+            System.out.println("len=======::" + len);
 
-        byte[] recvCmd = new byte[2];
-        inputStream.read(recvCmd, 0, 2);
-        int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
-        System.out.println("cmd===::" + cmd);
+            byte[] recvCmd = new byte[2];
+            inputStream.read(recvCmd, 0, 2);
+            int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
+            System.out.println("cmd===::" + cmd);
 
-        if (cmd == 1103 || cmd == 1001) {
-            byte[] recvData = new byte[4];
-            inputStream.read(recvData, 0, 4);
-            int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
-            System.out.println("integer data ====::" + recvInt);
-            return "r_" + recvInt + "_" + cmd;
-            //return recvInt > 0 ? Boolean.TRUE : Boolean.FALSE;
-        }  else {
-            byte[] buffer = new byte[len];
-            socket.getInputStream().read(buffer, 0, len);
+            if (cmd == 1103 || cmd == 1001) {
+                byte[] recvData = new byte[4];
+                inputStream.read(recvData, 0, 4);
+                int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
+                System.out.println("integer data ====::" + recvInt);
+                return "r_" + recvInt + "_" + cmd;
+                //return recvInt > 0 ? Boolean.TRUE : Boolean.FALSE;
+            } else {
+                byte[] buffer = new byte[len];
+                if (len < 100) socket.getInputStream().read(buffer, 0, len);
+                return null;
+                //return Boolean.FALSE;
+            }
+        } else {
             return null;
-            //return Boolean.FALSE;
         }
     }
 
@@ -331,30 +344,96 @@ public class SocketUtils {
         String DataStr = new String(recvHead);
         System.out.println("conpany abbreviation=======::" + DataStr);
 
-        byte[] recvPacketSize = new byte[4];
-        inputStream.read(recvPacketSize, 0, 2);
-        int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
-        System.out.println("len=======::" + len);
+        if ("QS".equals(DataStr)) {
+            byte[] recvPacketSize = new byte[4];
+            inputStream.read(recvPacketSize, 0, 2);
+            int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
+            System.out.println("len=======::" + len);
 
-        byte[] recvCmd = new byte[2];
-        inputStream.read(recvCmd, 0, 2);
-        int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
-        System.out.println("cmd===::" + cmd);
+            byte[] recvCmd = new byte[2];
+            inputStream.read(recvCmd, 0, 2);
+            int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
+            System.out.println("cmd===::" + cmd);
 
-        if (cmd == 1102) {
-            byte[] recvData = new byte[4];
-            inputStream.read(recvData, 0, 4);
-            int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
-            System.out.println("integer data ====::" + recvInt);
-            return "r_" + recvInt + "_" + cmd;
-        }  else {
-            byte[] buffer = new byte[len];
-            socket.getInputStream().read(buffer, 0, len);
+            if (cmd == 1001 || cmd == 1002 || cmd == 1005 || cmd == 1003) {
+                byte[] recvData = new byte[4];
+                inputStream.read(recvData, 0, 4);
+                int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
+                System.out.println("integer data ====::" + recvInt);
+
+                byte[] recvData1 = new byte[4];
+                inputStream.read(recvData1, 0, 4);
+                int recvInt1 = bytes2Integer(toLH(bytes2Integer(recvData1)));
+                System.out.println("integer data1 ====::" + recvInt1);
+                return "r_" + recvInt + "_" + cmd + "_" + recvInt1;
+            } else {
+                byte[] buffer = new byte[len];
+                if (len < 100) socket.getInputStream().read(buffer, 0, len);
+                return null;
+                //return Boolean.FALSE;
+            }
+        } else {
             return null;
-            //return Boolean.FALSE;
         }
+
     }
 
+    /***
+     * 方法参数说明
+     *
+     * @param target
+     *            调用方法的当前对象
+     * @param methodName
+     *            方法名称
+     * @param parameterTypes
+     *            调用方法的参数类型
+     * @param params
+     *            参数 可以传递多个参数
+     * @param timeout
+     *            超时时间，秒为单位
+     *
+     */
+    public static Object callMethod(final Object target,
+                                    final String methodName,
+                                    final Class<?>[] parameterTypes,//SECONDS
+                                    final Object[] params,int timeout) {
+
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        FutureTask<String> future = new FutureTask<String>(new Callable<String>() {
+            public String call() throws Exception {
+                String value = null;
+                try {
+                    Method method = null;
+                    method = target.getClass().getDeclaredMethod(methodName, parameterTypes);
+                    Object returnValue = method.invoke(target, params);
+                    value = returnValue != null ? returnValue.toString() : null;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw e;
+                }
+                return value;
+            }
+        });
+
+        executorService.execute(future);
+        String result = null;
+        try {
+            /** 获取方法返回值 并设定方法执行的时间为10秒 */
+            result = future.get(timeout, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            future.cancel(true);
+            System.out.println("方法执行中断");
+        } catch (ExecutionException e) {
+            future.cancel(true);
+            System.out.println("Excuti on异常");
+        } catch (TimeoutException e) {
+            future.cancel(true);
+            //e.printStackTrace();
+            throw new RuntimeException("invoke timeout", e);
+        }
+        executorService.shutdownNow();
+        return result;
+    }
 
    /* public static void main(String[] args) throws IOException {
         SocketUtils socketUtils = new SocketUtils().createSocket("192.168.1.142", 9040).setCmd(1000)//9040

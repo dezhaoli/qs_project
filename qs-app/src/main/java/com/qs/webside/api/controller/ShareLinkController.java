@@ -73,10 +73,12 @@ public class ShareLinkController extends BaseController {
     public String joinRoomViewUi(Model model,ShareLinkRequest shareLinkRequest) throws InterruptedException, MemcachedException, TimeoutException, IOException {
         String sesskey = shareLinkRequest.getSesskey();
         String roomid = shareLinkRequest.getRoomid();
+        if (StringUtils.isBlank(roomid)) roomid = "0";
         String wanfaEncode = shareLinkRequest.getWanfa();
         if (StringUtils.isBlank(wanfaEncode)) wanfaEncode = "";
         wanfaEncode = wanfaEncode.replaceAll(" ", "+");
         String roomtitle = shareLinkRequest.getRoomtitle();
+        if (StringUtils.isBlank(roomtitle)) roomtitle = "";
         roomtitle = roomtitle.replaceAll(" ", "+");
         int jushu = shareLinkRequest.getJushu();
         String state = sesskey + "_qs_" + roomid;

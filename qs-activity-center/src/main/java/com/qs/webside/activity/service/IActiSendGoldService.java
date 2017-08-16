@@ -51,5 +51,13 @@ public interface IActiSendGoldService {
      * @return
      */
     int insertOrUpate(ActiSendGold record);
+    
+    /**
+     * @Author:zun.wei , @Date:2017/6/1 19:24
+     * @Description:查询用户是否发过链接
+     * @param mid type 活动类型
+     * @return
+     */
+	Object checkUserIsLink(Integer mid,int type);
 
 }

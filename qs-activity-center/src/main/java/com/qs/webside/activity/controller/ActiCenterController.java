@@ -62,6 +62,22 @@ public class ActiCenterController extends BaseController {
     }
 
     /**
+     * @Author:z , @Date:2017/8/15 19:19
+     * @Description:查询用户是否发过链接
+     * @param model
+     * @param request
+     * @param baseRequest
+     * @return
+     */
+    @RequestMapping("checkUserIsLink.do")
+    @ResponseBody
+    public Object checkUserIsLink(Model model, HttpServletRequest request, BaseRequest baseRequest,int type) {
+        AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        Object map = actiSendGoldService.checkUserIsLink(token.getMid(),type);
+        return this.getReturnData(map, AppConstants.Result.SUCCESS);
+    }
+    
+    /**
      * @Author:zun.wei , @Date:2017/6/1 19:19
      * @Description:查询用户是否评论过
      * @param model
@@ -76,6 +92,7 @@ public class ActiCenterController extends BaseController {
         Object map = actiSendGoldService.checkUserIsComment(token.getMid());
         return this.getReturnData(map, AppConstants.Result.SUCCESS);
     }
+    
 
     /**
      * @Author:zun.wei , @Date:2017/6/1 19:20

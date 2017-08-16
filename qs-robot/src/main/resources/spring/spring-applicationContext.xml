@@ -56,7 +56,7 @@
 
 
 	<!-- 引入模块配置文件 -->
-	<!--<import resource="spring-disconf.xml"/>-->
+	<import resource="spring-disconf.xml"/>
    	<import resource="spring-mybatis.xml" />
 	<import resource="spring-shiro.xml" />
 	<import resource="spring-kaptcha.xml" />

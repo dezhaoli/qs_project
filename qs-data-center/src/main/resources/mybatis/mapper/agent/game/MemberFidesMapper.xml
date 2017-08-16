@@ -63,7 +63,8 @@
 	SELECT f.mid,f.name,sum(m.pamount) pamount,f.mtime,f.lgtm,m.isagent FROM memberfides0 f 
 	inner join  memberpayment m on(f.mid=m.fmid) 
 	where m.ptime &lt; UNIX_TIMESTAMP(DATE_SUB(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),INTERVAL -1 DAY)) 
-	and m.ptime &gt;= UNIX_TIMESTAMP(#{startDate,jdbcType=VARCHAR}) and m.pstatus=2 
+	and m.ptime &gt;= UNIX_TIMESTAMP(#{startDate,jdbcType=VARCHAR}) and m.pstatus=2
+	and m.gametype = #{gameCode}
 	group by m.fmid
 	) dat order by dat.pamount desc limit 0,30
   </select>

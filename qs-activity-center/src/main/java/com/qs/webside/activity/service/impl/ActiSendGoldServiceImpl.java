@@ -14,6 +14,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -31,7 +32,25 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
     @Resource
     private IActiCenterService actiCenterService;
 
-
+    @Override
+	public Object checkUserIsLink(Integer mid,int type) {
+		   Map<String, Object> map = new HashMap<>();
+	        map.put("mid", mid);
+	        map.put("type", type);
+	        map.put("send_date", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+	        ActiSendGold actiSendGold = actiSendGoldMapper.queryByLink(map);
+	        Map<String, Object> result = new HashMap<>();
+	        if (actiSendGold != null) {
+	            result.put(CommonContants.RESULT, Boolean.FALSE);
+	            result.put(CommonContants.ERROR, -1);
+	            result.put(CommonContants.MESSAGE, "该用户已经发起过链接了！");
+	        } else {
+	            result.put(CommonContants.RESULT, Boolean.TRUE);
+	            result.put(CommonContants.MESSAGE, "该用户没有发起过链接！");
+	        }
+	        return result;
+	}
+    
     @Override
     public Object checkUserIsComment(Integer mid) {
         Map<String, Object> map = new HashMap<>();
@@ -216,5 +235,7 @@ public class ActiSendGoldServiceImpl implements IActiSendGoldService {
     public int insertOrUpate(ActiSendGold record) {
         return actiSendGoldMapper.insertOrUpate(record);
     }
+
+	
 
 }

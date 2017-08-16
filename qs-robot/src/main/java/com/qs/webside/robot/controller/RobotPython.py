@@ -70,6 +70,7 @@ def add_friend(msg):
     else:
         print("msg not match !")
 
+
 @itchat.msg_register('Text', isGroupChat=True)
 def text_reply(msg):
     print(msg)
@@ -123,6 +124,13 @@ def text_reply(msg):
             d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
             rd = send_post_request_to_java(msg_request_open_room, data=d)
             print(rd)
+            rr = eval(rd)
+            # url = 'http://192.168.1.128:8090/app/api/shareLink/joinViewUi.html?roomtitle=%s&jushu=%s&roomid=%s' % \
+            #       (rr[data]['roomtitle'], rr[data]['jushu'], rr[data]['roomid'])
+            if int(rr[success]) == 1:  # 成功
+                itchat.send('开房成功！点击此链接加入房间：' + rr[data]
+                            , msg['FromUserName'])
+
 
 def itchatProcess():
     # itchat.auto_login(enableCmdQR=True, hotReload=True)

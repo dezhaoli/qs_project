@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.agent.game.mapper.MemberFidesMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.agent.game.model.MemberFides" >
+    <id column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mtime_str" property="mtimeStr" jdbcType="VARCHAR" />
+    <result column="totals" property="totals" jdbcType="INTEGER" />
+    <result column="ifvalid" property="ifvalid" jdbcType="INTEGER" />
+    <result column="bind_totals" property="bindTotals" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="TINYINT" />
+    <result column="btd" property="btd" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="invite" property="invite" jdbcType="INTEGER" />
+    <result column="gp" property="gp" jdbcType="TINYINT" />
+    <result column="sta" property="sta" jdbcType="INTEGER" />
+    <result column="mtime" property="mtime" jdbcType="BIGINT" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="bindtime" property="bindtime" jdbcType="INTEGER" />
+    <result column="pamount" property="pamount" jdbcType="REAL" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="identity" property="identity" jdbcType="VARCHAR" />
+    <result column="yellowvip" property="yellowvip" jdbcType="TINYINT" />
+    <result column="isyearvip" property="isyearvip" jdbcType="TINYINT" />
+    <result column="passwd" property="passwd" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="lgtm" property="lgtm" jdbcType="INTEGER" />
+    <result column="lgtm_str" property="lgtmStr" jdbcType="VARCHAR" />
+    <result column="lxlg" property="lxlg" jdbcType="INTEGER" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="regip" property="regip" jdbcType="BIGINT" />
+    <result column="active_assets" property="activeAssets" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    mid, name, sex, btd, city, icon, invite, gp, sta, mtime, email, bindtime, tel, realname, 
+    identity, yellowvip, isyearvip, passwd, salt, lgtm, lxlg, qq, address, regip, active_assets
+  </sql>
+  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="map" >
+    select from_unixtime(m.mtime,'%Y-%m-%d') mtime_str,count(m.mid) totals ,ifnull(sum( case when m.invite >0 then 1 end ),0) bind_totals
+    from ${dbtable}.memberfides0 m 
+    <where>
+		and m.mtime &lt;  UNIX_TIMESTAMP(date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day)) and m.mtime &gt;= UNIX_TIMESTAMP(#{startDate,jdbcType=VARCHAR})
+    </where>
+    group by from_unixtime(m.mtime,'%Y-%m-%d') 
+    order by m.mtime desc
+  </select>
+  
+  <select id="queryAddUserCountTotals" resultType="Long" parameterType="map" >
+    select count(m.mid) totals from ${dbtable}.memberfides0 m 
+    <where>
+		and m.mtime &lt;  UNIX_TIMESTAMP(date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day)) and m.mtime &gt;= UNIX_TIMESTAMP(#{startDate,jdbcType=VARCHAR})
+    </where>
+  </select>
+  
+  <select id="userPayrankingList" resultMap="BaseResultMap" parameterType="map" >
+    select dat.mid,dat.name,ifnull(dat.pamount,0) pamount,FROM_UNIXTIME(dat.mtime,'%Y-%m-%d') mtime_str,FROM_UNIXTIME(dat.lgtm,'%Y-%m-%d') lgtm_str,dat.isagent sta,
+	case when (TO_DAYS(CURDATE())-TO_DAYS(FROM_UNIXTIME(dat.lgtm,'%Y-%m-%d'))) &gt; 7 then 1 else 0 end as ifvalid
+	 from 
+	(
+	SELECT f.mid,f.name,sum(m.pamount) pamount,f.mtime,f.lgtm,m.isagent FROM memberfides0 f 
+	inner join  memberpayment m on(f.mid=m.fmid) 
+	where m.ptime &lt; UNIX_TIMESTAMP(DATE_SUB(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),INTERVAL -1 DAY)) 
+	and m.ptime &gt;= UNIX_TIMESTAMP(#{startDate,jdbcType=VARCHAR}) and m.pstatus=2
+	and m.gametype = #{gameCode}
+	group by m.fmid
+	) dat order by dat.pamount desc limit 0,30
+  </select>
+</mapper>

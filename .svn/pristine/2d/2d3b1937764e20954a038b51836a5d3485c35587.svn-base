@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.agent.game.mapper.MemberpaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.agent.game.model.Memberpayment" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="fmid" property="fmid" jdbcType="INTEGER" />
+    <result column="tmid" property="tmid" jdbcType="INTEGER" />
+    <result column="tsid" property="tsid" jdbcType="INTEGER" />
+    <result column="pmoneynow" property="pmoneynow" jdbcType="INTEGER" />
+    <result column="pmode" property="pmode" jdbcType="TINYINT" />
+    <result column="pcard" property="pcard" jdbcType="SMALLINT" />
+    <result column="pamount" property="pamount" jdbcType="REAL" />
+    <result column="pcoins" property="pcoins" jdbcType="INTEGER" />
+    <result column="ptime" property="ptime" jdbcType="INTEGER" />
+    <result column="pstatus" property="pstatus" jdbcType="TINYINT" />
+    <result column="ptransno" property="ptransno" jdbcType="VARCHAR" />
+    <result column="gametype" property="gametype" jdbcType="TINYINT" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="isagent" property="isagent" jdbcType="TINYINT" />
+    <result column="bizid" property="bizid" jdbcType="SMALLINT" />
+    <result column="ptime_str" property="ptimeStr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins, ptime, pstatus, 
+    ptransno, gametype, parentid, isagent, bizid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberpayment
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  
+<!--  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+     select a.date ptime_str ,sum(a.paytotal) as pamount
+   		  from ${dbtable}_log.taxes_invite a
+    <where> 
+          and a.date &lt;  date_sub(#{endDate,jdbcType=VARCHAR},interval -1 day) and a.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+    </where>
+    
+    GROUP BY a.date
+    ORDER BY a.date DESC
+  </select>-->
+
+  <select id="queryListByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select a.date ptime_str,sum(a.paytotal) as pamount
+    from ${stat}.player_pay_day a
+    <where>
+          and a.date &lt;  date_sub(#{endDate,jdbcType=VARCHAR},interval -1 day) and a.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+          and a.gametype = #{gameCode}
+    </where>
+
+    GROUP BY a.date
+    ORDER BY a.date DESC
+  </select>
+  <select id="queryPayAmountTotal" resultType="Double" parameterType="map" >
+     select sum(a.paytotal) as pamount
+        from ${stat}.player_pay_day a
+    <where> 
+          and a.date &lt;  date_sub(#{endDate,jdbcType=VARCHAR},interval -1 day) and a.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+          and a.gametype = #{gameCode}
+    </where>
+  </select>
+</mapper>

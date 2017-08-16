@@ -25,6 +25,14 @@ public interface ActiSendGoldMapper extends IBaseMapper {
      * @return
      */
     int insertIgnoreSelective(ActiSendGold record);
+    
+    /**
+     * @Author:z , @Date:2018/8/15 19:08
+     * @Description:根据mid查询是否发起过链接
+     * @param paramegers
+     * @return
+     */
+    ActiSendGold queryByLink(Map<String, Object> map);
 
     /**
      * @Author:zun.wei , @Date:2017/6/1 19:08
@@ -49,5 +57,7 @@ public interface ActiSendGoldMapper extends IBaseMapper {
      * @return
      */
     int insertOrUpate(ActiSendGold record);
+
+	
 
 }

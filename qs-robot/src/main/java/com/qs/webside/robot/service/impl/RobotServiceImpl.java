@@ -10,6 +10,7 @@ import com.qs.mainku.game.model.AgentClubMember;
 import com.qs.mainku.game.model.AgentMids;
 import com.qs.mainku.game.model.MemberFides;
 import com.qs.mainku.game.service.*;
+import com.qs.mainku.game.service.impl.RobotOpenRoomReData;
 import com.qs.mainku.game.service.impl.ShareLinkHandReData;
 import com.qs.mainku.game.service.impl.ShareLinkSwitchSocket;
 import com.qs.webside.robot.mapper.RobotMapper;
@@ -73,6 +74,9 @@ public class RobotServiceImpl implements IRobotService {
 
     @Resource
     private AgentClubMemberService agentClubMemberService;
+
+    @Resource
+    private IBaseParamService baseParamService;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -337,12 +341,6 @@ public class RobotServiceImpl implements IRobotService {
         robotOpenRoom.setOdate((int) (new Date().getTime() / 1000));
         int r = robotOpenRoomService.insertSelective(robotOpenRoom);
         if (r > 0) {
-            //TODO 执行代理开房
-            /*Map<String, Object> resultData = new HashMap<>();
-            map.put(CommonContants.SUCCESS, 1);
-            map.put(CommonContants.DATA, resultData);
-            map.put(CommonContants.ERROR, 0);
-            return map;*/
             return handleOpenRoom(gameType,amid,omid,request,cIp,cPort,map);
         } else {
             map.put(CommonContants.SUCCESS, 0);
@@ -363,7 +361,22 @@ public class RobotServiceImpl implements IRobotService {
         if (login && socketUtils.receviveInteger() == 0) {//服务器返回0表示登录成功
             boolean openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid);
             if (openRoom) {
-                return receviceServerResponse(map, socketUtils, gameType);
+                //return receviceServerResponse(map, socketUtils, gameType);
+                Object o;
+                try {
+                    o = SocketUtils.callMethod(this, "checkTimeoutRecevice"
+                            , new Class<?>[]{String.class,Map.class, SocketUtils.class, int.class}
+                            , new Object[]{sesskey,map, socketUtils, gameType}
+                            , 5);
+                } catch (Exception e) {
+                    map.put(CommonContants.SUCCESS, 0);
+                    map.put(CommonContants.ERROR, -66);//c++服务器返回创建房间超时
+                    return map;
+                } finally {
+                    socketUtils.close();
+                    log.debug("----------::finally to close socket！");
+                }
+                return o;
             } else {
                 map.put(CommonContants.SUCCESS, 0);
                 map.put(CommonContants.ERROR, -3);
@@ -376,9 +389,12 @@ public class RobotServiceImpl implements IRobotService {
         }
     }
 
+    public Object checkTimeoutRecevice(String sesskey,Map<String, Object> map, SocketUtils socketUtils, int gameType) throws IOException {
+        return receviceServerResponse(sesskey,map, socketUtils, gameType);
+    }
 
     //接收c++服务器开房请求的响应
-    private Object receviceServerResponse(Map<String, Object> map, SocketUtils socketUtils, int gameType) throws IOException {
+    private Object receviceServerResponse(String sesskey,Map<String, Object> map, SocketUtils socketUtils, int gameType) throws IOException {
         long t1 = System.currentTimeMillis();
         while (true) {
             long t2 = System.currentTimeMillis();
@@ -391,11 +407,20 @@ public class RobotServiceImpl implements IRobotService {
                 if (StringUtils.isNotBlank(joinResult)) {
                     int recvInt = Integer.parseInt(joinResult.split("_")[1]);
                     int cmd = Integer.parseInt(joinResult.split("_")[2]);
-                    String errorMsg = ShareLinkHandReData.handleRecvData(cmd, recvInt,gameType);//TODO 这里需要修改
+                    int roomid = Integer.parseInt(joinResult.split("_")[3]);
+                    String errorMsg = RobotOpenRoomReData.handleRecvData(cmd, recvInt,gameType);//TODO 这里需要修改
                     if (StringUtils.isBlank(errorMsg) && recvInt > 0) {
+                        String robotAppUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.ROBOT_APP_URL);
+                        robotAppUrl += "api/shareLink/joinViewUi.html?sesskey=%s&roomtitle=%s&wanfa=%s&jushu=%d&roomid=%d";
+                        robotAppUrl = String.format(robotAppUrl, sesskey,"title","wanfa",8,roomid);
+                        /*Map<String, Object> data = new HashMap<>();
+                        data.put("roomid", roomid);
+                        data.put("roomtitle", "8888");
+                        data.put("jushu", 8);*/
                         map.put(CommonContants.SUCCESS, 1);
+                        map.put(CommonContants.DATA, robotAppUrl);
                         map.put(CommonContants.ERROR, 0);//成功加入房间
-                        return map;
+                        return JSON.toJSONString(map);
                     } else {
                         map.put(CommonContants.SUCCESS, 0);
                         map.put(CommonContants.ERROR, -6);//服务器返回错误码

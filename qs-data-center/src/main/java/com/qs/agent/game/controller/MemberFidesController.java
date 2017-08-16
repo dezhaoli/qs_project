@@ -7,21 +7,6 @@
  */
 package com.qs.agent.game.controller;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.shiro.SecurityUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
@@ -34,6 +19,19 @@ import com.qs.common.exception.SystemException;
 import com.qs.constant.Constant;
 import com.qs.datasource.DataSourceSwitch;
 import com.qs.pub.sys.model.UserEntity;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /** 
  * @ClassName: MemberFidesController 
@@ -179,6 +177,7 @@ public class MemberFidesController extends BaseController
 			ValueOperations<String, String> valueOper = redisTemplate.opsForValue();
 			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
 			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String gameCode = valueOper.get(Constant.DATA_CENTER_GAME_CODE+userEntity.getId());
 			 String logDataSourceType=dataSourceName+"LogDataSource";
 			 String mainDataSourceType = dataSourceName + "AgentDataSource";
 			 DataSourceSwitch.setLogDataSourceType(logDataSourceType);
@@ -189,6 +188,7 @@ public class MemberFidesController extends BaseController
 			Pager pager = JSON.parseObject(gridPager, Pager.class);
 			// 判断是否包含自定义参数
 			parameters = pager.getParameters();
+			parameters.put("gameCode", Constant.getDataCenterBusinessGameCode(gameCode));
 			// 3、判断是否是导出操作
 			if (pager.getIsExport())
 			{
