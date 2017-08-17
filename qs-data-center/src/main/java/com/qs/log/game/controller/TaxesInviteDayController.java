@@ -232,6 +232,40 @@ public class TaxesInviteDayController extends BaseController
 
 	}
 
+
+	@RequestMapping("queryAgentAmountTotal.html")
+	@ResponseBody
+	public Object queryAgentAmountTotal(String stime,String etime,String name,String id){
+		try
+		{
+			UserEntity userEntity = (UserEntity)SecurityUtils.getSubject().getPrincipal();
+			ValueOperations<String, String> valueOper=redisTemplate.opsForValue();
+			String dataSourceName = valueOper.get(Constant.DATA_CENTER_GAME_TYPE+userEntity.getId());
+			String gameCode = valueOper.get(Constant.DATA_CENTER_GAME_CODE+userEntity.getId());
+			String gameType = Constant.getDataCenterBusinessGameType(dataSourceName);
+			Map<String, Object>  map = new HashMap<String,Object>();
+			String logDataSourceType=dataSourceName+"LogDataSource";
+			String mainDataSourceType = dataSourceName + "AgentDataSource";
+			DataSourceSwitch.setLogDataSourceType(logDataSourceType);
+			DataSourceSwitch.setMainDataSourceType(mainDataSourceType);
+
+			Map<String, Object> parameters = new HashMap<String,Object>();
+			// 判断是否包含自定义参数
+			parameters.put("dbTable", dataSourceName);
+			parameters.put("startDate", stime);
+			parameters.put("endDate", etime);
+			parameters.put("name", name);
+			parameters.put("id", id);
+			parameters.put("gameType", gameType);
+			Double totals = taxesInviteDayService.queryAgentAmountTotal(parameters);
+			return totals == null?0:totals;
+		} catch (Exception e)
+		{
+			throw new SystemException(e);
+		}
+
+	}
+
 	@RequestMapping("toAgentCountListUi.html")
 	public String toAgentCountListUi(String id,Model model){
 		model.addAttribute("id",id);

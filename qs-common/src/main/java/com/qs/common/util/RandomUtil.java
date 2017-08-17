@@ -187,5 +187,25 @@ public class RandomUtil {
 		return sb.toString();
 	}
 
+	/**
+	 * @Author:zun.wei , @Date:2017/8/17 19:53
+	 * @Description:生成随机授权码
+	 * @return
+	 */
+	public static int generateAuthCode() {
+		StringBuffer sb = new StringBuffer();
+		Random random = new Random();
+		char cc[] = new char[8];
+		cc[0] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		cc[1] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		cc[2] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		cc[3] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		cc[4] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		cc[5] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		cc[6] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		cc[7] = NUMBERCHAR.charAt(random.nextInt(NUMBERCHAR.length()));
+		sb.append(cc);
+		return Integer.parseInt(sb.toString());
+	}
 
 }

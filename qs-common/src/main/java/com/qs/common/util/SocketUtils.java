@@ -327,7 +327,7 @@ public class SocketUtils {
                 //return recvInt > 0 ? Boolean.TRUE : Boolean.FALSE;
             } else {
                 byte[] buffer = new byte[len];
-                if (len < 100) socket.getInputStream().read(buffer, 0, len);
+                if (len < 800) socket.getInputStream().read(buffer, 0, len);
                 return null;
                 //return Boolean.FALSE;
             }
@@ -368,7 +368,7 @@ public class SocketUtils {
                 return "r_" + recvInt + "_" + cmd + "_" + recvInt1;
             } else {
                 byte[] buffer = new byte[len];
-                if (len < 100) socket.getInputStream().read(buffer, 0, len);
+                if (len < 800) socket.getInputStream().read(buffer, 0, len);
                 return null;
                 //return Boolean.FALSE;
             }

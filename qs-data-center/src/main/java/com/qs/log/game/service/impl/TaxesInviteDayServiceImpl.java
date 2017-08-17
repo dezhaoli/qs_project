@@ -29,6 +29,11 @@ import com.qs.log.game.service.ITaxesInviteDayService;
 @Service
 public class TaxesInviteDayServiceImpl implements ITaxesInviteDayService
 {
+	@Override
+	public Double queryAgentAmountTotal(Map<String, Object> parameters) {
+		return taxesInviteDayMapper.queryAgentAmountTotal(parameters);
+	}
+
 	@Resource
 	private TaxesInviteDayMapper taxesInviteDayMapper;
 	@Resource

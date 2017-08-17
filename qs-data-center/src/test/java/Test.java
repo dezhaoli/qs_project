@@ -1,9 +1,8 @@
+import com.qs.common.util.HttpClientUtil;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
-import com.qs.common.util.HttpClientUtil;
-import com.qs.common.util.crypto.MD5;
 
 /*
  * 文件名：Test.java	 
@@ -23,18 +22,40 @@ public class Test
 	private static final String key = "Fk$M$EbTAZqdK!BV";
 	public static void main(String[] args)
 	{
+		/*Map map = new HashMap();
+		map.put("logType", "3");
+		map.put("mid", "555");
+		map.put("appId", "106");
+		map.put("loginTime", "");
+		map.put("ip", "www.baidu.com");
+		map.put("lgtm", "");
+		map.put("mtime", "");
+		map.put("extend1", "长安县");
+		map.put("extend2", "太乙镇");*/
+
 		Map map = new HashMap();
+
 		map.put("logType", "5");
-		map.put("mid", "123");
+		map.put("mid", "3234");
 		map.put("appId", "107");
-		map.put("playId", "8");
-		map.put("playName", "广东玩法3");
+		map.put("createRoomTime",new Date());
+		map.put("playId", "222");
+		map.put("playName", "贵阳玩法2");
 		map.put("playNum", "1");
-		map.put("gold", "16");
-		map.put("createRoomTime", "1489751719");
-		//map.put("playName", "推到跑胡子5");
-		
-		
+		map.put("gold", "1");
+
+
+		/*map.put("logType", "4");
+		map.put("mid", "666");
+		map.put("appId", "106");
+		map.put("loginTime", "");
+		map.put("ip", "www.baidu.com");
+		map.put("lgtm", "");
+		map.put("mtime", "");
+		map.put("gameStartTime", "");
+		map.put("gameStopTime", "");
+		map.put("extend1", "长安县");
+		map.put("extend2", "太乙镇");*/
 		
 		/*map.put("login_time", new Date());
 		map.put("logout_time", new Date());*/
@@ -46,7 +67,7 @@ public class Test
 		try{
 		String res = "";
 		for(int i =0;i<1;i++){
-			 res = HttpClientUtil.httpClientByPost("http://192.168.1.92:8080/sync-producer/dataCenter/dataCenterLogDispatch.html",map);
+			 res = HttpClientUtil.httpClientByPost("http://datacenter.longzupoker.com:8888/datacenter/dataCenter/dataCenterLogDispatch.html",map);
 		}
 		System.out.println(res);
 		}catch(Exception e){

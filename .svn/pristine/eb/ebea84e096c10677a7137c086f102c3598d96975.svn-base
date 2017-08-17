@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.log.game.mapper.TaxesInviteDayMapper" >
+	<resultMap id="BaseResultMap" type="com.qs.log.game.model.TaxesInviteDay" >
+		<result column="mid" property="mid" jdbcType="INTEGER" />
+		<result column="date" property="date" jdbcType="DATE" />
+		<result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+		<result column="invitetotal" property="invitetotal" jdbcType="INTEGER" />
+		<result column="parentid" property="parentid" jdbcType="INTEGER" />
+
+		<result column="bizid" property="bizid" jdbcType="INTEGER" />
+		<result column="gametype" property="gametype" jdbcType="INTEGER" />
+		<result column="granttotal" property="granttotal" jdbcType="INTEGER" />
+		<result column="paytotal" property="paytotal" jdbcType="DECIMAL" />
+		<result column="date" property="date" jdbcType="DATE" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="business_name" property="businessName" jdbcType="VARCHAR" />
+		<result column="endDate" property="endDate" jdbcType="VARCHAR" />
+		<result column="startDate" property="startDate" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="queryBusinessListByPage" parameterType="map" resultMap="BaseResultMap">
+		select m.id bizid,m.name,e.date,IFNULL(sum(e.paytotal),0) paytotal,
+		IFNULL(sum(e.granttotal),0) granttotal
+		from ${stat}.player_pay_day e right join ${gameType}.memberbusiness m on
+		(e.bizid = m.id
+		<!--<choose>
+			<when test="gameCode == 1">
+				and  e.gametype in  (0,1)
+			</when>
+			<otherwise>
+				and  e.gametype = #{gameCode,jdbcType=INTEGER}
+			</otherwise>
+		</choose>-->
+				and  e.gametype = #{gameCode,jdbcType=INTEGER}
+		)
+
+		<where>
+			<!-- 公司责任人数据权限查询 -->
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and m.id in
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+							${id}
+						</foreach>
+					</when>
+					<otherwise>
+						and m.id=0
+					</otherwise>
+				</choose>
+			</if>
+			<!-- 普通商务数据权限查询 -->
+			<if test="ifBusiness == 1">
+				<choose>
+					<when test="businessIdList2 != null">
+						and m.id in
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+							${id}
+						</foreach>
+					</when>
+					<otherwise>
+						and m.id=0
+					</otherwise>
+				</choose>
+			</if>
+			<!-- 页面  按照分公司条件查询  -->
+			<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and m.id in
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+							${id}
+						</foreach>
+					</when>
+					<otherwise>
+						and m.id=0
+					</otherwise>
+				</choose>
+			</if>
+			<!--页面   按照商务条件查询  -->
+			<if test="businessId != null and businessId != '' and businessId != 'null'">
+				and m.id = #{businessId}
+			</if>
+
+			and e.date &lt; date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and e.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+		</where>
+		group by m.id
+		order by m.id
+	</select>
+
+
+	<select id="queryBusinessAmountTotal" parameterType="map" resultType="Double">
+		select sum(e.paytotal) paytotal
+		from ${stat}.player_pay_day e right join ${gameType}.memberbusiness m on
+		(e.bizid = m.id
+		<!--<choose>
+			<when test="gameCode == 1">
+				and  e.gametype in  (0,1)
+			</when>
+			<otherwise>
+				and  e.gametype = #{gameCode,jdbcType=INTEGER}
+			</otherwise>
+		</choose>-->
+				and  e.gametype = #{gameCode,jdbcType=INTEGER}
+		)
+
+		<where>
+			<!-- 公司责任人数据权限查询 -->
+			<if test="ifLeader == 1">
+				<choose>
+					<when test="businessIdList != null">
+						and m.id in
+						<foreach collection="businessIdList" item = "id" open="(" separator="," close=")">
+							${id}
+						</foreach>
+					</when>
+					<otherwise>
+						and m.id=0
+					</otherwise>
+				</choose>
+			</if>
+			<!-- 普通商务数据权限查询 -->
+			<if test="ifBusiness == 1">
+				<choose>
+					<when test="businessIdList2 != null">
+						and m.id in
+						<foreach collection="businessIdList2" item = "id" open="(" separator="," close=")">
+							${id}
+						</foreach>
+					</when>
+					<otherwise>
+						and m.id=0
+					</otherwise>
+				</choose>
+			</if>
+			<!-- 页面  按照分公司条件查询  -->
+			<if test="groupId != null and groupId != ''">
+				<choose>
+					<when test="businessIdListByGroup != null">
+						and m.id in
+						<foreach collection="businessIdListByGroup" item = "id" open="(" separator="," close=")">
+							${id}
+						</foreach>
+					</when>
+					<otherwise>
+						and m.id=0
+					</otherwise>
+				</choose>
+			</if>
+			<!--页面   按照商务条件查询  -->
+			<if test="businessId != null and businessId != '' and businessId != 'null'">
+				and m.id = #{businessId}
+			</if>
+			<if test="name != null and name != ''">
+				and m.name like CONCAT('%',#{name},'%')
+			</if>
+			and e.date &lt; date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and e.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+		</where>
+	</select>
+
+	<select id="queryAllBusinessAgent" parameterType="map" resultMap="BaseResultMap">
+		select e.mid,case WHEN  e.realname is null THEN   a.realname else e.realname   end  as name,u.name as  business_name,t.date,sum(t.paytotal) paytotal,sum(t.bindpeople) invitetotal,
+		#{startDate,jdbcType=VARCHAR} as  startDate,#{endDate,jdbcType=VARCHAR} as endDate
+		from taxes_invite_week t
+		right join ${dbTable}.memberagents e on(e.mid=t.mid)
+		inner join ${gameType}.memberbusiness u on u.id=e.belongid
+		LEFT JOIN ${gameType}.common_agents_info a ON e.sitemid = a.sitemid
+		<where>
+			and t.date &lt;  date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day)
+			and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+		</where>
+		group by e.mid
+		order by business_name
+	</select>
+	<select id="queryAgentListByPage" parameterType="map" resultMap="BaseResultMap">
+		select e.mid,case WHEN  e.realname is null THEN   a.realname else e.realname   end  as name,u.name as  business_name,t.date,sum(t.paytotal) paytotal,sum(t.invitetotal) invitetotal,
+		#{startDate,jdbcType=VARCHAR} as  startDate,#{endDate,jdbcType=VARCHAR} as endDate
+		from taxes_invite t
+		right join ${dbTable}.memberagents e on(e.mid=t.mid)
+		inner join ${gameType}.memberbusiness u on u.id=e.belongid
+		LEFT JOIN ${gameType}.common_agents_info a ON e.sitemid = a.sitemid
+		<where>
+			<if test="name != null and name != ''">
+				and e.realname like CONCAT('%',#{name},'%')
+			</if>
+			and t.date &lt;  date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			<if test="id != null and  id != ''">
+				and e.belongid = #{id,jdbcType=INTEGER}
+			</if>
+		</where>
+		group by e.mid
+		order by e.mid
+	</select>
+
+
+	<select id="queryAgentAmountTotal" parameterType="map" resultType="Double">
+		select sum(t.paytotal) paytotal
+		from taxes_invite t
+		right join ${dbTable}.memberagents e on(e.mid=t.mid)
+		inner join ${gameType}.memberbusiness u on u.id=e.belongid
+		<where>
+			<if test="name != null and name != ''">
+				and e.realname like CONCAT('%',#{name},'%')
+			</if>
+			and t.date &lt;  date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			and e.belongid = #{id,jdbcType=INTEGER}
+		</where>
+	</select>
+</mapper>

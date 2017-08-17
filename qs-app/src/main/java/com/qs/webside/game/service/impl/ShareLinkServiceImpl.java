@@ -127,8 +127,11 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
                             , new Object[]{roomid,mid,socketUtils, map,gameType}
                             , 5);
                 } catch (Exception e) {
-                    map.put(CommonContants.SUCCESS, 0);
-                    map.put(CommonContants.ERROR, -66);//c++服务器返回加入房间超时
+                    map.put(CommonContants.ERROR, -5);//c++服务器返回加入房间超时
+                    map.put(CommonContants.MESSAGE, "加入房间超时");
+                }finally {
+                    socketUtils.close();
+                    log.debug("----------::join room socket had been closed！");
                 }
             } else {
                 map.put(CommonContants.SUCCESS, Boolean.FALSE);
@@ -142,8 +145,6 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
             map.put(CommonContants.MESSAGE, "登录请求失败");
             log.debug("share link login fail ---------:: please confirm parameters !");
         }
-        socketUtils.close();
-        log.debug("----------::join room socket had been closed！");
     }
 
     public void checkTimeoutRecevice(int roomid, int mid, SocketUtils socketUtils, Map<String, Object> map, int gameType) throws IOException {

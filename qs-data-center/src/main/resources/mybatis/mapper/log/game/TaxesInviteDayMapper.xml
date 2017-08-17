@@ -24,14 +24,15 @@
 		IFNULL(sum(e.granttotal),0) granttotal
 		from ${stat}.player_pay_day e right join ${gameType}.memberbusiness m on
 		(e.bizid = m.id
-		<choose>
+		<!--<choose>
 			<when test="gameCode == 1">
 				and  e.gametype in  (0,1)
 			</when>
 			<otherwise>
 				and  e.gametype = #{gameCode,jdbcType=INTEGER}
 			</otherwise>
-		</choose>
+		</choose>-->
+				and  e.gametype = #{gameCode,jdbcType=INTEGER}
 		)
 
 		<where>
@@ -93,14 +94,15 @@
 		select sum(e.paytotal) paytotal
 		from ${stat}.player_pay_day e right join ${gameType}.memberbusiness m on
 		(e.bizid = m.id
-		<choose>
+		<!--<choose>
 			<when test="gameCode == 1">
 				and  e.gametype in  (0,1)
 			</when>
 			<otherwise>
 				and  e.gametype = #{gameCode,jdbcType=INTEGER}
 			</otherwise>
-		</choose>
+		</choose>-->
+				and  e.gametype = #{gameCode,jdbcType=INTEGER}
 		)
 
 		<where>
@@ -189,5 +191,20 @@
 		</where>
 		group by e.mid
 		order by e.mid
+	</select>
+
+
+	<select id="queryAgentAmountTotal" parameterType="map" resultType="Double">
+		select sum(t.paytotal) paytotal
+		from taxes_invite t
+		right join ${dbTable}.memberagents e on(e.mid=t.mid)
+		inner join ${gameType}.memberbusiness u on u.id=e.belongid
+		<where>
+			<if test="name != null and name != ''">
+				and e.realname like CONCAT('%',#{name},'%')
+			</if>
+			and t.date &lt;  date_sub(STR_TO_DATE(#{endDate,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and t.date &gt;= STR_TO_DATE(#{startDate,jdbcType=VARCHAR},'%Y-%m-%d')
+			and e.belongid = #{id,jdbcType=INTEGER}
+		</where>
 	</select>
 </mapper>

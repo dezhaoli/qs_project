@@ -30,4 +30,12 @@ public interface IRobotFriendService {
      */
     RobotFriends queryRobotFriendByCodeAndMid(Map<String, Object> parameters);
 
+    /**
+     * @Author:zun.wei , @Date:2017/8/17 16:45
+     * @Description:检查代理商是否已经授权激活加这个机器人做好友过。
+     * @param parameters code：代理商mid,roboName 机器人昵称
+     * @return 查找到的条数
+     */
+    int checkAgentHasAuth(Map<String, Object> parameters);
+
 }

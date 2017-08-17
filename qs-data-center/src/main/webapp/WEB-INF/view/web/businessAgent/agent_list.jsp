@@ -47,6 +47,9 @@
 			style="opacity: 1; z-index: 0;">
 			<div class="widget-header">
 				<h4 class="widget-title lighter">代理商业绩统计</h4>
+				<strong style="color:green; margin-left: 150px">
+					代理商团队充值总金额：<span id="agentCountTotals"></span>
+				</strong>
 				<div class="widget-toolbar no-border">
 					<a href="#" data-action="fullscreen" class="orange2"> 
 						<i class="ace-icon fa fa-arrows-alt"></i>

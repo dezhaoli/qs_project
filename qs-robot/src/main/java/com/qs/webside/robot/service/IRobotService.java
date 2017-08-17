@@ -45,4 +45,11 @@ public interface IRobotService {
      */
     String saveToken(Integer mid,Integer gp,Integer userGp,String ip,int gameType);
 
+    /**
+     * @Author:zun.wei , @Date:2017/8/17 19:49
+     * @Description:获取一个随机的不重复的授权码
+     * @return 授权码
+     */
+    int getOneRandomAuthCode();
+
 }

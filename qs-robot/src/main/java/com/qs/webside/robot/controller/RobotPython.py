@@ -117,19 +117,41 @@ def text_reply(msg):
     #                 print(rd)
     if str(msg['Content']) == '开房':
         fun = itchat.search_friends(userName=msg['ActualUserName'])
-        remark_name = fun['RemarkName']
+        try:
+            remark_name = fun['RemarkName']
+        except:
+            remark_name = ''
         li = remark_name.split('_', 2)
         if remark_name.startswith('QS_') and len(li) == 3 and check_int(li[1]) and check_int(li[2]):
-            robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
-            d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
-            rd = send_post_request_to_java(msg_request_open_room, data=d)
-            print(rd)
-            rr = eval(rd)
-            # url = 'http://192.168.1.128:8090/app/api/shareLink/joinViewUi.html?roomtitle=%s&jushu=%s&roomid=%s' % \
-            #       (rr[data]['roomtitle'], rr[data]['jushu'], rr[data]['roomid'])
-            if int(rr[success]) == 1:  # 成功
-                itchat.send('开房成功！点击此链接加入房间：' + rr[data]
-                            , msg['FromUserName'])
+            try:
+                qunzhuUserName = msg['User']['ChatRoomOwner']
+            except:
+                qunzhuUserName = ''
+            qunzhu = itchat.search_friends(userName=qunzhuUserName)
+            if qunzhu is not None:
+                qunzhu_rn = qunzhu['RemarkName']
+                qunzhu_li = qunzhu_rn.split('_', 2)
+                if qunzhu_rn.startswith('QS_') and len(qunzhu_li) == 3 and check_int(qunzhu_li[1]) and check_int(
+                        qunzhu_li[2]):
+                    if qunzhu_li[2] == li[1]:
+                        robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                        d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']),
+                             "robName": robot_nickname}
+                        rd = send_post_request_to_java(msg_request_open_room, data=d)
+                        print('has ChatRoomOwner response',rd)
+                        rr = eval(rd)
+                        if int(rr[success]) == 1:  # 成功
+                            itchat.send('开房成功！点击此链接加入房间：' + rr[data]
+                                        , msg['FromUserName'])
+            else:
+                robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
+                rd = send_post_request_to_java(msg_request_open_room, data=d)
+                print('not has ChatRoomOwner response',rd)
+                rr = eval(rd)
+                if int(rr[success]) == 1:  # 成功
+                    itchat.send('开房成功！点击此链接加入房间：' + rr[data]
+                                , msg['FromUserName'])
 
 
 def itchatProcess():

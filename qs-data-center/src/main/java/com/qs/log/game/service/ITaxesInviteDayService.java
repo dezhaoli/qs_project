@@ -7,11 +7,11 @@
  */
 package com.qs.log.game.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.qs.log.game.model.MajiangGameRecord;
 import com.qs.log.game.model.TaxesInviteDay;
+
+import java.util.List;
+import java.util.Map;
 
 /** 
  * @ClassName: ITaxesInviteDayService 
@@ -32,5 +32,6 @@ public interface ITaxesInviteDayService
 	Double queryBusinessAmountTotal(Map<String, Object> parameters);
 
 	List<TaxesInviteDay> queryAllBusinessAgent(Map<String, Object> parameters);
-	
+
+    Double queryAgentAmountTotal(Map<String, Object> parameters);
 }

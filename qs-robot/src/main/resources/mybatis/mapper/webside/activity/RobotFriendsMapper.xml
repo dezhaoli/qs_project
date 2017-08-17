@@ -156,7 +156,14 @@
     from robot_friends
     where
     mid = #{addMid}
-    and auth_code = #{code} limit 1
+    and auth_code = #{code} and rob_name = #{roboName} limit 1
+  </select>
+
+  <select id="checkAgentHasAuth" resultType="int" parameterType="map" >
+    select
+    count(id)
+    from robot_friends
+    where mid = #{code} and rob_name = #{roboName} limit 1
   </select>
 
 </mapper>

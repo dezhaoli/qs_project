@@ -1,0 +1,463 @@
+package com.qs.common.util;
+
+import com.qs.common.constant.CommonContants;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.lang.reflect.Method;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+/**
+ * Created by zun.wei on 2017/7/18 15:33.
+ * Description:用于发送、接收个性socket请求给c++；
+ */
+public class SocketUtils {
+
+
+    private byte[] buffer;
+
+    private Integer packetSize = 0;
+
+    private Integer mid = 0;
+
+    private Integer cmdType = 0;
+
+    private Socket socket = new Socket();
+
+    private List<String> strings = new ArrayList<String>();
+
+    private List<Integer> integers = new ArrayList<Integer>();
+
+    private int nowWriteIndex = 0;
+
+    private int strTypeIndex = 0;
+
+    private int intTypeIndex = 0;
+
+    private List<String> type = new ArrayList<>();
+
+
+    /**
+     * @param ip   IP地址
+     * @param port 端口
+     * @return
+     * @Author:zun.wei , @Date:2017/7/19 11:46
+     * @Description:创建socket
+     */
+    public SocketUtils createSocket(String ip, int port) {
+        try {
+            this.socket = new Socket(ip, port);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    /**
+     * @param mid 游戏mid
+     * @return
+     * @Author:zun.wei , @Date:2017/7/19 11:46
+     * @Description:发送到哪个用户
+     */
+    public SocketUtils fromUserMid(Integer mid) {
+        packetSize += 4;
+        this.mid = mid;
+        return this;
+    }
+
+    /**
+     * @param parameter 参数
+     * @return
+     * @Author:zun.wei , @Date:2017/7/19 11:47
+     * @Description:写String类型的消息
+     */
+    public SocketUtils setStrParam(String parameter) {
+        strings.add(parameter);
+        parameter += '\0';
+        packetSize += parameter.getBytes().length + 4;
+        type.add(0 + "_" + strTypeIndex++);//String 用0表示
+        return this;
+    }
+
+    /**
+     * @param parameter 参数
+     * @return
+     * @Author:zun.wei , @Date:2017/7/19 11:47
+     * @Description:写Integer类型的消息
+     */
+    public SocketUtils setIntParam(Integer parameter) {
+        packetSize += 4;
+        integers.add(parameter);
+        type.add(1 + "_" + intTypeIndex++);//Integer 用1表示
+        return this;
+    }
+
+
+    private void buildUserMid() {
+        if (mid != null) {
+            nowWriteIndex += 6;
+            System.arraycopy(toLH(mid), 0, buffer, nowWriteIndex, 4);//拷贝到buffer的第6位开始（前六位是包头）
+            nowWriteIndex += 4;
+        } else {
+            nowWriteIndex += 6;
+        }
+    }
+
+    private void buildParams() {
+        if (type.size() > 0) {
+            for (String t : type) {
+                String[] tt = t.split("_");
+                int t1 = Integer.parseInt(tt[0]);
+                int t2 = Integer.parseInt(tt[1]);
+                switch (t1) {
+                    case 0:buildStrParam(t2);
+                        break;
+                    case 1:buildIntParam(t2);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+    }
+
+    private void buildStrParam(int index) {//String类型
+        String msg = strings.get(index);
+        msg += '\0';
+        Integer msgLen = msg.getBytes().length;
+        System.arraycopy(toLH(msgLen), 0, buffer, nowWriteIndex, 4);//告知文本长度
+        System.arraycopy(msg.getBytes(), 0, buffer, nowWriteIndex += 4, msgLen);//告知文本内容
+        nowWriteIndex += msgLen;
+    }
+
+    private void buildIntParam(int index) {//Integer类型
+        System.arraycopy(toLH(integers.get(index)), 0, buffer, nowWriteIndex, 4);//告知长度
+        nowWriteIndex += 4;
+    }
+
+    /**
+     * @param cmdType
+     * @return
+     * @Author:zun.wei , @Date:2017/7/20 17:37
+     * @Description:C ++ 命令
+     */
+    public SocketUtils setCmd(int cmdType) {
+        this.packetSize = 0;
+        this.mid = null;
+        this.strings.clear();
+        this.integers.clear();
+        this.buffer = new byte[0];
+        this.cmdType = cmdType;
+        this.nowWriteIndex = 0;
+        this.type.clear();
+        this.intTypeIndex = 0;
+        this.strTypeIndex = 0;
+        return this;
+    }
+
+    /**
+     * @return
+     * @Author:zun.wei , @Date:2017/7/19 11:47
+     * @Description:构建
+     */
+    //顺序：包头，mid,包体长度，String类型，Integer类型；
+    public SocketUtils build() {
+        this.buffer = new byte[6 + packetSize];//包头6位
+        this.buffer[0] = 'Q';
+        this.buffer[1] = 'S';
+        this.buffer[2] = (byte) (packetSize & 0xff);
+        this.buffer[3] = (byte) (packetSize >> 8 & 0xff);
+        this.buffer[4] = (byte) (cmdType & 0xff);
+        this.buffer[5] = (byte) (cmdType >> 8 & 0xff);
+
+        buildUserMid();
+        buildParams();
+        return this;
+    }
+
+    /**
+     * @return
+     * @Author:zun.wei , @Date:2017/7/19 11:48
+     * @Description:执行写.
+     */
+    public boolean writeToServer() {
+        if (null != socket) {
+            try {
+                socket.getOutputStream().write(buffer);
+            } catch (IOException e) {
+                e.printStackTrace();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void close() throws IOException {
+        if (null != socket) {
+            socket.shutdownOutput();
+            socket.shutdownInput();
+            socket.close();
+        }
+    }
+
+    /**
+     * 将int转为低字节在前，高字节在后的byte数组
+     */
+    private byte[] toLH(int n) {
+        byte[] b = new byte[4];
+        b[0] = (byte) (n & 0xff);
+        b[1] = (byte) (n >> 8 & 0xff);
+        b[2] = (byte) (n >> 16 & 0xff);
+        b[3] = (byte) (n >> 24 & 0xff);
+        return b;
+    }
+
+    private int bytes2Integer(byte[] byteVal) {
+        int result = 0;
+        for (int i = 0; i < byteVal.length; i++) {
+            int tmpVal = (byteVal[i] << (8 * (3 - i)));
+            switch (i) {
+                case 0:
+                    tmpVal = tmpVal & 0xFF000000;
+                    break;
+                case 1:
+                    tmpVal = tmpVal & 0x00FF0000;
+                    break;
+                case 2:
+                    tmpVal = tmpVal & 0x0000FF00;
+                    break;
+                case 3:
+                    tmpVal = tmpVal & 0x000000FF;
+                    break;
+            }
+            result = result | tmpVal;
+        }
+        return result;
+    }
+
+    /**
+     * @return
+     * @throws IOException
+     * @Author:zun.wei , @Date:2017/7/19 19:28
+     * @Description:获取socket返回的Integer数据
+     */
+    public Integer receviveInteger() throws IOException {
+        InputStream inputStream = this.socket.getInputStream();
+        byte[] recvHead = new byte[2];
+        inputStream.read(recvHead, 0, 2);
+        String DataStr = new String(recvHead);
+        System.out.println("conpany abbreviation=======::" + DataStr);
+
+        byte[] recvPacketSize = new byte[2];
+        inputStream.read(recvPacketSize, 0, 2);
+        int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
+        System.out.println("len=======::" + len);
+
+        byte[] recvCmd = new byte[2];
+        inputStream.read(recvCmd, 0, 2);
+        int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
+        System.out.println("cmd===::" + cmd);
+
+        byte[] recvData = new byte[4];
+        inputStream.read(recvData, 0, 4);
+        System.out.println("integer data ====::" + bytes2Integer(toLH(bytes2Integer(recvData))));
+        return bytes2Integer(toLH(bytes2Integer(recvData)));
+    }
+
+    public String receviveString() throws IOException {
+        InputStream inputStream = this.socket.getInputStream();
+        byte[] recvHead = new byte[2];
+        inputStream.read(recvHead, 0, 2);
+        String DataStr = new String(recvHead);
+        System.out.println("conpany abbreviation=======::" + DataStr);
+
+        byte[] recvPacketSize = new byte[2];
+        inputStream.read(recvPacketSize, 0, 2);
+        int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
+        System.out.println("len=======::" + len);
+
+        byte[] recvCmd = new byte[2];
+        inputStream.read(recvCmd, 0, 2);
+        int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
+        System.out.println("cmd===::" + cmd);
+
+        byte[] recvData = new byte[len];
+        inputStream.read(recvData, 0, len);
+        String str = new String(recvData);
+        System.out.println("string data ====::" + str);
+        return str;
+    }
+
+    public String recviceJoinRoomResult() throws IOException {
+        InputStream inputStream = this.socket.getInputStream();
+        byte[] recvHead = new byte[2];
+        inputStream.read(recvHead, 0, 2);
+        String DataStr = new String(recvHead);
+        System.out.println("conpany abbreviation=======::" + DataStr);
+
+        if ("QS".equals(DataStr)) {
+            byte[] recvPacketSize = new byte[4];
+            inputStream.read(recvPacketSize, 0, 2);
+            int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
+            System.out.println("len=======::" + len);
+
+            byte[] recvCmd = new byte[2];
+            inputStream.read(recvCmd, 0, 2);
+            int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
+            System.out.println("cmd===::" + cmd);
+
+            if (cmd == 1103 || cmd == 1001) {
+                byte[] recvData = new byte[4];
+                inputStream.read(recvData, 0, 4);
+                int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
+                System.out.println("integer data ====::" + recvInt);
+                return "r_" + recvInt + "_" + cmd;
+                //return recvInt > 0 ? Boolean.TRUE : Boolean.FALSE;
+            } else {
+                byte[] buffer = new byte[len];
+                if (len < 800) socket.getInputStream().read(buffer, 0, len);
+                return null;
+                //return Boolean.FALSE;
+            }
+        } else {
+            return null;
+        }
+    }
+
+
+    public String recviceOpenRoomResult() throws IOException {
+        InputStream inputStream = this.socket.getInputStream();
+        byte[] recvHead = new byte[2];
+        inputStream.read(recvHead, 0, 2);
+        String DataStr = new String(recvHead);
+        System.out.println("conpany abbreviation=======::" + DataStr);
+
+        if ("QS".equals(DataStr)) {
+            byte[] recvPacketSize = new byte[4];
+            inputStream.read(recvPacketSize, 0, 2);
+            int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
+            System.out.println("len=======::" + len);
+
+            byte[] recvCmd = new byte[2];
+            inputStream.read(recvCmd, 0, 2);
+            int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
+            System.out.println("cmd===::" + cmd);
+
+            if (cmd == 1001 || cmd == 1002 || cmd == 1005 || cmd == 1003) {
+                byte[] recvData = new byte[4];
+                inputStream.read(recvData, 0, 4);
+                int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
+                System.out.println("integer data ====::" + recvInt);
+
+                byte[] recvData1 = new byte[4];
+                inputStream.read(recvData1, 0, 4);
+                int recvInt1 = bytes2Integer(toLH(bytes2Integer(recvData1)));
+                System.out.println("integer data1 ====::" + recvInt1);
+                return "r_" + recvInt + "_" + cmd + "_" + recvInt1;
+            } else {
+                byte[] buffer = new byte[len];
+                if (len < 800) socket.getInputStream().read(buffer, 0, len);
+                return null;
+                //return Boolean.FALSE;
+            }
+        } else {
+            return null;
+        }
+
+    }
+
+    /***
+     * 方法参数说明
+     *
+     * @param target
+     *            调用方法的当前对象
+     * @param methodName
+     *            方法名称
+     * @param parameterTypes
+     *            调用方法的参数类型
+     * @param params
+     *            参数 可以传递多个参数
+     * @param timeout
+     *            超时时间，秒为单位
+     *
+     */
+    public static Object callMethod(final Object target,
+                                    final String methodName,
+                                    final Class<?>[] parameterTypes,//SECONDS
+                                    final Object[] params,int timeout) {
+
+        ExecutorService executorService = Executors.newSingleThreadExecutor();
+        FutureTask<String> future = new FutureTask<String>(new Callable<String>() {
+            public String call() throws Exception {
+                String value = null;
+                try {
+                    Method method = null;
+                    method = target.getClass().getDeclaredMethod(methodName, parameterTypes);
+                    Object returnValue = method.invoke(target, params);
+                    value = returnValue != null ? returnValue.toString() : null;
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw e;
+                }
+                return value;
+            }
+        });
+
+        executorService.execute(future);
+        String result = null;
+        try {
+            /** 获取方法返回值 并设定方法执行的时间为10秒 */
+            result = future.get(timeout, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            future.cancel(true);
+            System.out.println("方法执行中断");
+        } catch (ExecutionException e) {
+            future.cancel(true);
+            System.out.println("Excuti on异常");
+        } catch (TimeoutException e) {
+            future.cancel(true);
+            //e.printStackTrace();
+            throw new RuntimeException("invoke timeout", e);
+        }
+        executorService.shutdownNow();
+        return result;
+    }
+
+   /* public static void main(String[] args) throws IOException {
+        SocketUtils socketUtils = new SocketUtils().createSocket("192.168.1.142", 9040).setCmd(1000)//9040
+                .fromUserMid(52171)
+                .setStrParam("52171-1500549914331-101-48dcfd46e437f83697d34e8939c9cedc-0-6")
+                .setIntParam(101)
+                .setIntParam(2400)
+                .build();
+        boolean result = socketUtils.writeToServer();
+        System.out.println("result = " + result);
+        if (socketUtils.receviveInteger() == 0) {
+            boolean joinRequestResult = socketUtils.setCmd(1103).setIntParam(100009).build().writeToServer();
+            System.out.println("joinResult = " + joinRequestResult);
+            long t1 = System.currentTimeMillis();
+            while (joinRequestResult) {
+                long t2 = System.currentTimeMillis();
+                if (t2 - t1 > 5000) {//五秒钟
+                    break;
+                } else {
+                    if (socketUtils.recviceJoinRoomResult()) break;
+                }
+            }
+        }
+        socketUtils.close();
+    }*/
+
+}

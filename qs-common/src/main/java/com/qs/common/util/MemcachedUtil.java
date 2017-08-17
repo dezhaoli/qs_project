@@ -9,11 +9,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.TimeoutException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+
+import com.qs.common.constant.CommonContants;
 
 import net.rubyeye.xmemcached.KeyIterator;
 import net.rubyeye.xmemcached.MemcachedClient;
@@ -178,11 +181,11 @@ public class MemcachedUtil {
 	  * @time:2017年8月15日
 	  */
     @SuppressWarnings("deprecation")
-	public static boolean synData(String url,String toUrl) {  
+	public static Map<String, Object> synData(String url,String toUrl,String like ,Map<String, Object> result) {  
 		   
 		    //String url="192.168.1.128:11216";
 	        MemcachedClientBuilder builder = new XMemcachedClientBuilder(AddrUtil  
-	                .getAddresses("192.168.1.128:11215"));  
+	                .getAddresses(url));  
 	        MemcachedClient memcachedClient = null;  
 	        
 	        MemcachedClientBuilder builder2 = new XMemcachedClientBuilder(AddrUtil.getAddresses(toUrl));  
@@ -193,17 +196,17 @@ public class MemcachedUtil {
 	            memcachedClient = builder.build();  
 	            // 取所有key  
 	            KeyIterator it = memcachedClient.getKeyIterator(AddrUtil  
-	                    .getOneAddress("192.168.1.128:11215"));  
+	                    .getOneAddress(url));  
 	            while (it.hasNext()) {  
 	                String key = it.next();  
 	                //PRIVATEROOM1|
-	                if(key.contains("TMGMCOM")){
-	                 count++;
+	                if(key.contains(like)){
 	                 System.out.println("key------:" + key);  
 	                 Object o= memcachedClient.get(key);
 //	                 new Thread(new NewThread(url,key, o)).start();  
 //	                 setMemcached(url, key, o , 0);
 	                 memcachedClient2.set(key, 0, o);
+	                 count++;
 	                 /*if(o instanceof List)
 	                 System.out.println("o---List--:" + o);  
 	                 if(o instanceof String){
@@ -211,34 +214,36 @@ public class MemcachedUtil {
 	                 }*/
 	                }
 	            }
+	           
+	            result.put(CommonContants.SUCCESS, true);
 	            System.out.println("Memcached  count====:"+count);	  
-	            return true;  
 	        } catch (MemcachedException e) {  
 	            System.err.println("MemcachedClient operation fail");  
+	            result.put(CommonContants.SUCCESS, false);
 	            e.printStackTrace();  
-	            return false;  
 	        } catch (TimeoutException e) {  
-	            System.err.println("MemcachedClient operation timeout");  
+	            System.err.println("MemcachedClient operation timeout");
+	            result.put(CommonContants.SUCCESS, false); 
 	            e.printStackTrace();  
-	            return false;  
 	        } catch (InterruptedException e) {  
 	            e.printStackTrace();  
-	            return false;  
+	            result.put(CommonContants.SUCCESS, false);
 	        } catch (IOException e) { 
+	        	result.put(CommonContants.SUCCESS, false);
 	            e.printStackTrace();  
-	            return false;  
 	        }finally {
 	        	try {
+	        	    result.put("count", count);
 	        		memcachedClient.shutdown();  
 					memcachedClient2.shutdown();
-					
 				} catch (IOException e) {
 					System.err.println("Shutdown MemcachedClient fail");  
+					result.put(CommonContants.SUCCESS, false);
 		            e.printStackTrace();  
-		            return false;  
 				}
 			}
 			
+	        return result;  
 	    } 
 	
 	

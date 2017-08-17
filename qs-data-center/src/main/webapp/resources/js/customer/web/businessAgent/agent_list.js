@@ -107,11 +107,13 @@ $(function() {
     grid.parameters['startDate'] = startDate;
     grid.parameters['endDate'] = endDate;
     grid.parameters['id'] = id;
+    queryAgentAmountTotals(startDate,endDate,id,$("#name").val());
     grid.load();
     $("#btnSearch").click(customSearch);
     
     //注册回车键事件
     document.onkeypress = function(e){
+
     var ev = document.all ? window.event : e;
         if(ev.keyCode==13) {
             customSearch();
@@ -131,6 +133,7 @@ function customSearch() {
     grid.parameters['id'] = id;
     grid.parameters['startDate'] = startDate;
     grid.parameters['endDate'] = endDate;
+    queryAgentAmountTotals(startDate,endDate,id,$("#name").val());
     grid.refresh(true);
 }
 
@@ -151,4 +154,17 @@ function updateStatus(id,status){
 
 var lookDetail = function(_val){
 	webside.common.loadPage('/memberagents/toUserAddDetailsUi.html?id='+_val+'&date='+date)
+}
+
+
+function queryAgentAmountTotals(stime,etime,id,name){
+    $.ajax({
+        type: "POST",
+        url: sys.rootPath+'/businessCount/queryAgentAmountTotal.html',
+        data:{'stime':stime,'etime':etime,'id':id,'name':name},
+        dataType: "json",
+        success: function(data){
+            $("#agentCountTotals").html(data);
+        }
+    });
 }

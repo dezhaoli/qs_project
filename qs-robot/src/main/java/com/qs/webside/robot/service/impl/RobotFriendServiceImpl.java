@@ -53,4 +53,9 @@ public class RobotFriendServiceImpl implements IRobotFriendService {
         return robotFriendsMapper.queryRobotFriendByCodeAndMid(parameters);
     }
 
+    @Override
+    public int checkAgentHasAuth(Map<String, Object> parameters) {
+        return robotFriendsMapper.checkAgentHasAuth(parameters);
+    }
+
 }

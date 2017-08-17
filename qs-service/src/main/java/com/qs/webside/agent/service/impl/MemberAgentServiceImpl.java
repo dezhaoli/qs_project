@@ -280,6 +280,7 @@ public class MemberAgentServiceImpl implements IMemberAgentService {
 			memberAgents.setSitemid(member.getSitemid());
 			memberAgents.setOpenid(mbf.getIdentity());
 			memberAgents.setAreaid(0);
+			memberAgents.setGlevel(Byte.valueOf("0"));
 			
 			code=this.getNextAgentCode(mbg);
 			memberAgents.setCode(code);

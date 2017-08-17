@@ -313,14 +313,14 @@ public class IndexController extends BaseController {
     }
 	
 	@RequestMapping(value = "synData.html", method = RequestMethod.GET)
-	@ResponseBody
-	public Object synData (HttpServletRequest req, HttpServletResponse rsp) {
-		String url="";
-		String toUrl="";
+	public String synData (HttpServletRequest req, HttpServletResponse rsp,Model modle) {
+		String url="192.168.1.128:11215";
+		String toUrl="192.168.1.128:11216";
+		String like="TMGMCOM";
 		Map<String, Object> map = new HashMap<String, Object>();
-		boolean flag=MemcachedUtil.synData(url,toUrl);
-		map.put(CommonContants.SUCCESS, flag);
-		return null;
+		map=MemcachedUtil.synData(url,toUrl,like,map);
+		modle.addAttribute("resultData", map);
+		return "/WEB-INF/view/web/member/syn_dataResult_show";
 	}
 
 }

@@ -70,7 +70,7 @@
 			<div class="widget-header">
 				<h4 class="widget-title lighter">商务业绩统计</h4>
 				<strong style="color:green; margin-left: 150px">
-						充值总金额：<span id="countTotals"></span>
+						商务充值总金额：<span id="countTotals"></span>
 				</strong>
 				<div class="widget-toolbar no-border">
 					<a href="#" data-action="fullscreen" class="orange2">

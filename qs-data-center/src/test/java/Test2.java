@@ -1,7 +1,6 @@
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /*
@@ -22,7 +21,7 @@ public class Test2
 	
 	public static void main(String[] args) throws ParseException
 	{
-		Date stime = new SimpleDateFormat("yyyy-MM").parse("2014-6");// 定义起始日期
+		/*Date stime = new SimpleDateFormat("yyyy-MM").parse("2014-6");// 定义起始日期
 		Date etime = new SimpleDateFormat("yyyy-MM").parse("2016-5");// 定义结束日期
 		Calendar cd = Calendar.getInstance();// 定义日期实例
 		cd.setTime(stime);// 设置日期起始时间
@@ -32,8 +31,14 @@ public class Test2
 			String str = sdf.format(cd.getTime());
 			System.out.println(str);// 输出日期结果
 			cd.add(Calendar.MONTH, 1);// 进行当前日期月份加1
-		}
-		
+		}*/
+
+		List list = new ArrayList();
+		list.add(1);
+		list.add(2);
+		list = list.subList(1,2);
+		System.out.print(list);
+
 	}
 	
 }

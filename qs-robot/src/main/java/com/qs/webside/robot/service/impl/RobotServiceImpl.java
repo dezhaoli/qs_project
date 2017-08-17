@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.qs.common.constant.AppConstants;
 import com.qs.common.constant.CommonContants;
 import com.qs.common.util.CommonUtils;
+import com.qs.common.util.RandomUtil;
 import com.qs.common.util.SocketUtils;
 import com.qs.common.util.crypto.MD5;
 import com.qs.mainku.game.model.AgentClubMember;
@@ -137,6 +138,15 @@ public class RobotServiceImpl implements IRobotService {
         return mokey;
     }
 
+    @Override
+    public int getOneRandomAuthCode() {
+        while (true) {
+            int ramdomCode = RandomUtil.generateAuthCode();
+            int code = robotMapper.queryCountByAuthCode(ramdomCode);
+            if (code == 0) return ramdomCode;
+        }
+    }
+
     //添加机器人为好友
     private Object handleAddFriend(String data,int gameType) {
         Map<String, Object> map = new HashMap<>();
@@ -147,6 +157,7 @@ public class RobotServiceImpl implements IRobotService {
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("code", code);
         parameters.put("addMid", addMid);
+        parameters.put("roboName", roboName);
         int result = robotMapper.checkAuthCodeOrMidExist(parameters);
         if (result == 0) {//用授权码添加好友
             int acount = memberAgentService.checkAgentIsExist(addMid);
@@ -180,6 +191,12 @@ public class RobotServiceImpl implements IRobotService {
                 return map;
             }
         } else if (result == 1) {//用代理商mid添加
+            int ck = robotFriendService.checkAgentHasAuth(parameters);
+            if (ck < 1) {//代理商并未激活过这个机器人
+                map.put(CommonContants.SUCCESS, 0);
+                map.put(CommonContants.ERROR, -9);
+                return map;
+            }
             int acount = memberAgentService.checkAgentIsExist(code);
             if (acount > 0) {
                 RobotFriends rf = robotFriendService.queryRobotFriendByCodeAndMid(parameters);

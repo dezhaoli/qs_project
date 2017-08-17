@@ -34,4 +34,12 @@ public interface RobotMapper extends IBaseMapper {
      */
     int updateActivationTo1(Robot record);
 
+    /**
+     * @Author:zun.wei , @Date:2017/8/17 19:46
+     * @Description:查询某个授权码是否用过
+     * @param authCode 授权码
+     * @return
+     */
+    int queryCountByAuthCode(int authCode);
+
 }
