@@ -41,9 +41,18 @@ public interface IRobotService {
      * @param mid
      * @param gp
      * @param userGp
-     * @return
+     * @return 
      */
     String saveToken(Integer mid,Integer gp,Integer userGp,String ip,int gameType);
+    
+    
+    /**
+     * @Author:zsf , @Date:2017/8/18 18:24
+     * @Description:根据用户id查询用户是否有机器人的权利
+     * @param Sssskey
+     * @return
+     */
+	int queryUserRobotPower(int mid);
 
     /**
      * @Author:zun.wei , @Date:2017/8/17 19:49

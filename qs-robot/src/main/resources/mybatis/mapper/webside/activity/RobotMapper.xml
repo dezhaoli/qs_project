@@ -22,6 +22,16 @@
     from robot
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <!-- 根据用户id查询用户是否有机器人的权利 -->
+   <select id="queryUserRobotPower"  parameterType="map" resultType="int">
+    select 
+    count(id)
+    from robot
+    where mid = #{mid,jdbcType=INTEGER}
+    and etime &gt; #{date} 
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from robot
     where id = #{id,jdbcType=INTEGER}

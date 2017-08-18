@@ -18,10 +18,7 @@ import com.qs.webside.robot.mapper.RobotMapper;
 import com.qs.webside.robot.model.Robot;
 import com.qs.webside.robot.model.RobotFriends;
 import com.qs.webside.robot.model.RobotOpenRoom;
-import com.qs.webside.robot.service.IRobotFriendService;
-import com.qs.webside.robot.service.IRobotLogService;
-import com.qs.webside.robot.service.IRobotOpenRoomService;
-import com.qs.webside.robot.service.IRobotService;
+import com.qs.webside.robot.service.*;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
 import org.apache.commons.lang.StringUtils;
@@ -32,8 +29,10 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
@@ -79,6 +78,12 @@ public class RobotServiceImpl implements IRobotService {
     @Resource
     private IBaseParamService baseParamService;
 
+    @Resource
+    private IRobotRoomConfigService robotRoomConfigService;
+
+    @Resource
+    private IRobotRoomCfgDfService robotRoomCfgDfService;
+
     @Override
     public int deleteByPrimaryKey(Integer id) {
         return robotMapper.deleteByPrimaryKey(id);
@@ -116,8 +121,59 @@ public class RobotServiceImpl implements IRobotService {
                 return handleAddFriend(data,gameType);
             case 2:// 开房请求
                 return handleOpenRoomRequest(data, gameType, request,cIp,cPort);
+            case 3://请求获取开房类型代码
+                return handleRequestRoomTpye(data, gameType);
         }
         return null;
+    }
+
+    // 返回各种房间类型对应的代码
+    private Object handleRequestRoomTpye(String data, int gameType) {
+        switch (gameType) {
+            case 6:
+                return handleGDMaJiangDfRoomTypeCode(data);
+                default:
+                    return handleGDMaJiangDfRoomTypeCode(data);
+        }
+    }
+
+    //广东麻将默认对应房间类型代码
+    private Object handleGDMaJiangDfRoomTypeCode(String data) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> requestMap = JSON.parseObject(data, Map.class);
+        int amid = Integer.parseInt(requestMap.get("amid") + "");//代理商mid
+        int omid = Integer.parseInt(requestMap.get("mid") + "");//开房者mid
+        long msgid = Long.parseLong(requestMap.get("msgid") + "");//消息id
+        String robName = requestMap.get("robName") + "";//机器人名称
+        int acount = memberAgentService.checkAgentIsExist(amid);
+        if (acount < 1) {
+            map.put(CommonContants.SUCCESS, 0);
+            map.put(CommonContants.ERROR, -2);
+            return map;
+        }
+        RobotOpenRoom robotOpenRoom = new RobotOpenRoom();
+        robotOpenRoom.setAmid(amid);
+        robotOpenRoom.setOmid(omid);
+        robotOpenRoom.setMsgid(msgid);
+        robotOpenRoom.setRobName(robName);
+        robotOpenRoom.setOdate((int) (new Date().getTime() / 1000));
+        int r = robotOpenRoomService.insertSelective(robotOpenRoom);
+        if (r == 1) {//select room_type as roomType,room_name as roomName
+            List<Map<String, Object>> dfCfg = robotRoomCfgDfService.findRobotRoomCigInfo();
+            String reData = "请选择房间类型，发送如:开房+编号\n";
+            reData += "各种房间类型对应编号如下:\n";
+            for (Map<String, Object> cf : dfCfg) {
+                reData += "编号:" + cf.get("roomType") + "    " + cf.get("roomName") + "\n";
+            }
+            map.put(CommonContants.SUCCESS, 1);
+            map.put(CommonContants.DATA, reData);
+            map.put(CommonContants.ERROR, 0);
+            return JSON.toJSONString(map);
+        } else {
+            map.put(CommonContants.SUCCESS, 0);
+            map.put(CommonContants.ERROR, -1);
+            return JSON.toJSONString(map);
+        }
     }
 
     @Override
@@ -295,11 +351,21 @@ public class RobotServiceImpl implements IRobotService {
         int amid = Integer.parseInt(requestMap.get("amid") + "");//代理商mid
         int omid = Integer.parseInt(requestMap.get("mid") + "");//开房者mid
         long msgid = Long.parseLong(requestMap.get("msgid") + "");//消息id
+        int roomType = Integer.parseInt(requestMap.get("roomType") + "");//开房类型
         String robName = requestMap.get("robName") + "";//机器人名称
+        Map<String, Object> pa = new HashMap<>();
+        pa.put("date", new Date().getTime() / 1000L);
+        pa.put("mid", amid);
+        int coun = robotMapper.queryUserRobotPower(pa);
+        if (coun < 1) {//没有找到机器人，或者已过期
+            map.put(CommonContants.SUCCESS, 0);
+            map.put(CommonContants.ERROR, -33);
+            return map;
+        }
         int acount = memberAgentService.checkAgentIsExist(amid);
         int ocount = memberAgentService.checkAgentIsExist(omid);
-        if (acount > 0 && ocount == 0) {
-            return switchOpenRoomModeByGameType(map, gameType, ocount, amid, omid, msgid, robName,request,cIp,cPort);
+        if (acount > 0 && ocount == 0) {//代理商存在，待开房玩家不是代理商
+            return switchOpenRoomModeByGameType(map, gameType, ocount, amid, omid, msgid, robName,request,cIp,cPort,roomType);
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -3);
@@ -309,24 +375,24 @@ public class RobotServiceImpl implements IRobotService {
 
     //根据游戏类型切换开房请求
     private Object switchOpenRoomModeByGameType(Map<String,Object> map,int gameType,int ocount,int amid,int omid
-            ,long msgid,String robName, HttpServletRequest request, String cIp, int cPort) throws IOException {
+            ,long msgid,String robName, HttpServletRequest request, String cIp, int cPort,int roomType) throws IOException {
         switch (gameType) {
             case 6:
-                return handleClubGroupOpenRoomRequest(map,gameType, ocount, amid, omid, msgid, robName, request, cIp, cPort);
+                return handleClubGroupOpenRoomRequest(map,gameType, ocount, amid, omid, msgid, robName, request, cIp, cPort,roomType);
             default:
-                return handleCommonOpenRoomRequest(map,gameType, ocount, amid, omid, msgid, robName, request, cIp, cPort);
+                return handleCommonOpenRoomRequest(map,gameType, ocount, amid, omid, msgid, robName, request, cIp, cPort,roomType);
         }
     }
 
     //操作俱乐部待开房请求
     private Object handleClubGroupOpenRoomRequest(Map<String, Object> map, int gameType, int ocount, int amid, int omid
-            , long msgid, String robName, HttpServletRequest request, String cIp, int cPort) throws IOException {
+            , long msgid, String robName, HttpServletRequest request, String cIp, int cPort,int roomType) throws IOException {
         Map<String, Object> mids = new HashMap<>();
         mids.put("amid", amid);
         mids.put("omid", omid);
         AgentClubMember agentClubMember = agentClubMemberService.getMemberInfoByAmidOmid(mids);
         if (agentClubMember != null && agentClubMember.getCmid() == amid && agentClubMember.getMid() == omid) {
-            return executeOpenRoom(map, amid, omid, msgid, robName, gameType, request, cIp, cPort);
+            return executeOpenRoom(map, amid, omid, msgid, robName, gameType, request, cIp, cPort,roomType);
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -2);
@@ -336,10 +402,10 @@ public class RobotServiceImpl implements IRobotService {
 
     //默认公共的待开房请求操作
     private Object handleCommonOpenRoomRequest(Map<String,Object> map,int gameType,int ocount,int amid,int omid,long msgid
-            ,String robName, HttpServletRequest request, String cIp, int cPort) throws IOException {
+            ,String robName, HttpServletRequest request, String cIp, int cPort,int roomType) throws IOException {
         AgentMids agentMids = agentMidService.getAgentGrantByMid(ocount);
         if (agentMids != null && agentMids.getAmid() == amid && agentMids.getMid() == omid) {
-            return executeOpenRoom(map, amid, omid, msgid, robName, gameType, request, cIp, cPort);
+            return executeOpenRoom(map, amid, omid, msgid, robName, gameType, request, cIp, cPort,roomType);
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -2);
@@ -349,7 +415,7 @@ public class RobotServiceImpl implements IRobotService {
 
     //执行待开房
     private Object executeOpenRoom(Map<String, Object> map, int amid, int omid, long msgid, String robName,int gameType
-            ,HttpServletRequest request,String cIp,int cPort) throws IOException {
+            ,HttpServletRequest request,String cIp,int cPort,int roomType) throws IOException {
         RobotOpenRoom robotOpenRoom = new RobotOpenRoom();
         robotOpenRoom.setAmid(amid);
         robotOpenRoom.setOmid(omid);
@@ -358,7 +424,7 @@ public class RobotServiceImpl implements IRobotService {
         robotOpenRoom.setOdate((int) (new Date().getTime() / 1000));
         int r = robotOpenRoomService.insertSelective(robotOpenRoom);
         if (r > 0) {
-            return handleOpenRoom(gameType,amid,omid,request,cIp,cPort,map);
+            return handleOpenRoom(gameType,amid,omid,request,cIp,cPort,map,roomType);
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -1);
@@ -368,7 +434,7 @@ public class RobotServiceImpl implements IRobotService {
 
     //请求c++待开房
     private Object handleOpenRoom(int gameType, int amid, int omid, HttpServletRequest request, String cIp
-            , int cPort,Map<String, Object> map) throws IOException {
+            , int cPort,Map<String, Object> map,int roomType) throws IOException {
         String ip = CommonUtils.getIpAddr(request);
         int loginGp = 0;
         int userGp = 0;
@@ -376,14 +442,14 @@ public class RobotServiceImpl implements IRobotService {
         SocketUtils socketUtils = ShareLinkSwitchSocket.switchSocketUtilByGameType(gameType, loginGp, sesskey, cIp, cPort, omid);
         boolean login = socketUtils.writeToServer();//登录c++ 服务器
         if (login && socketUtils.receviveInteger() == 0) {//服务器返回0表示登录成功
-            boolean openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid);
-            if (openRoom) {
+            Map<String,Object> openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid,roomType,robotRoomConfigService,robotRoomCfgDfService);
+            if ((Boolean) openRoom.get(CommonContants.SUCCESS)) {
                 //return receviceServerResponse(map, socketUtils, gameType);
                 Object o;
                 try {
                     o = SocketUtils.callMethod(this, "checkTimeoutRecevice"
-                            , new Class<?>[]{String.class,Map.class, SocketUtils.class, int.class}
-                            , new Object[]{sesskey,map, socketUtils, gameType}
+                            , new Class<?>[]{String.class,Map.class, SocketUtils.class, int.class,Map.class}
+                            , new Object[]{sesskey,map, socketUtils, gameType,openRoom}
                             , 5);
                 } catch (Exception e) {
                     map.put(CommonContants.SUCCESS, 0);
@@ -406,12 +472,12 @@ public class RobotServiceImpl implements IRobotService {
         }
     }
 
-    public Object checkTimeoutRecevice(String sesskey,Map<String, Object> map, SocketUtils socketUtils, int gameType) throws IOException {
-        return receviceServerResponse(sesskey,map, socketUtils, gameType);
+    public Object checkTimeoutRecevice(String sesskey,Map<String, Object> map, SocketUtils socketUtils, int gameType,Map<String,Object> openRoom) throws IOException {
+        return receviceServerResponse(sesskey,map, socketUtils, gameType,openRoom);
     }
 
     //接收c++服务器开房请求的响应
-    private Object receviceServerResponse(String sesskey,Map<String, Object> map, SocketUtils socketUtils, int gameType) throws IOException {
+    private Object receviceServerResponse(String sesskey,Map<String, Object> map, SocketUtils socketUtils, int gameType,Map<String,Object> openRoom) throws IOException {
         long t1 = System.currentTimeMillis();
         while (true) {
             long t2 = System.currentTimeMillis();
@@ -429,11 +495,8 @@ public class RobotServiceImpl implements IRobotService {
                     if (StringUtils.isBlank(errorMsg) && recvInt > 0) {
                         String robotAppUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.ROBOT_APP_URL);
                         robotAppUrl += "api/shareLink/joinViewUi.html?sesskey=%s&roomtitle=%s&wanfa=%s&jushu=%d&roomid=%d";
-                        robotAppUrl = String.format(robotAppUrl, sesskey,"title","wanfa",8,roomid);
-                        /*Map<String, Object> data = new HashMap<>();
-                        data.put("roomid", roomid);
-                        data.put("roomtitle", "8888");
-                        data.put("jushu", 8);*/
+                        robotAppUrl = String.format(robotAppUrl, sesskey,openRoom.get("roomName"),openRoom.get("wanfa"),openRoom.get("jushu"),roomid);
+                        //TODO 链接过长问题，可以只传roomType 然后到分享链接进入房间再查询一次。
                         map.put(CommonContants.SUCCESS, 1);
                         map.put(CommonContants.DATA, robotAppUrl);
                         map.put(CommonContants.ERROR, 0);//成功加入房间
@@ -447,5 +510,19 @@ public class RobotServiceImpl implements IRobotService {
             }
         }
     }
+
+    /**
+     * @Author:zsf , @Date:2017/8/18 18:24
+     * @Description:根据用户id查询用户是否有机器人的权利
+     * @param Sssskey
+     * @return
+     */
+	@Override
+	public int queryUserRobotPower(int mid) {
+		 Map<String, Object> map = new HashMap<String,Object>();
+	        map.put("mid", mid);
+	        map.put("date", new Date().getTime()/1000);
+		return robotMapper.queryUserRobotPower(map);
+	}
 
 }

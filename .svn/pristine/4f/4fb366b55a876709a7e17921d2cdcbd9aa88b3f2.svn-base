@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.acti.game.mapper.RobotFriendsMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.acti.game.model.RobotFriends" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="auth_code" property="authCode" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="atime" property="atime" jdbcType="INTEGER" />
+    <result column="rob_name" property="robName" jdbcType="VARCHAR" />
+    <result column="owner" property="owner" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, auth_code, mid, atime, rob_name, owner, remark, ext1, ext2, ext3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from robot_friends
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from robot_friends
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.acti.game.model.RobotFriends" >
+    insert into robot_friends (id, auth_code, mid, 
+      atime, rob_name, owner, 
+      remark, ext1, ext2, 
+      ext3)
+    values (#{id,jdbcType=INTEGER}, #{authCode,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, 
+      #{atime,jdbcType=INTEGER}, #{robName,jdbcType=VARCHAR}, #{owner,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, 
+      #{ext3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.acti.game.model.RobotFriends" >
+    insert into robot_friends
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="authCode != null" >
+        auth_code,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="atime != null" >
+        atime,
+      </if>
+      <if test="robName != null" >
+        rob_name,
+      </if>
+      <if test="owner != null" >
+        owner,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="ext3 != null" >
+        ext3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="authCode != null" >
+        #{authCode,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="atime != null" >
+        #{atime,jdbcType=INTEGER},
+      </if>
+      <if test="robName != null" >
+        #{robName,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        #{owner,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.acti.game.model.RobotFriends" >
+    update robot_friends
+    <set >
+      <if test="authCode != null" >
+        auth_code = #{authCode,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="atime != null" >
+        atime = #{atime,jdbcType=INTEGER},
+      </if>
+      <if test="robName != null" >
+        rob_name = #{robName,jdbcType=VARCHAR},
+      </if>
+      <if test="owner != null" >
+        owner = #{owner,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.acti.game.model.RobotFriends" >
+    update robot_friends
+    set auth_code = #{authCode,jdbcType=INTEGER},
+      mid = #{mid,jdbcType=INTEGER},
+      atime = #{atime,jdbcType=INTEGER},
+      rob_name = #{robName,jdbcType=VARCHAR},
+      owner = #{owner,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryRobotFriendByCodeAndMid" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <include refid="Base_Column_List" />
+    from robot_friends
+    where
+    mid = #{addMid}
+    and auth_code = #{code} and rob_name = #{roboName} limit 1
+  </select>
+
+  <select id="checkAgentHasAuth" resultType="int" parameterType="map" >
+    select
+    count(id)
+    from robot_friends
+    where mid = #{code} and rob_name = #{roboName} limit 1
+  </select>
+
+</mapper>
