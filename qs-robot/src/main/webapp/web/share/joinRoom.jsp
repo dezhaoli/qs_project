@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css">
+    <link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css?v=1">
 <%--     <script src="${ctx }/web/share/files/mlink.min.js"></script> --%>
 <%--     <script src="${ctx }/web/share/files/jweixin-1.0.0.js"></script> --%>
 <%--     <script type="text/javascript" src="${ctx }/web/share/files/zepto.min.js"></script> --%>
@@ -63,7 +63,7 @@
 <body>
 
 <div class="all-container">
-    <div class="icon-bg">
+    <div class="icon-bg" id="bgimg">
         <div class="roomid-box">
             <p class="roomid-font">房间号:<span class="room-id">${roomid}</span></p>
             <p>${roomtitle}-${jushu}局</p>
@@ -236,6 +236,11 @@
             $('.user-head').html(listHead);
             $('.username-div').html(listName);
             authJoinRoomResult();
+        }else {
+            var a = '<p class="join-fail-font1 join-fail-dissolve" style="display:block;">'+
+                '来晚了，房间已经不存在了！'+'</p>';
+            $('.join-fail').show().html(a);
+            failHide();
         }
     }
 
@@ -276,6 +281,15 @@
     }
 
     $(function () {
+        var gameType = ${gameType};
+        if (gameType == 6) {
+            $('#bgimg').removeClass('icon-bg').addClass('icon-bg-gdmajiang');
+        }else if(gameType == 17) {
+            $('#bgimg').removeClass('icon-bg').addClass('icon-bg-kxpaohuzi');
+        }else {
+
+        }
+
         $('#ajaxJoinRoom').on('click', function () {
             $.ajax({
                 type : "POST",

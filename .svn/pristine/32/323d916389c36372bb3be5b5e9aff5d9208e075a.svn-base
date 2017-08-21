@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.member.mapper.MemberAgentsMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.member.model.MemberAgents" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="passwd" property="passwd" jdbcType="CHAR" />
+    <result column="salt" property="salt" jdbcType="CHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bankcard" property="bankcard" jdbcType="VARCHAR" />
+    <result column="alipay" property="alipay" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="systempasswd" property="systempasswd" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="scale" property="scale" jdbcType="TINYINT" />
+    <result column="mktime" property="mktime" jdbcType="INTEGER" />
+    <result column="lastlogintime" property="lastlogintime" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="alevel" property="alevel" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="belongid" property="belongid" jdbcType="SMALLINT" />
+    <result column="areaid" property="areaid" jdbcType="INTEGER" />
+    <result column="firstmid" property="firstmid" jdbcType="INTEGER" />
+    <result column="glevel" property="glevel" jdbcType="TINYINT" />
+    <result column="company" property="company" jdbcType="TINYINT" />
+    <result column="sitemid" property="sitemid" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, passwd, salt, bank, bankcard, alipay, realname, phone, qq, systempasswd, code,
+    status, scale,FROM_UNIXTIME(mktime,'%Y-%m-%d %H:%i:%S') as mktime,
+    FROM_UNIXTIME(lastlogintime,'%Y-%m-%d %H:%i:%S') as lastlogintime, parent_id, alevel, remark, belongid, areaid,
+    firstmid, glevel, company, sitemid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from memberagents
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByMid" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from memberagents
+    where mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAgentInfoAndBizInfoByMid" resultType="map" parameterType="java.lang.Integer" >
+    SELECT * FROM memberagents WHERE mid = #{mid,jdbcType=INTEGER} limit 1
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from memberagents
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.member.model.MemberAgents" >
+    insert into memberagents (id, mid, passwd, 
+      salt, bank, bankcard, 
+      alipay, realname, phone, 
+      qq, systempasswd, status, 
+      scale, mktime, lastlogintime, 
+      parent_id, alevel, remark, 
+      belongid, areaid, firstmid, 
+      glevel, company, sitemid,code,openid
+      )
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{passwd,jdbcType=CHAR}, 
+      #{salt,jdbcType=CHAR}, #{bank,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR}, 
+      #{alipay,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{systempasswd,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{scale,jdbcType=TINYINT}, #{mktime,jdbcType=INTEGER}, #{lastlogintime,jdbcType=INTEGER}, 
+      #{parentId,jdbcType=INTEGER}, #{alevel,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
+      #{belongid,jdbcType=SMALLINT}, #{areaid,jdbcType=INTEGER}, #{firstmid,jdbcType=INTEGER}, 
+      #{glevel,jdbcType=TINYINT}, #{company,jdbcType=TINYINT}, #{sitemid,jdbcType=VARCHAR}
+      , #{code,jdbcType=VARCHAR}, #{openid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.member.model.MemberAgents" >
+    insert into memberagents
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="passwd != null" >
+        passwd,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankcard != null" >
+        bankcard,
+      </if>
+      <if test="alipay != null" >
+        alipay,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="systempasswd != null" >
+        systempasswd,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="scale != null" >
+        scale,
+      </if>
+      <if test="mktime != null" >
+        mktime,
+      </if>
+      <if test="lastlogintime != null" >
+        lastlogintime,
+      </if>
+      <if test="parentId != null" >  
+        parent_id,
+      </if>
+      <if test="alevel != null" >
+        alevel,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="belongid != null" >
+        belongid,
+      </if>
+      <if test="areaid != null" >
+        areaid,
+      </if>
+      <if test="firstmid != null" >
+        firstmid,
+      </if>
+      <if test="glevel != null" >
+        glevel,
+      </if>
+      <if test="company != null" >
+        company,
+      </if>
+      <if test="sitemid != null" >
+        sitemid,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="openid != null" >
+        openid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        #{passwd,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=CHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="systempasswd != null" >
+        #{systempasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        #{mktime,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        #{lastlogintime,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="alevel != null" >
+        #{alevel,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        #{belongid,jdbcType=SMALLINT},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="firstmid != null" >
+        #{firstmid,jdbcType=INTEGER},
+      </if>
+      <if test="glevel != null" >
+        #{glevel,jdbcType=TINYINT},
+      </if>
+      <if test="company != null" >
+        #{company,jdbcType=TINYINT},
+      </if>
+      <if test="sitemid != null" >
+        #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        #{openid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.member.model.MemberAgents" >
+    update memberagents
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        alipay = #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="systempasswd != null" >
+        systempasswd = #{systempasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        scale = #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        mktime = #{mktime,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        lastlogintime = #{lastlogintime,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="alevel != null" >
+        alevel = #{alevel,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        belongid = #{belongid,jdbcType=SMALLINT},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="firstmid != null" >
+        firstmid = #{firstmid,jdbcType=INTEGER},
+      </if>
+      <if test="glevel != null" >
+        glevel = #{glevel,jdbcType=TINYINT},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=TINYINT},
+      </if>
+      <if test="sitemid != null" >
+        sitemid = #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.member.model.MemberAgents" >
+    update memberagents
+    set mid = #{mid,jdbcType=INTEGER},
+      passwd = #{passwd,jdbcType=CHAR},
+      salt = #{salt,jdbcType=CHAR},
+      bank = #{bank,jdbcType=VARCHAR},
+      bankcard = #{bankcard,jdbcType=VARCHAR},
+      alipay = #{alipay,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      systempasswd = #{systempasswd,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      scale = #{scale,jdbcType=TINYINT},
+      mktime = #{mktime,jdbcType=INTEGER},
+      lastlogintime = #{lastlogintime,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      alevel = #{alevel,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      belongid = #{belongid,jdbcType=SMALLINT},
+      areaid = #{areaid,jdbcType=INTEGER},
+      firstmid = #{firstmid,jdbcType=INTEGER},
+      glevel = #{glevel,jdbcType=TINYINT},
+      company = #{company,jdbcType=TINYINT},
+      code = #{code,jdbcType=TINYINT},
+      sitemid = #{sitemid,jdbcType=VARCHAR}
+      openid = #{openid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from
+    memberagents
+    <where>
+      <if test="mid != null and mid != ''" > <!-- realname, phone -->
+        mid = #{mid,jdbcType=INTEGER}
+      </if>
+      <if test="realname != null and realname != ''" >
+        and realname = #{realname}
+      </if>
+      <if test="phone != null and phone != ''" >
+        and phone = #{phone}
+      </if>
+    </where>
+    order by id desc
+  </select>
+
+  <select id="queryFirstAgentCountByBelongId" parameterType="java.lang.Integer" resultType="map">
+    SELECT COUNT(*) AS total FROM memberagents WHERE alevel=1 AND belongid= #{belongid,jdbcType=INTEGER}
+  </select>
+
+  <!-- 获取商务专员绑定的一级代理商充值列表 -->
+ <!-- <select id="queryFirstAgentByBelongIdPage" parameterType="map" resultType="map">
+    SELECT a.mid,b.*,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+    a.sitemid as asitemid,b.sitemid as bsitemid,a.realname AS truename,
+    (SELECT COUNT(0) FROM memberagents e WHERE firstmid = a.mid and e.mid != a.mid LIMIT 1) AS childCount,
+    (SELECT name FROM memberfides0 ff WHERE ff.mid = a.mid LIMIT 1) AS nickname
+    FROM memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE a.alevel=1
+    AND a.belongid=#{belongid,jdbcType=INTEGER}
+    <if test="mid != null and mid != ''">
+     and a.mid = #{mid,jdbcType=INTEGER}
+    </if>
+    ORDER BY a.mktime DESC
+  </select>-->
+
+  <!-- a.*,b.*,a.phone AS mobile,b.realname AS name -->
+  <select id="getAgentBusinessInfoByMid" parameterType="map" resultType="map">
+    SELECT a.*,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+               a.phone AS mobile
+    FROM ${memberagents} as a
+    <!--  left join common_agents_info as b
+        ON a.sitemid = b.sitemid -->
+    WHERE mid = #{mid,jdbcType=INTEGER}
+  </select>
+
+  <select id="getAgentRealNameByMid" parameterType="java.lang.Integer" resultType="string">
+   <!-- SELECT b.realname AS realnamebind
+    FROM memberagents as a
+      left join common_agents_info as b
+        ON a.sitemid=b.sitemid
+    WHERE mid=#{mid,jdbcType=INTEGER} limit 0,1 -->
+    SELECT a.realname AS realnamebind
+    FROM memberagents as a
+      <!-- left join common_agents_info as b
+        ON a.sitemid=b.sitemid -->
+    WHERE mid=#{mid,jdbcType=INTEGER} limit 0,1
+  </select>
+
+  <!-- 获取商务id下面的一级代理商所有子代理商总条数 -->
+  <select id="getChildrenAgentsCount" parameterType="map" resultType="java.lang.Integer">
+    <!-- SELECT ( -->
+     SELECT COUNT(*) AS total
+     FROM memberagents
+     WHERE firstmid= #{firstmid,jdbcType=INTEGER}
+           AND belongid= #{belongid,jdbcType=INTEGER}
+           AND alevel>1
+    <!-- ) as countTotal -->
+  </select>
+
+  <!-- belongid 商务id，firstmid 一级代理商id -->
+<!--  <select id="getChildrenAgentsList" parameterType="map" resultType="map">
+    SELECT a.mid,b.*,a.realname AS truename ,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+    (SELECT COUNT(0) FROM memberagents e WHERE e.parent_id = a.mid and e.mid!=a.mid) AS childCount
+    FROM memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE a.firstmid= #{firstmid,jdbcType=INTEGER}
+    AND a.belongid= #{belongid,jdbcType=INTEGER}
+    AND a.alevel>1
+    <if test="mid != null and mid != ''">
+      and a.mid = #{mid,jdbcType=INTEGER}
+    </if>
+    ORDER BY a.mktime
+    DESC
+  </select>-->
+<!--   根据sitemid获取用户信息 -->
+ <select id="getMemberAgentsInfoBySitemid" resultType="com.qs.webside.member.model.MemberAgents"
+	parameterType="java.lang.String">
+	select 
+	id,mid,parent_id,passwd,salt,alevel,belongid,realname,firstmid,areaid,phone,company,sitemid,
+	FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime,code,bank, bankcard 
+	from memberagents
+	where sitemid=#{sitemid,jdbcType=VARCHAR}
+</select>
+
+<!--   根据ParentId获取用户信息 -->
+ <select id="getMemberAgentsInfoByParentId" resultType="com.qs.webside.member.model.MemberAgents"
+	parameterType="java.lang.String">
+	select
+	id,mid,parent_id,sitemid,realname,areaid,phone,FROM_UNIXTIME(mktime,'%Y-%m-%d') as mktime
+	from memberagents
+	where parent_id=#{parent_id,jdbcType=VARCHAR}
+</select>
+
+	<!-- 直属会员查询信息列表 1普通会员，2位代理商 -->
+	<select id="selectVipDirectlyInfo" parameterType="map"
+		resultType="com.qs.webside.member.model.MemberAgents">
+
+		<if test="type==1 ">
+			SELECT mid,realname,FROM_UNIXTIME(bindtime, '%Y-%m-%d') bindtime from
+			memberfides0 WHERE invite = ${mid} and mid
+			not
+			in(SELECT mid from memberagents WHERE code like '${code}%' ) 
+			<if test="querymid !=null and querymid !='' ">
+		      and mid=#{querymid}
+		    </if>
+			 ORDER BY  bindtime DESC
+		</if>
+		<if test="type==2 ">
+			select a.mid mid,a.realname realname,FROM_UNIXTIME(a.mktime,
+			'%Y-%m-%d') bindtime,(
+			SELECT count(mid) from memberfides0 where invite=a.mid
+			) count from memberagents a INNER JOIN memberfides0 m on a.mid=m.mid
+			and invite = ${mid} 
+			<if test="querymid !=null and querymid !='' ">
+		      and a.mid=#{querymid}
+		    </if>
+			 ORDER BY  bindtime DESC
+			<!-- select a.mid mid,a.realname realname,FROM_UNIXTIME(a.mktime, '%Y-%m-%d') 
+				bindtime,( SELECT count(id) from memberagents where parent_id=#{mid}) count 
+				from memberagents a INNER JOIN memberfides0 m on a.mid=m.mid and invite = 
+				${mid} -->
+		</if>
+	</select>
+
+  <!-- 检查代理商是否绑定了商务专员 -->
+  <select id="findByBelongidAndMid" resultType="com.qs.webside.member.model.MemberAgents" parameterType="map">
+    SELECT * FROM memberagents WHERE mid=#{mid} AND belongid=#{belongid}
+  </select>
+
+  <!-- 获取代理商以及绑定商务信息 -->
+ <!-- <select id="getAgentAndBusizInfoByMid" resultType="java.util.Map" parameterType="map">
+    SELECT a.mid,a.realname,a.firstmid,
+    (SELECT b.realname AS realnamebind
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=
+    (
+    SELECT a.firstmid AS firstmid
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=#{mid} LIMIT 0,1
+    )) AS realnamebind
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=#{mid}
+  </select>-->
+
+    <!--
+  SELECT MAX(code + 1) code
+  FROM memberagents
+  WHERE
+  parent_id =0 OR parent_id=''
+  -->
+  <select id="getFirstAgentCode" resultType="java.lang.String">
+    SELECT CASE WHEN
+      (
+        SELECT
+          (
+            CASE WHEN
+              (
+                SELECT MAX(code) code
+                FROM memberagents
+                WHERE
+                  parent_id =0 OR parent_id=''
+              ) IS NULL
+              THEN
+                '10000'
+            WHEN
+              (
+                SELECT MAX(code) code
+                FROM memberagents
+                WHERE
+                  parent_id =0 OR parent_id=''
+              ) = 0
+              THEN
+                '10000'
+            ELSE
+              (
+                SELECT MAX(code) code
+                FROM memberagents
+                WHERE
+                  parent_id =0 OR parent_id=''
+              )
+            END
+          ) + 1
+            AS CODE
+      ) IS NULL
+      THEN
+        '10001'
+           ELSE
+             (
+               SELECT
+                 (
+                   CASE WHEN
+                     (
+                       SELECT MAX(code) code
+                       FROM memberagents
+                       WHERE
+                         parent_id =0 OR parent_id=''
+                     ) IS NULL
+                     THEN
+                       '10000'
+                   WHEN
+                     (
+                       SELECT MAX(code) code
+                       FROM memberagents
+                       WHERE
+                         parent_id =0 OR parent_id=''
+                     ) = 0
+                     THEN
+                       '10000'
+                   ELSE
+                     (
+                       SELECT MAX(code) code
+                       FROM memberagents
+                       WHERE
+                         parent_id =0 OR parent_id=''
+                     )
+                   END
+                 ) + 1
+                   AS CODE
+             )
+           END
+      AS CODE
+  </select>
+
+	<select id="getMaxAgentsCodeBymMid" resultType="java.lang.String"
+		parameterType="java.lang.Integer">
+		select max(code) code from memberagents where parent_id=#{mid}
+	</select>
+<!-- 	通过商务查询代理商下的充值与团队人数，根据实际与mid -->
+	<select id="getBusTOAgentCountInfo"  resultType="java.util.Map" parameterType="map">
+	SELECT SUM(x.paytotal) AS totalpay,SUM(x.invitetotal) AS
+	totalinvite,x.aname FROM
+	(SELECT c.paytotal,c.invitetotal,d.areaid,d.aname FROM
+	${dbName} c,
+	(SELECT a.mid,a.areaid,b.aname FROM memberagents a,area b WHERE a.areaid=b.aid
+	AND FIND_IN_SET(a.mid, getChildrenAgentsByBid(1))
+	<if test="city !=null and city != '' ">
+		AND aid=#{city}
+	</if>
+	) d
+	WHERE c.mid IN(d.mid) AND date&gt;=#{sDate} AND date&lt;=#{eDate})
+	x GROUP BY x.areaid
+	</select>
+	
+	<update id="updateByMid" parameterType="com.qs.webside.member.model.MemberAgents" >
+    update memberagents
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="passwd != null" >
+        passwd = #{passwd,jdbcType=CHAR},
+      </if>
+      <if test="salt != null" >
+        salt = #{salt,jdbcType=CHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        alipay = #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="systempasswd != null" >
+        systempasswd = #{systempasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="scale != null" >
+        scale = #{scale,jdbcType=TINYINT},
+      </if>
+      <if test="mktime != null" >
+        mktime = #{mktime,jdbcType=INTEGER},
+      </if>
+      <if test="lastlogintime != null" >
+        lastlogintime = #{lastlogintime,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="alevel != null" >
+        alevel = #{alevel,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="belongid != null" >
+        belongid = #{belongid,jdbcType=SMALLINT},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="firstmid != null" >
+        firstmid = #{firstmid,jdbcType=INTEGER},
+      </if>
+      <if test="glevel != null" >
+        glevel = #{glevel,jdbcType=TINYINT},
+      </if>
+      <if test="company != null" >
+        company = #{company,jdbcType=TINYINT},
+      </if>
+      <if test="sitemid != null" >
+        sitemid = #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="openid != null" >
+        openid = #{openid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where mid = #{mid,jdbcType=INTEGER}
+  </update>
+  <select id="getIsAgentEmpower" resultType="java.lang.Integer"
+		parameterType="map">
+		SELECT mid FROM memberagents WHERE mid=${mid} AND parent_id=${pmid} limit 1
+	</select>
+
+  <!-- 查询代理商下面所有parent_id等于指定的mid的代理商 -->
+  <select id="getCountAgentsByParentId" resultType="java.lang.Integer" parameterType="int">
+    SELECT count(id) FROM memberagents WHERE parent_id = #{parentId}
+  </select>
+
+	<!-- 直属会员牌局数查询 -->
+	<select id="getVipPokelist" parameterType="map" resultType="map">
+	SELECT mid,name,ifNULL((SELECT sum(num) from
+	${dbName} where (player1=mid or player2 =mid or player3 =mid or player4=mid) and date &gt;=#{sDate} AND date &lt;=#{eDate} ) ,0) as pj
+	 from
+	memberfides0 WHERE invite = #{mid} and mid
+	not
+	in(SELECT mid from memberagents WHERE code like '${code}%' )
+	<if test="querymid !=null and querymid !='' ">
+		and mid=#{querymid}
+	</if>
+	ORDER BY pj DESC
+	</select>
+	<!-- 直属会员开房数查询 不包含代开房-->
+	<select id="getVipOpenRoomlist" parameterType="map" resultType="map">
+		SELECT mid,name,(SELECT COUNT(id) from ${dbName} where  ( master =mid or player1=mid or player2=mid or player3=mid or player4=mid ) and date &gt;=#{sDate} AND date &lt;=#{eDate}  ) kaifang from
+		memberfides0 WHERE invite = #{mid} and mid
+			not
+			in(SELECT mid from memberagents WHERE code like '${code}%' )
+		<if test="querymid !=null and querymid !='' ">
+			and mid=#{querymid}
+		</if>  
+			 ORDER BY  kaifang DESC
+	</select>
+	
+</mapper>

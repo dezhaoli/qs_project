@@ -46,19 +46,25 @@ public class RobotOpenRoomByGameType {
         parameters.put("mid", amid);
         parameters.put("roomType", roomType);
         RobotRoomConfig robotRoomConfig = robotRoomConfigService.getRobotRoomCfgByMidAndType(parameters);
-        BASE64Encoder encoder = new BASE64Encoder();
+        //BASE64Encoder encoder = new BASE64Encoder();
         if (robotRoomConfig != null) {
             //{"guipai":1,"roomType":0,"maType":5,"FZB":0,"gameType":1,"zhama":8,"jushu":8,"wanfa":1,"clubMid":0,"playerCount":4}
             Map<String, Integer> cfg = JSON.parseObject(robotRoomConfig.getData(), Map.class);
             boolean b = sendCfgGDMajiangServer(socketUtils, amid, cfg);
             map.put(CommonContants.SUCCESS,b);
-            String wf = robotRoomConfig.getWanfa();
+            map.put("wanfa", robotRoomConfig.getWanfa());
+            map.put("roomName", robotRoomConfig.getRoomName());
+            map.put("jushu", cfg.get("jushu"));
+            map.put("t", roomType);
+            map.put("a", amid);
+            map.put("d", 1);
+           /* String wf = robotRoomConfig.getWanfa();
             wf = wf.replaceAll(",", "_");
             String s = encoder.encode(wf.getBytes("utf-8"));
             Object o = cfg.get("jushu");
             map.put("wanfa", s);
             map.put("jushu", o);
-            map.put("roomName", encoder.encode(robotRoomConfig.getRoomName().getBytes("utf-8")));
+            map.put("roomName", encoder.encode(robotRoomConfig.getRoomName().getBytes("utf-8")));*/
             return map;
         } else {
             RobotRoomCfgDf robotRoomCfgDf = robotRoomCfgDfService.queryRobotConfigByType(roomType);
@@ -66,13 +72,19 @@ public class RobotOpenRoomByGameType {
                 Map<String, Integer> cfg = JSON.parseObject(robotRoomCfgDf.getData(), Map.class);
                 boolean b = sendCfgGDMajiangServer(socketUtils, amid, cfg);
                 map.put(CommonContants.SUCCESS, b);
-                String wf = robotRoomCfgDf.getWanfa();
+                map.put("wanfa", robotRoomCfgDf.getWanfa());
+                map.put("roomName", robotRoomCfgDf.getRoomName());
+                map.put("jushu", cfg.get("jushu"));
+                map.put("t", roomType);
+                map.put("a", amid);
+                map.put("d", 2);
+                /*String wf = robotRoomCfgDf.getWanfa();
                 wf = wf.replaceAll(",", "_");
                 String s = encoder.encode(wf.getBytes("utf-8"));
                 Object o = cfg.get("jushu");
                 map.put("wanfa", s);
                 map.put("jushu", o);
-                map.put("roomName", encoder.encode(robotRoomCfgDf.getRoomName().getBytes("utf-8")));
+                map.put("roomName", encoder.encode(robotRoomCfgDf.getRoomName().getBytes("utf-8")));*/
                 return map;
             } else {
                 log.debug("-------::agent no had cfg robot room type cfg ,and default cfg is no exist!");

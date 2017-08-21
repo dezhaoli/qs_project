@@ -26,6 +26,24 @@ html {
 	text-align: center;
 }
 
+.icon-bg-gdmajiang{
+	width: 100%;
+	height: 6rem;
+	background:  url(img/guangdong.jpg) no-repeat;
+	background-size: contain;
+	padding: 3rem 0 0 0;
+	text-align: center;
+}
+
+.icon-bg-kxpaohuzi{
+	width: 100%;
+	height: 6rem;
+	background:  url(img/paohuzi.jpg) no-repeat;
+	background-size: contain;
+	padding: 3rem 0 0 0;
+	text-align: center;
+}
+
 .roomid-box{
 	width: 4.5rem;
 	height: 1.1rem;

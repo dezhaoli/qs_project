@@ -494,11 +494,13 @@ public class RobotServiceImpl implements IRobotService {
                     String errorMsg = RobotOpenRoomReData.handleRecvData(cmd, recvInt,gameType);//TODO 这里需要修改
                     if (StringUtils.isBlank(errorMsg) && recvInt > 0) {
                         String robotAppUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.ROBOT_APP_URL);
-                        robotAppUrl += "api/shareLink/joinViewUi.html?sesskey=%s&roomtitle=%s&wanfa=%s&jushu=%d&roomid=%d";
-                        robotAppUrl = String.format(robotAppUrl, sesskey,openRoom.get("roomName"),openRoom.get("wanfa"),openRoom.get("jushu"),roomid);
-                        //TODO 链接过长问题，可以只传roomType 然后到分享链接进入房间再查询一次。
+                        robotAppUrl += "api/shareLink/joinViewUi.html?sesskey=%s&t=%d&d=%d&a=%d&roomid=%d";
+                        robotAppUrl = String.format(robotAppUrl, sesskey,openRoom.get("t"),openRoom.get("d"),openRoom.get("a"),roomid);
+                        StringBuilder sb = new StringBuilder("\n\n");
+                        sb.append("房间类型:  ").append(openRoom.get("roomName")).append("   ").append(openRoom.get("jushu")).append("局\n\n");
+                        sb.append("玩法如下：\n").append((openRoom.get("wanfa") + "").replaceAll(",",",  ")).append("\n\n").append(robotAppUrl);
                         map.put(CommonContants.SUCCESS, 1);
-                        map.put(CommonContants.DATA, robotAppUrl);
+                        map.put(CommonContants.DATA, sb.toString());
                         map.put(CommonContants.ERROR, 0);//成功加入房间
                         return JSON.toJSONString(map);
                     } else {

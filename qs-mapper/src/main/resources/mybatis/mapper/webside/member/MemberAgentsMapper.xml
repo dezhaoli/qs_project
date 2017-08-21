@@ -721,7 +721,7 @@
 	</select>
 	<!-- 直属会员开房数查询 不包含代开房-->
 	<select id="getVipOpenRoomlist" parameterType="map" resultType="map">
-		SELECT mid,name,(SELECT COUNT(id) from ${dbName} where (player1 = mid and master=mid) and date &gt;=#{sDate} AND date &lt;=#{eDate}  ) kaifang from
+		SELECT mid,name,(SELECT COUNT(id) from ${dbName} where  ( master =mid or player1=mid or player2=mid or player3=mid or player4=mid ) and date &gt;=#{sDate} AND date &lt;=#{eDate}  ) kaifang from
 		memberfides0 WHERE invite = #{mid} and mid
 			not
 			in(SELECT mid from memberagents WHERE code like '${code}%' )

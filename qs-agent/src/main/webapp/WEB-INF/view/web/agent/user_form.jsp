@@ -32,7 +32,7 @@ body {
                                value="${agents.phone }" placeholder="您的手机号码"/>
                     </div>
 			</div>
-			<label class="col-xs-12">银行卡号</label>
+			<%-- <label class="col-xs-12">银行卡号</label>
 			<div class="col-xs-12" >
 			  <div class="clearfix">
                         <input class="form-control" name="bankcard" id="bankcard" type="text"
@@ -61,7 +61,7 @@ body {
                                 <option value="中信银行" <c:if test="${agents.bank == '中信银行'}"> selected='selected'</c:if>>中信银行</option>
                         </select>
                     </div>
-			</div>
+			</div> --%>
 			
 			<div class="col-xs-12" style="margin-top: 20px">
 				<div class="clearfix">
@@ -165,13 +165,13 @@ function loadCity(parentId) {
 						},
 						phone : {
 							required : true
-						},
+						}/* ,
 						bankcard : {
 							required : true
 						},
 						bank : {
 							required : true
-						}
+						} */
 						
 					},
 					messages : {

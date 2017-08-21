@@ -56,6 +56,7 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
                 map.put("nowUserIcon", memberfides.getIcon());
                 map.put("nowUserName", memberfides.getName());
                 map.put("nowUserMid", memberfides.getMid());
+                map.put("gameType", gameType);
             } else {
                 map.put(CommonContants.SUCCESS, Boolean.FALSE);
             }
@@ -87,6 +88,7 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
             map.put("nowUserMid", members.getMid());
             List<Map<String, Object>> roomInfo = setRoomInfo(null, model, roomid, gameType);
             map.put("roomInfo", roomInfo);
+            map.put("gameType", gameType);
         } else {//用户不存在，未注册过
             map.put(CommonContants.SUCCESS, Boolean.FALSE);
             map.put(CommonContants.ERROR, -1);//用户未注册
