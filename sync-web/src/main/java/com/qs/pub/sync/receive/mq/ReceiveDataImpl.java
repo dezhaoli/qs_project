@@ -35,7 +35,7 @@ public class ReceiveDataImpl implements IReceiveData {
 			myMessage = (Object) message.getObject();
 			
 			SyncObject so = (SyncObject) myMessage;
-			log.warn("fromSystemCode===========::" + so.getFromSysCode()
+			log.debug("fromSystemCode===========::" + so.getFromSysCode()
 					+ "=========fromSysMethod=======::"
 					+ so.getFromSysMethod());
 			
@@ -78,7 +78,7 @@ public class ReceiveDataImpl implements IReceiveData {
 	 */
 	public void syncCreateRoom(Object myMessage){
 		SyncCreateRoom syncCreateRoom=(SyncCreateRoom)myMessage;
-		dataSyncService.syncCreateRoom(syncCreateRoom);
+		dataSyncService.addSyncCreateRoom(syncCreateRoom);
 		
 	}
 	/**

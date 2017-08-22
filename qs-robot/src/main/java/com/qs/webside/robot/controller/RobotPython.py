@@ -140,7 +140,7 @@ def text_reply(msg):
                         d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']),
                              "robName": robot_nickname}
                         rd = send_post_request_to_java(msg_request_open_room_type, data=d)
-                        print('has ChatRoomOwner response type ',rd)
+                        print('has ChatRoomOwner response type ', rd)
                         try:
                             rr = eval(rd)
                         except:
@@ -151,7 +151,7 @@ def text_reply(msg):
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                 d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
                 rd = send_post_request_to_java(msg_request_open_room_type, data=d)
-                print('not has ChatRoomOwner response type ',rd)
+                print('not has ChatRoomOwner response type ', rd)
                 try:
                     rr = eval(rd)
                 except:
@@ -182,9 +182,9 @@ def text_reply(msg):
                     if qunzhu_li[2] == li[1]:
                         robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                         d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']),
-                             "robName": robot_nickname,"roomType":room[1]}
+                             "robName": robot_nickname, "roomType": room[1]}
                         rd = send_post_request_to_java(msg_request_open_room, data=d)
-                        print('has ChatRoomOwner response',rd)
+                        print('has ChatRoomOwner response', rd)
                         try:
                             rr = eval(rd)
                         except:
@@ -195,9 +195,9 @@ def text_reply(msg):
             else:
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                 d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']),
-                     "robName": robot_nickname,"roomType":room[1]}
+                     "robName": robot_nickname, "roomType": room[1]}
                 rd = send_post_request_to_java(msg_request_open_room, data=d)
-                print('not has ChatRoomOwner response',rd)
+                print('not has ChatRoomOwner response', rd)
                 try:
                     rr = eval(rd)
                 except:

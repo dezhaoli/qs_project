@@ -23,7 +23,7 @@ public interface SyncService {
      * @param syncObject
      * @return
      */
-    public int syncCreateRoom(SyncCreateRoom syncCreateRoom);
+    public int addSyncCreateRoom(SyncCreateRoom syncCreateRoom);
 	public int syncCreateRoomLog(SyncCreateRoom syncCreateRoom);
 	public int syncPlayingLog(SyncPlaying syncPlaying);
 	public int addSyncUserLoginLog(SyncUserLoginLog syncUserLoginLog);

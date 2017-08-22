@@ -1,38 +1,20 @@
 package com.qs.pub.sync.service.impl;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
+import com.qs.common.ip2region.DbSearcher;
+import com.qs.common.util.DateUtil;
+import com.qs.pub.sync.common.SyncLogTool;
+import com.qs.pub.sync.service.*;
+import com.qs.sync.model.*;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.qs.common.ip2region.DbSearcher;
-import com.qs.common.util.DateUtil;
-import com.qs.pub.sync.common.SyncLogTool;
-import com.qs.pub.sync.service.ICreateRoomService;
-import com.qs.pub.sync.service.IPlayingService;
-import com.qs.pub.sync.service.ISyncGameRoleService;
-import com.qs.pub.sync.service.ISyncUserKeepService;
-import com.qs.pub.sync.service.IUserLoginLogService;
-import com.qs.pub.sync.service.LogErrorService;
-import com.qs.pub.sync.service.LogSuccessService;
-import com.qs.pub.sync.service.SyncService;
-import com.qs.sync.model.LogError;
-import com.qs.sync.model.LogSuccess;
-import com.qs.sync.model.SyncCreateRoom;
-import com.qs.sync.model.SyncGameRule;
-import com.qs.sync.model.SyncObject;
-import com.qs.sync.model.SyncPlaying;
-import com.qs.sync.model.SyncUserKeep;
-import com.qs.sync.model.SyncUserLoginLog;
+import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * 同步数据服务实现
@@ -125,11 +107,12 @@ public class SyncServiceImpl implements SyncService {
 
 
 
-	public int syncCreateRoom(SyncCreateRoom syncCreateRoom) {
+	public int addSyncCreateRoom(SyncCreateRoom syncCreateRoom) {
 		
 		int result=0;
 		try{
 		   result = createRoomService.insert(syncCreateRoom);
+		   result += createRoomService.insertTotal(syncCreateRoom);
 		   return result;
 		}catch(Exception e){
 			this.saveErrorLog(syncCreateRoom, SyncCreateRoom.class.getSimpleName(), "", "", "0");

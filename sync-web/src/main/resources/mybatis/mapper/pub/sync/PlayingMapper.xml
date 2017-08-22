@@ -25,10 +25,10 @@
   
   <insert id="insertPlayingDistinct" parameterType="com.qs.sync.model.SyncPlaying">
     insert IGNORE into dc_playing_total ( mid, app_id, play_id,play_name,
-      game_start_time, game_stop_time,play_date,ip,region,province,city,terminal_type,
-      extend1,extend2)
+      game_start_time, game_stop_time,play_date,ip,region,province,city,terminal_type
+     )
     values (#{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, #{playId,jdbcType=VARCHAR}, #{playName,jdbcType=VARCHAR}, 
-      #{gameStartTime,jdbcType=TIMESTAMP}, #{gameStopTime,jdbcType=TIMESTAMP}, #{gameStartTime,jdbcType=TIMESTAMP},#{ip},#{region},#{province},#{city},#{terminalType} ,#{extend1,jdbcType=VARCHAR}, #{extend2,jdbcType=VARCHAR})
+      #{gameStartTime,jdbcType=TIMESTAMP}, #{gameStopTime,jdbcType=TIMESTAMP}, #{gameStartTime,jdbcType=TIMESTAMP},#{ip},#{region},#{province},#{city},#{terminalType})
   </insert>
   
 </mapper>

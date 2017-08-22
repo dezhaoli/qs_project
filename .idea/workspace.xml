@@ -323,8 +323,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -496,15 +496,24 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberAgentsMapper.xml</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\joinRoom.css</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\joinRoom.jsp</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotOpenRoomByGameType.java</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\ShareLinkServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\controller\ShareLinkController.java</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\agent_roomInfo_list.jsp</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\user_form.jsp</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\SyncUserLoginLogMapper.xml</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\CreateRoomMapper.xml</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\pub\sync\PlayingMapper.xml</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\SyncServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\CreateRoomServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\ICreateRoomService.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\SyncService.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\ReceiveDataImpl.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\mapper\CreateRoomMapper.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\resources\mybatis\mapper\webside\activity\RobotMapper.xml</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\controller\RobotPython.py</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\resources\mybatis\mapper\pub\datacenter\CreateRoomMapper.xml</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\Constants.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\SocketUtils.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\teamweeksttlement_list.jsp</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_empowerAgent_show.jsp</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\agent_instructions_list.jsp</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -512,9 +521,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\MP_verify_QjthaIG66sAeHs9O.txt</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\guangdong.jpg</PATH>
-          <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\paohuzi.jpg</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\resources\db\kxbeard-updateTaxesInviteWeek.sql</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotOpenRoomReData.java</PATH>
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\service\impl\RobotDiscoByGameType.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -522,6 +531,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\RobotOpenRoomReData.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -544,9 +554,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
-        <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
-        <PATH vcs="svn" revision="3031">D:\java\qs_project\2017年4月15日\qs_project\pay-web</PATH>
+        <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
+        <PATH vcs="svn" revision="3042">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1468,6 +1477,7 @@
       <workItem from="1502976768257" duration="72000" />
       <workItem from="1503068494917" duration="149000" />
       <workItem from="1503323009705" duration="494000" />
+      <workItem from="1503410336177" duration="524000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1599,7 +1609,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286253000" />
+    <option name="totallyTimeSpent" value="286777000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1622,12 +1632,12 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3131202" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3131202" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2996795" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30341882" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1831,33 +1841,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2885">
           <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
           <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -1973,13 +1983,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/pom.xml">
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3216">
           <caret line="134" column="21" lean-forward="true" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
         </state>
+      </provider>
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/sms/UegateSoap.java">

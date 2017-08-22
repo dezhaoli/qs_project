@@ -15,7 +15,7 @@ input::-webkit-outer-spin-button {
 <div class="page-content">
 <input hidden type="text" name="count" id="count" value="${count }">
 <c:choose>
-<c:when test="${gameType >=20}">
+<c:when test="${gameType >=20 or gameType==17}">
 
 		<c:choose>
 		<c:when test="${count >=15}">

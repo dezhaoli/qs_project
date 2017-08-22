@@ -7,9 +7,6 @@
  */
 package com.qs.pub.sync.service;
 
-import java.util.List;
-import java.util.Map;
-
 import com.qs.sync.model.SyncCreateRoom;
 
 /** 
@@ -21,4 +18,6 @@ import com.qs.sync.model.SyncCreateRoom;
 public interface ICreateRoomService
 {
 	int insert(SyncCreateRoom createRoom);
+
+    int insertTotal(SyncCreateRoom syncCreateRoom);
 }

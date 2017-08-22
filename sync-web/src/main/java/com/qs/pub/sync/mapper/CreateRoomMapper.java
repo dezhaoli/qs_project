@@ -7,4 +7,6 @@ public interface CreateRoomMapper extends IBaseMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(SyncCreateRoom record);
+
+    int insertTotal(SyncCreateRoom syncCreateRoom);
 }

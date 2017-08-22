@@ -41,6 +41,23 @@ public class Constants {
 
 	}
 	
+	/***
+	 * 
+	 * @ClassName: GameType 
+	 * @描述: 游戏类型
+	 * @author moyousheng
+	 * @date 2017年8月22日 下午3:43:33
+	 */
+	public static class GameType{
+		public static final String SC_MAJIANG="5"; //四川麻将
+		public static final String GD_MAJIANG="6"; //广东麻将
+		public static final String GZ_MAJIANG="7"; //贵州麻将
+		public static final String KX_BEARD="17";  //开心跑胡子
+		public static final String JX_MAJIANG="20"; //江西麻将
+		
+	
+	}
+	
 	//字典父级编号
 	public static class Dict{
 		public static final String ROOMID = "12"; //房间id

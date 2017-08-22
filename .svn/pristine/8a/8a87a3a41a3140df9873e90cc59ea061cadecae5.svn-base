@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.pub.sync.mapper.CreateRoomMapper">
+  <resultMap id="BaseResultMap" type="com.qs.sync.model.SyncCreateRoom">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="mid" jdbcType="INTEGER" property="mid" />
+    <result column="app_id" jdbcType="INTEGER" property="appId" />
+    <result column="app_name" jdbcType="VARCHAR" property="appName" />
+    <result column="play_name" jdbcType="VARCHAR" property="playName" />
+    <result column="play_id" jdbcType="VARCHAR" property="playId" />
+    <result column="create_room_time" jdbcType="TIMESTAMP" property="createRoomTime" />
+    <result column="totals" jdbcType="INTEGER" property="totals" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, mid, app_id, play_name,play_id, create_room_time
+  </sql>
+  
+  
+  <insert id="insert" parameterType="com.qs.sync.model.SyncCreateRoom">
+    insert into dc_create_room (id, mid, app_id, 
+      play_name,play_id, create_room_time,play_num,gold)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
+      #{playName,jdbcType=VARCHAR},#{playId,jdbcType=VARCHAR}, #{createRoomTime,jdbcType=TIMESTAMP}, #{playNum,jdbcType=INTEGER}, #{gold,jdbcType=INTEGER})
+  </insert>
+
+  <insert id="insertTotal" parameterType="com.qs.sync.model.SyncCreateRoom">
+    insert into dc_create_room_total (mid, app_id,
+      play_name,play_id, create_room_time,play_num,gold)
+    values (#{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER},
+      #{playName,jdbcType=VARCHAR},#{playId,jdbcType=VARCHAR}, #{createRoomTime,jdbcType=TIMESTAMP}, 1, #{gold,jdbcType=INTEGER})
+      on duplicate key update play_num = play_num + 1,gold = gold + values(gold)
+  </insert>
+  
+ 
+</mapper>

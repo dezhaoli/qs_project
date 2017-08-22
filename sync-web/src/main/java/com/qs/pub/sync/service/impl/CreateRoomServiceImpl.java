@@ -32,6 +32,11 @@ public class CreateRoomServiceImpl implements ICreateRoomService
 		// TODO Auto-generated method stub
 		return createRoomMapper.insert(createRoom);
 	}
-	
-	
+
+	@Override
+	public int insertTotal(SyncCreateRoom syncCreateRoom) {
+		return createRoomMapper.insertTotal(syncCreateRoom);
+	}
+
+
 }

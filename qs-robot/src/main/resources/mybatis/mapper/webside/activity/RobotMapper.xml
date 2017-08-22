@@ -168,15 +168,9 @@
 
   <select id="checkAuthCodeOrMidExist" resultType="int" parameterType="map" >
     SELECT
-      IF((SELECT COUNT(id) FROM robot
-      WHERE auth_code = #{code}
-       and etime > UNIX_TIMESTAMP(NOW())
-            AND activation = 0 and mid = #{addMid}
-        ) > 0,0,IF((SELECT COUNT(id) FROM robot
-      WHERE mid = #{code}
-            AND etime > UNIX_TIMESTAMP(NOW())
-            AND activation = 1
-                   ) > 0,1,-1))
+      IF((SELECT COUNT(id) FROM robot WHERE auth_code = #{code} and etime > UNIX_TIMESTAMP(NOW()) AND activation = 0 and mid = #{addMid}
+        ) > 0,0,IF((SELECT COUNT(id) FROM robot WHERE mid = #{code} AND etime > UNIX_TIMESTAMP(NOW()) AND activation = 1
+       ) > 0,1,IF((SELECT COUNT(id) FROM robot WHERE auth_code = #{code} and etime > UNIX_TIMESTAMP(NOW()) AND activation = 1 and mid = #{addMid}) > 0,2,-1)))
       AS result
   </select>
 

@@ -6,10 +6,7 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.lang.reflect.Method;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -276,6 +273,44 @@ public class SocketUtils {
         return bytes2Integer(toLH(bytes2Integer(recvData)));
     }
 
+    /**
+     * @return
+     * @throws IOException
+     * @Author:zun.wei , @Date:2017/7/19 19:28
+     * @Description:获取socket返回的Integer数据
+     */
+    public String receviveInteger1(Integer... recviceCmd) throws IOException {
+        InputStream inputStream = this.socket.getInputStream();
+        byte[] recvHead = new byte[2];
+        inputStream.read(recvHead, 0, 2);
+        String DataStr = new String(recvHead);
+        System.out.println("conpany abbreviation=======::" + DataStr);
+
+        if ("QS".equals(DataStr)) {
+            byte[] recvPacketSize = new byte[2];
+            inputStream.read(recvPacketSize, 0, 2);
+            int len = bytes2Integer(toLH(bytes2Integer(recvPacketSize)));
+            System.out.println("len=======::" + len);
+
+            byte[] recvCmd = new byte[2];
+            inputStream.read(recvCmd, 0, 2);
+            int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
+            System.out.println("cmd===::" + cmd);
+
+            List<Integer> cmds = Arrays.asList(recviceCmd);
+            if (cmds.contains(cmd)) {
+                return getRecvData(inputStream, cmd,len);
+            } else {
+                byte[] buffer = new byte[len];
+                if (len < 800) socket.getInputStream().read(buffer, 0, len);
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+
     public String receviveString() throws IOException {
         InputStream inputStream = this.socket.getInputStream();
         byte[] recvHead = new byte[2];
@@ -319,11 +354,7 @@ public class SocketUtils {
             System.out.println("cmd===::" + cmd);
 
             if (cmd == 1103 || cmd == 1001) {
-                byte[] recvData = new byte[4];
-                inputStream.read(recvData, 0, 4);
-                int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
-                System.out.println("integer data ====::" + recvInt);
-                return "r_" + recvInt + "_" + cmd;
+                return getRecvData(inputStream, cmd,len);
                 //return recvInt > 0 ? Boolean.TRUE : Boolean.FALSE;
             } else {
                 byte[] buffer = new byte[len];
@@ -334,6 +365,17 @@ public class SocketUtils {
         } else {
             return null;
         }
+    }
+
+    public String getRecvData(InputStream inputStream, int cmd,int len) throws IOException {
+        if (len == 0) {
+            return "r_" + 0 + "_" + cmd;
+        }
+        byte[] recvData = new byte[4];
+        inputStream.read(recvData, 0, 4);
+        int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
+        System.out.println("integer data ====::" + recvInt);
+        return "r_" + recvInt + "_" + cmd;
     }
 
 
@@ -355,7 +397,7 @@ public class SocketUtils {
             int cmd = bytes2Integer(toLH(bytes2Integer(recvCmd)));
             System.out.println("cmd===::" + cmd);
 
-            if (cmd == 1001 || cmd == 1002 || cmd == 1005 || cmd == 1003) {
+            if (cmd == 1001) {
                 byte[] recvData = new byte[4];
                 inputStream.read(recvData, 0, 4);
                 int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
@@ -402,15 +444,10 @@ public class SocketUtils {
         FutureTask<String> future = new FutureTask<String>(new Callable<String>() {
             public String call() throws Exception {
                 String value = null;
-                try {
-                    Method method = null;
-                    method = target.getClass().getDeclaredMethod(methodName, parameterTypes);
-                    Object returnValue = method.invoke(target, params);
-                    value = returnValue != null ? returnValue.toString() : null;
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    throw e;
-                }
+                Method method = null;
+                method = target.getClass().getDeclaredMethod(methodName, parameterTypes);
+                Object returnValue = method.invoke(target, params);
+                value = returnValue != null ? returnValue.toString() : null;
                 return value;
             }
         });

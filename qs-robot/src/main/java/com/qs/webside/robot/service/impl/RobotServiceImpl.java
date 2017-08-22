@@ -11,8 +11,6 @@ import com.qs.mainku.game.model.AgentClubMember;
 import com.qs.mainku.game.model.AgentMids;
 import com.qs.mainku.game.model.MemberFides;
 import com.qs.mainku.game.service.*;
-import com.qs.mainku.game.service.impl.RobotOpenRoomReData;
-import com.qs.mainku.game.service.impl.ShareLinkHandReData;
 import com.qs.mainku.game.service.impl.ShareLinkSwitchSocket;
 import com.qs.webside.robot.mapper.RobotMapper;
 import com.qs.webside.robot.model.Robot;
@@ -29,7 +27,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -285,6 +282,32 @@ public class RobotServiceImpl implements IRobotService {
                 map.put(CommonContants.ERROR, -7);
                 return map;
             }
+        } else if (result == 2) {
+            int acount = memberAgentService.checkAgentIsExist(addMid);
+            if (acount > 0) {//代理商存在
+                RobotFriends rf = robotFriendService.queryRobotFriendByCodeAndMid(parameters);
+                if (rf != null) {//已经添加过好友的。
+                    return respAddFriendSuccess(map, addMid);
+                }
+                RobotFriends robotFriends = new RobotFriends();
+                robotFriends.setAtime((int) (new Date().getTime() / 1000));
+                robotFriends.setAuthCode(code);
+                robotFriends.setMid(addMid);
+                robotFriends.setRobName(roboName);
+                robotFriends.setOwner(1);
+                int insertResult = robotFriendService.insertSelective(robotFriends);
+                if (insertResult > 0) {//加入机器人好友表成功
+                    return respAddFriendSuccess(map, addMid);
+                } else {//加入失败
+                    map.put(CommonContants.SUCCESS, 0);
+                    map.put(CommonContants.ERROR, -1);
+                    return map;
+                }
+            } else {//代理商不存在
+                map.put(CommonContants.SUCCESS, 0);
+                map.put(CommonContants.ERROR, -2);
+                return map;
+            }
         } else {//代理商未购买机器人，查找不到
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -8);
@@ -360,32 +383,31 @@ public class RobotServiceImpl implements IRobotService {
         if (coun < 1) {//没有找到机器人，或者已过期
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -33);
-            return map;
+            return JSON.toJSONString(map);
         }
         int acount = memberAgentService.checkAgentIsExist(amid);
-        int ocount = memberAgentService.checkAgentIsExist(omid);
-        if (acount > 0 && ocount == 0) {//代理商存在，待开房玩家不是代理商
-            return switchOpenRoomModeByGameType(map, gameType, ocount, amid, omid, msgid, robName,request,cIp,cPort,roomType);
+        if (acount > 0) {//代理商存在，待开房玩家不是代理商
+            return switchOpenRoomModeByGameType(map, gameType, amid, omid, msgid, robName,request,cIp,cPort,roomType);
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -3);
-            return map;
+            return JSON.toJSONString(map);
         }
     }
 
     //根据游戏类型切换开房请求
-    private Object switchOpenRoomModeByGameType(Map<String,Object> map,int gameType,int ocount,int amid,int omid
+    private Object switchOpenRoomModeByGameType(Map<String,Object> map,int gameType,int amid,int omid
             ,long msgid,String robName, HttpServletRequest request, String cIp, int cPort,int roomType) throws IOException {
         switch (gameType) {
             case 6:
-                return handleClubGroupOpenRoomRequest(map,gameType, ocount, amid, omid, msgid, robName, request, cIp, cPort,roomType);
+                return handleClubGroupOpenRoomRequest(map,gameType, amid, omid, msgid, robName, request, cIp, cPort,roomType);
             default:
-                return handleCommonOpenRoomRequest(map,gameType, ocount, amid, omid, msgid, robName, request, cIp, cPort,roomType);
+                return handleCommonOpenRoomRequest(map,gameType, amid, omid, msgid, robName, request, cIp, cPort,roomType);
         }
     }
 
     //操作俱乐部待开房请求
-    private Object handleClubGroupOpenRoomRequest(Map<String, Object> map, int gameType, int ocount, int amid, int omid
+    private Object handleClubGroupOpenRoomRequest(Map<String, Object> map, int gameType, int amid, int omid
             , long msgid, String robName, HttpServletRequest request, String cIp, int cPort,int roomType) throws IOException {
         Map<String, Object> mids = new HashMap<>();
         mids.put("amid", amid);
@@ -396,20 +418,20 @@ public class RobotServiceImpl implements IRobotService {
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -2);
-            return map;
+            return JSON.toJSONString(map);
         }
     }
 
     //默认公共的待开房请求操作
-    private Object handleCommonOpenRoomRequest(Map<String,Object> map,int gameType,int ocount,int amid,int omid,long msgid
+    private Object handleCommonOpenRoomRequest(Map<String,Object> map,int gameType,int amid,int omid,long msgid
             ,String robName, HttpServletRequest request, String cIp, int cPort,int roomType) throws IOException {
-        AgentMids agentMids = agentMidService.getAgentGrantByMid(ocount);
+        AgentMids agentMids = agentMidService.getAgentGrantByMid(omid);
         if (agentMids != null && agentMids.getAmid() == amid && agentMids.getMid() == omid) {
             return executeOpenRoom(map, amid, omid, msgid, robName, gameType, request, cIp, cPort,roomType);
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -2);
-            return map;
+            return JSON.toJSONString(map);
         }
     }
 
@@ -428,8 +450,13 @@ public class RobotServiceImpl implements IRobotService {
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -1);
-            return map;
+            return JSON.toJSONString(map);
         }
+    }
+
+    private void dissolutionExistRoom(SocketUtils socketUtils,int gameType) throws IOException {
+
+
     }
 
     //请求c++待开房
@@ -441,7 +468,14 @@ public class RobotServiceImpl implements IRobotService {
         String sesskey = this.saveToken(omid, loginGp, userGp, ip, gameType);
         SocketUtils socketUtils = ShareLinkSwitchSocket.switchSocketUtilByGameType(gameType, loginGp, sesskey, cIp, cPort, omid);
         boolean login = socketUtils.writeToServer();//登录c++ 服务器
-        if (login && socketUtils.receviveInteger() == 0) {//服务器返回0表示登录成功
+        int lo = socketUtils.receviveInteger();
+        int dis = RobotDiscoByGameType.dissolutionExistRoom(socketUtils, gameType);
+        if (dis != 1) {
+            map.put(CommonContants.SUCCESS, 0);
+            map.put(CommonContants.ERROR, -666);//解散上一次创建的无用房间失败
+            return JSON.toJSONString(map);
+        }
+        if (login && lo == 0) {//服务器返回0表示登录成功
             Map<String,Object> openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid,roomType,robotRoomConfigService,robotRoomCfgDfService);
             if ((Boolean) openRoom.get(CommonContants.SUCCESS)) {
                 //return receviceServerResponse(map, socketUtils, gameType);
@@ -454,7 +488,7 @@ public class RobotServiceImpl implements IRobotService {
                 } catch (Exception e) {
                     map.put(CommonContants.SUCCESS, 0);
                     map.put(CommonContants.ERROR, -66);//c++服务器返回创建房间超时
-                    return map;
+                    return JSON.toJSONString(map);
                 } finally {
                     socketUtils.close();
                     log.debug("----------::finally to close socket！");
@@ -463,12 +497,12 @@ public class RobotServiceImpl implements IRobotService {
             } else {
                 map.put(CommonContants.SUCCESS, 0);
                 map.put(CommonContants.ERROR, -3);
-                return map;
+                return JSON.toJSONString(map);
             }
         } else {
             map.put(CommonContants.SUCCESS, 0);
             map.put(CommonContants.ERROR, -5);
-            return map;
+            return JSON.toJSONString(map);
         }
     }
 
@@ -484,7 +518,7 @@ public class RobotServiceImpl implements IRobotService {
             if (t2 - t1 > 5000) {//五秒钟循环如果未加入成功则跳出循环
                 map.put(CommonContants.SUCCESS, 0);
                 map.put(CommonContants.ERROR, -55);//c++服务器返回加入房间超时
-                return map;
+                return JSON.toJSONString(map);
             } else {
                 String joinResult = socketUtils.recviceOpenRoomResult();
                 if (StringUtils.isNotBlank(joinResult)) {
@@ -506,7 +540,7 @@ public class RobotServiceImpl implements IRobotService {
                     } else {
                         map.put(CommonContants.SUCCESS, 0);
                         map.put(CommonContants.ERROR, -6);//服务器返回错误码
-                        return map;
+                        return JSON.toJSONString(map);
                     }
                 }
             }
