@@ -969,7 +969,7 @@ public class MemberController extends BaseController {
 		loginLogs.put("mid",user.getMid());
 		loginLogs.put("appVersion", "");
 		int gmType=gameType;
-		if(gmType<20){
+		if(gmType<15){
 			//避免gameType会重复
 			gmType=100+gmType;
 		}

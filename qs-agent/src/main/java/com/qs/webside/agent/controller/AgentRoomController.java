@@ -1059,6 +1059,9 @@ public class AgentRoomController extends BaseController{
 
     		parameters = pager.getParameters();
     		MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+ 			String gameType=dataSourcesUtil.getKey(ConstantUtil.AGENT_GAME_TYPE_SESSION_KEY+memberAgents.getSitemid());
+			AppGame appGame= appGameService.selectByPrimaryKey(Integer.parseInt(gameType));
+			parameters.put("dbName",appGame.getGameCode());
     		// 设置分页，page里面包含了分页信息
     		parameters.put("mid",  memberAgents.getMid());
     		if (StringUtils.isBlank(parameters.get("sDate").toString())){

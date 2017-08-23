@@ -238,15 +238,17 @@
   
    <select id="getGameRecordParamCountList"  parameterType="map" resultType="map">
  	SELECT 
-	player1,master,sum(pay) countGold,date,COUNT(id) oprenRoom,
-	sum(case when player1>0 then 1  else 0 end)
-	+sum(case when player2>0 then 1  else 0 end)
-	+sum(case when player3>0 then 1  else 0 end)
-	+sum(case when player4>0 then 1  else 0 end)  as countPlay 
-	FROM majiang_game_record where master=${mid} and date &gt;=#{sDate} AND date &lt;=#{eDate} 
+	g.player1,g.master,sum(g.pay) countGold,g.date,COUNT(g.id) oprenRoom,
+	sum(case when g.player1>0 then 1  else 0 end)
+	+sum(case when g.player2>0 then 1  else 0 end)
+	+sum(case when g.player3>0 then 1  else 0 end)
+	+sum(case when g.player4>0 then 1  else 0 end)  as countPlay,m.name
+	FROM majiang_game_record g
+	 LEFT JOIN  #{dbName}.memberfides0 m  on g.player1=m.mid
+	where g.master=${mid} and g.date &gt;=#{sDate} AND g.date &lt;=#{eDate} 
   <if test="user1 !=null and user1 != '' ">
-    AND player1=${user1}
+    AND g.player1=${user1}
   </if>
-  GROUP BY  player1 ORDER BY date desc
+  GROUP BY  g.player1 ORDER BY g.date desc
   </select>
 </mapper>

@@ -157,11 +157,12 @@ public class RobotServiceImpl implements IRobotService {
         int r = robotOpenRoomService.insertSelective(robotOpenRoom);
         if (r == 1) {//select room_type as roomType,room_name as roomName
             List<Map<String, Object>> dfCfg = robotRoomCfgDfService.findRobotRoomCigInfo();
-            String reData = "请选择房间类型，发送如:开房+编号\n";
+            String reData = "请选择房间类型，发送如:开心+编号\n\n";
             reData += "各种房间类型对应编号如下:\n";
             for (Map<String, Object> cf : dfCfg) {
                 reData += "编号:" + cf.get("roomType") + "    " + cf.get("roomName") + "\n";
             }
+            reData += "\n\n提示:如果你能记住编号，也可以直接发送:\"开心+编号\"哦!";
             map.put(CommonContants.SUCCESS, 1);
             map.put(CommonContants.DATA, reData);
             map.put(CommonContants.ERROR, 0);
@@ -476,7 +477,7 @@ public class RobotServiceImpl implements IRobotService {
             return JSON.toJSONString(map);
         }
         if (login && lo == 0) {//服务器返回0表示登录成功
-            Map<String,Object> openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid,roomType,robotRoomConfigService,robotRoomCfgDfService);
+            Map<String,Object> openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid,roomType,omid,robotRoomConfigService,robotRoomCfgDfService);
             if ((Boolean) openRoom.get(CommonContants.SUCCESS)) {
                 //return receviceServerResponse(map, socketUtils, gameType);
                 Object o;

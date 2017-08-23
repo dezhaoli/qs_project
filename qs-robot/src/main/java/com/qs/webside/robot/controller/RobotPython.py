@@ -30,6 +30,7 @@ def check_int(str):
         return False
 
 
+# postUrl = 'http://192.168.1.128:8090/gdrobot/api/robot/sendMsgToJava.html'
 postUrl = 'http://192.168.1.204:8080/robot/api/robot/sendMsgToJava.html'
 
 
@@ -63,7 +64,11 @@ def add_friend(msg):
         if int(rd[success]) == 1:  # 成功
             itchat.add_friend(userName=msg['RecommendInfo']['UserName'], status=3)  # 同意加为好友
             add_name = rd[data]['name']
-            itchat.send_msg(add_name + ":感谢您加我为好友！" + '我的名字叫：' + robot_nickname, msg['RecommendInfo']['UserName'])
+            # itchat.send_msg(add_name + ":感谢您加我为好友！" + '我的名字叫：' + robot_nickname, msg['RecommendInfo']['UserName'])
+            itchat.send_msg('您好；机器人代开房授权成功！欢迎使用牵手开房神器。\n\n'
+                            + '按如下操作，即可开通服务；\n'
+                            + '1.请把机器人加为微信好友，拉进您的微信群中\n'
+                            + '2.在群中编辑发送“玩法”或“玩法+“玩法编号”，如：玩法+1，即可。', msg['RecommendInfo']['UserName'])
             itchat.set_alias(userName=msg['RecommendInfo']['UserName'],
                              alias="QS_" + str(li[0]) + "_" + str(li[1]))  # 修改备注名称
         else:
@@ -117,7 +122,7 @@ def text_reply(msg):
     #                 rd = send_post_request_to_java(msg_request_open_room, data=d)
     #                 print(rd)
 
-    if str(msg['Content']) == '开房':
+    if str(msg['Content']) == '开心':
         fun = itchat.search_friends(userName=msg['ActualUserName'])
         try:
             remark_name = fun['RemarkName']
@@ -135,7 +140,8 @@ def text_reply(msg):
                 qunzhu_li = qunzhu_rn.split('_', 2)
                 if qunzhu_rn.startswith('QS_') and len(qunzhu_li) == 3 and check_int(qunzhu_li[1]) and check_int(
                         qunzhu_li[2]):
-                    if qunzhu_li[2] == li[1]:
+                    if qunzhu_li[2] == li[1] or len(li[1]) == 8:
+                        if len(li[1]) == 8: li[1] = li[2]
                         robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                         d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']),
                              "robName": robot_nickname}
@@ -149,6 +155,7 @@ def text_reply(msg):
                             itchat.send(rr[data], msg['FromUserName'])
             else:
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                if len(li[1]) == 8: li[1] = li[2]
                 d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
                 rd = send_post_request_to_java(msg_request_open_room_type, data=d)
                 print('not has ChatRoomOwner response type ', rd)
@@ -161,7 +168,7 @@ def text_reply(msg):
 
     con = str(msg['Content'])
     room = con.split('+', 1)
-    if con.startswith('开房+') and len(room) == 2 and check_int(room[1]):
+    if con.startswith('开心+') and len(room) == 2 and check_int(room[1]):
         fun = itchat.search_friends(userName=msg['ActualUserName'])
         try:
             remark_name = fun['RemarkName']
@@ -179,7 +186,8 @@ def text_reply(msg):
                 qunzhu_li = qunzhu_rn.split('_', 2)
                 if qunzhu_rn.startswith('QS_') and len(qunzhu_li) == 3 and check_int(qunzhu_li[1]) and check_int(
                         qunzhu_li[2]):
-                    if qunzhu_li[2] == li[1]:
+                    if qunzhu_li[2] == li[1] or len(li[1]) == 8:
+                        if len(li[1]) == 8: li[1] = li[2]
                         robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                         d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']),
                              "robName": robot_nickname, "roomType": room[1]}
@@ -194,6 +202,7 @@ def text_reply(msg):
                                         , msg['FromUserName'])
             else:
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                if len(li[1]) == 8: li[1] = li[2]
                 d = {"amid": str(li[1]), "mid": str(li[2]), "msgid": str(msg['MsgId']),
                      "robName": robot_nickname, "roomType": room[1]}
                 rd = send_post_request_to_java(msg_request_open_room, data=d)

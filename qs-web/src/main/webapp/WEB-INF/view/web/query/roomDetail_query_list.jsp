@@ -6,9 +6,13 @@
 <%--<%@include file="/common/common.jspf" %>--%>
 <script type="text/javascript"
         src="${pageContext.request.contextPath }/resources/js/customer/web/cardRecord_query_list.js"></script>
-
+<title>牌局信息</title>
 <div class="page-content">
     ${info}
+     <br><br>
+     JSON源文件：
+     <br><br>
+     ${info2}
 <%--    <div class="row">
         <div class="col-sm-6">
             <!-- 搜索 -->

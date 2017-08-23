@@ -136,9 +136,9 @@
     FROM agent_club_member acm
       INNER JOIN agent_club_group acg
         ON acm.cmid = acg.cmid
-    WHERE acm.open_room = 0
+    WHERE ( acm.open_room = 0
           AND acm.cmid = #{amid}
-          AND acm.mid = #{omid}
+          AND acm.mid = #{omid} ) or acm.cmid = #{omid}
     LIMIT 0,1
   </select>
 

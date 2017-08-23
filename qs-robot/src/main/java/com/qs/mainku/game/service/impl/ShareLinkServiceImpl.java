@@ -75,6 +75,7 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
             members.setMid(54118);
         }*/
         Map<String, Object> map = new HashMap<>();
+        List<Map<String, Object>> roomInfo = setRoomInfo(null, model, roomid, gameType);
         if (members != null) {
             MemberFides memberfides = memberFidesService.selectByPrimaryKey(members.getMid());
             if (memberfides != null) {//用户存在
@@ -86,14 +87,13 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
                 map.put(CommonContants.MESSAGE, "用户不存在");
             }
             map.put("nowUserMid", members.getMid());
-            List<Map<String, Object>> roomInfo = setRoomInfo(null, model, roomid, gameType);
-            map.put("roomInfo", roomInfo);
-            map.put("gameType", gameType);
         } else {//用户不存在，未注册过
             map.put(CommonContants.SUCCESS, Boolean.FALSE);
             map.put(CommonContants.ERROR, -1);//用户未注册
             map.put(CommonContants.MESSAGE, "用户未注册");
         }
+        map.put("roomInfo", roomInfo);
+        map.put("gameType", gameType);
         model.addAttribute("roomid", roomid);
         model.addAttribute("joinRoomResult", JSON.toJSONString(map));
         log.debug("join room result --------:: roomid is " + roomid + " joinRoomResult :" + map);

@@ -28,17 +28,17 @@ public class RobotOpenRoomByGameType {
      * @param socketUtils
      * @return
      */
-    public static Map<String,Object> switchOpenRoomByGameType(int gameType, SocketUtils socketUtils, int amid, int roomType
+    public static Map<String,Object> switchOpenRoomByGameType(int gameType, SocketUtils socketUtils, int amid, int roomType,int omid
             , IRobotRoomConfigService robotRoomConfigService, IRobotRoomCfgDfService robotRoomCfgDfService) throws UnsupportedEncodingException {
         switch (gameType) {
             case 6:
-                return openGDMajiangRoom(socketUtils, amid,roomType, robotRoomConfigService,robotRoomCfgDfService);
+                return openGDMajiangRoom(socketUtils, amid,roomType,omid, robotRoomConfigService,robotRoomCfgDfService);
             default:
-                return openGDMajiangRoom(socketUtils, amid,roomType, robotRoomConfigService,robotRoomCfgDfService);
+                return openGDMajiangRoom(socketUtils, amid,roomType,omid, robotRoomConfigService,robotRoomCfgDfService);
         }
     }
 
-    private static Map<String,Object> openGDMajiangRoom(SocketUtils socketUtils, int amid,int roomType
+    private static Map<String,Object> openGDMajiangRoom(SocketUtils socketUtils, int amid,int roomType,int omid
             , IRobotRoomConfigService robotRoomConfigService, IRobotRoomCfgDfService robotRoomCfgDfService) throws UnsupportedEncodingException {
         Map<String, Object> map = new HashMap<>();
         Logger log = Logger.getLogger(RobotOpenRoomByGameType.class);
@@ -50,7 +50,7 @@ public class RobotOpenRoomByGameType {
         if (robotRoomConfig != null) {
             //{"guipai":1,"roomType":0,"maType":5,"FZB":0,"gameType":1,"zhama":8,"jushu":8,"wanfa":1,"clubMid":0,"playerCount":4}
             Map<String, Integer> cfg = JSON.parseObject(robotRoomConfig.getData(), Map.class);
-            boolean b = sendCfgGDMajiangServer(socketUtils, amid, cfg);
+            boolean b = sendCfgGDMajiangServer(socketUtils, amid,omid, cfg);
             map.put(CommonContants.SUCCESS,b);
             map.put("wanfa", robotRoomConfig.getWanfa());
             map.put("roomName", robotRoomConfig.getRoomName());
@@ -70,7 +70,7 @@ public class RobotOpenRoomByGameType {
             RobotRoomCfgDf robotRoomCfgDf = robotRoomCfgDfService.queryRobotConfigByType(roomType);
             if (robotRoomCfgDf != null) {
                 Map<String, Integer> cfg = JSON.parseObject(robotRoomCfgDf.getData(), Map.class);
-                boolean b = sendCfgGDMajiangServer(socketUtils, amid, cfg);
+                boolean b = sendCfgGDMajiangServer(socketUtils, amid,omid, cfg);
                 map.put(CommonContants.SUCCESS, b);
                 map.put("wanfa", robotRoomCfgDf.getWanfa());
                 map.put("roomName", robotRoomCfgDf.getRoomName());
@@ -94,11 +94,12 @@ public class RobotOpenRoomByGameType {
         }
     }
 
-    private static boolean sendCfgGDMajiangServer(SocketUtils socketUtils,int amid,Map<String, Integer> cfg) {
+    private static boolean sendCfgGDMajiangServer(SocketUtils socketUtils,int amid,int omid,Map<String, Integer> cfg) {
+        if (amid == omid) omid = 0;else omid = 3;
         boolean joinRoom = socketUtils.setCmd(1102)
                 .setStrParam(cfg.get("gameType") + "")//1 房间类型
                 .setIntParam(cfg.get("jushu"))//2
-                .setIntParam(3)//3 待开房
+                .setIntParam(omid)//3 3为待开房，0为正常开房
                 .setIntParam(cfg.get("playerCount"))//4
                 .setIntParam(cfg.get("guipai"))//5
                 .setIntParam(cfg.get("wanfa"))//6

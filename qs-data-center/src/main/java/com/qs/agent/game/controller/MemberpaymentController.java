@@ -101,7 +101,7 @@ public class MemberpaymentController extends BaseController
 			parameters.put("gameCode", Constant.getDataCenterBusinessGameCode(gameCode));
 			if (gameType != null && !gameType.trim().equals(""))
 			{
-				if (gameType.endsWith("_majiang_pub"))
+				if (gameType.endsWith("_pub"))
 				{
 					parameters.put("stat", gameType);
 				} else
@@ -161,7 +161,7 @@ public class MemberpaymentController extends BaseController
 			parameters.put("gameCode", Constant.getDataCenterBusinessGameCode(gameCode));
 			if (gameType != null && !gameType.trim().equals(""))
 			{
-				if (gameType.endsWith("_majiang_pub"))
+				if (gameType.endsWith("_pub"))
 				{
 					parameters.put("stat", gameType);
 				} else

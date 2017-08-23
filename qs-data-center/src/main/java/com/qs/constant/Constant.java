@@ -23,8 +23,8 @@ public class Constant
 	 
 	 public static String getDataCenterBusinessGameType(String gameType){
 		if(gameType != null){
-			if(gameType.equals("beardkx")){
-				return "beardkx";
+			if(gameType.equals("kx_beard")){
+				return "kx_beard_pub";
 			}else if(gameType.equals("gd_majiang") || gameType.equals("sc_majiang")|| gameType.equals("qian_majiang")){
 				return "gd_majiang_pub";
 			}else if(gameType.equals("majiangjx")){

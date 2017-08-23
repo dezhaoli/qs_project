@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+     http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd
+     http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+     http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+<!-- 	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:init.properties</value>
+		</property>
+	</bean> --> 
+	
+	<!--系统能够识别相应的注解-->
+	<context:annotation-config />
+
+	<!-- webside数据源引入 -->
+	<import resource="classpath:/spring/dataResource/webside-datasource.xml"/>
+
+<!-- =========================================游戏数据源配置引入================================================ -->
+
+	<!-- 麻将数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/runfast-datasource.xml"/>
+	<!-- 麻将数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/majiang-datasource.xml"/>
+	<!-- 斗牛数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/bull-datasource.xml"/>
+	<!-- 木虱数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/mushi-datasource.xml"/>
+	<!-- 金溪麻将数据源(包括主库，log库) -->
+<!-- 	<import resource="classpath:/spring/dataResource/majiangjx-datasource.xml"/> -->
+	<!-- 开心跑胡子数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/beardkx-datasource.xml"/>
+	<!-- 广东麻将数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/gdmajiang-datasource.xml"/>
+	<!-- 四川麻将数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/scmajiang-datasource.xml"/>
+    <!-- 江西麻将数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/jxmajiang-datasource.xml"/>
+	<!-- 常来数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/beardfpf-datasource.xml"/>
+	<!-- 贵州麻将数据源(包括主库，log库) -->
+	<import resource="classpath:/spring/dataResource/qianmajiang-datasource.xml"/>
+	<!-- 乐玩碰胡数据源(包括主库，log库) -->
+	<!-- <import resource="classpath:/spring/dataResource/beardph-datasource.xml"/> -->
+	
+
+	<!-- ==========================================配置动态数据源================================================ -->
+	<!-- 配置动态数据源 -->
+	<bean id="logDynamicDataSource" class="com.qs.datasource.LogDataSources">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<!-- Log库 -->
+				<entry value-ref="runfastLogDataSource" key="runfastLogDataSource"/>
+				<entry value-ref="majiangLogDataSource" key="majiangLogDataSource"/>
+				<entry value-ref="bullLogDataSource" key="bullLogDataSource"/>
+				<entry value-ref="mushiLogDataSource" key="mushiLogDataSource"/>
+				<!-- <entry value-ref="majiangjxLogDataSource" key="majiangjxLogDataSource"/> -->
+				<entry value-ref="beardkxLogDataSource" key="kx_beardLogDataSource"/>
+				<entry value-ref="scmajiangLogDataSource" key="sc_majiangLogDataSource"/>
+				<entry value-ref="gdmajiangLogDataSource" key="gd_majiangLogDataSource"/>
+			    <entry value-ref="jxmajiangLogDataSource" key="jx_majiangLogDataSource"/>
+			    <entry value-ref="beardfpfLogDataSource" key="beardfpfLogDataSource"/>
+			    <entry value-ref="qianmajiangLogDataSource" key="qian_majiangLogDataSource"/>
+<!-- 			    <entry value-ref="beardphLogDataSource" key="beardphLogDataSource"/>
+ -->			    
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="websideDataSource"/>
+	</bean>
+	<bean id="mainDynamicDataSource" class="com.qs.datasource.MainDataSources">
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<!-- 主库 -->
+				<entry value-ref="runfastAgentDataSource" key="runfastAgentDataSource"/>
+				<entry value-ref="majiangAgentDataSource" key="majiangAgentDataSource"/>
+				<entry value-ref="bullAgentDataSource" key="bullAgentDataSource"/>
+				<entry value-ref="mushiAgentDataSource" key="mushiAgentDataSource"/>
+			<!-- 	<entry value-ref="majiangjxAgentDataSource" key="majiangjxAgentDataSource"/> -->
+				<entry value-ref="beardkxAgentDataSource" key="kx_beardAgentDataSource"/>
+				<entry value-ref="gdmajiangAgentDataSource" key="gd_majiangAgentDataSource"/>
+				<entry value-ref="scmajiangAgentDataSource" key="sc_majiangAgentDataSource"/>
+				<entry value-ref="jxmajiangAgentDataSource" key="jx_majiangAgentDataSource"/>
+				<entry value-ref="beardfpfAgentDataSource" key="beardfpfAgentDataSource"/>
+				<entry value-ref="qianmajiangAgentDataSource" key="qian_majiangAgentDataSource"/>
+<!-- 			    <entry value-ref="beardphAgentDataSource" key="beardphAgentDataSource"/>
+ -->					
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="websideDataSource"/>
+	</bean>
+	<!-- ==========================================配置动态数据源================================================= -->
+	 
+	 
+</beans>

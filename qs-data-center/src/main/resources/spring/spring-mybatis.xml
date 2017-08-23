@@ -61,7 +61,7 @@
 				<entry value-ref="bullLogDataSource" key="bullLogDataSource"/>
 				<entry value-ref="mushiLogDataSource" key="mushiLogDataSource"/>
 				<!-- <entry value-ref="majiangjxLogDataSource" key="majiangjxLogDataSource"/> -->
-				<entry value-ref="beardkxLogDataSource" key="beardkxLogDataSource"/>
+				<entry value-ref="beardkxLogDataSource" key="kx_beardLogDataSource"/>
 				<entry value-ref="scmajiangLogDataSource" key="sc_majiangLogDataSource"/>
 				<entry value-ref="gdmajiangLogDataSource" key="gd_majiangLogDataSource"/>
 			    <entry value-ref="jxmajiangLogDataSource" key="jx_majiangLogDataSource"/>
@@ -82,7 +82,7 @@
 				<entry value-ref="bullAgentDataSource" key="bullAgentDataSource"/>
 				<entry value-ref="mushiAgentDataSource" key="mushiAgentDataSource"/>
 			<!-- 	<entry value-ref="majiangjxAgentDataSource" key="majiangjxAgentDataSource"/> -->
-				<entry value-ref="beardkxAgentDataSource" key="beardkxAgentDataSource"/>
+				<entry value-ref="beardkxAgentDataSource" key="kx_beardAgentDataSource"/>
 				<entry value-ref="gdmajiangAgentDataSource" key="gd_majiangAgentDataSource"/>
 				<entry value-ref="scmajiangAgentDataSource" key="sc_majiangAgentDataSource"/>
 				<entry value-ref="jxmajiangAgentDataSource" key="jx_majiangAgentDataSource"/>

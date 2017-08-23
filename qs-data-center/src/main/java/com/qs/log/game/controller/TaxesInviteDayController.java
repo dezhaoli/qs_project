@@ -120,7 +120,7 @@ public class TaxesInviteDayController extends BaseController
 			parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);
 			if (gameType != null && !gameType.trim().equals(""))
 			{
-				if (gameType.endsWith("_majiang_pub"))
+				if (gameType.endsWith("_pub"))
 				{
 					parameters.put("stat", gameType);
 				} else
@@ -215,7 +215,7 @@ public class TaxesInviteDayController extends BaseController
 			parameters.put("businessIdListByGroup", businessIdListByGroup != null && businessIdListByGroup.size()>0?businessIdListByGroup:null);
 			if (gameType != null && !gameType.trim().equals(""))
 			{
-				if (gameType.endsWith("_majiang_pub"))
+				if (gameType.endsWith("_pub"))
 				{
 					parameters.put("stat", gameType);
 				} else
@@ -354,7 +354,7 @@ public class TaxesInviteDayController extends BaseController
 			parameters.put("gameCode", Constant.getDataCenterBusinessGameCode(gameCode));
 			if (gameType != null && !gameType.trim().equals(""))
 			{
-				if (gameType.equals("gd_majiang_pub"))
+				if (gameType.equals("_pub"))
 				{
 					parameters.put("stat", gameType);
 				} else

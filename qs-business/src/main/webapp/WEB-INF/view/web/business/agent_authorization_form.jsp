@@ -129,13 +129,13 @@
         "    </button></div>";*/
      // nickname,invite,"是",bizname
     function showAgentView(bizname,parentId,isAgent,belongAgent) {
-        var resultForm = "<form class=\"form-horizontal\" role=\"form\" method=\"post\">\n" +
+        var resultForm = "<form class=\"form-horizontal\" style='margin-left: 23px;margin-right: 23px;' role=\"form\" method=\"post\">\n" +
             "\n" +
             "            <div class=\"form-group\" style='margin-bottom: 0px;'>\n" +
             "                <div class=\"col-sm-2\">\n" +
             "\n" +
             "                </div>\n" +
-            "                <label class=\"control-label col-sm-1 no-padding-right\">用户昵称</label>\n" +
+            "                <label class=\"control-label col-sm-1 no-padding-right\" style=\"margin-left:-10px;\">用户昵称</label>\n" +
             "                <div class=\"col-sm-5\" style='padding-left: 0px;padding-right: 0px;'>\n" +
             "                    <div class=\"clearfix\">\n" +
             "                        <input class=\"form-control\" type=\"text\" id=\"bizname\"" +
@@ -148,7 +148,7 @@
             "                <div class=\"col-sm-2\">\n" +
             "\n" +
             "                </div>\n" + <!-- 绑定用户 -->
-            "                <label class=\"control-label col-sm-1 no-padding-right\">游戏邀请人</label>\n" +
+            "                <label class=\"control-label col-sm-1 no-padding-right\" style=\"margin-left:-10px;\">游戏邀请人</label>\n" +
             "                <div class=\"col-sm-5\" style='padding-left: 0px;padding-right: 0px;'>\n" +
             "                    <div class=\"clearfix\">\n" +
             "                        <input class=\"form-control\" name=\"parent_id\" id=\"parent_id\" type=\"number\"" +
@@ -161,7 +161,7 @@
             "                <div class=\"col-sm-2\">\n" +
             "\n" +
             "                </div>\n" +
-            "                <label class=\"control-label col-sm-1 no-padding-right\">是否代理商</label>\n" +
+            "                <label class=\"control-label col-sm-1 no-padding-right\" style=\"margin-left:-10px;\">是否代理商</label>\n" +
             "                <div class=\"col-sm-5\" style='padding-left: 0px;padding-right: 0px;'>\n" +
             "                    <div class=\"clearfix\">\n" +
             "                        <input class=\"form-control\" type=\"text\" " +
@@ -177,7 +177,7 @@
             "                <div class=\"col-sm-2\">\n" +
             "\n" +
             "                </div>\n" +
-            "                <label class=\"control-label col-sm-1 no-padding-right\">所属商务</label>\n" +
+            "                <label class=\"control-label col-sm-1 no-padding-right\" style=\"margin-left:-10px;\">所属商务</label>\n" +
             "                <div class=\"col-sm-5\" style='padding-left: 0px;padding-right: 0px;'>\n" +
             "                    <div class=\"clearfix\">\n" +
             "                        <input class=\"form-control\" type=\"text\"" +
