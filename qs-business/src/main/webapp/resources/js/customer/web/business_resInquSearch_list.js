@@ -1,13 +1,14 @@
-var dtGridColumns = [{//SELECT sum(ppd.paytotal) AS paycount,ppd.date,md.id,md.name
-    id : 'rowno',
+var dtGridColumns = [
+   {
+    id : 'no',
     title : '序号',
     type : 'number',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
     resolution: function (value, record, column, grid, dataNo, columnNo) {
-        return dataNo + 1;
+        return dataNo+1;
     }
-},{
+ },{
     id : 'name',
     title : '团队充值',
     type : 'string',

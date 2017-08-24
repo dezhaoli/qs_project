@@ -7,10 +7,12 @@ import com.qs.common.base.basecontroller.BaseController;
 import com.qs.common.dtgrid.model.Pager;
 import com.qs.common.dtgrid.util.ExportUtils;
 import com.qs.common.util.PageUtil;
+import com.qs.pub.game.model.MemberBusiness;
 import com.qs.pub.game.service.IAppGameService;
 import com.qs.pub.game.service.IPlayerPayDayService;
 import com.qs.webside.util.BusinessDataSourceUtil;
 import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -81,6 +83,8 @@ public class BusiResInquController extends BaseController {
         }
         //String gameCode = appGameService.getGameCode(businessDataSourceUtil.getGameType());
         parameters.put("gameType", businessDataSourceUtil.getGameType());
+        MemberBusiness memberBusiness = (MemberBusiness)SecurityUtils.getSubject().getPrincipal();
+        parameters.put("businessId", memberBusiness.getId());
         // 设置分页，page里面包含了分页信息
         if (StringUtils.isBlank(parameters.get("startDate") + "") && StringUtils.isBlank(parameters.get("endDate") + "")) {
             parameters.put("startDate", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));

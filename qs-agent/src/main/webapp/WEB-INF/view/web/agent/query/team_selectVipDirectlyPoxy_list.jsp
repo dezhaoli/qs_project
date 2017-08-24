@@ -4,16 +4,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <c:set var="ctx" value="${pageContext.request.contextPath }"/>
 
-<c:choose>
-	<c:when test="${gameType <20}">
+<%-- <c:choose>
+	<c:when test="${gameType <20}"> --%>
 <script type="text/javascript"
         src="${ctx }/resources/js/customer/web/team_selectVipDirectlyPoxy_list.js"></script>
-	</c:when>
+<%-- 	</c:when>
 	<c:otherwise>
 <script type="text/javascript"
         src="${ctx }/resources/js/customer/web/team_selectVipDirectlyPoxy_list2.js"></script>
 	</c:otherwise>
-</c:choose>
+</c:choose> --%>
 
 <script src="${ctx}/resources/js/customer/index/index_list.js" type="text/javascript"></script>
 <div class="page-content" style="padding-top: 20px">

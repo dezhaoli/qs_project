@@ -313,10 +313,10 @@ public class IndexController extends BaseController {
     }
 	
 	@RequestMapping(value = "synData.html", method = RequestMethod.GET)
-	public String synData (HttpServletRequest req, HttpServletResponse rsp,Model modle) {
-		String url="192.168.1.128:11215";
-		String toUrl="192.168.1.128:11216";
-		String like="TMGMCOM";
+	public String synData (HttpServletRequest req0, HttpServletResponse rsp,Model modle) {
+		String url="10.47.49.120:11214";
+		String toUrl="m-bp159f133c80a934.memcache.rds.aliyuncs.com:11211";
+		String like="PRIVATEROOM1|";
 		Map<String, Object> map = new HashMap<String, Object>();
 		map=MemcachedUtil.synData(url,toUrl,like,map);
 		modle.addAttribute("resultData", map);

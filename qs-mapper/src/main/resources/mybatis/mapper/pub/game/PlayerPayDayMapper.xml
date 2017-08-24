@@ -105,11 +105,10 @@
   </update>
   
   <select id="queryBusiPayByCompany" parameterType="map" resultType="map">
-    SELECT  (@rowNO := @rowNo+1) AS rowno,sum(ppd.paytotal) AS paycount,ppd.date,md.id,md.name
+    SELECT  sum(ppd.paytotal) AS paycount,ppd.date,md.id,md.name
     FROM player_pay_day ppd,
     memberbusiness md,
-    app_company ac,
-    (select @rowNO :=0) bb
+    app_company ac
     WHERE md.company = ac.cid
     AND ppd.bizid = md.id
     AND ppd.gametype = #{gameType}
@@ -119,6 +118,15 @@
     <if test="endDate != null and endDate != ''">
       AND ppd.date &lt;= #{endDate}
     </if>
+    
+    <if test="company != null and company != ''">
+      AND md.company =#{company}
+    </if>
+    <if test="company == null or company == ''">
+      AND md.id= #{businessId}
+    </if>
+
+    
     GROUP BY ppd.date,md.id
     ORDER BY ppd.date desc
   </select>

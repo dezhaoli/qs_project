@@ -166,6 +166,7 @@
     and auth_code = #{authCode,jdbcType=INTEGER}
   </update>
 
+  <!-- 0表示代理商要添加为好友且机器人未激活，1表示授权待开房人要添加为好友，2表示代理商要添加为好友且机器人已激活 -->
   <select id="checkAuthCodeOrMidExist" resultType="int" parameterType="map" >
     SELECT
       IF((SELECT COUNT(id) FROM robot WHERE auth_code = #{code} and etime > UNIX_TIMESTAMP(NOW()) AND activation = 0 and mid = #{addMid}

@@ -242,9 +242,9 @@
 	sum(case when g.player1>0 then 1  else 0 end)
 	+sum(case when g.player2>0 then 1  else 0 end)
 	+sum(case when g.player3>0 then 1  else 0 end)
-	+sum(case when g.player4>0 then 1  else 0 end)  as countPlay,m.name
+	+sum(case when g.player4>0 then 1  else 0 end)  as countPlay,m.name name ,g.roomid roomid 
 	FROM majiang_game_record g
-	 LEFT JOIN  #{dbName}.memberfides0 m  on g.player1=m.mid
+	 LEFT JOIN  ${dbName}.memberfides0 m  on g.player1=m.mid
 	where g.master=${mid} and g.date &gt;=#{sDate} AND g.date &lt;=#{eDate} 
   <if test="user1 !=null and user1 != '' ">
     AND g.player1=${user1}

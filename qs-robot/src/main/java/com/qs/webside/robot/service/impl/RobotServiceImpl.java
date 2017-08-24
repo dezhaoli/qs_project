@@ -283,7 +283,7 @@ public class RobotServiceImpl implements IRobotService {
                 map.put(CommonContants.ERROR, -7);
                 return map;
             }
-        } else if (result == 2) {
+        } else if (result == 2) {//表示代理商要添加为好友且机器人已激活
             int acount = memberAgentService.checkAgentIsExist(addMid);
             if (acount > 0) {//代理商存在
                 RobotFriends rf = robotFriendService.queryRobotFriendByCodeAndMid(parameters);
@@ -387,7 +387,7 @@ public class RobotServiceImpl implements IRobotService {
             return JSON.toJSONString(map);
         }
         int acount = memberAgentService.checkAgentIsExist(amid);
-        if (acount > 0) {//代理商存在，待开房玩家不是代理商
+        if (acount > 0) {//代理商存在
             return switchOpenRoomModeByGameType(map, gameType, amid, omid, msgid, robName,request,cIp,cPort,roomType);
         } else {
             map.put(CommonContants.SUCCESS, 0);
@@ -453,11 +453,6 @@ public class RobotServiceImpl implements IRobotService {
             map.put(CommonContants.ERROR, -1);
             return JSON.toJSONString(map);
         }
-    }
-
-    private void dissolutionExistRoom(SocketUtils socketUtils,int gameType) throws IOException {
-
-
     }
 
     //请求c++待开房
