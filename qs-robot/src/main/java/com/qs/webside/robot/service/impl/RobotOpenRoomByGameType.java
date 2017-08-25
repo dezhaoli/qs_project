@@ -46,9 +46,7 @@ public class RobotOpenRoomByGameType {
         parameters.put("mid", amid);
         parameters.put("roomType", roomType);
         RobotRoomConfig robotRoomConfig = robotRoomConfigService.getRobotRoomCfgByMidAndType(parameters);
-        //BASE64Encoder encoder = new BASE64Encoder();
         if (robotRoomConfig != null) {
-            //{"guipai":1,"roomType":0,"maType":5,"FZB":0,"gameType":1,"zhama":8,"jushu":8,"wanfa":1,"clubMid":0,"playerCount":4}
             Map<String, Integer> cfg = JSON.parseObject(robotRoomConfig.getData(), Map.class);
             boolean b = sendCfgGDMajiangServer(socketUtils, amid,omid, cfg);
             map.put(CommonContants.SUCCESS,b);
@@ -58,13 +56,6 @@ public class RobotOpenRoomByGameType {
             map.put("t", roomType);
             map.put("a", amid);
             map.put("d", 1);
-           /* String wf = robotRoomConfig.getWanfa();
-            wf = wf.replaceAll(",", "_");
-            String s = encoder.encode(wf.getBytes("utf-8"));
-            Object o = cfg.get("jushu");
-            map.put("wanfa", s);
-            map.put("jushu", o);
-            map.put("roomName", encoder.encode(robotRoomConfig.getRoomName().getBytes("utf-8")));*/
             return map;
         } else {
             RobotRoomCfgDf robotRoomCfgDf = robotRoomCfgDfService.queryRobotConfigByType(roomType);
@@ -78,13 +69,6 @@ public class RobotOpenRoomByGameType {
                 map.put("t", roomType);
                 map.put("a", amid);
                 map.put("d", 2);
-                /*String wf = robotRoomCfgDf.getWanfa();
-                wf = wf.replaceAll(",", "_");
-                String s = encoder.encode(wf.getBytes("utf-8"));
-                Object o = cfg.get("jushu");
-                map.put("wanfa", s);
-                map.put("jushu", o);
-                map.put("roomName", encoder.encode(robotRoomCfgDf.getRoomName().getBytes("utf-8")));*/
                 return map;
             } else {
                 log.debug("-------::agent no had cfg robot room type cfg ,and default cfg is no exist!");
@@ -95,7 +79,7 @@ public class RobotOpenRoomByGameType {
     }
 
     private static boolean sendCfgGDMajiangServer(SocketUtils socketUtils,int amid,int omid,Map<String, Integer> cfg) {
-        if (amid == omid) omid = 0;else omid = 3;
+        if (88888888 == omid) omid = 4;else omid = 3;
         boolean joinRoom = socketUtils.setCmd(1102)
                 .setStrParam(cfg.get("gameType") + "")//1 房间类型
                 .setIntParam(cfg.get("jushu"))//2

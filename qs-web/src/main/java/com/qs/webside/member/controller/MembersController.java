@@ -651,7 +651,7 @@ public class MembersController extends BaseController{
             Map<String, Object> infoMap = JSON.parseObject(info, Map.class);
             if (infoMap != null && infoMap.size() > 0) {
                 if (infoMap.size() == 1) {//如果是单款游戏的代理商，就直接把邀请表的邀请码删除
-                    if (infoMap.containsKey(gameCode)) commonAgentService.deleteByPrimaryKey(isAgent.getSitemid());
+                    commonAgentService.deleteByPrimaryKey(isAgent.getSitemid());
                     memberInviteService.deleteBySiteId(isAgent.getSitemid());//删除邀请表
                 } else {//如果是多款游戏的代理商,邀请表的记录不能删除。
                     infoMap.remove(gameCode);

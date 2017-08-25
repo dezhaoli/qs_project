@@ -28,7 +28,8 @@
     select 
     count(id)
     from robot
-    where mid = #{mid,jdbcType=INTEGER}
+    where mid = #{amid,jdbcType=INTEGER}
+      and auth_code = #{code} and activation = 1
     and etime &gt; #{date} 
   </select>
   

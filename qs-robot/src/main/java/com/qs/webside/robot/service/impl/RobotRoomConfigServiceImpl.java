@@ -1,5 +1,6 @@
 package com.qs.webside.robot.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,4 +81,19 @@ public class RobotRoomConfigServiceImpl implements IRobotRoomConfigService {
 		return robotRoomConfigMapper.getRobotRoomCfgByMidAndType(parameters);
 	}
 
+	 /**
+     * @Author:zun.wei , @Date:2017/8/14 9:23
+     * @Description:根据mid 和robotName查询出房间配置
+     * @param mid 游戏id
+     * @param robotName 机器人名称
+     * @return map 房间的配置
+     */
+	@Override
+	public RobotRoomConfig queryRobotCfgByMidAndRobotName(int mid, String robotName) {
+		Map<String, Object> map=new HashMap<String,Object>();
+		map.put("mid", mid);
+		map.put("robotName", robotName);
+		return robotRoomConfigMapper.queryRobotCfgByMidAndRobotName(map);
+	}
+	
 }

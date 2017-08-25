@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.robot.mapper.AgentRobotConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.robot.model.AgentRobotConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="room_type" property="roomType" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="subset" property="subset" jdbcType="INTEGER" />
+    <result column="robot_name" property="robotName" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="ext3" property="ext3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, room_type, mid, subset, robot_name, remarks, ext1, ext2, ext3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_robot_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_robot_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.robot.model.AgentRobotConfig" >
+    insert into agent_robot_config (id, room_type, mid, 
+      subset, robot_name, remarks, 
+      ext1, ext2, ext3)
+    values (#{id,jdbcType=INTEGER}, #{roomType,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, 
+      #{subset,jdbcType=INTEGER}, #{robotName,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, 
+      #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.robot.model.AgentRobotConfig" >
+    insert into agent_robot_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roomType != null" >
+        room_type,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="subset != null" >
+        subset,
+      </if>
+      <if test="robotName != null" >
+        robot_name,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="ext3 != null" >
+        ext3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roomType != null" >
+        #{roomType,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="subset != null" >
+        #{subset,jdbcType=INTEGER},
+      </if>
+      <if test="robotName != null" >
+        #{robotName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.robot.model.AgentRobotConfig" >
+    update agent_robot_config
+    <set >
+      <if test="roomType != null" >
+        room_type = #{roomType,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="subset != null" >
+        subset = #{subset,jdbcType=INTEGER},
+      </if>
+      <if test="robotName != null" >
+        robot_name = #{robotName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        ext3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.robot.model.AgentRobotConfig" >
+    update agent_robot_config
+    set room_type = #{roomType,jdbcType=INTEGER},
+      mid = #{mid,jdbcType=INTEGER},
+      subset = #{subset,jdbcType=INTEGER},
+      robot_name = #{robotName,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      ext3 = #{ext3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!--插入用户私聊机器人，如果有记录就修改没有记录就更新  -->
+  <insert id="insertOrUpdate" parameterType="com.qs.webside.robot.model.AgentRobotConfig" resultType="int">
+  	 insert into agent_robot_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="roomType != null" >
+        room_type,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="subset != null" >
+        subset,
+      </if>
+      <if test="robotName != null" >
+        robot_name,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="ext3 != null" >
+        ext3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roomType != null" >
+        #{roomType,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="subset != null" >
+        #{subset,jdbcType=INTEGER},
+      </if>
+      <if test="robotName != null" >
+        #{robotName,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    on duplicate key update room_type=values(room_type),subset=values(subset)
+  </insert>
+</mapper>

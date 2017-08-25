@@ -8,6 +8,15 @@ var dtGridColumns = [{
         return value ;
     }
 },{
+    id : 'name',
+    title : '昵称',
+    type : 'string',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNo, columnNo) {
+        return value ;
+    }
+},{
     id : 'oprenRoom',
     title : '房间数',
     type : 'string',

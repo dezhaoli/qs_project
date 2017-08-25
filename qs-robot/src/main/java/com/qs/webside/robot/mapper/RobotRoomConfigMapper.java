@@ -41,5 +41,11 @@ public interface RobotRoomConfigMapper extends IBaseMapper {
      * @return
      */
     RobotRoomConfig getRobotRoomCfgByMidAndType(Map<String, Object> parameters);
+    /**
+     * 根据游戏id和机器人名字查询房间配置
+     * @param map
+     * @return
+     */
+    RobotRoomConfig queryRobotCfgByMidAndRobotName(Map<String, Object> map);
 
 }

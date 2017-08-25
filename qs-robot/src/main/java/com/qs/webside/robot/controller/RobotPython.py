@@ -11,6 +11,10 @@ from multiprocessing import Process, Queue
 add_friend_request_type = 1  # 他人添加机器人为好友请求
 msg_request_open_room = 2  # '开房'关键字请求待开房
 msg_request_open_room_type = 3  # '开房'关键字请求获取房间类型
+show_cfg_robot_open_room_type = 4  # 显示配置机器人开房类型
+show_already_cfg_robot_open_room_type = 5  # 显示已配置机器人开房类型
+show_robot_room_type_by_agent_mid = 6  # 根据代理商id查询机器人房间配置
+exec_cfg_robot_room_type = 7  # 显示配置机器人开房类型
 
 """返回值常量"""
 success = "success"
@@ -46,10 +50,83 @@ def send_post_request_to_java(type=0, data=None):
     return j
 
 
-@itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
-def text_reply(msg):  # Note 通知类型，比如添加好友成功后，会收到好友界面的系统的通知:"你已经成功添加了xx为好友，现在可以开始聊天"
-    print('Text', 'Map', 'Card', 'Note', 'Sharing ---::', msg['Type'], msg['Text'], msg)
-    # itchat.send('%s: %s' % (msg['Type'], msg['Text']), msg['FromUserName'])
+# @itchat.msg_register(['Text', 'Map', 'Card', 'Note', 'Sharing'])
+# def text_reply(msg):  # Note 通知类型，比如添加好友成功后，会收到好友界面的系统的通知:"你已经成功添加了xx为好友，现在可以开始聊天"
+# print('Text', 'Map', 'Card', 'Note', 'Sharing ---::', msg['Type'], msg['Text'], msg)
+# itchat.send('%s: %s' % (msg['Type'], msg['Text']), msg['FromUserName'])
+
+
+@itchat.msg_register('Text')
+def private_chat(msg):
+    print(msg)
+    text = msg['Text']
+    texts = text.split('_', 2)
+    if text == '配置':# 显示当前代理商所有已经配置的房间配置
+        agent = itchat.search_friends(userName=msg['FromUserName'])
+        if agent is not None and agent != '':
+            nn = agent['RemarkName']
+            rens = nn.split('_', 2)
+            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+                robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
+                rd = send_post_request_to_java(show_cfg_robot_open_room_type, data=d)
+                try:
+                    rr = eval(rd)
+                except:
+                    rr = rd
+                if int(rr[success]) == 1:  # 成功
+                    itchat.send(rr[data], msg['FromUserName'])
+    elif text == '查看':# 查看代理商已经配置当前机器人对应的玩法配置
+        agent = itchat.search_friends(userName=msg['FromUserName'])
+        if agent is not None and agent != '':
+            nn = agent['RemarkName']
+            rens = nn.split('_', 2)
+            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+                robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
+                rd = send_post_request_to_java(show_already_cfg_robot_open_room_type, data=d)
+                try:
+                    rr = eval(rd)
+                except:
+                    rr = rd
+                if int(rr[success]) == 1:  # 成功
+                    itchat.send(rr[data], msg['FromUserName'])
+    elif check_int(text):# 查看指定房间类型中所有自己类型配置
+        agent = itchat.search_friends(userName=msg['FromUserName'])
+        if agent is not None and agent != '':
+            nn = agent['RemarkName']
+            rens = nn.split('_', 2)
+            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+                robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname
+                    , "roomType": str(text)}
+                rd = send_post_request_to_java(show_robot_room_type_by_agent_mid, data=d)
+                try:
+                    rr = eval(rd)
+                except:
+                    rr = rd
+                if int(rr[success]) == 1:  # 成功
+                    itchat.send(rr[data], msg['FromUserName'])
+    elif len(texts) == 2 and check_int(texts[0]) and check_int(texts[1]):# 保存机器人新的玩法配置
+        agent = itchat.search_friends(userName=msg['FromUserName'])
+        if agent is not None and agent != '':
+            nn = agent['RemarkName']
+            rens = nn.split('_', 2)
+            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+                robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
+                d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname
+                    , "roomType": str(texts[0]), "subset": str(texts[1])}
+                rd = send_post_request_to_java(exec_cfg_robot_room_type, data=d)
+                try:
+                    rr = eval(rd)
+                except:
+                    rr = rd
+                if int(rr[success]) == 1:  # 成功
+                    itchat.send(rr[data], msg['FromUserName'])
+    else:
+        itchat.send('''您好，欢迎使用乐玩开房神器！\n
+        如果你要配置该机器人开的房间类型，请输入\"配置\""\n
+        如果你要查看该机器人已配置的房间类型，请输入\"查看\"''', msg['FromUserName'])
 
 
 @itchat.msg_register('Friends')
@@ -59,7 +136,7 @@ def add_friend(msg):
     if len(li) == 2 and check_int(li[0]) and check_int(li[1]):
         robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
         d = {"authCode": str(li[0]), "mid": str(li[1]), "robName": robot_nickname}
-        rd = send_post_request_to_java(type=add_friend_request_type, data=d)  # result
+        rd = send_post_request_to_java(type=show_already_cfg_robot_open_room_type, data=d)  # result
         print(rd)
         if int(rd[success]) == 1:  # 成功
             itchat.add_friend(userName=msg['RecommendInfo']['UserName'], status=3)  # 同意加为好友

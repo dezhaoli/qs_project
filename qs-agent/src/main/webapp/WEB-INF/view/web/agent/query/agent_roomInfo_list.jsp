@@ -16,7 +16,7 @@ input::-webkit-outer-spin-button {
 }
 </style>
 		 <script type="text/javascript"
-        src="${ctx }/resources/js/customer/web/agent_roomInfo_list.js"></script> 
+        src="${ctx }/resources/js/customer/web/agent_roomInfo_list2.js"></script> 
 <div class="page-content">
 <div class="row" style="margin-top:5px;padding: 0px 12px;">
 	        <form id="storeForm" name="storeForm"  class="form-horizontal" role="form" method="post" >

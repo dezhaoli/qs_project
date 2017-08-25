@@ -88,13 +88,14 @@ public class RobotController extends BaseController{
      * @param data  机器人开房的数据
      * @param roomType  标题
      * @param ownuser 用户上次给机器人配置房间的信息
+     * @param subset  子集
      * @return
      */
     @ResponseBody
     @RequestMapping(value = "saveRobotGameCfg.html", method = RequestMethod.POST)
     public Object robotRoomConfig(BaseRequest baseRequest,@RequestParam(name="wanfa",defaultValue="")String wanfa,
     		@RequestParam(name="data",defaultValue="")String data,int roomType,@RequestParam(name="ownuser",defaultValue="")String ownuser,
-    		@RequestParam(name="roomName",defaultValue="")String roomName) throws IOException {
+    		@RequestParam(name="roomName",defaultValue="")String roomName,int subset) throws IOException {
     	
     	Map<String,Object> result=new HashMap<>();
 		int count=0;
@@ -114,6 +115,7 @@ public class RobotController extends BaseController{
         rrc.setRoomType(roomType);
         rrc.setOwnuser(ownuser);
         rrc.setGameType(gameType);
+        rrc.setExt1(String.valueOf(subset));
         rrc.setRoomName(rn);
         System.out.println(rrc.toString());
         count=robotRoomConfigService.insertOrUpdate(rrc);

@@ -264,9 +264,21 @@
 
   <select id="getRobotRoomCfgByMidAndType" parameterType="map" resultMap="BaseResultMap">
   	select
-    <include refid="Base_Column_List" />
+    
     from robot_room_config
     where mid = #{mid} and room_type = #{roomType} limit 1
   </select>
 
+	<!-- 根据游戏id机器人name查询房间配置 -->
+	<select id="queryRobotCfgByMidAndRobotName" parameterType="map" resultMap="BaseResultMap">
+		SELECT 
+		rrc.id, rrc.mid, rrc.room_type, rrc.room_name, rrc.data, rrc.wanfa, rrc.ownuser, rrc.game_type, rrc.remark, rrc.ext1, rrc.ext2, 
+    	rrc.ext3
+		from agent_robot_config arc 
+		INNER JOIN 
+		robot_room_config rrc 
+		ON arc.mid = rrc.mid and arc.room_type = rrc.room_type and arc.subset = rrc.ext1
+		WHERE arc.robot_name =#{robotName} and arc.mid = #{mid}
+		
+	</select>
 </mapper>
