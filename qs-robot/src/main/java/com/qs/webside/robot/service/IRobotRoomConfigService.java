@@ -45,12 +45,21 @@ public interface IRobotRoomConfigService {
 	RobotRoomConfig getRobotRoomCfgByMidAndType(Map<String, Object> parameters);
 	
 	 /**
-     * @Author:zsf , @Date:2017/8/14 9:23
+     * @Author:zsf , @Date:2017/8/25 9:23
      * @Description:根据mid 和robotName查询出房间配置
      * @param mid 游戏id
      * @param robotName 机器人名称
      * @return  房间的配置
      */
 	RobotRoomConfig queryRobotCfgByMidAndRobotName(int mid,String robotName);
+	
+	/**
+	 * 
+	 * @author zsf   @date 创建时间：2017年8月28日 上午9:33:00 
+	 * @Description: 根据用户id和房间类型查询所有的子集配置
+	 * @param  游戏id  机器人名字
+	 * @return  所有的子集配置
+	 */
+	List<Map<String, Object>> querySubsetByMidAndRoomType(int mid,int roomType);
 		
 }

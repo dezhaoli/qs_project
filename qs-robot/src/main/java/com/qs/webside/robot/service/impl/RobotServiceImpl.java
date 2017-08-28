@@ -11,10 +11,7 @@ import com.qs.mainku.game.model.MemberFides;
 import com.qs.mainku.game.service.*;
 import com.qs.mainku.game.service.impl.ShareLinkSwitchSocket;
 import com.qs.webside.robot.mapper.RobotMapper;
-import com.qs.webside.robot.model.Robot;
-import com.qs.webside.robot.model.RobotFriends;
-import com.qs.webside.robot.model.RobotOpenRoom;
-import com.qs.webside.robot.model.RobotRoomConfig;
+import com.qs.webside.robot.model.*;
 import com.qs.webside.robot.service.*;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
@@ -67,6 +64,9 @@ public class RobotServiceImpl implements IRobotService {
 
     @Resource
     private IRobotRoomCfgDfService robotRoomCfgDfService;
+
+    @Resource
+    private IAgentRobotConfigService agentRobotConfigService;
 
     @Override
     public int deleteByPrimaryKey(Integer id) {
@@ -163,8 +163,39 @@ public class RobotServiceImpl implements IRobotService {
 
     //保存机器人新的玩法配置
     private Object saveNewRobotGameCfg(String data, int gameType) {
+        switch (gameType) {
+            case 6:
+                return saveNewGdMajiangRobotGameCfg(data);
+            default:
+                return saveNewGdMajiangRobotGameCfg(data);
+        }
+    }
 
-        return null;
+    //保存广东麻将机器人新的玩法配置
+    private Object saveNewGdMajiangRobotGameCfg(String data) {
+        Map<String, Object> map = new HashMap<>();
+        Map<String, Object> requestMap = JSON.parseObject(data, Map.class);
+        int amid = Integer.parseInt(requestMap.get("amid") + "");//代理商mid
+        int roomType = Integer.parseInt(requestMap.get("roomType") + "");//房间类型
+        String robName = requestMap.get("robName") + "";//机器人名称
+        int subset = Integer.parseInt(requestMap.get("subset") + "");//房间类型子集
+        AgentRobotConfig agentRobotConfig = new AgentRobotConfig();
+        agentRobotConfig.setMid(amid);
+        agentRobotConfig.setRobotName(robName);
+        agentRobotConfig.setRoomType(roomType);
+        agentRobotConfig.setSubset(subset);
+        int inUp = agentRobotConfigService.insertOrUpdate(agentRobotConfig);
+        if (inUp > 0) {
+            map.put(CommonContants.SUCCESS, 1);
+            map.put(CommonContants.DATA, "编辑成功!");
+            map.put(CommonContants.ERROR, 0);
+            return JSON.toJSONString(map);
+        } else {
+            map.put(CommonContants.SUCCESS, 0);
+            map.put(CommonContants.DATA, "失败:-1，编辑超时!");
+            map.put(CommonContants.ERROR, -1);
+            return JSON.toJSONString(map);
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -185,11 +216,26 @@ public class RobotServiceImpl implements IRobotService {
         Map<String, Object> requestMap = JSON.parseObject(data, Map.class);
         int amid = Integer.parseInt(requestMap.get("amid") + "");//代理商mid
         int roomType = Integer.parseInt(requestMap.get("roomType") + "");//房间类型
-        String robName = requestMap.get("robName") + "";//机器人名称
+        //String robName = requestMap.get("robName") + "";//机器人名称
         //int code = Integer.parseInt(requestMap.get("code") + "");//开房者mid
         //long msgid = Long.parseLong(requestMap.get("msgid") + "");//消息id
-
-        return null;
+        List<Map<String, Object>> cfgs = robotRoomConfigService.querySubsetByMidAndRoomType(amid, roomType);
+        StringBuilder sb = new StringBuilder();
+        if (cfgs != null && cfgs.size() > 0) {
+            sb.append("房间类型为: ").append(roomType).append(" 的所有已配置的玩法如下:\n\n");
+            for (Map<String, Object> cfg : cfgs) {
+                Map<String, Integer> d = JSON.parseObject(cfg.get("data") + "", Map.class);
+                sb.append("房间类型:").append(cfg.get("roomName")).append("  ").append(d.get("jushu")).append("局").append("\n");
+                sb.append("玩法类型:").append(cfg.get("ext1")).append("\n").append(cfg.get("wanfa")).append("\n\n");
+            }
+            sb.append("请回复:").append(roomType).append("+").append("玩法类型(编号)").append("\n注意:“+”也要输入哦!");
+        } else {
+            sb.append("您尚未配置房间类型为: ").append(roomType).append(" 的玩法类型,请前往游戏客户端配置!");
+        }
+        map.put(CommonContants.SUCCESS, 1);
+        map.put(CommonContants.DATA, sb.toString());
+        map.put(CommonContants.ERROR, 0);
+        return JSON.toJSONString(map);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -221,7 +267,7 @@ public class RobotServiceImpl implements IRobotService {
             Object roomType = robotRoomConfig.getRoomType();
             Object subset = robotRoomConfig.getExt1();//子集
             StringBuffer sb = new StringBuffer();
-            sb.append(roomName).append("  ").append(jushu).append("\n").append(wanfa);
+            sb.append("房间类型:\n").append(roomName).append("  ").append(jushu).append("局").append("\n\n").append("玩法内容:\n").append(wanfa);
             map.put(CommonContants.SUCCESS, 1);
             map.put(CommonContants.DATA, sb.toString());
             map.put(CommonContants.ERROR, 0);
@@ -275,14 +321,19 @@ public class RobotServiceImpl implements IRobotService {
         int r = robotOpenRoomService.insertSelective(robotOpenRoom);
         if (r == 1) {//select room_type as roomType,room_name as roomName
             List<Map<String, Object>> dfCfg = robotRoomCfgDfService.findRobotRoomCigInfo();
-            String reData = "请选择房间类型，发送如:编号\n\n";
-            reData += "各种房间类型对应编号如下:\n";
-            for (Map<String, Object> cf : dfCfg) {
-                reData += "编号:" + cf.get("roomType") + "    " + cf.get("roomName") + "\n";
+            if (dfCfg != null && dfCfg.size() > 0) {
+                String reData = "请选择房间类型，发送如:编号\n\n";
+                reData += "各种房间类型对应编号如下:\n";
+                for (Map<String, Object> cf : dfCfg) {
+                    reData += "编号:" + cf.get("roomType") + "    " + cf.get("roomName") + "\n";
+                }
+                //reData += "\n\n提示:如果你能记住编号，也可以直接发送:\"编号\"哦!";
+                reData += "请回复相应的房间类型编号，查看该房间类型下的所有已配置的玩法类型。\n如:回复数字1";
+                map.put(CommonContants.DATA, reData);
+            } else {
+                map.put(CommonContants.DATA, "未发现默认房间配置!");
             }
-            //reData += "\n\n提示:如果你能记住编号，也可以直接发送:\"编号\"哦!";
             map.put(CommonContants.SUCCESS, 1);
-            map.put(CommonContants.DATA, reData);
             map.put(CommonContants.ERROR, 0);
             return JSON.toJSONString(map);
         } else {
@@ -396,7 +447,7 @@ public class RobotServiceImpl implements IRobotService {
         int code = Integer.parseInt(requestMap.get("code") + "");//代理商mid
         int amid = Integer.parseInt(requestMap.get("amid") + "");//开房者mid
         long msgid = Long.parseLong(requestMap.get("msgid") + "");//消息id
-        int roomType = Integer.parseInt(requestMap.get("roomType") + "");//开房类型
+        //int roomType = Integer.parseInt(requestMap.get("roomType") + "");//开房类型
         String robName = requestMap.get("robName") + "";//机器人名称
         Map<String, Object> pa = new HashMap<>();
         pa.put("date", new Date().getTime() / 1000L);
@@ -418,7 +469,7 @@ public class RobotServiceImpl implements IRobotService {
         if (r > 0) {
             int acount = memberAgentService.checkAgentIsExist(amid);
             if (acount > 0) {//代理商存在
-                return handleOpenRoom(gameType,amid,request,cIp,cPort,map,roomType);
+                return handleOpenRoom(gameType,amid,request,cIp,cPort,map,robName);
             } else {
                 map.put(CommonContants.SUCCESS, 0);
                 map.put(CommonContants.ERROR, -3);
@@ -433,7 +484,7 @@ public class RobotServiceImpl implements IRobotService {
 
     //请求c++待开房
     private Object handleOpenRoom(int gameType, int amid, HttpServletRequest request, String cIp
-            , int cPort,Map<String, Object> map,int roomType) throws IOException {
+            , int cPort,Map<String, Object> map,String robName) throws IOException {
         String ip = CommonUtils.getIpAddr(request);
         int loginGp = 0;
         int userGp = 0;
@@ -443,7 +494,7 @@ public class RobotServiceImpl implements IRobotService {
         boolean login = socketUtils.writeToServer();//登录c++ 服务器
         int lo = socketUtils.receviveInteger();
         if (login && lo == 0) {//服务器返回0表示登录成功
-            Map<String,Object> openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid,roomType,omid,robotRoomConfigService,robotRoomCfgDfService);
+            Map<String,Object> openRoom = RobotOpenRoomByGameType.switchOpenRoomByGameType(gameType, socketUtils, amid,omid,robName,robotRoomConfigService,robotRoomCfgDfService);
             if ((Boolean) openRoom.get(CommonContants.SUCCESS)) {
                 Object o;
                 try {
@@ -486,13 +537,13 @@ public class RobotServiceImpl implements IRobotService {
                 map.put(CommonContants.ERROR, -55);//c++服务器返回加入房间超时
                 return JSON.toJSONString(map);
             } else {
-                String joinResult = socketUtils.recviceOpenRoomResult();
+                String joinResult = socketUtils.receviveInteger1(1102);
                 if (StringUtils.isNotBlank(joinResult)) {
                     int recvInt = Integer.parseInt(joinResult.split("_")[1]);
                     int cmd = Integer.parseInt(joinResult.split("_")[2]);
                     int roomid = Integer.parseInt(joinResult.split("_")[3]);
                     String errorMsg = RobotOpenRoomReData.handleRecvData(cmd, recvInt,gameType);//TODO 这里需要修改
-                    if (StringUtils.isBlank(errorMsg) && recvInt > 0) {
+                    if (StringUtils.isBlank(errorMsg) && recvInt == 0) {
                         String robotAppUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.ROBOT_APP_URL);
                         robotAppUrl += "api/shareLink/joinViewUi.html?sesskey=%s&t=%d&d=%d&a=%d&roomid=%d";
                         robotAppUrl = String.format(robotAppUrl, sesskey,openRoom.get("t"),openRoom.get("d"),openRoom.get("a"),roomid);

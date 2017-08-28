@@ -375,7 +375,15 @@ public class SocketUtils {
         inputStream.read(recvData, 0, 4);
         int recvInt = bytes2Integer(toLH(bytes2Integer(recvData)));
         System.out.println("integer data ====::" + recvInt);
-        return "r_" + recvInt + "_" + cmd;
+        String rd = "r_" + recvInt + "_" + cmd;
+        if (recvInt == 0) {
+            byte[] recvData2 = new byte[4];
+            inputStream.read(recvData2, 0, 4);
+            int recvInt2 = bytes2Integer(toLH(bytes2Integer(recvData2)));
+            System.out.println("integer data 2 ====::" + recvInt2);
+            rd += "_" + recvInt2;
+        }
+        return rd;
     }
 
 

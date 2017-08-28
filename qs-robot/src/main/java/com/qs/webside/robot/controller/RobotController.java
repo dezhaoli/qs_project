@@ -142,7 +142,10 @@ public class RobotController extends BaseController{
     public Object robotRoomConfig(BaseRequest baseRequest) throws IOException {
         AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
         List<Map<String,Object>> rrcList=robotRoomConfigService.getRobotRoomCfg(token.getMid());
-		return this.getReturnData(rrcList, AppConstants.Result.SUCCESS);
+        if (rrcList == null || rrcList.size() < 1) {
+            rrcList = robotRoomCfgDfService.queryRobotConfig();
+        }
+        return this.getReturnData(rrcList, AppConstants.Result.SUCCESS);
     }
    
     /**

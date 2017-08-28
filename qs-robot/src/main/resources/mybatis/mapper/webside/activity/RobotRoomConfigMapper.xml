@@ -257,14 +257,14 @@
   
   <!-- 拉取机器人最后默认的配置房间 -->
   <select id="getRobotRoomCfg" parameterType="int" resultType="map">
-  	select ownuser,room_type as type
+  	select ownuser,room_type as type,ext1 as subset
     from robot_room_config
     where mid = #{mid}
   </select>
 
   <select id="getRobotRoomCfgByMidAndType" parameterType="map" resultMap="BaseResultMap">
   	select
-    
+    <include refid="Base_Column_List" />
     from robot_room_config
     where mid = #{mid} and room_type = #{roomType} limit 1
   </select>
@@ -280,5 +280,11 @@
 		ON arc.mid = rrc.mid and arc.room_type = rrc.room_type and arc.subset = rrc.ext1
 		WHERE arc.robot_name =#{robotName} and arc.mid = #{mid}
 		
+	</select>
+	
+	<!-- 根据游戏id 房间类型查询子集 -->
+	<select id="querySubsetByMidAndRoomType" parameterType="map" resultType="map">
+		select wanfa, ext1,data,room_name AS roomName from robot_room_config
+		where mid=#{mid} and room_type=#{roomType}
 	</select>
 </mapper>

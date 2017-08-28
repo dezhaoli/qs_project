@@ -38,4 +38,7 @@ public interface IRobotRoomCfgDfService {
 		RobotRoomCfgDf queryRobotConfigByType(int roomType);
 		
 		List<Map<String, Object>> findRobotRoomCigInfo();
+
+	List<Map<String, Object>> queryRobotConfig();
+
 }

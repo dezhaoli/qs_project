@@ -88,8 +88,11 @@ public class RobotRoomCfgDfServiceImpl implements IRobotRoomCfgDfService {
 		
 		return robotRoomCfgDfMapper.findRobotRoomCigInfo();
 	}
-	
-	
+
+	@Override
+	public List<Map<String, Object>> queryRobotConfig() {
+		return robotRoomCfgDfMapper.queryRobotConfig();
+	}
 
 
 }

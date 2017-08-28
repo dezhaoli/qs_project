@@ -138,7 +138,7 @@
   </update>
   
   <!--插入用户私聊机器人，如果有记录就修改没有记录就更新  -->
-  <insert id="insertOrUpdate" parameterType="com.qs.webside.robot.model.AgentRobotConfig" resultType="int">
+  <insert id="insertOrUpdate" parameterType="com.qs.webside.robot.model.AgentRobotConfig">
   	 insert into agent_robot_config
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -166,7 +166,7 @@
         ext2,
       </if>
       <if test="ext3 != null" >
-        ext3,
+        ext3
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -195,7 +195,7 @@
         #{ext2,jdbcType=VARCHAR},
       </if>
       <if test="ext3 != null" >
-        #{ext3,jdbcType=VARCHAR},
+        #{ext3,jdbcType=VARCHAR}
       </if>
     </trim>
     on duplicate key update room_type=values(room_type),subset=values(subset)

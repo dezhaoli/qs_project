@@ -251,4 +251,12 @@
   	select room_type as roomType,room_name as roomName
   	from robot_room_cfg_df
   </select>
+
+  <!-- 根据游戏标题拉取机器人默认创建房间配置 -->
+  <select id="queryRobotConfig" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from robot_room_cfg_df
+  </select>
+
 </mapper>

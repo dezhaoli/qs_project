@@ -40,4 +40,7 @@ public interface RobotRoomCfgDfMapper extends IBaseMapper {
 	 * @return 机器人房间信息的集合
 	 */
 	List<Map<String, Object>> findRobotRoomCigInfo();
+
+	List<Map<String, Object>> queryRobotConfig();
+
 }

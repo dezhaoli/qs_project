@@ -26,15 +26,15 @@ commit;
 END WHILE;
 
 -- DELETE gold_log
-SELECT count(*) into rn3 FROM gold_log where date<now()-interval 40 day;
+SELECT count(*) into rn3 FROM gold_log where date<now()-interval 360 day;
 WHILE (rn3 >=0) DO
-DELETE FROM gold_log where date<now()-interval 40 day limit 10000; 
+DELETE FROM gold_log where date<now()-interval 360 day limit 10000; 
 SET rn3=rn3-10000; 
 commit;
 END WHILE;
 
 -- DELETE ipaddress_use_log
-SELECT count(*) into rn4 FROM log.ipaddress_use_log where usetime<now()-interval 40 day;
+SELECT count(*) into rn4 FROM gd_majiang.ipaddress_use_log where usetime<now()-interval 40 day;
 WHILE (rn4 >=0) DO
 DELETE FROM gd_majiang.ipaddress_use_log where usetime<now()-interval 40 day limit 10000; 
 SET rn4=rn4-10000; 

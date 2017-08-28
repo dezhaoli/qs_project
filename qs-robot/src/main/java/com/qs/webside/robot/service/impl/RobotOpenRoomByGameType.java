@@ -28,24 +28,24 @@ public class RobotOpenRoomByGameType {
      * @param socketUtils
      * @return
      */
-    public static Map<String,Object> switchOpenRoomByGameType(int gameType, SocketUtils socketUtils, int amid, int roomType,int omid
+    public static Map<String,Object> switchOpenRoomByGameType(int gameType, SocketUtils socketUtils, int amid,int omid,String robName
             , IRobotRoomConfigService robotRoomConfigService, IRobotRoomCfgDfService robotRoomCfgDfService) throws UnsupportedEncodingException {
         switch (gameType) {
             case 6:
-                return openGDMajiangRoom(socketUtils, amid,roomType,omid, robotRoomConfigService,robotRoomCfgDfService);
+                return openGDMajiangRoom(socketUtils, amid,omid,robName, robotRoomConfigService,robotRoomCfgDfService);
             default:
-                return openGDMajiangRoom(socketUtils, amid,roomType,omid, robotRoomConfigService,robotRoomCfgDfService);
+                return openGDMajiangRoom(socketUtils, amid,omid,robName, robotRoomConfigService,robotRoomCfgDfService);
         }
     }
 
-    private static Map<String,Object> openGDMajiangRoom(SocketUtils socketUtils, int amid,int roomType,int omid
+    private static Map<String,Object> openGDMajiangRoom(SocketUtils socketUtils, int amid,int omid,String robName
             , IRobotRoomConfigService robotRoomConfigService, IRobotRoomCfgDfService robotRoomCfgDfService) throws UnsupportedEncodingException {
         Map<String, Object> map = new HashMap<>();
         Logger log = Logger.getLogger(RobotOpenRoomByGameType.class);
-        Map<String, Object> parameters = new HashMap<>();
+        /*Map<String, Object> parameters = new HashMap<>();
         parameters.put("mid", amid);
-        parameters.put("roomType", roomType);
-        RobotRoomConfig robotRoomConfig = robotRoomConfigService.getRobotRoomCfgByMidAndType(parameters);
+        parameters.put("roomType", roomType);*/
+        RobotRoomConfig robotRoomConfig = robotRoomConfigService.queryRobotCfgByMidAndRobotName(amid, robName);
         if (robotRoomConfig != null) {
             Map<String, Integer> cfg = JSON.parseObject(robotRoomConfig.getData(), Map.class);
             boolean b = sendCfgGDMajiangServer(socketUtils, amid,omid, cfg);
@@ -53,12 +53,14 @@ public class RobotOpenRoomByGameType {
             map.put("wanfa", robotRoomConfig.getWanfa());
             map.put("roomName", robotRoomConfig.getRoomName());
             map.put("jushu", cfg.get("jushu"));
-            map.put("t", roomType);
+            map.put("t", robotRoomConfig.getRoomType());
             map.put("a", amid);
             map.put("d", 1);
             return map;
         } else {
-            RobotRoomCfgDf robotRoomCfgDf = robotRoomCfgDfService.queryRobotConfigByType(roomType);
+            map.put(CommonContants.SUCCESS,Boolean.FALSE);
+            return map;
+            /*RobotRoomCfgDf robotRoomCfgDf = robotRoomCfgDfService.queryRobotConfigByType(roomType);
             if (robotRoomCfgDf != null) {
                 Map<String, Integer> cfg = JSON.parseObject(robotRoomCfgDf.getData(), Map.class);
                 boolean b = sendCfgGDMajiangServer(socketUtils, amid,omid, cfg);
@@ -74,16 +76,16 @@ public class RobotOpenRoomByGameType {
                 log.debug("-------::agent no had cfg robot room type cfg ,and default cfg is no exist!");
                 map.put(CommonContants.SUCCESS, false);
                 return map;
-            }
+            }*/
         }
     }
 
     private static boolean sendCfgGDMajiangServer(SocketUtils socketUtils,int amid,int omid,Map<String, Integer> cfg) {
-        if (88888888 == omid) omid = 4;else omid = 3;
+        //if (88888888 == omid) omid = 4;else omid = 3;
         boolean joinRoom = socketUtils.setCmd(1102)
                 .setStrParam(cfg.get("gameType") + "")//1 房间类型
                 .setIntParam(cfg.get("jushu"))//2
-                .setIntParam(omid)//3 3为待开房，0为正常开房
+                .setIntParam(4)//3 3为待开房，0为正常开房,4机器人开房.
                 .setIntParam(cfg.get("playerCount"))//4
                 .setIntParam(cfg.get("guipai"))//5
                 .setIntParam(cfg.get("wanfa"))//6
