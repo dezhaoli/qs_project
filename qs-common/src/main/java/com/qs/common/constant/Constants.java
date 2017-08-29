@@ -73,5 +73,9 @@ public class Constants {
 		public static final int LACK=2; //缺少积分状态
 	}
 
+	
+	public static class Club {
+		public static final String CLUB_GRADE_PARAM="club_grade_param";
+	}
 
 }

@@ -420,7 +420,21 @@ public class MemberAgentServiceImpl implements IMemberAgentService {
 
 	@Override
 	public List<Map<String, Object>> getVipOpenRoomlist(Map<String, Object> param) {
-		return memberAgentsMapper.getVipOpenRoomlist(param);
+		List<Map<String, Object>> retuntList=memberAgentsMapper.getVipOpenRoomlist(param);
+		if (retuntList.size()==1){
+			for (Map<String, Object> map : retuntList) {
+				Object kaifang= map.get("kaifang");
+				Object payGold= map.get("payGold");
+				if (kaifang.toString().equals("0")){
+					map.put("kaifang", null);
+				}
+				
+				if (payGold.toString().equals("0")){
+					map.put("payGold", null);
+				}
+			}
+		}
+		return retuntList;
 	}
 
 }

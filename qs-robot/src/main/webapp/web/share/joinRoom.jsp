@@ -24,7 +24,7 @@
     <style>
         /* 设置滚动条的样式 */
         ::-webkit-scrollbar {
-            width: 12px;
+            width: 0px;
         }
         /* 滚动槽 */
         ::-webkit-scrollbar-track {
@@ -74,6 +74,16 @@
             <p class="room-play"><span>连庄</span></p>--%>
         </div>
     </div>
+    <div style="margin-bottom: 10px;padding-top: 5px;;height: 1rem;font-size: 13px;">
+        <span style="margin-top: 0px;font-size: 13px;color: #64ba24;">
+            房间号:<span class="room-id">
+            ${roomid}
+            <span>
+                ${roomtitle}-${jushu}局
+            </span>
+        </span>
+        </span>
+    </div>
     <p class="room-font">房间成员</p>
     <div class="user-head">
        <%-- <div class="user-head2"><img src="${ctx }/web/share/files/200.jpg"></div>
@@ -94,7 +104,7 @@
    <a href="#" class="sJoinRoom" style="display: none;" id="ajaxJoinRoom">
          <div class="joinRoom">加入房间</div>
     </a>
-   <div class="joinRoom okJoinRoom" style="background-color: #21dd7c;display: none;">已加入请打开app游戏……</div>
+   <div class="joinRoom okJoinRoom" style="background-color: #64ba24;display: none;">已加入请打开app游戏……</div>
     <div class="openApp-android" style="">
         <p>加入成功</p>
         <p>手动打开游戏就能进入房间啦</p>
@@ -178,7 +188,7 @@
     if (list != undefined && list != null && list != '') {
         list = list.split("_");
         for (var i = 0; i < list.length; i++) {
-            wanfas += '<p class="room-play"><span>'+list[i]+'</span></p>';
+            wanfas += '<p class="room-play" style="text-align: left;"><span>'+list[i]+'</span></p>';
         }
         $('.room-play-box').html(wanfas);
     }

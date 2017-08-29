@@ -25,6 +25,15 @@ var dtGridColumns = [{
     resolution: function (value, record, column, grid, dataNo, columnNo) {
         return value ;
     }
+},{
+    id : 'payGold',
+    title : '消耗房卡数',
+    type : 'number',
+    columnClass : 'text-center',
+    headerClass : 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNo, columnNo) {
+        return value ;
+    }
 }];
 
 //动态设置jqGrid的rowNum

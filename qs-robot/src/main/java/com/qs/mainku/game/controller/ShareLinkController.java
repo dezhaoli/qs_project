@@ -68,10 +68,10 @@ public class ShareLinkController extends BaseController {
     private RedisTemplate redisTemplate;
 
     @Resource
-    IRobotRoomConfigService robotRoomConfigService;
+    private IRobotRoomConfigService robotRoomConfigService;
 
     @Resource
-    IRobotRoomCfgDfService robotRoomCfgDfService;
+    private IRobotRoomCfgDfService robotRoomCfgDfService;
 
     /**
      * @param model
@@ -81,7 +81,11 @@ public class ShareLinkController extends BaseController {
      */
     @RequestMapping(value = "joinViewUi.html", method = RequestMethod.GET)
     public String joinRoomViewUi(Model model, ShareLinkRequest shareLinkRequest,
-                                 int t,int d,int a) throws InterruptedException, MemcachedException, TimeoutException, IOException {
+                                 @RequestParam(name = "t",defaultValue = "0") Integer t,
+                                 @RequestParam(name = "d",defaultValue = "0") Integer d,
+                                 @RequestParam(name = "a",defaultValue = "0") Integer a)
+            throws InterruptedException, MemcachedException, TimeoutException, IOException {
+
         String sesskey = shareLinkRequest.getSesskey();
         String roomid = shareLinkRequest.getRoomid();
         if (StringUtils.isBlank(roomid)) roomid = "0";

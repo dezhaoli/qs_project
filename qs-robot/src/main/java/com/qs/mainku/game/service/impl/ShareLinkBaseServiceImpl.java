@@ -55,18 +55,18 @@ public class ShareLinkBaseServiceImpl{
         Map<String, Object> infoMap = null;
         if (roomInfoMap != null) {
             infoMap = roomInfoMap;
-            redisTemplate.opsForValue().set(AppConstants.RedisKeyPrefix.SHARE_LINK_JOIN_ROOM_INFO_CACHE + roomid, roomInfoMap, 30, TimeUnit.MINUTES);
+            redisTemplate.opsForValue().set(AppConstants.RedisKeyPrefix.SHARE_LINK_JOIN_ROOM_INFO_CACHE + roomid, roomInfoMap, 60, TimeUnit.MINUTES);
         } else {
             Object o = redisTemplate.opsForValue().get(AppConstants.RedisKeyPrefix.SHARE_LINK_JOIN_ROOM_INFO_CACHE + roomid);
             infoMap = o != null ? (Map<String, Object>) o : null;
         }
         BASE64Decoder decoder = new BASE64Decoder();
-        byte[] b = decoder.decodeBuffer(infoMap.get("wanfaEncode") + "");
+        byte[] b = decoder.decodeBuffer(infoMap == null ? "" : infoMap.get("wanfaEncode") + "");
         String wanfadeCode = new String(b, "utf-8");
-        log.debug("wanfa encode is ----:: " + infoMap.get("wanfaEncode") + " wanfa decode is ----:: " + wanfadeCode);
+        log.debug("wanfa encode is ----:: " + (infoMap == null ? "" : infoMap.get("wanfaEncode")) + " wanfa decode is ----:: " + wanfadeCode);
         model.addAttribute("wfList", wanfadeCode);//玩法
-        model.addAttribute("roomtitle", new String(decoder.decodeBuffer(infoMap.get("roomtitle") + ""), "utf-8"));//房间标题
-        model.addAttribute("jushu", infoMap.get("jushu"));//玩牌局数
+        model.addAttribute("roomtitle", new String(decoder.decodeBuffer(infoMap == null ? "" : infoMap.get("roomtitle") + ""), "utf-8"));//房间标题
+        model.addAttribute("jushu", infoMap == null ? "" : infoMap.get("jushu"));//玩牌局数
     }
 
     public List<Map<String, Object>> getRoomInfo(Model model, int roomid, int gameType) throws InterruptedException, MemcachedException, TimeoutException {

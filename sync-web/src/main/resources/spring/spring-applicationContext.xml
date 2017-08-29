@@ -44,6 +44,7 @@
 				<value>classpath:redis.properties</value>
 				<value>classpath:ip2region.properties</value>
 				<value>classpath:init.properties</value>
+				<value>classpath:topic.properties</value>
 			</list>
 		</property>
 	</bean>

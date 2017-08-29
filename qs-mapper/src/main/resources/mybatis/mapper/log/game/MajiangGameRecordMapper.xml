@@ -15,6 +15,7 @@
     <result column="master" property="master" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="TINYINT" />
     <result column="pay" property="pay" jdbcType="TINYINT" />
+<!--     <result column="clubId" property="club_id" jdbcType="INTEGER" /> -->
   </resultMap>
   <sql id="Base_Column_List" >
     id, uid, roomid, num, player1, player2, player3, player4, data_game, date, master, 

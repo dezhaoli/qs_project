@@ -60,13 +60,13 @@ def send_post_request_to_java(type=0, data=None):
 def private_chat(msg):
     print(msg)
     text = msg['Text']
-    texts = text.split('_', 2)
+    texts = text.split('+', 2)
     if text == '配置':# 显示当前代理商所有已经配置的房间配置
         agent = itchat.search_friends(userName=msg['FromUserName'])
         if agent is not None and agent != '':
             nn = agent['RemarkName']
             rens = nn.split('_', 2)
-            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+            if nn.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                 d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
                 rd = send_post_request_to_java(show_cfg_robot_open_room_type, data=d)
@@ -81,7 +81,7 @@ def private_chat(msg):
         if agent is not None and agent != '':
             nn = agent['RemarkName']
             rens = nn.split('_', 2)
-            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+            if nn.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                 d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname}
                 rd = send_post_request_to_java(show_already_cfg_robot_open_room_type, data=d)
@@ -96,7 +96,7 @@ def private_chat(msg):
         if agent is not None and agent != '':
             nn = agent['RemarkName']
             rens = nn.split('_', 2)
-            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+            if nn.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                 d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname
                     , "roomType": str(text)}
@@ -112,7 +112,7 @@ def private_chat(msg):
         if agent is not None and agent != '':
             nn = agent['RemarkName']
             rens = nn.split('_', 2)
-            if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+            if nn.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
                 robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
                 d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']), "robName": robot_nickname
                     , "roomType": str(texts[0]), "subset": str(texts[1])}
@@ -136,7 +136,7 @@ def add_friend(msg):
     if len(li) == 2 and check_int(li[0]) and check_int(li[1]):
         robot_nickname = itchat.search_friends(userName=msg['ToUserName'])['NickName']
         d = {"authCode": str(li[0]), "mid": str(li[1]), "robName": robot_nickname}
-        rd = send_post_request_to_java(type=show_already_cfg_robot_open_room_type, data=d)  # result
+        rd = send_post_request_to_java(type=add_friend_request_type, data=d)  # result
         print(rd)
         if int(rd[success]) == 1:  # 成功
             itchat.add_friend(userName=msg['RecommendInfo']['UserName'], status=3)  # 同意加为好友
@@ -144,8 +144,10 @@ def add_friend(msg):
             # itchat.send_msg(add_name + ":感谢您加我为好友！" + '我的名字叫：' + robot_nickname, msg['RecommendInfo']['UserName'])
             itchat.send_msg('您好；机器人代开房授权成功！欢迎使用牵手开房神器。\n\n'
                             + '按如下操作，即可开通服务；\n'
-                            + '1.请把机器人加为微信好友，拉进您的微信群中\n'
-                            + '2.在群中编辑发送“玩法”或“玩法+“玩法编号”，如：玩法+1，即可。', msg['RecommendInfo']['UserName'])
+                            + '1.打开游戏客户端，找到机器人开房配置进行配置\n'
+                            + '2.私聊机器人，发送“配置”，即可看到所有的房间类型\n'
+                            + '3.根据机器人返回消息提示，完成对该机器人的配置\n'
+                            + '4.在群中编辑发送“开心”，即可开房。', msg['RecommendInfo']['UserName'])
             itchat.set_alias(userName=msg['RecommendInfo']['UserName'],
                              alias="QS_" + str(li[0]) + "_" + str(li[1]))  # 修改备注名称
         else:
@@ -226,7 +228,7 @@ def text_reply(msg):
                 if m is not None and m != '':
                     rename = m['RemarkName']
                     rens = rename.split('_', 2)
-                    if rens.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
+                    if rename.startswith('QS_') and len(rens) == 3 and check_int(rens[1]) and check_int(rens[2]):
                         d = {"code": str(rens[1]), "amid": str(rens[2]), "msgid": str(msg['MsgId']),"robName": robot_nickname}
                         rd = send_post_request_to_java(msg_request_open_room, data=d)
                         print('not has ChatRoomOwner response type ', rd)
