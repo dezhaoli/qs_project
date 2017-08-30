@@ -14,7 +14,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css?v=1">
+    <link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css?v=3">
 <%--     <script src="${ctx }/web/share/files/mlink.min.js"></script> --%>
 <%--     <script src="${ctx }/web/share/files/jweixin-1.0.0.js"></script> --%>
 <%--     <script type="text/javascript" src="${ctx }/web/share/files/zepto.min.js"></script> --%>
@@ -56,6 +56,19 @@
             border-radius: 50%;
         }
 
+        hr{
+            display: block;
+            -webkit-margin-before: 0.2em;
+            -webkit-margin-after: 0.2em;
+            -webkit-margin-start: auto;
+            -webkit-margin-end: auto;
+            border-style: inset;
+            border-width: 1px;
+
+            height:1px;
+            border:none;
+            border-top:1px solid #f1e9e9;
+        }
     </style>
 </head>
 <!-- /Head -->
@@ -65,8 +78,8 @@
 <div class="all-container">
     <div class="icon-bg" id="bgimg">
         <div class="roomid-box">
-            <p class="roomid-font">房间号:<span class="room-id">${roomid}</span></p>
-            <p>${roomtitle}-${jushu}局</p>
+            <%--<p class="roomid-font">房间号:<span class="room-id">${roomid}</span></p>
+            <p>${roomtitle}-${jushu}局</p>--%>
         </div>
         <div class="room-play-box" style="overflow-y: auto;">
 
@@ -74,17 +87,19 @@
             <p class="room-play"><span>连庄</span></p>--%>
         </div>
     </div>
-    <div style="margin-bottom: 10px;padding-top: 5px;;height: 1rem;font-size: 13px;">
-        <span style="margin-top: 0px;font-size: 13px;color: #64ba24;">
+    <div style="margin-bottom: 5px;padding-top: 1px;height: 1rem;font-size: 18px;" id="roomNum">
+        <span style="margin-top: 0px;margin-left:-1.5rem;color: #64ba24;">
             房间号:<span class="room-id">
             ${roomid}
-            <span>
+            <span style="margin-left: 1rem;">
                 ${roomtitle}-${jushu}局
             </span>
         </span>
         </span>
+        <div class="room-hr" id="roomHr"></div>
+
     </div>
-    <p class="room-font">房间成员</p>
+    <p class="room-font" style="margin-top: -5px">房间成员</p>
     <div class="user-head">
        <%-- <div class="user-head2"><img src="${ctx }/web/share/files/200.jpg"></div>
         <div class="user-head1"><span>等待<br>加入</span></div>
@@ -104,13 +119,16 @@
    <a href="#" class="sJoinRoom" style="display: none;" id="ajaxJoinRoom">
          <div class="joinRoom">加入房间</div>
     </a>
-   <div class="joinRoom okJoinRoom" style="background-color: #64ba24;display: none;">已加入请打开app游戏……</div>
+   <div class="joinRoom okJoinRoom" style="background-color: #64ba24;display: none;">
+       <p style="margin: -11px;">加入成功</p>
+       <p style="margin: -29px 0px;font-size: small;">手动打开游戏就能进入房间啦！</p>
+   </div>
     <div class="openApp-android" style="">
         <p>加入成功</p>
         <p>手动打开游戏就能进入房间啦</p>
     </div>
 
-    <div id="denglu" style="display: none;">
+    <div id="denglu" style="display: none;margin-top: -0.4rem;">
     　　<span>当前账号:</span>
         <img class="user-head3" id="nowUserIcon">
         <span id="nowUserMid"></span>
@@ -136,6 +154,15 @@
     </div>
 </div>
 <script>
+    var u = navigator.userAgent;
+    var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
+    var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+    if (isiOS) {
+        $('#roomHr').addClass('room-hr-ios').removeClass("room-hr")
+    }
+    //alert('是否是Android：'+);
+    //alert('是否是iOS：'+isiOS);
+
     /*
      在cookie的名或值中不能使用分号（;）、逗号（,）、等号（=）以及空格。在cookie的名中做到这点很容易，但要保存的值是不确定的。如何
      来存储这些值呢？方法是用encodeURI()函数进行编码，它能将一些特殊符号使用十六进制表示，例如空格将会编码为“20%”，从而可以存储于
@@ -204,9 +231,22 @@
                 $(".okJoinRoom").show();
                 $('.sJoinRoom').hide();
             }else {
-                var a = '<p class="join-fail-font1 join-fail-dissolve" style="display:block;">'+data.message+'</p>';
-                $('.join-fail').show().html(a);
-                failHide();
+                var downloadUrl = "";
+                if ('${gameType}'==6) {
+                    downloadUrl = "http://downloads.jiaheyx.com/rundownload/";
+                }
+                if (data.message == "用户未注册") {
+                    failHide();
+                    var a = '<p class="join-fail-font1 join-fail-dissolve" style="display:block;">'
+                        +'<a href="'+downloadUrl+'" style="text-decoration:none;" target="view_window">'
+                        + data.message +'(点击前往下载注册)'+'</a>'
+                        +'</p>';
+                    $('.join-fail').show().html(a);
+                }else{
+                    var a = '<p class="join-fail-font1 join-fail-dissolve" style="display:block;">'+data.message+'</p>';
+                    $('.join-fail').show().html(a);
+                    failHide();
+                }
             }
         }
     }
@@ -235,7 +275,21 @@
                         $('#authJoinRoom').show();
                     }
                 }
-                listHead +="<div class='user-head2'><img src='"+roomInfo[i].icon+"'></div>";
+                var fangzhu = "";
+                var d = ""
+                if (i == 0) {
+                    fangzhu = "<div class='fangzhu-img'style='border-radius:50%;'>"
+                        + "<img src='../../web/share/files/img/ui_fangzhu.png'>"
+                    + "</div>";
+                    d += "<div style='background-image:url("+roomInfo[i].icon+");" +
+                        "background-repeat:no-repeat;width: 2rem;height:2rem;border-radius:50%;" +
+                        "background-size: contain;'></div>";
+                }else {
+                    d += "<img src='"+roomInfo[i].icon+"'>" ;
+                }
+                listHead +="<div class='user-head2'>" +
+                    fangzhu + d +
+                    "</div>";
                 listName +="  <p class='username'>"+roomInfo[i].name+"</p>"
             }
             if(roomInfo.length <4) {
@@ -261,6 +315,8 @@
         $('.icon-bg').hide();
         $('.sJoinRoom').hide();
         $('.okJoinRoom').hide();
+        $('#roomNum').hide();
+        $('#bgimg').hide();
     }
 
     function successShow() {

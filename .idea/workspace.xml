@@ -8,32 +8,32 @@
   <component name="ChangeListManager">
     <list readonly="true" id="655e2668-4e01-49ef-a490-e3b00fae49fc" name="Default" comment="" />
     <list default="true" id="cb58d184-483d-40da-ab23-2a7896a69a98" name="Failed commit: Default" comment="修复已知Bug">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/agent/job/DateBaseUapdateAgentJob.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-sys/qs-sys.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-robot/qs-robot.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/agent/job" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-web/sync-web.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pay-web/src/main/java/com/qs/webside/pay" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-robot/qs-robot.iml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver/sync-receiver.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-activity-center/qs-activity-center.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-sys/qs-sys.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-dataconfig/qs-dataconfig.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-shop/qs-shop.iml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sync-receiver" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/agent/job/DateBaseUapdateAgentJob.java" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/qs-side/qs-side.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-agent/src/main/resources/redis.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-agent/qs-agent.iml" afterPath="$PROJECT_DIR$/qs-agent/qs-agent.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sync-sender/sync-sender.iml" afterPath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-model/qs-model.iml" afterPath="$PROJECT_DIR$/qs-model/qs-model.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/redis.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/spring/spring-applicationContext.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-business/src/main/resources/jdbc.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-app/qs-app.iml" afterPath="$PROJECT_DIR$/qs-app/qs-app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-service/qs-service.iml" afterPath="$PROJECT_DIR$/qs-service/qs-service.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" afterPath="$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-common/qs-common.iml" afterPath="$PROJECT_DIR$/qs-common/qs-common.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sync-sender/sync-sender.iml" afterPath="$PROJECT_DIR$/sync-sender/sync-sender.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" afterPath="$PROJECT_DIR$/qs-data-center/qs-data-center.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" afterPath="$PROJECT_DIR$/qs-mapper/qs-mapper.iml" />
     </list>
     <list id="08238244-5bd2-4c65-bcfd-bb652b521bca" name="Failed commit: Failed commit: Default" comment="修复已知Bug" />
     <ignored path="$PROJECT_DIR$/qs-app/target/" />
@@ -323,8 +323,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -496,17 +496,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\Constants.java</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\vip\agent_openRoomSum_list.js</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-applicationContext.xml</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\listener\InitParam.java</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\log\game\MajiangGameRecordMapper.xml</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\webside\robot\controller\RobotPython.py</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\ShareLinkBaseServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\controller\ShareLinkController.java</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\joinRoom.jsp</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\joinRoom.css</PATH>
+          <PATH vcs="svn" revision="3118">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\joinRoom.jsp</PATH>
+          <PATH vcs="svn" revision="3118">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\joinRoom.css</PATH>
+          <PATH vcs="svn" revision="3118">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\game\IpaddressUseLogMapper.xml</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -514,9 +506,7 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\topic.properties</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\ui_dagou2.png</PATH>
-          <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\bg_guangdongmj.jpg</PATH>
+          <PATH vcs="svn" revision="3118">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\img\ui_fangzhu.png</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -546,9 +536,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
-        <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
-        <PATH vcs="svn" revision="3110">D:\java\qs_project\2017年4月15日\qs_project\pay-web</PATH>
+        <PATH vcs="svn" revision="3118">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="3118">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1476,6 +1465,7 @@
       <workItem from="1503665559805" duration="352000" />
       <workItem from="1503924042821" duration="73000" />
       <workItem from="1504009723355" duration="61000" />
+      <workItem from="1504094114963" duration="55000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1607,7 +1597,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="287374000" />
+    <option name="totallyTimeSpent" value="287429000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1630,12 +1620,12 @@
       <window_info id="JRebel Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.508547" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="JRebel Executor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.48931623" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3131202" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3131202" sideWeight="0.48344016" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3660419" sideWeight="0.49198717" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3221154" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3258547" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />

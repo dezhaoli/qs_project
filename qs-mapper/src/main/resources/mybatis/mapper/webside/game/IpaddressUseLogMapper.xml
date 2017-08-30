@@ -125,7 +125,7 @@
         and usetime &gt;= #{beginTime}
       </if>
       <if test="endTime != null and endTime != ''">
-        and usetime &lt;= #{endTime}
+        and usetime &lt;= date_add(#{endTime},interval 1 day)
       </if>
     </where>
     order by id desc

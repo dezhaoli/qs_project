@@ -60,12 +60,12 @@ html {
 	font-size: 0.6rem;
 	color: #000000;
 	float: left;
-	margin: -0.5rem 0 0 0.5rem;
+	margin: -0.3rem 0 0 0.5rem;
 }
 
 .room-play-box{
 	width: 10rem;
-	height: 3.0rem;
+	height: 2.95rem;
 	display: inline-block;
 	margin-top: 0rem;
 }
@@ -81,7 +81,7 @@ html {
 	/*line-height: 0.85rem;*/
 	font-size: 0.3rem ;
 	color: #FFFFFF;
-	margin-left: 15px;
+	margin-left: 13px;
 	margin-bottom: 8px;
 	width: 29%;
 	/* background-position: 60% 50%;*/ 
@@ -97,7 +97,7 @@ html {
 
 .user-head{
 	width: 9rem;
-	height: 2rem;
+	height: 1rem;
 	margin-left: 0.5rem;
 	margin-top: 1rem;
 }
@@ -105,7 +105,7 @@ html {
 .user-head1{
 	width: 2rem;
 	height: 2rem;
-	background: #A6E672;
+	background: #46c6ec;
 	border-radius:0.2rem ;
 	float: left;
 	margin-right: 0.25rem;
@@ -174,7 +174,7 @@ html {
 .joinRoom{
 	width: 9rem;
 	height: 1.5rem;
-	background: #ff9c00;
+	background: #64ba24;
 	border-radius: 0.75rem;
 	display: inline-block;
     margin: 0.4rem 0 0.5rem;
@@ -319,4 +319,22 @@ html {
 	color: #65c712;
 	display: none;
     margin: 0.4rem 0 0.5rem;
+}
+.room-hr{    height: 0px;
+    border: 1px solid #f1e9e9;
+    border-bottom: hidden;
+    margin: -5px 0px;
+}
+
+.room-hr-ios{    height: 0px;
+	border: 1px solid #f1e9e9;
+	border-bottom: hidden;
+	margin: 5px 0px;
+}
+
+.fangzhu-img{
+	width: 46px;
+	height: 18px;
+	margin-bottom: -19px;
+	margin-left: 7px;
 }

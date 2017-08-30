@@ -1,0 +1,340 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "微软雅黑";
+}
+
+body,
+html {
+	width: 100%;
+	height: 100%;
+}
+
+.all-container {
+	height: 100%;
+	width: 10rem;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.icon-bg{
+	width: 100%;
+	height: 4.8rem;
+	background:  url(img/bg_majiang.jpg) no-repeat;
+	background-size: contain;
+	padding: 3rem 0 0 0;
+	text-align: center;
+}
+
+.icon-bg-gdmajiang{
+	width: 100%;
+	height: 4.8rem;
+	background:  url(img/bg_guangdongmj.jpg) no-repeat;
+	background-size: contain;
+	padding: 3rem 0 0 0;
+	text-align: center;
+}
+
+.icon-bg-kxpaohuzi{
+	width: 100%;
+	height:4.8rem;
+	background:  url(img/paohuzi.jpg) no-repeat;
+	background-size: contain;
+	padding: 3rem 0 0 0;
+	text-align: center;
+}
+
+.roomid-box{
+	width: 4.5rem;
+	height: 1.1rem;
+	z-index: 2;
+	border-radius: 1rem;
+	display: inline-block;
+	color: #FFFFFF;
+	font-size: 0.38rem;
+	line-height: 0.5rem;
+	padding: 0.38rem 0 0 0;
+}
+
+.room-font{
+	font-size: 0.6rem;
+	color: #000000;
+	float: left;
+	margin: -0.3rem 0 0 0.5rem;
+}
+
+.room-play-box{
+	width: 10rem;
+	height: 2.95rem;
+	display: inline-block;
+	margin-top: 0rem;
+}
+
+.room-play{
+	/* width: 2rem;
+	height: 0.85rem;*/ 
+	background: url(img/ui_dagou2.png) no-repeat;
+	/*background-size: contain;*/
+	background-size: 18px;
+	float: left;
+	/* text-align: center;*/ 
+	/*line-height: 0.85rem;*/
+	font-size: 0.3rem ;
+	color: #FFFFFF;
+	margin-left: 13px;
+	margin-bottom: 8px;
+	width: 29%;
+	/* background-position: 60% 50%;*/ 
+}
+
+.room-play span{
+	/* margin-left: -0.4rem;
+	margin-left: 2.5rem; */
+	margin-left: 1.6em;
+    color: #ceb49c;
+    font-size: 1.2em;
+}
+
+.user-head{
+	width: 9rem;
+	height: 1rem;
+	margin-left: 0.5rem;
+	margin-top: 1rem;
+}
+
+.user-head1{
+	width: 2rem;
+	height: 2rem;
+	background: #46c6ec;
+	border-radius:0.2rem ;
+	float: left;
+	margin-right: 0.25rem;
+	border-radius: 50%;
+	font-size: 0.4rem;
+	color: #FFFFFF;
+	line-height: 0.5rem;
+	position: relative;
+}
+
+.user-head1 span{
+	position: absolute;
+	letter-spacing:0.05rem;
+	left: 50%;
+	top: 50%;
+	margin-left: -0.42rem;
+	margin-top: -0.5rem;
+}
+
+.user-head2{
+	width: 2rem;
+	height: 2rem;
+	border-radius:0.2rem ;
+	float: left;
+	margin-right: 0.25rem;
+	border-radius: 50%;
+}
+
+.user-head2 img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	display: block;
+}
+
+.user-head1 img{
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	display: block;
+}
+
+.username-div{
+	margin-top: 0.2rem;
+	width: 9rem;
+	height: 0.8rem;
+	margin-left: 0.5rem;
+	/*background: red;*/
+}
+
+.username{
+	width: 2rem;
+	height: 0.8rem;
+	display: block;
+	font-size: 0.4rem;
+	color: #666666;
+	line-height: 0.8rem;
+	text-align: center;
+	float: left;
+	margin-right: 0.25rem;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.joinRoom{
+	width: 9rem;
+	height: 1.5rem;
+	background: #64ba24;
+	border-radius: 0.75rem;
+	display: inline-block;
+    margin: 0.4rem 0 0.5rem;
+	color: #FFFFFF;
+	font-size: 0.6rem;
+	line-height: 1.5rem;
+}
+
+.openApp-btn{
+	color: #FFFFFF;
+	border-radius: 0.75rem;
+	display: inline-block;
+    margin: 0.4rem 0 0.5rem;
+	width: 9rem;
+	height: 1.1rem;
+	background: #65c712;
+	border-radius: 0.75rem;
+	padding: 0.2rem 0;
+	display: none;
+}
+
+.openApp-font{
+	font-size: 0.5rem;
+	width: 100%;
+	height: 0.7rem;
+	line-height: 0.7rem;
+}
+
+#joinRoomDownloadBtn{
+	text-align: center;
+}
+
+.openAppGoRoom{
+	width: 100%;
+	height: 0.4rem;
+	font-size: 0.2rem;
+	line-height: 0.4rem;
+}
+
+.joinRoom-loading{
+	width: 100%;
+	text-align: center;
+	margin-top: 1.5rem;
+	display: none;
+}
+
+.joinRoom-loading-bg{
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background: url(../img/joinGame_loading.png) no-repeat;
+	background-size: contain;
+	animation: joinRoomLoading 2s infinite linear;
+	/*匀速 循环*/
+	-webkit-animation: joinRoomLoading 2s infinite linear;
+	/*匀速 循环*/
+	-ms-animation: joinRoomLoading 2s infinite linear;
+	/*匀速 循环*/
+	-moz-animation: joinRoomLoading 2s infinite linear;
+	/*匀速 循环*/
+}
+	@keyframes joinRoomLoading {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+	
+	@-ms-keyframes joinRoomLoading {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+	
+	@-moz-keyframes joinRoomLoading {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+	
+	@-webkit-keyframes joinRoomLoading {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+.joinRoom-loading .joinRoom-loading-font{
+	display: inline-block;
+	font-size: 0.5rem;
+	color: #666666;
+	margin-top: -0.1rem;
+	}
+	
+.join-fail{
+	width: 100%;
+	height: 4.4rem;
+	background: url(img/face_jiazai.png) no-repeat;
+	background-size: 3.5rem;
+	background-position: 50% 0%;
+	color: #666666;
+	padding: 4.3rem 0 0 0;
+	line-height: 0.9rem;
+	 display: none; 
+}	
+
+.join-fail-font{
+	font-size: 0.6rem;
+	
+}
+
+.join-fail-font1{
+	font-size: 0.5rem;
+	display: none;
+}
+
+.download-app-btn{
+	width: 4rem;
+	height: 1rem;
+	background: #65c712;
+	display: inline-block;
+	border-radius: 0.5rem;
+	font-size: 0.5rem;
+	color: #FFFFFF;
+	letter-spacing:2px;
+	display: none;
+	margin-top: 0.4rem;
+}
+
+.openApp-android{  /*新增*/
+	font-size: 0.55rem;
+	text-align: center;
+	color: #65c712;
+	display: none;
+    margin: 0.4rem 0 0.5rem;
+}
+.room-hr{    height: 0px;
+    border: 1px solid #f1e9e9;
+    border-bottom: hidden;
+    margin: -5px 0px;
+}
+
+.room-hr-ios{    height: 0px;
+	border: 1px solid #f1e9e9;
+	border-bottom: hidden;
+	margin: 5px 0px;
+}
+
+.fangzhu-img{
+	width: 46px;
+	height: 18px;
+	margin-bottom: -19px;
+	margin-left: 7px;
+}
