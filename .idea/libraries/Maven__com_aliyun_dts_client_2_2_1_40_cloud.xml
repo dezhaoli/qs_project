@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.aliyun.dts:client:2.2.1.40-cloud">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/aliyun/dts/client/2.2.1.40-cloud/client-2.2.1.40-cloud.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/aliyun/dts/client/2.2.1.40-cloud/client-2.2.1.40-cloud-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/aliyun/dts/client/2.2.1.40-cloud/client-2.2.1.40-cloud-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
