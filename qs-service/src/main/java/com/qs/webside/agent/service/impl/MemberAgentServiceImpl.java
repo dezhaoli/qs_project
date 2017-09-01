@@ -344,11 +344,12 @@ public class MemberAgentServiceImpl implements IMemberAgentService {
 	 * @param agent
 	 * @return
 	 */
-	   private String getNextAgentCode(MemberAgents agent){
+		@Override
+	   public String getNextAgentCode(MemberAgents agent){
 		    int parentId=agent.getMid();
 	        String code = null;
 	        String maxCode =memberAgentsMapper.getMaxAgentsCodeBymMid(parentId);
-	        if (parentId>0) {  
+	        if (parentId>0) {
 	        	//二级以及以下代理商
 	            if (StringUtils.isNotBlank(maxCode)) {
 	                String parentCode = maxCode.substring(0, maxCode.length() - 5);

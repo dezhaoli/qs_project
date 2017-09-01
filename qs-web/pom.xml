@@ -126,10 +126,7 @@
 			<properties>
 				<profiles.active>jxmajiang</profiles.active>
 			</properties>
-			<!-- 打包时不指定profile id，默认激活本环境 -->
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			
 		</profile>
 <!-- 		开心跑胡子 -->
 		<profile>
@@ -137,6 +134,10 @@
 	        <properties>
 	           <profiles.active>kxweb</profiles.active>
 	        </properties>
+	        <!-- 打包时不指定profile id，默认激活本环境 -->
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 	    </profile>
 	</profiles>
 	<build>

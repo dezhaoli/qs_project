@@ -1,0 +1,736 @@
+package com.qs.pub.game.service.impl;
+
+import com.alibaba.fastjson.JSON;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.ID;
+import com.qs.common.util.RandomUtil;
+import com.qs.common.util.SendMsgToCServer;
+import com.qs.log.game.service.ITaxesInviteService;
+import com.qs.pub.game.mapper.MemberBusinessMapper;
+import com.qs.pub.game.model.*;
+import com.qs.pub.game.service.*;
+import com.qs.webside.agent.model.AgentClubGroup;
+import com.qs.webside.agent.model.AgentClubMember;
+import com.qs.webside.agent.service.IAgentClubGroupService;
+import com.qs.webside.agent.service.IAgentClubMemberService;
+import com.qs.webside.agent.service.IAgentMidsServcie;
+import com.qs.webside.agent.service.IMemberAgentService;
+import com.qs.webside.game.model.ApkSynchroWithBLOBs;
+import com.qs.webside.game.service.IApkSynchroService;
+import com.qs.webside.member.model.MemberAgents;
+import com.qs.webside.member.model.MemberFides;
+import com.qs.webside.member.model.Members;
+import com.qs.webside.member.service.IMemberFidesService;
+import com.qs.webside.member.service.IMembersServcie;
+import jodd.util.StringUtil;
+import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+/**
+ * Created by zun.wei on 2017/3/8.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+@Service
+public class BusinessServiceImpl implements IBusinessService {
+
+    @Resource
+    private MemberBusinessMapper memberBusinessMapper;
+
+    @Resource
+    private IApkSynchroService apkSynchroService;
+
+    @Resource
+    private IMemberFidesService memberFidesService;
+
+    @Resource
+    private IMemberAgentService memberAgentService;
+
+    @Resource
+    private IMembersServcie membersServcie;
+
+    @Resource
+    private IMemberInviteService memberInviteService;
+
+    @Resource
+    private ICommonAgentService commonAgentService;
+
+    @Resource
+    private IAgentMidsServcie agentMidsServcie;
+
+    @Resource
+    private ITaxesInviteService taxesInviteService;
+
+    @Resource
+    private IAppGameService appGameService;
+
+    @Resource
+    private ICommonAgentInfoService commonAgentInfoService;
+
+    @Resource
+    private ICommonAgentsRelationService commonAgentsRelationService ;
+
+    @Resource
+    private IAgentClubGroupService agentClubGroupService;
+
+    @Resource
+    private IAgentClubMemberService agentClubMemberService;
+
+    //@Value("${game.gameCode}")
+    //private String gameCode;
+
+    @Override
+    public List<Map<String, Object>> queryListMapByPage(Map<String, Object> parameter,String dbName) {
+    	
+    	List<Map<String, Object>> resultList =memberBusinessMapper.queryListMapByPage(parameter);
+    	if (resultList !=null){
+    		for (Map<String, Object> map : resultList) {
+    			Object id=map.get("id");
+    			if (id !=null){
+    				Map<String, Object> taxesInvite=taxesInviteService.getBusinessCountPayAndTotal(id,dbName);
+    				if (taxesInvite !=null){
+    					map.put("totalpay", taxesInvite.get("totalpay"));
+    					map.put("totalinvite",taxesInvite.get("totalinvite"));
+    				}else {
+        				map.put("totalpay", 0);
+        				map.put("totalinvite", 0);
+        			}
+    			} else {
+    				map.put("totalpay", 0);
+    				map.put("totalinvite", 0);
+    			}
+			}
+    	}
+    	
+        return resultList;
+    }
+
+    @Override
+    public int add(MemberBusinessDto memberBusinessDto) {
+        //TODO还需要处理account 是邮箱还是手机号  salt
+        //TODO添加的时候需要验证新添加的账号是否已经存在。memberbusiness表中的手机
+        if (memberBusinessDto != null && memberBusinessDto.getAccount() != null) {
+            if (memberBusinessDto.getCompany() == null || memberBusinessDto.getCompany() == ' ') {
+                return -400;
+            }
+            String account = memberBusinessDto.getAccount();
+            String regExPhone = "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$";
+            Pattern pattern = Pattern.compile(regExPhone);
+            Matcher matcher = pattern.matcher(account);
+            boolean rs = matcher.find();
+            String regExEmail = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+            Pattern patternEmail = Pattern.compile(regExEmail);
+            Matcher matcherEmail = patternEmail.matcher(account);
+            boolean rsEmail = matcherEmail.find();
+            if (rs) {//如果匹配为手机号码，则检查是否绑定过。
+                MemberBusiness mb = loadByPhone(memberBusinessDto.getAccount());
+                if (mb != null) return -100;//手机号码已绑定
+                if (memberBusinessDto.getConfirmPwd()
+                        .equals(memberBusinessDto.getPassWord())) {//表示未被绑定,校验密码相等
+                    String uuId = ID.generateUUID();
+                    String passwordCryto = new Md5Hash(memberBusinessDto.getPassWord()
+                            ,uuId,2).toBase64();
+                    MemberBusiness memberBusiness = new MemberBusiness();
+                    memberBusiness.setCompany(memberBusinessDto.getCompany());//公司代码
+                    memberBusiness.setName(memberBusinessDto.getName());//真实姓名
+                    memberBusiness.setPhone(memberBusinessDto.getAccount());//手机号码
+                    //memberBusiness.setEmail("sdfdsaf");
+                    memberBusiness.setSalt(uuId);//盐值
+                    memberBusiness.setPasswd(passwordCryto);//加密后的密码
+                    memberBusiness.setRemark(memberBusinessDto.getRemark());//备注
+                    memberBusiness.setMktime(DateUtil.convertToInt(new SimpleDateFormat
+                            ("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis())));//创建时间
+                    return memberBusinessMapper.insertSelective(memberBusiness);
+                }
+            }
+            if (rsEmail) {//如果匹配邮箱
+                MemberBusiness mb = loadByEmail(memberBusinessDto.getAccount());
+                if (mb != null) return -300;
+                if (memberBusinessDto.getConfirmPwd().equals(memberBusinessDto.getPassWord())) {//校验密码相等
+                    String uuId = ID.generateUUID();
+                    String passwordCryto = new Md5Hash(memberBusinessDto.getPassWord()
+                            ,uuId,2).toBase64();
+                    MemberBusiness memberBusiness = new MemberBusiness();
+                    memberBusiness.setCompany(memberBusinessDto.getCompany());//公司代码
+                    memberBusiness.setName(memberBusinessDto.getName());//真实姓名
+                    //memberBusiness.setPhone();//手机号码
+                    memberBusiness.setEmail(memberBusinessDto.getAccount());//邮箱
+                    memberBusiness.setSalt(uuId);//盐值
+                    memberBusiness.setPasswd(passwordCryto);//加密后的密码
+                    memberBusiness.setRemark(memberBusinessDto.getRemark());//备注
+                    memberBusiness.setMktime(DateUtil.convertToInt(new SimpleDateFormat
+                            ("yyyy-MM-dd HH:mm:ss").format(System.currentTimeMillis())));//创建时间
+                    return memberBusinessMapper.insertSelective(memberBusiness);
+                }
+            }
+            if (!rs && !rsEmail) {
+                //两个都不匹配，异常
+                return -200;
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public MemberBusiness loadByPhone(String phone) {
+        return memberBusinessMapper.loadByPhone(phone);
+    }
+
+    @Override
+    public MemberBusiness loadByEmail(String email) {
+        return  memberBusinessMapper.loadByEmail(email);
+    }
+
+    @Override
+    public MemberBusiness selectById(Integer id) {
+        return memberBusinessMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public int udpatePhoneById(Integer id,String phone,Integer company,String email,String name) {
+        if (StringUtils.isBlank(phone) && StringUtils.isBlank(email)) {
+            return -119;//至少要保留一个登陆账号，手机号码或者邮箱。
+        }
+        MemberBusiness origiBusiness = memberBusinessMapper.selectByPrimaryKey(id);
+        if (origiBusiness != null) {
+            int oid = origiBusiness.getId();
+            MemberBusiness memberBusiness = new MemberBusiness();
+            memberBusiness.setId(id);
+            memberBusiness.setCompany(company.byteValue());
+            memberBusiness.setName(name);
+            if (!StringUtils.isBlank(email)) {
+                String regExEmail = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+                Pattern patternEmail = Pattern.compile(regExEmail);
+                Matcher matcherEmail = patternEmail.matcher(email);
+                boolean rsEmail = matcherEmail.find();
+                if (!rsEmail) {
+                    return -150;//邮箱格式有误。
+                }
+                MemberBusiness emailBusiness = memberBusinessMapper.loadByEmail(email);
+                if (emailBusiness == null) {//说明该邮箱账号没有被使用过
+                    memberBusiness.setEmail(email);//可以绑定
+                } else if (emailBusiness.getId() != oid) {
+                    // 邮箱账号被他人绑定了。
+                    return -151;//该邮箱账号已被他人绑定。
+                } else if (emailBusiness.getId() == oid){
+                    //原来的自己的邮箱，不用更新。
+                }
+            }
+            if (!StringUtils.isBlank(phone)) {
+                String regExPhone = "^((13[0-9])|(15[^4])|(18[0,2,3,5-9])|(17[0-8])|(147))\\d{8}$";
+                Pattern pattern = Pattern.compile(regExPhone);
+                Matcher matcher = pattern.matcher(phone);
+                boolean rs = matcher.find();
+                if (!rs) {
+                    return -200;//手机号码格式出错
+                }
+                MemberBusiness phoneBusiness = memberBusinessMapper.loadByPhone(phone);
+                if (phoneBusiness == null) {//说明该手机账号没有被使用过
+                    memberBusiness.setPhone(phone);//可以绑定
+                } else if (phoneBusiness.getId() != oid) {
+                    // 手机账号被他人绑定了。
+                    return -201;//该手机账号已被他人绑定。
+                } else if (phoneBusiness.getId() == oid){
+                    //原来的自己的手机，不用更新。
+                }
+            }
+            return memberBusinessMapper.updateByPrimaryKeySelective(memberBusiness);
+        } else {
+            return -50;//商务不存在
+        }
+    }
+
+    @Override
+    public int updatePassWordById(Integer agentId, String password,String confirmPwd) {
+        if (password != null && password.equals(confirmPwd)) {
+            MemberBusiness memberBusiness = new MemberBusiness();
+            String uuId = ID.generateUUID();
+            String passwordCryto = new Md5Hash(password,uuId,2).toBase64();
+            memberBusiness.setPasswd(passwordCryto);
+            memberBusiness.setSalt(uuId);
+            memberBusiness.setId(agentId);
+            return memberBusinessMapper.updateByPrimaryKeySelective(memberBusiness);
+        }
+        return 0;
+    }
+
+    @Override//判断游戏是否存在 ，此方法是看php代码得的也要判断
+    public boolean loadGameExistByGameId(Integer gameId) {
+        ApkSynchroWithBLOBs apkSynchroWithBLOBs = apkSynchroService.selectByPrimaryKey(gameId);
+        return apkSynchroWithBLOBs != null;
+    }
+
+    //判断游戏是否存在  ，此方法是根据最新要求修改验证
+    private boolean checkGameExistByGameId(Integer gameId) {
+        if (gameId == null) {
+            return false;
+        }
+        return appGameService.selectByPrimaryKey(gameId) != null;
+    }
+
+    @Override
+    public Map<String, Object> saveAuthorization(Integer userId, Integer gameId,MemberBusiness memberBusiness,
+                                                 Integer gameType,String goldhost,int goldport) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if (!checkGameExistByGameId(gameId)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "游戏不存在");
+            return map;
+        }
+        if (!loadCheckMemberByMid(userId)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "用户不存在");
+            return map;
+        }
+        MemberAgents memberAgents = memberAgentService.selectByMid(userId);
+        if (memberAgents != null) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "该用户已经是代理商");
+            return map;
+        }
+
+        Integer mid = userId;
+        Integer agentId = userId;
+        Byte glevel = 0;
+        Byte alevel = null;
+        Integer parentId = null;
+        Integer firstmid = null;
+        Byte company = null;
+        Short belongId = null;
+        String agentPasswd = "123456";
+        Integer mktime = null;
+        String uuId = ID.generateUUID();
+        String passwordCryto = new Md5Hash(agentPasswd,uuId,2).toBase64();
+        String salt = uuId;
+        String invitecode = getInviteCode();
+        String inviteUrl = "http://lwdownload.jiaheyx.com/?via=" + invitecode;
+
+        MemberFides memberFides = loadMemberByMid(userId);//代授权的人
+        if (memberFides != null) {
+            if (memberFides.getInvite() != null && memberFides.getInvite() != 0) {
+                Integer invite = memberFides.getInvite();//代授权邀请人mid
+                Map<String,Object> agentInfo = memberAgentService.getAgentInfoAndBizInfoByMid(invite);//查询代理商表
+                Integer agentBelongId = null;
+                if (agentInfo != null) {//已经绑定了代理商
+                    int agentAlevel = Integer.parseInt(agentInfo.get("alevel") + "");
+                    int agentMid = Integer.parseInt(agentInfo.get("mid") + "");
+                    int agentFristMid = Integer.parseInt(agentInfo.get("firstmid") + "");
+                    agentBelongId = Integer.valueOf(agentInfo.get("belongid") + "");
+                    agentBelongId = agentBelongId == null ? -1 : agentBelongId;
+                    int nowbizid = memberBusiness.getId();
+                    if (agentBelongId != nowbizid) {//验证当前商务号是否等于代授权人的代理商的所属商务
+                        Map<String, Object> agentInfoAndBizInfo = memberBusinessMapper.getBusInfoAndBizInfoByMid(agentBelongId);//查询商务表
+                        map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                        map.put(CommonContants.DATA, null);
+                        map.put(CommonContants.MESSAGE,
+                                "该用户所属商务:"+ agentInfoAndBizInfo.get("bizname") + "  " + "" +
+                                        "联系方式："+ agentInfoAndBizInfo.get("bizphone"));
+                        return map;
+                    } else {//商务越级授权
+                        alevel = Byte.parseByte(agentAlevel + 1 + "");
+                        parentId = agentMid;
+                        firstmid = agentFristMid;
+                    }
+                } else {//未绑定代理商
+                    alevel = 1;
+                    parentId = 0;
+                    firstmid = mid;
+                }
+            } else {//未绑定代理商
+                alevel = 1;
+                parentId = 0;
+                firstmid = mid;
+            }
+
+
+            company = memberBusiness.getCompany();
+            belongId = Short.parseShort(memberBusiness.getId() + "");
+            mktime = DateUtil.convertToInt(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                    .format(System.currentTimeMillis()));
+
+            Members members = membersServcie.selectByPrimaryKey(mid);
+            if (members == null || members.getSitemid() == null || "".equals(members.getSitemid())) {
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.DATA, null);
+                map.put(CommonContants.MESSAGE, "人员不存在！");
+                return map;
+            }
+
+            String inviteCode = memberInviteService.getInviteCode(members.getSitemid());
+            if (StringUtils.isBlank(inviteCode)) {
+                //先加入邀请表
+                MemberInvite memberInvite = new MemberInvite();
+                //memberInvite.setMid(agentId);
+                memberInvite.setInvitecode(invitecode);
+                memberInvite.setInviteurl(inviteUrl);
+                memberInvite.setSitemid(members.getSitemid());
+                memberInviteService.insertSelective(memberInvite);
+            }
+
+            //加入代理商用户表
+            MemberAgents memberAgents1 = new MemberAgents();
+            memberAgents1.setMid(mid);
+            memberAgents1.setPasswd(passwordCryto);
+            memberAgents1.setSalt(salt);
+            memberAgents1.setAlevel(alevel);
+            memberAgents1.setBelongid(belongId);
+            memberAgents1.setMktime(mktime + "");
+            memberAgents1.setParentId(parentId);
+            memberAgents1.setFirstmid(firstmid);
+            memberAgents1.setGlevel(glevel);
+            memberAgents1.setCompany(company);
+            memberAgents1.setSitemid(members.getSitemid());
+            memberAgents1.setAreaid(0);
+            memberAgents1.setOpenid(memberFides.getIdentity());
+            String code = "";
+            if (alevel != 1 && parentId != 0) {//不是授权一级代理
+                MemberAgents ma = memberAgentService.selectByMid(parentId);
+                code = memberAgentService.getNextAgentCode(ma);
+            } else {//授权一级代理
+                code = memberAgentService.getFistLevelAgentCode();
+            }
+            memberAgents1.setCode(code);//2017年3月28日20:24:17 添加code属性
+            memberAgentService.insertSelective(memberAgents1);
+
+            //common_agents_relation更新
+            CommonAgentsRelation commonAR = new CommonAgentsRelation();
+            commonAR.setMid(mid);
+            commonAR.setGameType(gameType);
+            commonAR.setSitemid(members.getSitemid());
+            commonAR.setCreateId(memberBusiness.getId());
+            commonAR.setCreateTime(DateUtil.getNowDate());
+            commonAgentsRelationService.insertSelective(commonAR);
+
+            //维护共用代理商表
+            String siteMid = members.getSitemid();
+            CommonAgents commonAgents = commonAgentService.selectByPrimaryKey(siteMid);
+            String gameCode = appGameService.getGameCode(gameType);
+            if (commonAgents != null) {
+                String info = commonAgents.getInfo();
+                Map<String, Object> infoMap = JSON.parseObject(info, Map.class);
+                infoMap.put(gameCode, agentId + "");
+                String result = JSON.toJSONString(infoMap);
+                CommonAgents commonAgents1 = new CommonAgents();
+                commonAgents1.setSitemid(siteMid);
+                commonAgents1.setInfo(result);
+                commonAgentService.updateByPrimaryKeySelective(commonAgents1);
+            } else {
+                Map<String, Object> infoMap = new HashMap<>();
+                infoMap.put(gameCode, agentId + "");
+                String result = JSON.toJSONString(infoMap);
+                CommonAgents commonAgents1 = new CommonAgents();
+                commonAgents1.setSitemid(siteMid);
+                commonAgents1.setInfo(result);
+                commonAgentService.insertSelective(commonAgents1);
+            }
+
+            // 添加俱乐部功能代码。
+            AgentClubGroup agentClubGroup = new AgentClubGroup();
+            agentClubGroup.setCmid(mid);
+            agentClubGroup.setName(memberFides.getName());
+            agentClubGroup.setCreateTime(DateUtil.getNowDate());
+            agentClubGroupService.insertSelective(agentClubGroup);
+
+            AgentClubMember agentClubMember = new AgentClubMember();
+            agentClubMember.setMid(mid);
+            agentClubMember.setCmid(mid);
+            agentClubMember.setCreateTime(DateUtil.getNowDate());
+            agentClubMemberService.insertSelective(agentClubMember);//当前俱乐部成员
+
+            //删除代开房数据 , 取消免费开房
+            agentMidsServcie.deleteByMid(agentId);
+            if (gameId >= 20) {//发送消息通知C++通知客户端，会员状态身份改变
+                SendMsgToCServer.sendMsgToCServer(mid, 5, 1, goldhost, goldport);
+            }
+            map.put(CommonContants.SUCCESS, Boolean.TRUE);
+            map.put(CommonContants.DATA, null);
+            //map.put(CommonContants.MESSAGE, "平台ID为空，或者人员信息为空!");
+            return map;
+        } else {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "人员信息不存在！");
+            return map;
+        }
+    }
+
+    @Override
+    public boolean loadCheckMemberByMid(Integer mid) {
+        MemberFides memberFides = memberFidesService.selectByMemberMid(mid);
+        return memberFides != null;
+    }
+
+    @Override
+    public MemberFides loadMemberByMid(Integer mid) {
+        return memberFidesService.selectByMemberMid(mid);
+    }
+
+    @Override
+    public Map<String, Object> queryUserInfo(Integer userId, Integer gameId,MemberBusiness nowBiz) {
+        Map<String, Object> map = new HashMap<String, Object>();
+
+        if (!checkGameExistByGameId(gameId)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            //map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "游戏不存在");
+            return map;
+        }
+
+       /* if (!loadGameExistByGameId(gameId)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            //map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "游戏不存在");
+            return map;
+        }*/
+
+        if (!loadCheckMemberByMid(userId)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            //map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, "用户不存在");
+            return map;
+        }
+
+        MemberFides memberFides = loadMemberByMid(userId);
+
+        //如果查到人员已经有邀请人（invite）了，而且不为0了。
+        // 说明已经该用户已经是下级某个代理商的下线了。所以不能再授权一级代理商了。
+        /*if (memberFides != null) {
+            if (memberFides.getInvite() != null && memberFides.getInvite() != 0) {
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.DATA, null);//realname
+                if (!StringUtil.isBlank(memberFides.getRealname())) {
+                    map.put(CommonContants.MESSAGE,"该用户已经绑定代理商！所属代理商为:" + memberFides.getRealname());
+                } else {
+                    map.put(CommonContants.MESSAGE,"该用户已经绑定代理商！");
+                }
+                return map;
+            }
+        }*/
+
+        MemberAgents memberAgents = memberAgentService.selectByMid(userId);//查询是否是代理商
+        if (memberAgents != null) {
+            Map<String,Object> agentInfo = memberBusinessMapper.getBusInfoAndBizInfoByMid(userId);
+            Integer agentBelongId = null;
+            if (agentInfo != null) {
+                agentBelongId = Integer.valueOf(agentInfo.get("belongid") + "");
+            }
+            Map<String, Object> agentInfoAndBizInfo = memberAgentService.getAgentInfoAndBizInfoByMid(agentBelongId);
+            if (agentInfoAndBizInfo != null && agentInfo != null) {
+                agentInfoAndBizInfo.putAll(agentInfo);
+                agentInfoAndBizInfo.put("nickname", memberFides.getName());
+                agentInfoAndBizInfo.put("invite", memberFides.getInvite());
+            }
+            //Map<String, Object> agentInfoAndBizInfo = memberAgentService.getAgentInfoAndBizInfoByMid(userId);
+            /*Map<String, Object> belongAgent = memberAgentService
+                    .getAgentInfoAndBizInfoByMid(Integer.parseInt(memberAgents.getBelongid() + ""));*/
+            /*if (nowBiz != null) {
+                agentInfoAndBizInfo.put("bizName", agentInfoAndBizInfo.get("bizname"));
+            } else {
+                agentInfoAndBizInfo.put("bizName", "");
+            }*/
+
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, agentInfoAndBizInfo);
+            map.put(CommonContants.MESSAGE, "该用户已经是代理商");
+            return map;
+        }
+
+
+        MemberBusiness memberBusiness = null;
+        MemberAgents agentInfo = null;
+        MemberAgents parentAgentInfo = null;
+        if (memberFides != null && memberFides.getInvite() != null) {
+            parentAgentInfo = memberAgentService.selectByMid(userId);
+            if (parentAgentInfo != null) {
+                memberBusiness = memberBusinessMapper.selectByPrimaryKey
+                        (Integer.parseInt(parentAgentInfo.getBelongid() + ""));
+
+            }
+        } else if (memberFides != null && memberFides.getInvite() == null) {
+            agentInfo = memberAgentService.selectByPrimaryKey(userId);
+            if (agentInfo != null && agentInfo.getBelongid() != null) {
+                memberBusiness = memberBusinessMapper.selectByPrimaryKey
+                        (Integer.parseInt(agentInfo.getBelongid() + ""));
+            }
+        }
+        MemberInvite memberInvite = null;//memberInviteService.selectByMid(userId);
+        Members members = membersServcie.selectByPrimaryKey(userId);
+        if (members != null) {
+            memberInvite = memberInviteService.selectBySiteId(members.getSitemid());
+        }
+        Map<String, Object> data = new HashMap<>();
+        data.put("memberInvite", memberInvite);
+        data.put("memberFides", memberFides);
+        data.put("memberBusiness", memberBusiness);
+        data.put("parentAgentInfo", parentAgentInfo);
+        map.put(CommonContants.SUCCESS, Boolean.TRUE);
+        map.put(CommonContants.DATA, data);
+        return map;
+    }
+
+    @Override
+    public Map<String, Object> queryFirstAgentCountByBelongId(Integer belongid) {
+        return memberAgentService.queryFirstAgentCountByBelongId(belongid);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryFirstAgentByBelongIdPage(Map<String,Object> belongid) {
+        return commonAgentInfoService.queryFirstAgentByBelongIdPage(belongid);
+    }
+
+    @Override
+    public Map<String, Object> getAgentDetailInfoByMid(Integer mid,String dbName) {
+        Map<String, Object> result = new HashMap<String, Object>();
+        Map<String, Object> params = new HashMap<>();
+        params.put("mid", mid);
+        params.put("memberagents", dbName + ".memberagents");
+        Map<String, Object> agentBusinessInfo = memberAgentService.getAgentBusinessInfoByMid(params);
+
+        String realNameBind = null;
+        if (agentBusinessInfo != null && agentBusinessInfo.get("firstmid") != null) {
+            realNameBind = memberAgentService.getAgentRealNameByMid
+                    (Integer.parseInt(agentBusinessInfo.get("firstmid") + ""));
+        }
+
+        String gameName = null;
+        MemberFides memberFides = memberFidesService.selectByMemberMid(mid);
+        if (memberFides != null) {
+            gameName = memberFides.getName();
+        }
+
+        Map<String,Object> payAndInviteTotal = taxesInviteService.getPayAndInviteTotalByMid(mid);
+        Map<String,Object> aayAndInviteTotalByParentId = taxesInviteService.getPayAndInviteTotalByParentId(mid);
+        Map<String, Object> aayAndInviteTotalByAgentParentId = taxesInviteService.getPayAndInviteTotalByAgentParentId(mid,dbName);
+        Double payTotal = 0.0;
+        //Integer inviteTotal = 0;//invitetotal
+        if (payAndInviteTotal != null && payAndInviteTotal.get("paytotal") != null) {
+            payTotal += Double.parseDouble(payAndInviteTotal.get("paytotal") + "");
+        }
+        if (aayAndInviteTotalByParentId != null && aayAndInviteTotalByParentId.get("paytotal") != null) {
+            payTotal += Double.parseDouble(aayAndInviteTotalByParentId.get("paytotal") + "");
+        }
+        if (aayAndInviteTotalByAgentParentId != null && aayAndInviteTotalByAgentParentId.get("paytotal") != null) {
+            payTotal += Double.parseDouble(aayAndInviteTotalByAgentParentId.get("paytotal") + "");
+        }
+
+        /*if (payAndInviteTotal != null && payAndInviteTotal.get("invitetotal") != null) {
+            inviteTotal += Integer.parseInt(payAndInviteTotal.get("invitetotal") + "");
+        }
+        if (aayAndInviteTotalByParentId != null && aayAndInviteTotalByParentId.get("invitetotal") != null) {
+            inviteTotal += Integer.parseInt(aayAndInviteTotalByParentId.get("invitetotal") + "");
+        }
+        if (aayAndInviteTotalByAgentParentId != null && aayAndInviteTotalByAgentParentId.get("invitetotal") != null) {
+            inviteTotal += Integer.parseInt(aayAndInviteTotalByAgentParentId.get("invitetotal") + "");
+        }*/
+
+        Integer it = memberFidesService.selectAengtCountByInvite(mid);
+        result.put("realNameBind", realNameBind);
+        result.put("gameName", gameName);
+        result.put("payTotal", payTotal);
+        result.put("inviteTotal", it == null ? 0 : it);
+        result.put("agentBusinessInfo", agentBusinessInfo);
+        return result;
+    }
+
+    @Override
+    public List<Map<String, Object>> queryChildrenAgent(Map<String, Object> buzIdFriId) {
+        List<Map<String, Object>> childAgents = commonAgentInfoService.getChildrenAgentsList(buzIdFriId);
+        return childAgents;
+    }
+
+    @Override
+    public Integer getChildrenAgentsCount(Map<String, Object> firstMidBelongId) {
+        return memberAgentService.getChildrenAgentsCount(firstMidBelongId);
+    }
+
+    @Override
+    public MemberBusiness findByPhoneOrEmail(String phoneOrMail) {
+        return memberBusinessMapper.findByPhoneOrEmail(phoneOrMail);
+    }
+
+    @Override
+    public String getInviteCode() {
+        while (true) {
+            String randomInviteCode = RandomUtil.generateInviteCode();
+            int count = memberInviteService.queryCountByInviteCode(randomInviteCode);
+            if (count == 0) {
+                return randomInviteCode;
+            }
+        }
+    }
+
+    @Override
+    public List<Map<String, Object>> getUserAgentAndBuziInfoByUserMid(Map<String, Object> parameters) {
+        Map<String,Object> map = new HashMap<String,Object>();
+        MemberFides memberFides = memberFidesService.queryListByMid(parameters);
+        MemberBusiness business = null;
+        Map<String, Object> parentAgentInfo = null;
+        if (memberFides != null && memberFides.getInvite() != null && memberFides.getInvite() > 0) {
+            Map<String, Object> pas = new HashMap<>();
+            pas.put("memberagents", parameters.get("dbName"));
+            pas.put("mid", memberFides.getInvite());
+            parentAgentInfo = memberAgentService.getAgentBusinessInfoByMid(pas);
+            if (parentAgentInfo != null && parentAgentInfo.get("belongid") != null) {
+                business = memberBusinessMapper.selectByPrimaryKey(
+                        Integer.parseInt(parentAgentInfo.get("belongid") + ""));
+            }
+        } else {
+            if (parameters.get("mid") != null && !"".equals(parameters.get("mid"))) {
+                Map<String, Object> pas = new HashMap<>();
+                pas.put("memberagents", parameters.get("dbName"));
+                pas.put("mid", Integer.parseInt(parameters.get("mid") + ""));
+                Map<String, Object> agentInfo = memberAgentService.getAgentBusinessInfoByMid(pas);
+                if (agentInfo != null && agentInfo.get("belongid") != null) {
+                    business = memberBusinessMapper.selectByPrimaryKey(
+                            Integer.parseInt(agentInfo.get("belongid") + ""));
+                } else {
+                    business = null;
+                }
+            }
+        }
+        String inviteCode = null;
+        if (parameters.get("mid") != null && !"".equals(parameters.get("mid"))) {
+            Members members = membersServcie.selectByPrimaryKey(Integer.parseInt(parameters.get("mid") + ""));
+            String siteid = null;
+            if (members != null) {
+                siteid = members.getSitemid();
+            }
+            inviteCode = memberInviteService.getInviteCode(siteid);
+            if (inviteCode != null) map.put("inviteCode", inviteCode);
+            if (memberFides != null) map.put("memberFides", memberFides);
+            if (business != null) map.put("business", business);
+            if (parentAgentInfo != null) map.put("parentAgentInfo", parentAgentInfo);
+        }
+        List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+        if (map.size() > 0)
+        list.add(map);
+        return list;
+    }
+
+	@Override
+	public List<Map<String, Object>> getGoldAgentList(Map<String,Object> parma) {
+		return memberBusinessMapper.getGoldAgentList(parma);
+	}
+
+    @Override
+    public List<Map<String, Object>> getCompanyBiz(Map<String, Object> parameters) {
+        return memberBusinessMapper.getCompanyBiz(parameters);
+    }
+
+
+}

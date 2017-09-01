@@ -44,13 +44,13 @@ $(function () {
         ignore: "",
         rules: {
         	mid: {
-                required: true,
+                required: true
             },
             gold: {
-                required: true,
+                required: true
             },
             remark: {
-                required: true,
+                required: true
             }
         },
         messages: {

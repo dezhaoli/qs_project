@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.game.mapper.CommonAgentsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.game.model.CommonAgentsInfo" >
+    <id column="sitemid" property="sitemid" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+    <result column="bankcard" property="bankcard" jdbcType="VARCHAR" />
+    <result column="alipay" property="alipay" jdbcType="VARCHAR" />
+    <result column="realname" property="realname" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="CHAR" />
+    <result column="qq" property="qq" jdbcType="VARCHAR" />
+    <result column="areaid" property="areaid" jdbcType="INTEGER" />
+    <result column="cdate" property="cdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sitemid, bank, bankcard, alipay, realname, phone, qq, areaid, cdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from common_agents_info
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from common_agents_info
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.qs.pub.game.model.CommonAgentsInfo" >
+    insert into common_agents_info (sitemid, bank, bankcard, 
+      alipay, realname, phone, 
+      qq, areaid, cdate
+      )
+    values (#{sitemid,jdbcType=VARCHAR}, #{bank,jdbcType=VARCHAR}, #{bankcard,jdbcType=VARCHAR}, 
+      #{alipay,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{phone,jdbcType=CHAR}, 
+      #{qq,jdbcType=VARCHAR}, #{areaid,jdbcType=INTEGER}, #{cdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.pub.game.model.CommonAgentsInfo" >
+    insert into common_agents_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sitemid != null" >
+        sitemid,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+      <if test="bankcard != null" >
+        bankcard,
+      </if>
+      <if test="alipay != null" >
+        alipay,
+      </if>
+      <if test="realname != null" >
+        realname,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="qq != null" >
+        qq,
+      </if>
+      <if test="areaid != null" >
+        areaid,
+      </if>
+      <if test="cdate != null" >
+        cdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sitemid != null" >
+        #{sitemid,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null" >
+        #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="cdate != null" >
+        #{cdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.pub.game.model.CommonAgentsInfo" >
+    update common_agents_info
+    <set >
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+      <if test="bankcard != null" >
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="alipay != null" >
+        alipay = #{alipay,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        qq = #{qq,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null" >
+        areaid = #{areaid,jdbcType=INTEGER},
+      </if>
+      <if test="cdate != null" >
+        cdate = #{cdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.pub.game.model.CommonAgentsInfo" >
+    update common_agents_info
+    set bank = #{bank,jdbcType=VARCHAR},
+      bankcard = #{bankcard,jdbcType=VARCHAR},
+      alipay = #{alipay,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=CHAR},
+      qq = #{qq,jdbcType=VARCHAR},
+      areaid = #{areaid,jdbcType=INTEGER},
+      cdate = #{cdate,jdbcType=TIMESTAMP}
+    where sitemid = #{sitemid,jdbcType=VARCHAR}
+  </update>
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT <include refid="Base_Column_List" />
+    from common_agents_info order by sitemid
+  </select>
+
+  <!-- 获取商务专员绑定的一级代理商充值列表 -->
+  <select id="queryFirstAgentByBelongIdPage" parameterType="map" resultType="map">
+    SELECT a.mid,b.*,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+    a.sitemid as asitemid,b.sitemid as bsitemid,a.realname AS truename,
+    (SELECT COUNT(0) FROM ${dbName}.memberfides0 e WHERE e.invite = a.mid LIMIT 1) AS childCount,
+    (SELECT name FROM ${dbName}.memberfides0 ff WHERE ff.mid = a.mid LIMIT 1) AS nickname
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE a.alevel=1
+    AND a.belongid=#{belongid,jdbcType=INTEGER}
+    <if test="mid != null and mid != ''">
+      and a.mid = #{mid,jdbcType=INTEGER}
+    </if>
+    ORDER BY a.mktime DESC
+  </select>
+
+  <!-- belongid 商务id，firstmid 一级代理商id -->
+  <select id="getChildrenAgentsList" parameterType="map" resultType="map">
+    SELECT a.mid,b.*,a.realname AS truename ,FROM_UNIXTIME(a.mktime,'%Y-%m-%d %H:%i:%S') as comeTime,
+    <!-- (SELECT COUNT(0) FROM ${dbName}.memberagents e WHERE e.parent_id = a.mid and e.mid!=a.mid) AS childCount -->
+    (SELECT COUNT(invite) FROM ${dbName}.memberfides0 e WHERE e.invite = a.mid) AS childCount
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE a.firstmid= #{firstmid,jdbcType=INTEGER}
+    AND a.belongid= #{belongid,jdbcType=INTEGER}
+    AND a.alevel>1
+    <if test="mid != null and mid != ''">
+      and a.mid = #{mid,jdbcType=INTEGER}
+    </if>
+    ORDER BY a.mktime
+    DESC
+  </select>
+
+  <select id="getAgentAndBusizInfoByMid" resultType="java.util.Map" parameterType="map">
+    SELECT a.mid,a.realname,a.firstmid,
+    (SELECT b.realname AS realnamebind
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=
+    (
+    SELECT a.firstmid AS firstmid
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=#{mid} LIMIT 0,1
+    )) AS realnamebind
+    FROM ${dbName}.memberagents as a
+    left join common_agents_info as b
+    ON a.sitemid=b.sitemid
+    WHERE mid=#{mid}
+  </select>
+
+</mapper>

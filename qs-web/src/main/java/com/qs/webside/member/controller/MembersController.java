@@ -734,8 +734,13 @@ public class MembersController extends BaseController{
         if (goldCount == 0) {
             map.put(CommonContants.SUCCESS, Boolean.FALSE);
             map.put(CommonContants.DATA, null);
-            //map.put(CommonContants.MESSAGE, CommonContants.OPERATE_FAILURE + ":要添加的金币要大于0！");
             map.put(CommonContants.MESSAGE, CommonContants.OPERATE_FAILURE + ":请填写要增/减金币！");
+            return map;
+        }
+        if (StringUtils.isBlank(remark)) {
+            map.put(CommonContants.SUCCESS, Boolean.FALSE);
+            map.put(CommonContants.DATA, null);
+            map.put(CommonContants.MESSAGE, CommonContants.OPERATE_FAILURE + ":请填写备注！");
             return map;
         }
         map = busiGoldLogService //c++发送金币

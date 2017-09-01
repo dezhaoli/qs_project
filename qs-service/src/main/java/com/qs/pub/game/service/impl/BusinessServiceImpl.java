@@ -290,20 +290,12 @@ public class BusinessServiceImpl implements IBusinessService {
             map.put(CommonContants.MESSAGE, "游戏不存在");
             return map;
         }
-       /* if (!loadGameExistByGameId(gameId)) {
-            map.put(CommonContants.SUCCESS, Boolean.FALSE);
-            map.put(CommonContants.DATA, null);
-            map.put(CommonContants.MESSAGE, "游戏不存在");
-            return map;
-        }*/
-
         if (!loadCheckMemberByMid(userId)) {
             map.put(CommonContants.SUCCESS, Boolean.FALSE);
             map.put(CommonContants.DATA, null);
             map.put(CommonContants.MESSAGE, "用户不存在");
             return map;
         }
-
         MemberAgents memberAgents = memberAgentService.selectByMid(userId);
         if (memberAgents != null) {
             map.put(CommonContants.SUCCESS, Boolean.FALSE);
@@ -328,54 +320,38 @@ public class BusinessServiceImpl implements IBusinessService {
         String invitecode = getInviteCode();
         String inviteUrl = "http://lwdownload.jiaheyx.com/?via=" + invitecode;
 
-        MemberFides memberFides = loadMemberByMid(userId);
+        MemberFides memberFides = loadMemberByMid(userId);//代授权的人
         if (memberFides != null) {
             if (memberFides.getInvite() != null && memberFides.getInvite() != 0) {
-                Integer invite = memberFides.getInvite();
-                Map<String,Object> agentInfo = memberBusinessMapper.getBusInfoAndBizInfoByMid(invite);
+                Integer invite = memberFides.getInvite();//代授权邀请人mid
+                Map<String,Object> agentInfo = memberAgentService.getAgentInfoAndBizInfoByMid(invite);//查询代理商表
                 Integer agentBelongId = null;
-                if (agentInfo != null) {
+                if (agentInfo != null) {//已经绑定了代理商
+                    int agentAlevel = Integer.parseInt(agentInfo.get("alevel") + "");
+                    int agentMid = Integer.parseInt(agentInfo.get("mid") + "");
+                    int agentFristMid = Integer.parseInt(agentInfo.get("firstmid") + "");
                     agentBelongId = Integer.valueOf(agentInfo.get("belongid") + "");
-                }
-                Map<String, Object> agentInfoAndBizInfo = memberAgentService.getAgentInfoAndBizInfoByMid(agentBelongId);
-                if (agentInfoAndBizInfo != null && agentInfo != null) {
-                    agentInfoAndBizInfo.putAll(agentInfo);
-                }
-                if (agentInfoAndBizInfo != null) {
-                    int abelongId = Integer.valueOf(agentInfoAndBizInfo.get("belongid") + "");
-                    int bid = memberBusiness.getId();
-                    if (bid != abelongId) {
+                    agentBelongId = agentBelongId == null ? -1 : agentBelongId;
+                    int nowbizid = memberBusiness.getId();
+                    if (agentBelongId != nowbizid) {//验证当前商务号是否等于代授权人的代理商的所属商务
+                        Map<String, Object> agentInfoAndBizInfo = memberBusinessMapper.getBusInfoAndBizInfoByMid(agentBelongId);//查询商务表
                         map.put(CommonContants.SUCCESS, Boolean.FALSE);
                         map.put(CommonContants.DATA, null);
                         map.put(CommonContants.MESSAGE,
                                 "该用户所属商务:"+ agentInfoAndBizInfo.get("bizname") + "  " + "" +
                                         "联系方式："+ agentInfoAndBizInfo.get("bizphone"));
                         return map;
+                    } else {//商务越级授权
+                        alevel = Byte.parseByte(agentAlevel + 1 + "");
+                        parentId = agentMid;
+                        firstmid = agentFristMid;
                     }
-
-                    map.put(CommonContants.SUCCESS, Boolean.FALSE);
-                    map.put(CommonContants.DATA, null);//realname
-                    if (!StringUtil.isBlank(memberFides.getName())) {
-                        map.put(CommonContants.MESSAGE,"该用户已经绑定其他代理商！所属代理商为:" + memberFides.getName());
-                    } else {
-                        map.put(CommonContants.MESSAGE,"该用户已经绑定其他代理商！");
-                    }
-                    return map;
-
-                    // 此处原来Php代码兼容授权二、三级的能力。而我这里仅仅是授权一级代理商，所以注释。
-                   // alevel = (byte) ((Integer) agentInfoAndBizInfo.get("alevel") + 1);
-                    //parentId = Integer.parseInt(agentInfoAndBizInfo.get("mid") + "") ;
-                    //firstmid = Integer.parseInt( agentInfoAndBizInfo.get("firstmid") + "");//firstmid
-                    //map.put(CommonContants.DATA, agentInfoAndBizInfo);
-
-                }else {
-                    map.put(CommonContants.SUCCESS, Boolean.FALSE);
-                    map.put(CommonContants.DATA, null);
-                    map.put(CommonContants.MESSAGE, "代理商的所属商务不存在！");//用户不存在
-                    //map.put(CommonContants.MESSAGE, "推荐人不存在！");//用户不存在
-                    return map;
+                } else {//未绑定代理商
+                    alevel = 1;
+                    parentId = 0;
+                    firstmid = mid;
                 }
-            } else {
+            } else {//未绑定代理商
                 alevel = 1;
                 parentId = 0;
                 firstmid = mid;
@@ -421,7 +397,13 @@ public class BusinessServiceImpl implements IBusinessService {
             memberAgents1.setSitemid(members.getSitemid());
             memberAgents1.setAreaid(0);
             memberAgents1.setOpenid(memberFides.getIdentity());
-            String code = memberAgentService.getFistLevelAgentCode();
+            String code = "";
+            if (alevel != 1 && parentId != 0) {//不是授权一级代理
+                MemberAgents ma = memberAgentService.selectByMid(parentId);
+                code = memberAgentService.getNextAgentCode(ma);
+            } else {//授权一级代理
+                code = memberAgentService.getFistLevelAgentCode();
+            }
             memberAgents1.setCode(code);//2017年3月28日20:24:17 添加code属性
             memberAgentService.insertSelective(memberAgents1);
 
@@ -485,8 +467,6 @@ public class BusinessServiceImpl implements IBusinessService {
             map.put(CommonContants.MESSAGE, "人员信息不存在！");
             return map;
         }
-
-        //return map;
     }
 
     @Override
@@ -529,7 +509,7 @@ public class BusinessServiceImpl implements IBusinessService {
 
         //如果查到人员已经有邀请人（invite）了，而且不为0了。
         // 说明已经该用户已经是下级某个代理商的下线了。所以不能再授权一级代理商了。
-        if (memberFides != null) {
+        /*if (memberFides != null) {
             if (memberFides.getInvite() != null && memberFides.getInvite() != 0) {
                 map.put(CommonContants.SUCCESS, Boolean.FALSE);
                 map.put(CommonContants.DATA, null);//realname
@@ -540,7 +520,7 @@ public class BusinessServiceImpl implements IBusinessService {
                 }
                 return map;
             }
-        }
+        }*/
 
         MemberAgents memberAgents = memberAgentService.selectByMid(userId);//查询是否是代理商
         if (memberAgents != null) {
@@ -637,7 +617,7 @@ public class BusinessServiceImpl implements IBusinessService {
         Map<String,Object> aayAndInviteTotalByParentId = taxesInviteService.getPayAndInviteTotalByParentId(mid);
         Map<String, Object> aayAndInviteTotalByAgentParentId = taxesInviteService.getPayAndInviteTotalByAgentParentId(mid,dbName);
         Double payTotal = 0.0;
-        Integer inviteTotal = 0;//invitetotal
+        //Integer inviteTotal = 0;//invitetotal
         if (payAndInviteTotal != null && payAndInviteTotal.get("paytotal") != null) {
             payTotal += Double.parseDouble(payAndInviteTotal.get("paytotal") + "");
         }
@@ -648,7 +628,7 @@ public class BusinessServiceImpl implements IBusinessService {
             payTotal += Double.parseDouble(aayAndInviteTotalByAgentParentId.get("paytotal") + "");
         }
 
-        if (payAndInviteTotal != null && payAndInviteTotal.get("invitetotal") != null) {
+        /*if (payAndInviteTotal != null && payAndInviteTotal.get("invitetotal") != null) {
             inviteTotal += Integer.parseInt(payAndInviteTotal.get("invitetotal") + "");
         }
         if (aayAndInviteTotalByParentId != null && aayAndInviteTotalByParentId.get("invitetotal") != null) {
@@ -656,12 +636,13 @@ public class BusinessServiceImpl implements IBusinessService {
         }
         if (aayAndInviteTotalByAgentParentId != null && aayAndInviteTotalByAgentParentId.get("invitetotal") != null) {
             inviteTotal += Integer.parseInt(aayAndInviteTotalByAgentParentId.get("invitetotal") + "");
-        }
+        }*/
 
+        Integer it = memberFidesService.selectAengtCountByInvite(mid);
         result.put("realNameBind", realNameBind);
         result.put("gameName", gameName);
         result.put("payTotal", payTotal);
-        result.put("inviteTotal", inviteTotal);
+        result.put("inviteTotal", it == null ? 0 : it);
         result.put("agentBusinessInfo", agentBusinessInfo);
         return result;
     }

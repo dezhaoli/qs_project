@@ -96,10 +96,7 @@
 	        <properties>
 	           <profiles.active>gdapp</profiles.active>
 	        </properties>
-	        <!-- 打包时不指定profile id，默认激活本环境 -->
-	       <!--  <activation>
-	            <activeByDefault>true</activeByDefault>
-	        </activation> -->
+	      
 	    </profile>
 		<profile>
 			<id>jiangxiapp</id>
@@ -121,12 +118,16 @@
 	        <properties>
 	           <profiles.active>kxapp</profiles.active>
 	        </properties>
+	          <!-- 打包时不指定profile id，默认激活本环境 -->
+	        <activation>
+	            <activeByDefault>true</activeByDefault>
+	        </activation>
 	    </profile>
 	</profiles>
     
 	<build>
 		<finalName>app</finalName>
-		<resources>
+		 <resources>
 		    <resource>
 				<directory>src/main/resources</directory>	    
 		    </resource>
@@ -134,7 +135,7 @@
 				<directory>src/main/profile/${profiles.active}</directory>	
 				<filtering>true</filtering>    
 		    </resource>
-	    </resources>
+	    </resources> 
 		<plugins>
 
 			<!-- 代码生成 -->

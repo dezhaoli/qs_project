@@ -1,0 +1,214 @@
+package com.qs.webside.agent.service;
+
+import com.qs.webside.member.model.MemberAgents;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 代理商用户业务层
+ *
+ * Created by zun.wei on 2017/3/8.
+ * To change this template use File|Default Setting
+ * |Editor|File and Code Templates|Includes|File Header
+ */
+public interface IMemberAgentService {
+
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(MemberAgents record);
+
+    int insertSelective(MemberAgents record);
+
+    MemberAgents selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(MemberAgents record);
+
+    int updateByPrimaryKey(MemberAgents record);
+
+    List<MemberAgents> queryListByPage(Map<String, Object> parameters);
+
+    /**
+     * 编辑返现比例
+     * @param id
+     * @param mid
+     * @param scale
+     * @param remark
+     * @return
+     */
+    int editScale(Integer id, Integer mid, Byte scale, String remark);
+
+    /**
+     * 重置密码
+     *
+     * @param id
+     * @return
+     */
+    int resetPwd(Integer id);
+    /**
+     * 根据sitemid获取用户信息 -
+     * @param sitemid
+     * @return
+     */
+    MemberAgents getMemberAgentsInfoBySitemid(String sitemid);
+
+    Map<String, Object> getTaxesInviteMapper( Map<String ,Object > param);
+    
+    /**
+     * 根据parent_id取用户信息
+     * @param parent_id
+     * @return
+     */
+    List<MemberAgents> getMemberAgentsInfoByParentId(String parent_id);  
+
+
+    MemberAgents selectByMid(Integer mid);
+
+    /**
+     * 根据mid查询对应的代理商信息，和商务信息。
+     * @param mid
+     * @return
+     */
+    Map<String, Object> getAgentInfoAndBizInfoByMid(Integer mid);
+
+    /**
+     * 根据代理商所属id查询以及代理名下的所有代理商条数。
+     * @param belongid
+     * @return Integer total = map.get("total");
+     */
+    Map<String, Object> queryFirstAgentCountByBelongId(Integer belongid);
+
+    /**
+     * 获取商务专员绑定的一级代理商充值列表
+     * @param belongid
+     * @return
+     */
+    //List<Map<String, Object>> queryFirstAgentByBelongIdPage(Map<String,Object> belongid);
+
+    /**
+     * 根据mid获取代理商信息
+     * @param parameters
+     * @return
+     */
+    Map<String, Object> getAgentBusinessInfoByMid(Map<String,Object> parameters);
+
+    /**
+     * 根据mid获取代理商真实名字
+     * @param mid
+     * @return
+     */
+    String getAgentRealNameByMid(Integer mid);
+
+    /**
+     *  获取商务id下面的一级代理商所有子代理商总条数
+     * @param firstMidBelongId
+     * @return
+     */
+    Integer getChildrenAgentsCount(Map<String, Object> firstMidBelongId);
+
+    /**
+     * 根据商务ID和直属代理商ID获取当前直属代理商所有子级代理商
+     * @param firstMidBelongId
+     * @return
+     */
+    //List<Map<String, Object>> getChildrenAgentsList(Map<String, Object> firstMidBelongId);
+
+
+    /**
+     * 直属会员查询信息
+     * @param paramters
+     * @return
+     */
+    List<MemberAgents>selectVipDirectlyInfo(Map<String,Object> paramters);
+
+    /**
+     *  检查代理商是否绑定了商务专员
+     * @param parameters
+     * @return
+     */
+    MemberAgents findByBelongidAndMid(Map<String, Object> parameters);
+
+    /**
+     *  获取代理商以及绑定商务信息
+     * @param mid
+     * @return
+     */
+    //Map<String, Object> getAgentAndBusizInfoByMid(Map<String,Object> mid);
+
+    /**
+     * 获取一级代理商最大值code，此处返回已经是最大值，即已经进行 +1操作
+     * @return
+     */
+    String getFirstAgentCode();
+
+    /**
+     * 代理商为邀请者开通代理
+     * @param parma
+     * @return
+     * @author:zyy
+     * @time:2017年3月29日
+     */
+    Map<String, Object> updateEmpowerAgentSubmit(Map<String, Object>  parma);
+
+    /**
+     * 取得一级代理商编码
+     * @return
+     */
+    String getFistLevelAgentCode();
+
+    String getNextAgentCode(MemberAgents agent);
+    
+    /**
+     * 通过商务查询代理商下的充值与团队人数，根据实际与mid 
+     * @param param
+     * @return
+     * @author:zyy
+     * @time:2017年4月10日
+     */
+    List<Map<String,Object>> getBusTOAgentCountInfo(Map <String,Object> param);
+
+    /**
+     * 根据mid 来更新代理商信息
+     * @param record
+     * @return 更新行数
+     * @author:zyy
+     * @time:2017年4月28日
+     */
+    int updateByMid(MemberAgents record);
+    
+    /**
+     * 检查该mid 于parent_id是否已经是代理商
+     * @param parma
+     * @return 开通代理商的mid
+     * @author:zyy
+     * @time:2017年5月2日
+     */
+    Integer getIsAgentEmpower(Map<String ,Object> parma);
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/12 13:44
+     * @Description:查询代理商下面所有parent_id等于指定的mid的代理商
+     * @param parentId
+     * @return
+     */
+    int getCountAgentsByParentId(int parentId);
+
+
+    /**
+     * 直属会员牌局数查询
+     * @param param
+     * @return
+     * @author:zyy
+     * @time:2017年8月15日
+     */
+    List<Map<String,Object>> getVipPokelist(Map <String,Object> param);   
+    
+    /**
+     * 直属会员开房数查询
+     * @param param
+     * @return
+     * @author:zyy
+     * @time:2017年8月15日
+     */
+    List<Map<String,Object>> getVipOpenRoomlist(Map <String,Object> param);  
+}

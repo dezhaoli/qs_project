@@ -155,6 +155,8 @@ public interface IMemberAgentService {
      * @return
      */
     String getFistLevelAgentCode();
+
+    String getNextAgentCode(MemberAgents agent);
     
     /**
      * 通过商务查询代理商下的充值与团队人数，根据实际与mid 

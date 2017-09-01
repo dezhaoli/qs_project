@@ -453,24 +453,29 @@
     if (browser.versions.weixin) {
 
     }else {
-        openApp();
+        if (browser.versions.android && !browser.versions.ios) {
+            openApp();
+        }
     }
 
     $('.joinRoom.okJoinRoom').on('click', function () {
-        if (browser.versions.weixin) {
+        if (browser.versions.weixin && !browser.versions.ios) {
             failHide();
             $('#denglu').hide();
             $('#jroom').show();
+        }else {
+            openApp();
         }
     });
 
     function openApp() {
         if (browser.versions.ios) {
-            window.location.href = "gdmajiang://com.lewan.gdmajiangnew";
-            setTimeout(function(){
+            //window.location.href = "gdmajiang://com.lewan.gdmajiangnew";
+            //window.location.href = "https://axfs9y.mlinks.cc/A0Ow";
+            /*    setTimeout(function(){
                 window.location.href = downloadUrl;
-                window.location.href = downloadUrl;  //为什么要加两遍我下面会说到
-            },4000)
+                window.location.href = downloadUrl;
+            },4000)*/
         }else if (browser.versions.android){
             window.location.href = "qqsgame://com.lewan.GDmajiang";
             setTimeout(function(){
@@ -479,6 +484,15 @@
         }
     }
 
+</script>
+<script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
+<script>
+    var options = {
+        mlink:  "https://axfs9y.mlinks.cc/A0Ow",
+        button: $('.joinRoom.okJoinRoom'),
+        autoLaunchApp: false,
+    };
+    new Mlink(options);
 </script>
 <!--  /Body -->
 </body>
