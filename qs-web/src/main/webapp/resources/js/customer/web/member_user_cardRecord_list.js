@@ -1,9 +1,12 @@
 var dtGridColumns = [{
-    id : 'id',
-    title : 'ID',
+    id : 'rowno',
+    title : '序号',
     type : 'number',
     columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header'
+    headerClass : 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNo, columnNo) {
+        return dataNo+1;
+    }
 }, {
     id : 'mid',
     title : 'MID',
@@ -43,7 +46,7 @@ pageSize = pageSize == 0 || pageSize == "" ? sys.pageNum : pageSize;
 var dtGridOption = {
     lang : 'zh-cn',
     ajaxLoad : true,
-    check : true,
+    check : false,
     checkWidth :'37px',
     extraWidth : '37px',
     loadURL : sys.rootPath + '/member/agent/cardRecord/list.html',

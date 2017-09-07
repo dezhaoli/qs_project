@@ -1,0 +1,10 @@
+#---------------------\u6570\u636e\u540c\u6b65-------------------#
+
+#---------------------CosSDK \u63a5\u6536\u914d\u7f6e-------------------#
+sdk.appId=125332568887
+sdk.secretId=AKIDEMNsNwdvAEAv5Utqf4JMDseQ4b5VliiUA
+sdk.secretKey=lWBh5IMK7isP5at44ttqjSDqKdkGhx2vj
+sdk.bucketName=qsupload
+sdk.region=gz
+sdk.realmName=http://qsupload.longzupoker.com
+#---------------------CosSDK-------------------#
