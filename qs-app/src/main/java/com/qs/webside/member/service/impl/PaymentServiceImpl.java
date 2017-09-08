@@ -120,10 +120,15 @@ public class PaymentServiceImpl implements PaymentService {
 			 int bizc= statService.addBizCharge(businessId, orderPayment.getPamount());
 			 log.debug("tatService.addBizCharge===:"+bizc);
 			 
-			 Memberfides updateUser=new Memberfides();
-			 updateUser.setMid(userRecord.getMid());
-			 long totalPay=userRecord.getRegip()+orderPayment.getPamount().longValue();
-			 updateUser.setRegip(totalPay);
+		
+			 if(null!=orderPayment.getPamount()){
+				 //更新充值总金额
+				 Memberfides updateUser=new Memberfides();
+				 updateUser.setMid(userRecord.getMid());
+			     long totalPay=userRecord.getRegip()+orderPayment.getPamount().longValue();
+			     updateUser.setRegip(totalPay);
+			     memberService.updateMemberfidesByPrimaryKeySelective(updateUser);
+			 }
 		}
 		
 		return c;

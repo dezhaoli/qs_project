@@ -331,6 +331,7 @@ public class AgentRoomController extends BaseController{
 				}
 			}
 			parameters.put("mids", mids);
+			parameters.put("gameType", agentDataSourceUtil.getGameType());
 			Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
 			List<MemberPayMent> list = memberPayMentService.queryMemberPayMentListByPage(parameters);
 			return getReturnPage(pager, page, list);

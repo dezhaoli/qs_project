@@ -26,7 +26,9 @@ import java.util.concurrent.TimeoutException;
 @Service
 public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IShareLinkService {
 
-    Logger log = Logger.getLogger(ShareLinkServiceImpl.class);
+    private Logger log = Logger.getLogger(ShareLinkServiceImpl.class);
+
+    private static final Map<String, Integer> preventTwoCommit = new HashMap<>();//防止二次提交
 
     /*@Resource
     private MemberService memberService;*/
@@ -37,8 +39,10 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
     @Override
     public  List<Map<String, Object>> setRoomInfo(Map<String, Object> roomInfoMap, Model model, int roomid, int gameType)
             throws InterruptedException, MemcachedException, TimeoutException, IOException {
+        List<Map<String, Object>> roomInfo = getRoomInfo(model, roomid, gameType);
+        if (roomInfo == null) return  null;
         super.decodeRoomInfo(roomInfoMap, model,roomid);
-        return getRoomInfo(model, roomid, gameType);
+        return roomInfo;
     }
 
     @Override
@@ -68,8 +72,19 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
         Members members = memberFidesService.findMembersBySitemid(unionid);
         Map<String, Object> map = new HashMap<>();
         if (members != null) {
-            MemberFides memberfides = memberFidesService.selectByPrimaryKey(members.getMid());
+            int memberMid = members.getMid();
+            MemberFides memberfides = memberFidesService.selectByPrimaryKey(memberMid);
             if (memberfides != null) {//用户存在
+                Integer mapMid = preventTwoCommit.get("member" + memberMid);
+                if (mapMid != null && memberMid == mapMid) {
+                    map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                    map.put(CommonContants.ERROR, -22);
+                    map.put(CommonContants.MESSAGE, "操作频繁，请稍后重试!");
+                    log.debug("-------------------::user join room too busy!");
+                    return map;
+                } else {
+                    preventTwoCommit.put("member" + memberMid, memberMid);
+                }
                 requestToCServer(roomid, gp, sesskey, cIp, cPort, memberfides, map, gameType);
             } else {//用户不存在，查不到数据
                 log.debug("no checkout on db ;please confirm memberfides0 table ----------::");
@@ -77,7 +92,7 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
                 map.put(CommonContants.ERROR, -2);//用户不存在
                 map.put(CommonContants.MESSAGE, "用户不存在");
             }
-            map.put("nowUserMid", members.getMid());
+            map.put("nowUserMid", memberMid);
         } else {//用户不存在，未注册过
             map.put(CommonContants.SUCCESS, Boolean.FALSE);
             map.put(CommonContants.ERROR, -1);//用户未注册
@@ -129,6 +144,8 @@ public class ShareLinkServiceImpl extends ShareLinkBaseServiceImpl implements IS
         }
         //System.out.println("----------------------::------------------------::-------------------------::socketUtils.close()");
         socketUtils.close();
+        int removeMid = preventTwoCommit.remove("member" + mid);
+        log.debug("preventTwoCommit remove mid --------------------------::" + removeMid);
     }
 
 

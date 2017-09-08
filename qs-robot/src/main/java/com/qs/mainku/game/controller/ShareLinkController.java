@@ -32,6 +32,7 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -107,7 +108,11 @@ public class ShareLinkController extends BaseController {
         roomInfoMap.put("roomtitle", roomtitle);
         if (jushu != 0) roomInfoMap.put("jushu", "-" + jushu + "局");
         roomInfoMap.put("wanfaEncode", wanfaEncode);
-        shareLinkService.setRoomInfo(roomInfoMap, model, Integer.parseInt(roomid), gameType);
+        List<Map<String, Object>> roomInfo = shareLinkService.setRoomInfo(roomInfoMap, model, Integer.parseInt(roomid), gameType);
+        if (roomInfo == null){
+            model.addAttribute("gameType", gameType);
+            return "/web/share/joinRoom";
+        }
         String redirectUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_REDIRECT_URL);
         redirectUrl = redirectUrl == null ? "" : redirectUrl;
         redirectUrl = redirectUrl.trim();
@@ -143,20 +148,22 @@ public class ShareLinkController extends BaseController {
     @RequestMapping(value = "joinRoom.html")
     public String joinRoomCallBack(Model model, String code, @RequestParam(name = "state", defaultValue = "") String state)
             throws IOException, InterruptedException, MemcachedException, TimeoutException {
+
         String[] params = state.split("_qs_");
         String sesskey = params[0];
         AccessToken token = ContextUtil.getAccessTokenInfo(sesskey);
         int gp = token.getGb();
         int roomid = Integer.parseInt(params[1]);
-        String appId = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_ID);
         String unionid = null;
         String tokenCode = AppConstants.RedisKeyPrefix.SHARE_LINK_REFRESH_TOKEN + code;
         String refreshToken = (String) redisTemplate.opsForValue().get(tokenCode);
         if (StringUtils.isNotBlank(refreshToken)) {
+            String appId = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_ID);
             SnsToken snsToken = SnsAPI.oauth2RefreshToken(appId, refreshToken);
             User user = SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(), "zh_CN");
             unionid = user.getUnionid();
         } else {
+            String appId = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_ID);
             String secret = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_SECRET);
             SnsToken snsToken = SnsAPI.oauth2AccessToken(appId, secret, code);
             User user = SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(), "zh_CN");
@@ -181,12 +188,13 @@ public class ShareLinkController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "cookieJoinRoom.html", method = RequestMethod.POST)
     public Object cookieJoinRoomCallBack(Model model, @RequestParam(name = "code", defaultValue = "") String code
-            , @RequestParam(name = "state", defaultValue = "") String state)
+            , @RequestParam(name = "state", defaultValue = "") String state
+            , @RequestParam(name = "rid", defaultValue = "0") Integer rid)
             throws IOException, InterruptedException, MemcachedException, TimeoutException {
-        String appId = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_ID);
-        //String secret = gameService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_SECRET);
+
         String unionid = null;
         if (StringUtils.isNotBlank(code)) {
+            String appId = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.SHARE_LINK_JOIN_ROOM_APP_ID);
             String refreshToken = (String) redisTemplate.opsForValue().get(AppConstants.RedisKeyPrefix.SHARE_LINK_REFRESH_TOKEN + code);
             SnsToken snsToken = SnsAPI.oauth2RefreshToken(appId, refreshToken);
             User user = SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(), "zh_CN");
@@ -201,6 +209,7 @@ public class ShareLinkController extends BaseController {
             int roomid = Integer.parseInt(params[1]);
             return shareLinkService.joinRoom(roomid, unionid, model, gp, sesskey, cIp, cPort, gameType);
         } else {
+            if (rid == 0) return new HashMap<>();
             return shareLinkService.getUserInfoByCookieCode(unionid, gameType);
         }
     }

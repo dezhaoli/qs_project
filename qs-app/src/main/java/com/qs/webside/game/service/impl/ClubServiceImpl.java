@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
@@ -86,7 +87,7 @@ public class ClubServiceImpl implements IClubService{
  	
 	
 	@Override
-	@CacheEvict(value={CacheConstan.NEW_INTO_CLUB_ALL_NAME},key="#root.methodName+':'+#root.args[0]")
+	@Cacheable(value={CacheConstan.NEW_INTO_CLUB_ALL_NAME},key="#root.methodName+':'+#root.args[0]")
 	public List<Map<String, Object>> getClubInfoList(String mid) {
 		
 		 List<Map<String, Object>>  result=new ArrayList<>();

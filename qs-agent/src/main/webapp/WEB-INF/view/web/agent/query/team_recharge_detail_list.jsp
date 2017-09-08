@@ -38,8 +38,8 @@
                         <input id="pageSize" type="hidden" value="${page.pageSize }">
                         <input id="orderByColumn" type="hidden" value="${page.orderByColumn }">
                         <input id="orderByType" type="hidden" value="${page.orderByType }">
-                        <input id="startTime" type="text" hidden="true" value="${parma.startTime }">
-                        <input id="endTime" type="text" hidden="true" value="${parma.endTime }">
+                        <input id="startTime1" type="text" hidden="true" value="${parma.startTime }">
+                        <input id="endTime1" type="text" hidden="true" value="${parma.endTime }">
                         <input id="type" type="text" hidden="true" value="${parma.type }">
                         <div id="dtGridContainer" class="dlshouwen-grid-container"></div>
                         <div id="dtGridToolBarContainer" class="dlshouwen-grid-toolbar-container"></div>

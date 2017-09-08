@@ -7,7 +7,7 @@ var dtGridColumns = [{
     resolution: function (value, record, column, grid, dataNo, columnNo) {
     	var result=value;
     	if (record.invite !=record.clubid ){
-    		result+="<span style='color:red'>(非邀请)</span>"
+    		result+="<span style='color:red'>(非代理)</span>"
     	}
     	
         return result ;

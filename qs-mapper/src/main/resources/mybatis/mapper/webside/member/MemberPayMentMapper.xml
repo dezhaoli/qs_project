@@ -226,7 +226,10 @@
 		   SELECT  pid, fmid, tmid, tsid, pmoneynow, pmode, pcard, pamount, pcoins,FROM_UNIXTIME(ptime,'%Y-%m-%d') as toTime, pstatus, 
     		ptransno, gametype, parentid, isagent, bizid
 			from memberpayment where pstatus=2 and
-			(parentid=#{mid} or fmid=#{mid})  and isagent=0  
+			(parentid=#{mid} or fmid=#{mid})  
+			<if test="gameType ==20">
+			 and isagent=0  
+			</if>
 			and FROM_UNIXTIME(ptime,'%Y-%m-%d') &gt;= #{startTime} and FROM_UNIXTIME(ptime,'%Y-%m-%d') &lt;=#{endTime}  ORDER BY ptime DESC
 <!-- 			 HAVING toTime BETWEEN #{startTime} AND date_add(#{endTime} ,interval 1 day) ORDER BY ptime DESC -->
 	   </if>

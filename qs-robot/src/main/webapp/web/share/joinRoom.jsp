@@ -13,7 +13,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css?v=7">
+    <link rel="stylesheet" href="${ctx }/web/share/files/joinRoom.css?v=8">
 <%--     <script src="${ctx }/web/share/files/mlink.min.js"></script> --%>
 <%--     <script src="${ctx }/web/share/files/jweixin-1.0.0.js"></script> --%>
 <%--     <script type="text/javascript" src="${ctx }/web/share/files/zepto.min.js"></script> --%>
@@ -75,7 +75,7 @@
 <body>
 
 <div class="all-container">
-    <div class="icon-bg" id="bgimg">
+    <div class="" id="bgimg">
         <div class="roomid-box">
             <%--<p class="roomid-font">房间号:<span class="room-id">${roomid}</span></p>
             <p>${roomtitle}-${jushu}局</p>--%>
@@ -89,16 +89,16 @@
     <div style="margin-bottom: 5px;padding-top: 1px;height: 1rem;font-size: 18px;" id="roomNum">
         <span style="margin-top: 0px;margin-left:-1.5rem;color: #64ba24;">
             <span class="room-id" id="roomType">
-                ${roomid}
+
             </span>
-            <span class="room-id" style="margin-left: 1rem;">
-                ${roomtitle}${jushu}
+            <span class="room-id" style="margin-left: 1rem;" id="roomTile">
+
             </span>
         </span>
-    <div class="room-hr" id="roomHr"></div>
+    <div class="room-hr" style="display: none;" id="roomHr"></div>
     </div>
 
-    <p class="room-font" style="margin-top: -5px;">房间成员</p>
+    <p class="room-font" style="margin-top: -5px;display: none;" id="roomMember">房间成员</p>
     <div class="user-head">
        <%-- <div class="user-head2"><img src="${ctx }/web/share/files/200.jpg"></div>
         <div class="user-head1"><span>等待<br>加入</span></div>
@@ -152,8 +152,10 @@
         <p class="join-fail-font1 join-fail-other" style="display:none">请稍候再试</p>
     </div>
     <div class="yindao-img" style="display: none;" id="jroom"></div>
+    <input id="rroomid" type="hidden" value="${roomid}"/>
 </div>
 <script>
+    var gameType = '${gameType}';
     var downloadUrl = "";
     var u = navigator.userAgent;
     var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; //android终端
@@ -162,9 +164,9 @@
         $('#roomHr').addClass('room-hr-ios').removeClass("room-hr");
         $('#iosOpenApp').text("点击打开游戏！");
 
-        if ('${gameType}'== 6) {
+        if (gameType== 6) {
             downloadUrl = "https://itunes.apple.com/cn/app/id1216981340?mt=8";
-        }else if ('${gameType}'== 17) {
+        }else if (gameType== 17) {
             downloadUrl = "https://itunes.apple.com/us/app/id1212725123";
         } else {
             downloadUrl = "http://downloads.jiaheyx.com/rundownload/";
@@ -173,9 +175,9 @@
         $('.joinRoom.okJoinRoom').css('background-color', 'white')
             .find('p').css('color','#64ba24').css('font-size','');
 
-        if ('${gameType}'== 6) {
+        if (gameType== 6) {
             downloadUrl = "http://downloads.jiaheyx.com/rundownload/";
-        }else if ('${gameType}'== 17) {
+        }else if (gameType== 17) {
             downloadUrl = "http://downloads.jiaheyx.com/rundownload/?type=kx";
         } else {
             downloadUrl = "http://downloads.jiaheyx.com/rundownload/";
@@ -236,7 +238,6 @@
         for (var i = 0; i < list.length; i++) {
             wanfas += '<p class="room-play" style="text-align: left;"><span>'+list[i]+'</span></p>';
         }
-        $('.room-play-box').html(wanfas);
     }
 
     function authJoinRoomResult() {
@@ -249,6 +250,7 @@
             if(data.success){
                 $(".okJoinRoom").show();
                 $('.sJoinRoom').hide();
+                setBeiJing();//设置背景图
             }else {
                 if (data.message == "用户未注册") {
                     failHide();
@@ -277,6 +279,7 @@
         var listName="";
 
         if (roomInfo) {
+            setBeiJing();//设置背景图
             roomInfo=JSON.parse(roomInfo);
             var players = 4;
             var ii = true;
@@ -288,6 +291,7 @@
                 }
                 if (roomInfo[i].mid == nowUserMid) {
                     isNowUser = true;
+                    ii = false;
                 }
             }
             if (!isNowUser && roomInfo.length == players) {
@@ -299,7 +303,7 @@
             }
 
             for (var i = 0; i < roomInfo.length; i++) {
-                if (roomInfo[i].mid == nowUserMid) {
+                if (!ii && roomInfo[i].mid == nowUserMid) {
                     $(".okJoinRoom").show();
                     $('#authJoinRoom').hide();
                     $('#ajaxJoinRoom').hide();
@@ -390,17 +394,28 @@
         getUserInfo(code);
     }
 
-    $(function () {
-        var gameType = ${gameType};
+    function setBeiJing() {//设置背景图
         if (gameType == 6) {
-            $('#bgimg').removeClass('icon-bg').addClass('icon-bg-gdmajiang');
+            $('#bgimg').addClass('icon-bg-gdmajiang');
         }else if(gameType == 17) {
-            $('#bgimg').removeClass('icon-bg').addClass('icon-bg-kxpaohuzi');
+            $('#bgimg').addClass('icon-bg-kxpaohuzi');
         }else {
 
         }
+        $('#roomHr').show();
+        $('#roomMember').show();
+        $('#roomTile').text('${roomtitle}${jushu}');
+        $('.room-play-box').html(wanfas);
+    }
+
+
+    $(function () {
+        $('#authJoinRoom').on('click', function () {
+            $(this).addClass('disable-aLink');
+        });
 
         $('#ajaxJoinRoom').on('click', function () {
+            $(this).addClass('disable-aLink');
             $.ajax({
                 type : "POST",
                 url : "${ctx}/api/shareLink/cookieJoinRoom.html",
@@ -419,6 +434,7 @@
                             failHide();
                         }
                     }else {
+                        setBeiJing();//设置背景图
                         $('#ajaxJoinRoom').hide();
                         $(".okJoinRoom").show();
                         window.location.reload();
@@ -441,8 +457,8 @@
             type : "POST",
             url : "${ctx}/api/shareLink/cookieJoinRoom.html",
             data : {
-                code : code
-                //roomid : $('.room-id').text()
+                code : code,
+                rid : $('#rroomid').val()
             },
             dataType : "json",
             success : function(resultdata) {
@@ -527,14 +543,14 @@
 <script src="https://static.mlinks.cc/scripts/dist/mlink.min.js"></script>
 <script>
     if (browser.versions.ios) {
-        if ('${gameType}'==6) {
+        if (gameType==6) {
             var options = {
                 mlink:  "https://aaavzs.mlinks.cc/A0EN",
                 button: $('.joinRoom.okJoinRoom'),
                 autoLaunchApp: false,
             };
             new Mlink(options);
-        }else if ('${gameType}'==17) {
+        }else if (gameType==17) {
             var options = {
                 mlink:  "https://aaavzs.mlinks.cc/A0Ei",
                 button: $('.joinRoom.okJoinRoom'),

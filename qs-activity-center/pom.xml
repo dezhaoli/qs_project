@@ -103,6 +103,13 @@
 				<profiles.active>jxacti</profiles.active>
 			</properties>
 		</profile>
+		<!-- 开心跑胡子 -->
+		<profile>
+			<id>kxacti</id>
+			<properties>
+				<profiles.active>kxacti</profiles.active>
+			</properties>
+		</profile>
 	</profiles>
     
 	<build>

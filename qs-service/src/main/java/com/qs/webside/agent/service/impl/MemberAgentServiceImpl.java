@@ -271,7 +271,7 @@ public class MemberAgentServiceImpl implements IMemberAgentService {
 			memberAgents.setMid(mbf.getMid());
 			memberAgents.setPasswd(passwordCryto);  
 			memberAgents.setSalt(uuId);
-			memberAgents.setMktime(mbf.getMtime().toString());
+			memberAgents.setMktime(DateUtil.currentTimeToInt().toString());
 			memberAgents.setParentId(mbg.getMid());
 			memberAgents.setAlevel(alevel.byteValue());
 			memberAgents.setBelongid(mbg.getBelongid());

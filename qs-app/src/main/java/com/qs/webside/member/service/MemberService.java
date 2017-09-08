@@ -49,6 +49,20 @@ public interface MemberService {
      */
 	public int updateMemberfides(Memberfides record);
 	
+	/**
+	 * 
+	 * @标题: updateMemberfidesByPrimaryKeySelective 
+	 * @描述: 更新用户表
+	 *
+	 * @参数信息
+	 *    @param record
+	 *
+	 * @返回类型 void
+	 * @开发者 moyousheng
+	 * @可能抛出异常
+	 */
+	public  int updateMemberfidesByPrimaryKeySelective(Memberfides record);
+	
 	 /**
      * 更新金币表
      * @param record

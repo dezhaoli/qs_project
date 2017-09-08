@@ -190,6 +190,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberfidesMapper.updateByPrimaryKeySelective(record);
 	}
+	
+	@Override
+	@CacheEvict(value = {CacheConstan.MEMBERFIDES_CACHE_STORE_NAME},key = "'findMemberfidesById:'+#record.mid")
+	public int updateMemberfidesByPrimaryKeySelective(Memberfides record) {
+		
+		return memberfidesMapper.updateByPrimaryKeySelective(record);
+	}
 	@Override
 	public Members findMembersBySitemid(String sitemid) {
 		
