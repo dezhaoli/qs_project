@@ -227,6 +227,7 @@ public class MembersController extends BaseController{
         if (parameters.size() < 0) {
             parameters.put("name", null);
         }
+        parameters.put("dbName", gameCode);
         // 设置分页，page里面包含了分页信息
         Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
         List<MemberFides> list = memberFidesService.queryListByUserName(parameters);

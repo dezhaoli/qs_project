@@ -235,6 +235,7 @@ public class ClubServiceImpl implements IClubService{
 		return true;
 	}
 	@Override
+	@CacheEvict(value={CacheConstan.NEW_INTO_CLUB_ALL_NAME},key="'getClubInfoList:'+#clubMember.mid")
 	public int deleteClubMember(ClubMember clubMember) {
 		List<ClubMember> clubMemberList=null;
 		int count=0;
@@ -287,7 +288,7 @@ public class ClubServiceImpl implements IClubService{
 		mails.setTitle("移除俱乐部");
 		mails.setFujian(null);
 		mails.setTarget(new Byte("2"));
-		mails.setImportant(new Byte("1"));
+		mails.setImportant(new Byte("0"));
 		mails.setGametype(gameType+"");
 		try {
 			mails.setExpired(DateUtil.setLongTimeDate(new Date(),3));

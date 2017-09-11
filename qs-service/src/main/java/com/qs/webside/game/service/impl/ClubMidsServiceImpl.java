@@ -5,8 +5,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
+import com.qs.common.constant.CacheConstan;
 import com.qs.webside.game.mapper.ClubMidsMapper;
 import com.qs.webside.game.model.ClubMids;
 import com.qs.webside.game.service.IClubMidsService;
@@ -23,11 +25,13 @@ public class ClubMidsServiceImpl implements IClubMidsService {
 	}
 
 	@Override
+	@CacheEvict(value={CacheConstan.NEW_INTO_CLUB_ALL_NAME},key="'getClubInfoList:'+#record.mid")
 	public int insertSelective(ClubMids record) {
 		return clubMidsMapper.insertSelective(record);
 	}
 
 	@Override
+	@CacheEvict(value={CacheConstan.NEW_INTO_CLUB_ALL_NAME},key="'getClubInfoList:'+#record.mid")
 	public int deleteByPrimaryKey(ClubMids record) {
 		return clubMidsMapper.deleteByPrimaryKey(record);
 	}
@@ -50,6 +54,12 @@ public class ClubMidsServiceImpl implements IClubMidsService {
 	@Override
 	public List<ClubMids> getMidByPrimaryClubidList(int clubid) {
 		return clubMidsMapper.getMidByPrimaryClubidList(clubid);
+	}
+
+	@Override
+	@CacheEvict(value = {CacheConstan.NEW_INTO_CLUB_ALL_NAME}, allEntries = true)
+	public int deleteClubCacheAll() {
+		return 0;
 	}
 
 }

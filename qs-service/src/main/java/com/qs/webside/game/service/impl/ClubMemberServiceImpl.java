@@ -6,8 +6,11 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import com.qs.common.constant.CacheConstan;
 import com.qs.log.game.service.IMailService;
 import com.qs.webside.game.mapper.ClubMemberMapper;
 import com.qs.webside.game.model.ClubMember;
@@ -27,6 +30,7 @@ public class ClubMemberServiceImpl implements IClubMemberService{
 	}
 
 	@Override
+	@CacheEvict(value={CacheConstan.NEW_INTO_CLUB_ALL_NAME},key="'getClubInfoList:'+#record.mid")
 	public int insertSelective(ClubMember record) {
 		
 		return clubMemberMapper.insertSelective(record);

@@ -71,10 +71,10 @@
   
   <select id="getByMidClubsInfoList" resultType="map" parameterType="map">
   SELECT m.mid,m.name,m.icon,c.club_cost 
-	, (case when m.regip &lt; 10 then 0 
-	when m.regip &gt;=10 and m.regip&lt;20 then 1 
-	when m.regip&gt;=20 and m.regip&lt;50 then 2 
-	when m.regip&gt;=50 and m.regip&lt; 100 
+	, (case when m.regip &lt; 1000 then 0 
+	when m.regip &gt;=1000 and m.regip&lt;2000 then 1 
+	when m.regip&gt;=2000 and m.regip&lt;5000 then 2 
+	when m.regip&gt;=5000 and m.regip&lt; 10000 
 	then 3 else 4 end ) grade 
 	from memberfides0 m ,club c where m.mid=c.clubid  and c.clubid in (${clubs})
   </select>

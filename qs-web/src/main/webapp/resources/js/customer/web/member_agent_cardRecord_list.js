@@ -30,7 +30,11 @@ var dtGridColumns = [{
     title : '牌局编号',
     type : 'string',
     columnClass : 'text-center',
-    headerClass : 'dlshouwen-grid-header'
+    headerClass : 'dlshouwen-grid-header',
+    resolution:function (value, record, column, grid, dataNo, columnNo) {
+        return '<a href='+sys.rootPath +'/query/roomDetailUi.html?uuid='+value+' target="room_detail">'+value+'</a>';
+        //return value;
+    }
 },{
     id : 'timestamp',
     title : '时间',

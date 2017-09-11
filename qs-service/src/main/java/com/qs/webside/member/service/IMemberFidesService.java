@@ -116,5 +116,14 @@ public interface IMemberFidesService {
      * @return
      */
     List<Map<String, Object>> selectAgentBindingUserList(Map<String, Object> parameters);
+    
+    /**
+     * 根据mid获取当前代理商等级比值
+     * @param mid
+     * @return
+     * @author:zyy
+     * @time:2017年9月11日
+     */
+    int selectAgentClubGrade(Integer mid);
 
 }

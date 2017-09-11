@@ -1,0 +1,1015 @@
+package com.qs.webside.agent.controller;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.google.gson.JsonArray;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.constant.Constants;
+import com.qs.common.constant.AppConstants.MemcacheKeyPrefix;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.util.CommonUtils;
+import com.qs.common.util.DateUtil;
+import com.qs.common.util.MemcachedUtil;
+import com.qs.common.util.PageUtil;
+import com.qs.common.util.SendMsgToCServer;
+import com.qs.common.util.SocketUtils;
+import com.qs.datasource.util.ConstantUtil;
+import com.qs.log.game.model.Mails;
+import com.qs.log.game.model.MajiangGameRecord;
+import com.qs.log.game.service.IMailService;
+import com.qs.log.game.service.IMajiangGameRecordService;
+import com.qs.pub.game.model.AppGame;
+import com.qs.pub.game.service.IAppGameService;
+import com.qs.webside.agent.model.AgentClubGroup;
+import com.qs.webside.agent.model.AgentClubMember;
+import com.qs.webside.agent.model.AgentClubwhiteList;
+import com.qs.webside.agent.service.IAgentClubGroupService;
+import com.qs.webside.agent.service.IAgentClubMemberService;
+import com.qs.webside.agent.service.IMemberPayMentService;
+import com.qs.webside.game.model.BaseParam;
+import com.qs.webside.game.model.Club;
+import com.qs.webside.game.model.ClubMember;
+import com.qs.webside.game.model.ClubMids;
+import com.qs.webside.game.service.IBaseParamService;
+import com.qs.webside.game.service.IClubMemberService;
+import com.qs.webside.game.service.IClubMidsService;
+import com.qs.webside.game.service.IClubService;
+import com.qs.webside.member.model.MemberAgents;
+import com.qs.webside.member.model.MemberFides;
+import com.qs.webside.member.service.IAgentClubwhiteListService;
+import com.qs.webside.member.service.IMemberFidesService;
+import com.qs.webside.util.AgentClubRoom;
+import com.qs.webside.util.AgentDataSourceUtil;
+import com.qs.webside.util.AgentUtil;
+
+
+@Controller
+@RequestMapping(value = "/agentClub")
+public class AgentClubController extends BaseController{
+
+	Logger log = Logger.getLogger(AgentClubController.class);  
+	
+	@Value("${club.roomLow}")
+	private String roomLow;
+	
+	@Value("${club.roomMid}")
+	private String roomMid;
+	
+	@Value("${club.roomHig}")
+	private String roomHig;
+	
+	@Value("${game.goldhost}")
+    private String goldHost;
+    
+    @Value("${game.goldport}")
+    private int goldPort;
+	
+	@Autowired
+	private IAgentClubMemberService agentClubMemberService ;
+	
+	@Autowired 
+	private IAgentClubGroupService agentClubGroupService ;
+	
+	@Autowired
+	private AgentDataSourceUtil agentDataSourceUtil;
+	
+	@Autowired
+	private IMemberFidesService memberFidesService;
+	
+	@Autowired
+	private IAgentClubwhiteListService agentClubwhiteListService;
+	
+	@Autowired
+	private IClubMemberService clubMemberService ;
+	
+	@Autowired
+	private IAppGameService appGameService;
+	
+	@Autowired
+	private IBaseParamService baseParamService;
+	
+	@Autowired
+	private IMemberPayMentService memberPayMentService;
+	
+	@Autowired
+	private IClubMidsService clubMidsService;
+	
+	@Autowired 
+	private IClubService clubService;
+	
+	@Autowired
+	private IMajiangGameRecordService majiangGameRecordService;
+	
+	@Autowired
+	private RedisTemplate redisTemplate;
+	
+	@Autowired
+	private IMailService mailService;
+	
+	
+	@RequestMapping("infoAgentClubUi.html")
+	public String infoAgentClubUi(Model model,HttpServletRequest req){
+		agentDataSourceUtil.setReadDataSourceType();//设置数据源
+		
+		MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+		AgentClubwhiteList agentClubwhiteList =agentClubwhiteListService.selectByMid(memberAgents.getMid());
+		if (agentClubwhiteList ==null){
+			model.addAttribute("clubType", 0);
+		}else {
+			if (agentClubwhiteList.getClubType()==0){
+				model.addAttribute("clubType", 0);
+			}
+			if (agentClubwhiteList.getClubType()==1){
+				model.addAttribute("clubType", 1);
+			}
+		}
+		PageUtil page = new PageUtil(req);
+	    model.addAttribute("gameType", agentDataSourceUtil.getGameType());
+        model.addAttribute("page", page);
+        return "/WEB-INF/view/web/agent/club/agent_club_list";
+	}
+	
+	/**
+	 * 根据当前cmid获取当前俱乐部成员
+	 * @param gridPager
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月10日
+	 */
+	@ResponseBody
+	@RequestMapping("infoAgentClubList.html")
+	public Object infoAgentClubList(String gridPager){
+		
+		agentDataSourceUtil.setReadDataSourceType();//设置数据源
+		
+		Map<String, Object> parameters = null;
+		MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+		// 映射Pager对象
+		Pager pager = JSON.parseObject(gridPager, Pager.class);
+		// 判断是否包含自定义参数
+		parameters = pager.getParameters();
+		if (parameters.size() < 0) {
+			return null;//如果没有mid传过来则不执行查询。
+		}
+		//查询俱乐部用户
+		parameters.put("cmid", memberAgents.getMid());
+		// 设置分页，page里面包含了分页信息
+		Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+		List<Map<String,Object>> list=agentClubMemberService.selectByMid(parameters);
+		return getReturnPage(pager, page, list);
+	}
+	
+	/**
+	 * 给当前代理商添加俱乐部成员
+	 * @param mid
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月11日
+	 */
+	@ResponseBody
+	@RequestMapping("addAgentClubInfo.html")
+	public Map<String, Object> addAgentClubInfo(int mid){
+		
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		Map<String, Object> result = new HashMap<String, Object>();
+		Map<String, Object> parameters = new HashMap<String, Object>();
+		AgentClubMember aClubMember=new AgentClubMember();
+		if (StringUtils.isBlank(mid+"")) {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "请输入MID！");
+			return result;
+		}
+		//判断用户存在否
+		 MemberFides memberFides =memberFidesService.selectByPrimaryKey(mid);
+		 if (memberFides ==null){
+			 result.put(CommonContants.SUCCESS, false);
+			 result.put(CommonContants.MESSAGE, "当前用户不存在！");
+			 return result;
+		 }
+
+		//判断用户是否已经存在俱乐部里面
+		MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+		parameters.put("cmid", memberAgents.getMid());
+		parameters.put("mid", mid);
+		AgentClubMember agentClubMember =agentClubMemberService.selectByMidInfo(parameters);
+		if (agentClubMember !=null ){
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "该用户已经是您成员！");
+			return result;
+		}
+		
+		aClubMember.setCmid(memberAgents.getMid());
+		aClubMember.setCreateTime(DateUtil.getNowDate());
+		aClubMember.setMid(mid);
+		agentClubMemberService.insertSelective(aClubMember);
+		result.put(CommonContants.SUCCESS, true);
+		result.put(CommonContants.MESSAGE, "添加成功！");
+		// 映射Pager对象
+		// 判断是否包含自定义参数
+		return result;
+	}
+	
+	/**
+	 * 删除当前代理商指定mid俱乐部成员
+	 * @param id
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月11日
+	 */
+	@ResponseBody
+	@RequestMapping("deleteAgentClubInfo.html")
+	public Map<String, Object> deleteAgentClubInfo(int id){
+		
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		agentClubMemberService.deleteByPrimaryKey(id);
+		result.put(CommonContants.SUCCESS, true);
+		result.put(CommonContants.MESSAGE, "删除成功！");
+		return result;
+	}
+	
+	/**
+	 * 代开房
+	 * @param id
+	 * @param state
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月11日
+	 */
+	@ResponseBody
+	@RequestMapping("updateAgentClubInfo.html")
+	public Map<String, Object> updateAgentClubInfo(int id,int state){
+		
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		AgentClubMember agentClubMember= new AgentClubMember();
+		agentClubMember.setId(id);
+		agentClubMember.setOpenRoom(state);
+		int count =agentClubMemberService.updateByPrimaryKeySelective(agentClubMember);
+		if (count !=0 ){
+			result.put(CommonContants.SUCCESS, true);
+			result.put(CommonContants.MESSAGE, "开房成功！");
+		}else {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "开房失败！");
+		}
+		return result;
+	}
+	
+	@RequestMapping("editClubRoomChargingUi.html")
+	public String editClubRoomCharging(Model model){
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		AgentClubRoom	agentClubRoom =new AgentClubRoom();
+		model.addAttribute("roomLow", roomLow);
+		model.addAttribute("roomMid", roomMid);
+		model.addAttribute("roomHig", roomHig);
+		AgentClubGroup agentClubGroup=agentClubGroupService.selectByCmidKeyInfo(AgentUtil.getAgentMid());
+		if (agentClubGroup !=null) {
+			agentClubRoom=getParam(agentClubGroup);
+		}
+		model.addAttribute("clubRoom", agentClubRoom);
+		return "/WEB-INF/view/web/agent/club/agent_clubRoomCharging_edit";
+	}
+	
+	
+	/**
+	 * 代理商俱乐部房卡扣费参数设置
+	 * @param agentClubRoom
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月18日
+	 */
+	@ResponseBody
+	@RequestMapping("updateClubRoomCharging.html")
+	public Map<String,Object> updateClubRoomCharging(AgentClubRoom agentClubRoom){
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		AgentClubGroup agentClubGroup=agentClubGroupService.selectByCmidKeyInfo(AgentUtil.getAgentMid());
+		Map<String,Object>  result=new HashMap<>();
+		if(agentClubRoom ==null) {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "参数不能为空！");
+		}
+		if (agentClubGroup ==null ){
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "该俱乐部暂不存在！");
+			return result;
+		}
+		agentClubGroup=setParam(agentClubRoom,agentClubGroup);
+	  int count =agentClubGroupService.updateByPrimaryKeySelective(agentClubGroup);
+	  if (count >0){
+		  result.put(CommonContants.SUCCESS, true);
+		  result.put(CommonContants.MESSAGE, "设置成功！");
+	  }
+		return result;
+	}
+	
+
+	/**
+	 * 数据封装入库俱乐部房间参数设置
+	 * @param agentClubRoom
+	 * @param agentClubGroup
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月22日
+	 */
+	public AgentClubGroup setParam(AgentClubRoom agentClubRoom,AgentClubGroup agentClubGroup){
+		
+		JSONArray big=new JSONArray();
+		JSONArray yous=new JSONArray();
+		JSONArray replace=new JSONArray();
+		big.add( agentClubRoom.getBigLows());
+		big.add( agentClubRoom.getBigMid());
+		big.add( agentClubRoom.getBigHig());
+		agentClubGroup.setPayBig(big.toString());
+		
+		yous.add( agentClubRoom.getYoursLows());
+		yous.add( agentClubRoom.getYoursMid());
+		yous.add( agentClubRoom.getYoursHig());
+		agentClubGroup.setPayYourself(yous.toString());
+		
+		replace.add( agentClubRoom.getReplaceLows());
+		replace.add( agentClubRoom.getReplaceMid());
+		replace.add( agentClubRoom.getReplaceHig());
+		agentClubGroup.setPayReplace(replace.toString());
+		return agentClubGroup;
+	}
+	
+	/**
+	 * 设置页面呈现参数封装
+	 * @param agentClubGroup
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月22日
+	 */
+	public AgentClubRoom getParam(AgentClubGroup agentClubGroup){
+		
+		AgentClubRoom agentClubRoom =new AgentClubRoom();
+		JSONArray big=JSONArray.parseArray(agentClubGroup.getPayYourself());
+		JSONArray yous=JSONArray.parseArray(agentClubGroup.getPayBig());
+		JSONArray replace=JSONArray.parseArray(agentClubGroup.getPayReplace());
+		
+		agentClubRoom.setBigLows(big.getIntValue(0));
+		agentClubRoom.setBigMid(big.getIntValue(1));
+		agentClubRoom.setBigHig(big.getIntValue(2));
+		
+		agentClubRoom.setYoursLows(yous.getIntValue(0));
+		agentClubRoom.setYoursMid(yous.getIntValue(1));
+		agentClubRoom.setYoursHig(yous.getIntValue(2));
+		
+		agentClubRoom.setReplaceLows(replace.getIntValue(0));
+		agentClubRoom.setReplaceMid(replace.getIntValue(1));
+		agentClubRoom.setReplaceHig(replace.getIntValue(2));
+		return agentClubRoom;
+	}
+	
+	
+	
+	
+	
+	/*
+	 * 
+	 * php 同版本俱乐部开发
+	 * 
+	 * 
+	 */
+	
+	/**
+	 * 获取当前俱乐部成员
+	 * @param model
+	 * @param req
+	 * @return
+	 * @author:zyy
+	 * @time:2017年8月28日
+	 */
+	@RequestMapping("cluBmeberUi.html")
+	public String clubMeber(Model model,HttpServletRequest req){
+		agentDataSourceUtil.setReadDataSourceType();//设置数据源
+		
+		MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+		
+		Club club=clubService.selectByPrimaryKey(memberAgents.getMid());
+		if (club !=null ){
+			String [] clubCost=club.getClubCost().split(",");
+			model.addAttribute("clubCost", clubCost);
+			model.addAttribute("club", "1");//有俱乐部
+		}else{
+			model.addAttribute("club", "0");//没有俱乐部
+			return "/WEB-INF/view/web/agent/club/club_list";
+		}
+		
+		PageUtil page = new PageUtil(req);
+	    model.addAttribute("gameType", agentDataSourceUtil.getGameType());
+        model.addAttribute("page", page);
+        String clubList=(String) redisTemplate.opsForValue().get(Constants.Club.CLUB_ROOM_LIST+AgentUtil.getAgentMid());
+		if (clubList ==null || clubList.equals("")) {
+			model.addAttribute("clubList", Constants.Club.CLUB_ON);
+		}else {
+			model.addAttribute("clubList", clubList);
+		}
+        return "/WEB-INF/view/web/agent/club/club_list";
+	}
+	
+	/**
+	 * 根据当前cmid获取当前俱乐部成员
+	 * @param gridPager
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月10日
+	 */
+	@ResponseBody
+	@RequestMapping("getClubMemberInfo.html")
+	public Object getClubMemberInfo(String gridPager,Model model){
+		
+		agentDataSourceUtil.setReadDataSourceType();//设置数据源
+		
+		Map<String, Object> parameters = null;
+		MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+		// 映射Pager对象
+		Pager pager = JSON.parseObject(gridPager, Pager.class);
+		// 判断是否包含自定义参数
+		parameters = pager.getParameters();
+		if (parameters.size() < 0) {
+			return null;//如果没有mid传过来则不执行查询。
+		}
+		AppGame appGame= appGameService.selectByPrimaryKey(agentDataSourceUtil.getGameType());
+		//查询俱乐部用户
+		parameters.put("cmid", memberAgents.getMid());
+		
+//		parameters.put("dbName",appGame.getGameCode()+".memberfides0");
+		// 设置分页，page里面包含了分页信息
+		Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+		List<Map<String,Object>> list=clubMemberService.getClubMemberInfo(parameters);
+		return getReturnPage(pager, page, list);
+	}
+	
+	/**
+	 * 给当前代理商添加俱乐部成员
+	 * @param mid
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月11日
+	 */
+	@ResponseBody
+	@RequestMapping("addClubMember.html")
+	public Map<String, Object> addClubMember(int mid){
+		
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		Map<String, Object> result = new HashMap<String, Object>();
+		ClubMember clubMember=new ClubMember();
+		String clubs="";
+		
+		if(mid == AgentUtil.getAgentMid() ){
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "请勿自己添加自己！");
+			return result;
+		}
+		
+		if (StringUtils.isBlank(mid+"")) {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "请输入MID！");
+			return result;
+		}
+		//判断用户存在否
+		 MemberFides memberFides =memberFidesService.selectByPrimaryKey(mid);
+		 if (memberFides ==null){
+			 result.put(CommonContants.SUCCESS, false);
+			 result.put(CommonContants.MESSAGE, "当前用户不存在！");
+			 return result;
+		 }
+		//判断用户是否已经存在俱乐部里面
+		clubMember.setClubid(AgentUtil.getAgentMid());
+		clubMember.setMtime(DateUtil.currentTimeToInt());
+		clubMember.setMid(mid);
+		if (clubMember !=null ){
+			ClubMember cm=clubMemberService.selectClubMember(clubMember);
+			if (cm !=null ){
+				result.put(CommonContants.SUCCESS, false);
+				result.put(CommonContants.MESSAGE, "该用户已经是您成员！");
+				return result;
+			}
+			
+		}
+		if (clubMemberService.selectCountClubMember(AgentUtil.getAgentMid())>500){
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "改俱乐部已达500成员上线！");
+			return result;
+		}
+		//判断用户是否超出加入俱乐部上线
+		List<ClubMember> cmList=clubMemberService.getByPrimaryKeyList(mid);
+		if (cmList !=null && cmList.size()>=3) {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "该"+mid+"加入俱乐部已达上线！");
+			return result;
+		}else {
+			clubs+=AgentUtil.getAgentMid()+",";
+			for (ClubMember clubMember2 : cmList) {
+				clubs+=clubMember2.getClubid()+",";
+			}
+		}
+		
+		boolean falg=updateClubsMemcachKey(mid, clubs);
+		if (!falg) {
+			result.put(CommonContants.SUCCESS, true);
+			result.put(CommonContants.MESSAGE, "缓存更新失败！");
+			return result;
+		}
+		clubMemberService.insertSelective(clubMember);
+		result.put(CommonContants.SUCCESS, true);
+		result.put(CommonContants.MESSAGE, "添加成功！");
+		// 映射Pager对象
+		// 判断是否包含自定义参数
+		return result;
+	}
+
+	
+
+	
+	
+	/**
+	 * 代开房
+	 * @param id
+	 * @param state 判断是开通代开房0，取消代开1
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月11日
+	 */
+	@ResponseBody
+	@RequestMapping("addOrUpdateClubInfo.html")
+	public Map<String, Object> addClubInfo(int mid,int state){
+		
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		String cms="";
+		int type=6;
+		ClubMids clubMids=new ClubMids();
+		clubMids.setMid(mid);
+		clubMids.setClubid(AgentUtil.getAgentMid());
+		
+		ClubMember clubM=new ClubMember();
+		clubM.setMid(mid);
+		clubM.setClubid(AgentUtil.getAgentMid());
+		
+		ClubMember ClubMember=clubMemberService.selectClubMember(clubM);
+		if (ClubMember ==null ){
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, mid+"用户不在该俱乐部中！");
+			return result;
+		}
+		int count =0;
+		if (state==1){
+			result=changeClubNotAgentCount(mid,result);
+			Object obj= result.get(CommonContants.SUCCESS);
+			if (obj !=null ){
+				boolean flag=Boolean.getBoolean(obj.toString());
+				if (!flag){
+					return result;
+				}
+			}
+			count=clubMidsService.insertSelective(clubMids);
+			type=7;
+		}else {
+			type=6;
+			count=clubMidsService.deleteByPrimaryKey(clubMids);
+		}
+		//更新缓存 type 6取消代开房，7添加代开房
+		boolean flag=updateClubMemberMemcacheKey(mid, cms,type);
+		if (!flag){
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "添加缓存失败！");
+			return result;
+		}
+		
+		if (count !=0 ){
+			result.put(CommonContants.SUCCESS, true);
+			result.put(CommonContants.MESSAGE, "开房成功！");
+		}else {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, "开房失败！");
+		}
+		return result;
+	}
+
+	
+	
+	
+	/**
+	 * 退出加入俱乐部成员
+	 * @param id
+	 * @return
+	 * @author:zyy
+	 * @throws ParseException 
+	 * @time:2017年5月11日
+	 */
+	@ResponseBody
+	@RequestMapping("deleteClubMemberInfo.html")
+	public Map<String, Object> deleteClubMemberInfo(int mid) throws ParseException{
+		
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		Map<String, Object> result = new HashMap<String, Object>();
+		String clubs="";
+		ClubMember clubMember=new ClubMember();
+		clubMember.setMid(mid);
+		clubMember.setClubid(AgentUtil.getAgentMid());
+		clubMemberService.deleteByPrimaryKey(clubMember);
+		 
+		ClubMids clubMids=new ClubMids();
+		clubMids.setClubid(AgentUtil.getAgentMid());
+		clubMids.setMid(mid);
+		clubMidsService.deleteByPrimaryKey(clubMids);
+		
+		List<ClubMember> cmList=clubMemberService.getByPrimaryKeyList(mid);
+		 if (cmList.size()>0 && cmList !=null ){
+			 for (ClubMember clubMember2 : cmList) {
+				 clubs+=clubMember2.getClubid()+",";
+			}
+		 }
+		updateClubsMemcachKey(mid, clubs);
+		boolean falg=updateClubAuthMemcached(mid);
+		if (!falg) {
+			result.put(CommonContants.SUCCESS, true);
+			result.put(CommonContants.MESSAGE, "缓存更新失败！");
+			return result;
+		}
+		result.put(CommonContants.SUCCESS, true);
+		result.put(CommonContants.MESSAGE, "删除成功！");
+		
+		Mails mails=new Mails();
+		mails.setTitle("移除俱乐部");
+		mails.setFujian(null);
+		mails.setTarget(new Byte("2"));
+		mails.setImportant(new Byte("0"));
+		mails.setGametype(agentDataSourceUtil.getGameType()+"");
+		mails.setExpired(DateUtil.setLongTimeDate(new Date(),3));
+		mails.setMids(AgentUtil.getAgentMid()+"");
+		MemberFides mf =memberFidesService.selectByPrimaryKey(mid);
+		if (mf !=null ){
+			mails.setContent("（"+mf.getName()+"）"+mid+"在"+DateUtil.getNowDates()+"被管理员移出俱乐部。");
+		}else {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE,mid+ "用户信息不存在！");
+		}
+		
+		mails.setMids(mid+"");
+		mailService.addSelective(mails, goldHost, goldPort);
+		
+		mails.setMids(AgentUtil.getAgentMid()+"");
+		mailService.addSelective(mails, goldHost, goldPort);
+		//移除俱乐部成员发送c++推送更新前十条消息缓存更新
+		boolean socketFlag = new SocketUtils().createSocket(goldHost, goldPort).setCmd(10002)//9040
+				                  .setIntParam(2)
+				                  .setIntParam(0)
+				                  .setShortParam(Short.parseShort("2012"))
+				                  .setIntParam(mid)//移除mid
+				                  .setIntParam(AgentUtil.getAgentMid())//俱乐部Mid
+				                  .build().writeToServer();
+		  log.debug("socketFlag>>>>>>>>>>>>>>>>>>>>>>::+"+socketFlag);
+		//发送邮件
+		return result;
+	}
+	
+	/**
+	 * 房间级别设置
+	 * @param mid
+	 * @return
+	 * @author:zyy
+	 * @time:2017年8月30日
+	 */
+	@ResponseBody
+	@RequestMapping("submitInfo.html")
+	public Map<String, Object> submitInfo(String vip){
+		
+		agentDataSourceUtil.setWriteDataSourceType();//设置数据源
+		Map<String, Object> result = new HashMap<String, Object>();
+		Club club=new Club();
+		club=clubService.selectByPrimaryKey(AgentUtil.getAgentMid());
+		if (club !=null ){
+			club.setClubCost(vip);
+			clubService.updateByPrimaryKeySelective(club);
+		}else {
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE,AgentUtil.getAgentMid()+ "俱乐部不存在！");
+			return result;
+		}
+		
+		result.put(CommonContants.SUCCESS, true);
+		result.put(CommonContants.MESSAGE, "修改成功！");
+		return result;
+	}
+	
+	
+	/**
+	 * 俱乐部代开房查询
+	 * @param gridPager
+	 * @return
+	 * @author:zyy
+	 * @time:2017年5月10日
+	 */
+	@RequestMapping("clubOpenRoomUi.html")
+	public Object clubOpenRoomUi(HttpServletRequest req,Model model){
+		
+		PageUtil page = new PageUtil(req);
+        model.addAttribute("page", page);
+        //model.addAttribute("gameType", 20);
+        
+    	return "/WEB-INF/view/web/agent/club/club_roomInfo_list";
+	}
+	
+	/**
+	 * 俱乐部代开房查询 list
+	 * @param gridPager
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 * @author:zyy
+	 * @time:2017年8月30日
+	 */
+	@ResponseBody
+	@RequestMapping("clubOpenRoomList.html")
+	public Object clubOpenRoomList(String gridPager,Model model) throws Exception{
+
+		Map<String, Object> parameters = new HashMap<>();
+		List<Map<String, Object> > list=new ArrayList<Map<String, Object> >();
+
+		agentDataSourceUtil.setReadDataSourceType();//设置数据源
+		// 映射Pager对象
+		Pager pager = JSON.parseObject(gridPager, Pager.class);
+
+		parameters = pager.getParameters();
+		MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+		Integer gameType=agentDataSourceUtil.getGameType();
+		AppGame appGame= appGameService.selectByPrimaryKey(gameType);
+		parameters.put("dbName",appGame.getGameCode()+".memberfides0");
+		// 设置分页，page里面包含了分页信息
+		parameters.put("mid",  memberAgents.getMid());
+		if (StringUtils.isBlank(parameters.get("sDate").toString())){
+			parameters.put("sDate", DateUtil.getNowDates());
+		}
+		if (StringUtils.isBlank(parameters.get("eDate").toString())){
+			parameters.put("eDate", DateUtil.getNowDates());
+		}
+		Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+		list= majiangGameRecordService.getClubOpenRoomCountList(parameters);
+		return getReturnPage(pager, page, list);
+	}
+	
+	
+	/**
+     * 获取总开房次数：  总消耗:
+     * @param sDate
+     * @param eDate
+     * @param mid
+     * @param user1
+     * @param model
+     * @return
+     * @author:zyy
+     * @time:2017年5月22日
+     */
+    @ResponseBody
+    @RequestMapping("getClubRoomSumParam.html")
+    public Map<String,Object> getClubRoomSumParam(String sDate,String eDate,String player1,Model model){
+    	Map<String,Object> result=new HashMap<>();
+    	Map<String,Object> parameters=new HashMap<>();
+    	agentDataSourceUtil.setReadDataSourceType();//设置数据源
+    	MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+    	if (StringUtils.isBlank(sDate)){
+			parameters.put("sDate", DateUtil.getNowDates());
+		}else {
+			parameters.put("sDate", sDate);
+		}
+		if (StringUtils.isBlank(eDate)){
+			parameters.put("eDate", DateUtil.getNowDates());
+		}else {
+			parameters.put("eDate", eDate);
+		}
+    	parameters.put("mid", memberAgents.getMid());
+    	if (!StringUtils.isBlank(player1)){
+    		parameters.put("player1", player1);
+    	}
+    	AppGame appGame= appGameService.selectByPrimaryKey(agentDataSourceUtil.getGameType());
+		parameters.put("dbName",appGame.getGameCode()+".memberfides0");
+    	Map<String , Object> map=majiangGameRecordService.getClubRoomSumParam(parameters);
+		result.put("mgr", map);
+    	return result;
+    } 
+    /**
+     * 代开房详情
+     * @param req
+     * @param model
+     * @return
+     * @author:zyy
+     * @time:2017年6月14日
+     */
+    @RequestMapping("clubRoomDetailUi.html")
+    public String clubRoomDetailUi(HttpServletRequest req,Model model,String mid,String startTime,String endTime){
+    	PageUtil page = new PageUtil(req);
+        model.addAttribute("page", page);
+        model.addAttribute("mid", mid);
+        model.addAttribute("startTime", startTime);
+        model.addAttribute("endTime", endTime);
+    	return "/WEB-INF/view/web/agent/club/club_roomDetail_list";
+    }
+ 
+    /**
+     * 代开房详情列表
+     * @param gridPager
+     * @param model
+     * @return
+     * @throws Exception
+     * @author:zyy
+     * @time:2017年6月14日
+     */
+    @ResponseBody
+    @RequestMapping("clubRoomDetailList.html")
+    public Object clubRoomDetailList(String gridPager,Model model) throws Exception{
+    	
+    	Map<String, Object> parameters = new HashMap<>();
+    	List<MajiangGameRecord> list=new ArrayList<MajiangGameRecord>();
+
+    		agentDataSourceUtil.setReadDataSourceType();//设置数据源
+    		// 映射Pager对象
+    		Pager pager = JSON.parseObject(gridPager, Pager.class);
+
+    		parameters = pager.getParameters();
+    		MemberAgents memberAgents = (MemberAgents)SecurityUtils.getSubject().getPrincipal();
+    		// 设置分页，page里面包含了分页信息
+    		parameters.put("agentMid",  memberAgents.getMid());
+    		if (StringUtils.isBlank(CommonUtils.checkNull(parameters.get("sDate")))){
+    			parameters.put("sDate", DateUtil.getNowDates());
+    		}
+    		if (StringUtils.isBlank(CommonUtils.checkNull(parameters.get("eDate")))){
+    			parameters.put("eDate", DateUtil.getNowDates());
+    		}
+    		    Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+    			list= majiangGameRecordService.getClubGameRecordParamList(parameters);
+    			return getReturnPage(pager, page, list);
+    }
+    
+    
+    @ResponseBody
+    @RequestMapping("closeRoom.html")
+    public Map<String, Object> closeRoom(String on) throws Exception{
+    	Map<String, Object> result = new HashMap<>();
+    	if (on.equals(Constants.Club.CLUB_OFF)) {
+    		redisTemplate.delete(Constants.Club.CLUB_ROOM_LIST+AgentUtil.getAgentMid());
+    		result.put(CommonContants.SUCCESS, true);
+    		result.put(CommonContants.MESSAGE, "关闭成功！");
+    	}else {
+    		redisTemplate.opsForValue().set(Constants.Club.CLUB_ROOM_LIST+AgentUtil.getAgentMid(),Constants.Club.CLUB_OFF);
+    		result.put(CommonContants.SUCCESS, true);
+    		result.put(CommonContants.MESSAGE, "打开成功！");
+    	}
+    	clubMidsService.deleteClubCacheAll();//清除客户端缓存
+    	return result;
+    }
+    
+    /**
+	 * 退出俱乐部
+	 * @param mid
+	 * @param clubs
+	 * @return
+	 * @author:zyy
+	 * @time:2017年8月31日
+	 */
+	private boolean updateClubsMemcachKey(int mid, String clubs) {
+		BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
+		if (iosBaseParam !=null ){
+			log.debug("updateClubsMemcachKey into "+iosBaseParam.getValue()+"::"+MemcacheKeyPrefix.CLUBS+mid+":value:"+AgentUtil.getAgentMid());
+			try {
+				if(clubs.length()>0){
+					MemcachedUtil.setMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.CLUBS+mid, clubs, 0);
+				}else {
+					MemcachedUtil.deleteMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.CLUBS+mid);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+				return false;
+			}
+		}else {
+			log.debug("into updateClubsMemcachKey BaseParam is:: null ");
+			return false;
+		}
+		boolean socketFlag=SendMsgToCServer.sendMsgToCServer(mid,5,0,goldHost,goldPort);
+		log.debug("socketFlag===::" + socketFlag);
+		return true;
+	}
+	/**
+	 * 俱乐部代开房授权、
+	 * 解除代开房缓存更新,
+	 * 取消代开房或代开房发送消息c++
+	 * @param mid
+	 * @param cms
+	 * @author:zyy
+	 * @time:2017年8月31日
+	 */
+	private boolean updateClubMemberMemcacheKey(int mid,  String cms,int type) {
+		boolean memcachedFlag=updateClubAuthMemcached(mid);
+		if (!memcachedFlag){
+			return false;
+		}
+		boolean socketFlag=SendMsgToCServer.sendMsgToCServer(mid,type,AgentUtil.getAgentMid(),goldHost,goldPort);
+		log.debug("socketFlag===::" + socketFlag);
+		return true;
+	}
+
+	private boolean  updateClubAuthMemcached(int mid) {
+		List <ClubMids> ClubMidsList=clubMidsService.getMidByClubMisList(mid);
+		String cms="";
+		if (ClubMidsList !=null && ClubMidsList.size()>0) {
+			for (ClubMids clubMids2 : ClubMidsList) {
+				
+				cms+=clubMids2.getClubid()+",";
+			}
+		}
+		BaseParam iosBaseParam=baseParamService.findBaseParamByCode(AppConstants.BaseParam.MEMCACHED_IP);
+		if (iosBaseParam !=null ){
+			log.debug("updateClubMemcacheKey into "+iosBaseParam.getValue()+"::"+MemcacheKeyPrefix.CLUBSAUTH+mid+":value:"+cms);
+			try {
+				if (cms.length()>0){
+					MemcachedUtil.setMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.CLUBSAUTH+mid, cms, 0);
+				}else {
+					MemcachedUtil.deleteMemcached(iosBaseParam.getValue(), MemcacheKeyPrefix.CLUBSAUTH+mid);
+				}
+			} catch (IOException e) {
+				
+				e.printStackTrace();
+			return false;
+			}
+		}else {
+			log.debug("into updateClubMemcacheKey BaseParam is:: null ");
+			return false;
+		}
+		return true;
+	}
+	
+	/**
+	 * 代开房判断用户非邀请人是否达上线
+	 * @param mid
+	 * @param result
+	 * @return
+	 * @author:zyy
+	 * @time:2017年8月30日
+	 */
+	private Map<String, Object>  changeClubNotAgentCount(int mid, Map<String, Object> result) {
+		
+		 MemberAgents memberAgents = (MemberAgents) SecurityUtils.getSubject().getPrincipal();
+		//判断用户存在否
+		 MemberFides memberFides =memberFidesService.selectByPrimaryKey(mid);
+		 if (memberFides ==null){
+			 result.put(CommonContants.SUCCESS, false);
+			 result.put(CommonContants.MESSAGE, "当前用户不存在！");
+			 return result;
+		 }
+		if (!memberFides.getInvite().equals(memberAgents.getMid())) {
+			 Map <String,Object> parm=new HashMap<String,Object>();
+			 BaseParam baseParam= baseParamService.findBaseParamByCode(Constants.Club.CLUB_GRADE_PARAM);
+			 String [] grade={};
+			 if( baseParam !=null ){
+				 grade=baseParam.getValue().split(",");//等级数配置拆分
+				 int dJi=memberFidesService.selectAgentClubGrade(AgentUtil.getAgentMid());
+				//memberPayMentService.getByMidGrade(AgentUtil.getAgentMid()); //充值等级
+				 int sumCount=Integer.valueOf(grade [dJi]);//根据等级获取总要请人数
+				 parm.put("mid", memberAgents.getMid());
+				// parm.put("dbName",appGame.getGameCode()+".memberfides0");
+				 int yjsumCount=clubMidsService.selectCountClubMids(parm);
+				 if (sumCount < yjsumCount){
+					 result.put(CommonContants.SUCCESS, false);
+					 result.put(CommonContants.MESSAGE, "该用户非邀请人已达到上线！");
+					 return result;
+				 }
+			 }
+		 }
+		return result;
+	}
+	
+	
+}

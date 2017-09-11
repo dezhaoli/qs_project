@@ -89,18 +89,7 @@
     <favorites_list name="2017年2月21日213834" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="member_userInfo_show.jsp" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/qs-web/src/main/webapp/WEB-INF/view/web/user/member_userInfo_show.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="384" column="0" lean-forward="true" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -318,9 +307,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -335,6 +321,9 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -506,20 +495,28 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\pom.xml</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\WEB-INF\view\web\agent\query\team_recharge_detail_list.jsp</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\club\club_list.js</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\webside\agent\controller\AgentRoomController.java</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\agent\service\impl\MemberAgentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\member\service\MemberService.java</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\member\service\impl\MemberServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\member\service\impl\PaymentServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\ClubServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberPayMentMapper.xml</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\files\joinRoom.css</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\joinRoom.jsp</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\controller\ShareLinkController.java</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\java\com\qs\mainku\game\service\impl\ShareLinkServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\src\main\resources\log4j.properties</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\pom.xml</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\user\member_management_list.jsp</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\member_agent_cardRecord_list.js</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\activity\acti_center_list.js</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\member_user_management_list.js</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\cfg\acti_time_list.js</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\member\controller\MembersController.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\activity\controller\ActiCenterController.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\pom.xml</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\java\com\qs\webside\game\service\impl\ClubServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\resources\mybatis\mapper\webside\game\ClubMapper.xml</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\webside\member\MemberFidesMapper.xml</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\java\com\qs\webside\member\mapper\MemberFidesMapper.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-robot\src\main\webapp\web\share\joinRoom.jsp</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\login.jsp</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\java\com\qs\webside\agent\controller\AgentClubController.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\member\service\IMemberFidesService.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\member\service\impl\MemberFidesServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\game\service\IClubMidsService.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\game\service\impl\ClubMidsServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-service\src\main\java\com\qs\webside\game\service\impl\ClubMemberServiceImpl.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -527,9 +524,14 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\kxacti</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\profile\kxacti\disconf.properties</PATH>
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-mapper\src\main\resources\mybatis\mapper\log\game\team_recharge_detail_list.js</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\src\main\resources\mysqlbinlog.properties</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\src\main\java\com\qs\pub\datacenter\controller\DataSyncController.java</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\profile\appgroup</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\profile\appgroup\disconf.properties</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\profile\appgroup\redis.properties</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\profile\appgroup\pay.properties</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\profile\appgroup\jdbc.properties</PATH>
+          <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-app\src\main\profile\appgroup\webside.properties</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -537,7 +539,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-agent\src\main\webapp\resources\js\customer\web\team_recharge_detail_list.js</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -560,8 +561,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
-        <PATH vcs="svn" revision="3296">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="3315">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1496,6 +1497,9 @@
       <workItem from="1504619732901" duration="183000" />
       <workItem from="1504792145949" duration="137000" />
       <workItem from="1504879115733" duration="638000" />
+      <workItem from="1504936409948" duration="46000" />
+      <workItem from="1504936510118" duration="13000" />
+      <workItem from="1505137346971" duration="164000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1627,7 +1631,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289502000" />
+    <option name="totallyTimeSpent" value="289725000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1655,7 +1659,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17094018" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17735043" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2069,9 +2073,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/webapp/WEB-INF/view/web/user/member_userInfo_show.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="384" column="0" lean-forward="true" selection-start-line="384" selection-start-column="0" selection-end-line="384" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="-92">
+          <caret line="366" column="26" lean-forward="true" selection-start-line="366" selection-start-column="26" selection-end-line="366" selection-end-column="26" />
         </state>
       </provider>
     </entry>

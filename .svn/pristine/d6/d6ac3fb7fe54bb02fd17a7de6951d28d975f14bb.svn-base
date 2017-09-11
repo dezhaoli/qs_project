@@ -1,0 +1,100 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.qs</groupId>
+  <artifactId>sync-producer</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>sync-producer Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    	  <!-- servlet api -->
+	  <dependency>
+		  <groupId>javax.servlet</groupId>
+		  <artifactId>servlet-api</artifactId>
+		  <version>2.5</version>
+		  <scope>provided</scope>
+	  </dependency>
+	  <dependency>
+		  <groupId>javax.servlet.jsp</groupId>
+		  <artifactId>jsp-api</artifactId>
+		  <version>2.1</version>
+		  <scope>provided</scope>
+	  </dependency>
+
+   <!--shiro 工具集-->
+	<dependency>
+		<groupId>com.qs</groupId>
+		<artifactId>qs-side</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	  </dependency>
+
+	  <dependency>
+		<groupId>com.haiziwang.platform.kmonitor</groupId>
+		<artifactId>kmonitor-mysql-binlog</artifactId>
+		<version>0.1-SNAPSHOT</version>
+	  </dependency>
+
+	  <dependency>
+		  <groupId>io.netty</groupId>
+		  <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
+		  <version>4.0.33.Final</version>
+	  </dependency>
+
+	<!--activeMQ  -->
+	<dependency>
+      <groupId>com.qs</groupId>
+      <artifactId>sync-model</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    
+    
+   <dependency>
+      <groupId>com.qs</groupId>
+      <artifactId>sync-sender</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+
+	  
+	  <dependency>
+		<groupId>org.apache.activemq</groupId>
+		<artifactId>activemq-all</artifactId>
+		<version>5.11.1</version>
+	</dependency>
+	  
+	   <!-- json包 -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
+		
+		<dependency>
+		    <groupId>com.alibaba</groupId>
+		    <artifactId>fastjson</artifactId>
+		    <version>1.2.32</version>
+		</dependency>
+		
+  </dependencies>
+  <build>
+    <finalName>sync-producer</finalName>
+  </build>
+</project>

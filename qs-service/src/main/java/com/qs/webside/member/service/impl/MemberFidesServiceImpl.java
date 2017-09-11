@@ -115,4 +115,9 @@ public class MemberFidesServiceImpl implements IMemberFidesService {
         return memberFidesMapper.selectAgentBindingUserList(parameters);
     }
 
+	@Override
+	public int selectAgentClubGrade(Integer mid) {
+		return memberFidesMapper.selectAgentClubGrade(mid);
+	}
+
 }

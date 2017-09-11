@@ -423,24 +423,23 @@
     mf.mid, name, sex, btd, city, icon, invite, gp, sta, mtime, email, bindtime, tel, realname,
     identity, yellowvip, isyearvip, passwd, salt, lgtm, lxlg, qq, address, regip, active_assets
     FROM memberfides0 mf
-    LEFT JOIN members mb
-    ON mf.mid = mb.mid
     <where>
       <if test="mid != null and mid != ''">
         and mf.mid = #{mid,jdbcType=INTEGER}
       </if>
       <if test="name != null and name != ''">
-        and mf.name = #{name,jdbcType=VARCHAR}
+        and mf.name like CONCAT(#{name},'%')
       </if>
-      <if test="sitemid != null and sitemid != ''">
-        and mb.sitemid = #{sitemid,jdbcType=VARCHAR}
+      <if test="invitecode != null and invitecode != ''">
+        and mf.invite in( SELECT m.mid from  ${dbName}_pub.memberinvite iv     
+        INNER  JOIN members  m on iv.sitemid =m.sitemid where  iv.invitecode = #{invitecode}  )
       </if>
       <if test="mid == null or mid == ''">
         <if test="name == null or name == ''">
-          <if test="sitemid == null or sitemid == ''">
+          <if test="invitecode == null or invitecode == ''">
             mf.mid = #{mid,jdbcType=INTEGER}
             and mf.name = #{name,jdbcType=VARCHAR}
-            and mb.sitemid = #{sitemid,jdbcType=VARCHAR}
+            and mf.invite = #{invitecode,jdbcType=VARCHAR}
           </if>
         </if>
       </if>
@@ -481,5 +480,13 @@
     </if>
     ORDER BY mf.mid desc
   </select>
-
+	
+	<select id="selectAgentClubGrade" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+	 SELECT (case when regip &lt; 1000 then 0 
+		when regip &gt;=1000 and regip&lt;2000 then 1 
+		when regip&gt;=2000 and regip&lt;5000 then 2 
+		when regip&gt;=5000 and regip&lt; 10000 
+		then 3 else 4 end ) grade 
+		from memberfides0 where mid=#{mid}
+	</select>
 </mapper>

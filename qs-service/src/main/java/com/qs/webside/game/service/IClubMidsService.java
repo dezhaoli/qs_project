@@ -3,6 +3,8 @@ package com.qs.webside.game.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.cache.annotation.CacheEvict;
+
 import com.qs.webside.game.model.ClubMids;
 
 public interface IClubMidsService {
@@ -56,4 +58,12 @@ public interface IClubMidsService {
      * @time:2017年9月7日
      */
     List<ClubMids>  getMidByPrimaryClubidList(int clubid);
+    
+    /**
+     * 只用于清楚俱乐部缓存，无其他业务功能
+     * @return
+     * @author:zyy
+     * @time:2017年9月11日
+     */
+    int deleteClubCacheAll();
 }

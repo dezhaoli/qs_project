@@ -1,0 +1,249 @@
+package com.qs.webside.activity.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.Constants;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.AjaxException;
+import com.qs.common.exception.SystemException;
+import com.qs.common.util.PageUtil;
+import com.qs.pub.game.model.Dict;
+import com.qs.pub.game.service.IDictService;
+import com.qs.pub.sys.model.UserEntity;
+import com.qs.acti.game.model.ActiCenter;
+import com.qs.acti.game.model.ActiCenterDto;
+import com.qs.acti.game.service.IActiCenterService;
+import com.qs.acti.game.service.IActiSendGoldService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/5/31 14:18.
+ * Description:活动中心控制器
+ */
+@Controller
+@RequestMapping(value = "/acti/")
+public class ActiCenterController extends BaseController {
+
+    @Value("${uploadServer.img}")
+    private String imgUploadUrl;
+
+    @Resource
+    private IActiCenterService actiCenterService;
+
+    @Resource
+    private IDictService dictService;
+
+    @Resource
+    private IActiSendGoldService actiSendGoldService;
+
+    @RequestMapping(value = "listUi.html", method = RequestMethod.GET)
+    public String listUi(Model model, HttpServletRequest request) {
+        PageUtil page = super.getPage(request);
+        model.addAttribute("page", page);
+        return "/WEB-INF/view/web/activity/acti_center_list";
+    }
+
+    @RequestMapping("list.html")
+    @ResponseBody
+    public Object list(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            //parameters.put("site", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<ActiCenter> list = actiCenterService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+
+    @RequestMapping("addUI.html")
+    public String addUI(Model model, HttpServletRequest request, String id) {
+        try {
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("imgUploadUrl", imgUploadUrl);
+            List<Dict> activityList = dictService.findDictList(Constants.Dict.ACTIVITY_ID);//活动类型选择
+            model.addAttribute("activityList", activityList);
+            List<Dict> astl = dictService.findDictList(Constants.Dict.ACTIVITY_STATUS_TYPE);//活动状态选择
+            model.addAttribute("astl", astl);
+            return "/WEB-INF/view/web/activity/acti_center_form";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    @RequestMapping("editUI.html")
+    public String editUI(Model model, HttpServletRequest request, Integer id) {
+        try {
+            ActiCenter record = actiCenterService.selectByPrimaryKey(id);
+            PageUtil page = new PageUtil(request);
+            model.addAttribute("page", page);
+            model.addAttribute("record", record);
+            model.addAttribute("imgUploadUrl", imgUploadUrl);
+            List<Dict> activityList = dictService.findDictList(Constants.Dict.ACTIVITY_ID);
+            model.addAttribute("activityList", activityList);
+            List<Dict> astl = dictService.findDictList(Constants.Dict.ACTIVITY_STATUS_TYPE);//活动状态选择
+            model.addAttribute("astl", astl);
+            return "/WEB-INF/view/web/activity/acti_center_form";
+        } catch (Exception e) {
+            throw new SystemException(e);
+        }
+    }
+
+    @RequestMapping("add.html")
+    @ResponseBody
+    public Object add(ActiCenterDto actiCenterDto) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            if (actiCenterDto != null) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                ActiCenter record = new ActiCenter();
+                record.setActImgUrl(actiCenterDto.getActImgUrl());
+                record.setBtnUrl(actiCenterDto.getBtnUrl());
+                record.setJumpUrl(actiCenterDto.getJumpUrl());
+                record.setCardRecord(actiCenterDto.getCardRecord());
+                if (StringUtils.isNotBlank(actiCenterDto.getCloseTime())) {
+                    record.setCloseTime(simpleDateFormat.parse(actiCenterDto.getCloseTime()));
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getStartTime())) {
+                    record.setStartTime(simpleDateFormat.parse(actiCenterDto.getStartTime()));
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getEndTime())) {
+                    record.setEndTime(simpleDateFormat.parse(actiCenterDto.getEndTime()));
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getPeriodEndTime())) {
+                    record.setPeriodEndTime(actiCenterDto.getPeriodEndTime());
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getPeriodStartTime())) {
+                    record.setPeriodStartTime(actiCenterDto.getPeriodStartTime());
+                }
+                record.setSort(actiCenterDto.getSort());
+                record.setReward(actiCenterDto.getReward());
+                record.setStatus(actiCenterDto.getStatus());
+                record.setTitle(actiCenterDto.getTitle());
+                record.setDescr(actiCenterDto.getDescr());
+                record.setType(actiCenterDto.getType());
+                record.setExt1(actiCenterDto.getExt1());
+                record.setExt2(actiCenterDto.getExt2());
+                record.setId(actiCenterDto.getId());
+                record.setActiStatus(actiCenterDto.getActiStatus());
+                UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
+                if (userEntity != null) {
+                    record.setCreaterId(userEntity.getId().intValue());
+                    record.setCreateTime(new Date());
+                }
+                int result = actiCenterService.insertSelective(record);
+                super.executeRequestResult(result,map);
+            }
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+
+    @RequestMapping("edit.html")
+    @ResponseBody
+    public Object update(ActiCenterDto actiCenterDto){
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            if (actiCenterDto != null) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                ActiCenter record = new ActiCenter();
+                record.setActImgUrl(actiCenterDto.getActImgUrl());
+                record.setBtnUrl(actiCenterDto.getBtnUrl());
+                record.setJumpUrl(actiCenterDto.getJumpUrl());
+                record.setCardRecord(actiCenterDto.getCardRecord());
+                if (StringUtils.isNotBlank(actiCenterDto.getCloseTime())) {
+                    record.setCloseTime(simpleDateFormat.parse(actiCenterDto.getCloseTime()));
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getStartTime())) {
+                    record.setStartTime(simpleDateFormat.parse(actiCenterDto.getStartTime()));
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getEndTime())) {
+                    record.setEndTime(simpleDateFormat.parse(actiCenterDto.getEndTime()));
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getPeriodEndTime())) {
+                    record.setPeriodEndTime(actiCenterDto.getPeriodEndTime());
+                }
+                if (StringUtils.isNotBlank(actiCenterDto.getPeriodStartTime())) {
+                    record.setPeriodStartTime(actiCenterDto.getPeriodStartTime());
+                }
+                record.setSort(actiCenterDto.getSort());
+                record.setReward(actiCenterDto.getReward());
+                record.setStatus(actiCenterDto.getStatus());
+                record.setTitle(actiCenterDto.getTitle());
+                record.setDescr(actiCenterDto.getDescr());
+                record.setType(actiCenterDto.getType());
+                record.setExt1(actiCenterDto.getExt1());
+                record.setExt2(actiCenterDto.getExt2());
+                record.setId(actiCenterDto.getId());
+                record.setActiStatus(actiCenterDto.getActiStatus());
+                UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
+                if (userEntity != null) {
+                    record.setModifierId(userEntity.getId().intValue());
+                    record.setUpdateTime(new Date());
+                }
+                int result = actiCenterService.updateByPrimaryKeySelective(record);
+                super.executeRequestResult(result,map);
+            }
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+
+    @RequestMapping("deleteById.html")
+    @ResponseBody
+    public Object deleteById(Integer id) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        int result = actiCenterService.deleteByPrimaryKey(id);
+        super.executeDeleteRequestResult(result,map);
+        return map;
+    }
+
+   /* @RequestMapping("deleteAll.html")
+    @ResponseBody
+    public Object deleteAll() {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int result = actiSendGoldService.deleteAll();
+            if (result > 0) {
+                map.put(CommonContants.DATA, result);
+                map.put(CommonContants.SUCCESS, Boolean.TRUE);
+                map.put(CommonContants.MESSAGE, "成功删除全部数据!");
+            } else {
+                map.put(CommonContants.DATA, result);
+                map.put(CommonContants.SUCCESS, Boolean.FALSE);
+                map.put(CommonContants.MESSAGE, "数据已全部清空!");
+            }
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }*/
+
+}

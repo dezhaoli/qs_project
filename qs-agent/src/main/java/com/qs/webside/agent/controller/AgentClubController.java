@@ -575,6 +575,16 @@ public class AgentClubController extends BaseController{
 		clubMids.setMid(mid);
 		clubMids.setClubid(AgentUtil.getAgentMid());
 		
+		ClubMember clubM=new ClubMember();
+		clubM.setMid(mid);
+		clubM.setClubid(AgentUtil.getAgentMid());
+		
+		ClubMember ClubMember=clubMemberService.selectClubMember(clubM);
+		if (ClubMember ==null ){
+			result.put(CommonContants.SUCCESS, false);
+			result.put(CommonContants.MESSAGE, mid+"用户不在该俱乐部中！");
+			return result;
+		}
 		int count =0;
 		if (state==1){
 			result=changeClubNotAgentCount(mid,result);
@@ -613,7 +623,7 @@ public class AgentClubController extends BaseController{
 	
 	
 	/**
-	 * 删除加入俱乐部成员
+	 * 退出加入俱乐部成员
 	 * @param id
 	 * @return
 	 * @author:zyy
@@ -657,7 +667,7 @@ public class AgentClubController extends BaseController{
 		mails.setTitle("移除俱乐部");
 		mails.setFujian(null);
 		mails.setTarget(new Byte("2"));
-		mails.setImportant(new Byte("1"));
+		mails.setImportant(new Byte("0"));
 		mails.setGametype(agentDataSourceUtil.getGameType()+"");
 		mails.setExpired(DateUtil.setLongTimeDate(new Date(),3));
 		mails.setMids(AgentUtil.getAgentMid()+"");
@@ -679,8 +689,8 @@ public class AgentClubController extends BaseController{
 				                  .setIntParam(2)
 				                  .setIntParam(0)
 				                  .setShortParam(Short.parseShort("2012"))
-				                  .setIntParam(54338)
-				                  .setIntParam(54284)
+				                  .setIntParam(mid)//移除mid
+				                  .setIntParam(AgentUtil.getAgentMid())//俱乐部Mid
 				                  .build().writeToServer();
 		  log.debug("socketFlag>>>>>>>>>>>>>>>>>>>>>>::+"+socketFlag);
 		//发送邮件
@@ -878,6 +888,7 @@ public class AgentClubController extends BaseController{
     		result.put(CommonContants.SUCCESS, true);
     		result.put(CommonContants.MESSAGE, "打开成功！");
     	}
+    	clubMidsService.deleteClubCacheAll();//清除客户端缓存
     	return result;
     }
     
@@ -984,9 +995,9 @@ public class AgentClubController extends BaseController{
 			 String [] grade={};
 			 if( baseParam !=null ){
 				 grade=baseParam.getValue().split(",");//等级数配置拆分
-				 int dJi=memberPayMentService.getByMidGrade(AgentUtil.getAgentMid()); //充值等级
+				 int dJi=memberFidesService.selectAgentClubGrade(AgentUtil.getAgentMid());
+				//memberPayMentService.getByMidGrade(AgentUtil.getAgentMid()); //充值等级
 				 int sumCount=Integer.valueOf(grade [dJi]);//根据等级获取总要请人数
-				 AppGame appGame= appGameService.selectByPrimaryKey(agentDataSourceUtil.getGameType());
 				 parm.put("mid", memberAgents.getMid());
 				// parm.put("dbName",appGame.getGameCode()+".memberfides0");
 				 int yjsumCount=clubMidsService.selectCountClubMids(parm);

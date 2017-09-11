@@ -17,18 +17,21 @@
                            value="" placeholder="请输入要查看的用户名..."/>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="clearfix">
-                    <input class="form-control" name="sitemidSearch" id="sitemidSearch" type="text"
-                           value="" placeholder="输入要查看的用户sitemid..."/>
-                </div>
-            </div>
+  
             <div class="col-sm-3">
                 <div class="clearfix">
                     <input class="form-control" name="midSearch" id="midSearch" type="number"
                            value="" placeholder="输入要查看的用户mid..."/>
                 </div>
             </div>
+            
+                      <div class="col-sm-3">
+                <div class="clearfix">
+                    <input class="form-control" name="invitecode" id="invitecode" type="text"
+                           value="" placeholder="邀请码..."/>
+                </div>
+            </div>
+            
             <button id="btnSearch" class="btn btn-primary btn-sm" type="button">
                 <i class="fa fa-search"></i>查看
             </button>

@@ -57,7 +57,7 @@ var dtGridColumns = [{
     headerClass : 'dlshouwen-grid-header'
 },{
     id : 'identity',
-    title : '身份证',
+    title : 'openid',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header'
@@ -147,7 +147,7 @@ $(function() {
 function customSearch() {
     grid.parameters = new Object();
     grid.parameters['name'] = $("#userName").val();
-    grid.parameters['sitemid'] = $('#sitemidSearch').val();
+    grid.parameters['invitecode'] = $('#invitecode').val();
     grid.parameters['mid'] = $('#midSearch').val();
     grid.refresh(true);
 }

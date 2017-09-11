@@ -216,18 +216,14 @@ public class ActiCenterController extends BaseController {
     }
 
 
-   /* @RequestMapping("deleteById.html")
+    @RequestMapping("deleteById.html")
     @ResponseBody
     public Object deleteById(Integer id) {
         Map<String, Object> map = new HashMap<String, Object>();
-        try {
-            int result = actiCenterService.deleteByPrimaryKey(id);
-            super.executeRequestResult(result,map);
-        } catch (Exception e) {
-            throw new AjaxException(e);
-        }
+        int result = actiCenterService.deleteByPrimaryKey(id);
+        super.executeDeleteRequestResult(result,map);
         return map;
-    }*/
+    }
 
    /* @RequestMapping("deleteAll.html")
     @ResponseBody

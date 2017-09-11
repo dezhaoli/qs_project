@@ -20,8 +20,9 @@ $(document).ready(function() {
 	});
 	
 	//错误提示信息
-	if ("${error}" != "") {
-    	layer.alert('${error}', {icon : 5,shift : 6,time : 0});
+	if ("${error}" != "") { 
+		debugger
+    	layer.alert('${error}', {icon : 5,shift : 6,time : 1000});
 	}
 	
 	//页面进行跳转到login.html

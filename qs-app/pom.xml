@@ -123,6 +123,13 @@
 	            <activeByDefault>true</activeByDefault>
 	        </activation>
 	    </profile>
+<!-- 	    开心跑胡子 -->
+	     <profile>
+	        <id>appgroup</id>
+	        <properties>
+	           <profiles.active>appgroup</profiles.active>
+	        </properties>
+	    </profile>
 	</profiles>
     
 	<build>

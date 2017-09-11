@@ -378,10 +378,11 @@
 
     var state = '${state}';
     var code = getCookie("code");
+    //alert('调试--code : ' + code);
     if (code == false) {
         if ('${code}' != ''){
             delCookie("code");
-            setCookie("code",'${code}',15);
+            setCookie("code",'${code}',25);
             code = getCookie("code");
             getUserInfo(code);
         }else {

@@ -69,13 +69,50 @@ var dtGridColumns = [{
     headerClass : 'dlshouwen-grid-header',
     hideType : 'xs',
     resolution : function(value, record, column, grid, dataNo, columnNo) {
-        return '<a href="#" style="cursor: pointer;" onclick="edit(\''+record.id+'\')">编辑</a>';
+        return '<a href="#" style="cursor: pointer;" onclick="edit(\''+record.id+'\')">编辑</a>' + '  |  '
+            +' <a href="#" style="cursor: pointer;" onclick="deleteById(\'' + record.id + '\')">删除</a>';
     }
 }];
 
 function edit(id){
 	webside.common.loadPage('/cfg/actiTime/editUI.html?id='+id)
   }
+
+function deleteById(id) {
+    layer.msg('你确定要删除吗？', {
+        time: 0 //不自动关闭
+        ,btn: ['确定', '取消']
+        ,yes: function(index){
+            layer.close(index);
+            $.ajax({
+                type: "POST",
+                url: sys.rootPath + '/cfg/actiTime/deleteById.html',
+                data: {
+                    id:id
+                },
+                success: function (data) {
+                    if (data.success = true) {
+                        layer.msg(data.message, {
+                            icon : 6
+                        });
+                        grid.refresh(true);
+                    }else {
+                        layer.msg(data.message, {
+                            icon : 5
+                        });
+                        grid.refresh(true);
+                    }
+                },
+                error:function () {
+                    layer.msg("发现异常，删除失败！", {
+                        icon : 5
+                    });
+                    grid.refresh(true);
+                }
+            });
+        }
+    });
+}
 
 //动态设置jqGrid的rowNum
 var pageSize = $("#pageSize").val();
