@@ -1,0 +1,4 @@
+
+总充值金币更新 2017-09-13
+
+UPDATE memberfides0 m set m.regip=(SELECT IFNULL(sum(p.pamount),0) from   memberpayment p where p.fmid=m.mid)

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.pub.datacenter.mapper.PlayingRoomMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.pub.datacenter.model.PlayingRoom" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="app_id" property="appId" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="game_start_time" property="gameStartTime" jdbcType="DATE" />
+    <result column="game_start_timeStr" property="gameStartTimeStr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, app_id, total, game_start_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dc_playing_room
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dc_playing_room
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.pub.datacenter.model.PlayingRoom" >
+    insert into dc_playing_room (id, mid, app_id, 
+      total, game_start_time)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{appId,jdbcType=INTEGER}, 
+      #{total,jdbcType=INTEGER}, #{gameStartTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.pub.datacenter.model.PlayingRoom" >
+    insert into dc_playing_room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="gameStartTime != null" >
+        game_start_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="gameStartTime != null" >
+        #{gameStartTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.pub.datacenter.model.PlayingRoom" >
+    update dc_playing_room
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="gameStartTime != null" >
+        game_start_time = #{gameStartTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.pub.datacenter.model.PlayingRoom" >
+    update dc_playing_room
+    set mid = #{mid,jdbcType=INTEGER},
+      app_id = #{appId,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      game_start_time = #{gameStartTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+    <select id="queryListBymid" parameterType="map" resultMap="BaseResultMap">
+    
+	  select mid,total,date_format(game_start_time, '%Y-%m-%d') as game_start_timeStr
+	  from 
+	   dc_playing_room 
+	  <where>
+	  	<if test="mid != null and mid != ''">
+	  	  and mid like CONCAT('%',#{mid},'%')
+	  	</if>
+	   	and app_id = #{gameCode,jdbcType=VARCHAR}
+	   and game_start_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and game_start_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+	   </where>
+	  	 group by  app_id,mid  order by total desc
+  </select>
+  
+    <select id="queryRoomCountTotal" parameterType="map" resultType="Long">
+	  select sum(total) as total 
+	  from  dc_playing_room 
+	  <where>
+	  <if test="mid != null and mid != ''">
+	  	  and mid like CONCAT('%',#{mid},'%')
+	  	</if>
+	   	  and app_id = #{gameCode,jdbcType=VARCHAR}
+	      and game_start_time &lt; date_sub(STR_TO_DATE(#{etime,jdbcType=VARCHAR},'%Y-%m-%d'),interval -1 day) and game_start_time &gt;= STR_TO_DATE(#{stime,jdbcType=VARCHAR},'%Y-%m-%d')
+	   </where>
+  </select>
+</mapper>
