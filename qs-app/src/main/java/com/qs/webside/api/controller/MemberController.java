@@ -360,8 +360,6 @@ public class MemberController extends BaseController {
 		map.put("actiCenterUrl",actiBaseUrl);//活动中心调用接口url前缀
 		String robotAppUrl = gameService.getBaseParamValueByCode(AppConstants.BaseParam.ROBOT_APP_URL);
 		map.put("robotAppUrl",robotAppUrl);//机器人url
-		map.put("updateVersion",gameService.getUpdateVersion
-				(AppConstants.BaseParam.ANDROID_UPD_VERSION_CODE,AppConstants.BaseParam.IOS_UPD_VERSION_CODE));//更新版本
 		return this.getReturnData(map,AppConstants.Result.SUCCESS);
 	}
     /**
@@ -820,7 +818,9 @@ public class MemberController extends BaseController {
 		}
 		
 		map.put("checkver",baseParamVersionValue);
-		
+		map.put("updateVersion",gameService.getUpdateVersion
+				(AppConstants.BaseParam.ANDROID_UPD_VERSION_CODE,AppConstants.BaseParam.IOS_UPD_VERSION_CODE));//更新版本
+
 		Map<String, Object> paraMap = new HashMap<String, Object>();
 		paraMap.put("site",mobileVersionRequest.getSite());
 		paraMap.put("channel",mobileVersionRequest.getChannel());
