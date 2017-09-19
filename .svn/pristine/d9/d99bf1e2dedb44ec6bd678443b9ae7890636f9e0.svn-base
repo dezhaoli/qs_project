@@ -1,0 +1,345 @@
+package com.qs.webside.activity.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.AppConstants;
+import com.qs.common.constant.CommonContants;
+import com.qs.common.constant.Constants;
+import com.qs.mainku.game.service.IBaseParamService;
+import com.qs.webside.activity.model.*;
+import com.qs.webside.activity.service.*;
+import com.qs.webside.api.model.BaseRequest;
+import com.qs.webside.util.AccessToken;
+import com.qs.webside.util.ContextUtil;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
+
+/**
+ * Created by zun.wei on 2017/6/7 15:21.
+ * Description:活动中心奖品兑换记录表
+ */
+@Controller
+@RequestMapping(value = "/api/actiAwardRecord/")
+public class ActiAwardRecordController extends BaseController {
+
+	@Value("${game.gametype}")
+	private int gameType;
+	
+    @Resource
+    private IActiAwardRecordService actiAwardRecordService;
+
+    @Resource
+    private IActiAwardService actiAwardService;
+
+    @Resource
+    private IActiIntegralService actiIntegralService;
+
+    @Resource
+    private IActiAwardAddressService actiAwardAddressService;
+
+    @Resource
+    private IActiSendGoldService actiSendGoldService;
+
+    //@Value("${app.interfaceSendGold.url}")
+    //private String sendGoldUrl;
+
+    @Resource
+    private IBaseParamService baseParamService;
+
+    /**
+     * @param request
+     * @param baseRequest
+     * @return
+     * @Author:zun.wei , @Date:2017/6/8 13:59
+     * @Description:活动中心积分兑换奖品接口
+     */
+    @RequestMapping("exchangePrizes.do")
+    @ResponseBody
+    public Object addExchangePrizes(HttpServletRequest request, BaseRequest baseRequest) {
+        int id = Integer.valueOf(request.getParameter("id"));
+        int number = Integer.valueOf(request.getParameter("number"));//兑换个数默认1
+        AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        int mid = token.getMid();
+        ActiAward actiAward = actiAwardService.selectByIdLimitByActiTime(id);//奖品(如果活动时间截止，就查询不到商品)
+        if (actiAward == null) return this.getReturnData(null, AppConstants.Result.FAILURE);
+        if (actiAward.getStock().intValue() < number) return this.getReturnData(null, AppConstants.Result.FAILURE_1012);//库存不足
+        if (!"1".equals(actiAward.getRemark())) {//如果不是兑换房卡的商品
+            ActiAwardAddress actiAwardAddress = actiAwardAddressService.selectObjectByMidKey(mid);//收获地址
+            if (actiAwardAddress == null) return this.getReturnData(null, AppConstants.Result.FAILURE_1002);
+        }
+        Map<String, Object> parameterMap = new HashMap<>();
+        parameterMap.put("actiType", actiAward.getType());
+        parameterMap.put("awardId", actiAward.getId());
+        long hashExAwards = actiAwardRecordService.checkAwardRecordSumByActiType(parameterMap);//已兑换奖品个数
+        long awards = actiAward.getAwardNum();//奖品总数
+        if (number < 1) return this.getReturnData(null,  AppConstants.Result.FAILURE_1003);
+        return verifyPrizeQuantity(number, mid, actiAward, hashExAwards, awards,baseRequest.getSesskey());
+    }
+
+    /**
+     * 获取当前用户已兑换列表信息
+     *
+     * @param model
+     * @param request
+     * @param baseRequest
+     * @return
+     * @author:zyy
+     * @time:2017年6月7日
+     */
+    @ResponseBody
+    @RequestMapping("getConvertedInfo.do")
+    public Object getActivityCenterData(Model model, HttpServletRequest request, BaseRequest baseRequest) {
+        AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        List<Map<String, Object>> actiAwardRecord = actiAwardRecordService.selectByMidKey(token.getMid());
+        return this.getReturnData(actiAwardRecord, AppConstants.Result.SUCCESS);
+    }
+
+    /**
+     * @param number       兑换个数
+     * @param mid          兑换人mid
+     * @param actiAward    奖品对象
+     * @param hashExAwards 已经兑换的奖品个数
+     * @param awards       奖品总数
+     * @param sesskey
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:56
+     * @Description:验证奖品数量
+     */
+    private Object verifyPrizeQuantity(int number, int mid, ActiAward actiAward, long hashExAwards, long awards, String sesskey) {
+        if (verifyUserReceNum(mid, actiAward)) return this.getReturnData(null,  AppConstants.Result.FAILURE_1004);
+        if ((awards - hashExAwards) >= number) {//判断奖品数量是否充足
+            ActiIntegral actiIntegral = actiIntegralService.selectByMid(mid);
+            return verifyIntegralObject(number, mid, actiAward, actiIntegral,sesskey);
+        } else {//奖品不足
+            return this.getReturnData(null,  AppConstants.Result.FAILURE_1005);
+        }
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/23 10:55
+     * @Description: 验证用户可领取次数是否达到上限
+     * @param mid 用户mid
+     * @param actiAward 奖品对象
+     * @return
+     */
+    private boolean verifyUserReceNum(int mid, ActiAward actiAward) {
+        Integer limitNum = actiAward.getLimitNum();//是否打开限制领取，0表示不限制，1表示限制
+        if (limitNum == null) limitNum = 0;
+        if (limitNum != 0) {
+            Integer receiveNum = actiAward.getReceiveNum();//可领取次数
+            if (receiveNum == null) receiveNum = 0;
+            int hasReceNum = actiAwardRecordService.countAwardNumber
+                    (new ActiAwardRecord(actiAward.getId(), mid));//用户已兑换个数
+            if (receiveNum <= hasReceNum) {//用户已兑换大于等于可领取次数时
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * @param number       兑换奖品个数
+     * @param mid          兑换人mid
+     * @param actiAward    奖品对象
+     * @param actiIntegral 积分对象
+     * @param sesskey
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:54
+     * @Description:验证积分对象是否存在
+     */
+    private Object verifyIntegralObject(int number, int mid, ActiAward actiAward, ActiIntegral actiIntegral, String sesskey) {
+        if (actiIntegral != null) {
+            long nowIntegral = actiIntegral.getNowIntegral();
+            long needIntegral = actiAward.getIntegral();
+            return verifyIntegral(number, mid, actiAward, actiIntegral, nowIntegral, needIntegral,sesskey);
+        } else {//当前人没有积分对象
+            return this.getReturnData(null,  AppConstants.Result.FAILURE_1006);
+        }
+    }
+
+    /**
+     * @param number       兑换奖品个数
+     * @param mid          兑换人mid
+     * @param actiAward    奖品对象
+     * @param actiIntegral 积分对象
+     * @param nowIntegral  现存积分
+     * @param needIntegral 所需积分
+     * @param sesskey
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:52
+     * @Description: 验证积分是否充足
+     */
+    private Object verifyIntegral(int number, int mid, ActiAward actiAward, ActiIntegral actiIntegral, long nowIntegral, long needIntegral, String sesskey) {
+        if (nowIntegral >= needIntegral * number) {//比较现存积分与需要的积分值
+            Map<String, Object> parameters = new HashMap<>();
+            parameters.put("id", actiAward.getId());
+            parameters.put("reduce", number);
+            int updateStockResult = actiAwardService.updateStockByReduceAndId(parameters);
+            if (updateStockResult > 0) {//更新库存成功
+                long usedIntegral = actiIntegral.getUsedIntegral();
+                nowIntegral = nowIntegral - needIntegral * number;
+                usedIntegral = usedIntegral + needIntegral * number;
+                actiIntegral.setNowIntegral(nowIntegral);
+                actiIntegral.setUsedIntegral(usedIntegral);
+                int resultAddIntegral = actiIntegralService.updateByPrimaryKey(actiIntegral);
+                return updateInegral(number, mid, actiAward, resultAddIntegral,sesskey);
+            } else {//更新库存失败，说明没有库存了。
+                actiAwardService.deleteAwardStockCache(actiAward.getId());//删除对应商品的库存的缓存
+                return this.getReturnData(null, AppConstants.Result.FAILURE_1011);
+            }
+        } else {//积分不足
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1007);
+        }
+    }
+
+    /**
+     * @param number            兑换奖品个数
+     * @param mid               兑换人mid
+     * @param actiAward         奖品对象
+     * @param resultAddIntegral 更新积分结果影响到的条数
+     * @param sesskey
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:49
+     * @Description:更新积分
+     */
+    private Object updateInegral(int number, int mid, ActiAward actiAward, int resultAddIntegral, String sesskey) {
+        if (resultAddIntegral > 0) {//更新积分成功
+            int result = actiAwardRecordService.insertSelective(preparationRecord(mid, actiAward, number));
+            return addActiAwardRecord(mid, actiAward, result,sesskey);
+        } else {//更新积分失败
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1008);
+        }
+    }
+
+    /**
+     * @param mid       兑换人mid
+     * @param actiAward 奖品
+     * @param result    添加结果
+     * @param sesskey
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:48
+     * @Description:添加到奖品兑换表
+     */
+    private Object addActiAwardRecord(int mid, ActiAward actiAward, int result, String sesskey) {
+        if (result > 0) {//插入奖品兑换记录表成功
+            return exchangeRoomCard(mid, actiAward, result,sesskey);
+        } else {//插入奖品兑换记录表失败
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1009);
+        }
+    }
+
+    /**
+     * @param mid       兑换人mid
+     * @param actiAward 奖品对象
+     * @param result    插入奖品兑换记录表条数
+     * @param sesskey
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:45
+     * @Description:兑换房卡
+     */
+    private Object exchangeRoomCard(int mid, ActiAward actiAward, int result, String sesskey) {
+        if ("1".equals(actiAward.getRemark()) && actiAward.getReview() == 0) {//如果兑换的是房卡类型且无需审核
+            String sendGoldUrl = baseParamService.getBaseParamValueByCode(AppConstants.BaseParam.APP_SEND_GOLD_INTERFACE_URL);
+            String httpsResponse = actiSendGoldService.sendGold(sesskey, Integer.parseInt(actiAward.getDescr()), AppConstants.GoldLogSourceType.INTEGRAL_SEND_GOLD,
+                    new Date(System.currentTimeMillis()).getTime() / 1000, sendGoldUrl);
+            Map updateMap = JSON.parseObject(httpsResponse, Map.class);
+            boolean updateResult = (boolean) updateMap.get(CommonContants.RESULT);
+            if (updateResult) {
+                ActiSendGold actiSendGold = new ActiSendGold();
+                actiSendGold.setMid(mid);
+                actiSendGold.setSendTime(new Date());
+                actiSendGold.setSendDate(new Date());
+                actiSendGold.setType(5);//积分兑换类型为5
+                actiSendGold.setGold(Integer.parseInt(actiAward.getDescr()));
+                actiSendGoldService.insertOrUpate(actiSendGold);
+            }
+            return sendRoomCard(result, updateMap);
+        } else {
+            return this.getReturnData(result, AppConstants.Result.SUCCESS);
+        }
+    }
+
+    /**
+     * @param result    插入奖品兑换记录表条数
+     * @param updateMap 发送金币返回值map
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:43
+     * @Description:发送房卡
+     */
+    private Object sendRoomCard(int result, Map<String, Object> updateMap) {
+        if ((Boolean) updateMap.get(CommonContants.RESULT)) {
+            return this.getReturnData(result, AppConstants.Result.SUCCESS);
+        } else {//发放房卡失败
+            return this.getReturnData(null, AppConstants.Result.FAILURE_1010);
+        }
+    }
+
+
+    /**
+     * @param mid       兑换人mid
+     * @param actiAward 奖品
+     * @param number    兑换个数
+     * @return
+     * @Author:zun.wei , @Date:2017/6/22 14:37
+     * @Description:准备兑换记录对象
+     */
+    private ActiAwardRecord preparationRecord(int mid, ActiAward actiAward, int number) {
+        ActiAwardRecord actiAwardRecord = new ActiAwardRecord();
+        actiAwardRecord.setMid(mid);
+        actiAwardRecord.setAwardId(actiAward.getId());
+        actiAwardRecord.setName(actiAward.getName());
+        actiAwardRecord.setIntegral(actiAward.getIntegral() * number);
+        actiAwardRecord.setAwardNum(Long.parseLong(number + ""));
+        actiAwardRecord.setIsReview(actiAward.getReview() == 0 ? 2 : 0);
+        actiAwardRecord.setType(actiAward.getType());
+        actiAwardRecord.setCreateTime(new Date());
+        actiAwardRecord.setSendTime(actiAward.getReview() == 0 ? new Date() : null);
+        return actiAwardRecord;
+    }
+
+    
+    
+    
+    
+    /**
+     * 根据mid type 获取用户抽奖抽中列表信息
+     * @param model
+     * @param request
+     * @param baseRequest
+     * @return
+     * @author:zyy
+     * @time:2017年9月14日
+     */
+    @ResponseBody
+    @RequestMapping("getActivityCenterAcquireGoods.do")
+    public Object getActivityCenterAcquireGoods (Model model, HttpServletRequest request, BaseRequest baseRequest) {
+        AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        List<Map<String, Object>> actiAwardRecord = actiAwardRecordService.selectByParamList(token.getMid(),Constants.ActiveCenter.Eleven_activities);
+        return this.getReturnData(actiAwardRecord, AppConstants.Result.SUCCESS);
+    }
+    
+    /**
+     * 获取最新前30 条获得奖品用户
+     * @param model
+     * @param request
+     * @param baseRequest
+     * @return
+     * @author:zyy
+     * @time:2017年9月14日
+     */
+    @ResponseBody
+    @RequestMapping("getActivityCenterAcquireGoodsThirty.do")
+    public Object getActivityCenterAcquireGoodsThirty (Model model, HttpServletRequest request, BaseRequest baseRequest) { 
+        AccessToken token = ContextUtil.getAccessTokenInfo(baseRequest.getSesskey());
+        List<Map<String, Object>> actiAwardRecord =null ;
+        actiAwardRecord = actiAwardRecordService.getActivityCenterAcquireGoodsThirty(token.getMid(),gameType);
+        return this.getReturnData(actiAwardRecord, AppConstants.Result.SUCCESS);
+    }
+}

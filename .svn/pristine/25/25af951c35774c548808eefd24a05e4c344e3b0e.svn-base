@@ -1,0 +1,140 @@
+package com.qs.webside.activity.service.impl;
+
+import com.qs.common.constant.CacheConstan;
+import com.qs.common.constant.Constants;
+import com.qs.webside.activity.mapper.ActiAwardRecordMapper;
+import com.qs.webside.activity.model.ActiAwardRecord;
+import com.qs.webside.activity.service.IActiAwardRecordService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/6/7 15:16.
+ * Description:活动中心奖品兑换记录表
+ */
+@Service
+public class ActiAwardRecordServiceImpl implements IActiAwardRecordService {
+
+    @Resource
+    private ActiAwardRecordMapper actiAwardRecordMapper;
+
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/30 9:20
+     * @Description:清除全部商品兑换记录缓存
+     * @return
+     */
+    @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_RECORD_CACHE_NAME}, allEntries = true)
+    public int deleteByPrimaryKey(Integer id) {
+        return actiAwardRecordMapper.deleteByPrimaryKey(id);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/30 9:21
+     * @Description:1.清除全部商品兑换记录缓存；2.清除商品列表缓存
+     * @param record
+     * @return
+     */
+    @Override
+    @Caching(evict = { @CacheEvict(value = CacheConstan.ACTI_AWARD_RECORD_CACHE_NAME,key = "'selectByMidKey:'+#record.mid"),
+            @CacheEvict(value = CacheConstan.ACTI_AWARD_LIST_CACHE_NAME,key="'queryListByPageAwardList:'+#record.mid")})
+    public int insert(ActiAwardRecord record) {
+        return actiAwardRecordMapper.insert(record);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/30 9:20
+     * @Description:1.清除全部商品兑换记录缓存；2.清除商品列表缓存
+     * @param record
+     * @return
+     */
+    @Override
+    @Caching(evict = { @CacheEvict(value = CacheConstan.ACTI_AWARD_RECORD_CACHE_NAME,key = "'selectByMidKey:'+#record.mid"),
+            @CacheEvict(value = CacheConstan.ACTI_AWARD_LIST_CACHE_NAME,key="'queryListByPageAwardList:'+#record.mid")})
+    public int insertSelective(ActiAwardRecord record) {
+        return actiAwardRecordMapper.insertSelective(record);
+    }
+
+    @Override
+    public ActiAwardRecord selectByPrimaryKey(Integer id) {
+        return actiAwardRecordMapper.selectByPrimaryKey(id);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/30 9:20
+     * @Description:清除全部商品兑换记录缓存
+     * @param record
+     * @return
+     */
+    @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_RECORD_CACHE_NAME}, allEntries = true)
+    public int updateByPrimaryKeySelective(ActiAwardRecord record) {
+        return actiAwardRecordMapper.updateByPrimaryKeySelective(record);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/30 9:20
+     * @Description:清除全部商品兑换记录
+     * @param record
+     * @return
+     */
+    @Override
+    @CacheEvict(value = {CacheConstan.ACTI_AWARD_RECORD_CACHE_NAME}, allEntries = true)
+    public int updateByPrimaryKey(ActiAwardRecord record) {
+        return actiAwardRecordMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<ActiAwardRecord> queryListByPage(Map<String, Object> parameters) {
+        return actiAwardRecordMapper.queryListByPage(parameters);
+    }
+
+    @Override
+    public int checkAwardRecordSumByActiType(Map<String,Object> parameters) {
+        if (actiAwardRecordMapper.checkAwardRecordSumByActiType(parameters) == null) return 0;
+        return actiAwardRecordMapper.checkAwardRecordSumByActiType(parameters);
+    }
+
+    /**
+     * @Author:zun.wei , @Date:2017/6/30 9:17
+     * @Description:根据mid缓存个人商品已兑换列表
+     * @param mid
+     * @return
+     */
+	@Override
+    @Cacheable(value = {CacheConstan.ACTI_AWARD_RECORD_CACHE_NAME}, key = "#root.methodName+':'+#root.args[0]")
+	public  List<Map<String,Object>> selectByMidKey(Integer mid) {
+		return actiAwardRecordMapper.selectByMidKey(mid);
+	}
+
+	@Override
+	public int countAwardNumber(ActiAwardRecord record) {
+		return actiAwardRecordMapper.countAwardNumber(record);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectByParamList(Integer mid,int type) {
+		Map<String,Object> parameters=new HashMap<String,Object>();
+		parameters.put("mid", mid);
+		parameters.put("type", type);
+		return actiAwardRecordMapper.selectByParamList(parameters);
+	}
+
+	@Override
+	public List<Map<String, Object>> getActivityCenterAcquireGoodsThirty(Integer mid,int gameType) {
+		Map<String,Object> parameters=new HashMap<String,Object>();
+		parameters.put("mid", mid);
+		parameters.put("dbName", Constants.getGameCodeByGameType(gameType)+".memberfides0");
+		return actiAwardRecordMapper.getActivityCenterAcquireGoodsThirty(parameters);
+	}
+
+}

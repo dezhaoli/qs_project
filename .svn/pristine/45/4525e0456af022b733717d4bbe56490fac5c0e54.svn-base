@@ -1,0 +1,227 @@
+package com.qs.webside.activity.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.qs.acti.game.model.ActiAwardPro;
+import com.qs.acti.game.service.IActiAwardProService;
+import com.qs.common.base.basecontroller.BaseController;
+import com.qs.common.constant.Constants;
+import com.qs.common.dtgrid.model.Pager;
+import com.qs.common.exception.AjaxException;
+import com.qs.common.util.PageUtil;
+import com.qs.pub.game.model.Dict;
+import com.qs.pub.game.service.IDictService;
+import com.qs.pub.sys.model.UserEntity;
+import com.qs.acti.game.model.ActiAward;
+import com.qs.acti.game.service.IActiAwardService;
+import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * Created by zun.wei on 2017/6/5 17:32.
+ * Description:活动中心奖品表控制器
+ */
+@Controller
+@RequestMapping(value = "/award/")
+public class ActiAwardController extends BaseController {
+
+    @Value("${uploadServer.img}")
+    private String imgUploadUrl;
+
+    @Resource
+    private IDictService dictService;
+
+    @Resource
+    private IActiAwardService actiAwardService;
+
+    @Resource
+    private IActiAwardProService actiAwardProService;
+
+    @RequestMapping(value = "listUi.html", method = RequestMethod.GET)
+    public String listUi(Model model, HttpServletRequest request) {
+        PageUtil page = super.getPage(request);
+        List<Dict> activityList = dictService.findDictList(Constants.Dict.ACTIVITY_ID);//活动类型选择
+        String activityListJson = JSON.toJSONString(activityList);
+        model.addAttribute("activityList", activityList);
+        model.addAttribute("activityListJson", activityListJson);
+        model.addAttribute("page", page);
+        return "/WEB-INF/view/web/activity/acti_award_list";
+    }
+
+
+    @RequestMapping("list.html")
+    @ResponseBody
+    public Object list(String gridPager) throws Exception {
+        Map<String, Object> parameters = null;
+        // 映射Pager对象
+        Pager pager = JSON.parseObject(gridPager, Pager.class);
+        // 判断是否包含自定义参数
+        parameters = pager.getParameters();
+        if (parameters.size() < 0) {
+            //parameters.put("site", null);
+        }
+        // 设置分页，page里面包含了分页信息
+        Page<Object> page = PageHelper.startPage(pager.getNowPage(), pager.getPageSize());
+        List<Map<String,Object>> list = actiAwardService.queryListByPage(parameters);
+        return getReturnPage(pager, page, list);
+    }
+
+
+    @RequestMapping("addUI.html")
+    public String addUI(Model model, HttpServletRequest request, String id) {
+        PageUtil page = new PageUtil(request);
+        model.addAttribute("page", page);
+        model.addAttribute("imgUploadUrl", imgUploadUrl);
+        List<Dict> activityList = dictService.findDictList(Constants.Dict.ACTIVITY_ID);//活动类型选择
+        model.addAttribute("activityList", activityList);
+        List<Dict> astl = dictService.findDictList(Constants.Dict.ACTIVITY_STATUS_TYPE);//活动状态选择
+        model.addAttribute("astl", astl);
+        return "/WEB-INF/view/web/activity/acti_award_form";
+    }
+
+
+    @RequestMapping("editUI.html")
+    public String editUI(Model model, HttpServletRequest request, Integer id) {
+        ActiAward record = actiAwardService.selectByPrimaryKey(id);
+        PageUtil page = new PageUtil(request);
+        model.addAttribute("page", page);
+        model.addAttribute("record", record);
+        model.addAttribute("imgUploadUrl", imgUploadUrl);
+        List<Dict> activityList = dictService.findDictList(Constants.Dict.ACTIVITY_ID);
+        model.addAttribute("activityList", activityList);
+        List<Dict> astl = dictService.findDictList(Constants.Dict.ACTIVITY_STATUS_TYPE);//活动状态选择
+        model.addAttribute("astl", astl);
+        return "/WEB-INF/view/web/activity/acti_award_form";
+    }
+
+
+    @RequestMapping("add.html")
+    @ResponseBody
+    public Object add(ActiAward actiAward) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
+            if (userEntity != null) {
+                actiAward.setCreaterId(userEntity.getId().intValue());
+                actiAward.setCreateTime(new Date());
+            }
+            int result = actiAwardService.insertSelective(actiAward);
+            super.executeRequestResult(result,map);
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+
+    @RequestMapping("edit.html")
+    @ResponseBody
+    public Object update(ActiAward actiAward){
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            UserEntity userEntity = (UserEntity) SecurityUtils.getSubject().getPrincipal();
+            if (userEntity != null) {
+                actiAward.setModifierId(userEntity.getId().intValue());
+                actiAward.setUpdateTime(new Date());
+            }
+            int result = actiAwardService.updateByPrimaryKeySelective(actiAward);
+            super.executeRequestResult(result,map);
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+
+    @RequestMapping("deleteById.html")
+    @ResponseBody
+    public Object deleteById(Integer id) {
+        Map<String, Object> map = new HashMap<String, Object>();
+        try {
+            int result = actiAwardService.deleteByPrimaryKey(id);
+            super.executeDeleteRequestResult(result,map);
+        } catch (Exception e) {
+            throw new AjaxException(e);
+        }
+        return map;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * @Author:zun.wei , @Date:2017/9/15 16:35
+     * @Description: 编辑奖品获得概率
+     * @param model 模型驱动
+     * @param awardId 奖品id
+     * @param type 活动类型
+     * @return view
+     */
+    @RequestMapping("/pro/editUI.html")
+    public String proEditUI(Model model, Integer awardId,Integer type) {
+        ActiAwardPro actiAwardPro = actiAwardProService.selectByAwarId(awardId);
+        if (actiAwardPro == null) actiAwardPro = new ActiAwardPro();
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("type", type);
+        List<Map<String,Object>> list = actiAwardService.queryListByPage(parameters);
+        ActiAward actiAward = actiAwardService.selectByPrimaryKey(awardId);
+        model.addAttribute("actiAwardPro", actiAwardPro);
+        model.addAttribute("actiAwardList", list);
+        model.addAttribute("actiAward", actiAward);
+        return "/WEB-INF/view/web/activity/acti_award_pro_form";
+    }
+
+
+    @RequestMapping("/pro/edit.html")
+    @ResponseBody
+    public Object proUpdate(int awardId,int actiType,int proSources,String awardProStock,String producDate,
+                            String daliAddPro,String addProDate,String awardPro,int status) throws ParseException {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        int result = 0;
+        ActiAwardPro actiAwardPro = actiAwardProService.selectByAwarId(awardId);
+        if (actiAwardPro == null) {
+            actiAwardPro = new ActiAwardPro();
+            if (StringUtils.isNotBlank( addProDate)) actiAwardPro.setAddProDate(simpleDateFormat.parse(addProDate));
+            actiAwardPro.setAwardId(awardId);
+            actiAwardPro.setAwardPro(awardPro);
+            actiAwardPro.setAwardProStock(awardProStock);
+            actiAwardPro.setProducDate(simpleDateFormat.parse(producDate));
+            actiAwardPro.setType(actiType);
+            actiAwardPro.setDaliAddPro(daliAddPro);
+            actiAwardPro.setProSources(proSources);
+            actiAwardPro.setStatus(status);
+            result = actiAwardProService.insertSelective(actiAwardPro);
+        } else {
+            actiAwardPro = new ActiAwardPro();
+            if (StringUtils.isNotBlank( addProDate)) actiAwardPro.setAddProDate(simpleDateFormat.parse(addProDate));
+            actiAwardPro.setAwardId(awardId);
+            actiAwardPro.setAwardPro(awardPro);
+            actiAwardPro.setAwardProStock(awardProStock);
+            actiAwardPro.setProducDate(simpleDateFormat.parse(producDate));
+            actiAwardPro.setType(actiType);
+            actiAwardPro.setDaliAddPro(daliAddPro);
+            actiAwardPro.setProSources(proSources);
+            actiAwardPro.setStatus(status);
+            result = actiAwardProService.updateByAwardIdAndType(actiAwardPro);
+        }
+        Map<String, Object> map = new HashMap<>();
+        super.executeUpdateRequestResult(result,map);
+        return map;
+    }
+
+}

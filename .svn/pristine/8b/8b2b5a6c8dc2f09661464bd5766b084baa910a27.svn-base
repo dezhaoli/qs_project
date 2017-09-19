@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qs.webside.activity.mapper.ActiAwardRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.qs.webside.activity.model.ActiAwardRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="award_id" property="awardId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="BIGINT" />
+    <result column="award_num" property="awardNum" jdbcType="BIGINT" />
+    <result column="is_review" property="isReview" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="ext1" property="ext1" jdbcType="VARCHAR" />
+    <result column="ext2" property="ext2" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, mid, award_id, name, integral, award_num, is_review, type, remark, descr, ext1, 
+    ext2, create_time, send_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from acti_award_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from acti_award_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qs.webside.activity.model.ActiAwardRecord" >
+    insert into acti_award_record (id, mid, award_id, 
+      name, integral, award_num, 
+      is_review, type, remark, 
+      descr, ext1, ext2, 
+      create_time, send_time)
+    values (#{id,jdbcType=INTEGER}, #{mid,jdbcType=INTEGER}, #{awardId,jdbcType=INTEGER}, 
+      #{name,jdbcType=VARCHAR}, #{integral,jdbcType=BIGINT}, #{awardNum,jdbcType=BIGINT}, 
+      #{isReview,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, #{ext2,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{sendTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qs.webside.activity.model.ActiAwardRecord" >
+    insert into acti_award_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="awardId != null" >
+        award_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="awardNum != null" >
+        award_num,
+      </if>
+      <if test="isReview != null" >
+        is_review,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="ext1 != null" >
+        ext1,
+      </if>
+      <if test="ext2 != null" >
+        ext2,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="awardId != null" >
+        #{awardId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="awardNum != null" >
+        #{awardNum,jdbcType=BIGINT},
+      </if>
+      <if test="isReview != null" >
+        #{isReview,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qs.webside.activity.model.ActiAwardRecord" >
+    update acti_award_record
+    <set >
+      <if test="mid != null" >
+        mid = #{mid,jdbcType=INTEGER},
+      </if>
+      <if test="awardId != null" >
+        award_id = #{awardId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=BIGINT},
+      </if>
+      <if test="awardNum != null" >
+        award_num = #{awardNum,jdbcType=BIGINT},
+      </if>
+      <if test="isReview != null" >
+        is_review = #{isReview,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        ext1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        ext2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qs.webside.activity.model.ActiAwardRecord" >
+    update acti_award_record
+    set mid = #{mid,jdbcType=INTEGER},
+      award_id = #{awardId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=BIGINT},
+      award_num = #{awardNum,jdbcType=BIGINT},
+      is_review = #{isReview,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      ext1 = #{ext1,jdbcType=VARCHAR},
+      ext2 = #{ext2,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      send_time = #{sendTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryListByPage" parameterType="map" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from acti_award_record
+    order by id DESC
+  </select>
+
+  <!-- 根据活动类型查询，该活动类型对应的奖品兑换记录总个数 -->
+  <select id="checkAwardRecordSumByActiType" parameterType="map" resultType="integer">
+    SELECT SUM(a.award_num) AS expNum
+    FROM acti_award_record a ,acti_center ac
+    WHERE ac.type = a.type
+    AND a.create_time &gt;= ac.start_time
+    AND a.create_time &lt;= ac.end_time
+    AND a.type = #{actiType} and a.award_id = #{awardId}
+  </select>
+
+	<select id="selectByMidKey" resultType="map" parameterType="java.lang.Integer">
+	select A.id, A.mid, A.award_id, A.name, A.integral, A.award_num,
+	A.is_review, A.type, A.remark, A.descr,A.create_time, A.send_time
+	,B.img_url
+	from acti_award_record A,acti_award B 
+	where A.award_id=B.id 
+	and mid = #{mid,jdbcType=INTEGER}
+	</select>
+
+    <select id="countAwardNumber" parameterType="com.qs.webside.activity.model.ActiAwardRecord"  resultType="integer" >
+    SELECT COUNT(id) from acti_award_record  where award_id = #{id,jdbcType=INTEGER} and mid = #{mid,jdbcType=INTEGER}
+    </select>
+    
+    <select id="selectByParamList" resultType="map" parameterType="map">
+	select A.id, A.mid, A.award_id, A.name, A.integral, A.award_num,
+	A.is_review, A.type, A.remark, A.descr,A.create_time, A.send_time
+	,B.img_url
+	from acti_award_record A,acti_award B 
+	where A.award_id=B.id 
+	and A.mid = #{mid} and A.type = #{type} 
+	 <if test="date !='' ">
+	 and  A.create_time like '${date}%'
+	 </if>
+	</select>
+	
+	<select id="getActivityCenterAcquireGoodsThirty" resultType="map" parameterType="map">
+	select A.id, B.name ,A.mid ,A.name goodName ,A.create_time
+	from acti_award_record A,${dbName } B where B.mid=A.mid and  A.type =#{type} order by A.create_time desc LIMIT 30
+	</select>
+    
+</mapper>

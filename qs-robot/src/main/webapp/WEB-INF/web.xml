@@ -58,7 +58,7 @@
     </init-param>
     <init-param>
       <param-name>loginPassword</param-name>
-      <param-value>qsdruid</param-value>
+      <param-value>@qsdruid</param-value>
     </init-param>
 <!--     <init-param>
       <param-name>allow</param-name>
