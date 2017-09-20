@@ -1,0 +1,18 @@
+package com.qs.warehouse.service;
+
+import com.qs.sync.model.GoldLog;
+
+public interface IGoldLogService {
+
+	   int deleteByPrimaryKey(Long id);
+
+	    int insert(GoldLog record);
+
+	    int insertSelective(GoldLog record);
+
+	    GoldLog selectByPrimaryKey(Long id);
+
+	    int updateByPrimaryKeySelective(GoldLog record);
+
+	    int updateByPrimaryKey(GoldLog record);
+}

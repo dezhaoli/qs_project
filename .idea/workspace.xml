@@ -307,7 +307,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -323,6 +322,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -495,25 +495,30 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiAwardRecordMapper.xml</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiAwardProService.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiCenterService.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiAwardProService.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiCenterServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiAwardController.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiCenterController.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiAwardAddressController.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-data-center\src\main\java\com\qs\pub\datacenter\controller\CreateRoomController.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\Constants.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\AppConstants.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\acti\ActiAwardRecordMapper.xml</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\mobile\mobile_version_list.jsp</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\mobile\mobile_version_form.jsp</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_award_form.jsp</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_award_record_list.jsp</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\activity\acti_award_record_list.js</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\game\controller\MobileVersionController.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\activity\controller\ActiAwardRecordController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\controller\ActiAwardController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiAwardRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiAwardRecordService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiAwardProService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiAwardProService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiAwardRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiCenterServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiAwardRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiAwardProMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\kmonitor-mysqlbinlog-web\src\main\resources\spring-config.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\kmonitor-mysql-binlog\src\main\java\com\hzw\monitor\mysqlbinlog\utils\DataUtils.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\SyncService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\service\impl\SyncServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\mq\ReceiveDataImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\spring\spring-jms.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\generatorConfig.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-sender\src\main\java\com\qs\sync\sender\listener\MQTransportListener.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-sender\src\main\java\com\qs\sync\sender\util\TopicConstants.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-sender\src\main\java\com\qs\sync\sender\util\DataUtil.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\src\main\resources\log4j.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\pom.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_award_pro_form.jsp</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\constant\CacheConstan.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\SyncObject.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -521,21 +526,235 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\resources\mybatis\mapper\webside\activity\ActiRedPacketCfgMapper.xml</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\model\ActiRedPacketCfg.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\IActiRedPacketService.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\service\impl\ActiRedPacketServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\src\main\java\com\qs\webside\activity\mapper\ActiRedPacketCfgMapper.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-common\src\main\java\com\qs\common\util\crypto\Base64Util.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\acti\game\model\ActiRedPacketCfg.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\acti\game\service\impl\ActiRedPacketServiceImpl.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\acti\game\service\IActiRedPacketService.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\java\com\qs\acti\game\mapper\ActiRedPacketCfgMapper.java</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-config\src\main\resources\mybatis\mapper\acti\ActiRedPacketCfgMapper.xml</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_redPacketCfg_form.jsp</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\WEB-INF\view\web\activity\acti_redPacketCfg_list.jsp</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\webapp\resources\js\customer\web\activity\acti_redPacketCfg_list.js</PATH>
-          <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-web\src\main\java\com\qs\webside\activity\controller\ActRedPacketCfgController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\logback.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\quartz.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\redis.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-flyway.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-kaptcha.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-ip2region.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-ehcache.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-quartz-sync.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\dataResource</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\dataResource\data_warehouse-datasource.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\dataResource\webside-datasource.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-shiro.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-mvc.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-quartz.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-redis.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-applicationContext.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-mybatis.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\spring\spring-jms.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\db</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\db\update.sql</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\db\mj.sql</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\ip2regiondata</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\ip2regiondata\ip2region.db</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\MajiangGameRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\GameRecordSubMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\DouniuGameRecordSubMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\GoldLogMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\GameRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\MajiangGameRecordSubMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\PlayerRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\RoomRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\warehouse\DouniuGameRecordMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sync</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sync\SyncMemberagentsMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sync\LogSuccessMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sync\LogErrorMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sync\SyncMemberfidesMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sync\SyncMemberbusinessMapper.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sys</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sys\sqlmap-mapping-logininfo.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sys\sqlmap-mapping-resource.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sys\sqlmap-mapping-loginfo.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sys\sqlmap-mapping-user.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mapper\pub\sys\sqlmap-mapping-role.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\mybatis\mybatis-config.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\ip2region.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\topic.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\log4j.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\generatorConfig.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\jdbc.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\init.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\resources\ehcache.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\webapp</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\webapp\WEB-INF</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\webapp\WEB-INF\web.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IGoldLogService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\DouniuGameRecordSubServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\GoldLogServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\GameRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\MajiangGameRecordSubServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\PlayerRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\RoomRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\DouniuGameRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\MajiangGameRecordServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\impl\GameRecordSubServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IGameRecordService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IMajiangGameRecordSubService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IPlayerRecordService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IRoomRecordService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IDouniuGameRecordService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IMajiangGameRecordService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IGameRecordSubService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\service\IDouniuGameRecordSubService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\DouniuGameRecordSubMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\GoldLogMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\GameRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\MajiangGameRecordSubMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\PlayerRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\RoomRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\DouniuGameRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\MajiangGameRecordMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\warehouse\mapper\GameRecordSubMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside\util</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside\interceptor</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside\interceptor\TokenInterceptor.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside\aop</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside\aop\LogAspect.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside\shiro</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\webside\shiro\MyRealm.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\constant</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\constant\SyncContans.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\ISysnMemberbusinessService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\LogSuccessService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\LogErrorService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\SyncService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\ISyncMemberagentsService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\impl</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\impl\SyncMemberagentsServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\impl\LogSuccessServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\impl\LogErrorServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\impl\SyncServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\impl\SyncMemberFidesServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\impl\SyncMemberbusinessServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\service\ISyncMemberfidesService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive\listener</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive\listener\ClusterListenerImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive\listener\ConsumerSessionAwareMessageListener.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive\listener\InitParam.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive\mq</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive\mq\ReceiveDataImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\receive\mq\IReceiveData.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\task</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\task\SyncKtrTask.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\task\ErrorDataHandleTask.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\controller</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\controller\LogSuccessController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\controller\LogErrorController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\mapper</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\mapper\LogSuccessMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\mapper\LogErrorMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\mapper\SyncMemberfidesMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\mapper\SyncMemberbusinessMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\mapper\SyncMemberagentsMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\common</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\common\DataSyncUrl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\common\SyncDataConversion.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\common\SyncLogTool.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\common\MyJsonConfig.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sync\common\JsonUtil.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\util</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\util\KtrPasswordUtil.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\util\MyUtil.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\util\Underline2Camel.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\util\MySort.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model\UserInfoEntity.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model\LogInfoEntity.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model\UserEntity.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model\RoleEntity.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model\LoginInfoEntity.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model\UserOnline.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\model\ResourceEntity.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\LogInfoService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\UserService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\impl</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\impl\LoginInfoServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\impl\ResourceServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\impl\RoleResourceServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\impl\LogInfoServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\impl\UserServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\impl\RoleServiceImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\RoleService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\LoginInfoService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\ResourceService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\service\RoleResourceService.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\controller</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\controller\IndexController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\controller\ResourceController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\controller\LogInfoController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\controller\UserController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\controller\RoleController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\controller\LoginInfoController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\mapper</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\mapper\RoleMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\mapper\LoginInfoMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\mapper\ResourceMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\mapper\LogInfoMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\src\main\java\com\qs\pub\sys\mapper\UserMapper.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-receiver\pom.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\java\com</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\java\com\qs</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\java\com\qs\pub</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\java\com\qs\pub\datacenter</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\java\com\qs\pub\datacenter\controller</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\java\com\qs\pub\datacenter\controller\DataSyncController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\log4j.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\mysqlbinlog.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\webside.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\init.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\spring</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\spring\spring-mvc.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\spring\spring-applicationContext.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\resources\spring\spring-jms-send.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\webapp</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\webapp\WEB-INF</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\src\main\webapp\WEB-INF\web.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\binlog-producer\pom.xml</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\doc\00_��Ŀ����\������Ա��Ч���˱�׼.xlsx</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\SyncMemberfides.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\SyncMemberbusiness.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\GameRecordSub.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\GoldLog.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\PlayerRecord.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\DouniuGameRecord.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\MajiangGameRecord.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\DouniuGameRecordSub.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\SyncMemberagents.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\GameRecord.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\MajiangGameRecordSub.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-model\src\main\java\com\qs\sync\model\RoomRecord.java</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -543,6 +762,13 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\warehouse</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\listener\InitParam.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\java\com\qs\pub\sync\receive\listener\ClusterListenerImpl.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\topic.properties</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-web\src\main\resources\mybatis\mapper\warehouse</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\src\main\java\com\qs\pub\datacenter\controller\DataSyncController.java</PATH>
+          <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\sync-producer\src\main\resources\mysqlbinlog.properties</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -565,8 +791,8 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SKIPPED" />
-        <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
-        <PATH vcs="svn" revision="3410">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
+        <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-activity-center\qs-activity-center.iml</PATH>
+        <PATH vcs="svn" revision="3434">D:\java\qs_project\2017年4月15日\qs_project\qs-side\qs-side.iml</PATH>
       </FILE-GROUP>
       <FILE-GROUP>
         <option name="myUpdateName" value="Merged with conflicts" />
@@ -1509,6 +1735,7 @@
       <workItem from="1505480091688" duration="129000" />
       <workItem from="1505740336374" duration="176000" />
       <workItem from="1505827179457" duration="120000" />
+      <workItem from="1505909763704" duration="97000" />
     </task>
     <task id="LOCAL-00001">
       <created>1487691728730</created>
@@ -1640,7 +1867,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="290920000" />
+    <option name="totallyTimeSpent" value="291017000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1668,7 +1895,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18803419" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19017094" sideWeight="0.49342105" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="JRebel" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1865,33 +2092,33 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-common/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2885">
           <caret line="347" column="45" lean-forward="true" selection-start-line="347" selection-start-column="45" selection-end-line="347" selection-end-column="45" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-side/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="552">
           <caret line="38" column="30" lean-forward="false" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qs-web/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
           <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-web/src/main/resources/jdbc.properties">
@@ -2007,13 +2234,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/pom.xml">
+      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3216">
           <caret line="134" column="21" lean-forward="true" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
         </state>
-      </provider>
-      <provider editor-type-id="MavenHelperPluginDependencyAnalyzer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qs-agent/src/main/java/com/qs/webside/sms/UegateSoap.java">

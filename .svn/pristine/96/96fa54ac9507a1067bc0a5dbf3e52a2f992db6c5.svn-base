@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.qs</groupId>
+  <artifactId>binlog-producer</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>binlog-producer Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+	     <dependency>
+				<groupId>gsp</groupId>
+				<artifactId>gsp</artifactId>
+				<version>1.7.1.5</version>
+				<scope>system</scope>
+				<!--本地jar的路径,相对或者绝对都可以 -->
+				<systemPath>C:/Users/qs/Downloads/gsp_java_trial_1_8_8_0/dist/gsp.jar</systemPath>
+		</dependency>
+		
+		<!--mysql-binlong数据同步  -->
+	  <dependency>
+		<groupId>com.haiziwang.platform.kmonitor</groupId>
+		<artifactId>kmonitor-mysql-binlog</artifactId>
+		<version>1.2.0</version>
+	  </dependency>
+  </dependencies>
+  <build>
+    <finalName>binlog-producer</finalName>
+  </build>
+</project>

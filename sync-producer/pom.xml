@@ -35,19 +35,7 @@
 		<artifactId>qs-side</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	  </dependency>
-
-	  <dependency>
-		<groupId>com.haiziwang.platform.kmonitor</groupId>
-		<artifactId>kmonitor-mysql-binlog</artifactId>
-		<version>0.1-SNAPSHOT</version>
-	  </dependency>
-
-	  <dependency>
-		  <groupId>io.netty</groupId>
-		  <artifactId>netty-all</artifactId> <!-- Use 'netty-all' for 4.0 or above -->
-		  <version>4.0.33.Final</version>
-	  </dependency>
-
+	  
 	<!--activeMQ  -->
 	<dependency>
       <groupId>com.qs</groupId>
