@@ -47,6 +47,8 @@ var dtGridColumns = [{
             return "已审核";
         }else if (value == 2) {
             return "无须审核";
+        }else if (value == 3) {
+            return "忽略类";
         }
         return value;
     }
@@ -79,7 +81,7 @@ var dtGridColumns = [{
     }
 },{
     id : 'descr',
-    title : '备注',
+    title : '描述',
     type : 'string',
     columnClass : 'text-center',
     headerClass : 'dlshouwen-grid-header',
@@ -99,6 +101,10 @@ var dtGridColumns = [{
              return '<span class="label label-sm label-info arrowed arrowed-righ">已审核</span>';
          }else if (record.isReview == 2) {
              return '<span class="label label-sm label-info arrowed arrowed-righ">无须审核</span>';
+         }else if (record.isReview == 3) {
+             return '<span class="label label-sm label-info arrowed arrowed-righ">忽略类</span>';
+         }else {
+             return record.isReview;
          }
      }
  }];

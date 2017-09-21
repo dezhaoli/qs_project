@@ -215,7 +215,7 @@ public class IndexController extends BaseController {
 
 				SnsToken snsToken=SnsAPI.oauth2AccessToken(appId, secret,code);
 				User user=SnsAPI.userinfo(snsToken.getAccess_token(), snsToken.getOpenid(),"zh_CN");
-				//String openid="ogl_xwhVIIm51Ojuw8y4tw53UYt4";"ogl_xwv4KKiJuyb0mAdK0OFzlBBQ";
+//				String accountName="ogl_xwv2CcSdAFbgMptWiuZ3X9yg";//"ogl_xwv4KKiJuyb0mAdK0OFzlBBQ";
 				//这里取unionid
 				String accountName=user.getUnionid();
 				// 想要得到Subject对象,访问地址必须在shiro的拦截地址内,不然会报空指针

@@ -262,8 +262,15 @@
 
   <select id="queryListByMidDate" parameterType="map" resultMap="BaseResultMap">
     SELECT fmid, pamount, FROM_UNIXTIME(ptime, '%Y-%m-%d %H:%i:%s') AS toTime,pmoneynow FROM memberpayment
-    WHERE (fmid = #{mid} OR (parentid = #{mid} AND isagent = 0))  AND pstatus = 2  ORDER BY pamount DESC
+    WHERE (fmid = #{mid} OR (parentid = #{mid} AND isagent = 0))  AND pstatus = 2
    <!--  HAVING toTime BETWEEN #{starDate} AND date_add(#{endDate},interval 1 day) -->
+      <if test="starDate != null and starDate != ''">
+        AND FROM_UNIXTIME(ptime, '%Y-%m-%d %H:%i:%s') &gt;= #{starDate}
+      </if>
+      <if test="endDate != null and endDate != ''">
+        AND FROM_UNIXTIME(ptime, '%Y-%m-%d %H:%i:%s') &lt;= date_add(#{endDate},interval 1 day)
+      </if>
+      ORDER BY pamount DESC
   </select>
 
 	<!-- 获取个人充值明细 -->

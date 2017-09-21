@@ -472,7 +472,7 @@
 						not
 						in(SELECT mid from memberagents WHERE code like '${code}%' ) 
 						   <if test="querymid !=null and querymid !='' ">
-						      and mid=#{querymid}
+						      and cm.mid=#{querymid}
 						    </if>
 						 ORDER BY  bindtime DESC
 			</if>

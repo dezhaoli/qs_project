@@ -103,15 +103,17 @@ public class ActiCenterServiceImpl implements IActiCenterService {
 		Map<String,Object> parameters=new HashMap<>();	
 		ActiCenter actiCenter= this.getActivityInfo(AppConstants.ActivityType.ELEVEN_BIG_TURNTABLE_ACTIVITY_TYPE);
 		
-		int lotteryNumber=0;
-		
+		int lotteryNumber=Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT;
+		log.debug("into getActivityCenterInfos actiCenter:NULL: IS NOT activityList");
 		if (actiCenter !=null ){
 			result.put("type", actiCenter.getType());
 			result.put("createTime", actiCenter.getCreateTime());
 			result.put("endTime", actiCenter.getCloseTime());
+			result.put("allCount", Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT);
 			Object object = null;
 			try {
 				object = memcachedClient.get(CacheConstan.NATIONAL_ACTIVITIES_FINISHROOMCOUNT+mid);
+//				object=20;
 			} catch (TimeoutException e) {
 				log.debug("into getActivityCenterInfos Exception:::",e);
 				e.printStackTrace();
@@ -125,43 +127,63 @@ public class ActiCenterServiceImpl implements IActiCenterService {
 			log.debug("roomCount ___________________qain::"+object);
 			//获取抽奖次数
 			if (object !=null){
-				String roomCount []=object.toString().split(",");
-				object=roomCount[0];
 				log.debug("roomCount ___________________object::"+object);
 				
-				int alreadyCount=0;//当天已经兑换次数
 				//获取当前用户当天抽奖次数
 				parameters.put("mid", mid);
 				parameters.put("type", AppConstants.ActivityType.ELEVEN_BIG_TURNTABLE_ACTIVITY_TYPE);
 				parameters.put("date", DateUtil.getNewDate());
-				List <Map<String,Object>> actiAwardRecords=actiAwardRecordMapper.selectByParamList(parameters);
-				
-				if (actiAwardRecords !=null ){
-					alreadyCount=actiAwardRecords.size();
-				}
-				lotteryNumber=Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT;
+//				List <Map<String,Object>> actiAwardRecords=actiAwardRecordMapper.selectByParamList(parameters);
+				int alreadyCount=actiAwardRecordMapper.queryRecordCount(parameters);//当天已经兑换奖品次数
 				int count=0;
-				if (Constants.GameType.JX_MAJIANG.equals(gameType+"")) {
-					result.put("allCount", Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT);
-					result.put("alreadyNumber ", actiAwardRecords.size());
+				if(alreadyCount >lotteryNumber){
+					result.put("playCount",count );
+				}else {
+					if (Constants.GameType.JX_MAJIANG.equals(gameType+"")) {
+						result.put("alreadyNumber", alreadyCount);
+						count=Integer.valueOf(object.toString())/Constants.ActiveCenter.JX_ELEVEN_ACTIVITES_COUNT;//江西换算值积分换算剩余次数
+					}else {
+						count=Integer.valueOf(object.toString())/Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT;//开心换算值积分换算剩余次数
+					}
+					if(alreadyCount==0 || count ==0){
+						result.put("playCount",count );
+					}else {
+						int orCount=lotteryNumber-alreadyCount;//可能获得做大次数
+						if (orCount<count ){//if所有剩余次数小于获得可用次数就给当前可用次数
+							result.put("playCount",orCount );
+						}else {
+							if (count-alreadyCount>0){
+								
+								result.put("playCount",count-alreadyCount );
+							}else {
+								result.put("playCount",count );
+							}
+						}
+					}
+				}
+				/*if (Constants.GameType.JX_MAJIANG.equals(gameType+"")) {
+					result.put("alreadyNumber", alreadyCount);
 					count=Integer.valueOf(object.toString())/Constants.ActiveCenter.JX_ELEVEN_ACTIVITES_COUNT;//江西换算值积分换算剩余次数
 				}else {
-					result.put("allCount", Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT);
 					count=Integer.valueOf(object.toString())/Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT;//开心换算值积分换算剩余次数
 				}
 				if (count>lotteryNumber){
 					count=lotteryNumber;
 				}
 				if (alreadyCount<lotteryNumber ) {
-					
-					result.put("playCount",count-actiAwardRecords.size() );
+					if (count+alreadyCount>lotteryNumber){
+						
+						result.put("playCount",count-alreadyCount );
+					}else {
+						result.put("playCount",count );
+					}
 				}else {
 					result.put("playCount",0);
-				}
+				}*/
 			}else {
 				result.put("playCount",0);
 				if (Constants.GameType.JX_MAJIANG.equals(gameType+"")) {
-					result.put("alreadyNumber ",0);
+					result.put("alreadyNumber",0);
 				}
 			}
 			

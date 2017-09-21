@@ -1,6 +1,7 @@
 package com.qs.mainku.game.service;
 
 import com.qs.mainku.game.model.MemberFides;
+import com.qs.webside.member.model.Memberfides;
 
 import java.util.List;
 import java.util.Map;
@@ -101,5 +102,11 @@ public interface IMemberFidesService {
      */
     List<Map<String, Object>> selectAgentBindingUserList(Map<String, Object> parameters);
 
+    /**
+     * 查询用户表
+     * @param mid
+     * @return
+     */
+    Memberfides findMemberfidesById(Integer mid);
 
 }

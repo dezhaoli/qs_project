@@ -114,14 +114,16 @@ $(function() {
 		format:"YYYY-MM-DD hh:mm:ss",
 		isinitVal:true,
 		isTime:true, //isClear:false,
-		minDate:"2014-09-19 00:00:00"
+		minDate:"2014-09-19"
 	});
 	jeDate({
 		dateCell : '#endTime',
+		//format:"YYYY-MM-DD hh:mm:ss",
 		format:"YYYY-MM-DD hh:mm:ss",
 		isinitVal:true,
 		isTime:true, //isClear:false,
-		minDate:"2014-09-19 00:00:00"
+		//minDate:"2014-09-19 00:00:00"
+		minDate:"2014-09-19"
 	});
 }); 
 

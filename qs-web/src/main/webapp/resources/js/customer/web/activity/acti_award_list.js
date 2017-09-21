@@ -97,6 +97,15 @@ var dtGridColumns = [
         return getActiNameByType(value);
     }
 },{
+    id: 'ext2',
+    title: '拓展2',
+    type: 'string',
+    columnClass: 'text-center',
+    headerClass: 'dlshouwen-grid-header',
+    resolution: function (value, record, column, grid, dataNo, columnNo) {
+        return value;
+    }
+},{
     id: 'id',
     title: '操作',
     type: 'string',

@@ -42,7 +42,6 @@
 			<list>
 				<value>classpath:jdbc.properties</value>
 				<value>classpath:webside.properties</value>
-				<value>classpath:redis.properties</value>
 				<value>classpath:ip2region.properties</value>
 				<value>classpath:init.properties</value>
 				<value>classpath:topic.properties</value>
@@ -67,7 +66,6 @@
 	 <import resource="spring-shiro.xml" />
 	<import resource="spring-kaptcha.xml" />
 	<import resource="spring-ehcache.xml" />
-	<import resource="spring-redis.xml" />
 <!-- 	<import resource="spring-flyway.xml" /> -->
 	<import resource="spring-quartz-sync.xml" />
 	<import resource="spring-ip2region.xml"/>

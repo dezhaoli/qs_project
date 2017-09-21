@@ -46,19 +46,7 @@
 			topicCreateRoomDataCenter,
 			topicUserLoginDataCenter,
 			topicUserAddDataCenter,
-			topicGameRuleDataCenter,
-			topicMemberfides,
-			topicMemberbusiness,
-			topicMemberagents,
-			topicGameRecord,
-			topicGameRecordSub,
-			topicGoldLog,
-			topicPlayerRecord,
-			topicRoomRecord,
-			topicDouniuGameRecord,
-			topicDouniuGameRecordSub,
-			topicMajiangGameRecord,
-			topicMajiangGameRecordSub
+			topicGameRuleDataCenter
 			</value>
 		</constructor-arg>
 	</bean>
@@ -87,7 +75,7 @@
       <!--如果是durable模式，还需要给connection设置一个clientId -->
       <property name="clientId" value="${mq.clientId}"></property> 
        <!-- 配置多个消费者，可以是具体数值，也可以是数值区间，根据消息的规模来确定消费者的多少 --> 
-       <property name="concurrency" value="1-8"></property>
+       <!-- <property name="concurrency" value="1-8"></property> -->
 	</bean>
 	
 	<!-- 可以获取session的MessageListener -->

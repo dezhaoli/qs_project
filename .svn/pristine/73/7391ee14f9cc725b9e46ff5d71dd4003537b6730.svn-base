@@ -1,0 +1,189 @@
+package com.hzw.monitor.mysqlbinlog.utils;
+
+import java.util.ArrayList;
+import java.util.Map;
+
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
+import com.alibaba.druid.util.StringUtils;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.hzw.monitor.mysqlbinlog.consumer.ConsumerMananger;
+import com.qs.common.util.ContextUtil;
+import com.qs.sync.model.DouniuGameRecord;
+import com.qs.sync.model.DouniuGameRecordSub;
+import com.qs.sync.model.GameRecord;
+import com.qs.sync.model.GameRecordSub;
+import com.qs.sync.model.GoldLog;
+import com.qs.sync.model.MajiangGameRecord;
+import com.qs.sync.model.MajiangGameRecordSub;
+import com.qs.sync.model.PlayerRecord;
+import com.qs.sync.model.RoomRecord;
+import com.qs.sync.model.SyncMemberagents;
+import com.qs.sync.model.SyncMemberbusiness;
+import com.qs.sync.model.SyncMemberfides;
+import com.qs.sync.model.SyncObject;
+import com.qs.sync.sender.SendDataFacade;
+import com.qs.sync.sender.listener.MQTransportListener;
+
+public class DataUtils {
+	private static final Logger logger = LogManager.getLogger(DataUtils.class);
+
+	public static boolean handle(String database, String table, JSONObject data)
+	{
+		boolean result = false;
+		//判断MQ是否宕机
+		if(!MQTransportListener.isMQISRUNNING()){
+			logger.error("===============   activeMQ stoping!!!!，please checking================::");
+			return result;
+		}
+		
+				// 用户表同步
+				if (flag(data,"memberfides0",table,"INSERT"))
+				{
+					result = sendByJms(data, new SyncMemberfides());
+				}
+				// 代理商表同步
+				else if (flag(data,"memberagents",table,"INSERT"))
+				{
+					result = sendByJms(data, new SyncMemberagents());
+					
+				}
+				// 商务表同步
+				else if (flag(data,"memberbusiness",table,"INSERT"))
+				{
+					result = sendByJms(data, new SyncMemberbusiness());
+				}
+				
+				else if (flag(data,"game_record",table,"INSERT"))
+				{
+					result = sendByJms(data, new GameRecord());
+				}
+				
+				else if (flag(data,"game_record_sub",table,"INSERT"))
+				{
+					result = sendByJms(data, new GameRecordSub());
+				}
+				
+				else if (flag(data,"gold_log",table,"INSERT"))
+				{
+					result = sendByJms(data, new GoldLog());
+				}
+				
+				else if (flag(data,"player_record",table,"INSERT"))
+				{
+					result = sendByJms(data, new PlayerRecord());
+				}
+				
+				else if (flag(data,"room_record",table,"INSERT"))
+				{
+					result = sendByJms(data, new RoomRecord());
+				}
+				
+				else if (flag(data,"douniu_game_record",table,"INSERT"))
+				{
+					result = sendByJms(data, new DouniuGameRecord());
+				}
+				
+				else if (flag(data,"douniu_game_record_sub",table,"INSERT"))
+				{
+					result = sendByJms(data, new DouniuGameRecordSub());
+					
+				}
+				
+				else if (flag(data,"majiang_game_record",table,"INSERT"))
+				{
+					result = sendByJms(data, new MajiangGameRecord());
+				}
+				
+				else if (flag(data,"majiang_game_record_sub",table,"INSERT"))
+				{
+					result = sendByJms(data, new MajiangGameRecordSub());
+				} else
+				{
+					result = true;
+				}
+		
+		return result;
+	}
+
+	public static boolean handleMulti(String database, String table, ArrayList<JSONObject> datas) {
+		if (null == datas || datas.size() == 0) {
+			return true;
+		}
+		// 可以开始处理每一条了
+		// 只要其中一个发生错误，就立刻返回,剩下的也不用处理了
+		for (JSONObject data : datas) {
+			if (null == data) {
+				continue;
+			}
+			if (false == DataUtils.handle(database, table, data)) {
+				LoggerUtils.error(logger, "handleMulti ,but error happened");
+				return false;
+			}
+			ConsumerMananger.getInstance().increase();			
+			// LoggerUtils.debug(logger, data.toJSONString());
+		}
+		// 返回结果
+		return true;
+	}
+	/**
+	 * 
+	 * @标题: sendByJms 
+	 * @描述:  发送对象到activeMQ
+	 *
+	 * @参数信息
+	 *    @param data
+	 *    @param obj
+	 *    @return
+	 *
+	 * @返回类型 Boolean
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	public static Boolean sendByJms(JSONObject data, SyncObject obj)
+	{
+		JSONObject map = new JSONObject();
+		for (Map.Entry<String, Object> entry : data.entrySet()) {
+			map.put(UnderlineToCamel.underlineToCamel(entry.getKey(), true),entry.getValue());
+        }
+		SendDataFacade sendDataFacade = ContextUtil
+				.getBeanByType(SendDataFacade.class);
+		SyncObject sr = JSON.parseObject(map.toJSONString(), obj.getClass());
+		sr.setFromSysCode("sync-data");
+		logger.warn("=========================data:"+data.toString()+"======result:"+true);
+		return sendDataFacade.sendByJms(sr);
+	}
+	
+	/**
+	 * 
+	 * @标题: flag 
+	 * @描述:  
+	 *
+	 * @参数信息
+	 *    @param data 数据对象
+	 *    @param tableName 目标表名
+	 *    @param remoteTableName 数据源表名
+	 *    @param optType 操作类型 
+	 *    @return
+	 *
+	 * @返回类型 Boolean
+	 * @开发者 wangzhen
+	 * @可能抛出异常
+	 */
+	public static Boolean flag(JSONObject data, String tableName,
+			String remoteTableName, String optType)
+	{
+		if (data != null && !StringUtils.isEmpty(tableName)
+				&& !StringUtils.isEmpty(remoteTableName)
+				&& !StringUtils.isEmpty(optType))
+		{
+			return tableName.equals(remoteTableName)
+					&& optType.equals(data.get("optType"));
+		} else
+		{
+			return false;
+		}
+	}
+}

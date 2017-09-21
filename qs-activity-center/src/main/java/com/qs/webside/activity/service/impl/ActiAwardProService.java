@@ -6,9 +6,11 @@ import com.qs.common.constant.CommonContants;
 import com.qs.common.constant.Constants;
 import com.qs.common.util.DateUtil;
 import com.qs.mainku.game.service.IBaseParamService;
+import com.qs.mainku.game.service.IMemberFidesService;
 import com.qs.webside.activity.mapper.ActiAwardProMapper;
 import com.qs.webside.activity.model.*;
 import com.qs.webside.activity.service.*;
+import com.qs.webside.member.model.Memberfides;
 import com.qs.webside.util.RamUtil;
 import net.rubyeye.xmemcached.MemcachedClient;
 import net.rubyeye.xmemcached.exception.MemcachedException;
@@ -53,6 +55,9 @@ public class ActiAwardProService implements IActiAwardProService {
 
     @Resource
     private MemcachedClient memcachedClient;
+
+    @Resource
+    private IMemberFidesService memberFidesService;
 
 
     private static Log log = LogFactory.getLog(ActiAwardProService.class);
@@ -103,21 +108,27 @@ public class ActiAwardProService implements IActiAwardProService {
     }
 
     @Override
-    public Map<String, Object> executeLuckDraw(int mid,String sesskey,int gameType) throws ParseException, InterruptedException, MemcachedException, TimeoutException {
+    public Map<String, Object> executeLuckDraw(int mid,String sesskey,int gameType)
+            throws ParseException, InterruptedException, MemcachedException, TimeoutException {
         Map<String, Object> result = new HashMap<>();
+
+        //判断人员信息是否存在
+        Memberfides memberfides = memberFidesService.findMemberfidesById(mid);
+        if (memberfides == null) {
+            log.debug("--------------------::game member is not exist!");
+            result.put(CommonContants.RESULT, Boolean.FALSE);
+            result.put(CommonContants.ERROR, -12);
+            result.put(CommonContants.MESSAGE, "game member is not exist!");
+            return result;
+        }
 
         //更新memcached 缓存
         String memcKey = CacheConstan.NATIONAL_ACTIVITIES_FINISHROOMCOUNT + mid;
         Object o = memcachedClient.get(memcKey);
-        String oStr = (o + "").split(",")[0];
-        String timeSta = null;
-        try {
-            timeSta = (o + "").split(",")[1];
-        } catch (Exception e) {
-            log.debug("try to get memcache stamp ,but nothing get ---------------::");
-        }
-        int nowCount = oStr == null || "null".equals(oStr) ? 0 : Integer.parseInt(oStr);
+        String oStr = (o + "");
+        int nowCount = "null".equals(oStr) ? 0 : Integer.parseInt(oStr);
         nowCount = nowCount > 0 ? nowCount : 0;
+        log.debug("--------------------::user "+mid+" current card count is " + nowCount+ "!");
         int playCount = 0;
         int updateCount = 0;
 
@@ -136,14 +147,13 @@ public class ActiAwardProService implements IActiAwardProService {
                 updateCount = nowCount - Constants.ActiveCenter.KX_ELEVEN_ACTIVITES_COUNT;
                 break;
         }
-        if (playCount > 0) {
-            memcachedClient.set(memcKey, 0, updateCount + "," +timeSta);
-        } else {
+        /*if (!(playCount > 0)) {
+            log.debug("--------------------::The number of card games did not meet the lottery conditions!");
             result.put(CommonContants.RESULT, Boolean.FALSE);
             result.put(CommonContants.ERROR, -111);
             result.put(CommonContants.MESSAGE, "玩牌局数未满足抽奖条件!");
             return result;
-        }
+        }*/
 
         //查询数据库是否抽奖达到上限
         Map<String, Object> p = new HashMap<>();
@@ -151,15 +161,17 @@ public class ActiAwardProService implements IActiAwardProService {
         p.put("date", DateUtil.getNewDate());
         p.put("mid", mid);
         Integer count = actiAwardRecordService.queryRecordCount(p);
-        if (count >= 5) {
+        /*if (count >= 5) {
+            log.debug("--------------------::The number of lottery reaches 5 times the upper limit!");
             result.put(CommonContants.RESULT, Boolean.FALSE);
             result.put(CommonContants.ERROR, -11);
             result.put(CommonContants.MESSAGE, "抽奖次数达到5次上限!");
             return result;
-        }
+        }*/
         Map<String, Object> actiCenter = actiCenterService.queryListActivityByStatusAndType
                 (AppConstants.ActivityType.ELEVEN_BIG_TURNTABLE_ACTIVITY_TYPE);//验证活动是否存在并在有效期内
         if (actiCenter == null) {
+            log.debug("--------------------::Activity type does not exist!");
             result.put(CommonContants.RESULT, Boolean.FALSE);
             result.put(CommonContants.ERROR, -1);
             result.put(CommonContants.MESSAGE, "活动类型不存在!");
@@ -177,6 +189,8 @@ public class ActiAwardProService implements IActiAwardProService {
             parameters.put("type", AppConstants.ActivityType.ELEVEN_BIG_TURNTABLE_ACTIVITY_TYPE);
             List<Map<String, Object>> actiAwardPros = queryListByActiType(parameters);
             if (actiAwardPros == null || actiAwardPros.isEmpty()) {
+                log.debug("--------------------::" +
+                        "No prizes, lottery probability, or time of production or insufficient stock of prizes!");
                 result.put(CommonContants.RESULT, Boolean.FALSE);
                 result.put(CommonContants.ERROR, -3);
                 result.put(CommonContants.MESSAGE, "未配置奖品抽奖概率或产出时间未到或者奖品库存不足！");
@@ -227,7 +241,7 @@ public class ActiAwardProService implements IActiAwardProService {
             int updateStockResult = actiAwardService.updateStockByReduceAndId(para);
             if (updateStockResult > 0) {//更新库存成功
                 ActiAward actiAward = actiAwardService.selectByPrimaryKey(ap.getId());
-                String remark = actiAward.getRemark();
+                String remark = actiAward.getRemark();//获取奖品类型,2红包，1房卡，3忽略类，其他非红包非房卡
 
                 //插入兑换记录表
                 ActiAwardRecord actiAwardRecord = new ActiAwardRecord();
@@ -246,6 +260,7 @@ public class ActiAwardProService implements IActiAwardProService {
                         List<ActiRedPacketCfg> arpcs = actiRedPacketService.queryListByActiType
                                 (AppConstants.ActivityType.ELEVEN_BIG_TURNTABLE_ACTIVITY_TYPE);
                         if (arpcs == null || arpcs.isEmpty()) {
+                            log.debug("--------------------::Red probability configuration table not configured!");
                             result.put(CommonContants.RESULT, Boolean.FALSE);
                             result.put(CommonContants.ERROR, -7);
                             result.put(CommonContants.MESSAGE, "红包概率配置表未配置！");
@@ -270,16 +285,17 @@ public class ActiAwardProService implements IActiAwardProService {
                         if (updateStockResult1 > 0) {//更新库存成功
                             ActiRedPacketCfg actiRedPacketCfg = actiRedPacketService.selectByPrimaryKey(ap1.getId());
                             String gold = actiRedPacketCfg.getGold();
-                            actiAwardRecord.setIsReview(0);
-                            actiAwardRecord.setDescr(gold + "元");
+                            actiAwardRecord.setIsReview(0);//0为未审核
+                            actiAwardRecord.setDescr(gold);
                         } else {
+                            log.debug("--------------------::Red packets is low stocks!");
                             result.put(CommonContants.RESULT, Boolean.FALSE);
                             result.put(CommonContants.ERROR, -55);
                             result.put(CommonContants.MESSAGE, "红包库存不足！");
                             return result;
                         }
                     } else if (awardType == 1) {//房卡类型
-                        actiAwardRecord.setIsReview(2);
+                        actiAwardRecord.setIsReview(2);//无须审核为2
                         actiAwardRecord.setSendTime(new Date());
                         String cardNumStr = actiAward.getDescr();
                         cardNumStr = cardNumStr == null ? "1" : cardNumStr;
@@ -291,13 +307,14 @@ public class ActiAwardProService implements IActiAwardProService {
                                 new Date(System.currentTimeMillis()).getTime() / 1000,
                                 sendGoldUrl);
                     } else if (awardType == 3) {//忽略类
-                        actiAwardRecord.setIsReview(2);
+                        actiAwardRecord.setIsReview(3);//忽略类为3
                         actiAwardRecord.setSendTime(null);
                     } else {//非房卡，非红包
-                        actiAwardRecord.setIsReview(0);
+                        actiAwardRecord.setIsReview(0);//0为未审核
                         actiAwardRecord.setSendTime(null);
                     }
                 } else {
+                    log.debug("--------------------::Prize type exception!");
                     result.put(CommonContants.RESULT, Boolean.FALSE);
                     result.put(CommonContants.ERROR, -6);
                     result.put(CommonContants.MESSAGE, "奖品类型异常！");
@@ -326,27 +343,35 @@ public class ActiAwardProService implements IActiAwardProService {
                     retrunM.put("name", actiAwardRecord.getName());
                     String gold = actiAwardRecord.getDescr();
                     retrunM.put("gold", gold);//如果是红包，则这个不为空
-                    int type = StringUtils.isNotBlank(gold) ? 0 : 1;//0 为红包类型，1为非红包
-                    retrunM.put("type",type );
+                    retrunM.put("id",actiAwardRecord.getAwardId());
 
+                    //更新memcached ，减去抽奖所需相应的局数
+                    boolean b = memcachedClient.set(memcKey, 0, updateCount);
+                    if (b)  log.debug("--------------------::update memcache play card count success !");
+                    else  log.debug("--------------------::update memcache play card count fail !");
+
+                    log.debug("--------------------::Lottery success!");
                     result.put(CommonContants.RESULT, Boolean.TRUE);
                     result.put(CommonContants.ERROR, 0);
                     result.put(CommonContants.DATA, retrunM);
                     result.put(CommonContants.MESSAGE, "抽奖成功!");
                     return result;
                 } else {
+                    log.debug("--------------------::Insert record failed!");
                     result.put(CommonContants.RESULT, Boolean.FALSE);
                     result.put(CommonContants.ERROR, -4);
                     result.put(CommonContants.MESSAGE, "插入记录失败！");
                     return result;
                 }
             } else {//更新库存失败，说明没有库存了。
+                log.debug("--------------------::Insufficient stock!");
                 result.put(CommonContants.RESULT, Boolean.FALSE);
                 result.put(CommonContants.ERROR, -5);
                 result.put(CommonContants.MESSAGE, "库存不足！");
                 return result;
             }
         } else {
+            log.debug("--------------------::Activity time not started or ended!");
             result.put(CommonContants.RESULT, Boolean.FALSE);
             result.put(CommonContants.ERROR, -2);
             result.put(CommonContants.MESSAGE, "活动时间未开始或者已结束！");

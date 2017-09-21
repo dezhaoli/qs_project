@@ -237,11 +237,12 @@
 	 <if test="date !='' ">
 	 and  A.create_time like '${date}%'
 	 </if>
+	 and A.is_review!=3 ORDER BY A.create_time desc
 	</select>
-	
+<!-- 	is_review!=3 为谢谢参与表示 -->
 	<select id="getActivityCenterAcquireGoodsThirty" resultType="map" parameterType="map">
 	select A.id, B.name ,A.mid ,A.name goodName ,A.create_time
-	from acti_award_record A,${dbName } B where B.mid=A.mid and  A.type =#{type} order by A.create_time desc LIMIT 30
+	from acti_award_record A,${dbName } B where B.mid=A.mid and  A.type =#{type}  and A.is_review!=3 order by A.create_time desc LIMIT 30
 	</select>
 
   <select id="queryRecordCount" resultType="integer" parameterType="map">

@@ -35,9 +35,9 @@ public class ReceiveDataImpl implements IReceiveData {
 			myMessage = (Object) message.getObject();
 			
 			SyncObject so = (SyncObject) myMessage;
-			log.debug("fromSystemCode===========::" + so.getFromSysCode()
+			log.warn("fromSystemCode===========::" + so.getDatabaseName()
 					+ "=========fromSysMethod=======::"
-					+ so.getFromSysMethod());
+					+ so.getTableName());
 			
 		    if (myMessage instanceof SyncMemberfides)
 			{

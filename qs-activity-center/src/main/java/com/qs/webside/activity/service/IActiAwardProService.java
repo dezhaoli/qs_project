@@ -55,6 +55,7 @@ public interface IActiAwardProService {
      * @param mid
      * @return
      */
-    Map<String, Object> executeLuckDraw(int mid,String sesskey,int gameType) throws ParseException, InterruptedException, MemcachedException, TimeoutException;
+    Map<String, Object> executeLuckDraw(int mid,String sesskey,int gameType)
+            throws ParseException, InterruptedException, MemcachedException, TimeoutException;
 
 }

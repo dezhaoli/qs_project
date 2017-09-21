@@ -1,6 +1,7 @@
 package com.hzw.monitor.mysqlbinlog.utils;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -83,7 +84,6 @@ public class DataUtils {
 				else if (flag(data,"douniu_game_record",table,"INSERT"))
 				{
 					result = sendByJms(data, new DouniuGameRecord());
-					logger.info("===============   database:"+database+"================table:"+table+"==========data:"+data.toString()+"======result:"+result);
 				}
 				
 				else if (flag(data,"douniu_game_record_sub",table,"INSERT"))
@@ -144,10 +144,15 @@ public class DataUtils {
 	 */
 	public static Boolean sendByJms(JSONObject data, SyncObject obj)
 	{
+		JSONObject map = new JSONObject();
+		for (Map.Entry<String, Object> entry : data.entrySet()) {
+			map.put(UnderlineToCamel.underlineToCamel(entry.getKey(), true),entry.getValue());
+        }
 		SendDataFacade sendDataFacade = ContextUtil
 				.getBeanByType(SendDataFacade.class);
-		SyncObject sr = JSON.parseObject(data.toJSONString(), obj.getClass());
+		SyncObject sr = JSON.parseObject(map.toJSONString(), obj.getClass());
 		sr.setFromSysCode("sync-data");
+		logger.warn("=========================data:"+data.toString()+"======result:"+true);
 		return sendDataFacade.sendByJms(sr);
 	}
 	

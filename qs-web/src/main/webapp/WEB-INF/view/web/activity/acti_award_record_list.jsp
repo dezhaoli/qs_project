@@ -45,6 +45,7 @@
                  <option value="0">未审核</option>
                 <option value="1">已审核</option>
                 <option value="2">无须审核</option>
+                <option value="3">忽略类</option>
             </select>
         </div>
         

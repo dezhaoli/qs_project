@@ -4,6 +4,7 @@ import com.qs.common.constant.CacheConstan;
 import com.qs.mainku.game.mapper.MemberFidesMapper;
 import com.qs.mainku.game.model.MemberFides;
 import com.qs.mainku.game.service.IMemberFidesService;
+import com.qs.webside.member.model.Memberfides;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
@@ -101,6 +102,41 @@ public class MemberFidesServiceImpl implements IMemberFidesService {
     @Override
     public List<Map<String, Object>> selectAgentBindingUserList(Map<String, Object> parameters) {
         return memberFidesMapper.selectAgentBindingUserList(parameters);
+    }
+
+    @Override
+    @Cacheable(value={CacheConstan.MEMBERFIDES_CACHE_STORE_NAME},key="#root.methodName+':'+#root.args[0]")
+    public Memberfides findMemberfidesById(Integer mid) {
+        //com.qs.webside.member.model.Memberfides
+        MemberFides memberFides = memberFidesMapper.selectByPrimaryKey(mid);
+        if (memberFides == null) return null;
+        Memberfides memberfides = new Memberfides();
+        memberfides.setIcon(memberFides.getIcon());
+        memberfides.setMid(memberFides.getMid());
+        memberfides.setName(memberFides.getName());
+        memberfides.setSex(memberFides.getSex());
+        memberfides.setBtd(memberFides.getBtd());
+        memberfides.setCity(memberFides.getCity());
+        memberfides.setGp(memberFides.getGp());
+        memberfides.setInvite(memberFides.getInvite());
+        memberfides.setSta(memberFides.getSta());
+        memberfides.setMtime(memberFides.getMtime());
+        memberfides.setEmail(memberFides.getEmail());
+        memberfides.setBindtime(memberFides.getBindtime());
+        memberfides.setTel(memberFides.getTel());
+        memberfides.setRealname(memberFides.getRealname());
+        memberfides.setIdentity(memberFides.getIdentity());
+        memberfides.setYellowvip(memberFides.getYellowvip());
+        memberfides.setIsyearvip(memberFides.getIsyearvip());
+        memberfides.setPasswd(memberFides.getPasswd());
+        memberfides.setSalt(memberFides.getSalt());
+        memberfides.setLgtm(memberFides.getLgtm());
+        memberfides.setLxlg(memberFides.getLxlg());
+        memberfides.setQq(memberFides.getQq());
+        memberfides.setAddress(memberFides.getAddress());
+        memberfides.setRegip(memberFides.getRegip());
+        memberfides.setActiveAssets(memberFides.getActiveAssets());
+        return memberfides;
     }
 
     @Override

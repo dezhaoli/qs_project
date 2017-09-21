@@ -21,17 +21,13 @@
 
 	<!-- webside数据源引入 -->
 	<import resource="classpath:/spring/dataResource/webside-datasource.xml"/>
-	<!--data_warehouse数据源引入     数据仓库-->
-	<import resource="classpath:/spring/dataResource/data_warehouse-datasource.xml"/>
-
+	
 	 
 	<!-- ==========================================配置动态数据源================================================ -->
 	<!-- 配置动态数据源 -->
 	<bean id="mainDynamicDataSource" class="com.qs.datasource.MainDataSources">
 		<property name="targetDataSources">
 			<map key-type="java.lang.String">
-				<!-- 主库 -->
-				<entry value-ref="dataWarehouseDataSource" key="dataWarehouseDataSource"/>
 							
 			</map>
 		</property>
